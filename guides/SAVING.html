@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlayForge — Saving and Loading | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlayForge — Saving and Loading | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/SAVING.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playforge--saving-and-loading">PlayForge — Saving and Loading</h1>
+
+<p><code>ForgeSave</code> saves an entity at rest and loads it back. <code>ForgeSave.Capture</code> takes what lasts on an entity
+into a <code>ForgeSnapshot</code>. <code>ForgeSave.Restore</code> puts it back, on the entity it came from or on a fresh one of the same
+kind. A snapshot is plain serializable types, so a game writes it where it likes, through <code>JsonUtility</code> or its own
+serializer.</p>
+<pre><code class="lang-csharp">// Save
+ForgeSnapshot save = ForgeSave.Capture(gas, catalog);
+string json = JsonUtility.ToJson(save);
+
+// Load
+ForgeSnapshot loaded = JsonUtility.FromJson&lt;ForgeSnapshot&gt;(json);
+ForgeSave.Restore(gas, loaded, catalog);
+</code></pre>
+<p>Only a hub built from an entity can be saved or loaded: a <code>GameplayAbilitySystem</code> with its Entity asset, or a
+<code>RuntimeGameplayAbilitySystem</code> made from an identity.</p>
+<h2 id="the-asset-catalog">The Asset Catalog</h2>
+<p>A save can't hold references to assets, because a reference doesn't last from one session to the next. It names each
+asset by an ID instead, and an <strong>Asset Catalog</strong> finds the asset by that ID. The catalog lists attributes, effects,
+abilities and items. A <strong>Forge Project</strong> is the catalog of its own assets, those in its folder.</p>
+<ol>
+<li>Use your Forge Project, or create one with <strong>Create → PlayForge → Forge Project</strong>.</li>
+<li>Its catalog keeps itself current. Each PlayForge asset made, copied or moved into the project's folder is
+named as it lands, by its GUID, which stays the same when the asset is renamed or moved, and a deleted one's entry
+goes. An asset moved out stays named, so a save made before still finds it. The project catches up on assets it
+doesn't name yet as it's imported and once each editor session, so one made before PlayForge kept catalogs catches
+up too.</li>
+<li>Pass the project to every capture and restore.</li>
+</ol>
+<p><strong>Keep Catalog Current</strong>, on the project, turns this off. Then, in the project's inspector, open the menu in its header
+and choose <strong>Add Its Assets</strong>, which names each PlayForge asset in the project's folder by its GUID; <strong>Add Every
+PlayForge Asset</strong> names every one in the Unity project. Run it again after you add assets.</p>
+<p>Code can add entries while the game runs, with <code>catalog.Add(id, asset)</code>. An ID or an asset can be listed only once.</p>
+<p>A capture leaves out an asset the catalog doesn't name, and logs a warning. A restore does the same for an ID the
+catalog can't find.</p>
+<h2 id="what-a-save-holds">What a save holds</h2>
+<ul>
+<li>Each attribute's permanent commits, as a total per retention group. Modifiers aren't saved: they come back with the
+effects that carry them.</li>
+<li>The levels the entity keeps: its own, and its abilities' and items'. Its own is saved as the entity's own, so a save
+of one kind loads onto another kind as that one's level.</li>
+<li>The abilities it knows of its own, in their slots, at their levels.</li>
+<li>Its items in order, each with its level and stacks, worn or not.</li>
+<li>Its effects, each with what applied it, its stacks, its time left and the time to its next tick, and the magnitudes
+its caller set. Stacks with durations of their own keep their own times. The times are kept in full, as the effect's
+timers keep them, so a restored effect keeps time with one that never was, to the last digit.</li>
+<li>Its loose tags, and the time scale its code set; its Time Scale attribute's is read again from the attribute.</li>
+</ul>
+<p>An ability that an effect or a worn item lends isn't saved on its own. It comes back with the effect or the item.</p>
+<p>A save leaves out:</p>
+<ul>
+<li>the entity's Local Data;</li>
+<li>its sides, which come from its asset and its registration;</li>
+<li>what an effect captured as it landed, such as a source's attribute or a roll made once. The effect captures it
+again as it comes back.</li>
+</ul>
+<h2 id="what-a-load-does">What a load does</h2>
+<ol>
+<li>Running abilities are interrupted, and the input buffer empties.</li>
+<li>The entity lets go of its effects, items and abilities, and the actions queued this frame are dropped. An ability
+it holds in the slot the save gives it stays as it is, so another entity's effect that it applied still names it.</li>
+<li>The save's abilities, items, effects, levels and commits come back.</li>
+<li>The tags compile once, and <code>OnRestored</code> fires.</li>
+</ol>
+<p>A load tells nothing as it goes:</p>
+<ul>
+<li>No effect is told as applied or removed, and no attribute as changed.</li>
+<li>Nothing of an effect's application runs again: not its workers, its commits on application, or its contained
+effects.</li>
+<li>A worn item's effects come back from the save, so wearing it again applies none.</li>
+</ul>
+<p>The one tag compile tells what the load changed, as any compile does. Then
+<code>gas.GetCallbacks().OnRestored</code> fires once. Listen to it to refresh what shows the entity, such as a health bar or a
+hotbar.</p>
+<p>The entity's attribute set has to define the attributes the save names. An attribute the catalog names but the save
+doesn't list loses its commits, since the entity had none when it was saved.</p>
+<p>Load between the entity's steps. A restore called from inside the entity's step or its end of frame, as from one of its
+callbacks, is refused with a warning, because it would empty the lists the step is going through. Load on the next
+frame instead.</p>
+<h2 id="effects-from-other-entities">Effects from other entities</h2>
+<p>An effect knows what applied it: an entity, or one of its abilities or items. When that is another entity, the save
+needs a name for it that lasts. Give <code>Capture</code> and <code>Restore</code> an <code>IForgeEntityIds</code>, which maps the game's own IDs to its
+entities:</p>
+<pre><code class="lang-csharp">class Roster : IForgeEntityIds
+{
+    public string IdOf(IGameplayAbilitySystem entity) =&gt; /* the game's ID for it, or null */;
+    public IGameplayAbilitySystem Find(string id) =&gt; /* the entity, or null if it's gone */;
+}
+
+var save = ForgeSave.Capture(hero, catalog, roster);
+ForgeSave.Restore(hero, save, catalog, roster);
+</code></pre>
+<p>Without IDs, or when the other entity is gone, the effect comes back as the entity's own. An entity whose abilities are
+in their saved slots keeps them through its load, so several entities can load in any order and their effects on each
+other still name the abilities that applied them. Items aren't kept that way: when several entities load together,
+restore those whose items applied effects first, so the others find them.</p>
+<h2 id="rolling-back">Rolling back</h2>
+<p>A rollback saves each step, and on a late input loads a step back and runs again. With a fixed tick (ProcessControl's
+Fixed Tick Rate, or a world of its own stepped by a fixed time) and the random source seeded for each step
+(<code>ForgeRandom.Use</code>), the run again lands where the first did, to the last digit of every save. Keep the saves in
+memory, as <code>ForgeSnapshot</code>s: <code>JsonUtility</code> can move the last digit of a double as it reads one back. A load ends the
+abilities running, so an ability that runs over several steps isn't replayed by a load into its middle; one that
+ends as it activates is.</p>
+<h2 id="copying-an-entity">Copying an entity</h2>
+<p><code>ForgeSave.Copy(from, onto)</code> copies what lasts on one entity onto another, as a mirror clone takes its original's
+state. It's a capture and a restore with no catalog and no IDs, since both entities are in the same session, so it
+copies assets made as the game runs too. An effect another entity applied stays that entity's, and the entity's own
+level goes onto the other's own.</p>
+<pre><code class="lang-csharp">var clone = new RuntimeGameplayAbilitySystem(identity);
+ProcessControl.Register(clone).Run();
+ForgeSave.Copy(original, clone);
+</code></pre>
+<h2 id="versions">Versions</h2>
+<p><code>ForgeSnapshot.Version</code> names the save's format, and <code>ForgeSave.Version</code> the format this PlayForge writes. A restore
+refuses a save with a newer format.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

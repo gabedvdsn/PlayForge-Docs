@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlayForge — Testing Your Content | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlayForge — Testing Your Content | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/TESTING.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playforge--testing-your-content">PlayForge — Testing Your Content</h1>
+
+<p>A game's abilities, effects and items are easiest to trust when a test plays them as the game does: a burn's ticks
+landing over its second, a ring's armor while it's held, a cast paying its cost. PlayForge's test kit is the assembly
+<code>FarEmerald.PlayForge.Testing</code>, in the package's <code>TestKit</code> folder, which a project's own tests reference. It
+brings up a live PlayForge for each test, steps it a frame at a time, makes entities on either hub, and plays them; and
+after each test it checks what must always hold, and takes it all down again, so tests run in any order.</p>
+<h2 id="setting-up">Setting up</h2>
+<p>The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as its own test
+runner is. In a test assembly of the project's (an assembly definition whose <strong>Define Constraints</strong> hold
+<code>UNITY_INCLUDE_TESTS</code>, referencing <code>nunit.framework.dll</code>), add to <strong>Assembly Definition References</strong>:</p>
+<ul>
+<li><code>FarEmerald.PlayForge</code> and <code>FarEmerald.PlayForge.Testing</code>;</li>
+<li><code>UniTask</code>;</li>
+<li><code>UnityEngine.TestRunner</code> and <code>UnityEditor.TestRunner</code>.</li>
+</ul>
+<p>The kit's tests are PlayMode tests, as they step the real player loop: give the assembly every platform, not the Editor
+alone.</p>
+<h2 id="a-test">A test</h2>
+<p>A test class derives from <code>ForgeTest</code>, which makes a <code>ForgeTestWorld</code> before each test and audits and ends it after.
+A test is a <code>[UnityTest]</code> whose body runs through <code>Live</code>, from a frame's end:</p>
+<pre><code class="lang-csharp">using System.Collections;
+using FarEmerald.PlayForge;
+using FarEmerald.PlayForge.Testing;
+using NUnit.Framework;
+using UnityEngine.TestTools;
+
+public class BurnTests : ForgeTest
+{
+    [UnityTest]
+    public IEnumerator A_burn_ticks_twice_in_its_second([Values] Hub hub) =&gt; Live(async () =&gt;
+    {
+        var health = Make.Attribute(&quot;Health&quot;);
+        var target = World.Entity(hub, Make.Set(Make.Pool(health, 100f, 100f)), &quot;Target&quot;);
+        var burn = Make.Effect(&quot;Burn&quot;, new EffectConfig
+        {
+            Policy = EEffectDurationPolicy.Durational, Target = health, Magnitude = -10f,
+            Duration = 1f, PeriodicTicks = true, Ticks = 2,
+        });
+
+        Assert.IsTrue(World.Hit(World.Entity(hub, name: &quot;Source&quot;), target, burn));
+        await Frames.Until(() =&gt; World.Value(target, health) &lt;= 80f, 90, &quot;its two ticks land&quot;);
+        Assert.AreEqual(80f, World.Value(target, health), 0.001f);
+    });
+}
+</code></pre>
+<p>A test class whose tests need a base class of their own makes a world instead, and ends it, with <code>await using</code>:</p>
+<pre><code class="lang-csharp">[UnityTest]
+public IEnumerator My_test() =&gt; UniTask.ToCoroutine(async () =&gt;
+{
+    await using var world = await ForgeTestWorld.Start();
+    // ... the test, through world; then, if it wants the checks, await world.Audit()
+});
+</code></pre>
+<h2 id="the-world">The world</h2>
+<ul>
+<li><strong>Entities</strong>: <code>World.Entity(hub, set, name)</code> makes an entity of an attribute set on either hub, <code>Hub.Runtime</code> (a
+<code>RuntimeGameplayAbilitySystem</code>) or <code>Hub.Mono</code> (a <code>GameplayAbilitySystem</code> on a GameObject of its own);
+<code>World.FromIdentity(hub, identity)</code> makes one from an identity asset, the game's own or one <code>Make</code> built, with its
+set, its starting abilities and items, and its sides. <code>RuntimeEntity</code>, <code>MonoEntity</code> and <code>NewMonoEntity</code> (made, not
+yet registered) make one hub's.</li>
+<li><strong>Playing</strong>: <code>World.Hit(source, target, effect)</code> applies an effect, as a hit; <code>World.Cast(caster, ability, target, level)</code> gives an ability and asks it to start, as a player does, and <code>Cast(caster, slot, target)</code> starts the ability in
+a slot; <code>World.Use(caster, ability, target)</code> starts an ability the entity has already, as an item's; and
+<code>World.Hold(holder, item, stacks)</code> gives and equips an item. Each says whether it worked.</li>
+<li><strong>Reading</strong>: <code>World.Value(gas, attribute)</code> and <code>World.Base(gas, attribute)</code>, NaN where the entity hasn't it;
+<code>World.Has(gas, effect)</code> and <code>World.Stacks(gas, effect)</code>; <code>World.HasTag(gas, tag)</code>, a tag or one under it.</li>
+<li><strong>Time</strong>: <code>Frames.Step(n)</code> runs whole frames, each <code>Frames.DeltaTime</code> long (1/60 of a second, or a class's
+<code>DeltaTime</code>) with one FixedUpdate; <code>Frames.Seconds(s)</code> as many as that time; <code>Frames.Until(condition, within, what)</code>
+steps until it holds, failing past <code>within</code> frames; <code>ExactlyIn</code> fails unless it holds exactly so many frames on;
+<code>Holds</code> fails if it stops holding. <code>World.Clock(step)</code> makes each frame take <code>step</code> seconds of PlayForge's own time
+(<code>ForgeTime</code>) instead.</li>
+<li><strong>Chance</strong>: <code>World.Rolls(0.1f, 0.9f)</code> makes each roll come out as written, in turn and round again, and returns them,
+counting what's drawn (<code>Drawn</code>). A chance lands where it's above the roll: a roll of 0 always lands.</li>
+<li><strong>Processes</strong>: <code>World.Register(process)</code> registers one the world ends if the test doesn't; <code>World.Own(relay)</code> makes
+it end one registered some other way; <code>World.Template&lt;T&gt;(name)</code> stands in for a prefab, and <code>World.Spawn(template)</code>
+registers it, returning the clone.</li>
+<li><strong>Assets</strong>: <code>Make</code> builds them in code, destroyed with the world: <code>Attribute</code>, <code>Element</code>, <code>Pool</code> (between 0 and its
+base) and <code>Stat</code>, <code>Set</code> and <code>UnusedSet</code>, <code>Identity</code> and <code>RuntimeIdentity</code>, <code>Effect</code> (as an <code>EffectConfig</code> says: one
+impact, its duration and ticks, how another application stacks, its impact types, granted tags and workers), <code>Item</code>,
+<code>Ability</code> and <code>Stage</code>. Its tag names are unique in the world. The game's own assets are the test's to load.</li>
+</ul>
+<h2 id="what-must-hold">What must hold</h2>
+<p>After each test that passed, the world's <strong>audit</strong> lets three frames settle, ends what the test left running of what it
+began, and fails the test where any of these broke:</p>
+<ul>
+<li>an entity's attribute parts don't sum to its value;</li>
+<li>what an entity dealt, read from its frame summaries, isn't what its targets received from it;</li>
+<li>a process is still running that the world didn't begin.</li>
+</ul>
+<p>The world checks the entities it makes; <code>World.Observe(gas)</code> adds one made elsewhere, as from a scene, and an entity made
+with <code>observed: false</code> is left out, as a test that measures allocation wants. A class whose tests leave processes
+running on purpose overrides <code>Audits</code> to false.</p>
+<h2 id="allocation">Allocation</h2>
+<p><code>AllocationProbe</code> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono:
+<code>Measure(action)</code> what one run allocates, <code>MeasureEach(action, runs, warmup)</code> the mean of many after a warm-up, and
+<code>await MeasureFrames(Frames, count)</code> what whole frames allocate, the cleanest of up to three tries, as stray noise
+doesn't repeat and a leak does. Dispose it as the test ends.</p>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>Step frames; never call a process's update by hand.</strong> The world's ProcessControl steps what runs, as the game's
+does; calling an update yourself runs it out of order and hides what the frame does.</li>
+<li><strong>A tag converts to text.</strong> NUnit's <code>Does.Contain(tag)</code> compares a list of tags as text and fails; check with
+<code>World.HasTag</code>, or <code>Contains</code> on the list itself.</li>
+<li><strong>Unscaled time isn't stepped.</strong> Anything timed on Unity's unscaled time stays on the wall clock.</li>
+<li><strong>One world at a time.</strong> <code>ForgeTestWorld.Current</code> is the one a test is in; PlayForge's static state is the world's
+while it lives, and the world gives back the clock and the rolls as it ends.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

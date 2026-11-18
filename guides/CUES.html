@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlayForge — Cues | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlayForge — Cues | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/CUES.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playforge--cues">PlayForge — Cues</h1>
+
+<p>A <strong>cue</strong> is what something shows and sounds, apart from what it changes: a spark as a hit lands, a hum while a shield
+holds, a shake as a giant falls. Effects, abilities, entities and items each list their cues, and a game's own code
+raises one where it likes. Every cue plays through <code>ForgeCues</code>, after Unreal's gameplay cues: a <strong>burst</strong> at a moment,
+as a hit's spark, or a <strong>lasting</strong> cue's beginning and its end, as a shield's hum, which share a key.</p>
+<h2 id="where-cues-are-raised">Where cues are raised</h2>
+<ul>
+<li><strong>Effects</strong>: an effect's <strong>Cues</strong> component plays its cues as it lands, as an application it takes in lands, as each
+tick executes, as an impact it deals lands, as it comes off, while it lasts, as an application is refused and as
+its stacks change (<a href="EFFECTS.html#cues">EFFECTS.md</a>).</li>
+<li><strong>Abilities</strong>: a <strong>Cues</strong> component plays an ability's as it activates, as it commits, while it's active, as it ends
+and as one is refused; a <strong>Play Cue</strong> task plays them at a stage's exact moment, on the caster, on the target or at
+the point (<a href="ABILITIES.html#cues">ABILITIES.md</a>).</li>
+<li><strong>Entities</strong>: a <strong>Cues</strong> component plays an entity's as it spawns, dies and comes back, and lasting ones while it
+holds a tag, as stars over its head while it's Stunned (<a href="ENTITIES.html#cues">ENTITIES.md</a>).</li>
+<li><strong>Items</strong>: a <strong>Cues</strong> component plays an item's as it's equipped, while it's equipped and as it's used
+(<a href="ITEMS.html#cues">ITEMS.md</a>).</li>
+<li><strong>Code</strong>: <code>ForgeCues.Burst(sparks, new CueContext(entity, ECueMoment.Raised, point: hit.point))</code> plays sparks where a
+ray hit, and <code>ForgeCues.Begin</code> and <code>ForgeCues.End</code> begin and end a lasting one.</li>
+</ul>
+<p>A cue's context, <code>CueContext</code>, says what raised it, its <code>Moment</code>, as Applied, Activated or Died; its target and its
+source; the effect or the ability behind it; where it plays, its <code>Point</code> and <code>Normal</code>, or else its target's place; a
+magnitude; and, for a lasting cue, the key its beginning and its end share.</p>
+<h2 id="handlers">Handlers</h2>
+<p>Each cue in a list is a handler, its kind picked from the list. It plays at each moment whose list holds it, and, in a
+list of lasting cues, as a While Active, from its beginning to its end:</p>
+<ul>
+<li><strong>Camera Shake</strong> shakes the camera through the shaker the game gives <code>ForgeCues.Shaker</code>, an <code>ICameraShaker</code>.</li>
+<li><strong>Sound</strong> plays its clip where its Placement says (<a href="#placement">Placement</a>).</li>
+<li><strong>Prefab</strong> places its prefab where its Placement says, for its <strong>Lifetime</strong>, or, as a lasting cue, until its cue
+ends (<a href="#pooling">Pooling</a>).</li>
+<li><strong>Floating Text</strong> floats a text where its Placement says, as a hit's damage, the gold a kill gave or a status's
+name (<a href="#floating-text">Floating text</a>).</li>
+<li><strong>Process</strong> runs a MonoBehaviour process where its Placement says, on a packet loaded for the cue, with its <strong>Data</strong>
+list last (<a href="#data-packets">Data packets</a>): a burst's runs its own course, and a lasting one's runs until its cue
+ends (<a href="#pooling">Pooling</a>).</li>
+<li><strong>Sequence</strong> runs a task sequence on a packet loaded for the cue, with its <strong>Data</strong> list last: a burst's runs its
+course, and a lasting one's runs until its cue ends. It goes by the clock its <strong>Clock</strong> picks, else the sequence's
+own, else that of the one it plays on.</li>
+<li><strong>Cue Tag</strong> plays what its tag routes to (<a href="#routes">Routes</a>).</li>
+</ul>
+<p>Write a handler of your own by deriving from <code>AbstractCueHandler</code>: override the moments it plays at, or <code>Burst</code> to play
+every burst one way, reading the moment from <code>cue.Moment</code>, and <code>Begin</code> and <code>End</code> for a lasting one.</p>
+<h2 id="placement">Placement</h2>
+<p>A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong>:</p>
+<ul>
+<li><strong>At</strong>: on whom.
+<ul>
+<li><strong>Self</strong>: the one the cue is on: an effect's target, an ability's caster, the entity, or an item's holder. Where
+its raiser gave a point, as a hit's, it's there.</li>
+<li><strong>Source</strong>: who's behind it, as an effect's source or a death's killer.</li>
+<li><strong>Target</strong>: an ability's first target, or the place it targeted. For another's cue, the one it's on.</li>
+<li><strong>Each Target</strong>: one at each of an ability's targets.</li>
+<li><strong>Point</strong>: the cue's point, or the place an ability targeted.</li>
+</ul>
+</li>
+<li><strong>Socket</strong>: a child of theirs it's placed at, by name, found at any depth, as a hand or a weapon's tip.</li>
+<li><strong>Offset</strong> moves it, and <strong>Scatter</strong> moves it by a random amount up to that much either way on each axis, both in
+the space of what it's placed at.</li>
+<li><strong>Attach</strong>: whether it follows them: a lasting cue's only, by default; always; or never. An attached sound plays
+from a source of its own under them.</li>
+<li><strong>Facing</strong>: as what it's placed at faces, or along the cue's normal at a point; along the cue's normal; away from
+or toward its source; or the world's way.</li>
+</ul>
+<p>Scatter draws from <code>ForgeCues.Random</code>, the cues' own random numbers, so a cue never moves the game's rolls: a server
+that plays no cues and a client that plays them must draw alike.</p>
+<h2 id="floating-text">Floating text</h2>
+<p>A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default: a
+hit's damage, the gold a kill gave, a status's name as it lands.</p>
+<ul>
+<li><strong>Text</strong>: what it says. <code>{value}</code> is its number, <code>{name}</code> the name of what raised it, as an effect's, and <code>{tag}</code> its
+cue tag: <code>+{value} gold</code>, or <code>{name}</code> for a status.</li>
+<li><strong>Value</strong>: its number, <strong>From</strong> the cue's magnitude, as a hit's value from an effect's <strong>On Hit</strong>, or its
+<strong>Number</strong>, read as it plays, as a Tracked Impact's for the gold an instant effect gave. It's written with up to
+<strong>Decimals</strong> decimals; without its sign where <strong>Absolute</strong> says, as damage shown as 35; with a <strong>Plus Sign</strong> above
+0; shortened past a thousand where <strong>Abbreviate</strong> says, as 1.2k; and not at all for 0 where <strong>Hide Zero</strong> says.</li>
+<li><strong>Look</strong>: its <strong>Color</strong>, or its <strong>Negative Color</strong> below 0 where <strong>By Sign</strong> says; its <strong>Size</strong>, <strong>Font</strong>,
+<strong>Bold</strong> and <strong>Outline</strong>; turned to the camera where <strong>Face Camera</strong> says, <code>ForgeCues.Camera</code> or else the main
+camera; and its <strong>Sorting Order</strong>. A <strong>Prefab</strong> holding a TextMeshPro text shows it in place of the cue's own,
+its font, size and outline its own.</li>
+<li><strong>Motion</strong>: its <strong>Lifetime</strong>; its <strong>Velocity</strong>, and a <strong>Random Velocity</strong> either way on each axis; <strong>Gravity</strong>, for
+an arc, and <strong>Drag</strong>; its opacity over its life, <strong>Fade</strong>, and its scale, <strong>Scale</strong>, as a pop; on the game's clock
+where <strong>Game Time</strong> says, else in real time.</li>
+<li><strong>Stacking</strong>, on one entity: a number <strong>Merge Within</strong> some seconds of the last adds to it, which shows the sum
+and floats again, as a burn's ticks; each text floats a <strong>Stagger</strong> above the one below it, in the lowest place
+free; and at most <strong>Max Shown</strong> float at once, the oldest going first.</li>
+</ul>
+<p>Its texts come from <code>ForgeCuePool</code> and go back to it. For damage numbers, put one in an effect's <strong>On Hit</strong>: it plays
+as each impact the effect deals lands, on the one it lands on, told the value it changed.</p>
+<h2 id="routes">Routes</h2>
+<p>A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows, so an effect, an ability and an entity can
+each raise Cue.Hit.Fire and one place says how it looks. That place is the project's <strong>Cue Library</strong>, an asset from
+Create &gt; PlayForge &gt; Cue Library, which Project Settings &gt; PlayForge names under Forge Project. Each of its routes is a
+cue tag and the handlers it plays.</p>
+<ul>
+<li>A tag plays its own route, or else its nearest parent's: with no route for Cue.Hit.Fire, Cue.Hit's plays.</li>
+<li>A route that doesn't <strong>Override</strong> plays its parent's after it, so Cue.Hit.Fire's flames add to Cue.Hit's spark.</li>
+<li>An entity's <strong>Cue Receiver</strong> component plays a tag its own way first, in place of the library's, or before it with
+<strong>Pass Through</strong>. Its <strong>Variant</strong> plays the library's route under its name, as Cue.Hit.Golem for Cue.Hit, where the
+library has one, so a golem's hit sounds of stone.</li>
+<li>Code can give a library of its own, <code>ForgeCueRoutes.Library</code>, in place of the project's.</li>
+</ul>
+<h2 id="raised">Raised</h2>
+<p>The Cue Library's inspector lists under <strong>Raised</strong> each cue tag the project's assets raise through it, by a Cue Tag
+cue, in tag order. Each tag shows what plays it, &quot;plays its own route&quot;, &quot;plays Cue.Hit's route&quot; or &quot;plays nowhere&quot;,
+then a row for each asset that raises it, which opens the asset in The Forge. The section's header counts the tags,
+and how many of them play nowhere. It follows the project as it changes, and the library's routes as they're edited.</p>
+<p>The Problems view notes a Cue Tag cue that plays nowhere:</p>
+<ul>
+<li>one that names no tag;</li>
+<li>one whose project names no Cue Library;</li>
+<li>one whose tag the library routes nowhere, neither its own route nor a parent's.</li>
+</ul>
+<p>It's a note, not a warning, as an entity's Cue Receiver may play the tag its own way. An edit to the library, or to
+the library a project names, checks every asset again.</p>
+<h2 id="pooling">Pooling</h2>
+<p>A Prefab cue with <strong>Pooled</strong> takes its objects from <code>ForgeCuePool</code> and gives them back as its cue ends, a burst's after
+its Lifetime, in place of making and destroying one each time; the pool makes <strong>Preallocate</strong> of them ahead as the cue
+first plays. An <code>IPooledCue</code> on the prefab is told as it's taken and as it's given back, to reset it.</p>
+<p>A Process cue with <strong>Pooled</strong> does the same through <code>CuePoolInstantiator</code>, the instantiator its process's registration
+gives: each object comes from the pool, placed where the cue's packet says, and goes back as its process ends.</p>
+<h2 id="data-packets">Data packets</h2>
+<p>A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue,
+<code>CuePackets.For(cue, data)</code>. It loads in four steps, each step's keys taking the place of an earlier step's:</p>
+<ol>
+<li><strong>An ability's activation:</strong> an ability's cue starts from a copy of its activation's packet, with its targets, its
+targeting data and the numbers its caller set.</li>
+<li><strong>The cue's context:</strong>
+<ul>
+<li>the cue itself under <code>Tags.CUE</code>, a <code>CueContext</code>;</li>
+<li>its asset under <code>Tags.ASSET</code>, the effect, the ability, the item or the entity's identity, and its spec under
+<code>Tags.SPEC</code>, the effect's, the ability's or the item's;</li>
+<li>its source under <code>Tags.SOURCE</code>, and the one it plays on under <code>Tags.TARGET_REAL</code> where the activation named no
+target;</li>
+<li>where it plays under <code>Tags.POSITION</code> and <code>Tags.ROTATION</code>, and what it follows under <code>Tags.TRANSFORM</code>;</li>
+<li>its owner's clock: the activation's for an ability's cue, else that of the one it plays on.</li>
+</ul>
+</li>
+<li><strong>The asset's Local Data:</strong> each row under its key, its numbers read for the cue, as at its level.</li>
+<li><strong>The cue's own Data list,</strong> last, so it has the last word. A row with no value puts nothing.</li>
+</ol>
+<p>A process or a sequence reads it as it reads any packet: <code>data.TryGetFirst(Tags.CUE, out CueContext cue)</code>.</p>
+<h2 id="raises-and-sinks">Raises and sinks</h2>
+<p>Each raise of a list of cues names what the list belongs to, its <code>CueSource</code>: an effect, an ability, an entity or an
+item, by its asset; a cue tag raised from code, as <code>ForgeCueRoutes.Burst(cue)</code>; or a game's own code, where it names
+nothing. Code can name one: <code>ForgeCues.Burst(cues, cue, CueSource.Of(effect))</code>.</p>
+<p>Before any cue of a raise plays, its world's sink is asked, once: <code>ForgeCueSink.WillPlay(event, raise)</code>, the raise
+holding the cue and its source. The default plays everything. A world of its own takes a sink of its own with
+<code>ForgeCues.UseSink(world, sink)</code>, and <code>ForgeCues.Sink</code> is the one every other world asks. It's asked whatever mutes a
+cue, so a server that plays none can still send them on, as a network layer's sink does. A cue tag raised from code
+asks once; its routes, and a Cue Tag within them, play inside that raise, unasked.</p>
+<p>An effect's applier can say where it hit, before applying it: <code>spec.WithHit(point, normal, magnitude)</code>. Its cues then
+play at the point, facing the normal, with the magnitude, as a sword's spark where the blade struck.</p>
+<h2 id="silencing-and-listening">Silencing and listening</h2>
+<ul>
+<li><code>ForgeCues.Enabled = false</code> silences every cue, as on a server or while a simulation runs ahead.</li>
+<li><code>ForgeCues.Mute(entity, true)</code> silences one entity's, as one off screen. A lasting cue that began still ends.</li>
+<li><code>ForgeCues.Played</code> hears each cue as it plays, for a debugger or a recorder.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

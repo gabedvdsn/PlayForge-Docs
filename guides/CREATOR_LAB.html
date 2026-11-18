@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlayForge — The Creator Lab | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlayForge — The Creator Lab | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/CREATOR_LAB.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playforge--the-creator-lab">PlayForge — The Creator Lab</h1>
+
+<p>A space for trying a project's own assets: put units down, give them abilities, effects and items, cast, and watch the
+numbers move. Open it from <strong>Window → PlayForge → Creator Lab</strong>: it opens in a new scene and plays. The scenes open
+before are saved first, if you want them saved.</p>
+<p>The lab plays every PlayForge asset in the project's own folders.</p>
+<h2 id="the-space">The space</h2>
+<ul>
+<li><strong>The ground</strong> is a plane in the middle of the scene, lit from above.</li>
+<li><strong>The camera</strong> looks down at an angle. Scroll to pull it back or bring it in; drag with the middle button to pan.
+The right panel's sliders set its distance and tilt, and <strong>Reset view</strong> puts it back.</li>
+<li><strong>Units</strong> are a body and a <code>GameplayAbilitySystem</code>: a capsule with a nose to show where it faces, a ring at its feet
+in its side's color, and a bar over it with its name and health. A unit walks in a straight line where it's sent and
+attacks what it's set on, and a walk or a stop ends a turn to face its abilities ordered, as a game's move would.
+PlayForge has no movement of its own, so the lab's is its own: a project's game moves its units its own way.</li>
+<li><strong>The lab's caster</strong> is a unit of the lab's own, on no side, with no body. It's the source of what you drop while no
+unit is selected.</li>
+</ul>
+<h2 id="the-panels">The panels</h2>
+<p>Each panel collapses to a tab at its edge with its − button.</p>
+<ul>
+<li><strong>Library</strong> (left): the active Forge Project's assets by kind, abilities, effects, items, entities, attribute sets,
+attributes and scalers, each kind by name, or every asset of the project while it has no Forge Project. <strong>Project</strong>
+switches the active project, as The Forge does, and follows The Forge's switch. The search box filters them;
+<strong>Refresh</strong> lists them again after you make or delete one. A kind's color shows in its icon alone.</li>
+<li><strong>Selected</strong> (middle): hidden until something is selected. Click an asset in the library to see its numbers level by
+level, as &quot;−80/−120/−160 Health&quot;; <strong>Open in The Forge</strong> opens it there. Click a unit to see its attributes, tags,
+effects with their stacks and time left, abilities with their levels and cooldowns, and items. There, − and + change
+an ability's level, × takes an ability or an item, and <strong>Remove</strong> takes the unit out.</li>
+<li><strong>Lab</strong> (right): the mode, the test dummies, the camera and the lab's time.</li>
+<li><strong>Log</strong> (bottom): collapsed until you open it, a page for each way the lab shows its working; see below.</li>
+</ul>
+<h2 id="dropping-assets">Dropping assets</h2>
+<p>Drag an asset from the library and drop it on the space:</p>
+<table>
+<thead>
+<tr>
+<th>Dropped</th>
+<th>On</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An effect</td>
+<td>A unit</td>
+<td>It lands on the unit, from the selected unit, or from the lab's caster</td>
+</tr>
+<tr>
+<td>An ability</td>
+<td>A unit, or the ground</td>
+<td>The selected unit, or the lab's caster, casts it there, its target in the activation's data, as click targeting takes it with no click. A unit that doesn't know it learns it first. An ability that needs more than the point waits for a click, which <strong>Esc</strong> cancels</td>
+</tr>
+<tr>
+<td>An item</td>
+<td>A unit</td>
+<td>It's given to the unit, equipped</td>
+</tr>
+<tr>
+<td>An entity or an attribute set</td>
+<td>The ground</td>
+<td>A test dummy of it is put down, on the side the Lab panel's picker names</td>
+</tr>
+</tbody>
+</table>
+<h2 id="test-dummies">Test dummies</h2>
+<p>The <strong>Test dummies</strong> section puts down a dummy of any entity or attribute set, on a side: Blue, Red, Green, Gold or
+Neutral. A dummy counts what it takes: its damage a second, the last blow by its impact types and the effect it came
+from, and a short history, which the Selected panel shows. It doesn't die unless asked: falling, it's revived where it
+stands, at full. Left alone for three seconds, it mends to full. <strong>Reset</strong> puts each dummy back where it was put, at
+full; <strong>Clear</strong> takes every unit out.</p>
+<p>An effect or an entity changed in the inspector or The Forge as the lab plays is read on its next application, as
+every asset is. What a unit was made from, its attribute set and its starting abilities, shows on a new unit.</p>
+<h2 id="battle">Battle</h2>
+<p>The <strong>Battle</strong> mode fights teams of bots. Pick an entity and a side above, a level in <strong>Level</strong>, and <strong>Add bot</strong>; each
+side stands in a line of its own, Blue to the south, Red to the north, Green to the west and Gold to the east. <strong>Quick
+battle</strong> makes Blue against Red, <strong>A side</strong> of each, of the entity selected in the library, or picked at random from the
+project's. <strong>Play</strong> starts the fight and the lab's time; the line under the buttons says who stands, and who won, or
+that no one stands. <strong>Reset</strong> makes every bot anew where it started, at full, with the items and abilities you gave it
+since and their levels.</p>
+<p>A bot takes the nearest foe it can target, casts what's ready, and otherwise attacks with its attack. Its order and its
+moments are its rules':</p>
+<ul>
+<li><strong>Cast Order Key</strong>: the Local Data key an entity's order is under, as &quot;W Q E&quot;, the letters its abilities other than its
+attack, in its entity's order. With none, each in turn.</li>
+<li><strong>Cast When Key</strong>: the key for when it casts an ability: <strong>InRange</strong> (the default), <strong>Hurt</strong> (below 60% health),
+<strong>Low</strong> (below 35%, away from its foe, as an escape), <strong>Stunned</strong> (while something stops it) or <strong>FoeLow</strong> (its foe
+below half).</li>
+<li><strong>Reach Key</strong>: the key for an ability's reach, 0 for anywhere, where it has no reach of its own, as a Cast Range; one
+that has reaches as far as that does.</li>
+</ul>
+<p>Low on health, a bot backs off a moment once in a while. The Demo's AI hero is a bot, its roster giving the keys.</p>
+<h2 id="your-unit">Your unit</h2>
+<p>In either mode you can play a unit of your own. <strong>Put down</strong> in the Lab panel's <strong>Your unit</strong> section puts one of the
+entity picked above down on the side picked, where the camera looks, and gives you control of it; <strong>Take control</strong> takes
+the unit selected, and a bot taken over stops fighting until you let it go, a new fight passing it over and <strong>Reset</strong>
+keeping you on its seat's new bot. <strong>Release</strong> lets it go, and <strong>Follow</strong> has the camera follow it. The line under the
+buttons says whom you control.</p>
+<p>The controls are the Demo's: right-click the ground to walk there, a foe to attack it, or an ally to walk to it; <strong>Q</strong>,
+<strong>W</strong>, <strong>E</strong> and <strong>R</strong> cast its abilities past its attack, in its entity's order, and <strong>1</strong> to <strong>6</strong> its items' active
+abilities; an ability that needs a target waits for a left-click, and <strong>Esc</strong> cancels it; <strong>S</strong> stops it. They read
+PlayForge's input, <code>ForgeInput</code>, so a game's own input or a test's stands in.</p>
+<p>Its orders go through a driver. The lab's walks a unit in a straight line and casts as the lab's units do. A project
+whose units move and cast their own way makes a <strong>Lab Driver</strong> asset (<strong>Create → PlayForge → Lab Driver</strong>) of its own
+class, overriding the orders its game gives its own way (<code>MoveTo</code>, <code>Attack</code>, <code>Cast</code>, <code>Stop</code>, each doing as the lab's
+does unless overridden), and names it on its Lab Rules' <strong>Driver</strong>.</p>
+<h2 id="time">Time</h2>
+<p>The lab's units live in a world of the lab's own (<code>ProcessWorld</code>), which the lab steps by its own time, so its time
+stands still or runs faster without touching Unity's. <strong>Pause</strong> stops it, <strong>Step</strong> goes one frame (a sixtieth of a
+second) while it's paused, and <strong>Speed</strong> runs it from a quarter to four times as fast. The camera and the panels go on
+while it's paused.</p>
+<h2 id="showing-its-working">Showing its working</h2>
+<p>The bottom panel's pages show what happens as the lab plays. Each records only while the lab runs.</p>
+<ul>
+<li><strong>Journal</strong>: the lab's effect journal over every unit: each effect landing, with its number traced, refused and why,
+ticking, hitting, coming off, and each worker that ran, by its hook and its side, with the actions it queued and
+whether they ran; newest first, on the selected unit or, with <strong>Selected unit</strong> off, on any. Click an entry to see
+its parts: a number's, a hit's breakdown, or a worker's actions.</li>
+<li><strong>Combat</strong>: the selected unit's combat log, newest first, each hit with its steps under it, &quot;-30 as made → Math -30 →
+-15 (inline) → landed -15&quot;. The project's combat log writes it (Project Settings → PlayForge → Combat Log).</li>
+<li><strong>Stops</strong>: a list of what pauses the lab's world: an effect lands, is refused or has a worker run, an attribute
+crosses a value, a tag comes or goes, an ability is refused, each on the selected unit or any, and naming an effect,
+an ability, a tag or an attribute where it asks for one (<strong>Any</strong> for an effect or an ability takes any). As one
+fires, the world pauses and the page says which and what fired it. <strong>Go</strong> plays on, <strong>Step Frame</strong> goes one frame,
+and <strong>Step Tick</strong> goes on until an effect ticks on the selected unit, or on any, up to ten seconds, or a stop fires.</li>
+<li><strong>Watches</strong>: pin a number on the selected unit, an attribute's current or base value, a tag's count, an effect's
+stacks or time left, or a Scaler asset read on it, and see each as a line over the last minute of the lab's time,
+in its own color and scaled to its own range, with its value now.</li>
+<li><strong>Log</strong>: PlayForge's messages as <code>ForgeLog</code> lets them through, by system, newest first, those about the selected
+unit where <strong>Selected unit</strong> is on. <strong>System</strong> and <strong>Level</strong> give a system a level of its own, which the Console
+keeps too; <strong>As all</strong> gives it back to the Logging preference's.</li>
+</ul>
+<h2 id="the-labs-rules">The lab's rules</h2>
+<p>The lab needs to know a few things about a project: which attribute is a unit's health, which it walks at, which tags
+stop, hide or shield it, and which ability is its attack. With no rules given, it takes the attributes playing the
+project's Health and Movement Speed roles (<a href="ATTRIBUTES.html#roles">ATTRIBUTES.md</a>), or else finds the attributes named Health and
+Movement Speed (or Move Speed), and walks a unit without a speed at 4 a second. To say more, make a <strong>Lab Rules</strong> asset
+(<strong>Create → PlayForge → Lab Rules</strong>) and give it to the lab's <code>CreatorLab</code> component:</p>
+<ul>
+<li><strong>Health</strong> and <strong>Movement Speed</strong>, or <strong>Walk Speed</strong> where a unit has none. Left empty, each is the project's.</li>
+<li><strong>Stops</strong>: tags that stop a unit moving, as Stunned. <strong>Hides</strong>: tags under which the other side can't see or target
+it, as Invisible. <strong>Shields</strong>: tags under which no one can target it.</li>
+<li><strong>Attack Range Key</strong>: the Local Data key a unit's attack range is under, or <strong>Attack Range</strong> for every unit; a unit
+whose attack has a reach of its own, as a Cast Range, attacks from as far as it reaches.</li>
+<li><strong>Attack Slot</strong>: which of an entity's starting abilities is its attack, from 0, or −1 for none.</li>
+<li><strong>Driver</strong>: the project's <strong>Lab Driver</strong>, which the unit you control is ordered about through (<a href="#your-unit">Your unit</a>).</li>
+</ul>
+<p>The Demo's roster is the Demo's rules: its units, camera and dummy are the lab's, so the two can't drift.</p>
+<h2 id="in-code">In code</h2>
+<p><code>CreatorLab.Create(library, rules, panels)</code> makes a lab, as the tests do. Its calls are the panels': <code>AddUnit</code> and
+<code>AddDummy</code>, <code>ApplyEffect</code>, <code>CastAt</code>, <code>GiveItem</code>, <code>Drop</code> (at a point of the screen) and <code>DropAt</code> (on a unit or a point),
+<code>Select</code>, <code>SetMode</code>, <code>ResetDummies</code>, <code>Clear</code>, and <code>Step</code>, <code>Paused</code>, <code>Speed</code> and <code>StepFrame</code> for its time. A library is an
+<code>ILabLibrary</code>: in the editor every asset of the project (<code>EditorLabLibrary</code>), in code a <code>ListLibrary</code> of the assets
+given; a game's own build gets <code>ListLibrary.Of(project)</code>, the assets its Forge Project's catalog names, which the lab
+plays where no editor gives it a library. A library offers projects to switch between through <code>ILabLibrary.Projects</code>,
+<code>Project</code> and <code>UseProject</code>, which have defaults. The unit you control is <code>ControlledUnit</code>, given by <code>PutDownOwnUnit</code>, <code>TakeControl</code> and <code>ReleaseControl</code>, its
+camera by <code>Follow</code>; the lab's controls are its <code>Controls</code>, a <code>LabControls</code>, whose <code>Driver</code> comes before its rules'. A
+game's own player can be a <code>LabControls</code> too, as the Demo's is: its unit set on it, or its <code>ControlledUnit()</code>
+overridden.</p>
+<p>What it shows of its working is its <code>Showing</code>, a <code>LabShowing</code>: its <code>Journal</code>, an <code>EffectJournal</code> over every unit; its
+<code>Stops</code>, added with <code>Add(stop)</code>, and <code>StoppedBy</code> and <code>StoppedFor</code> as one fires, <code>Resume()</code> to let it go and <code>StepTick()</code>;
+its <code>Watches</code>, pinned with <code>Pin(watch)</code>; and its <code>Log</code> of ForgeLog's messages.</p>
+<p>A build can leave the lab out by defining <code>PLAYFORGE_NO_LAB</code>. The Demo uses the lab's units, so it goes too.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

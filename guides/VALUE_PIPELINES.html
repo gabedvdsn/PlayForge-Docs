@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Value Pipelines | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Value Pipelines | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/VALUE_PIPELINES.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="value-pipelines">Value Pipelines</h1>
+
+<p>A <strong>Value Pipeline</strong> is an asset that takes a value as it lands, sends it through ordered stages, and gives what comes
+out. An effect's impact names one as its calculation, as an Unreal effect names its execution calculation: each
+hit of that impact goes through the pipeline's stages, so a project writes once how a hit's damage is worked out, and a
+new item that changes every hit is a stage, not an edit to each attack.</p>
+<p>It's generic: the value is any number an impact lands with, a blow, a heal, a drain. Create one from
+<strong>Create &gt; PlayForge &gt; Value Pipeline</strong>, or with <strong>New</strong> beside an impact's Pipeline field, which makes one named for
+the effect and uses it; once the field names one, <strong>Open</strong> shows it. A Crowd Control Rules or Effect Modifier
+field has the same two.</p>
+<h2 id="not-a-scaler-asset">Not a Scaler asset</h2>
+<p>A <strong>Scaler asset</strong> is a number worked out from its context: a level table, × an attribute, a condition. A number field
+reads it wherever a number is read.</p>
+<p>A <strong>Value Pipeline</strong> transforms a value it's given. It runs once for each hit, as the hit lands, with the caster and the
+target both known, and its stages can do what a number can't: roll a chance once for the hit and keep it, route part of
+the value into a barrier, and say what each stage did.</p>
+<p>A stage's own numbers are number fields, so a stage reads × Attribute, conditions, curves and Scaler assets as any field
+does.</p>
+<h2 id="when-it-runs">When it runs</h2>
+<p>It runs for what an impact commits: an instant impact's hit, and each tick of a periodic one. A lasting impact, as +10
+Strength while a buff holds, is read again whenever its attribute changes, so a pipeline doesn't run it.</p>
+<p>A modifier's <strong>Change Impact</strong> brings a stage of its own (<a href="EFFECTS.html#modifiers">EFFECTS.md</a>): a hit runs it after
+its pipeline, or alone where it has none, and the breakdown keeps it with the pipeline's steps; a lasting impact takes it
+on its magnitude.</p>
+<h2 id="stages">Stages</h2>
+<p>Each stage has a <strong>Label</strong>, the name a breakdown gives it, and <strong>Enabled</strong>, which lets the value pass it by.</p>
+<ul>
+<li><strong>Multiply</strong>: the value times a number read for the hit. A bonus, × the caster's Damage Amplification read as 1 + x; a
+reduction, × the target's Damage Resistance read as what's left; an armor curve; a bonus that reads the target, as 75%
+more while the target is above 90% of its health.</li>
+<li><strong>Add</strong>: a number added to the value's size. A flat bonus of 10 makes a blow of −100 one of −110, and a heal of 50 one
+of 60.</li>
+<li><strong>Chance</strong>: on a chance, the value times a number: a critical hit. It rolls once for the hit, and the breakdown notes
+it. Its <strong>Roll</strong> makes it pseudo-random or lucky (<a href="EFFECTS.html#requirements">EFFECTS.md</a>).</li>
+<li><strong>Clamp</strong>: the value's size kept between two numbers, its sign as it was.</li>
+<li><strong>Absorb</strong>: a loss taken first from another attribute of the one hit, as a barrier or a shield takes a blow before
+health. What it soaks comes off that attribute at the frame's end, and the rest goes on. An attribute with the
+Barrier role soaks the losses to the one it absorbs for with no stage at all (<a href="ATTRIBUTES.html">ATTRIBUTES.md</a>).</li>
+<li><strong>Block</strong> and <strong>Evade</strong>: a <strong>Chance</strong>, read as the effect lands, that stops it. Each rolls once, before anything
+of the effect lands, and where it comes up nothing of it does, its damage, tags, contained effects and on-hits, and
+its ticks aren't rolled again; the one hit hears Blocked or Evaded, and the dealer Hit Blocked or Hit Evaded. A
+defender brings one through an incoming modifier's Change Impact, as Tougher Times blocks the hits landing on its
+holder by a stacking curve of its stacks (<a href="EFFECTS.html#modifiers">EFFECTS.md</a>). Its <strong>Stops</strong> says what it can stop:
+<strong>Losses</strong>, the default, an effect that lowers its attribute, an add below 0, a multiplier below 1 or an override
+below where it stands, so a heal lands past it unrolled; or <strong>Any Impact</strong>, heals and buffs too. As the hit
+commits, it passes the value on.</li>
+<li><strong>Execute</strong>: a hit that would leave the one hit with less than its <strong>Share</strong> of its <strong>Attribute</strong>'s base, the
+Health role's where it names none, takes the rest, as Culling Blade; the breakdown notes it.</li>
+</ul>
+<p>A project writes its own stage by deriving from <code>AbstractValueStage</code> and overriding <code>Apply(value, in run)</code>. <code>run.Context</code>
+reads the hit's caster, target and level, as any number does, and <code>run.Note</code> notes what the stage did.</p>
+<h2 id="a-typical-damage-pipeline">A typical damage pipeline</h2>
+<ol>
+<li><strong>Amplification</strong>: Multiply by the caster's Damage Amplification (a Bonus Share, read as 1 + x).</li>
+<li><strong>Critical</strong>: Chance, the caster's Crit Chance, × 2.</li>
+<li><strong>Armor</strong>: Multiply by a curve of the target's Armor.</li>
+<li><strong>Resistance</strong>: Multiply by the target's Damage Resistance (a Resistance, read as 1 − x).</li>
+<li><strong>Barrier</strong>: Absorb into the target's Barrier.</li>
+</ol>
+<p>Every damage effect names it, so a blow of 100 from a caster with 50% amplification, on a target with 20% resistance,
+lands as 120.</p>
+<p>The Demo's blows go through two such pipelines, <strong>Physical Damage</strong> and <strong>Magic Damage</strong> in its <code>Effects/Pipelines</code>: each multiplies a blow by its dealer's Attack or Magic Amplification, a Stacking Curve of it read as 1 + it,
+then by what its target's Armor leaves, 100 ÷ (100 + Armor), or its Magic Resistance, 1 − it, kept between 0 and 1.
+Its Physical and Magic Strike templates name them, and so does each blow that takes one, so a new attack takes its
+kind's from its template.</p>
+<h2 id="the-breakdown">The breakdown</h2>
+<p>An effect's spec keeps its last run as a <strong>Breakdown</strong>: the value in, each stage's before and after with its note, and
+the value out. <code>spec.Breakdown.ToString()</code> says it in a line: <code>-100 → Amplification -150 → Resistance -120</code>. A combat
+log, a debugger or a test reads it.</p>
+<h2 id="trying-a-pipeline">Trying a pipeline</h2>
+<p>A Value Pipeline's inspector has a <strong>Try</strong> section under its stages, which puts a value through them at each level of
+a range, as a Scaler asset's Try reads a scaler:</p>
+<ul>
+<li><strong>Value In</strong> is the value a hit lands with, going in: a loss below 0, as a blow of 100 is −100, and a gain above.</li>
+<li><strong>Chances Come Up</strong> settles each roll, so a try gives the same each time: on, each chance a stage rolls comes up
+where it can, a critical strike doubling the hit and a block stopping it; off, each misses where it can. A chance of
+1 always comes up and one of 0 never does.</li>
+<li><strong>Levels</strong>, 1 to 5 to start, are the hit's levels, for a stage whose number scales by level.</li>
+<li>Its <strong>Caster</strong>, <strong>Target</strong> and <strong>Caller</strong> are a Scaler asset's Try's: a row for each attribute a stage reads on a
+side, as a Multiply stage's Damage Amplification or an Absorb stage's Barrier, typed or filled from an <strong>Entity</strong>,
+and a row for each key a caller sets.</li>
+</ul>
+<p>Its <strong>Out</strong> row says what lands at each level. Click one to see its steps under the table: the value in, each stage's
+value in and out with its note, as &quot;critical&quot;, and what comes out. A Block or Evade stage rolls first, as it does as an
+effect lands, and one that comes up stops the hit: nothing of it lands, and its level shows &quot;—&quot;. No effect is behind a
+try, so what an Absorb stage soaks comes off no one, and a stage of your own that reads <code>run.Carrier</code> reads none.
+What's typed is kept for the session, never in the asset.</p>
+<p><code>ValuePipelineTry</code> does the same in code, <code>new ValuePipelineTry { Value = -100f }.Read(pipeline)</code>, and
+<code>pipeline.Run(value, in context)</code> puts a value through a pipeline against a number context of your own, with no
+effect behind it.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

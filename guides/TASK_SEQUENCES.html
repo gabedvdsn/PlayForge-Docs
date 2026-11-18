@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Task Sequences | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Task Sequences | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/TASK_SEQUENCES.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="task-sequences">Task Sequences</h1>
+
+<p>A <strong>task sequence</strong> is a workflow over time, built in code: stages run one after another, each a set of tasks run
+together. An ability runs as one, and so can anything with steps: a projectile's flight, a channel, a cutscene, a
+tutorial, a boss's phases. A sequence runs as a process (<a href="PROCESSES.html">PROCESSES.md</a>), so ProcessControl starts,
+pauses and ends it like any other.</p>
+<p>The <strong>Task Sequence Examples</strong> sample shows every part of this page in code, and a component that runs any example from
+a scene.</p>
+<h2 id="the-parts">The parts</h2>
+<ul>
+<li><strong>Sequence</strong>: its stages, in order, with what holds for all of them: its name, its conditions, a timeout or a longest
+run, whether it repeats, and the handlers that hear it end.</li>
+<li><strong>Stage</strong>: its tasks, run together, and its <strong>policy</strong>, which says when the stage is done: when all its tasks are
+(<code>WhenAll</code>, the default), any one (<code>WhenAny</code>), or a number of them (<code>WhenN</code>). A stage can hold stages of its own
+(<code>SubStage</code>), or be a <strong>branch</strong> that picks one stage by a condition.</li>
+<li><strong>Task</strong>: one unit of work, awaited (<code>Task</code>), done at once (<code>Do</code>), stepped a frame at a time (<code>SyncTask</code>), or a class of
+its own (<code>ISequenceTask</code>, or <code>SequenceTaskBase</code> and <code>SyncSequenceTaskBase</code> to start from).</li>
+<li><strong>Injection</strong>: a change to the run from outside its tasks: interrupt it, skip a stage, jump to one, break a repeat.
+A <strong>condition</strong> injects one when its predicate holds, checked each frame.</li>
+<li><strong>Chain</strong>: sequences run one after another with one data packet.</li>
+</ul>
+<h2 id="building-one">Building one</h2>
+<pre><code class="lang-csharp">var cast = TaskSequenceBuilder.Create(&quot;Fireball&quot;)
+    .WithMaxDuration(5f)
+    .Stage(stage =&gt; stage
+        .WithName(&quot;Wind Up&quot;)
+        .Task((data, token) =&gt; SequenceTaskLibrary.PlayAnimationState(animator, &quot;Cast&quot;, token)))
+    .Stage(stage =&gt; stage
+        .WithName(&quot;Flight&quot;)
+        .Task((data, token) =&gt; SequenceTaskLibrary.ArcTowards(fireball, target, 20f, 2f, token)))
+    .Stage(stage =&gt; stage
+        .WithName(&quot;Impact&quot;)
+        .Do(data =&gt; ForgeLog.Info(&quot;Fireball lands&quot;)))
+    .BuildSequence();
+
+cast.RegisterAndRun(SequenceDataPacket.SceneRoot());
+</code></pre>
+<p><code>Build</code> gives the definition, which a <code>TaskSequence</code> runs and a synced runner is built from; <code>BuildSequence</code> gives the
+sequence itself, and <code>BuildSyncRunner</code> a synced runner (below). A static method marked <code>[TaskSequenceMethod]</code> that
+returns a sequence, a chain or a definition appears in an ability's sequence dropdown, and in a <code>TaskSequenceReference</code>
+field; an ability runs a chain as a process too, which asks its conditions each frame.</p>
+<p>A task reads and writes the run's <strong>data packet</strong>, a <code>SequenceDataPacket</code>: what started the run put its caster, targets
+and values there, and a task can leave values for the stages after it (<code>SetPrimary</code>, <code>GetPrimary</code>).</p>
+<h2 id="waiting">Waiting</h2>
+<ul>
+<li><strong>Delays</strong>: <code>Delay(seconds)</code> is a stage of its own that waits; <code>DelayUntil</code> and <code>DelayWhile</code> wait on a predicate, and
+<code>WaitUntil</code> is a stage that does. <code>SyncDelay</code> waits inside a stage, as one of its tasks.</li>
+<li><strong>The library's waits</strong>, inside a task: <code>SequenceTaskLibrary.Delay</code>, <code>WaitFrames</code>, <code>Yield</code>, <code>WaitUntil</code> and <code>WaitWhile</code>.</li>
+<li><strong>The player's input</strong>, read through <code>ForgeInput</code>, so a game's own input or a test's stands in: <code>WaitForKey</code>,
+<code>WaitForAnyKey</code>, which returns the key pressed, and <code>WaitForPointer</code>.</li>
+</ul>
+<p>Each of the library's waits holds while its sequence is paused, and a press while it's paused isn't heard. A task that
+keeps time itself should read <code>SequenceTaskLibrary.DeltaTime(token)</code>, a step of its run's clock (below), which is 0 while
+the sequence is paused.</p>
+<p>A task that links its token, to cancel a wait of its own without its stage, links it through
+<code>TaskSequenceRuntime.CreateLinkedTokenSource(token)</code>, whose token belongs to the task's run, so a wait on it keeps the
+run's clock and holds while the run is paused. A token that <code>CancellationTokenSource.CreateLinkedTokenSource</code> links
+belongs to no run, so its waits go by the game's clock and don't hold. Dispose the source once done, as any:</p>
+<pre><code class="lang-csharp">.Task(async (data, token) =&gt;
+{
+    // Cancelled with the stage, or on its own through charge.Cancel(), and by the run's clock either way
+    using var charge = TaskSequenceRuntime.CreateLinkedTokenSource(token);
+    await SequenceTaskLibrary.Delay(1.5f, charge.Token);
+})
+</code></pre>
+<h2 id="repeating">Repeating</h2>
+<ul>
+<li><code>WithRepeat(true)</code> on the builder repeats the whole sequence until it's interrupted.</li>
+<li><code>WithRepeat(true)</code> on a stage repeats the stage until it's broken (<code>data.BreakStageRepeat()</code>, <code>StopRepeatWhen</code>),
+skipped or interrupted; <code>WithRepeatAndDelay(seconds)</code> waits between repeats.</li>
+<li><code>WithRepeat(3)</code> on a stage runs it three times in all, then the sequence moves on. A break, a skip or an interrupt
+still ends it sooner.</li>
+</ul>
+<p>A stage's <code>OnRepeat</code> hears each repeat, and <code>runtime.GetRepeatCount(stage)</code> says how many runs are done.</p>
+<h2 id="changing-the-run">Changing the run</h2>
+<p>From a task, through its data packet:</p>
+<pre><code class="lang-csharp">data.SkipStage();               // end this stage, on to the next
+data.SkipAndMaintain();         // on to the next, leaving this one's tasks running
+data.JumpToStage(&quot;Impact&quot;);     // or by index
+data.RestartSequence();
+data.BreakStageRepeat();
+data.Interrupt();               // end the run
+data.SetStageTimeout(2f);       // this stage gets two seconds, then it's skipped
+</code></pre>
+<p>From outside, through the sequence or its runtime: <code>Inject(injection)</code>, <code>Interrupt()</code>, <code>SkipCurrentStage()</code>.</p>
+<p>By a condition, checked each frame: <code>InterruptWhen</code>, <code>SkipStageWhen</code> on the sequence, <code>SkipWhen</code> and <code>StopRepeatWhen</code> on
+a stage, and <code>InjectWhen</code> for any injection. A condition fires once or every time it holds.</p>
+<p>A stage's condition is asked each frame by the process, so where a repeating stage's round ends, the next may have
+begun before <code>StopRepeatWhen</code> hears its predicate hold: a break from a task or from <code>OnRepeat</code> stops at the round
+exactly. <code>SkipAndMaintain</code> keeps the stage current as it's called running on; called again later, it keeps that later
+one. <code>InjectStageLocal(injection, stage)</code> asks the given stage's permissions, and the injection acts on the current
+stage.</p>
+<p>What may change a run is the sequence's to say: <code>AllowInjections(types)</code>, <code>AllowOnlyInterrupt()</code> and
+<code>DisallowInjections()</code>, on the sequence or a stage. A <strong>critical</strong> stage (<code>WithCriticalFlag(true)</code>) refuses every
+injection but those it names (<code>WithCriticalAllowedInjections</code>), and <code>OnCriticalSectionExited</code> hears the last critical
+stage end.</p>
+<h2 id="time-limits-and-endings">Time limits and endings</h2>
+<ul>
+<li><code>WithTimeout(seconds, injection)</code> injects when the time is up, a skip by default; <code>WithMaxDuration(seconds)</code> ends the
+run, or the stage, at its longest. <code>OnTimeout</code> and <code>OnMaxDuration</code> hear them.</li>
+<li><code>OnException</code> hears a task's throw, and says whether the run goes on.</li>
+<li><code>OnComplete</code> hears the run end and whether it finished; <code>OnTerminate</code> hears it end however it does. A stage has its
+own <code>OnInit</code>, <code>OnRepeat</code> and <code>OnTerminate</code>.</li>
+</ul>
+<h2 id="clocks">Clocks</h2>
+<p>A run's time is its <strong>clock</strong>'s: its waits and delays, its timeouts and longest runs, its <code>ElapsedTime</code>, the library's
+tweens and its synced tasks all go by it. A run takes the first clock it finds:</p>
+<ol>
+<li>its own, <code>runtime.Clock</code>, which whatever runs it sets: a chain's <code>Clock</code>, a <code>TaskSequenceProcess</code>'s, or an ability's
+Run Sequence task's pick, so a packet others share keeps its own;</li>
+<li>its packet's, <code>data.Clock</code>, which whatever starts the run sets;</li>
+<li>its sequence's own, <code>WithClock(clock)</code> on the builder;</li>
+<li>its packet's owner's: an ability's caster's own clock, its time scale times the game's;</li>
+<li>the game's, <code>GameClock.Instance</code>, which reads the clock in force, <code>ForgeTime.Clock</code>, as it's asked.</li>
+</ol>
+<pre><code class="lang-csharp">// A pause menu's runs while the game's time stands
+var menu = TaskSequenceBuilder.Create(&quot;Menu&quot;).WithClock(UnscaledClock.Instance) /* … */;
+
+// A finisher's slow motion: every sequence on the clock slows, speeds up or stops with it
+var slowMotion = new ScaledClock(0.25f);
+var finisher = TaskSequenceBuilder.Create(&quot;Finisher&quot;).WithClock(slowMotion) /* … */;
+
+// One run on an entity's time, from its packet
+var data = SequenceDataPacket.Default();
+data.Clock = gas.GetClock();
+</code></pre>
+<ul>
+<li><code>UnscaledClock.Instance</code> reads the game's time without its time scale.</li>
+<li>A <code>ScaledClock</code> runs at a <code>Scale</code> of its own over its <code>Source</code>, the clock in force unless it's given one, and counts
+its own <code>Time</code> through each change of scale.</li>
+<li>An entity's <code>EntityClock</code> is a clock as any other is.</li>
+<li>A clock of your own implements <code>IForgeClock</code>, and is read as it is. The clocks above read the clock in force, so a world
+of its own's steps and the fixed tick still drive them; one that reads Unity's time itself doesn't follow them.</li>
+</ul>
+<p><code>runtime.Clock</code> is a run's clock, and <code>TaskSequenceRuntime.ClockOfRun(token)</code> the clock of the run a task's token
+belongs to. A synced runner takes its sequence's clock (<code>runner.Clock</code>), a packet's before it (<code>runner.ClockFor(data)</code>),
+and <code>runner.Step(data)</code> steps by it.</p>
+<p>An inspector picks a clock with an <code>AbstractClockChoice</code> field, <code>[SerializeReference]</code>: None, which leaves a run the
+clock it would have had, the <strong>Caster's</strong>, the <strong>Game's</strong>, <strong>Unscaled</strong>, or <strong>Scaled</strong>, a pace of its own over the
+clock it picks, the caster's unless it picks another. A <code>[Serializable]</code> class of your own made from it is offered
+beside them, its <code>ClockFor(data)</code> giving the clock for a run on a packet. An ability's Run Sequence task has one, which
+gives the sequence it runs a clock of its own and leaves the ability's other tasks the caster's; so do the Task Sequence
+Examples' components, and a Sequence cue, whose run goes by its pick, else the sequence's own clock, else that of
+the one the cue plays on.</p>
+<p>Under ProcessControl's fixed tick, a sequence waits for the next tick, and the ticks run on the game's time, so they stand
+with it. A clock that runs while the game's time stands says so, <code>FollowsTicks</code> false as the unscaled clock's is, and its
+sequences wait for Unity's frames instead. Code outside a sequence awaits <code>ForgeTick.Next(clock)</code> for the next step of a
+clock's time. A synced sequence run as a process steps with ProcessControl, by its ticks, whatever its clock.</p>
+<h2 id="running-one">Running one</h2>
+<ul>
+<li><code>RegisterAndRun(data)</code>, or <code>ProcessControl.Register(sequence).With(data).Run()</code>, runs it as a process: it shows in the
+Debugger, pauses with ProcessControl, and ends with its scene.</li>
+<li><code>await sequence.Run(data, token)</code> runs it in place, from code that's async already, and <code>TryRun</code> says whether it
+finished.</li>
+<li><code>CreateRuntime</code> gives the runtime that runs it, to pause, resume, inject and read: its stage, its time, whether it
+finished, what it threw.</li>
+<li><code>TaskSequenceProcess</code> wraps a sequence, a chain or a synced runner as a process of a lifecycle and timing given.</li>
+</ul>
+<h2 id="chains">Chains</h2>
+<pre><code class="lang-csharp">// countdown and fight are TaskSequences; the last is built in place
+var round = countdown.Then(fight).Then(builder =&gt; builder.WithName(&quot;Results&quot;).Stage(stage =&gt; stage.Do(ShowResults)));
+await round.Run(SequenceDataPacket.SceneRoot());
+</code></pre>
+<p>A chain runs its sequences in order with one data packet; it can repeat, pause and resume, skip its current sequence, or
+be interrupted, and takes conditions of its own (<code>InterruptWhen</code>, <code>SkipSequenceWhen</code>). From inside, <code>data.Chain</code> is the
+chain, and <code>data.InterruptChain()</code> ends it.</p>
+<h2 id="synced-sequences">Synced sequences</h2>
+<p>A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async: a process with the Synchronous
+lifecycle calls its <code>Step</code> each frame. It suits what runs for good, a patrol, a regeneration, a bob, and costs nothing
+but the calls.</p>
+<pre><code class="lang-csharp">using SyncSeq = FarEmerald.PlayForge.SyncSequenceTaskLibrary;
+
+runner = TaskSequenceBuilder.Create(&quot;Regenerate&quot;)
+    .WithRepeat(true)
+    .Stage(stage =&gt; stage.Task(SyncSeq.Delay(1f)))
+    .Stage(stage =&gt; stage.Do(_ =&gt; Heal(5)))
+    .BuildSyncRunner();
+
+// In the process's WhenUpdate: a step of its clock, or Step(data, deltaTime) for a time of your own
+runner.Step(data);
+</code></pre>
+<p>A synced task works in an async sequence too, stepped once a frame and held while the sequence is paused. Its first
+step comes in the frame its stage starts, so <code>SyncSequenceTaskLibrary.Yield</code> waits no frame there; the async <code>Yield</code>
+does.</p>
+<p>A synced runner runs stages, their tasks, the three policies, repeats with or without a count, critical stages and a
+stage's longest run. A sub-stage, a branch, a condition, the sequence's own timeout or longest run, or an async task it
+can't, and building a runner from a sequence that holds any says so. It's changed by hand: <code>Interrupt</code>, <code>SkipStage</code>, <code>JumpToStage</code>, <code>BreakStageRepeat</code> and <code>Reset</code>.</p>
+<h2 id="the-libraries">The libraries</h2>
+<p><code>SequenceTaskLibrary</code> has tasks to await inside a stage's <code>Task</code>, each taking the task's token, and
+<code>SyncSequenceTaskLibrary</code> the same tasks as <code>ISequenceTask</code>s for a synced runner, or for any stage:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position</td>
+<td><code>MoveTo</code>, <code>MoveBy</code>, <code>MoveLocalTo</code>, <code>MoveAlongPath</code>, <code>ArcTo</code>, <code>Dash</code>; following a transform, <code>MoveTowards</code>, <code>ArcTowards</code>, <code>Orbit</code>, <code>MoveAlongPathToTarget</code></td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td><code>RotateTo</code>, <code>RotateBy</code>, <code>LookAt</code>, and <code>LookAtTracking</code>, which follows</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td><code>ScaleTo</code>, <code>PunchScale</code>, and <code>TransformTo</code>, position, rotation and scale at once</td>
+</tr>
+<tr>
+<td>Looks</td>
+<td><code>FadeAlpha</code>, <code>ColorTo</code>, <code>MaterialColorTo</code>, <code>MaterialFloatTo</code></td>
+</tr>
+<tr>
+<td>Sound and animation</td>
+<td><code>PlayAndWait</code>, <code>FadeVolume</code>, <code>PlayAnimationState</code>, <code>LerpAnimFloat</code></td>
+</tr>
+<tr>
+<td>UI Toolkit</td>
+<td><code>SlideElement</code>, <code>FadeElement</code>, <code>ScaleElement</code>, <code>ColorElement</code>, each with a <code>…To</code> from where the element is; <code>PunchScaleElement</code>, <code>WidthTo</code>, <code>HeightTo</code>, <code>TypeText</code>, <code>TypeTextSkippable</code></td>
+</tr>
+<tr>
+<td>Any value</td>
+<td><code>Lerp</code>, <code>LerpFloat</code>, <code>LerpVector3</code>, <code>LerpColor</code></td>
+</tr>
+<tr>
+<td>Waiting</td>
+<td><code>Delay</code>, <code>WaitFrames</code>, <code>Yield</code>, <code>WaitUntil</code>, <code>WaitWhile</code>, <code>WaitForKey</code>, <code>WaitForAnyKey</code>, <code>WaitForPointer</code></td>
+</tr>
+</tbody>
+</table>
+<p>Only the async library has <code>ArcForce</code>, which flies a Rigidbody by physics between FixedUpdates, whatever a runner's
+timing; <code>ArcTo</code> moves a transform along the same arc, in either. <code>IsPaused(token)</code> and <code>DeltaTime(token)</code> read the run
+that holds the token, which a synced task has none of.</p>
+<p>A timed task takes an <code>AnimationCurve</code> for its easing, ends exactly on its value, and ends at once for a time of 0 or less.</p>
+<h2 id="logging">Logging</h2>
+<p>What a sequence says goes through <code>ForgeLog</code>, under its own system, <strong>Sequences</strong>: a handler's throw as an error, and,
+where a sequence's or a chain's logging is on (<code>WithInjectionLogging</code>, a chain's <code>WithLogging</code>), what it does as
+information. <strong>Preferences &gt; PlayForge &gt; Logging</strong> sets the quietest message every system logs, and
+<code>ForgeLog.SetLevel(ForgeLog.ESystem.Sequences, …)</code> gives the sequences a level of their own, to hear more or less of
+them than the rest.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

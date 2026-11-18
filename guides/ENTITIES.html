@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>PlayForge — Entities | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="PlayForge — Entities | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/gabedvdsn/PlayForge/blob/main/Assets/PlayForge/Documentation/ENTITIES.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="playforge--entities">PlayForge — Entities</h1>
+
+<p>An <strong>Entity</strong> asset (<code>EntityIdentity</code>) describes one kind of entity, such as the hero or a goblin. An entity is anything
+that runs a gameplay ability system (GAS). The asset is the entity's starting setup: its attributes, abilities, items,
+tags, level and workers. Many entities can share one asset.</p>
+<p>At runtime a GAS hub reads the asset when it initializes. The hub is either the <code>GameplayAbilitySystem</code> component on a
+GameObject, or a <code>RuntimeGameplayAbilitySystem</code> made from code. It subscribes the entity's workers, registers its
+level, gives its Starting Abilities, builds its attributes from its Attribute Set, gives its Starting Items, and then
+applies its tags.</p>
+<p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
+made from its Name: Hero gives <code>Entity.Hero</code>. The entity carries this tag and keeps its own level under it. Each section
+below matches the inspector section of the same name. A collapsed section shows one line about what it holds, such as
+the level range or how many starting items the entity equips.</p>
+<p>The inspector's header shows the entity's one line, as The Forge's Summary column does: its attribute set's
+first three attributes as it starts, at its starting level, then its starting abilities, as &quot;Health 500, Mana 300, Armor
+5; Fireball, Blink&quot;.</p>
+<h2 id="identity">Identity</h2>
+<ul>
+<li><strong>Name</strong>: the entity's display name. It also gives the asset tag, so renaming the entity changes its tag. Update
+anything that names the old tag.</li>
+<li><strong>Description</strong>: free text for your UI.</li>
+<li><strong>Asset Tag</strong>: read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined. The
+tag is stored when you edit the Name, and the inspector header shows it after the entity's type. If the stored tag
+differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that stores the new one.</li>
+<li><strong>Textures</strong>: icons, each paired with a tag. The texture tagged <code>Primary</code> is the entity's icon. Without one, the first
+texture is used.</li>
+</ul>
+<h2 id="leveling">Leveling</h2>
+<p>An entity's level is kept under its asset tag. A level provider is an asset whose level range another asset follows.</p>
+<ul>
+<li><strong>Link Mode</strong>: Standalone (default) keeps the entity's own range. Linked To Provider shows a provider's range
+instead.</li>
+<li><strong>Starting Level</strong> (default 1): the entity's level when its GAS initializes, and its lowest level.</li>
+<li><strong>Max Level</strong> (default 99): its highest level. The level always stays within this range.</li>
+<li><strong>Level Provider</strong>, while linked: the asset whose range the section shows, an Entity, Ability, Effect, Item or
+Attribute Set. Right-click the field to pick from one type. A link that would make a loop is refused, with an error
+in the Console. While no provider is set, a warning says the entity uses its own range.</li>
+<li><strong>Link Items &amp; Abilities</strong> links this entity's Starting Items and Starting Abilities to it, so their per-level values
+follow its range. <strong>Unlink Items &amp; Abilities</strong> removes the links that point at this entity. Each asks first, and one
+Undo takes it back.</li>
+</ul>
+<p>The entity's level feeds per-level values: the effects it applies as an origin, its Max Abilities and item limits, and
+the cached scalers in its attribute set. Code changes the level through the GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and
+the entity's asset tag. At runtime, the entity's level range comes from its own Starting Level and Max Level, even while
+it is linked.</p>
+<h2 id="tags">Tags</h2>
+<ul>
+<li><strong>Affiliation</strong>: the entity's team or faction tags. An effect's Affiliation check compares its origin's affiliation
+with its target's. Code that starts a GAS can pass affiliation tags in its registration data, and those replace this
+list; as the game runs, <code>SetAffiliation</code> on either hub sets them, as a side switch or a scripted betrayal. The
+GAS also applies these tags to the entity, on either hub. An effect's Side Change goes over them while it lasts
+(<a href="EFFECTS.html">EFFECTS.md</a>), and <code>GetSides</code> says which it's under.</li>
+<li><strong>Context Tags</strong> describe the entity, such as <code>Undead</code>. Changes the entity makes as an origin itself carry them as
+context, and workers can filter by them.</li>
+<li><strong>Granted Tags</strong> are always applied to the entity.</li>
+</ul>
+<p>Code hears an entity's tags change through its tag cache. <code>gas.GetTagCache().Listen(tag, onChange)</code> hears the tag,
+and every tag under it, come and go, as it happens; pass <code>ETagChangeKind.AnyCount</code> to hear every change to a tag's
+weight. Each change says the tag and its weight before and after. When the entity rebuilds its tags from their
+sources, as it does when an ability starts or ends, an item changes or a loose tag is granted, it tells only what the
+rebuild changed. Dispose the listener to stop it. <code>TagChanged</code> hears every change to any tag.</p>
+<pre><code class="lang-csharp">var listener = gas.GetTagCache().Listen(stunned, change =&gt; animator.SetBool(&quot;Stunned&quot;, change.Added));
+listener.Dispose();
+</code></pre>
+<p>A tag worker is evaluated at the end of a frame in which the entity's tags changed. One whose <code>ValidateWorkFor</code>
+reads more than the tags overrides <code>EvaluateEveryFrame</code> to be evaluated every frame.</p>
+<h2 id="attributes">Attributes</h2>
+<p>The entity's attributes come from its <strong>Attribute Set</strong>. Under the field, a table lists each attribute the set gives,
+its sub-sets' included, with the value it starts at and its range. When the GAS initializes, it creates every attribute
+in the set and its sub-sets, each at its starting Current and Base values. It also applies the set's asset tags to the entity and
+subscribes the set's workers. Gameplay effects then change the values. <a href="ATTRIBUTE_SETS.html">ATTRIBUTE_SETS.md</a> describes
+the set itself.</p>
+<p>An entity with no Attribute Set has no attributes. An effect that targets an attribute the entity lacks leaves it
+unchanged.</p>
+<p><strong>Time Scale</strong> names the attribute the entity's time runs at, 1 as the game's. Its effects, cooldowns, sequences and
+waits run by that time, so an effect that lowers the attribute slows the entity, one that raises it hastes it, and
+as each comes off the entity's time is the game's again. Give the attribute a Current of 1 in the set. Code sets a
+scale of its own, <code>GetClock().TimeScale</code>, as a hit-stop's 0, and the clock reads the two multiplied, so a hit-stop
+holds under a slow; <code>OwnScale</code> is code's part and <code>AttributeScale</code> the attribute's.</p>
+<h2 id="abilities">Abilities</h2>
+<ul>
+<li><strong>When Busy</strong> (default Queue): what the entity's abilities set to Entity's Policy do when one is asked to activate
+while another is busy. Activate Anyway starts it at once. Refuse starts it only when no ability under that choice is
+busy, and refuses it otherwise. Queue makes it wait in a queue while one is busy. <a href="ABILITIES.html">ABILITIES.md</a>
+explains each.</li>
+<li><strong>Starting Abilities</strong>: abilities the entity learns when its GAS initializes, each at its own Starting Level. Those
+set to Activate At Start then try to activate.</li>
+<li><strong>Max Abilities</strong> (default 99): the most abilities the entity can hold. Its kind can make it a scaler, which changes
+the limit with the entity's level (<a href="SCALERS.html">SCALERS.md</a>).</li>
+<li><strong>Allow Duplicates</strong> (default off): let the entity hold the same ability more than once.</li>
+<li><strong>Crowd Control</strong>: the crowd control rules its abilities follow, as a stun stops every ability and Silenced
+spells, or, where it names none, the project's (<a href="ABILITIES.html#crowd-control">ABILITIES.md</a>). A runtime entity's
+identity names them too.</li>
+</ul>
+<h2 id="items">Items</h2>
+<ul>
+<li><strong>Starting Items</strong>: items the entity is given when its GAS initializes, one row each. <strong>Equip</strong> equips the item as it
+is given.</li>
+<li><strong>Max Items</strong> (default 99): the most items the inventory can hold.</li>
+<li><strong>Max Equipped Items</strong> (default 99): the most items equipped at once.</li>
+<li><strong>Allow Duplicates</strong> (default off): let the inventory hold the same item more than once.</li>
+<li><strong>Equipped Too</strong> (default off): let more than one copy of the same item be equipped at once. It needs Allow
+Duplicates, since an inventory that holds one of each item has no second copy to equip.</li>
+</ul>
+<p>Each Max field is a number, or, by its kind, a scaler that changes the limit with the entity's level, with its rounding
+(<a href="SCALERS.html">SCALERS.md</a>). A give or equip that breaks a limit fails.</p>
+<h2 id="components">Components</h2>
+<p>An entity's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the entity <strong>Register</strong>, its systems set up; <strong>Death</strong>, whether it stays or ends, its context's
+<code>Killer</code> the one whose loss killed it, as its Died event names; <strong>Revive</strong>, for one that stays; and <strong>End</strong>. It's
+waited on as one of its abilities' activations winds up, <strong>WindUp</strong>, before the ability's cost and first stage, as a
+turn to face its target is. A kind that makes no sense twice is offered only while the entity holds none of it.</p>
+<p>A component of your own derives from <code>AbstractEntityComponent</code> and overrides the hooks it needs, each a no-op
+otherwise. It's the entity's, shared by everything that holds it, so what it keeps for one entity it keeps through its
+context: <code>ctx.GetState&lt;T&gt;(this)</code>. Its context's <code>Identity</code> is the entity's settings, its Death among them.</p>
+<h3 id="services">Services</h3>
+<p>A service is a per-entity object an entity's components share, as the auras it runs, <code>AuraSet</code>, and the wait a Respawn
+counts down, <code>RespawnTimer</code>. One is made the first time it's asked for, <code>gas.GetService&lt;T&gt;()</code>, and found without
+making one, <code>gas.FindService&lt;T&gt;()</code>. The entity steps each by its own time each frame, <code>Step</code>, after its effects and
+before its turn and its barriers; tells each as it revives, <code>Revive</code>, before anything else of the revive; and ends each
+as it ends, <code>End</code>. A service of your own derives from <code>AbstractEntityService</code> and overrides what it needs, as a heat
+meter that cools by the entity's time; a save keeps none.</p>
+<h3 id="auras">Auras</h3>
+<p>An <strong>Aura</strong> component holds an effect on those near the entity as long as it lives, as a captain's command aura
+(<a href="EFFECTS.html#auras">EFFECTS.md</a>). An entity that dies takes its auras' effects off, and one that stays and
+revives holds them again.</p>
+<h3 id="bounty">Bounty</h3>
+<p>A <strong>Bounty</strong> component gives the entity's killer an <strong>Effect</strong> as it dies, from the entity, so the effect reads its
+level, as gold or experience. With a <strong>Share Radius</strong>, read at its level, the killer's allies within it of the
+entity take the effect too, as an assist, measured along the ground unless <strong>Flat</strong> is off. A death no one dealt gives
+none. An entity holds as many as it gives.</p>
+<h3 id="turns-to-face">Turns To Face</h3>
+<p>A <strong>Turns To Face</strong> component turns the entity to face the target, or the point, of each of its abilities before the
+ability's first stage: at its <strong>Turn Speed</strong>, in degrees a second of its own time, a number that can read a turn rate
+attribute, 0 facing at once. The stage starts once it faces within the <strong>Start Angle</strong>, and the turn goes on to the
+<strong>Facing Angle</strong> after, even after the ability has ended, until another turn, its death or its game's word ends it.
+Where reaching the Start Angle takes longer than <strong>Max Wait</strong>, <strong>If Too Long</strong> says what happens: <strong>No Limit</strong>, the
+default, waits as long as it takes; <strong>Start Anyway</strong> starts the stage, the turn going on; <strong>Cancel</strong> cancels the
+activation. Its cost and cooldown are paid after the turn, so an interrupted turn pays nothing, and a turn taken over
+before the stage starts, by another order or its game's word, cancels the activation. An ability with nothing to face,
+or with the entity for its target, turns nothing; one a trigger sets off turns as any does, as a counterattack turns to
+its attacker; and one with a Turn To Face of its own turns its own way, or not at all
+(<a href="ABILITIES.html#turn-to-face">ABILITIES.md</a>). An entity holds one at most.</p>
+<p>Code turns an entity through its hub: <code>gas.Face(target, degreesPerSecond, within)</code>, which follows the target as it
+moves, or <code>gas.Face(point, ...)</code>; <code>gas.StopTurning()</code>, as a move of the game's takes over; and <code>gas.AngleToFace</code>, how
+far it has yet to turn. A turn sets the entity's facing, flat: its object's rotation, or a runtime entity's. A game that
+turns its characters itself, by animation or a controller, puts an <code>IForgeTurner</code> on the entity's object, which takes
+each step of a turn in PlayForge's place. The Creator Lab's units stop a turn as they walk or stop.</p>
+<h3 id="respawn">Respawn</h3>
+<p>A <strong>Respawn</strong> component revives an entity that stays as it dies once its <strong>Delay</strong>, in seconds of its own time and read
+at its level, has passed, at its <strong>Home</strong>, where it stood as it registered, <strong>Where It Died</strong>, a <strong>Point</strong>, or a
+place of your own, as a checkpoint, a <code>[Serializable]</code> class made from <code>AbstractRespawnPlace</code> that says <code>Where</code> from the
+entity's context and its home, as a hero comes back at its fountain. Its Death's On Revive effects land as it does, as any revive's do, and a revive
+before its time, as a buyback, ends the wait. The wait is the entity's <code>RespawnTimer</code>, a service: a HUD reads
+<code>gas.FindService&lt;RespawnTimer&gt;()</code>'s <code>Waiting</code> and <code>TimeLeft</code>. An entity that ends as it dies has nothing to revive, which the Problems
+view says. A save keeps neither the entity's death nor its wait. An entity holds one at most.</p>
+<h3 id="cues">Cues</h3>
+<p>A <strong>Cues</strong> component plays what the entity shows and sounds at its moments, on it: <strong>On Spawn</strong> as it comes into the
+game, <strong>On Death</strong> as it dies, its killer behind the cue, and <strong>On Revive</strong> as it comes back. <strong>While Tagged</strong> lists
+lasting cues, each under a tag, that play for as long as the entity holds the tag, as stars over its head while
+it's Stunned: each step, a tag it has taken on begins its cues and one it has let go of ends them, and they end with
+the entity. Each list holds cues as an effect's does (<a href="EFFECTS.html#cues">EFFECTS.md</a>), a Cue Tag among them. A
+<strong>Cue Receiver</strong> component plays cue tags its own way for the entity, before the project's cue library. An entity
+holds one of each at most.</p>
+<h2 id="workers">Workers</h2>
+<p>Workers are reusable behaviours, picked from a list, that react to what happens to an entity. This group is subscribed
+when the entity's GAS initializes, and stays for the entity's lifetime. The attribute set's workers are subscribed at
+the same time. <strong>Name</strong> labels the group. It holds four lists:</p>
+<ul>
+<li><strong>Attribute</strong> workers run before or after an attribute changes, for example to reduce incoming damage.</li>
+<li><strong>Impact</strong> workers inspect the changes the entity deals.</li>
+<li><strong>Tag</strong> workers react when the entity's tags change.</li>
+<li><strong>Analysis</strong> workers examine the frame at its end, for example to detect death.</li>
+</ul>
+<p>Each list's <strong>+</strong> adds an empty worker to pick a kind for. The section's import button copies a worker group
+from another asset.</p>
+<p>A <strong>Threshold</strong>, an analysis worker, acts as an attribute crosses a value, without code: Megaera rages as her
+Health falls past half, and Ice Blast shatters below 13%. It reads its <strong>Target</strong> attribute's <strong>What</strong>: its current, its
+base, what's missing of it, or its share of its base, so a <strong>Threshold</strong> of 0.5 on its share is half. <strong>Crossing</strong> says
+when it fires: while its <strong>Comparison</strong> holds, as it always did; or as what it reads falls to the threshold or below,
+rises above it, or either. <strong>Trigger Once</strong> fires at its first crossing alone; off, each time. As it fires it applies its
+<strong>Effects</strong> to the entity, from the entity itself, or, with <strong>Applied By</strong> set to Crosser, from the one whose change
+crossed it this frame, so a shatter is its caster's, kill and all; and it sends its <strong>Event</strong>, a gameplay event its
+abilities' triggers hear, its source the one who crossed it and its subject the entity. It checks at the frame's end,
+as the death watcher, a Threshold that kills, does, so the frame's hits and heals net out. An entity that revives re-arms
+it, and its first check after notes its side again.</p>
+<p>Two attribute workers keep the common rules. <strong>Can't Fall Below</strong> holds its attribute at its <strong>Floor</strong>: a loss
+that would take it lower takes it to the floor, as Shallow Grave keeps its target at 1 Health, in a buff's worker group
+while it lasts. <strong>Return Damage</strong> sends its <strong>Share</strong> of each workable loss its attribute takes from another back to the
+one who dealt it, typed Returned, so a return on the other side doesn't send it back again and no lifesteal heals from it,
+as Blade Mail.</p>
+<p><strong>Modifiers</strong>, above the workers, change other effects as they're made for as long as the entity lives: its own, as a
+Frost Mage's every Chill granting Frozen, or those landing on it. Each entry is a rule of its own or names a
+shared Effect Modifier asset (<a href="EFFECTS.html#modifiers">EFFECTS.md</a>).</p>
+<p>An entity's own lifesteal is its <strong>Lifesteal</strong>, the attribute its project's Lifesteal worker names as its Share, its
+set's value for it, which the Lifesteal worker heals by (<a href="WORKERS.html#lifesteal">WORKERS.md</a>); its Lifesteal list is gone.</p>
+<h2 id="death">Death</h2>
+<p>What the entity's death does. <strong>Policy</strong> is <strong>End</strong> by default: as it dies, its hub ends it at its frame's end,
+as an entity always did. <strong>Stay</strong> keeps it, dead, until it revives: a MOBA hero, or anyone who dies and comes back.</p>
+<p>An entity dies as a death watcher among its analysis workers, or its attribute set's, says it does. Where none watches
+and an attribute plays its project's Health role (<a href="ATTRIBUTES.html#roles">ATTRIBUTES.md</a>), it dies as that attribute reaches 0. <strong>Dies At Zero Health</strong>, on by default, says it does; off, as for a training dummy, that attribute
+doesn't kill it.</p>
+<ul>
+<li>A staying entity dies at its frame's end and stays registered, with its items, levels and lasting effects. Its
+abilities are refused while it's dead.</li>
+<li><strong>Purges</strong>, on by default: its death purges its effects, all but those it keeps, as the games' deaths do (<a href="EFFECTS.html#purging">EFFECTS.md</a>). It keeps the <strong>categories</strong> it keeps whatever their effects' tiers: an ability's
+<strong>Cooldown</strong>, what's <strong>Lent</strong> (by an equipped item, a set bonus, an aura, or a passive, an ability that activates as
+it's granted, or claimed so by what applied it, as <code>spec.Claimed</code>), a <strong>Toggle</strong> (a Toggle component's effect, or one an ability's component claims as a toggle's), and
+its <strong>Own</strong>, the rest it applied to itself; and the <strong>tiers</strong> it keeps. <strong>Keeps As
+Project</strong>, on, keeps what its project's Purge Levels keep on death, each tier's Kept On Death and their Kept On Death
+categories, cooldowns, lent effects and toggles as a project starts, and those with no project; <strong>Keeps Tiers</strong> and
+<strong>Keeps Categories</strong> keep more. An effect at no tier goes, unless a category it's of is kept. It took the place of
+Ends Effects Tagged, which ended effects by their tags.</li>
+<li><strong>On Death</strong>: the effects it takes as it dies. A respawn timer is a durational effect with a <strong>Revive On Removal</strong>
+worker: as it ends, the entity revives, where it was or at a point.</li>
+<li><strong>On Revive</strong>: the effects it takes as it revives, as its health back.</li>
+<li><strong>Body</strong>: a MonoBehaviour process, a prefab, that it spawns where it is as it starts and as it revives, and ends as it
+dies. A runtime entity takes its position from its body, so an area search finds it there; <code>GetBody()</code> returns it.
+A running entity can be given a body of its own at runtime with <code>UseBody(process)</code>, a process running already or
+registered for it there, which it follows and which ends with it as it dies, as its identity's Body does; a revive
+spawns the identity's Body, where it has one. The body it had ends first, <code>UseBody(null)</code> lets one go, ending
+it, and a dead entity takes none.</li>
+</ul>
+<p>A dead entity takes no one else's effects, as the dead in the games are untargetable: its own still land, as its On Death
+respawn timer and its On Revive effects, and an effect another applies to it while it's dead is refused.</p>
+<p><code>Revive(at)</code> on either hub brings a staying entity back, at a point or where it was; it re-arms the entity's analysis
+workers, so its death watcher sees its next death. Callbacks hear <code>OnEntityRevived</code>, as they hear <code>OnEntityDied</code>.</p>
+<h2 id="combat-log">Combat Log</h2>
+<p>Each entity keeps a combat log of what happens to it, which a test reads as the game does, through
+<code>gas.GetCombatLog()</code>, and the Debugger shows under the entity it has selected. What it writes is the project's to say,
+under <strong>Combat Log</strong> in Project Settings → PlayForge: its <strong>Records</strong>, the <strong>Hits Taken</strong> (a workable change another's
+effect makes to its attributes), the <strong>Hits Dealt</strong>, and its other <strong>Changes</strong> (its own, a cost, regeneration, a transfer);
+and its <strong>Events</strong>, the gameplay events it's sent by tag, or one under it, as Died, Kill or your own, written though no
+ability listens for them. <strong>Keep</strong> is how many entries each entity keeps, its last, 100 by default; 0 keeps none, as for a
+build.</p>
+<p>Each entry is a <code>CombatLogEntry</code>: its <strong>Kind</strong> (Taken, Dealt, Changed or Event), its <strong>Time</strong> and <strong>Frame</strong>, the
+<strong>Other</strong> entity (the dealer of a hit taken, the one a hit dealt struck, an event's source or the one it names), the
+<strong>Effect</strong> behind it, the <strong>Attribute</strong>, its value <strong>Before</strong> and <strong>After</strong> and the <strong>Change</strong>, the hit's <strong>Steps</strong> through
+its pipeline, and whether it <strong>Killed</strong>, marked on the blow that killed in both logs. The log's <strong>Entries</strong> run
+oldest first; <strong>Of(kind)</strong>, <strong>By(effect)</strong> and <strong>With(entity)</strong> filter them, and <strong>Total(kind, attribute)</strong> adds their
+changes up, as the damage an entity took. An entry reads as a line: &quot;Took -20 Health from Lina (Fireball)&quot;.</p>
+<p>An entry tells how its change came to land, too: its change as <strong>Made</strong>, before any step, and its
+<strong>ChangeSteps</strong>, each step it took on the way: each attribute worker that heard it, with its <strong>Timing</strong> (before the
+commit or after), its <strong>Execution</strong> (inline, or the actions it <strong>Queued</strong>) and the change <strong>Before</strong> and <strong>After</strong> it; a
+barrier's soak; a gain's scaling, as Healing Received's. <strong>StepsText</strong> reads them as a line: &quot;-30 as made → Math -30 →
+-15 (inline) → Answering (queued 1, after) → landed -15&quot;. The steps are recorded only where the log keeps entries, or
+something hears the entity's <code>OnAttributeChangeStep</code>.</p>
+<h2 id="effect-journal">Effect Journal</h2>
+<p>An <code>EffectJournal</code> keeps the life of each effect on the entities it listens to: <code>Listen(gas)</code> one, <code>Follow(list)</code>
+these and no others, <code>Forget(gas)</code> one, and <code>Dispose()</code> all; what it wrote stays. Its <strong>Entries</strong> run oldest first, its
+last <strong>Keep</strong> of them, 500 unless it's told; <strong>Of(effect)</strong> and <strong>On(entity)</strong> filter them, <strong>Written</strong> counts every one
+it wrote, and <strong>Wrote</strong> is raised as each is. It records only while it listens, and an entity no journal listens to pays
+nothing: the Creator Lab's bottom panel reads one, and the Debugger's Timeline.</p>
+<p>Each entry is an <code>EffectJournalEntry</code>: its <strong>Kind</strong>, its <strong>Time</strong> and <strong>Frame</strong>, the <strong>Entity</strong> it happened on, the
+<strong>Effect</strong>, its <strong>Spec</strong> and its <strong>Source</strong>, and what its kind tells:</p>
+<ul>
+<li><strong>Applied</strong>: the effect landed, with its first impact's number read as it landed, part by part (<strong>Trace</strong>, a
+<code>NumberTrace</code>).</li>
+<li><strong>Refused</strong>: it didn't, and its <strong>Refusal</strong> says why: the entity is <strong>Dead</strong>, its <strong>Affiliation</strong> policy doesn't take
+the entity, its <strong>Requirements</strong> don't hold, an <strong>Immunity</strong> names it, its <strong>Chance</strong> missed, a Block or Evade
+<strong>Stopped</strong> it, or it was asked for again inside its own application (<strong>Cycle</strong>). Callbacks hear each as
+<code>OnEffectRefused(spec, refusal)</code>.</li>
+<li><strong>Ticked</strong>: its ticks executed, <strong>Ticks</strong> of them.</li>
+<li><strong>Impact</strong>: a change it made, to its <strong>Attribute</strong>, by its <strong>Change</strong>, with its <strong>Breakdown</strong> through its pipeline.</li>
+<li><strong>Removed</strong>: it came off.</li>
+<li><strong>Worker</strong>: one of its workers heard one of its moments, or one of its dealer's impact workers ran for its hit: the
+<strong>Worker</strong>, its <strong>WorkerName</strong>, the <strong>Hook</strong> (Application, Tick, Removal or Impact), the <strong>Side</strong> it ran on (the
+<strong>Target</strong>, or the <strong>Dealer</strong> for a hit, as <a href="WORKERS.html#the-map">WORKERS.md</a> says), and the <strong>Actions</strong> it queued,
+each <strong>Queued</strong>, <strong>Ran</strong> or <strong>Dropped</strong>.</li>
+</ul>
+<p>An entry reads as a line: &quot;Burn landed on Target, from Caster&quot;, &quot;Poison refused by Target: immunity&quot;, &quot;Burn's Noting heard
+it tick on Target, queuing Ticked&quot;.</p>
+<h2 id="local-data">Local Data</h2>
+<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind: Float,
+Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your
+own, a <code>[Serializable]</code> class made from <code>LocalDataValue&lt;T&gt;</code>, as a point or a colour, which the row's kinds offer beside
+PlayForge's. A row saves its own value alone. Object fields take project assets, not scene objects. Code reads a value by
+its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>, and a number, a Float or an Int, which can
+scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
+<p>When a <code>GameplayAbilitySystem</code> component initializes, it loads the entity's Local Data into a store of its own. Code and
+workers read and write that store through the GAS, with <code>TryGetLocalData</code> and <code>SetLocalData</code>. Threshold analysis
+workers, for example, note there that they have fired. A <code>RuntimeGameplayAbilitySystem</code> loads its identity's rows the same way, the entity asset's where it's made from one.</p>
+<h2 id="used-by">Used By</h2>
+<p>The PlayForge assets that refer to this entity, each with its type icon, such as the abilities and items linked to it.
+Click a row to select the asset. The list follows the project as it changes.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
