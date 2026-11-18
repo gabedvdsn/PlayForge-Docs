@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ValuePipelineTry | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ValuePipelineTry | PlayForge ">
+      
+      <meta name="description" content="A Value Pipeline tried in the editor: a value put through its stages at each level of a range, against the stand-ins a Scaler asset&#39;s try reads against, a caster&#39;s and a target&#39;s attributes, typed or filled from an entity, and the values a caller sets. Each chance a stage rolls comes up where it can, or misses where it can, as  says, so a read gives the same each time. A Block or Evade stage rolls first, as it does as an effect lands, and one that comes up stops the hit before the pipeline runs: nothing of it lands.  No effect is behind a try, so a stage that reads the hit&#39;s carrier reads none, and what an Absorb stage soaks comes off no one. A pipeline&#39;s try, from , is kept for the session with , and never written into the asset.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_ValuePipelineTry" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry" class="text-break">
+Class ValuePipelineTry  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A Value Pipeline tried in the editor: a value put through its stages at each level of a range, against the
+stand-ins a Scaler asset's try reads against, a caster's and a target's attributes, typed or filled from an entity,
+and the values a caller sets. Each chance a stage rolls comes up where it can, or misses where it can, as
+<a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_ChancesComeUp">ChancesComeUp</a> says, so a read gives the same each time. A Block or Evade stage rolls first, as it does
+as an effect lands, and one that comes up stops the hit before the pipeline runs: nothing of it lands.</p>
+<p>
+No effect is behind a try, so a stage that reads the hit's carrier reads none, and what an Absorb stage soaks comes
+off no one. A pipeline's try, from <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_For_FarEmerald_PlayForge_ValuePipeline_">For(ValuePipeline)</a>, is kept for the session with <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_Keep">Keep()</a>, and never
+written into the asset.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/scalers/index.html">Scalers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/value-pipelines/trying-a-pipeline.html">Value Pipelines: Trying a pipeline</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ValuePipelineTry</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ValuePipelineTry</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_ChancesComeUp" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.ChancesComeUp">
+  ChancesComeUp
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether each chance a stage rolls comes up where it can, as a critical strike or a block, or misses where it can.
+A chance of 1 always comes up and one of 0 never does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ChancesComeUp</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_MostLevels" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.MostLevels">
+  MostLevels
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The most levels a read takes at once, as a Scaler asset's try.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int MostLevels = 10</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Value" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Value">
+  Value
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The value the hit lands with, going in: a loss below 0, as a blow of 100 is −100; a gain above.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Value</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_From_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.From*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_From" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.From">
+  From
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The first level a read takes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int From { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Numbers_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Numbers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Numbers" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Numbers">
+  Numbers
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The caster, the target, the caller and the range of levels, held as a Scaler asset's try holds them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScalerTry Numbers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.ScalerTry.html">ScalerTry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_To_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.To*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_To" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.To">
+  To
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The last level a read takes, at most <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_MostLevels">MostLevels</a> after the first.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int To { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_For_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.For*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_For_FarEmerald_PlayForge_ValuePipeline_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.For(FarEmerald.PlayForge.ValuePipeline)">
+  For(ValuePipeline)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A pipeline's try, as it was left this session, or a new one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ValuePipelineTry For(ValuePipeline pipeline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="FarEmerald.PlayForge.ValuePipeline.html">ValuePipeline</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html">ValuePipelineTry</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Forget_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Forget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Forget_FarEmerald_PlayForge_ValuePipeline_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Forget(FarEmerald.PlayForge.ValuePipeline)">
+  Forget(ValuePipeline)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Forgets a pipeline's try, so the next starts anew.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Forget(ValuePipeline pipeline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="FarEmerald.PlayForge.ValuePipeline.html">ValuePipeline</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Keep_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Keep*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Keep" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Keep">
+  Keep()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Keeps it for the session, for <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_For_FarEmerald_PlayForge_ValuePipeline_">For(ValuePipeline)</a> to give again; never in the asset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Keep()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Read_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Read*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ValuePipelineTry_Read_FarEmerald_PlayForge_ValuePipeline_" data-uid="FarEmerald.PlayForge.Editor.ValuePipelineTry.Read(FarEmerald.PlayForge.ValuePipeline)">
+  Read(ValuePipeline)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Puts <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_Value">Value</a> through a pipeline at each level from <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_From">From</a> to <a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_To">To</a>, at most
+<a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_MostLevels">MostLevels</a>, the sides and the caller as they stand, adding a row for each attribute and key its
+stages ask for that it hadn't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValuePipelineTry.Reading Read(ValuePipeline pipeline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pipeline</code> <a class="xref" href="FarEmerald.PlayForge.ValuePipeline.html">ValuePipeline</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.html">ValuePipelineTry</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineTry.Reading.html">Reading</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

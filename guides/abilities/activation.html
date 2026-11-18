@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Activation | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Activation | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.activation">
+<h1 id="activation">Activation</h1>
+
+<p>This section is how the ability starts. One activation goes through these steps:</p>
+<ol>
+<li>The caster's tag requirements and Caster Checks are checked (see Requirements), and the ability's level (see
+Leveling).</li>
+<li>The Targeting task runs, if there is one.</li>
+<li>If targeting found a target, every check and requirement is checked again, the target's included.</li>
+<li>It winds up: what its components and its entity's wait for before it starts, as a turn to face its target (see
+Turn To Face). An interrupt here cancels it, and its cost and cooldown, paid after, aren't.</li>
+<li>The Asset Loaders run (see Stages).</li>
+<li>The Stages run, one after another.</li>
+</ol>
+<p>These steps start inside the call that asks for the ability, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_"><code>AbilitySystemComponent.TryActivateAbility</code></a>, and run until
+a task waits. So an ability whose tasks all finish at once has ended, and its callbacks have fired, by the time the call
+returns. An ability asked for again while that call still runs, from its own callbacks or from another ability's that
+it started, starts in the next frame instead. When the entity ends, its running abilities end with it, critical or not,
+and it takes no more activations.</p>
+<p>Code asks for an ability by its slot, with a request from <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_CreateActivationRequest_"><code>CreateActivationRequest</code></a>, by its asset
+(<code>TryActivateAbility(ability)</code>), or by a tag (<code>TryActivateAbility(tag)</code>). A tag activates the first ability, by slot,
+whose asset tag or one of whose context tags is that tag or under it. Each form returns an <a class="xref" href="../../api/FarEmerald.PlayForge.ActivationResult.html"><code>ActivationResult</code></a>, whose
+<code>Status</code> says what came of the request: <strong>Started</strong>, <strong>Buffered</strong> (it waits in the input buffer), <strong>NextFrame</strong> (it was
+asked for while its own activation call still ran, so it starts in the next frame), or <strong>Refused</strong>. The result reads as
+true where the request wasn't refused, so <code>if (abilities.TryActivateAbility(ability))</code> asks whether it was taken.
+Each form can say why it was refused, through its result's <code>Refusal</code> or an <code>out ActivationRefusal</code>: its <code>Reason</code>, such
+as Cooldown, Cost, Requirements, Blocked or Busy, and for another caster
+check, that check's name in <code>Rule</code>; for Crowd Control, <code>Rule</code> is the rule's tag, as Stunned. Where a check or a
+component refused it, its <code>Detail</code> says why in the check's own words, as &quot;Its caster's Mana, 10, can't pay 50&quot;. The
+ability system's <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemCallbacks.html#FarEmerald_PlayForge_AbilitySystemCallbacks_OnAbilityRefused"><code>OnAbilityRefused</code></a> callback tells each refusal as it happens.
+A request that waits in the input buffer isn't refused, and isn't told again as the buffer retries it. A check on the
+target comes after targeting and ends the activation instead, nothing of it paid: the request said nothing was refused,
+as the activation had started, so the callback tells it, as <strong>Target</strong>, <code>Rule</code> naming the check and <code>Detail</code> saying why.
+A component that refuses the target its targeting picked, as a Cast Range refuses one beyond it, is told the same way, as
+the kind its <code>RefusedAs</code> says, <strong>Range</strong> for a Cast Range, its reason in <code>Rule</code> and <code>Detail</code>.</p>
+<p>The request's data can carry magnitudes for the effects the ability applies: <code>data.SetByCaller(tag, magnitude)</code>, which a
+Set By Caller scaler on each effect reads (see <a href="../effects/index.html">Effects</a>). So a caller that knows the damage as it casts
+passes it in, and one effect serves every strength.</p>
+<ul>
+<li><p><strong>When Busy</strong>: what happens when the ability is asked to activate while another ability is busy. An activation is
+busy, or holds its <em>claim</em>, while its targeting and its critical tasks run. A critical task is one that must not
+overlap another ability's critical work, such as an attack animation. The inspector marks critical tasks and stages
+Critical. An ability waits on the claims of abilities that use the same choice, and an ability with critical tasks
+also waits on any ability with critical tasks that holds its claim, whatever its choice.</p>
+<ul>
+<li><strong>Entity's Policy</strong> (default): use the entity's When Busy, set in the Entity asset's Abilities section.</li>
+<li><strong>Activate Anyway</strong>: start at once. It is refused, as <strong>Critical</strong>, only when it has critical tasks and another
+ability with critical tasks holds its claim.</li>
+<li><strong>Refuse</strong>: start only when no Refuse ability holds its claim. Otherwise the request is refused, as <strong>Busy</strong>. With
+critical tasks, it is also refused, as <strong>Critical</strong>, while another ability with critical tasks holds its claim.</li>
+<li><strong>Queue</strong>: when a Queue ability holds its claim, or, for an ability with critical tasks, any ability with critical
+tasks holds its claim, or a running stage blocks this ability (see Stages), wait in the
+input buffer for up to <strong>Buffer Window</strong> seconds of the caster's time, then let go. The buffer holds one request
+for each ability, and a new press replaces it, with its window afresh. As a claim is released, and each frame, the
+request with the highest <strong>Buffer Priority</strong> that can start does, and of equals, the newest. While the entity is
+paused or its time is stopped, as in a hit-stop, the windows wait too. A request can name a window of its own
+(<code>CreateActivationRequest</code>'s <code>bufferWindow</code>).</li>
+</ul>
+<p>Whatever the choice, an ability can't start again while its own activation holds its claim.</p>
+</li>
+<li><p><strong>While Targeting</strong>: whether the ability, while its targeting waits for the player, gives way as another of the
+entity's abilities activates. A player who starts one ability's targeting and presses another's key means the other.</p>
+<ul>
+<li><strong>Entity's Rule</strong> (default): the entity's <strong>Targeting Yields</strong>, set in its Abilities section, on by default.</li>
+<li><strong>Yields</strong>: its targeting is cancelled, nothing of it paid, and its claim lets go at once, so the other starts,
+ahead of anything waiting in the input buffer. It gives way only to an activation that passes its own checks, so
+a press of an ability on cooldown leaves it be.</li>
+<li><strong>Holds</strong>: it keeps its claim until its target is chosen or it's cancelled; the other does as its When Busy says.</li>
+</ul>
+<p>An activation a trigger or Activate At Start makes doesn't cut a choice short, as the player didn't ask for it.
+Code that activates for the game rather than the player says the same of its request: <code>CancelsTargeting = false</code>.</p>
+</li>
+<li><p><strong>Buffer Window</strong> (default 0.3 s) and <strong>Buffer Priority</strong> (default 0): the input buffer's, under Queue, as above,
+each a number field read at the ability's level. A window of 0 doesn't wait, so the request is refused. They show under Queue and under the entity's policy, which may be
+Queue, and are hidden under the others.</p>
+</li>
+<li><p><strong>Activate At Start</strong>: when the ability is one of the entity's Starting Abilities, it tries to activate once, as the
+entity's GAS starts. An ability that an item or code grants later doesn't try it.</p>
+</li>
+<li><p><strong>Triggers</strong>: what sets the ability off on its own. A <strong>Gameplay Event</strong> trigger activates it when code sends the
+entity an event under the trigger's tag, or a tag under it, with <code>SendGameplayEvent(tag, data)</code>, and the ability gets
+the event's data, its target among it. A <strong>Tag Added</strong> trigger activates it as the entity gains the tag, or one under
+it, that it didn't have; more of a tag it holds sets off nothing. Each trigger tries the ability as a request would,
+so its checks and its When Busy still hold.</p>
+<ul>
+<li><strong>The core's own events</strong>, sent only where an ability listens for them: <strong>Impact Dealt</strong>, to the dealer, and
+<strong>Impact Taken</strong>, to the one hit, as an impact lands between two entities; <strong>Kill</strong>, to the killer, and <strong>Died</strong>, to
+the one who died, its killer the source of the last blow it took; <strong>Revived</strong>, to a staying entity as it revives;
+<strong>Blocked</strong> and <strong>Evaded</strong>, to one that stops an effect by a Block or Evade stage, and <strong>Hit Blocked</strong> and <strong>Hit
+Evaded</strong>, to its dealer.
+Their data hold the instigator as Source, the entity it was done to as Subject, and an impact as Impact.</li>
+<li>For an impact event, a trigger takes only impacts on its <strong>Attribute</strong>, a <strong>Sign</strong> (Loss or Gain), and its
+<strong>Impact Types</strong>. Its <strong>Chance</strong> rolls once for each event: Counter Helix's 20%, its <strong>Chance Roll</strong> pseudo-random
+or lucky (<a href="../effects/requirements.html">Effects: Requirements</a>). Its <strong>Target</strong> is the ability's
+own targeting, as an area spin finds the enemies round it; the event's <strong>Instigator</strong>, as a counterattack; or its
+<strong>Subject</strong>, as an on-hit ability targets the one hit. An ability set off by Died runs on a dead entity only if its
+rules don't ask that its caster be alive.</li>
+<li>The Problems view notes a Gameplay Event trigger on an event neither the core nor an asset in the project sends, as
+a threshold's Event or a stop stage's does, as only code can send it; and warns of an Impact Dealt or Impact Taken
+trigger's impact type that no effect deals, which never matches.</li>
+</ul>
+</li>
+<li><p><strong>Chance to Activate</strong>: how likely an activation is to start, from 0 to 1, rolled once for each, a player's
+or a trigger's, after its other checks; a miss is refused with Chance. <strong>Activation Roll</strong> makes it pseudo-random or
+lucky, and shows for a chance that can miss. <strong>Proc Coefficient</strong>: what its effects' hits carry for on-hit effects, where an effect sets none of its own.</p>
+</li>
+<li><p><strong>Ignores Crowd Control</strong>: the crowd control rules the ability ignores, by their tags, as Black King Bar's
+Avatar ignores Silenced: the other rules still stop it, and still interrupt it as it runs (see Requirements). A tag
+ignores the rules under it too.</p>
+</li>
+<li><p><strong>Cost</strong> and <strong>Cooldown</strong>: gameplay effects (<a href="../effects/index.html">Effects</a>) applied to the caster as the ability starts,
+after its targeting, so a cancelled targeting pays nothing, or by the stage that takes them (see Stages). A
+cost is usually an Instant effect that lowers a resource such as Mana. A cooldown is
+usually a Durational effect: while it is active, the caster carries its asset tag, and the Cooldown check refuses the
+ability. A line under each field says how its effect takes its levels, and <strong>Link</strong> makes it take this ability's.
+<strong>New</strong>, beside an empty field, makes an effect linked to this ability. If Project Settings → PlayForge names a Cost
+or Cooldown effect, the field's right-click menu copies it or uses it.</p>
+</li>
+<li><p><strong>Attribute Costs</strong>, after Cost: what the ability spends of attributes as it's used, beside its Cost effect,
+both paid. Each names the <strong>Attribute</strong> it spends, or, where it names none, a <strong>Role</strong> whose attribute in the project it
+spends (<a href="../attributes/roles.html">Attributes: Roles</a>), and an <strong>Amount</strong> that can scale by level. It's refused with Cost while
+its caster has less than they come to, lacks the attribute, or no attribute plays the role, and they're paid where a
+Cost is, as the ability starts or its stage applies usage. The section's line says them, as &quot;30 Mana&quot;.</p>
+</li>
+<li><p><strong>Targeting</strong>: the task that picks what the ability acts on, such as an entity the player clicks, or the caster
+itself. Targeting holds the activation's claim. If the task fails while its <strong>Break Runtime On Invalid</strong> is on, or it
+doesn't finish, the activation ends. Leave Targeting empty to skip this step.</p>
+<ul>
+<li><strong>Click targeting</strong> (the Select tasks: Position, Direction, GAS Target, GAS Or Position, GAS Target In Range)
+waits for a press and aims along the game's input, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a>. By default that's the Input System's
+pointer, a mouse, a pen or a touch, where its package is in and on, or else the Input Manager's mouse, each aimed
+through <code>Camera.main</code>. With no camera, a press aims nowhere. For a camera of your own, give the default one
+(<code>new LegacyPointerInput { Camera = camera }</code>, or <a class="xref" href="../../api/FarEmerald.PlayForge.InputSystemPointerInput.html"><code>InputSystemPointerInput</code></a>), and for a gamepad's reticle or a
+controller's ray, write an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeInput.html"><code>IForgeInput</code></a>. Put either in with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use(input)</code></a>. An activation that
+already holds its target, under TargetReal, or its point, under Position, as an AI's does, takes it with no
+click, unless the task's <strong>Take Target From Data</strong> is off; a handed target the task can't take, out of range
+or failing its requirements, fails the targeting at once.
+While one waits, its slot's <code>IsTargeting</code> is true, and the task's <code>Prompt</code> gives the words to ask with, as &quot;Click
+a target&quot;, for a game's own screen, as the Creator Lab's and the Demo's show.</li>
+<li><strong>Auto targeting</strong> (Auto Target, Auto Target By Affinity) takes the entities within its <strong>Range</strong>, or its ability's
+Cast Range where it has one, the range measured from the caster and <strong>Use Cast Range</strong> on, sorted by its
+<strong>Mode</strong>, up to <strong>Max Targets</strong>, or every one at 0. Each is a target of the activation, and the first, the nearest
+for Nearest, is its primary. Apply Effects and Apply/Remove Effects reach each target, in the project's resolve
+order unless their <strong>Use Resolve Order</strong> is off (<a href="../effects/workers.html#resolve-order">Effects: Resolve Order</a>), so an area ability
+is Auto Target and then Apply Effects. A Target row and the Target Checks check the primary. <strong>Auto Target From Data</strong>
+with <strong>Primary Only</strong> off takes each target its key holds.
+Each entity is found by its position, on either hub, with no collider needed. <strong>Around</strong> says where the
+range is measured from: the caster, the activation's target (as an AI hands it, or a task before it in a
+Composite picks it), or its point; <strong>Flat</strong>, on by default, measures along the ground, and off, a sphere. <strong>Use
+Physics</strong> finds entities with physics instead, by collider on its <strong>Detection Layers</strong>, which show under it alone,
+as it did, and a runtime entity by its position. <strong>Takes</strong> says whom each takes by how each stands to its caster:
+its <strong>Enemies</strong>, its <strong>Allies</strong>, itself among them, its <strong>Other Allies</strong>, <strong>Self</strong>, <strong>All But Self</strong> or <strong>Everyone</strong>;
+Auto Target takes All But Self to start, and Auto Target By Affinity its Enemies.</li>
+<li>A targeting task's numbers, as its <strong>Range</strong>, its <strong>Max Targets</strong>, a pointer task's <strong>Max Distance</strong> and an
+attribute condition's value, are numbers that can scale by level or read an attribute, read as its activation
+starts, at its ability's level. A pointer's <strong>Mouse Button</strong> picks one of three, so it stays a choice.</li>
+</ul>
+</li>
+<li><p><strong>Use Implicit Targeting</strong> (default off): before targeting, record the caster as the activation's target, under
+<strong>Implicit Tag</strong> (default <code>Target</code>), which shows while this is on. A targeting task that sets a target replaces it.
+The Passive preset turns it on, as a passive gives its holder its effects.</p>
+</li>
+</ul>
+<hr>
+<p><a href="tags.html">← Tags</a> · <a href="index.html">Abilities</a> · <a href="stages.html">Stages →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

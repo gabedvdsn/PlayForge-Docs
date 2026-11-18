@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SpreadEffectComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SpreadEffectComponent | PlayForge ">
+      
+      <meta name="description" content="Spread: spreads its effect, or another it names, from the one it&#39;s on to those near them, at the moments it names: as it lands, each tick, as it ends, or as the one it&#39;s on dies, as a plague jumps from its victim to the enemies near it. Each it takes gets the effect from the same origin, its caster&#39;s, so its modifiers and its chance to land are its own. A landing by spread spreads on only so far as its Hops allow.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.SpreadEffectComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_SpreadEffectComponent" data-uid="FarEmerald.PlayForge.SpreadEffectComponent" class="text-break">
+Class SpreadEffectComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Spread: spreads its effect, or another it names, from the one it's on to those near them, at the moments it names:
+as it lands, each tick, as it ends, or as the one it's on dies, as a plague jumps from its victim to the enemies
+near it. Each it takes gets the effect from the same origin, its caster's, so its modifiers and
+its chance to land are its own. A landing by spread spreads on only so far as its Hops allow.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/effects/built-in-kinds.html">Effects: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(Description = &quot;Spreads the effect, or another, from its target to those near it.&quot;)]
+public sealed class SpreadEffectComponent : AbstractEffectComponent</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html">AbstractForgeComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html">AbstractEffectComponent</a></div>
+      <div><span class="xref">SpreadEffectComponent</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_Lend_FarEmerald_PlayForge_EffectComponentContext_">AbstractEffectComponent.Lend(EffectComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_TakeBack_FarEmerald_PlayForge_EffectComponentContext_">AbstractEffectComponent.TakeBack(EffectComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_Hit_FarEmerald_PlayForge_EffectComponentContext_">AbstractEffectComponent.Hit(EffectComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_Reapply_FarEmerald_PlayForge_EffectComponentContext_">AbstractEffectComponent.Reapply(EffectComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_Refused_FarEmerald_PlayForge_EffectComponentContext_FarEmerald_PlayForge_EEffectRefusal_">AbstractEffectComponent.Refused(EffectComponentContext, EEffectRefusal)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectComponent.html#FarEmerald_PlayForge_AbstractEffectComponent_StacksChanged_FarEmerald_PlayForge_EffectComponentContext_System_Int32_System_Int32_">AbstractEffectComponent.StacksChanged(EffectComponentContext, int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_AllowsSeveral">AbstractForgeComponent.AllowsSeveral</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Find__1_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractForgeComponent__">AbstractForgeComponent.Find&lt;T&gt;(IReadOnlyList&lt;AbstractForgeComponent&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_FarEmerald_PlayForge_AbstractForgeComponent_">AbstractForgeComponent.NameOf(AbstractForgeComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_System_Type_">AbstractForgeComponent.NameOf(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Effect" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Effect">
+  Effect
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The effect it spreads; none, its own effect&quot;)]
+public GameplayEffect Effect</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Flat" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Flat">
+  Flat
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Measures along the ground, leaving height out; off, a sphere&quot;)]
+public bool Flat</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Hops" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Hops">
+  Hops
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How many more times a landing it made spreads on: 0, it spreads only from where its effect landed of its own&quot;)]
+[NumberMin(0)]
+public ScalableInt Hops</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_MaxTargets" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.MaxTargets">
+  MaxTargets
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;At most this many each time it spreads, the nearest first; 0, every one it reaches&quot;)]
+[NumberMin(0)]
+public ScalableInt MaxTargets</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Radius" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Radius">
+  Radius
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How far from the one it&#39;s on it reaches, read at its effect&#39;s level&quot;)]
+[NumberMin(0)]
+public ScalableFloat Radius</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_SkipHolders" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.SkipHolders">
+  SkipHolders
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Passes over those who have the effect it spreads already&quot;)]
+public bool SkipHolders</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Takes" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Takes">
+  Takes
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Whom it takes, by how each stands to its caster: its enemies, its allies, its other allies, itself, everyone else or everyone. A caster with no sides takes everyone as its allies and enemies&quot;)]
+public EAffiliationFilter Takes</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAffiliationFilter.html">EAffiliationFilter</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_UseResolveOrder" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.UseResolveOrder">
+  UseResolveOrder
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Lands on those it takes in the project&#39;s resolve order; off, the nearest first&quot;)]
+public bool UseResolveOrder</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_When" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.When">
+  When
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When it spreads: as its effect lands, each tick, as it comes off, or as the one it&#39;s on dies; any of them&quot;)]
+public ESpreadMoment When</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ESpreadMoment.html">ESpreadMoment</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SpreadEffectComponent_Death_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Death*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Death_FarEmerald_PlayForge_EffectComponentContext_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Death(FarEmerald.PlayForge.EffectComponentContext)">
+  Death(EffectComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As the one it's on dies, while it's on them, before what the death ends comes off; heard whether the entity
+stays or ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Death(EffectComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SpreadEffectComponent_Describe_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Describe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Describe" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Describe">
+  Describe()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it does, in one line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Describe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SpreadEffectComponent_End_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_End_FarEmerald_PlayForge_EffectComponentContext_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.End(FarEmerald.PlayForge.EffectComponentContext)">
+  End(EffectComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As the effect comes off: an instant one as it's done, a lasting one as it's removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void End(EffectComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SpreadEffectComponent_Land_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Land*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Land_FarEmerald_PlayForge_EffectComponentContext_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Land(FarEmerald.PlayForge.EffectComponentContext)">
+  Land(EffectComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As the effect lands on the entity it's on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Land(EffectComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SpreadEffectComponent_Tick_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Tick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SpreadEffectComponent_Tick_FarEmerald_PlayForge_EffectComponentContext_" data-uid="FarEmerald.PlayForge.SpreadEffectComponent.Tick(FarEmerald.PlayForge.EffectComponentContext)">
+  Tick(EffectComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As a lasting effect executes its period's tick.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Tick(EffectComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

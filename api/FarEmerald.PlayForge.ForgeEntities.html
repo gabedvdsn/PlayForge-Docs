@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeEntities | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeEntities | PlayForge ">
+      
+      <meta name="description" content="Every live entity, on both hubs: each joins as its core initializes and leaves as it ends. An area search goes through it, as Auto Target and Auto Target by Affinity do: with no range they searched the scene for MonoBehaviour entities alone, so a runtime entity was never found; and with a range they searched with physics alone, which finds no runtime entity, as it has no collider.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ForgeEntities">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ForgeEntities" data-uid="FarEmerald.PlayForge.ForgeEntities" class="text-break">
+Class ForgeEntities  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Every live entity, on both hubs: each joins as its core initializes and leaves as it ends. An area search goes
+through it, as Auto Target and Auto Target by Affinity do: with no range they searched the scene for MonoBehaviour
+entities alone, so a runtime entity was never found; and with a range they searched with physics alone, which finds
+no runtime entity, as it has no collider.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/entities/index.html">Entities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeEntities</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeEntities</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Live_" data-uid="FarEmerald.PlayForge.ForgeEntities.Live*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Live" data-uid="FarEmerald.PlayForge.ForgeEntities.Live">
+  Live
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every live entity, in the order each joined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;IGameplayAbilitySystem&gt; Live { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Around_" data-uid="FarEmerald.PlayForge.ForgeEntities.Around*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Around_FarEmerald_PlayForge_AbstractTargetingPacket_System_Single_UnityEngine_LayerMask_FarEmerald_PlayForge_ISource_System_Boolean_System_Collections_Generic_List_FarEmerald_PlayForge_ITarget__" data-uid="FarEmerald.PlayForge.ForgeEntities.Around(FarEmerald.PlayForge.AbstractTargetingPacket,System.Single,UnityEngine.LayerMask,FarEmerald.PlayForge.ISource,System.Boolean,System.Collections.Generic.List{FarEmerald.PlayForge.ITarget})">
+  Around(AbstractTargetingPacket, float, LayerMask, ISource, bool, List&lt;ITarget&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What an area search around <code class="paramref">origin</code> finds, added to <code class="paramref">into</code>. With no range, or
+no origin, every live entity. With a range, what physics finds on <code class="paramref">layers</code>, as it did, and
+each runtime entity whose targeting packet is within the range. The searcher, <code class="paramref">owner</code>, only
+where <code class="paramref">includeOwner</code> says.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Around(AbstractTargetingPacket origin, float range, LayerMask layers, ISource owner, bool includeOwner, List&lt;ITarget&gt; into)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>origin</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingPacket.html">AbstractTargetingPacket</a></dt>
+    <dd></dd>
+    <dt><code>range</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>layers</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/LayerMask.html">LayerMask</a></dt>
+    <dd></dd>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+    <dt><code>includeOwner</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>into</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Around_" data-uid="FarEmerald.PlayForge.ForgeEntities.Around*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Around_System_Nullable_UnityEngine_Vector3__System_Single_UnityEngine_LayerMask_FarEmerald_PlayForge_ISource_System_Boolean_System_Collections_Generic_List_FarEmerald_PlayForge_ITarget__" data-uid="FarEmerald.PlayForge.ForgeEntities.Around(System.Nullable{UnityEngine.Vector3},System.Single,UnityEngine.LayerMask,FarEmerald.PlayForge.ISource,System.Boolean,System.Collections.Generic.List{FarEmerald.PlayForge.ITarget})">
+  Around(Vector3?, float, LayerMask, ISource, bool, List&lt;ITarget&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What an area search with physics around <code class="paramref">centre</code> finds, as <a class="xref" href="FarEmerald.PlayForge.ForgeEntities.html#FarEmerald_PlayForge_ForgeEntities_Around_FarEmerald_PlayForge_AbstractTargetingPacket_System_Single_UnityEngine_LayerMask_FarEmerald_PlayForge_ISource_System_Boolean_System_Collections_Generic_List_FarEmerald_PlayForge_ITarget__">Around(AbstractTargetingPacket, float, LayerMask, ISource, bool, List&lt;ITarget&gt;)</a>
+does around a packet: what physics finds on <code class="paramref">layers</code>, and each runtime entity by its position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Around(Vector3? centre, float range, LayerMask layers, ISource owner, bool includeOwner, List&lt;ITarget&gt; into)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>centre</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>range</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>layers</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/LayerMask.html">LayerMask</a></dt>
+    <dd></dd>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+    <dt><code>includeOwner</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>into</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Distance_" data-uid="FarEmerald.PlayForge.ForgeEntities.Distance*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Distance_FarEmerald_PlayForge_ITarget_UnityEngine_Vector3_System_Boolean_" data-uid="FarEmerald.PlayForge.ForgeEntities.Distance(FarEmerald.PlayForge.ITarget,UnityEngine.Vector3,System.Boolean)">
+  Distance(ITarget, Vector3, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How far <code class="paramref">target</code> is from <code class="paramref">centre</code>, flat or not, or the most a float holds where it has no position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float Distance(ITarget target, Vector3 centre, bool flat)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+    <dt><code>centre</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>flat</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Takes_" data-uid="FarEmerald.PlayForge.ForgeEntities.Takes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Takes_FarEmerald_PlayForge_EAffiliationFilter_FarEmerald_PlayForge_ISource_System_Collections_Generic_List_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_ITarget_" data-uid="FarEmerald.PlayForge.ForgeEntities.Takes(FarEmerald.PlayForge.EAffiliationFilter,FarEmerald.PlayForge.ISource,System.Collections.Generic.List{FarEmerald.PlayForge.Tag},FarEmerald.PlayForge.ITarget)">
+  Takes(EAffiliationFilter, ISource, List&lt;Tag&gt;, ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether <code class="paramref">filter</code> takes <code class="paramref">target</code>, by how it stands to <code class="paramref">self</code>,
+the searcher, whose sides are <code class="paramref">sides</code>: an ally shares a side, an enemy shares none, and the
+searcher itself is its own ally and no one's enemy. A searcher with no sides takes every other one as either.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Takes(EAffiliationFilter filter, ISource self, List&lt;Tag&gt; sides, ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="FarEmerald.PlayForge.EAffiliationFilter.html">EAffiliationFilter</a></dt>
+    <dd></dd>
+    <dt><code>self</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+    <dt><code>sides</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeEntities_Within_" data-uid="FarEmerald.PlayForge.ForgeEntities.Within*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeEntities_Within_UnityEngine_Vector3_System_Single_System_Boolean_System_Collections_Generic_List_FarEmerald_PlayForge_ITarget__FarEmerald_PlayForge_ISource_System_Boolean_" data-uid="FarEmerald.PlayForge.ForgeEntities.Within(UnityEngine.Vector3,System.Single,System.Boolean,System.Collections.Generic.List{FarEmerald.PlayForge.ITarget},FarEmerald.PlayForge.ISource,System.Boolean)">
+  Within(Vector3, float, bool, List&lt;ITarget&gt;, ISource, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every live entity within <code class="paramref">radius</code> of <code class="paramref">centre</code>, by its position, on either hub,
+added to <code class="paramref">into</code>, with no physics, so an entity needs no collider. Flat
+leaves height out. A radius of 0 or less takes every live entity. The searcher, <code class="paramref">owner</code>, only
+where <code class="paramref">includeOwner</code> says; GameRoot, the game's manager, never.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Within(Vector3 centre, float radius, bool flat, List&lt;ITarget&gt; into, ISource owner = null, bool includeOwner = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>centre</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>flat</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>into</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+    <dt><code>includeOwner</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

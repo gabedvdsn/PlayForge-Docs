@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AttributeSystemComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AttributeSystemComponent | PlayForge ">
+      
+      <meta name="description" content="Component for managing attributes and their modifications. It supports WorkerContext and deferred execution.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AttributeSystemComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AttributeSystemComponent" data-uid="FarEmerald.PlayForge.AttributeSystemComponent" class="text-break">
+Class AttributeSystemComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Component for managing attributes and their modifications.
+It supports WorkerContext and deferred execution.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/attributes/index.html">Attributes</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/effect-pipeline/6-initialization--auto-scaling.html">Effect &amp; Attribute Pipeline: 6. Initialization &amp; auto-scaling</a> · <a class="xref" href="../guides/effect-pipeline/3-the-four-verb-attribute-api-attributesystemcomponent.html">Effect &amp; Attribute Pipeline: 3. The four-verb attribute API (AttributeSystemComponent)</a> · <a class="xref" href="../guides/effect-pipeline/2-attribute-state-cachedattributevalue.html">Effect &amp; Attribute Pipeline: 2. Attribute state (CachedAttributeValue)</a> · <a class="xref" href="../guides/effect-pipeline/5-recalculation-regulated-attributes.html">Effect &amp; Attribute Pipeline: 5. Recalculation (regulated attributes)</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AttributeSystemComponent : DeferredContextSystem</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html">DeferredContextSystem</a></div>
+      <div><span class="xref">AttributeSystemComponent</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html#FarEmerald_PlayForge_DeferredContextSystem__actionQueue">DeferredContextSystem._actionQueue</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html#FarEmerald_PlayForge_DeferredContextSystem__frameSummary">DeferredContextSystem._frameSummary</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html#FarEmerald_PlayForge_DeferredContextSystem_SetDeferredContext_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ActionQueue_FarEmerald_PlayForge_FrameSummary_">DeferredContextSystem.SetDeferredContext(IGameplayAbilitySystem, ActionQueue, FrameSummary)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent__ctor_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent__ctor_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.#ctor(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  AttributeSystemComponent(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AttributeSystemComponent(IGameplayAbilitySystem self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_Callbacks" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Callbacks">
+  Callbacks
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AttributeSystemCallbacks Callbacks</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.html">AttributeSystemCallbacks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_Self" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Self">
+  Self
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IGameplayAbilitySystem Self</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_attributeChangeWorkers" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.attributeChangeWorkers">
+  attributeChangeWorkers
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;AbstractAttributeWorker&gt; attributeChangeWorkers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_attributeSet" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.attributeSet">
+  attributeSet
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AttributeSet attributeSet</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_CommitImpact_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.CommitImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_CommitImpact_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_IAttributeImpacter__System_Boolean_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.CommitImpact(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.IAttributeImpacter},System.Boolean)">
+  CommitImpact(IAttribute, SourcedModifiedAttributeValue, IReadOnlyList&lt;IAttributeImpacter&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactData CommitImpact(IAttribute attribute, SourcedModifiedAttributeValue sourcedModifiedValue, IReadOnlyList&lt;IAttributeImpacter&gt; impacters, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>impacters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html">IAttributeImpacter</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_DefinesAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.DefinesAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_DefinesAttribute_FarEmerald_PlayForge_IAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.DefinesAttribute(FarEmerald.PlayForge.IAttribute)">
+  DefinesAttribute(IAttribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DefinesAttribute(IAttribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_GetAttributeCache_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetAttributeCache*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_GetAttributeCache" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetAttributeCache">
+  GetAttributeCache()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;IAttribute, CachedAttributeValue&gt; GetAttributeCache()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a>, <a class="xref" href="FarEmerald.PlayForge.CachedAttributeValue.html">CachedAttributeValue</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_GetBreakdown_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetBreakdown*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_GetBreakdown_FarEmerald_PlayForge_IAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetBreakdown(FarEmerald.PlayForge.IAttribute)">
+  GetBreakdown(IAttribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ordered per-group slices of the attribute's ActiveValue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;GroupContribution&gt; GetBreakdown(IAttribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.GroupContribution.html">GroupContribution</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_GetDefinedAttributes_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetDefinedAttributes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_GetDefinedAttributes" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.GetDefinedAttributes">
+  GetDefinedAttributes()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;IAttribute&gt; GetDefinedAttributes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_Initialize_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_Initialize" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Initialize">
+  Initialize()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ModifyAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Boolean_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ModifyAttribute(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Boolean)">
+  ModifyAttribute(IAttribute, SourcedModifiedAttributeValue, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactData ModifyAttribute(IAttribute attribute, SourcedModifiedAttributeValue sourcedModifiedValue, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ModifyAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Boolean_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ModifyAttribute(FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Boolean)">
+  ModifyAttribute(SourcedModifiedAttributeValue, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactData ModifyAttribute(SourcedModifiedAttributeValue sourcedModifiedValue, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AttributeBlueprint_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttribute(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AttributeBlueprint)">
+  ProvideAttribute(IAttribute, AttributeBlueprint)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideAttribute(IAttribute attribute, AttributeBlueprint blueprint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>blueprint</code> <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AttributeValue_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttribute(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AttributeValue)">
+  ProvideAttribute(IAttribute, AttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideAttribute(IAttribute attribute, AttributeValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttributeSet_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttributeSet*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttributeSet_FarEmerald_PlayForge_AttributeSet_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideAttributeSet(FarEmerald.PlayForge.AttributeSet)">
+  ProvideAttributeSet(AttributeSet)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideAttributeSet(AttributeSet set)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>set</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideWorker_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_ProvideWorker_FarEmerald_PlayForge_AbstractAttributeWorker_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.ProvideWorker(FarEmerald.PlayForge.AbstractAttributeWorker)">
+  ProvideWorker(AbstractAttributeWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ProvideWorker(AbstractAttributeWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_RegisterModifier_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RegisterModifier*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_RegisterModifier_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_IAttributeImpacter__System_Boolean_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RegisterModifier(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.IAttributeImpacter},System.Boolean)">
+  RegisterModifier(IAttribute, SourcedModifiedAttributeValue, IReadOnlyList&lt;IAttributeImpacter&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactData RegisterModifier(IAttribute attribute, SourcedModifiedAttributeValue sourcedModifiedValue, IReadOnlyList&lt;IAttributeImpacter&gt; impacters, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>impacters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html">IAttributeImpacter</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveAttribute_FarEmerald_PlayForge_IAttribute_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveAttribute(FarEmerald.PlayForge.IAttribute)">
+  RemoveAttribute(IAttribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAttribute(IAttribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveAttributeDerivation_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveAttributeDerivation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveAttributeDerivation_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveAttributeDerivation(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  RemoveAttributeDerivation(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Mark a carrier as no longer alive — kept in retention for identity but skipped
+during recompute. Used when the carrier exits the local GAS but its impact still
+has bookkeeping reasons to linger (e.g. tracked-impact reversal in flight).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAttributeDerivation(IAttributeImpactCarrier carrier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>carrier</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveWorker_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_RemoveWorker_FarEmerald_PlayForge_AbstractAttributeWorker_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.RemoveWorker(FarEmerald.PlayForge.AbstractAttributeWorker)">
+  RemoveWorker(AbstractAttributeWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveWorker(AbstractAttributeWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_Setup_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Setup*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_Setup_FarEmerald_PlayForge_AttributeSet_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.Setup(FarEmerald.PlayForge.AttributeSet)">
+  Setup(AttributeSet)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Setup(AttributeSet attrSet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attrSet</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetCachedValue_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetCachedValue*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetCachedValue_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_CachedAttributeValue__" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetCachedValue(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.CachedAttributeValue@)">
+  TryGetCachedValue(IAttribute, out CachedAttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetCachedValue(IAttribute attribute, out CachedAttributeValue attributeValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>attributeValue</code> <a class="xref" href="FarEmerald.PlayForge.CachedAttributeValue.html">CachedAttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetGroupValue_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetGroupValue*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetGroupValue_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_AttributeValue__" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetGroupValue(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.AttributeValue@)">
+  TryGetGroupValue(IAttribute, Tag, out AttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>This group's slice of the attribute (committed history + attributed modifier effect).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetGroupValue(IAttribute attribute, Tag group, out AttributeValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>group</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetValue_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetValue*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_TryGetValue_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AttributeValue__" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.TryGetValue(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AttributeValue@)">
+  TryGetValue(IAttribute, out AttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetValue(IAttribute attribute, out AttributeValue attributeValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>attributeValue</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeSystemComponent_UnregisterModifier_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.UnregisterModifier*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeSystemComponent_UnregisterModifier_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Boolean_" data-uid="FarEmerald.PlayForge.AttributeSystemComponent.UnregisterModifier(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Boolean)">
+  UnregisterModifier(IAttribute, SourcedModifiedAttributeValue, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactData UnregisterModifier(IAttribute attribute, SourcedModifiedAttributeValue sourcedModifiedValue, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbstractAbilityComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbstractAbilityComponent | PlayForge ">
+      
+      <meta name="description" content="A component of an ability: it hears the ability granted and removed, may refuse an activation, and hears an activation start, wind up, which the activation waits on, commit its cost and cooldown, and end, by how it did.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AbstractAbilityComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AbstractAbilityComponent" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent" class="text-break">
+Class AbstractAbilityComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A component of an ability: it hears the ability granted and removed, may refuse an activation, and hears an
+activation start, wind up, which the activation waits on, commit its cost and cooldown, and end, by how it did.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/requirements.html">Abilities: Requirements</a> · <a class="xref" href="../guides/abilities/components.html">Abilities: Components</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public abstract class AbstractAbilityComponent : AbstractForgeComponent</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html">AbstractForgeComponent</a></div>
+      <div><span class="xref">AbstractAbilityComponent</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.AuraAbilityComponent.html">AuraAbilityComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.CastRangeAbilityComponent.html">CastRangeAbilityComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ChargesAbilityComponent.html">ChargesAbilityComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.CuesAbilityComponent.html">CuesAbilityComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ToggleAbilityComponent.html">ToggleAbilityComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.TurnToFaceAbilityComponent.html">TurnToFaceAbilityComponent</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_AllowsSeveral">AbstractForgeComponent.AllowsSeveral</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Describe">AbstractForgeComponent.Describe()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Find__1_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractForgeComponent__">AbstractForgeComponent.Find&lt;T&gt;(IReadOnlyList&lt;AbstractForgeComponent&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_FarEmerald_PlayForge_AbstractForgeComponent_">AbstractForgeComponent.NameOf(AbstractForgeComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_System_Type_">AbstractForgeComponent.NameOf(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_UnityEngine_ScriptableObject_">AbstractForgeComponent.NameOf(ScriptableObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Whom_FarEmerald_PlayForge_EAffiliationFilter_">AbstractForgeComponent.Whom(EAffiliationFilter)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CasterCheck*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CasterCheck">
+  CasterCheck
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The check the component stands behind among its ability's Caster Checks, as <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_TargetCheck">TargetCheck</a> is
+among the Target Checks; null, as it is here, for none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAbilityValidationRule CasterCheck { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAbilityValidationRule.html">IAbilityValidationRule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.RefusedAs*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.RefusedAs">
+  RefusedAs
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The kind of refusal its <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CanStart_FarEmerald_PlayForge_AbilityComponentContext_">CanStart(AbilityComponentContext)</a> and <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CanTakeTarget_FarEmerald_PlayForge_AbilityComponentContext_">CanTakeTarget(AbilityComponentContext)</a> are told as, its reason naming
+it: Rule, as here; a Cast Range's is Range, so an AI can walk closer and ask again.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual EActivationRefusal RefusedAs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EActivationRefusal.html">EActivationRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_TargetCheck_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.TargetCheck*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_TargetCheck" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.TargetCheck">
+  TargetCheck
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The check the component stands behind among its ability's Target Checks, shown there while the ability holds
+it, as Cast Range's Check Range; null, as it is here, for none. The component enforces what it says, as the
+check, an <a class="xref" href="FarEmerald.PlayForge.AbstractComponentValidationRule-1.html">AbstractComponentValidationRule&lt;TComponent&gt;</a>, passes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAbilityValidationRule TargetCheck { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAbilityValidationRule.html">IAbilityValidationRule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_ApplyUsage_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.ApplyUsage*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_ApplyUsage_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.ApplyUsage(FarEmerald.PlayForge.AbilityComponentContext)">
+  ApplyUsage(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Applies its ability's usage in the ability's place, and says it did, as a Toggle turns its effect on, paying the
+cost, or off, spending the cooldown; false, as here, leaves it to the ability, which spends its cooldown through
+its cooldown model and pays its costs. The first component that applies it does. A component composes its own
+from the spec's <a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_PayCosts_FarEmerald_PlayForge_ProcessDataPacket_">PayCosts(ProcessDataPacket)</a> and <a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_SpendCooldown_FarEmerald_PlayForge_ProcessDataPacket_">SpendCooldown(ProcessDataPacket)</a>; its commit is
+heard either way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ApplyUsage(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_CanStart_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CanStart*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_CanStart_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CanStart(FarEmerald.PlayForge.AbilityComponentContext)">
+  CanStart(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why an activation may not start, or null where it may; the reason names the refusal and says why, and
+<a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs">RefusedAs</a> is its kind.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string CanStart(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_CanTakeTarget_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CanTakeTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_CanTakeTarget_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CanTakeTarget(FarEmerald.PlayForge.AbilityComponentContext)">
+  CanTakeTarget(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why the target or the point the activation's targeting picked is refused, which ends the activation there, as
+its targeting ends, before its wind-up, its cost and its stages; or null, as here, where it's taken. The pick
+is in its data under Target: a Cast Range refuses one beyond its range, whichever task picked it. The refusal is
+told through the callbacks' OnAbilityRefused as the kind <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs">RefusedAs</a> says, the reason naming it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string CanTakeTarget(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_CategoryOf_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CategoryOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_CategoryOf_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_GameplayEffectSpec_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.CategoryOf(FarEmerald.PlayForge.AbilityComponentContext,FarEmerald.PlayForge.GameplayEffectSpec)">
+  CategoryOf(AbilityComponentContext, GameplayEffectSpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The categories an effect its ability put on is of, for a purge, beside those the ability gives it, as its
+Cooldown's: a Toggle's effect is a Toggle's. None, as here. Asked of the effect as a purge finds it, so a load
+that puts the effect back keeps its category.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual EEffectCategory CategoryOf(AbilityComponentContext ctx, GameplayEffectSpec effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectCategory.html">EEffectCategory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Commit_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Commit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Commit_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Commit(FarEmerald.PlayForge.AbilityComponentContext)">
+  Commit(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an activation's cost and cooldown apply.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Commit(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_DescribeUsage_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.DescribeUsage*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_DescribeUsage" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.DescribeUsage">
+  DescribeUsage()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it adds to its ability's use, in a few words, which the ability's Activation line says after its cost and
+its cooldown, as Charges' &quot;3 charges&quot;; null, as here, for nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string DescribeUsage()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_End_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_End_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_EAbilityEnd_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.End(FarEmerald.PlayForge.AbilityComponentContext,FarEmerald.PlayForge.EAbilityEnd)">
+  End(AbilityComponentContext, EAbilityEnd)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an activation ends, by how it did.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void End(AbilityComponentContext ctx, EAbilityEnd how)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+    <dt><code>how</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityEnd.html">EAbilityEnd</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Granted_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Granted*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Granted_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Granted(FarEmerald.PlayForge.AbilityComponentContext)">
+  Granted(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an entity learns the ability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Granted(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Refused_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Refused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Refused_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_ActivationRefusal_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Refused(FarEmerald.PlayForge.AbilityComponentContext,FarEmerald.PlayForge.ActivationRefusal)">
+  Refused(AbilityComponentContext, ActivationRefusal)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an activation is refused, nothing of it paid: by its rules, a component, its target or its pick, as its
+callbacks' OnAbilityRefused tells it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Refused(AbilityComponentContext ctx, ActivationRefusal refusal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+    <dt><code>refusal</code> <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Removed_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Removed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Removed_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Removed(FarEmerald.PlayForge.AbilityComponentContext)">
+  Removed(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an entity loses the ability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Removed(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Start_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Start*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Start_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Start(FarEmerald.PlayForge.AbilityComponentContext)">
+  Start(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As an activation starts, its claim taken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Start(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_Waives_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Waives*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_Waives_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.Waives(FarEmerald.PlayForge.AbilityComponentContext)">
+  Waives(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The checks of its ability's use it waives for an activation, which pass while it does: a Toggle that's on waives
+its cost and its cooldown, so it can always turn off. None, as here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual EUsageCheck Waives(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EUsageCheck.html">EUsageCheck</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractAbilityComponent_WindUp_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.WindUp*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractAbilityComponent_WindUp_FarEmerald_PlayForge_AbilityComponentContext_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.AbstractAbilityComponent.WindUp(FarEmerald.PlayForge.AbilityComponentContext,System.Threading.CancellationToken)">
+  WindUp(AbilityComponentContext, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What an activation waits on as it winds up, after its targeting and its target checks and before its cost
+and its first stage, as a turn to face its target; its entity's components' with it. An interrupt cancels
+the token, and the activation, its cost unpaid, as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a> thrown here
+does. Nothing to wait on, here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual UniTask WindUp(AbilityComponentContext ctx, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

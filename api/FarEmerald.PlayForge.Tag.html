@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct Tag | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct Tag | PlayForge ">
+      
+      <meta name="description" content="Represents a gameplay tag with hierarchical support using dot notation. Example: &amp;quot;Status.Debuff.Burn&amp;quot; where &amp;quot;Status&amp;quot; is the root, &amp;quot;Debuff&amp;quot; is a child, and &amp;quot;Burn&amp;quot; is the leaf.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Tag">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Tag" data-uid="FarEmerald.PlayForge.Tag" class="text-break">
+Struct Tag  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a gameplay tag with hierarchical support using dot notation.
+Example: &quot;Status.Debuff.Burn&quot; where &quot;Status&quot; is the root, &quot;Debuff&quot; is a child, and &quot;Burn&quot; is the leaf.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Named in:</strong> <a class="xref" href="../guides/scalers/asking-a-worker.html">Scalers: Asking a worker</a> · <a class="xref" href="../guides/effect-pipeline/1-the-model-in-one-page.html">Effect &amp; Attribute Pipeline: 1. The model in one page</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Tag : IHasReadableDefinition, IEquatable&lt;Tag&gt;, ISerializationCallbackReceiver</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ISerializationCallbackReceiver.html">ISerializationCallbackReceiver</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Tag_DisplayName" data-uid="FarEmerald.PlayForge.Tag.DisplayName">
+  DisplayName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Human-readable display name shown in the editor.
+For regular tags this equals Name. For deterministic tags this is the
+original input before hash padding (e.g., &quot;Position&quot; instead of &quot;PositionaBcDe...&quot;).
+Falls back to Name if not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DisplayName</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Tag_Name" data-uid="FarEmerald.PlayForge.Tag.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The full hierarchical name using dot notation (e.g., &quot;Status.Debuff.Burn&quot;).
+For deterministic tags this includes hash padding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Tag_Depth_" data-uid="FarEmerald.PlayForge.Tag.Depth*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Depth" data-uid="FarEmerald.PlayForge.Tag.Depth">
+  Depth
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the depth of this tag in the hierarchy (1 = root, 2 = one level deep, etc.)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Depth { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_IsRoot_" data-uid="FarEmerald.PlayForge.Tag.IsRoot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_IsRoot" data-uid="FarEmerald.PlayForge.Tag.IsRoot">
+  IsRoot
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this is a root tag (no parent).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRoot { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_IsValid_" data-uid="FarEmerald.PlayForge.Tag.IsValid*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_IsValid" data-uid="FarEmerald.PlayForge.Tag.IsValid">
+  IsValid
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_Path_" data-uid="FarEmerald.PlayForge.Tag.Path*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Path" data-uid="FarEmerald.PlayForge.Tag.Path">
+  Path
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The path its hierarchy goes by: a unique tag's display path, what the designer sees, as its name carries hash
+padding; any other tag's name. So a New-Tag &quot;Status.Debuff.Burn&quot; is under a New-Tag &quot;Status.Debuff&quot;, and under a
+plain &quot;Status&quot;. Equality still goes by the name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Path { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Tag_Child_" data-uid="FarEmerald.PlayForge.Tag.Child*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Child_System_String_" data-uid="FarEmerald.PlayForge.Tag.Child(System.String)">
+  Child(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a child tag under this parent.
+Example: Tag.Generate(&quot;Status&quot;).Child(&quot;Debuff&quot;) returns &quot;Status.Debuff&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tag Child(string childName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>childName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_Equals_" data-uid="FarEmerald.PlayForge.Tag.Equals*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Equals_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.Equals(FarEmerald.PlayForge.Tag)">
+  Equals(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Tag other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd><p>An object to compare with this object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_Equals_" data-uid="FarEmerald.PlayForge.Tag.Equals*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Equals_System_Object_" data-uid="FarEmerald.PlayForge.Tag.Equals(System.Object)">
+  Equals(object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_Generate_" data-uid="FarEmerald.PlayForge.Tag.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Generate_System_String_" data-uid="FarEmerald.PlayForge.Tag.Generate(System.String)">
+  Generate(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Tag Generate(string _name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_Generate_" data-uid="FarEmerald.PlayForge.Tag.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_Generate_System_String_System_String_" data-uid="FarEmerald.PlayForge.Tag.Generate(System.String,System.String)">
+  Generate(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a tag with a separate display name. Used internally by
+deterministic tag generation where Name contains hash padding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Tag Generate(string _name, string _displayName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>_displayName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GenerateAsUnique_" data-uid="FarEmerald.PlayForge.Tag.GenerateAsUnique*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GenerateAsUnique_System_String_System_String_System_Int32_" data-uid="FarEmerald.PlayForge.Tag.GenerateAsUnique(System.String,System.String,System.Int32)">
+  GenerateAsUnique(string, string, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Tag GenerateAsUnique(string _name, string _prefix = &quot;&quot;, int size = 64)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>_prefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetAncestorPaths_" data-uid="FarEmerald.PlayForge.Tag.GetAncestorPaths*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetAncestorPaths" data-uid="FarEmerald.PlayForge.Tag.GetAncestorPaths">
+  GetAncestorPaths()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns all ancestor paths from immediate parent to root.
+Example: &quot;Status.Debuff.Burn&quot; returns [&quot;Status.Debuff&quot;, &quot;Status&quot;]</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetAncestorPaths()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetAncestors_" data-uid="FarEmerald.PlayForge.Tag.GetAncestors*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetAncestors" data-uid="FarEmerald.PlayForge.Tag.GetAncestors">
+  GetAncestors()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns all ancestor tags from immediate parent to root.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Tag&gt; GetAncestors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetDefaultIcon_" data-uid="FarEmerald.PlayForge.Tag.GetDefaultIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetDefaultIcon" data-uid="FarEmerald.PlayForge.Tag.GetDefaultIcon">
+  GetDefaultIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D GetDefaultIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetDescription_" data-uid="FarEmerald.PlayForge.Tag.GetDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetDescription" data-uid="FarEmerald.PlayForge.Tag.GetDescription">
+  GetDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetHashCode_" data-uid="FarEmerald.PlayForge.Tag.GetHashCode*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetHashCode" data-uid="FarEmerald.PlayForge.Tag.GetHashCode">
+  GetHashCode()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetLeafName_" data-uid="FarEmerald.PlayForge.Tag.GetLeafName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetLeafName" data-uid="FarEmerald.PlayForge.Tag.GetLeafName">
+  GetLeafName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the leaf name (last segment after the final dot).
+Example: &quot;Status.Debuff.Burn&quot;.GetLeafName() returns &quot;Burn&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetLeafName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetName_" data-uid="FarEmerald.PlayForge.Tag.GetName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetName" data-uid="FarEmerald.PlayForge.Tag.GetName">
+  GetName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetParent_" data-uid="FarEmerald.PlayForge.Tag.GetParent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetParent" data-uid="FarEmerald.PlayForge.Tag.GetParent">
+  GetParent()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the parent tag, or null if this is a root tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tag? GetParent()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetParentPath_" data-uid="FarEmerald.PlayForge.Tag.GetParentPath*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetParentPath" data-uid="FarEmerald.PlayForge.Tag.GetParentPath">
+  GetParentPath()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the parent path (everything before the last dot).
+Example: &quot;Status.Debuff.Burn&quot;.GetParentPath() returns &quot;Status.Debuff&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetParentPath()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetRoot_" data-uid="FarEmerald.PlayForge.Tag.GetRoot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetRoot" data-uid="FarEmerald.PlayForge.Tag.GetRoot">
+  GetRoot()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the root tag (first segment).
+Example: &quot;Status.Debuff.Burn&quot;.GetRoot() returns &quot;Status&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tag GetRoot()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_GetSegments_" data-uid="FarEmerald.PlayForge.Tag.GetSegments*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_GetSegments" data-uid="FarEmerald.PlayForge.Tag.GetSegments">
+  GetSegments()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns all path segments.
+Example: &quot;Status.Debuff.Burn&quot;.GetSegments() returns [&quot;Status&quot;, &quot;Debuff&quot;, &quot;Burn&quot;]</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] GetSegments()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_IsChildOf_" data-uid="FarEmerald.PlayForge.Tag.IsChildOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_IsChildOf_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.IsChildOf(FarEmerald.PlayForge.Tag)">
+  IsChildOf(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this tag is a child (direct or nested) of the given parent.
+Example: &quot;Status.Debuff.Burn&quot;.IsChildOf(&quot;Status.Debuff&quot;) returns true
+Example: &quot;Status.Debuff.Burn&quot;.IsChildOf(&quot;Status&quot;) returns true</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsChildOf(Tag parent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_IsDirectChildOf_" data-uid="FarEmerald.PlayForge.Tag.IsDirectChildOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_IsDirectChildOf_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.IsDirectChildOf(FarEmerald.PlayForge.Tag)">
+  IsDirectChildOf(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this tag is a direct child (one level deep) of the given parent.
+Example: &quot;Status.Debuff&quot;.IsDirectChildOf(&quot;Status&quot;) returns true
+Example: &quot;Status.Debuff.Burn&quot;.IsDirectChildOf(&quot;Status&quot;) returns false</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDirectChildOf(Tag parent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_IsParentOf_" data-uid="FarEmerald.PlayForge.Tag.IsParentOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_IsParentOf_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.IsParentOf(FarEmerald.PlayForge.Tag)">
+  IsParentOf(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if the given tag is a child (direct or nested) of this tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsParentOf(Tag child)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>child</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_MatchesOrIsChildOf_" data-uid="FarEmerald.PlayForge.Tag.MatchesOrIsChildOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_MatchesOrIsChildOf_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.MatchesOrIsChildOf(FarEmerald.PlayForge.Tag)">
+  MatchesOrIsChildOf(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this tag matches the other exactly OR is a child of it.
+Useful for &quot;has tag or any child of tag&quot; queries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesOrIsChildOf(Tag other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_MatchesOrIsParentOf_" data-uid="FarEmerald.PlayForge.Tag.MatchesOrIsParentOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_MatchesOrIsParentOf_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.MatchesOrIsParentOf(FarEmerald.PlayForge.Tag)">
+  MatchesOrIsParentOf(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this tag matches the other exactly OR is a parent of it.
+Useful for &quot;has tag or any parent of tag&quot; queries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MatchesOrIsParentOf(Tag other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_PathOf_" data-uid="FarEmerald.PlayForge.Tag.PathOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_PathOf_System_String_System_String_" data-uid="FarEmerald.PlayForge.Tag.PathOf(System.String,System.String)">
+  PathOf(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The path a tag of a name and a display text goes by, as <a class="xref" href="FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Path">Path</a>, for a tag read from its parts, as
+a serialized one is. A unique tag's name is its display text with hash padding after it, which has no dot, or
+the text cut short at its length (TagRegistry.TagUtil.GenerateDeterministicTag); an asset tag's display is its
+leaf alone, so its name is its path. Nothing is allocated, as a query reads paths often.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string PathOf(string name, string display)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>display</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_SharesAncestorWith_" data-uid="FarEmerald.PlayForge.Tag.SharesAncestorWith*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_SharesAncestorWith_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.SharesAncestorWith(FarEmerald.PlayForge.Tag)">
+  SharesAncestorWith(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this tag shares a common ancestor with the other tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SharesAncestorWith(Tag other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_ToString_" data-uid="FarEmerald.PlayForge.Tag.ToString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_ToString" data-uid="FarEmerald.PlayForge.Tag.ToString">
+  ToString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The fully qualified type name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Tag_op_Equality_" data-uid="FarEmerald.PlayForge.Tag.op_Equality*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_op_Equality_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.op_Equality(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.Tag)">
+  operator ==(Tag, Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Tag a, Tag b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_op_Implicit_" data-uid="FarEmerald.PlayForge.Tag.op_Implicit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_op_Implicit_FarEmerald_PlayForge_Tag__System_String" data-uid="FarEmerald.PlayForge.Tag.op_Implicit(FarEmerald.PlayForge.Tag)~System.String">
+  implicit operator string(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator string(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_op_Implicit_" data-uid="FarEmerald.PlayForge.Tag.op_Implicit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_op_Implicit_System_String__FarEmerald_PlayForge_Tag" data-uid="FarEmerald.PlayForge.Tag.op_Implicit(System.String)~FarEmerald.PlayForge.Tag">
+  implicit operator Tag(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Tag(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Tag_op_Inequality_" data-uid="FarEmerald.PlayForge.Tag.op_Inequality*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Tag_op_Inequality_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Tag.op_Inequality(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.Tag)">
+  operator !=(Tag, Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Tag a, Tag b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

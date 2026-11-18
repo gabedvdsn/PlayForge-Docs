@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeSpreadsheets | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeSpreadsheets | PlayForge ">
+      
+      <meta name="description" content="Numbers by level and item stats, to and from CSV, so a game is balanced in a spreadsheet.  A sheet of numbers by level has a row for each number of an asset that reads a Table or By Level: the asset&#39;s tag and name, the field as the inspector labels it, its kind, and what it reads at each level, its values times its number, as Laguna Blade&#39;s -450/-600/-750. A sheet of item stats has a row for each item and a column for each attribute its granted effects add to: a number, or one for each level, as 10/15/20.   A sheet read back finds each row&#39;s asset by its asset tag, or by its name where it gives none; a name two assets share, an asset that isn&#39;t there and a field it hasn&#39;t got are problems, not guesses. Its changes, listed, apply as one Undo step, each number&#39;s values set so it reads what the row says.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets" class="text-break">
+Class ForgeSpreadsheets  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Numbers by level and item stats, to and from CSV, so a game is balanced in a spreadsheet.</p>
+<p>
+A sheet of numbers by level has a row for each number of an asset that reads a Table or By Level: the asset's tag
+and name, the field as the inspector labels it, its kind, and what it reads at each level, its values times its
+number, as Laguna Blade's -450/-600/-750. A sheet of item stats has a row for each item and a column for each
+attribute its granted effects add to: a number, or one for each level, as 10/15/20.
+</p>
+<p>
+A sheet read back finds each row's asset by its asset tag, or by its name where it gives none; a name two assets
+share, an asset that isn't there and a field it hasn't got are problems, not guesses. Its changes, listed, apply as
+one Undo step, each number's values set so it reads what the row says.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/spreadsheets/index.html">Spreadsheets</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/spreadsheets/index.html">Spreadsheets</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeSpreadsheets</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeSpreadsheets</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_NumbersSheet" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.NumbersSheet">
+  NumbersSheet
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The kinds of sheet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string NumbersSheet = &quot;Numbers by Level&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_StatsSheet" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.StatsSheet">
+  StatsSheet
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string StatsSheet = &quot;Item Stats&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_ExportNumbers_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.ExportNumbers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_ExportNumbers_System_Collections_Generic_IEnumerable_UnityEngine_Object__" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.ExportNumbers(System.Collections.Generic.IEnumerable{UnityEngine.Object})">
+  ExportNumbers(IEnumerable&lt;Object&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a sheet of numbers by level to a file the user picks: the selected assets', or every asset's given. UTF-8,
+marked so, as a spreadsheet opens it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExportNumbers(IEnumerable&lt;Object&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_ExportStats_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.ExportStats*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_ExportStats_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Item__" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.ExportStats(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Item})">
+  ExportStats(IEnumerable&lt;Item&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes a sheet of these items' stats to a file the user picks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ExportStats(IEnumerable&lt;Item&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Import_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Import*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Import" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Import">
+  Import()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reads a sheet the user picks and lists its changes in a window, which applies those chosen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Import()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_NumbersOf_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.NumbersOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_NumbersOf_System_Collections_Generic_IEnumerable_UnityEngine_Object__" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.NumbersOf(System.Collections.Generic.IEnumerable{UnityEngine.Object})">
+  NumbersOf(IEnumerable&lt;Object&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A sheet of these assets' numbers by level, a row for each.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string NumbersOf(IEnumerable&lt;Object&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Read*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_System_String_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Read(System.String)">
+  Read(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a sheet would change in the project's PlayForge assets: a sheet of numbers by level, or of item stats.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SpreadsheetImport Read(string csv)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>csv</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.SpreadsheetImport.html">SpreadsheetImport</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Read*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_System_String_System_Collections_Generic_IEnumerable_UnityEngine_Object__" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.Read(System.String,System.Collections.Generic.IEnumerable{UnityEngine.Object})">
+  Read(string, IEnumerable&lt;Object&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a sheet would change in these assets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SpreadsheetImport Read(string csv, IEnumerable&lt;Object&gt; assets)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>csv</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.SpreadsheetImport.html">SpreadsheetImport</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_StatsOf_" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.StatsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeSpreadsheets_StatsOf_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Item__" data-uid="FarEmerald.PlayForge.Editor.ForgeSpreadsheets.StatsOf(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Item})">
+  StatsOf(IEnumerable&lt;Item&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A sheet of these items' stats: a row for each, and a column for each attribute their granted effects add to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string StatsOf(IEnumerable&lt;Item&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ScalableInt | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ScalableInt | PlayForge ">
+      
+      <meta name="description" content="A whole gameplay number:  for counts, as an effect&#39;s ticks or a stack&#39;s size. It takes every kind a  does, and rounds what it reads as  says, so a kind is written once. It is the whole-number magnitude field it grew from, with the same saved fields.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ScalableInt">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ScalableInt" data-uid="FarEmerald.PlayForge.ScalableInt" class="text-break">
+Class ScalableInt  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A whole gameplay number: <a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a> for counts, as an effect's ticks or a stack's size. It
+takes every kind a <a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a> does, and rounds what it reads as <a class="xref" href="FarEmerald.PlayForge.ScalableInt.html#FarEmerald_PlayForge_ScalableInt_Rounding">Rounding</a> says, so a
+kind is written once. It is the whole-number magnitude field it grew from, with the same saved fields.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/scalers/index.html">Scalers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/scalers/a-magnitude-field.html">Scalers: A magnitude field</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class ScalableInt</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ScalableInt</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt__ctor_" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt__ctor" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor">
+  ScalableInt()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScalableInt()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt__ctor_" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt__ctor_FarEmerald_PlayForge_AbstractScaler_System_Int32_FarEmerald_PlayForge_EMagnitudeOperation_FarEmerald_PlayForge_ERoundingOperation_" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor(FarEmerald.PlayForge.AbstractScaler,System.Int32,FarEmerald.PlayForge.EMagnitudeOperation,FarEmerald.PlayForge.ERoundingOperation)">
+  ScalableInt(AbstractScaler, int, EMagnitudeOperation, ERoundingOperation)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A number of a kind: the kind's value, combined with the number, then rounded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScalableInt(AbstractScaler kind, int number = 1, EMagnitudeOperation combine = EMagnitudeOperation.MultiplyWithScaler, ERoundingOperation rounding = ERoundingOperation.Floor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a></dt>
+    <dd></dd>
+    <dt><code>number</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>combine</code> <a class="xref" href="FarEmerald.PlayForge.EMagnitudeOperation.html">EMagnitudeOperation</a></dt>
+    <dd></dd>
+    <dt><code>rounding</code> <a class="xref" href="FarEmerald.PlayForge.ERoundingOperation.html">ERoundingOperation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt__ctor_" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt__ctor_System_Int32_" data-uid="FarEmerald.PlayForge.ScalableInt.#ctor(System.Int32)">
+  ScalableInt(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A constant: the number alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScalableInt(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Magnitude" data-uid="FarEmerald.PlayForge.ScalableInt.Magnitude">
+  Magnitude
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The number: the whole value of a constant, and what a scaler combines with otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Min(0)]
+public int Magnitude</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_RealMagnitude" data-uid="FarEmerald.PlayForge.ScalableInt.RealMagnitude">
+  RealMagnitude
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How the number combines with the scaler: the scaler, either plus or times the number, or the number alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EMagnitudeOperation RealMagnitude</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EMagnitudeOperation.html">EMagnitudeOperation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Rounding" data-uid="FarEmerald.PlayForge.ScalableInt.Rounding">
+  Rounding
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How a value read through a scaler becomes a whole number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ERoundingOperation Rounding</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ERoundingOperation.html">ERoundingOperation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Scaler" data-uid="FarEmerald.PlayForge.ScalableInt.Scaler">
+  Scaler
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The kind, when the number isn't a constant: any scaler, or a <a class="xref" href="FarEmerald.PlayForge.NumberKind.html">NumberKind</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeReference]
+[ScalerRootAssignment(null, typeof(AbstractCachedScaler))]
+public AbstractScaler Scaler</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_Constant_" data-uid="FarEmerald.PlayForge.ScalableInt.Constant*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Constant" data-uid="FarEmerald.PlayForge.ScalableInt.Constant">
+  Constant
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a constant reads: its number, or, through a Combine that reads a scaler it hasn't got, 0. A number of
+another kind reads its number here, the value it falls back to where its kind can't be worked out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Constant { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_IsConstant_" data-uid="FarEmerald.PlayForge.ScalableInt.IsConstant*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_IsConstant" data-uid="FarEmerald.PlayForge.ScalableInt.IsConstant">
+  IsConstant
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the number reads the same wherever it's read: it has no scaler, or one that is no kind, or it
+reads its number alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsConstant { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_Evaluate_" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Evaluate_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  Evaluate(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reads the number against an impact carrier, as an effect's own numbers are read.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Evaluate(IAttributeImpactCarrier spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_Evaluate_" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Evaluate_FarEmerald_PlayForge_NumberContext__" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate(FarEmerald.PlayForge.NumberContext@)">
+  Evaluate(in NumberContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reads the number where it is, as <a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html#FarEmerald_PlayForge_ScalableFloat_Evaluate_FarEmerald_PlayForge_NumberContext__">Evaluate(in NumberContext)</a> does, rounded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Evaluate(in NumberContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="FarEmerald.PlayForge.NumberContext.html">NumberContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_Evaluate_" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Evaluate_FarEmerald_PlayForge_NumberContext__System_Object_" data-uid="FarEmerald.PlayForge.ScalableInt.Evaluate(FarEmerald.PlayForge.NumberContext@,System.Object)">
+  Evaluate(in NumberContext, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reads the number where it is, with the object it belongs to, as that object's own code reads it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Evaluate(in NumberContext context, object owner)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <a class="xref" href="FarEmerald.PlayForge.NumberContext.html">NumberContext</a></dt>
+    <dd></dd>
+    <dt><code>owner</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_Initialize_" data-uid="FarEmerald.PlayForge.ScalableInt.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_Initialize_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.ScalableInt.Initialize(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  Initialize(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Readies the number's scaler against an impact carrier, as <a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html#FarEmerald_PlayForge_ScalableFloat_Initialize_FarEmerald_PlayForge_IAttributeImpactCarrier_">Initialize(IAttributeImpactCarrier)</a> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(IAttributeImpactCarrier carrier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>carrier</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_ToString_" data-uid="FarEmerald.PlayForge.ScalableInt.ToString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_ToString" data-uid="FarEmerald.PlayForge.ScalableInt.ToString">
+  ToString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the current object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ScalableInt_op_Implicit_" data-uid="FarEmerald.PlayForge.ScalableInt.op_Implicit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ScalableInt_op_Implicit_System_Int32__FarEmerald_PlayForge_ScalableInt" data-uid="FarEmerald.PlayForge.ScalableInt.op_Implicit(System.Int32)~FarEmerald.PlayForge.ScalableInt">
+  implicit operator ScalableInt(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A constant, so an int assigns to a whole-number field: <code>Ticks = 3</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator ScalableInt(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

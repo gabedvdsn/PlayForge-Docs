@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace FarEmerald.PlayForge.Testing | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace FarEmerald.PlayForge.Testing | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Testing">
+
+  <h1 id="FarEmerald_PlayForge_Testing" data-uid="FarEmerald.PlayForge.Testing" class="text-break">Namespace FarEmerald.PlayForge.Testing</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">
+Classes
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.AllocationMarker.html">AllocationMarker</a></dt>
+      <dd><p>Runs after every other Update, so it marks where ProcessControl's stepping has finished and the
+test runner's coroutine tick is about to begin.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.AllocationProbe.html">AllocationProbe</a></dt>
+      <dd><p>Measures allocation with <span class="xref">Unity.Profiling.ProfilerRecorder</span>, because the GC API returns 0 under Mono.
+Unity's &quot;GC Allocated In Frame&quot; counter reads live within a frame, so an operation is the counter's change
+across it. Dispose it as the test ends.</p>
+<p>A frame takes more care, because the counter's own total for a frame is noisy: 450 to 532 bytes
+with nothing running, shifting at random. Sampling every player loop stage shows why. All of that
+lands outside the player loop, in the editor's work between frames, except 40 bytes from the test
+runner's coroutine tick. So a frame here is the counter's change from the player loop's first
+stage to its last, less that tick, measured on the same frame. A clean frame reads exactly 0, with
+no baseline to calibrate, and a baseline would be worse than noise: taken while the noise ran high,
+it would hide real allocation.</p>
+<p>The cost is that anything allocated in a coroutine goes unmeasured with the test runner's.
+PlayForge's stepping runs in Update and its async work in UniTask continuations, which are measured.</p>
+<p>Now and then a burst of a kilobyte or so landed on a few frames at random, whatever was running. It
+was the editor's Build Report REST service, which listens on a port of its own: where another editor
+holds that port, as one open beside a batch run does, it tries again about once a second on a thread
+of its own, and each try allocates about 4 KB, which the counter takes as the frame's. Most frames are
+short, so a try rarely landed in one, but among 500 entities, whose frames fill most of a second,
+nearly every measure took one. A probe ends those tries (<span class="xref">FarEmerald.PlayForge.Testing.AllocationProbe.EndRestServiceRetries()</span>). Other
+noise may still land, and it doesn't repeat, where real allocation does, so a measure that isn't clean
+is taken again and the cleanest stands. A leak fails every attempt.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.EffectConfig.html">EffectConfig</a></dt>
+      <dd><p>What <a class="xref" href="FarEmerald.PlayForge.Testing.TestAssets.html#FarEmerald_PlayForge_Testing_TestAssets_Effect_System_String_FarEmerald_PlayForge_Testing_EffectConfig_">Effect(string, EffectConfig)</a> builds. Each field is the plain default unless a test needs otherwise.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a></dt>
+      <dd><p>The base of a test that plays PlayForge content: a live <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a> before
+each test, and after it the world's invariants audited and the world ended. A test is a PlayMode
+<code>[UnityTest]</code> whose body runs through <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTest.html#FarEmerald_PlayForge_Testing_ForgeTest_Live_System_Func_Cysharp_Threading_Tasks_UniTask__">Live(Func&lt;UniTask&gt;)</a>, from a frame's end:</p>
+<pre><code class="lang-csharp">[UnityTest]
+public IEnumerator Burn_ticks_twice() =&gt; Live(async () =&gt;
+{
+    var health = Make.Attribute("Health");
+    var target = World.Entity(Hub.Runtime, Make.Set(Make.Pool(health, 100f, 100f)));
+    var burn = Make.Effect("Burn", new EffectConfig { Policy = EEffectDurationPolicy.Durational, Target = health,
+        Magnitude = -10f, Duration = 1f, PeriodicTicks = true, Ticks = 2 });
+    World.Hit(World.Entity(Hub.Runtime), target, burn);
+    await Frames.Until(() =&gt; World.Value(target, health) &lt;= 80f, 90, "two ticks land");
+});</code></pre>
+<p>A test with a base class of its own makes a world with <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Start_System_Single_">Start(float)</a> instead.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a></dt>
+      <dd><p>One live PlayForge for one test: a real ProcessControl and GameRoot brought up by the real
+Bootstrapper, stepped by Unity's player loop a frame at a time. It makes what a test needs, entities on either hub,
+from an identity asset or from attributes, and plays them as a game does: <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Hit_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_GameplayEffect_">Hit(IGameplayAbilitySystem, IGameplayAbilitySystem, GameplayEffect)</a> applies an effect,
+<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Int32_">Cast(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem, int)</a> gives an ability and starts it, <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Use_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_">Use(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem)</a> starts one the entity has, and
+<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Hold_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Item_System_Int32_">Hold(IGameplayAbilitySystem, Item, int)</a> equips an item. Its <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Clock_System_Single_">Clock(float)</a> and <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Rolls_System_Single___">Rolls(params float[])</a> make time and chance the test's.</p>
+<p>
+It ends as a test asks, or as it's disposed (<code>await using</code>): every process it began, every object and asset it
+made, and the framework's static state, so tests run in any order. <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Audit">Audit()</a> first says what broke of
+its <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Invariants">Invariants</a>. <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a> makes one for each test, audits it and ends it. Step frames,
+and let ProcessControl step what runs: never call a process's update by hand.
+</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.FramePulse.html">FramePulse</a></dt>
+      <dd><p>Counts the phases Unity ran, so <a class="xref" href="FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a> can show a frame was a whole one.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a></dt>
+      <dd><p>Steps the real player loop a frame at a time, so a test can say &quot;this takes exactly N frames&quot;. A step ends
+at the frame's last player loop stage, once FixedUpdate, Update and LateUpdate have all run, so a test only ever
+looks at finished frames.</p>
+<p>
+Time is captured: every frame lasts exactly <a class="xref" href="FarEmerald.PlayForge.Testing.FrameStepper.html#FarEmerald_PlayForge_Testing_FrameStepper_DeltaTime">DeltaTime</a> and runs one FixedUpdate, however fast the
+machine is. Unscaled time doesn't follow, so anything timed on it stays on the wall clock. WaitForEndOfFrame never
+resumes under -nographics, which is why a step waits on a player loop stage instead.
+</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.Invariants.html">Invariants</a></dt>
+      <dd><p>What must hold after every test, whatever it did. <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a> checks these after each test, so a
+test gets them without asking, and a test about something else still catches a leak: every observed entity's
+attribute parts sum to its value, what each dealt is what its targets received, and no process is left running.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.ScriptedRandom.html">ScriptedRandom</a></dt>
+      <dd><p>Rolls that come out as the test writes them, one after another and round again, and how many were drawn, as
+<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Rolls_System_Single___">Rolls(params float[])</a> sets them. A chance below a roll misses, so 0 always lands and 0.99
+almost never does.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.SteppingClock.html">SteppingClock</a></dt>
+      <dd><p>A clock whose frames each take a fixed step, as <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Clock_System_Single_">Clock(float)</a> sets one.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.TestAssets.html">TestAssets</a></dt>
+      <dd><p>Builds PlayForge's assets in code, for one test world: attributes, sets, identities, effects, items and
+abilities, each ready to use. Everything it makes is destroyed with the world, and the tag names it gives are
+unique within it. A game's own assets, loaded from the project, are the test's to load.</p>
+</dd>
+    </dl>
+    <h3 id="structs">
+Structs
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.FrameAllocation.html">FrameAllocation</a></dt>
+      <dd><p>What a run of frames allocated.</p>
+</dd>
+    </dl>
+    <h3 id="enums">
+Enums
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Testing.Hub.html">Hub</a></dt>
+      <dd><p>The two GAS hubs, so a test can play its content on each.</p>
+</dd>
+    </dl>
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

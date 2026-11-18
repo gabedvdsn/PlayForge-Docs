@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeLog | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeLog | PlayForge ">
+      
+      <meta name="description" content="Level-gated logging for PlayForge: all the runtime says goes through here, and this file alone writes to Unity&#39;s console, so a project sets how much it hears in one place: Preferences → PlayForge → Logging in the editor, kept and put back on a domain reload, or  from code. Each message is of a system, effects, abilities, workers, numbers, processes, sequences and the rest, and a system can take a level of its own, , as the Creator Lab&#39;s log does;  hears each message let through, with the entity it&#39;s about where it names one. What&#39;s said only when asked, a debug tool&#39;s output (TagCache.LogWeights, the Threshold Debugger worker, LogAction), ProcessControl&#39;s logs while its inspector&#39;s toggles are on, and a sequence&#39;s injection or chain logging, is information: the toggle decides whether it&#39;s made, and the level whether it&#39;s shown. Its methods are marked to hide in the Console&#39;s stack, as the Console&#39;s Strip Logging Callstack hides them, and a double-click on a message it wrote opens the code that logged it, not this file.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ForgeLog">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ForgeLog" data-uid="FarEmerald.PlayForge.ForgeLog" class="text-break">
+Class ForgeLog  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Level-gated logging for PlayForge: all the runtime says goes through here, and this file alone writes to Unity's
+console, so a project sets how much it hears in one place: Preferences → PlayForge → Logging in the editor, kept
+and put back on a domain reload, or <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel">MinimumLevel</a> from code.</p>
+<p>Each message is of a system, effects, abilities, workers, numbers, processes, sequences and the rest, and a
+system can take a level of its own, <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_SetLevel_FarEmerald_PlayForge_ForgeLog_ESystem_System_Nullable_FarEmerald_PlayForge_ForgeLog_ELevel__">SetLevel(ESystem, ELevel?)</a>, as the Creator Lab's log does; <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged">Logged</a>
+hears each message let through, with the entity it's about where it names one.</p>
+<p>What's said only when asked, a debug tool's output (TagCache.LogWeights, the Threshold Debugger worker,
+LogAction), ProcessControl's logs while its inspector's toggles are on, and a sequence's injection or chain
+logging, is information: the toggle decides whether it's made, and the level whether it's shown.</p>
+<p>Its methods are marked to hide in the Console's stack, as the Console's Strip Logging Callstack hides them, and
+a double-click on a message it wrote opens the code that logged it, not this file.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Named in:</strong> <a class="xref" href="../guides/getting-started/logging.html">Getting Started: Logging</a> · <a class="xref" href="../guides/task-sequences/logging.html">Task Sequences: Logging</a> · <a class="xref" href="../guides/processes/logging.html">Processes: Logging</a> · <a class="xref" href="../guides/creator-lab/showing-its-working.html">The Creator Lab: Showing its working</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/task-sequences/building-one.html">Task Sequences: Building one</a> · <a class="xref" href="../guides/creator-lab/in-code.html">The Creator Lab: In code</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeLog</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeLog</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_MinimumLevel" data-uid="FarEmerald.PlayForge.ForgeLog.MinimumLevel">
+  MinimumLevel
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Messages below this level are dropped, of a system with no level of its own. Default: Info.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeLog.ELevel MinimumLevel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ELevel.html">ELevel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Allows_" data-uid="FarEmerald.PlayForge.ForgeLog.Allows*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Allows_FarEmerald_PlayForge_ForgeLog_ESystem_FarEmerald_PlayForge_ForgeLog_ELevel_" data-uid="FarEmerald.PlayForge.ForgeLog.Allows(FarEmerald.PlayForge.ForgeLog.ESystem,FarEmerald.PlayForge.ForgeLog.ELevel)">
+  Allows(ESystem, ELevel)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a message of a level, of a system, is let through.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Allows(ForgeLog.ESystem system, ForgeLog.ELevel level)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ELevel.html">ELevel</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_ClearLevels_" data-uid="FarEmerald.PlayForge.ForgeLog.ClearLevels*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_ClearLevels" data-uid="FarEmerald.PlayForge.ForgeLog.ClearLevels">
+  ClearLevels()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives every system back to <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel">MinimumLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ClearLevels()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Error_" data-uid="FarEmerald.PlayForge.ForgeLog.Error*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Error_FarEmerald_PlayForge_ForgeLog_ESystem_System_String_UnityEngine_Object_System_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Error(FarEmerald.PlayForge.ForgeLog.ESystem,System.String,UnityEngine.Object,System.Object)">
+  Error(ESystem, string, Object, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A message of a system, about an entity where it names one, which a log filtered to it shows.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Error(ForgeLog.ESystem system, string message, Object context = null, object subject = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>subject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Error_" data-uid="FarEmerald.PlayForge.ForgeLog.Error*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Error_System_String_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Error(System.String,UnityEngine.Object)">
+  Error(string, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Error(string message, Object context = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Exception_" data-uid="FarEmerald.PlayForge.ForgeLog.Exception*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Exception_FarEmerald_PlayForge_ForgeLog_ESystem_System_Exception_UnityEngine_Object_System_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Exception(FarEmerald.PlayForge.ForgeLog.ESystem,System.Exception,UnityEngine.Object,System.Object)">
+  Exception(ESystem, Exception, Object, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An exception of a system, as an error, where an error is let through: the console shows it as Unity's own
+LogException does, with its stack, and <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged">Logged</a> hears its type and message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Exception(ForgeLog.ESystem system, Exception exception, Object context = null, object subject = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>exception</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>subject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_HasOwnLevel_" data-uid="FarEmerald.PlayForge.ForgeLog.HasOwnLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_HasOwnLevel_FarEmerald_PlayForge_ForgeLog_ESystem_" data-uid="FarEmerald.PlayForge.ForgeLog.HasOwnLevel(FarEmerald.PlayForge.ForgeLog.ESystem)">
+  HasOwnLevel(ESystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a system has a level of its own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool HasOwnLevel(ForgeLog.ESystem system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Info_" data-uid="FarEmerald.PlayForge.ForgeLog.Info*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Info_FarEmerald_PlayForge_ForgeLog_ESystem_System_String_UnityEngine_Object_System_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Info(FarEmerald.PlayForge.ForgeLog.ESystem,System.String,UnityEngine.Object,System.Object)">
+  Info(ESystem, string, Object, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A message of a system, about an entity where it names one, which a log filtered to it shows.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Info(ForgeLog.ESystem system, string message, Object context = null, object subject = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>subject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Info_" data-uid="FarEmerald.PlayForge.ForgeLog.Info*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Info_System_String_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Info(System.String,UnityEngine.Object)">
+  Info(string, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Info(string message, Object context = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_LevelOf_" data-uid="FarEmerald.PlayForge.ForgeLog.LevelOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_LevelOf_FarEmerald_PlayForge_ForgeLog_ESystem_" data-uid="FarEmerald.PlayForge.ForgeLog.LevelOf(FarEmerald.PlayForge.ForgeLog.ESystem)">
+  LevelOf(ESystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A system's level: its own, or <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel">MinimumLevel</a> where it has none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeLog.ELevel LevelOf(ForgeLog.ESystem system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ELevel.html">ELevel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_SetLevel_" data-uid="FarEmerald.PlayForge.ForgeLog.SetLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_SetLevel_FarEmerald_PlayForge_ForgeLog_ESystem_System_Nullable_FarEmerald_PlayForge_ForgeLog_ELevel__" data-uid="FarEmerald.PlayForge.ForgeLog.SetLevel(FarEmerald.PlayForge.ForgeLog.ESystem,System.Nullable{FarEmerald.PlayForge.ForgeLog.ELevel})">
+  SetLevel(ESystem, ELevel?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives a system a level of its own; null gives it back to <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel">MinimumLevel</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetLevel(ForgeLog.ESystem system, ForgeLog.ELevel? level)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ELevel.html">ELevel</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Verbose_" data-uid="FarEmerald.PlayForge.ForgeLog.Verbose*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Verbose_FarEmerald_PlayForge_ForgeLog_ESystem_System_String_UnityEngine_Object_System_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Verbose(FarEmerald.PlayForge.ForgeLog.ESystem,System.String,UnityEngine.Object,System.Object)">
+  Verbose(ESystem, string, Object, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A message of a system, about an entity where it names one, which a log filtered to it shows.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Verbose(ForgeLog.ESystem system, string message, Object context = null, object subject = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>subject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Verbose_" data-uid="FarEmerald.PlayForge.ForgeLog.Verbose*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Verbose_System_String_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Verbose(System.String,UnityEngine.Object)">
+  Verbose(string, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Verbose(string message, Object context = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Warning_" data-uid="FarEmerald.PlayForge.ForgeLog.Warning*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Warning_FarEmerald_PlayForge_ForgeLog_ESystem_System_String_UnityEngine_Object_System_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Warning(FarEmerald.PlayForge.ForgeLog.ESystem,System.String,UnityEngine.Object,System.Object)">
+  Warning(ESystem, string, Object, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A message of a system, about an entity where it names one, which a log filtered to it shows.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Warning(ForgeLog.ESystem system, string message, Object context = null, object subject = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ESystem</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>subject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeLog_Warning_" data-uid="FarEmerald.PlayForge.ForgeLog.Warning*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Warning_System_String_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.ForgeLog.Warning(System.String,UnityEngine.Object)">
+  Warning(string, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HideInCallstack]
+public static void Warning(string message, Object context = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ForgeLog_Logged" data-uid="FarEmerald.PlayForge.ForgeLog.Logged">
+  Logged
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raised for each message let through, as it goes to Unity's console, with its system and the entity it's about
+where it names one: the Creator Lab's log hears it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action&lt;ForgeLogEntry&gt; Logged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ForgeLogEntry.html">ForgeLogEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

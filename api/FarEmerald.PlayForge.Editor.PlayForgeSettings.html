@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PlayForgeSettings | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PlayForgeSettings | PlayForge ">
+      
+      <meta name="description" content="PlayForge&#39;s authoring settings, a Forge Project&#39;s, so they travel with the project under version control: where each type&#39;s new assets go, the defaults a new asset copies and Import lists first, and the effects a new Cost or Cooldown copies. A new asset&#39;s file is its name alone. The Project Settings page edits them; the view toggles stay in Preferences (). The file and the EditorPrefs a project took them from once are gone with that taking.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_PlayForgeSettings" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings" class="text-break">
+Class PlayForgeSettings  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>PlayForge's authoring settings, a Forge Project's, so they travel with the project under version control:
+where each type's new assets go, the defaults a new asset copies and Import lists first, and the effects a new Cost
+or Cooldown copies. A new asset's file is its name alone. The Project Settings page edits them; the view toggles stay in
+Preferences (<a class="xref" href="FarEmerald.PlayForge.Editor.PlayForgePreferences.html">PlayForgePreferences</a>). The file and the EditorPrefs a project took them from once are
+gone with that taking.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class PlayForgeSettings</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">PlayForgeSettings</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_DefaultFolder_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.DefaultFolder*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_DefaultFolder_System_Type_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.DefaultFolder(System.Type)">
+  DefaultFolder(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The folder a type's new assets go in until a setting says otherwise, within the project's folder; &quot;&quot; for the
+project's folder itself, a type The Forge doesn't list, as a Tag Library.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string DefaultFolder(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.FolderFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_System_Type_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.FolderFor(System.Type)">
+  FolderFor(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The folder a new asset of the type goes in, within the project in use's folder, as &quot;Abilities&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string FolderFor(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.FolderFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_System_Type_FarEmerald_PlayForge_ForgeProject_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.FolderFor(System.Type,FarEmerald.PlayForge.ForgeProject)">
+  FolderFor(Type, ForgeProject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The folder a new asset of the type goes in, by a project's settings, within its folder, as &quot;Abilities&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string FolderFor(Type type, ForgeProject project)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>project</code> <a class="xref" href="FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_ImportDefaults_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.ImportDefaults*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_ImportDefaults_System_Type_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.ImportDefaults(System.Type)">
+  ImportDefaults(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The assets Import lists first for the type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;ScriptableObject&gt; ImportDefaults(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_NewAssetDefault_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.NewAssetDefault*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_NewAssetDefault_System_Type_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.NewAssetDefault(System.Type)">
+  NewAssetDefault(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The asset a new asset of the type starts as a copy of, or null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ScriptableObject NewAssetDefault(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetDefaults_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetDefaults*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetDefaults_System_Type_UnityEngine_ScriptableObject_System_Collections_Generic_IEnumerable_UnityEngine_ScriptableObject__" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetDefaults(System.Type,UnityEngine.ScriptableObject,System.Collections.Generic.IEnumerable{UnityEngine.ScriptableObject})">
+  SetDefaults(Type, ScriptableObject, IEnumerable&lt;ScriptableObject&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a type's defaults, the asset a new one copies and the assets Import lists first, as one Undo step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetDefaults(Type type, ScriptableObject newAsset, IEnumerable&lt;ScriptableObject&gt; import)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>newAsset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>import</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetNewAssets_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetNewAssets*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetNewAssets_System_Type_System_String_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetNewAssets(System.Type,System.String)">
+  SetNewAssets(Type, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets where a type's new assets go, as one Undo step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetNewAssets(Type type, string folder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>folder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetUsageEffect_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetUsageEffect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_SetUsageEffect_System_String_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.SetUsageEffect(System.String,FarEmerald.PlayForge.GameplayEffect)">
+  SetUsageEffect(string, GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the effect a new Cost or Cooldown effect starts as a copy of, as one Undo step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetUsageEffect(string key, GameplayEffect effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UsageEffect_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UsageEffect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UsageEffect_System_String_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UsageEffect(System.String)">
+  UsageEffect(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The effect a new Cost or Cooldown effect starts as a copy of, by &quot;Cost&quot; or &quot;Cooldown&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameplayEffect UsageEffect(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UseDefaultFolders_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UseDefaultFolders*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UseDefaultFolders" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UseDefaultFolders">
+  UseDefaultFolders()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Puts every type's folder back to its default, as one Undo step. The defaults and the Cost and Cooldown effects are
+content you chose, so they stay.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UseDefaultFolders()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UseProject_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UseProject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_PlayForgeSettings_UseProject_FarEmerald_PlayForge_ForgeProject_" data-uid="FarEmerald.PlayForge.Editor.PlayForgeSettings.UseProject(FarEmerald.PlayForge.ForgeProject)">
+  UseProject(ForgeProject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Uses <code class="paramref">project</code>'s authoring settings in place of the active project's, as a test does, or the
+active project's again for null. Gives back the one used before, to put back.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeProject UseProject(ForgeProject project)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>project</code> <a class="xref" href="FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Abilities | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Abilities | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities">
+<h1 id="abilities">Abilities</h1>
+
+<p>An <strong>Ability</strong> asset describes one thing an entity can do, such as a fireball, a dash or a heal. An entity is anything
+that runs a gameplay ability system (GAS), such as the player or an enemy. An entity learns an ability from its Entity
+asset's Starting Abilities, from an equipped Item, or from code (<a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_GiveAbility_"><code>AbilitySystemComponent.GiveAbility</code></a>). It keeps the
+ability until the ability is removed.</p>
+<p>Each time the ability activates, the GAS checks that it may run, lets a targeting task pick a target, then runs the
+ability's stages of tasks. The ability's cost and cooldown are gameplay effects, assets that change an entity, which
+it applies to its caster. Abilities run as processes under <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>, so the scene needs one.</p>
+<p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
+made from its Name: Fire Ball gives <code>Ability.FireBall</code>. The entity carries this tag while it has the ability, and keeps
+the ability's level under it. Each section below matches the inspector section of the same name.</p>
+<p>The inspector's header shows the ability's one line, as The Forge's Summary column does: each effect it applies,
+by its first impact across its levels, then its costs and its cooldown, as &quot;-450/-600/-750 Health; 280/420/680 Mana;
+70/60/50 s&quot;. A number that reads what the editor can't give it, as the target, is marked <code>*</code>.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the ability's display name.</li>
+<li><a href="leveling.html">Leveling</a>: An ability has its own level on each entity that learns it, kept under the ability's asset tag.</li>
+<li><a href="tags.html">Tags</a>: <strong>Context Tags</strong> describe the ability, such as <code>Spell</code> or <code>Melee</code>.</li>
+<li><a href="activation.html">Activation</a>: This section is how the ability starts.</li>
+<li><a href="stages.html">Stages</a>: This section is what the ability does once it has started.</li>
+<li><a href="requirements.html">Requirements</a>: Requirements are what an activation must pass.</li>
+<li><a href="components.html">Components</a>: An ability's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
+<li><a href="workers.html">Workers</a>: Workers are reusable behaviours, picked from a list, that react to what happens to an entity.</li>
+<li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
+<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this ability, each with its type icon, such as an entity that starts with it, an item that grants it, or a cost linked to it.</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Ability.html">Ability</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityActivationHandle.html">AbilityActivationHandle</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityBehaviour.html">AbilityBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityBreakdown.html">AbilityBreakdown</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityCallbackStatus.html">AbilityCallbackStatus</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityCharges.html">AbilityCharges</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityDefinition.html">AbilityDefinition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityEffectUsage.html">AbilityEffectUsage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityInspector.html">AbilityInspector</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityLevelValidation.html">AbilityLevelValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityProxy.html">AbilityProxy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySequenceCompiler.html">AbilitySequenceCompiler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpec.html">AbilitySpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityStageCondition.html">AbilityStageCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemCallbacks.html">AbilitySystemCallbacks</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemCallbacks.AbilityRefusedDelegate.html">AbilitySystemCallbacks.AbilityRefusedDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemCallbacks.AbilitySystemCallbackDelegate.html">AbilitySystemCallbacks.AbilitySystemCallbackDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemCallbacks.GameplayEventDelegate.html">AbilitySystemCallbacks.GameplayEventDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilitySystemComponent.AbilityActivationRequest</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTagRequirements.html">AbilityTagRequirements</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTags.html">AbilityTags</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTaskAdapter.html">AbilityTaskAdapter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTaskBehaviourStage.html">AbilityTaskBehaviourStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTrigger.html">AbilityTrigger</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html">AbstractAbilityRelatedTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityTask.html">AbstractAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAttributeValidationRule.html">AbstractAttributeValidationRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractChargeRecharge.html">AbstractChargeRecharge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractComponentValidationRule-1.html">AbstractComponentValidationRule&lt;TComponent&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCreateProcessAbilityTask.html">AbstractCreateProcessAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html">AbstractGasTargetingAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractProxyTaskBehaviour.html">AbstractProxyTaskBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractSetAssetsTask.html">AbstractSetAssetsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html">AbstractTagValidationRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html">AbstractTargetingAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingPacket.html">AbstractTargetingPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractWaitTask.html">AbstractWaitTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AffiliationValidation.html">AffiliationValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AllAtOnceRecharge.html">AllAtOnceRecharge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AllProxyStagePolicy.html">AllProxyStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AnyProxyStagePolicy.html">AnyProxyStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ApplyEffectsAbilityTask.html">ApplyEffectsAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ApplyRemoveEffectsAbilityTask.html">ApplyRemoveEffectsAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ApplyToCasterTask.html">ApplyToCasterTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AreaEffectTask.html">AreaEffectTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AssetLoaderInfo.html">AssetLoaderInfo</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeCost.html">AttributeCost</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeValidation.html">AttributeValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AutoTargetByAffinityTask.html">AutoTargetByAffinityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AutoTargetFromDataTask.html">AutoTargetFromDataTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AutoTargetSelfTask.html">AutoTargetSelfTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AutoTargetTask.html">AutoTargetTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BlinkTask.html">BlinkTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CancelAbilitiesTask.html">CancelAbilitiesTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CastRangeAbilityComponent.html">CastRangeAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChannelAbilityTask.html">ChannelAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChargesAbilityComponent.html">ChargesAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CheckRangeValidation.html">CheckRangeValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CompositeBehaviourPacket.html">CompositeBehaviourPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CompositeTargetingTask.html">CompositeTargetingTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ConditionValidation.html">ConditionValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ConsumeItemTask.html">ConsumeItemTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ContainedSeries.html">ContainedSeries</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CooldownValidation.html">CooldownValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CostValidation.html">CostValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CreateMonoProcessAbilityTask.html">CreateMonoProcessAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CreateMonoProcessAbilityTask.ESpawnPoint.html">CreateMonoProcessAbilityTask.ESpawnPoint</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRule.html">CrowdControlRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRules.html">CrowdControlRules</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DashTask.html">DashTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DelayTask.html">DelayTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DisjointAbilityTask.html">DisjointAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DisjointProxyTaskBehaviour.html">DisjointProxyTaskBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DisjointTarget.html">DisjointTarget</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityEffectRole.html">EAbilityEffectRole</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityLinkMode.html">EAbilityLinkMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityStageConditionSubject.html">EAbilityStageConditionSubject</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityTriggerSource.html">EAbilityTriggerSource</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EachChargeRecharge.html">EachChargeRecharge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EActionStatus.html">EActionStatus</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EActivationRefusal.html">EActivationRefusal</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EActivationStatus.html">EActivationStatus</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAnyAllPolicy.html">EAnyAllPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAutoTargetMode.html">EAutoTargetMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECrowdControlStops.html">ECrowdControlStops</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectTargetScope.html">EEffectTargetScope</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEventRecipient.html">EEventRecipient</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EFacingCheck.html">EFacingCheck</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectLevelSeries.html">EffectLevelSeries</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETagWait.html">ETagWait</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETriggerImpactSign.html">ETriggerImpactSign</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETriggerTarget.html">ETriggerTarget</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETurnTooLong.html">ETurnTooLong</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EValidationSide.html">EValidationSide</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EWhileTargeting.html">EWhileTargeting</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FacingValidation.html">FacingValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeReach.html">ForgeReach</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTurnToFace.html">ForgeTurnToFace</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GrantTagsTask.html">GrantTagsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.HasEffectValidation.html">HasEffectValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.HoldsItemValidation.html">HoldsItemValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityProxyStagePolicy.html">IAbilityProxyStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityReach.html">IAbilityReach</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityValidationRule.html">IAbilityValidationRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IComponentValidationRule.html">IComponentValidationRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ICooldownModel.html">ICooldownModel</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeMover.html">IForgeMover</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactSeries.html">ImpactSeries</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.InjectAbilityTask.html">InjectAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IProxyTaskBehaviourCaller.html">IProxyTaskBehaviourCaller</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IProxyTaskBehaviourUser.html">IProxyTaskBehaviourUser</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IsAliveValidation.html">IsAliveValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LineOfSightValidation.html">LineOfSightValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NullTargetingPacket.html">NullTargetingPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PlayCueTask.html">PlayCueTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ProjectileMonoProcess.html">ProjectileMonoProcess</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RunProcessTask.html">RunProcessTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RunSequenceTask.html">RunSequenceTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SelectDirectionTargetTask.html">SelectDirectionTargetTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SelectGasOrPositionTargetTask.html">SelectGasOrPositionTargetTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SelectGasTargetInRangeTask.html">SelectGasTargetInRangeTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SelectGasTargetTask.html">SelectGasTargetTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SelectPositionTargetTask.html">SelectPositionTargetTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SendEventTask.html">SendEventTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceInfo.html">SequenceInfo</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetAbilitiesTask.html">SetAbilitiesTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetAssetsTask.html">SetAssetsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetAttributeSetsTask.html">SetAttributeSetsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetAttributesTask.html">SetAttributesTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetEffectsTask.html">SetEffectsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetEntitiesTask.html">SetEntitiesTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetTagsTask.html">SetTagsTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SingleCooldown.html">SingleCooldown</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StaticTargetingPacket.html">StaticTargetingPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagWeightValidation.html">TagWeightValidation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TargetAttributeCondition.html">TargetAttributeCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TargetingPacket.html">TargetingPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ToggleAbilityComponent.html">ToggleAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TurnsToFaceEntityComponent.html">TurnsToFaceEntityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TurnToFaceAbilityComponent.html">TurnToFaceAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TurnToFaceSettings.html">TurnToFaceSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.UnityEventAbilityTask.html">UnityEventAbilityTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValidationSideAttribute.html">ValidationSideAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WaitForAttributeTask.html">WaitForAttributeTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WaitForEventTask.html">WaitForEventTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WaitForTagTask.html">WaitForTagTask</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

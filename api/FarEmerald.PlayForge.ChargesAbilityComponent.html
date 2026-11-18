@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ChargesAbilityComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ChargesAbilityComponent | PlayForge ">
+      
+      <meta name="description" content="Charges: how many uses an ability holds, each spending a charge that comes back as its Recharge says: its ability&#39;s cooldown model, an , which the Cooldown check asks and the ability spends through. Without one, an ability has one charge, its single cooldown. An ability holds one at most.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ChargesAbilityComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ChargesAbilityComponent" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent" class="text-break">
+Class ChargesAbilityComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Charges: how many uses an ability holds, each spending a charge that comes back as its Recharge says: its ability's
+cooldown model, an <a class="xref" href="FarEmerald.PlayForge.ICooldownModel.html">ICooldownModel</a>, which the Cooldown check asks and the ability spends through.
+Without one, an ability has one charge, its single cooldown. An ability holds one at most.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/components.html">Abilities: Components</a> · <a class="xref" href="../guides/abilities/built-in-kinds.html">Abilities: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(Description = &quot;How many uses the ability holds, each coming back as it recharges.&quot;)]
+public sealed class ChargesAbilityComponent : AbstractAbilityComponent, ICooldownModel</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html">AbstractForgeComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html">AbstractAbilityComponent</a></div>
+      <div><span class="xref">ChargesAbilityComponent</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.ICooldownModel.html">ICooldownModel</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Granted_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Granted(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Removed_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Removed(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CanStart_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.CanStart(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs">AbstractAbilityComponent.RefusedAs</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CanTakeTarget_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.CanTakeTarget(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_WindUp_FarEmerald_PlayForge_AbilityComponentContext_System_Threading_CancellationToken_">AbstractAbilityComponent.WindUp(AbilityComponentContext, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Start_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Start(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_ApplyUsage_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.ApplyUsage(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Waives_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Waives(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Commit_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Commit(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CategoryOf_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_GameplayEffectSpec_">AbstractAbilityComponent.CategoryOf(AbilityComponentContext, GameplayEffectSpec)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_End_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_EAbilityEnd_">AbstractAbilityComponent.End(AbilityComponentContext, EAbilityEnd)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Refused_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_ActivationRefusal_">AbstractAbilityComponent.Refused(AbilityComponentContext, ActivationRefusal)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_TargetCheck">AbstractAbilityComponent.TargetCheck</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck">AbstractAbilityComponent.CasterCheck</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Find__1_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractForgeComponent__">AbstractForgeComponent.Find&lt;T&gt;(IReadOnlyList&lt;AbstractForgeComponent&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_FarEmerald_PlayForge_AbstractForgeComponent_">AbstractForgeComponent.NameOf(AbstractForgeComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_System_Type_">AbstractForgeComponent.NameOf(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_Charges" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.Charges">
+  Charges
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How many uses it holds, each spending a charge that comes back as its Recharge says; 1 is an ordinary cooldown&quot;)]
+[NumberMin(2)]
+public ScalableInt Charges</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_Recharge" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.Recharge">
+  Recharge
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeReference]
+[Tooltip(&quot;How its spent charges come back: each on a cooldown of its own, or all at once as one cooldown ends once they&#39;re all spent, or as a recharge of your own says&quot;)]
+public AbstractChargeRecharge Recharge</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractChargeRecharge.html">AbstractChargeRecharge</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ChargesAbilityComponent_AllowsSeveral_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.AllowsSeveral*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_AllowsSeveral" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.AllowsSeveral">
+  AllowsSeveral
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an asset may hold more than one of this kind. One that makes no sense twice, as Charges, says no, and its
+Components section offers it only while the asset holds none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool AllowsSeveral { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ChargesAbilityComponent_CountsCharges_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.CountsCharges*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_CountsCharges" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.CountsCharges">
+  CountsCharges
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether its charges may be counted, as far as the asset says: more than 1, a number that scales, or a recharge
+that counts a single charge. With 1 and a built-in recharge, it's an ordinary cooldown.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CountsCharges { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ChargesAbilityComponent_ChargesOf_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.ChargesOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_ChargesOf_FarEmerald_PlayForge_AbilitySpec_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.ChargesOf(FarEmerald.PlayForge.AbilitySpec)">
+  ChargesOf(AbilitySpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its charges on an entity's ability: how many it holds, how many are in hand, and what its recharge counts, kept
+with the ability as its entity holds it, made as they're first asked for. What's in hand of any ability, with
+this component or without, is its <a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_CooldownModel">CooldownModel</a>'s.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilityCharges ChargesOf(AbilitySpec spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html">AbilitySpec</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilityCharges.html">AbilityCharges</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ChargesAbilityComponent_Describe_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.Describe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_Describe" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.Describe">
+  Describe()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it does, in one line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Describe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ChargesAbilityComponent_DescribeUsage_" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.DescribeUsage*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChargesAbilityComponent_DescribeUsage" data-uid="FarEmerald.PlayForge.ChargesAbilityComponent.DescribeUsage">
+  DescribeUsage()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its charges, as the Activation line counts them, &quot;3 charges&quot;, where they're counted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string DescribeUsage()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

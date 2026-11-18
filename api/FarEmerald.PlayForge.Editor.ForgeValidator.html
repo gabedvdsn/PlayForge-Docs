@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeValidator | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeValidator | PlayForge ">
+      
+      <meta name="description" content="PlayForge&#39;s one validator. It runs every  on each PlayForge asset in the project and keeps what they find, which the Problems view lists and an inspector&#39;s header counts. It follows the project, so nothing polls: an edit checks its asset again, an import checks what it brought, and a deleted asset has every asset checked again, since another may have read it. In batch mode,  writes each problem to the Console. Validate All checked four things, flagged every effect with no workers, and showed 15 problems in a dialog.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.ForgeValidator">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_ForgeValidator" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator" class="text-break">
+Class ForgeValidator  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>PlayForge's one validator. It runs every <a class="xref" href="FarEmerald.PlayForge.Editor.ForgeValidationRule.html">ForgeValidationRule</a> on each PlayForge asset in
+the project and keeps what they find, which the Problems view lists and an inspector's header counts. It follows
+the project, so nothing polls: an edit checks its asset again, an import checks what it brought, and a deleted
+asset has every asset checked again, since another may have read it. In batch mode, <a class="xref" href="FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_LogAll">LogAll()</a> writes
+each problem to the Console. Validate All checked four things, flagged every effect with no workers, and showed 15
+problems in a dialog.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Named in:</strong> <a class="xref" href="../guides/getting-started/tooling-tour.html">Getting Started: Tooling tour</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[InitializeOnLoad]
+public static class ForgeValidator</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeValidator</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_All_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.All*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_All" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.All">
+  All
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every problem the project's PlayForge assets have, their warnings and errors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ForgeProblem&gt; All { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_Notes_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Notes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_Notes" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Notes">
+  Notes
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every note the project's PlayForge assets have.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ForgeProblem&gt; Notes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_Check_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Check*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_Check_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Check(UnityEngine.Object)">
+  Check(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Runs every rule on an asset, saved or not, and returns what they find, its notes among them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ForgeProblem&gt; Check(Object asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_Checks_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Checks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_Checks_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Checks(UnityEngine.Object)">
+  Checks(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the validator checks an asset: every PlayForge asset, Scaler asset and requirement template.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Checks(Object asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_LogAll_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.LogAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_LogAll" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.LogAll">
+  LogAll()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks every PlayForge asset in the project afresh and writes each problem to the Console, an Error's as an
+error, then how many there are. Run it in batch mode, as on a build server, with -executeMethod
+FarEmerald.PlayForge.Editor.ForgeValidator.LogAll.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LogAll()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_NotesOf_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.NotesOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_NotesOf_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.NotesOf(UnityEngine.Object)">
+  NotesOf(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The notes an asset has, which may be meant, as a trigger on an event that code sends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ForgeProblem&gt; NotesOf(Object asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeValidator_ProblemsOf_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.ProblemsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_ProblemsOf_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.ProblemsOf(UnityEngine.Object)">
+  ProblemsOf(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The problems an asset has, its warnings and errors: a saved one's as the validator last found them, another's as
+it is now. Its notes are <a class="xref" href="FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_NotesOf_UnityEngine_Object_">NotesOf(Object)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;ForgeProblem&gt; ProblemsOf(Object asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeValidator_Changed" data-uid="FarEmerald.PlayForge.Editor.ForgeValidator.Changed">
+  Changed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raised when what the validator knows changes, as after an edit, an import or a delete.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event Action Changed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

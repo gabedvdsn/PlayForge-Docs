@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PrefabCue | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PrefabCue | PlayForge ">
+      
+      <meta name="description" content="Places a prefab where its placement says: a burst as its moment comes, gone after its Lifetime, or, in a Cues component&#39;s list of lasting cues, as an effect&#39;s While Active, for as long as its cue lasts. Its placement puts it on the one the cue is on, its source, an ability&#39;s target or each of its targets, or at the cue&#39;s point, as a hit&#39;s: at a socket, moved and scattered, following them while it lasts or as it says. Pooled, it takes its objects from  and gives them back, as Unreal recycles its cue actors.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.PrefabCue">
+
+
+
+  <h1 id="FarEmerald_PlayForge_PrefabCue" data-uid="FarEmerald.PlayForge.PrefabCue" class="text-break">
+Class PrefabCue  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Places a prefab where its placement says: a burst as its moment comes, gone after its Lifetime, or, in a Cues
+component's list of lasting cues, as an effect's While Active, for as long as its cue lasts. Its placement puts it
+on the one the cue is on, its source, an ability's target or
+each of its targets, or at the cue's point, as a hit's: at a socket, moved and scattered, following them while it
+lasts or as it says. Pooled, it takes its objects from <a class="xref" href="FarEmerald.PlayForge.ForgeCuePool.html">ForgeCuePool</a> and gives them back, as Unreal
+recycles its cue actors.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/cues/index.html">Cues</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/cues/built-in-kinds.html">Cues: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(Description = &quot;Places a prefab where its placement says, for a moment or for as long as the cue lasts.&quot;)]
+public class PrefabCue : AbstractCueHandler</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a></div>
+      <div><span class="xref">PrefabCue</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html#FarEmerald_PlayForge_AbstractCueHandler_Burst_FarEmerald_PlayForge_CueContext_">AbstractCueHandler.Burst(CueContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html#FarEmerald_PlayForge_AbstractCueHandler_OnTicked_FarEmerald_PlayForge_CueContext_">AbstractCueHandler.OnTicked(CueContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html#FarEmerald_PlayForge_AbstractCueHandler_OnRemoved_FarEmerald_PlayForge_CueContext_">AbstractCueHandler.OnRemoved(CueContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Lifetime" data-uid="FarEmerald.PlayForge.PrefabCue.Lifetime">
+  Lifetime
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How long a burst&#39;s prefab stays, in seconds; 0 keeps it&quot;)]
+[NumberMin(0)]
+public ScalableFloat Lifetime</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Placement" data-uid="FarEmerald.PlayForge.PrefabCue.Placement">
+  Placement
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Where it&#39;s placed, on whom, and which way it faces&quot;)]
+public CuePlacement Placement</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.CuePlacement.html">CuePlacement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Pooled" data-uid="FarEmerald.PlayForge.PrefabCue.Pooled">
+  Pooled
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Takes its objects from a pool and gives them back as its cue ends, in place of making and destroying one each time&quot;)]
+public bool Pooled</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Preallocate" data-uid="FarEmerald.PlayForge.PrefabCue.Preallocate">
+  Preallocate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How many objects its pool makes ahead as it first plays, so a fight&#39;s first hit doesn&#39;t hitch&quot;)]
+[Min(0)]
+public int Preallocate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Prefab" data-uid="FarEmerald.PlayForge.PrefabCue.Prefab">
+  Prefab
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject Prefab</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_PrefabCue_Begin_" data-uid="FarEmerald.PlayForge.PrefabCue.Begin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_Begin_FarEmerald_PlayForge_CueContext_" data-uid="FarEmerald.PlayForge.PrefabCue.Begin(FarEmerald.PlayForge.CueContext)">
+  Begin(CueContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The cue's moment has come and lasts: what a Cues component lists as lasting has begun, as an effect's While
+Active as it lands or a restore brings it back. A lasting cue begins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Begin(CueContext cue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_PrefabCue_End_" data-uid="FarEmerald.PlayForge.PrefabCue.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_End_FarEmerald_PlayForge_CueContext_" data-uid="FarEmerald.PlayForge.PrefabCue.End(FarEmerald.PlayForge.CueContext)">
+  End(CueContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The cue's moment is over, as an effect goes or a restore lets go of it. A lasting cue ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void End(CueContext cue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_PrefabCue_OnApplied_" data-uid="FarEmerald.PlayForge.PrefabCue.OnApplied*"></a>
+
+  <h3 id="FarEmerald_PlayForge_PrefabCue_OnApplied_FarEmerald_PlayForge_CueContext_" data-uid="FarEmerald.PlayForge.PrefabCue.OnApplied(FarEmerald.PlayForge.CueContext)">
+  OnApplied(CueContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>As the effect lands, a burst: a new application, or one an effect on already takes in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnApplied(CueContext cue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

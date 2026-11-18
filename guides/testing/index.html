@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Testing Your Content | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Testing Your Content | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.testing">
+<h1 id="testing-your-content">Testing Your Content</h1>
+
+<p>A game's abilities, effects and items are easiest to trust when a test plays them as the game does: a burn's ticks
+landing over its second, a ring's armor while it's held, a cast paying its cost. PlayForge's test kit is the assembly
+<code>FarEmerald.PlayForge.Testing</code>, in the package's <code>TestKit</code> folder, which a project's own tests reference. It
+brings up a live PlayForge for each test, steps it a frame at a time, makes entities on either hub, and plays them; and
+after each test it checks what must always hold, and takes it all down again, so tests run in any order.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="setting-up.html">Setting up</a>: The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as its own test runner is.</li>
+<li><a href="a-test.html">A test</a>: A test class derives from <code>ForgeTest</code>, which makes a <code>ForgeTestWorld</code> before each test and audits and ends it after.</li>
+<li><a href="the-world.html">The world</a>: <strong>Entities</strong>: <code>World.Entity(hub, set, name)</code> makes an entity of an attribute set on either hub, <code>Hub.Runtime</code> (a <code>RuntimeGameplayAbilitySystem</code>) or <code>Hub.Mono</code> (a <code>GameplayAbilitySystem</code> on a GameObject of its own)…</li>
+<li><a href="what-must-hold.html">What must hold</a>: After each test that passed, the world's <strong>audit</strong> lets three frames settle, ends what the test left running of what it began, and fails the test where any of these broke</li>
+<li><a href="allocation.html">Allocation</a>: <code>AllocationProbe</code> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono: <code>Measure(action)</code> what one run allocates, <code>MeasureEach(action, runs, warmup)</code> the mean of many after a…</li>
+<li><a href="traps.html">Traps</a>: <strong>Step frames; never call a process's update by hand.</strong> The world's ProcessControl steps what runs, as the game's does; calling an update yourself runs it out of order and hides what the frame does.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationMarker.html">AllocationMarker</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html">AllocationProbe</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html">EffectConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameAllocation.html">FrameAllocation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FramePulse.html">FramePulse</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html">Hub</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Invariants.html">Invariants</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ScriptedRandom.html">ScriptedRandom</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.SteppingClock.html">SteppingClock</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html">TestAssets</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

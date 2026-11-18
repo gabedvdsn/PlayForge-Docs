@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>3. The four-verb attribute API (AttributeSystemComponent) | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="3. The four-verb attribute API (AttributeSystemComponent) | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effect-pipeline.3-the-four-verb-attribute-api-attributesystemcomponent">
+<h1 id="3-the-four-verb-attribute-api-attributesystemcomponent">3. The four-verb attribute API (<code>AttributeSystemComponent</code>)</h1>
+
+<p>Every attribute mutation funnels through one shared 4-phase pipeline
+(<code>CommitWithCarrier</code>): pre-change workers → PHASE-2 dispatch → post-change workers →
+impact relay (<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html"><code>ImpactData</code></a>, frame summaries, source-side <code>TrackImpact</code>, <code>AttributeChanged</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Dispatch</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RegisterModifier(attr, smv, impacters)</code></td>
+<td>register/refresh in <code>modifiers</code> + recompute</td>
+<td>Continuous entries on apply / stack refresh / replace</td>
+</tr>
+<tr>
+<td><code>UnregisterModifier(attr, smv)</code></td>
+<td>remove carrier's entries + recompute</td>
+<td>removal &amp; replacement — <strong>fires callbacks like any change</strong>, so regulated attributes refresh (removal used to be silent → stale derived values). It's no hit, though: its <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Ends"><code>ImpactData.Ends</code></a> holds, so its effect's workers and components hear no impact, its dealer's impact workers don't run and no Impact Taken or Dealt is sent</td>
+</tr>
+<tr>
+<td><code>CommitImpact(attr, smv, impacters)</code></td>
+<td>permanent per-group commit</td>
+<td>OnApply / Periodic entries</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_"><code>ModifyAttribute(attr, smv)</code></a></td>
+<td>CommitImpact; a delta-only carrier's delta commits as constant Adds in its retention group</td>
+<td>init pulse, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_EnforceScaling_"><code>EnforceScaling</code></a> propagation, external systems (<code>TryModifyAttribute</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Registration/unregistration are <strong>identity-based</strong> on the carrier instance — they are never
+wrapped in synthetic carriers.</p>
+<p><strong>Pre-change phase (commits).</strong> Before the pre-change callback and workers run, a commit
+evaluates its impacters once (frozen as constants, so a randomized scaler can't roll
+differently twice) and previews the <strong>incoming</strong> delta: ops in order, no bounds or rounding.
+That delta is what <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeValue.html"><code>ChangeValue</code></a> holds, since effect specs arrive as <code>(0,0)</code> transport, and an
+Inline worker's edit is what commits:</p>
+<ul>
+<li>untouched → the frozen impacters commit as authored (op semantics, per-impacter groups);</li>
+<li>adjusted → the new delta commits as one constant Add in the impacters' shared group (mixed
+groups fall back to the carrier's retention group).</li>
+</ul>
+<p>Either way §2.2 applies: post-constraint delta recorded, then <code>Recompute</code>. Armor therefore acts
+on incoming damage and the clamp comes after: 20 HP, −30 hit, 50% armor → −15 → 5 HP. Raw
+deltas (<code>ModifyAttribute</code>) preview as themselves. Register/Unregister are observe-only here,
+because modifiers are re-derived every recompute, so a one-off adjustment has nowhere to live.</p>
+<p><strong>A commit allocates nothing</strong>, adjusted or not. It rents its <code>ChangeValue</code> and its
+frozen impacters and gives them back when it's done, one set for each commit in progress, since
+a worker or a listener can commit inside another. An adjusted delta's Adds are frozen in the same
+impacters. So:</p>
+<ul>
+<li>a <code>ChangeValue</code> belongs to its commit. A callback or an Inline worker reads it during the call,
+or copies its <code>Value</code>, and doesn't keep it;</li>
+<li>a Deferred worker's actions may keep it. A change handed to one is left to them, and its commit
+takes a new one for the next;</li>
+<li>the source-side <code>TrackImpact</code> keeps a total, the last impact and a count, not every impact.</li>
+</ul>
+<p>A raw delta allocates nothing on its way through either: its delta's Adds are frozen in the same
+impacters, and a <a class="xref" href="../../api/FarEmerald.PlayForge.SourceAttributeImpact.html"><code>SourceAttributeImpact</code></a> keeps the origin it makes. <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateSimple_"><code>GenerateSimple</code></a> makes a
+new carrier on every call, so a raw delta made every frame keeps its carrier, made once with
+<a class="xref" href="../../api/FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateSourceDerivation_"><code>IAttributeImpactCarrier.GenerateSourceDerivation(source, attribute)</code></a>.</p>
+<p>The changes the system makes on someone's behalf, <code>EnforceScaling</code>'s rescale and the lifesteal
+worker's heal, allocate nothing either:</p>
+<ul>
+<li>each is carried by a carrier kept for its source and attribute, in a table keyed weakly by
+source, so a source that's gone isn't held;</li>
+<li>each deferred one is queued in a <a class="xref" href="../../api/FarEmerald.PlayForge.ModifyAttributeAction.html"><code>ModifyAttributeAction</code></a> the system takes back once the queue
+has run it, so a listener of <code>OnActionQueued</code> or <code>OnActionExecuted</code> reads an action during the
+call. One the queue invalidates isn't taken back;</li>
+<li>the queue walks its priority buckets by index, and <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_EnqueueRange_"><code>EnqueueRange</code></a> reads a list or an array by
+index, so taking an action off allocates nothing.</li>
+</ul>
+<p>Null / undefined attribute targets early-out safely (pure tag-grant effects are legal).</p>
+<hr>
+<hr>
+<p><a href="2-attribute-state-cachedattributevalue.html">← 2. Attribute state (CachedAttributeValue)</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="4-effect-lifecycle-effectsystemcomponent.html">4. Effect lifecycle (EffectSystemComponent) →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

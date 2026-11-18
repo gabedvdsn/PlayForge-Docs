@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SyncSequenceTaskLibrary | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SyncSequenceTaskLibrary | PlayForge ">
+      
+      <meta name="description" content="Reusable synchronous building blocks for common gameplay operations. Each method returns an ISequenceTask that advances per-frame via Step(). Also usable in async sequences — the DelegateSyncTask.Execute bridge loops Step automatically. Designed for use with TaskSequenceBuilder. Usage: var runner = TaskSequenceBuilder.Create(&amp;quot;Chase&amp;quot;) .Stage(s =&amp;gt; s .Task(SyncSeq.MoveTowards(chaser, target, 5f)) ) .BuildSyncRunner(); All timed tasks:  Accept an optional AnimationCurve for easing (null = linear) Snap to the final value on completion to avoid float drift Handle zero/negative duration by completing immediately  All tracking tasks (MoveTowards, LookAtTracking, etc.):  Re-sample the target each frame for dynamic following Complete based on distance/condition, not duration">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary">
+
+
+
+  <h1 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary" class="text-break">
+Class SyncSequenceTaskLibrary  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Reusable synchronous building blocks for common gameplay operations.
+Each method returns an ISequenceTask that advances per-frame via Step().
+Also usable in async sequences — the DelegateSyncTask.Execute bridge loops Step automatically.
+Designed for use with TaskSequenceBuilder.</p>
+<p>Usage:
+var runner = TaskSequenceBuilder.Create(&quot;Chase&quot;)
+.Stage(s =&gt; s
+.Task(SyncSeq.MoveTowards(chaser, target, 5f))
+)
+.BuildSyncRunner();</p>
+<p>All timed tasks:</p>
+<ul>
+<li>Accept an optional AnimationCurve for easing (null = linear)</li>
+<li>Snap to the final value on completion to avoid float drift</li>
+<li>Handle zero/negative duration by completing immediately</li>
+</ul>
+<p>All tracking tasks (MoveTowards, LookAtTracking, etc.):</p>
+<ul>
+<li>Re-sample the target each frame for dynamic following</li>
+<li>Complete based on distance/condition, not duration</li>
+</ul>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/task-sequences/index.html">Task Sequences</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/task-sequences/synced-sequences.html">Task Sequences: Synced sequences</a> · <a class="xref" href="../guides/task-sequences/the-libraries.html">Task Sequences: The libraries</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class SyncSequenceTaskLibrary</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SyncSequenceTaskLibrary</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ArcTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ArcTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ArcTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ArcTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  ArcTo(Transform, Vector3, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform in a parabolic arc to the destination.
+Arc height is the peak offset above the straight-line path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ArcTo(Transform target, Vector3 destination, float duration, float arcHeight, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ArcTowards_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ArcTowards*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ArcTowards_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ArcTowards(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Single,System.Single)">
+  ArcTowards(Transform, Transform, float, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves towards a target transform at a fixed speed, arcing upward.
+The arc offset is proportional to the remaining distance to create a natural curve.
+Completes when within stoppingDistance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ArcTowards(Transform mover, Transform target, float speed, float arcHeight, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorElement_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorElement_UnityEngine_UIElements_VisualElement_UnityEngine_Color_UnityEngine_Color_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorElement(UnityEngine.UIElements.VisualElement,UnityEngine.Color,UnityEngine.Color,System.Single,UnityEngine.AnimationCurve)">
+  ColorElement(VisualElement, Color, Color, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's background color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ColorElement(VisualElement element, Color from, Color to, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorElementTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorElementTo_UnityEngine_UIElements_VisualElement_UnityEngine_Color_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorElementTo(UnityEngine.UIElements.VisualElement,UnityEngine.Color,System.Single,UnityEngine.AnimationCurve)">
+  ColorElementTo(VisualElement, Color, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tweens a VisualElement's background color from the one it has as the task starts to the one given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ColorElementTo(VisualElement element, Color to, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ColorTo_UnityEngine_SpriteRenderer_UnityEngine_Color_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ColorTo(UnityEngine.SpriteRenderer,UnityEngine.Color,System.Single,UnityEngine.AnimationCurve)">
+  ColorTo(SpriteRenderer, Color, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a SpriteRenderer's color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ColorTo(SpriteRenderer target, Color endColor, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html">SpriteRenderer</a></dt>
+    <dd></dd>
+    <dt><code>endColor</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Dash_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Dash*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Dash_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Dash(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  Dash(Transform, Vector3, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform in a direction by a distance over a duration.
+Useful for knockback, dash, or lunge effects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask Dash(Transform target, Vector3 direction, float distance, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>direction</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>distance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Delay_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Delay*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Delay_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Delay(System.Single)">
+  Delay(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for a number of seconds. Completes when elapsed time reaches the duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask Delay(float seconds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeAlpha_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeAlpha*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeAlpha_UnityEngine_CanvasGroup_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeAlpha(UnityEngine.CanvasGroup,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  FadeAlpha(CanvasGroup, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a CanvasGroup's alpha.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask FadeAlpha(CanvasGroup target, float endAlpha, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/CanvasGroup.html">CanvasGroup</a></dt>
+    <dd></dd>
+    <dt><code>endAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeAlpha_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeAlpha*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeAlpha_UnityEngine_SpriteRenderer_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeAlpha(UnityEngine.SpriteRenderer,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  FadeAlpha(SpriteRenderer, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a SpriteRenderer's alpha.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask FadeAlpha(SpriteRenderer target, float endAlpha, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html">SpriteRenderer</a></dt>
+    <dd></dd>
+    <dt><code>endAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeElement_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  FadeElement(VisualElement, float, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a VisualElement's opacity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask FadeElement(VisualElement element, float fromAlpha, float toAlpha, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeElementTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeElementTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeElementTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  FadeElementTo(VisualElement, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a VisualElement from its opacity as the task starts to the one given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask FadeElementTo(VisualElement element, float toAlpha, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>toAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeVolume_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeVolume*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_FadeVolume_UnityEngine_AudioSource_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.FadeVolume(UnityEngine.AudioSource,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  FadeVolume(AudioSource, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps an AudioSource's volume.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask FadeVolume(AudioSource source, float endVolume, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioSource.html">AudioSource</a></dt>
+    <dd></dd>
+    <dt><code>endVolume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_HeightTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.HeightTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_HeightTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.HeightTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  HeightTo(VisualElement, float, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tweens a VisualElement's height in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask HeightTo(VisualElement element, float fromPx, float toPx, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Lerp_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Lerp*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Lerp_System_Single_UnityEngine_AnimationCurve_System_Action_System_Single__" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Lerp(System.Single,UnityEngine.AnimationCurve,System.Action{System.Single})">
+  Lerp(float, AnimationCurve, Action&lt;float&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raw lerp: calls setter each frame with progress (0→1), applying optional easing.
+Returns an ISequenceTask that completes after the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask Lerp(float duration, AnimationCurve curve, Action&lt;float&gt; setter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpAnimFloat_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpAnimFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpAnimFloat_UnityEngine_Animator_System_String_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpAnimFloat(UnityEngine.Animator,System.String,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  LerpAnimFloat(Animator, string, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps an Animator float parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LerpAnimFloat(Animator animator, string parameter, float endValue, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>animator</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Animator.html">Animator</a></dt>
+    <dd></dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpColor_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpColor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpColor_UnityEngine_Color_UnityEngine_Color_System_Single_System_Action_UnityEngine_Color__UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpColor(UnityEngine.Color,UnityEngine.Color,System.Single,System.Action{UnityEngine.Color},UnityEngine.AnimationCurve)">
+  LerpColor(Color, Color, float, Action&lt;Color&gt;, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two Color values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LerpColor(Color from, Color to, float duration, Action&lt;Color&gt; setter, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpFloat_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpFloat_System_Single_System_Single_System_Single_System_Action_System_Single__UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpFloat(System.Single,System.Single,System.Single,System.Action{System.Single},UnityEngine.AnimationCurve)">
+  LerpFloat(float, float, float, Action&lt;float&gt;, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two float values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LerpFloat(float from, float to, float duration, Action&lt;float&gt; setter, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpVector3_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpVector3*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LerpVector3_UnityEngine_Vector3_UnityEngine_Vector3_System_Single_System_Action_UnityEngine_Vector3__UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LerpVector3(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Action{UnityEngine.Vector3},UnityEngine.AnimationCurve)">
+  LerpVector3(Vector3, Vector3, float, Action&lt;Vector3&gt;, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two Vector3 values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LerpVector3(Vector3 from, Vector3 to, float duration, Action&lt;Vector3&gt; setter, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAt_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAt_UnityEngine_Transform_UnityEngine_Transform_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAt(UnityEngine.Transform,UnityEngine.Transform,System.Single,UnityEngine.AnimationCurve)">
+  LookAt(Transform, Transform, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Turns a transform to face another's position, taken as the task starts, over the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LookAt(Transform target, Transform lookTarget, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>lookTarget</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAt_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAt_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAt(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  LookAt(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Smoothly rotates to look at a world position over the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LookAt(Transform target, Vector3 worldPosition, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>worldPosition</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAtTracking_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAtTracking*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_LookAtTracking_UnityEngine_Transform_UnityEngine_Transform_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.LookAtTracking(UnityEngine.Transform,UnityEngine.Transform,System.Single)">
+  LookAtTracking(Transform, Transform, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continuously rotates to face a target transform each frame.
+Speed is in degrees per second. Never completes — use with MaxDuration or repeat break.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask LookAtTracking(Transform mover, Transform target, float degreesPerSecond)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>degreesPerSecond</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MaterialColorTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MaterialColorTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MaterialColorTo_UnityEngine_Renderer_UnityEngine_Color_System_Single_UnityEngine_AnimationCurve_System_String_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MaterialColorTo(UnityEngine.Renderer,UnityEngine.Color,System.Single,UnityEngine.AnimationCurve,System.String)">
+  MaterialColorTo(Renderer, Color, float, AnimationCurve, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a Material's color property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MaterialColorTo(Renderer target, Color endColor, float duration, AnimationCurve curve = null, string property = &quot;_Color&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Renderer.html">Renderer</a></dt>
+    <dd></dd>
+    <dt><code>endColor</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+    <dt><code>property</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MaterialFloatTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MaterialFloatTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MaterialFloatTo_UnityEngine_Renderer_System_String_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MaterialFloatTo(UnityEngine.Renderer,System.String,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  MaterialFloatTo(Renderer, string, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a Material's float property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MaterialFloatTo(Renderer target, string property, float endValue, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Renderer.html">Renderer</a></dt>
+    <dd></dd>
+    <dt><code>property</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveAlongPath_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveAlongPath*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveAlongPath_UnityEngine_Transform_UnityEngine_Vector3___System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveAlongPath(UnityEngine.Transform,UnityEngine.Vector3[],System.Single,UnityEngine.AnimationCurve)">
+  MoveAlongPath(Transform, Vector3[], float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform along a path of waypoints, one after another, in the time given for all of them, each
+waypoint's share alike, as the async library's does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveAlongPath(Transform target, Vector3[] waypoints, float totalDuration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>waypoints</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>[]</dt>
+    <dd></dd>
+    <dt><code>totalDuration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveAlongPathToTarget_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveAlongPathToTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveAlongPathToTarget_UnityEngine_Transform_UnityEngine_Vector3___UnityEngine_Transform_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveAlongPathToTarget(UnityEngine.Transform,UnityEngine.Vector3[],UnityEngine.Transform,System.Single,System.Single)">
+  MoveAlongPathToTarget(Transform, Vector3[], Transform, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves along a path of waypoints at a speed, then follows a transform to the end, re-sampled each step: the last
+leg tracks a target that moves, as the async library's does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveAlongPathToTarget(Transform mover, Vector3[] waypoints, Transform finalTarget, float speed, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>waypoints</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>[]</dt>
+    <dd></dd>
+    <dt><code>finalTarget</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveBy_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveBy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveBy_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  MoveBy(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform by an offset relative to its starting position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveBy(Transform target, Vector3 offset, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>offset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveLocalTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveLocalTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveLocalTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveLocalTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  MoveLocalTo(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local position to the destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveLocalTo(Transform target, Vector3 destination, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  MoveTo(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's world position to the destination over the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveTo(Transform target, Vector3 destination, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveTowards_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveTowards*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_MoveTowards_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.MoveTowards(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Single)">
+  MoveTowards(Transform, Transform, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves towards a target transform at a fixed speed. Completes when within stoppingDistance.
+Re-samples target position each frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask MoveTowards(Transform mover, Transform target, float speed, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Orbit_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Orbit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Orbit_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Single_UnityEngine_Vector3_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Orbit(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Single,UnityEngine.Vector3)">
+  Orbit(Transform, Transform, float, float, Vector3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Orbits around a center transform at a given radius and angular speed.
+Never completes on its own — use with stage MaxDuration, WaitUntil, or repeat break.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask Orbit(Transform mover, Transform center, float radius, float degreesPerSecond, Vector3 axis)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>center</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>degreesPerSecond</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>axis</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PlayAndWait_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PlayAndWait*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PlayAndWait_UnityEngine_AudioSource_UnityEngine_AudioClip_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PlayAndWait(UnityEngine.AudioSource,UnityEngine.AudioClip,System.Single)">
+  PlayAndWait(AudioSource, AudioClip, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Plays a clip and waits for it to finish.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask PlayAndWait(AudioSource source, AudioClip clip, float volume)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioSource.html">AudioSource</a></dt>
+    <dd></dd>
+    <dt><code>clip</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioClip.html">AudioClip</a></dt>
+    <dd></dd>
+    <dt><code>volume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PlayAnimationState_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PlayAnimationState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PlayAnimationState_UnityEngine_Animator_System_String_System_Int32_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PlayAnimationState(UnityEngine.Animator,System.String,System.Int32)">
+  PlayAnimationState(Animator, string, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a trigger and waits for the resulting animation state to finish.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask PlayAnimationState(Animator animator, string triggerParam, int layer = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>animator</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Animator.html">Animator</a></dt>
+    <dd></dd>
+    <dt><code>triggerParam</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>layer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PunchScale_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PunchScale*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PunchScale_UnityEngine_Transform_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PunchScale(UnityEngine.Transform,System.Single,System.Single)">
+  PunchScale(Transform, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Punch scale effect: scales up then returns to original.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask PunchScale(Transform target, float intensity, float duration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>intensity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PunchScaleElement_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PunchScaleElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_PunchScaleElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.PunchScaleElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single)">
+  PunchScaleElement(VisualElement, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Punches a VisualElement's scale: up by the intensity in the first half, and back to 1 in the second.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask PunchScaleElement(VisualElement element, float intensity, float duration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>intensity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateBy_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateBy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateBy_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  RotateBy(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rotates a transform by the given euler offset relative to its starting rotation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask RotateBy(Transform target, Vector3 eulerOffset, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>eulerOffset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateTo_UnityEngine_Transform_UnityEngine_Quaternion_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateTo(UnityEngine.Transform,UnityEngine.Quaternion,System.Single,UnityEngine.AnimationCurve)">
+  RotateTo(Transform, Quaternion, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slerps a transform's rotation to the destination over the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask RotateTo(Transform target, Quaternion destination, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Quaternion</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_RotateTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.RotateTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  RotateTo(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slerps a transform's rotation to the given euler angles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask RotateTo(Transform target, Vector3 eulerAngles, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>eulerAngles</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleElement_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  ScaleElement(VisualElement, float, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's scale (uniform).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ScaleElement(VisualElement element, float from, float to, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleTo_UnityEngine_Transform_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleTo(UnityEngine.Transform,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  ScaleTo(Transform, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local scale to a uniform value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ScaleTo(Transform target, float uniformScale, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>uniformScale</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_ScaleTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.ScaleTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,UnityEngine.AnimationCurve)">
+  ScaleTo(Transform, Vector3, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local scale to the destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask ScaleTo(Transform target, Vector3 destination, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_SlideElement_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.SlideElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_SlideElement_UnityEngine_UIElements_VisualElement_UnityEngine_Vector2_UnityEngine_Vector2_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.SlideElement(UnityEngine.UIElements.VisualElement,UnityEngine.Vector2,UnityEngine.Vector2,System.Single,UnityEngine.AnimationCurve)">
+  SlideElement(VisualElement, Vector2, Vector2, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slides a VisualElement by animating its translate style property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask SlideElement(VisualElement element, Vector2 from, Vector2 to, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_SlideElementTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.SlideElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_SlideElementTo_UnityEngine_UIElements_VisualElement_UnityEngine_Vector2_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.SlideElementTo(UnityEngine.UIElements.VisualElement,UnityEngine.Vector2,System.Single,UnityEngine.AnimationCurve)">
+  SlideElementTo(VisualElement, Vector2, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slides a VisualElement from its translate as the task starts to the offset given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask SlideElementTo(VisualElement element, Vector2 to, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TransformTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TransformTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TransformTo_UnityEngine_Transform_System_Nullable_UnityEngine_Vector3__System_Nullable_UnityEngine_Quaternion__System_Nullable_UnityEngine_Vector3__System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TransformTo(UnityEngine.Transform,System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Quaternion},System.Nullable{UnityEngine.Vector3},System.Single,UnityEngine.AnimationCurve)">
+  TransformTo(Transform, Vector3?, Quaternion?, Vector3?, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Simultaneously lerps position, rotation, and scale in a single pass.
+Pass null for any component you want to skip.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask TransformTo(Transform target, Vector3? position, Quaternion? rotation, Vector3? scale, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>position</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>rotation</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Quaternion</a>?</dt>
+    <dd></dd>
+    <dt><code>scale</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TypeText_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TypeText*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TypeText_UnityEngine_UIElements_Label_System_String_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TypeText(UnityEngine.UIElements.Label,System.String,System.Single,System.Single)">
+  TypeText(Label, string, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Types text into a Label a character at a time, each after the last's delay, a punctuation mark's the longer by
+its multiplier, as the async library's typewriter does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask TypeText(Label label, string text, float charDelay, float punctuationMultiplier = 3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>label</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Label.html">Label</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>charDelay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>punctuationMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TypeTextSkippable_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TypeTextSkippable*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_TypeTextSkippable_UnityEngine_UIElements_Label_System_String_System_Single_System_Func_System_Boolean__System_Single_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.TypeTextSkippable(UnityEngine.UIElements.Label,System.String,System.Single,System.Func{System.Boolean},System.Single)">
+  TypeTextSkippable(Label, string, float, Func&lt;bool&gt;, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Types text as <a class="xref" href="FarEmerald.PlayForge.SyncSequenceTaskLibrary.html#FarEmerald_PlayForge_SyncSequenceTaskLibrary_TypeText_UnityEngine_UIElements_Label_System_String_System_Single_System_Single_">TypeText(Label, string, float, float)</a> does, until the skip condition holds, which shows the whole text at once and
+ends it. The condition is first looked at the step after it starts, so the press that began it doesn't skip it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask TypeTextSkippable(Label label, string text, float charDelay, Func&lt;bool&gt; skipCondition, float punctuationMultiplier = 3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>label</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Label.html">Label</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>charDelay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>skipCondition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>punctuationMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForAnyKey_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForAnyKey*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForAnyKey_System_Action_UnityEngine_KeyCode__UnityEngine_KeyCode___" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForAnyKey(System.Action{UnityEngine.KeyCode},UnityEngine.KeyCode[])">
+  WaitForAnyKey(Action&lt;KeyCode&gt;, params KeyCode[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for any of the keys to go down, read through ForgeInput, and tells the one that did to
+<code class="paramref">onPressed</code>; the first given, of two pressed in one step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitForAnyKey(Action&lt;KeyCode&gt; onPressed, params KeyCode[] keys)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onPressed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>keys</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForKey_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForKey*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForKey_UnityEngine_KeyCode_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForKey(UnityEngine.KeyCode)">
+  WaitForKey(KeyCode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for a key to go down, read through ForgeInput, so a game's own input or a test's stands in. A runner
+paused with its process isn't stepped, so a press while it's paused isn't heard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitForKey(KeyCode key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForPointer_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForPointer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitForPointer_System_Int32_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitForPointer(System.Int32)">
+  WaitForPointer(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for a pointer's button to go down, read through ForgeInput: 0 the primary, the left button or a touch, 1
+the secondary, 2 the middle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitForPointer(int button)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>button</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitFrames_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitFrames*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitFrames_System_Int32_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitFrames(System.Int32)">
+  WaitFrames(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Completes after exactly N frames.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitFrames(int frameCount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frameCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitUntil_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitUntil*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitUntil_System_Func_System_Boolean__" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitUntil(System.Func{System.Boolean})">
+  WaitUntil(Func&lt;bool&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits until a condition is met.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitUntil(Func&lt;bool&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitWhile_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitWhile*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WaitWhile_System_Func_System_Boolean__" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WaitWhile(System.Func{System.Boolean})">
+  WaitWhile(Func&lt;bool&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits while a condition is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WaitWhile(Func&lt;bool&gt; predicate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WidthTo_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WidthTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_WidthTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.WidthTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,UnityEngine.AnimationCurve)">
+  WidthTo(VisualElement, float, float, float, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tweens a VisualElement's width in pixels, as a progress bar's fill.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask WidthTo(VisualElement element, float fromPx, float toPx, float duration, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Yield_" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Yield*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SyncSequenceTaskLibrary_Yield" data-uid="FarEmerald.PlayForge.SyncSequenceTaskLibrary.Yield">
+  Yield()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits a step: done on its first, as an async task's Yield is a frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ISequenceTask Yield()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

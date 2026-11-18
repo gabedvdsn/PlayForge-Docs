@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Cues | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Cues | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.cues">
+<h1 id="cues">Cues</h1>
+
+<p>A <strong>cue</strong> is what something shows and sounds, apart from what it changes: a spark as a hit lands, a hum while a shield
+holds, a shake as a giant falls. Effects, abilities, entities and items each list their cues, and a game's own code
+raises one where it likes. Every cue plays through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html"><code>ForgeCues</code></a>, after Unreal's gameplay cues: a <strong>burst</strong> at a moment,
+as a hit's spark, or a <strong>lasting</strong> cue's beginning and its end, as a shield's hum, which share a key.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="where-cues-are-raised.html">Where cues are raised</a>: <strong>Effects</strong>: an effect's <strong>Cues</strong> component plays its cues as it lands, as an application it takes in lands, as each tick executes, as an impact it deals lands, as it comes off, while it lasts, as an application is…</li>
+<li><a href="handlers.html">Handlers</a>: Each cue in a list is a handler, its kind picked from the list.</li>
+<li><a href="placement.html">Placement</a>: A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong></li>
+<li><a href="floating-text.html">Floating text</a>: A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default: a hit's damage, the gold a kill gave, a status's name as it lands.</li>
+<li><a href="routes.html">Routes</a>: A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows, so an effect, an ability and an entity can each raise Cue.Hit.Fire and one place says how it looks.</li>
+<li><a href="raised.html">Raised</a>: The Cue Library's inspector lists under <strong>Raised</strong> each cue tag the project's assets raise through it, by a Cue Tag cue, in tag order.</li>
+<li><a href="pooling.html">Pooling</a>: A Prefab cue with <strong>Pooled</strong> takes its objects from <code>ForgeCuePool</code> and gives them back as its cue ends, a burst's after its Lifetime, in place of making and destroying one each time; the pool makes <strong>Preallocate</strong> of…</li>
+<li><a href="data-packets.html">Data packets</a>: A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue, <code>CuePackets.For(cue, data)</code>.</li>
+<li><a href="raises-and-sinks.html">Raises and sinks</a>: Each raise of a list of cues names what the list belongs to, its <code>CueSource</code>: an effect, an ability, an entity or an item, by its asset; a cue tag raised from code, as <code>ForgeCueRoutes.Burst(cue)</code>; or a game's own code…</li>
+<li><a href="silencing-and-listening.html">Silencing and listening</a>: <code>ForgeCues.Enabled = false</code> silences every cue, as on a server or while a simulation runs ahead.</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CameraShakeCue.html">CameraShakeCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueContext.html">CueContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueLibrary.html">CueLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuePackets.html">CuePackets</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuePlace.html">CuePlace</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuePlacement.html">CuePlacement</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuePoolInstantiator.html">CuePoolInstantiator</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueRaise.html">CueRaise</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueReceiverEntityComponent.html">CueReceiverEntityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueRoute.html">CueRoute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuesAbilityComponent.html">CuesAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuesEffectComponent.html">CuesEffectComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuesEntityComponent.html">CuesEntityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CuesItemComponent.html">CuesItemComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CueSource.html">CueSource</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueAt.html">ECueAt</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueAttach.html">ECueAttach</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueEvent.html">ECueEvent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueFacing.html">ECueFacing</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueMoment.html">ECueMoment</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECueSource.html">ECueSource</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EFloatingValue.html">EFloatingValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FloatingTextCue.html">FloatingTextCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FloatingTextLook.html">FloatingTextLook</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FloatingTextMotion.html">FloatingTextMotion</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FloatingTextStacking.html">FloatingTextStacking</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FloatingTextValue.html">FloatingTextValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html">ForgeCuePool</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueRoutes.html">ForgeCueRoutes</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html">ForgeCues</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.CuePlayedDelegate.html">ForgeCues.CuePlayedDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueSink.html">ForgeCueSink</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFloatingText.html">ForgeFloatingText</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ICameraShaker.html">ICameraShaker</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IPooledCue.html">IPooledCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PrefabCue.html">PrefabCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessCue.html">ProcessCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceCue.html">SequenceCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SoundCue.html">SoundCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCue.html">TagCue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaggedCues.html">TaggedCues</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaggedCueWatch.html">TaggedCueWatch</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

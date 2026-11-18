@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Stages | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Stages | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.stages">
+<h1 id="stages">Stages</h1>
+
+<p>This section is what the ability does once it has started.</p>
+<ul>
+<li><strong>Asset Loaders</strong>: run once per activation, after targeting. Each loader adds assets to the activation's data under
+a tag. A Set Effects loader, for example, adds effects under <code>Effects</code>. Code-driven tasks read them from there.</li>
+<li><strong>Cancelled By</strong>: abilities, by asset tag or a context tag, or a child of one, that cancel this one as they
+activate. The ability is interrupted, then the other starts. Each stage that names none of its own takes this list,
+and so does targeting. A critical stage is committed, so nothing cancels it.</li>
+<li><strong>Blocks</strong>: abilities, named the same way, that can't activate while this one runs. Each stage that names none
+takes this list. A blocked activation is refused, unless When Busy is Queue: then it waits in the input buffer for
+the block to lift.</li>
+<li><strong>Stages</strong>: each stage starts all its tasks together. The next stage starts when it ends. A stage folds to one
+line of what it holds, as &quot;2 tasks · All · Applies usage effects&quot;, and shows Critical on its row while a task
+commits the ability to it. The list's <strong>−</strong> removes the selected stage, and a stage keeps its fold as others
+are removed or dragged.
+<ul>
+<li><strong>Completion</strong>: All ends the stage when every task has finished. Any ends it when the first task finishes,
+and cancels the rest. A stage with no policy set behaves as All.</li>
+<li><strong>Apply Usage Effects</strong>: apply the ability's cost and cooldown in this stage. They apply once per activation, in
+the first stage that does this. If no stage does, they apply as the ability starts, after its targeting.</li>
+<li><strong>At Stage Start</strong>, under Apply Usage Effects: on, apply them as the stage starts. Off, apply them as it ends,
+and only if it succeeded.</li>
+<li><strong>Tasks</strong>: the work, such as Apply Effects, Delay or Run Sequence, in a list whose <strong>+</strong> adds an empty task to
+pick a kind for, from a searchable picker in which each task sits under its category: Effects, Asset Loaders,
+Process, Sequence, Waits, Events and Tags, Movement, Items and Utility. A task of your own names its
+submenu with <code>[ForgeMenu(&quot;Effects&quot;, Description = &quot;...&quot;)]</code>, a slash nesting one submenu in another and a
+class's path holding for those made from it; one that names none sits after the submenus, and its Description is
+what the picker's Context says while it's highlighted. A task's numbers, as Delay's milliseconds and Channel's duration, are numbers that can
+scale by level, read as it runs, at its ability's level. Run Sequence runs the sequence a static method
+makes, picked in <strong>Sequence</strong> by name, from a searchable dropdown of the project's <code>[TaskSequenceMethod]</code> methods,
+each class's under its name where more than one class holds them, or, for an ability built in code, a fresh run of the sequence its <code>Definition</code> describes, which
+<a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html"><code>TaskSequenceBuilder</code></a> makes. Its <strong>Clock</strong> picks the clock that sequence runs by: none for the sequence's own or the
+caster's, or the Caster's, the Game's, Unscaled, which runs while the game is paused, or Scaled, a pace of its own;
+the ability's other tasks keep the caster's. A stage that holds a critical task is critical.
+PlayForge's own tasks, by category: <strong>Effects</strong>, Apply Effects, Apply/Remove Effects, <strong>Area Effect</strong> (its
+effects on each within its radius of its caster, its target or its point, its caster where the activation has
+neither, of those it takes, by position on either hub or with physics) and <strong>Apply To Caster</strong>; <strong>Asset Loaders</strong>, the Set tasks; <strong>Process</strong>, Create Mono
+Process, Run Process and Disjoint; <strong>Sequence</strong>, Run Sequence and Inject; <strong>Waits</strong>, Delay, Channel, and <strong>Wait For
+Event</strong>, <strong>Wait For Tag</strong> (gained or lost) and <strong>Wait For Attribute</strong> (crossing a value), on its caster or its
+target, each with a <strong>Timeout</strong> and a <strong>Record As</strong> for a later stage's Condition, an event waited for being sent
+by the core while it waits; <strong>Events and Tags</strong>, <strong>Send Event</strong>, to the caster or the targets, <strong>Grant Tags</strong>,
+loose tags while its stage runs, and <strong>Cancel Abilities</strong>, the caster's running ones by tag, but in a critical
+stage; <strong>Movement</strong>, <strong>Dash</strong> and <strong>Blink</strong>, which tell a mover of the game's own, an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeMover.html"><code>IForgeMover</code></a> on the caster's
+object, as the Creator Lab's units are; <strong>Items</strong>, <strong>Consume Item</strong>, which its item system's Item Consumed hears;
+<strong>Cues</strong>, <strong>Play Cue</strong>, its cues at the stage's moment, on the caster, on the target or at the point;
+<strong>Utility</strong>, Unity Event. Dash, Blink, Area Effect, Apply To Caster and Consume Item were the Demo's own.
+The activation keeps its claim until its last critical stage ends. With no critical stage, it lets the claim go
+as the stages start. Apply Effects' <strong>Record Landed As</strong> tags the activation's data as an effect lands on a
+target, for a later stage's Condition.</li>
+<li><strong>Condition</strong>: when the stage runs, by a tag. With none, always. Otherwise only while the tag is there, or, with
+<strong>When Missing</strong>, only while it isn't: <strong>Looked For On</strong> The Activation looks in the activation's data, as Record
+Landed As fills it, and Caster or Target in that entity's tags. Both show once the condition names a tag. A stage whose condition fails is skipped. Two stages that
+name one tag, one wanting it and one wanting it missing, branch: a jab's hit recovery and its whiff. A critical
+stage that's skipped lets the claim go as the next stage starts, so put a committed whiff before the hit's
+recovery, and the claim goes as that recovery starts.</li>
+<li><strong>Cancelled By</strong> and <strong>Blocks</strong>: the stage's own lists, as above, which hold while it runs. A heavy attack's
+recovery can name the specials that cut it short, and its windup none.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><a href="activation.html">← Activation</a> · <a href="index.html">Abilities</a> · <a href="requirements.html">Requirements →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class NumberFields | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class NumberFields | PlayForge ">
+      
+      <meta name="description" content="What the number field&#39;s inspector and its Problems rule know of numbers: which properties are numbers, what a field&#39;s context provides and its unit, what a kind needs and where the kind menu files it, and what a number&#39;s kind reads, inside other scalers too.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.NumberFields">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_NumberFields" data-uid="FarEmerald.PlayForge.Editor.NumberFields" class="text-break">
+Class NumberFields  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>What the number field's inspector and its Problems rule know of numbers: which properties are numbers,
+what a field's context provides and its unit, what a kind needs and where the kind menu files it, and what a
+number's kind reads, inside other scalers too.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/scalers/index.html">Scalers</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class NumberFields</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">NumberFields</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_DefaultProvides" data-uid="FarEmerald.PlayForge.Editor.NumberFields.DefaultProvides">
+  DefaultProvides
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a field's context provides where it doesn't say: everything but an owner, which only a field whose code
+gives it one has, and says so.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const NumberReads DefaultProvides = Level | Caster | Target | Caller | LocalData | Carrier | Data</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ScalerCategory" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ScalerCategory">
+  ScalerCategory
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The kind menu's group for the scalers of every kind, and for kinds that name none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string ScalerCategory = &quot;Scaler&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_CategoryOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.CategoryOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_CategoryOf_System_Type_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.CategoryOf(System.Type)">
+  CategoryOf(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The kind menu's group for a kind: the path its <a class="xref" href="FarEmerald.PlayForge.ForgeMenuAttribute.html">ForgeMenuAttribute</a> names, or the class it's made
+from names: Scaler for a scaler, as AbstractScaler names it, but the kinds at the menu's top, By Level,
+Shared, × Attribute, Set By Caller and Group, and each kind of number, which name none; or null at the top. It
+was a number kind's Category, and a rule for the scalers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CategoryOf(Type kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_FieldOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.FieldOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_FieldOf_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.FieldOf(UnityEditor.SerializedProperty)">
+  FieldOf(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field a property is, read along its path through the values of the managed references on it, so a number
+inside a scaler is found as its own class declares it; null where the path can't be followed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FieldInfo FieldOf(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_FieldOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.FieldOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_FieldOf_UnityEditor_SerializedProperty_System_Type__" data-uid="FarEmerald.PlayForge.Editor.NumberFields.FieldOf(UnityEditor.SerializedProperty,System.Type@)">
+  FieldOf(SerializedProperty, out Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The field a property is, with the type of the object that holds it, as its value is now.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FieldInfo FieldOf(SerializedProperty property, out Type holder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+    <dt><code>holder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_InMenuOrder_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.InMenuOrder*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_InMenuOrder_System_Collections_Generic_IEnumerable_System_Type__" data-uid="FarEmerald.PlayForge.Editor.NumberFields.InMenuOrder(System.Collections.Generic.IEnumerable{System.Type})">
+  InMenuOrder(IEnumerable&lt;Type&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Kinds in the menu's order: the top's first, By Level, Shared, × Attribute and Set By Caller, then the rest by
+name; then each category's by name, the categories by name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Type&gt; InMenuOrder(IEnumerable&lt;Type&gt; kinds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kinds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_IsNumber_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.IsNumber*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_IsNumber_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.IsNumber(UnityEditor.SerializedProperty)">
+  IsNumber(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a property is a number field: a ScalableFloat or a ScalableInt.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNumber(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_IsWhole_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.IsWhole*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_IsWhole_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.IsWhole(UnityEditor.SerializedProperty)">
+  IsWhole(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a number field takes whole numbers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsWhole(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_LimitsOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.LimitsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_LimitsOf_System_Reflection_FieldInfo_System_Boolean_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.LimitsOf(System.Reflection.FieldInfo,System.Boolean)">
+  LimitsOf(FieldInfo, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The limits a number field's constant keeps: its <a class="xref" href="FarEmerald.PlayForge.NumberRangeAttribute.html">NumberRangeAttribute</a>'s, which sets it on
+a slider, narrowed by a <a class="xref" href="FarEmerald.PlayForge.NumberMinAttribute.html">NumberMinAttribute</a> or a <a class="xref" href="FarEmerald.PlayForge.NumberMaxAttribute.html">NumberMaxAttribute</a> beside it. A
+whole-number field keeps the whole numbers inside them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberLimits LimitsOf(FieldInfo field, bool whole)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>field</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+    <dt><code>whole</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.NumberLimits.html">NumberLimits</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_MenuPathOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.MenuPathOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_MenuPathOf_System_Type_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.MenuPathOf(System.Type)">
+  MenuPathOf(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A kind's place in the kind menu, as &quot;Scaler/Clamped&quot;, or its name alone at the top.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string MenuPathOf(Type kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_Missing_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.Missing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_Missing_FarEmerald_PlayForge_NumberReads_FarEmerald_PlayForge_NumberReads_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.Missing(FarEmerald.PlayForge.NumberReads,FarEmerald.PlayForge.NumberReads)">
+  Missing(NumberReads, NumberReads)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a number reads that its field's context doesn't provide, as a sentence's end: &quot;the target&quot;, &quot;the caster
+and the target&quot;. Empty when it resolves.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Missing(NumberReads reads, NumberReads provides)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reads</code> <a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+    <dt><code>provides</code> <a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_NeedsOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.NeedsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_NeedsOf_System_Type_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.NeedsOf(System.Type)">
+  NeedsOf(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a kind needs of a field's context, as its <a class="xref" href="FarEmerald.PlayForge.NumberKindAttribute.html">NumberKindAttribute</a> says: none without one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberReads NeedsOf(Type kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_OutermostNumber_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OutermostNumber*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_OutermostNumber_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OutermostNumber(UnityEditor.SerializedProperty)">
+  OutermostNumber(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The number a property is or sits in, the outermost on its path: a kind's own field, in a scaler in a number,
+gives that number. Null where the path holds none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SerializedProperty OutermostNumber(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_OwnerNumber_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OwnerNumber*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_OwnerNumber_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OwnerNumber(UnityEditor.SerializedProperty)">
+  OwnerNumber(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The number whose owner a property's relative read reads: the innermost number on its path, itself
+among them, that a scaler or a condition holds as its own field, as each reads those with itself as their
+owner; else the outermost number, as a Group's members and a Threshold's tiers are read in its context. Null
+where the path holds no number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SerializedProperty OwnerNumber(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_OwnerTypeOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OwnerTypeOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_OwnerTypeOf_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.OwnerTypeOf(UnityEditor.SerializedProperty)">
+  OwnerTypeOf(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The type of the object a property's relative read reads, which holds its <a class="xref" href="FarEmerald.PlayForge.Editor.NumberFields.html#FarEmerald_PlayForge_Editor_NumberFields_OwnerNumber_UnityEditor_SerializedProperty_">OwnerNumber(SerializedProperty)</a>: a
+scaler or a condition for its own numbers, else the object that holds the outermost number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type OwnerTypeOf(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_ProvidesOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ProvidesOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ProvidesOf_System_Reflection_FieldInfo_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ProvidesOf(System.Reflection.FieldInfo)">
+  ProvidesOf(FieldInfo)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a field's context provides: its <a class="xref" href="FarEmerald.PlayForge.NumberContextAttribute.html">NumberContextAttribute</a>'s, or <a class="xref" href="FarEmerald.PlayForge.Editor.NumberFields.html#FarEmerald_PlayForge_Editor_NumberFields_DefaultProvides">DefaultProvides</a>
+without one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberReads ProvidesOf(FieldInfo field)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>field</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_ProvidesOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ProvidesOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ProvidesOf_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ProvidesOf(UnityEditor.SerializedProperty)">
+  ProvidesOf(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a number property's context provides, found through the managed references on its path: its own field's
+<a class="xref" href="FarEmerald.PlayForge.NumberContextAttribute.html">NumberContextAttribute</a>'s where it has one; else, for a number inside another's scaler, what the
+outermost number's field provides, as it's read in that number's context, with an owner where a scaler or a
+condition reads it, as each reads its own numbers with itself as their owner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberReads ProvidesOf(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_ReadsOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ReadsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ReadsOf_FarEmerald_PlayForge_AbstractScaler_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ReadsOf(FarEmerald.PlayForge.AbstractScaler)">
+  ReadsOf(AbstractScaler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a scaler reads of its context, as it's set now: a kind's needs, an attribute read from the target or the
+caster, a Conditional's condition, and what the scalers, conditions and numbers inside it read. A number a
+scaler or a condition holds as its own field reads its owner there, so what it reads of an owner isn't asked
+of the field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberReads ReadsOf(AbstractScaler scaler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scaler</code> <a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_ReadsOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ReadsOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ReadsOf_FarEmerald_PlayForge_GameplayCondition_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ReadsOf(FarEmerald.PlayForge.GameplayCondition)">
+  ReadsOf(GameplayCondition)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a condition reads of its context, as it's set now, with what the numbers and conditions inside it read.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NumberReads ReadsOf(GameplayCondition condition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>condition</code> <a class="xref" href="FarEmerald.PlayForge.GameplayCondition.html">GameplayCondition</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_Resolves_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.Resolves*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_Resolves_FarEmerald_PlayForge_NumberReads_System_Type_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.Resolves(FarEmerald.PlayForge.NumberReads,System.Type)">
+  Resolves(NumberReads, Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a field whose context provides <code class="paramref">provides</code> resolves a kind, so its menu offers it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Resolves(NumberReads provides, Type kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provides</code> <a class="xref" href="FarEmerald.PlayForge.NumberReads.html">NumberReads</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_ScalersIn_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ScalersIn*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_ScalersIn_System_Object_FarEmerald_PlayForge_Editor_NumberFields_Walk_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.ScalersIn(System.Object,FarEmerald.PlayForge.Editor.NumberFields.Walk)">
+  ScalersIn(object, Walk)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every scaler a number, a scaler or a condition holds, itself among them, and those inside them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;AbstractScaler&gt; ScalersIn(object value, NumberFields.Walk walk = Walk.Everything)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>walk</code> <a class="xref" href="FarEmerald.PlayForge.Editor.NumberFields.html">NumberFields</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.NumberFields.Walk.html">Walk</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_SiblingChoices_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.SiblingChoices*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_SiblingChoices_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.SiblingChoices(UnityEditor.SerializedProperty)">
+  SiblingChoices(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The fields a relative number can read: the other number fields of the object that holds its number, plain or a
+number, that the inspector shows, in the order they're declared. The number's own field stays out, and so does
+any field that reads it back, straight or through another, so a loop can't be picked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; SiblingChoices(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd><p>The number, or a property inside it, as the kind's own Field.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_UnitOf_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.UnitOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_UnitOf_System_Reflection_FieldInfo_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.UnitOf(System.Reflection.FieldInfo)">
+  UnitOf(FieldInfo)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A field's unit: its <a class="xref" href="FarEmerald.PlayForge.NumberContextAttribute.html">NumberContextAttribute</a>'s, else its <a class="xref" href="FarEmerald.PlayForge.ScalerOperationKeyword.html">ScalerOperationKeyword</a>'s.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string UnitOf(FieldInfo field)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>field</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_NumberFields_UnityLimitOn_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.UnityLimitOn*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_NumberFields_UnityLimitOn_System_Reflection_FieldInfo_" data-uid="FarEmerald.PlayForge.Editor.NumberFields.UnityLimitOn(System.Reflection.FieldInfo)">
+  UnityLimitOn(FieldInfo)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What's wrong with a number field that has Unity's <code>[Min]</code> or <code>[Range]</code>, naming the field and what to
+use in its place; null for a field that isn't a number, or has neither. Unity gives such a field to
+that attribute's drawer, which draws &quot;Use Range with float or int&quot; where the number was.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string UnityLimitOn(FieldInfo field)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>field</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

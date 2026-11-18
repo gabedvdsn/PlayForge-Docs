@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Levels | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Levels | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.levels">
+<h1 id="levels">Levels</h1>
+
+<p>What the effect does, level by level. Its line, which the effect's header and The Forge's Summary column show, is its
+first impact by level, an add signed, as &quot;-10/-20/-30 Health&quot; or &quot;+20 Armor&quot;, at its provider's levels where it's
+linked to one and at levels 1 to 5 where it isn't. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html#FarEmerald_PlayForge_Editor_ForgeAssetLines_Of_"><code>ForgeAssetLines.Of(asset)</code></a> gives any asset's line in the
+editor.</p>
+<p>The whole reading is code's, for a tooltip or a game's own screen: <code>AbilityInspector.BuildEffectSeries(effect, 1, 5, caster, target)</code> reads the effect at levels 1 to 5 against a caster and a target, either of which may be null. Each
+impact gives its <code>Magnitude</code> and <code>Total</code> at each level, its <code>Line</code>, as its field's summary reads it, its <code>Parts</code> at each
+level, and what it <code>Needs</code>; the effect gives its <code>Duration</code>, <code>Ticks</code>, <code>Interval</code>, <code>Chance</code> and <code>Contained</code> effects, and
+<code>Describe(level)</code> says what it does at a level, an impact to a line: &quot;-15 Health each tick, 12 ticks over 12 s&quot;.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.NumberTrace.html#FarEmerald_PlayForge_NumberTrace_Of_"><code>NumberTrace.Of(number, context)</code></a> explains any one number the same way, each part with what it read and what it gave:</p>
+<pre><code>Health as it lands, level 2:
+-1 × (Caster's Attack Damage + 80 if Caster's Combo Charges &gt; 0, else 0) = -100
+  Group = 100
+    Add: Caster's Attack Damage = 100
+    Add: Conditional = 0
+      When: Caster's Combo Charges &gt; 0: doesn't hold
+      False: 0 = 0
+</code></pre>
+<p>A read given no caster or no target gives, for a part that reads one, what its field falls back to, and says what it
+needs, as &quot;the target&quot;. A kind or a condition of your own adds its parts by overriding <code>Explain</code>:
+<code>trace.Add(Min, context, this, &quot;Min&quot;)</code>.</p>
+<hr>
+<p><a href="impact.html">← Impact</a> · <a href="index.html">Effects</a> · <a href="cues.html">Cues →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

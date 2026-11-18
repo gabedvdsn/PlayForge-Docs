@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class EntityIdentity | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class EntityIdentity | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.EntityIdentity">
+
+
+
+  <h1 id="FarEmerald_PlayForge_EntityIdentity" data-uid="FarEmerald.PlayForge.EntityIdentity" class="text-break">
+Class EntityIdentity  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/entities/index.html">Entities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/entities/index.html">Entities</a> · <a class="xref" href="../guides/getting-started/the-pieces-in-one-paragraph.html">Getting Started: The pieces in one paragraph</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CreateAssetMenu(menuName = &quot;PlayForge/Entity&quot;, fileName = &quot;Entity_&quot;, order = 25)]
+public class EntityIdentity : BaseForgeLevelProvider, ILocalDataSource, IHasReadableDefinition, ITagSource, ILevelProvider, IWorkerGroupSource, IHasTextures</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></div>
+      <div><span class="xref">EntityIdentity</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.ILocalDataSource.html">ILocalDataSource</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ITagSource.html">ITagSource</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ILevelProvider.html">ILevelProvider</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IWorkerGroupSource.html">IWorkerGroupSource</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasTextures.html">IHasTextures</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html#FarEmerald_PlayForge_BaseForgeLevelProvider_HasCircularDependency_FarEmerald_PlayForge_BaseForgeLevelProvider_FarEmerald_PlayForge_BaseForgeLevelProvider__System_String__">BaseForgeLevelProvider.HasCircularDependency(BaseForgeLevelProvider, out BaseForgeLevelProvider, out string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_LocalData">BaseForgeAsset.LocalData</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_Template">BaseForgeAsset.Template</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_HasTemplate">BaseForgeAsset.HasTemplate</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_SetTemplate_FarEmerald_PlayForge_BaseForgeAsset_">BaseForgeAsset.SetTemplate(BaseForgeAsset)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_ClearTemplate">BaseForgeAsset.ClearTemplate()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_TemplateAs__1">BaseForgeAsset.TemplateAs&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_IsFieldOverridden_System_String_">BaseForgeAsset.IsFieldOverridden(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_MarkFieldOverridden_System_String_">BaseForgeAsset.MarkFieldOverridden(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_ClearFieldOverride_System_String_">BaseForgeAsset.ClearFieldOverride(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_GetOverriddenPaths">BaseForgeAsset.GetOverriddenPaths()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_ClearAllOverrides">BaseForgeAsset.ClearAllOverrides()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_GetListSnapshot_System_String_">BaseForgeAsset.GetListSnapshot(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_SetListSnapshot_System_String_System_Collections_Generic_List_System_String__">BaseForgeAsset.SetListSnapshot(string, List&lt;string&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_ClearListSnapshot_System_String_">BaseForgeAsset.ClearListSnapshot(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_ClearAllListSnapshots">BaseForgeAsset.ClearAllListSnapshots()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_TryGetLocalData_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_DataWrapper__">BaseForgeAsset.TryGetLocalData(Tag, out DataWrapper)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html#FarEmerald_PlayForge_BaseForgeAsset_GetLocalData">BaseForgeAsset.GetLocalData()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.SetDirty.html">ScriptableObject.SetDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ScriptableObject.CreateInstance(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">ScriptableObject.CreateInstance(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance__1.html">ScriptableObject.CreateInstance&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetInstanceID.html">Object.GetInstanceID()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetHashCode.html">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Scene)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate(Object, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate&lt;T&gt;(T, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.Destroy(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html">Object.Destroy(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.DestroyImmediate(Object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyImmediate.html">Object.DestroyImmediate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.DestroyObject(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyObject.html">Object.DestroyObject(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindSceneObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeIncludingAssets(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsOfType__1.html">Object.FindObjectsOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectsOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectOfType__1.html">Object.FindObjectOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeAll(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.ToString.html">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-name.html">Object.name</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-hideFlags.html">Object.hideFlags</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_ActivationPolicy" data-uid="FarEmerald.PlayForge.EntityIdentity.ActivationPolicy">
+  ActivationPolicy
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAbilityActivationPolicy ActivationPolicy</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Affiliation" data-uid="FarEmerald.PlayForge.EntityIdentity.Affiliation">
+  Affiliation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeTagContext(new string[] { &quot;Affiliation&quot; })]
+public List&lt;Tag&gt; Affiliation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_AllowDuplicateAbilities" data-uid="FarEmerald.PlayForge.EntityIdentity.AllowDuplicateAbilities">
+  AllowDuplicateAbilities
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AllowDuplicateAbilities</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_AllowDuplicateEquippedItems" data-uid="FarEmerald.PlayForge.EntityIdentity.AllowDuplicateEquippedItems">
+  AllowDuplicateEquippedItems
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AllowDuplicateEquippedItems</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_AllowDuplicateItems" data-uid="FarEmerald.PlayForge.EntityIdentity.AllowDuplicateItems">
+  AllowDuplicateItems
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AllowDuplicateItems</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_AssetTag" data-uid="FarEmerald.PlayForge.EntityIdentity.AssetTag">
+  AssetTag
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeTagContext(new string[] { &quot;Asset Tag&quot; })]
+public Tag AssetTag</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_AttributeSet" data-uid="FarEmerald.PlayForge.EntityIdentity.AttributeSet">
+  AttributeSet
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AttributeSet AttributeSet</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Components" data-uid="FarEmerald.PlayForge.EntityIdentity.Components">
+  Components
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Its components: features it carries, each a class with hooks into its life, as it registers, dies, revives and ends&quot;)]
+[SerializeReference]
+public List&lt;AbstractEntityComponent&gt; Components</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractEntityComponent.html">AbstractEntityComponent</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_ContextTags" data-uid="FarEmerald.PlayForge.EntityIdentity.ContextTags">
+  ContextTags
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeTagContext(new string[] { &quot;Context Tag&quot; })]
+public List&lt;Tag&gt; ContextTags</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_CrowdControl" data-uid="FarEmerald.PlayForge.EntityIdentity.CrowdControl">
+  CrowdControl
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The crowd control rules its abilities follow. None, the project&#39;s&quot;)]
+public CrowdControlRules CrowdControl</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.CrowdControlRules.html">CrowdControlRules</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Death" data-uid="FarEmerald.PlayForge.EntityIdentity.Death">
+  Death
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;What its death does: End, as an entity always did, or Stay, dead, until it revives, with the effects its death ends and takes, and its body&quot;)]
+public EntityDeath Death</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EntityDeath.html">EntityDeath</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Description" data-uid="FarEmerald.PlayForge.EntityIdentity.Description">
+  Description
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GrantedTags" data-uid="FarEmerald.PlayForge.EntityIdentity.GrantedTags">
+  GrantedTags
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeTagContext(new string[] { &quot;Granted&quot; })]
+public List&lt;Tag&gt; GrantedTags</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_LinkMode" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkMode">
+  LinkMode
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EItemLinkMode LinkMode</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EItemLinkMode.html">EItemLinkMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_MaxAbilitiesOperation" data-uid="FarEmerald.PlayForge.EntityIdentity.MaxAbilitiesOperation">
+  MaxAbilitiesOperation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ScalerOperationKeyword(&quot;Max Abilities&quot;)]
+public ScalableInt MaxAbilitiesOperation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_MaxEquippedItemsOperation" data-uid="FarEmerald.PlayForge.EntityIdentity.MaxEquippedItemsOperation">
+  MaxEquippedItemsOperation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ScalerOperationKeyword(&quot;Max Equipped Items&quot;)]
+public ScalableInt MaxEquippedItemsOperation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_MaxItemsOperation" data-uid="FarEmerald.PlayForge.EntityIdentity.MaxItemsOperation">
+  MaxItemsOperation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ScalerOperationKeyword(&quot;Max Items&quot;)]
+public ScalableInt MaxItemsOperation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_MaxLevel" data-uid="FarEmerald.PlayForge.EntityIdentity.MaxLevel">
+  MaxLevel
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxLevel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Modifiers" data-uid="FarEmerald.PlayForge.EntityIdentity.Modifiers">
+  Modifiers
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Modifiers of other effects, its holder&#39;s own or those landing on it, while it lives&quot;)]
+public List&lt;EffectModifierEntry&gt; Modifiers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.EffectModifierEntry.html">EffectModifierEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Name" data-uid="FarEmerald.PlayForge.EntityIdentity.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_StartingAbilities" data-uid="FarEmerald.PlayForge.EntityIdentity.StartingAbilities">
+  StartingAbilities
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Ability&gt; StartingAbilities</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_StartingItems" data-uid="FarEmerald.PlayForge.EntityIdentity.StartingItems">
+  StartingItems
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;StartingItemContainer&gt; StartingItems</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.StartingItemContainer.html">StartingItemContainer</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_StartingLevel" data-uid="FarEmerald.PlayForge.EntityIdentity.StartingLevel">
+  StartingLevel
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int StartingLevel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_TargetingYields" data-uid="FarEmerald.PlayForge.EntityIdentity.TargetingYields">
+  TargetingYields
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;An ability of its choosing its target is cancelled as another of its abilities activates, for each ability whose While Targeting is the entity&#39;s rule&quot;)]
+public bool TargetingYields</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Textures" data-uid="FarEmerald.PlayForge.EntityIdentity.Textures">
+  Textures
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;TextureItem&gt; Textures</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TextureItem.html">TextureItem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_TimeScaleAttribute" data-uid="FarEmerald.PlayForge.EntityIdentity.TimeScaleAttribute">
+  TimeScaleAttribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The attribute its time runs at, 1 as the game's: an effect that lowers it slows the entity, its effects,
+cooldowns, sequences and waits with it, and one that raises it hastes it. None, its time scale is
+its game's code's to set, through its clock.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The attribute its time runs at, 1 as the game&#39;s: an effect that lowers it slows the entity, and one that raises it hastes it. None, the game&#39;s code sets its time scale&quot;)]
+public Attribute TimeScaleAttribute</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_WorkerGroup" data-uid="FarEmerald.PlayForge.EntityIdentity.WorkerGroup">
+  WorkerGroup
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StandardWorkerGroup WorkerGroup</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.StandardWorkerGroup.html">StandardWorkerGroup</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_IsLinked_" data-uid="FarEmerald.PlayForge.EntityIdentity.IsLinked*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_IsLinked" data-uid="FarEmerald.PlayForge.EntityIdentity.IsLinked">
+  IsLinked
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this item is linked to a level provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsLinked { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_LinkedProvider_" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkedProvider*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_LinkedProvider" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkedProvider">
+  LinkedProvider
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the raw linked ScriptableObject (for serialization/editor purposes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override BaseForgeLevelProvider LinkedProvider { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_Find_" data-uid="FarEmerald.PlayForge.EntityIdentity.Find*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Find__1" data-uid="FarEmerald.PlayForge.EntityIdentity.Find``1">
+  Find&lt;T&gt;()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its first component that is a <code class="typeparamref">T</code>, its kind or a capability it implements; null where none
+is.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Find&lt;T&gt;() where T : class</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetAssetTag_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetAssetTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetAssetTag" data-uid="FarEmerald.PlayForge.EntityIdentity.GetAssetTag">
+  GetAssetTag()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the asset tag identifying this provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Tag GetAssetTag()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetDefaultIcon_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetDefaultIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetDefaultIcon" data-uid="FarEmerald.PlayForge.EntityIdentity.GetDefaultIcon">
+  GetDefaultIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Texture2D GetDefaultIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetDescription_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetDescription" data-uid="FarEmerald.PlayForge.EntityIdentity.GetDescription">
+  GetDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetGrantedTags_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetGrantedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetGrantedTags" data-uid="FarEmerald.PlayForge.EntityIdentity.GetGrantedTags">
+  GetGrantedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;Tag&gt; GetGrantedTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetLinkedMaxLevel_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetLinkedMaxLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetLinkedMaxLevel_System_Boolean_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetLinkedMaxLevel(System.Boolean)">
+  GetLinkedMaxLevel(bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the max level from the linked provider, or uses own MaxLevel if not linked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetLinkedMaxLevel(bool useOwnIfNotLinked = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>useOwnIfNotLinked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, returns own MaxLevel when not linked</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetLinkedStartingLevel_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetLinkedStartingLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetLinkedStartingLevel_System_Boolean_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetLinkedStartingLevel(System.Boolean)">
+  GetLinkedStartingLevel(bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the starting level from the linked provider, or uses own StartingLevel if not linked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetLinkedStartingLevel(bool useOwnIfNotLinked = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>useOwnIfNotLinked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, returns own StartingLevel when not linked</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetMaxLevel_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetMaxLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetMaxLevel" data-uid="FarEmerald.PlayForge.EntityIdentity.GetMaxLevel">
+  GetMaxLevel()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the maximum level this provider supports.
+Used by linked effects for &quot;Lock to Source&quot; modifier scaling.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetMaxLevel()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetName_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetName" data-uid="FarEmerald.PlayForge.EntityIdentity.GetName">
+  GetName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetProviderName_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetProviderName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetProviderName" data-uid="FarEmerald.PlayForge.EntityIdentity.GetProviderName">
+  GetProviderName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a display name for the provider (for editor display).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetProviderName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetStartingLevel_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetStartingLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetStartingLevel" data-uid="FarEmerald.PlayForge.EntityIdentity.GetStartingLevel">
+  GetStartingLevel()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the starting/default level for this provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetStartingLevel()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_GetTextureItems_" data-uid="FarEmerald.PlayForge.EntityIdentity.GetTextureItems*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_GetTextureItems" data-uid="FarEmerald.PlayForge.EntityIdentity.GetTextureItems">
+  GetTextureItems()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its textures, each under its tag; null or empty where it has none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;TextureItem&gt; GetTextureItems()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TextureItem.html">TextureItem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_InitWorkers_" data-uid="FarEmerald.PlayForge.EntityIdentity.InitWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_InitWorkers_FarEmerald_PlayForge_ISource_" data-uid="FarEmerald.PlayForge.EntityIdentity.InitWorkers(FarEmerald.PlayForge.ISource)">
+  InitWorkers(ISource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitWorkers(ISource system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_IsLinkedTo_" data-uid="FarEmerald.PlayForge.EntityIdentity.IsLinkedTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_IsLinkedTo_UnityEngine_ScriptableObject_" data-uid="FarEmerald.PlayForge.EntityIdentity.IsLinkedTo(UnityEngine.ScriptableObject)">
+  IsLinkedTo(ScriptableObject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if this item is linked to a specific provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsLinkedTo(ScriptableObject provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_LinkAllChildren_" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkAllChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_LinkAllChildren" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkAllChildren">
+  LinkAllChildren()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LinkAllChildren()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_LinkToProvider_" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkToProvider*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_LinkToProvider_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.EntityIdentity.LinkToProvider(FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  LinkToProvider(BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Links this item to a level provider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool LinkToProvider(BaseForgeLevelProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd><p>The ScriptableObject that implements ILevelProvider</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if successfully linked</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_RemoveWorkers_" data-uid="FarEmerald.PlayForge.EntityIdentity.RemoveWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_RemoveWorkers_FarEmerald_PlayForge_ISource_" data-uid="FarEmerald.PlayForge.EntityIdentity.RemoveWorkers(FarEmerald.PlayForge.ISource)">
+  RemoveWorkers(ISource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveWorkers(ISource system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_Unlink_" data-uid="FarEmerald.PlayForge.EntityIdentity.Unlink*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_Unlink" data-uid="FarEmerald.PlayForge.EntityIdentity.Unlink">
+  Unlink()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes any existing link.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unlink()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EntityIdentity_UnlinkAllChildren_" data-uid="FarEmerald.PlayForge.EntityIdentity.UnlinkAllChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EntityIdentity_UnlinkAllChildren" data-uid="FarEmerald.PlayForge.EntityIdentity.UnlinkAllChildren">
+  UnlinkAllChildren()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlinks all effects and abilities from this item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnlinkAllChildren()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CastRangeAbilityComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CastRangeAbilityComponent | PlayForge ">
+      
+      <meta name="description" content="Cast Range: how far from its caster an ability&#39;s target may be, the one range it has, read at its level: the ability&#39;s reach, an . An activation handed a target or a point beyond it is refused as Range, and targeting that picks one beyond it ends the activation there, told as Range too; a targeting task with a range of its own searches within it, from the caster; and the lab&#39;s bots cast it only once their foe is within it, each asking the ability&#39;s reach through . 0 reaches anywhere. An ability holds one at most. Its ability&#39;s Target Checks show its Check Range while it holds the component, which this enforces.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_CastRangeAbilityComponent" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent" class="text-break">
+Class CastRangeAbilityComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Cast Range: how far from its caster an ability's target may be, the one range it has, read at its level: the
+ability's reach, an <a class="xref" href="FarEmerald.PlayForge.IAbilityReach.html">IAbilityReach</a>. An activation handed a target or a point beyond it is refused as
+Range, and targeting that picks one beyond it ends the activation there, told as Range too; a targeting task with
+a range of its own searches within it, from the caster; and the lab's bots cast it only once their foe is within
+it, each asking the ability's reach through <a class="xref" href="FarEmerald.PlayForge.ForgeReach.html">ForgeReach</a>. 0 reaches anywhere. An ability holds one at
+most. Its ability's Target Checks show its Check Range while it holds the component, which this enforces.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/built-in-kinds.html">Abilities: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(Description = &quot;How far from the caster the ability&#39;s target may be.&quot;)]
+public sealed class CastRangeAbilityComponent : AbstractAbilityComponent, IAbilityReach</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html">AbstractForgeComponent</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html">AbstractAbilityComponent</a></div>
+      <div><span class="xref">CastRangeAbilityComponent</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IAbilityReach.html">IAbilityReach</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Granted_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Granted(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Removed_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Removed(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_WindUp_FarEmerald_PlayForge_AbilityComponentContext_System_Threading_CancellationToken_">AbstractAbilityComponent.WindUp(AbilityComponentContext, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Start_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Start(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_ApplyUsage_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.ApplyUsage(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Waives_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Waives(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Commit_FarEmerald_PlayForge_AbilityComponentContext_">AbstractAbilityComponent.Commit(AbilityComponentContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CategoryOf_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_GameplayEffectSpec_">AbstractAbilityComponent.CategoryOf(AbilityComponentContext, GameplayEffectSpec)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_End_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_EAbilityEnd_">AbstractAbilityComponent.End(AbilityComponentContext, EAbilityEnd)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Refused_FarEmerald_PlayForge_AbilityComponentContext_FarEmerald_PlayForge_ActivationRefusal_">AbstractAbilityComponent.Refused(AbilityComponentContext, ActivationRefusal)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_DescribeUsage">AbstractAbilityComponent.DescribeUsage()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck">AbstractAbilityComponent.CasterCheck</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_Find__1_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractForgeComponent__">AbstractForgeComponent.Find&lt;T&gt;(IReadOnlyList&lt;AbstractForgeComponent&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_FarEmerald_PlayForge_AbstractForgeComponent_">AbstractForgeComponent.NameOf(AbstractForgeComponent)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractForgeComponent.html#FarEmerald_PlayForge_AbstractForgeComponent_NameOf_System_Type_">AbstractForgeComponent.NameOf(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_Flat" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.Flat">
+  Flat
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Measures along the ground, leaving height out; off, a sphere&quot;)]
+public bool Flat</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_OutOfRange" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.OutOfRange">
+  OutOfRange
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why an activation handed a target beyond its range, or whose targeting picked one, is refused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string OutOfRange = &quot;Its target is beyond its Cast Range&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_Range" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.Range">
+  Range
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How far from its caster its target or point may be, read at the ability&#39;s level; 0 reaches anywhere&quot;)]
+public ScalableFloat Range</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_AllowsSeveral_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.AllowsSeveral*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_AllowsSeveral" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.AllowsSeveral">
+  AllowsSeveral
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an asset may hold more than one of this kind. One that makes no sense twice, as Charges, says no, and its
+Components section offers it only while the asset holds none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool AllowsSeveral { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_RefusedAs_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.RefusedAs*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_RefusedAs" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.RefusedAs">
+  RefusedAs
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its refusal is Range, so an AI can walk closer and ask again.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override EActivationRefusal RefusedAs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EActivationRefusal.html">EActivationRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_TargetCheck_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.TargetCheck*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_TargetCheck" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.TargetCheck">
+  TargetCheck
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Check Range, its place among its ability's Target Checks: the range this enforces.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IAbilityValidationRule TargetCheck { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAbilityValidationRule.html">IAbilityValidationRule</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_CanStart_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.CanStart*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_CanStart_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.CanStart(FarEmerald.PlayForge.AbilityComponentContext)">
+  CanStart(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why an activation may not start, or null where it may; the reason names the refusal and says why, and
+<a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs">RefusedAs</a> is its kind.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CanStart(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_CanTakeTarget_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.CanTakeTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_CanTakeTarget_FarEmerald_PlayForge_AbilityComponentContext_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.CanTakeTarget(FarEmerald.PlayForge.AbilityComponentContext)">
+  CanTakeTarget(AbilityComponentContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Why the target or the point the activation's targeting picked is refused, which ends the activation there, as
+its targeting ends, before its wind-up, its cost and its stages; or null, as here, where it's taken. The pick
+is in its data under Target: a Cast Range refuses one beyond its range, whichever task picked it. The refusal is
+told through the callbacks' OnAbilityRefused as the kind <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_RefusedAs">RefusedAs</a> says, the reason naming it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CanTakeTarget(AbilityComponentContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_Describe_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.Describe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_Describe" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.Describe">
+  Describe()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it does, in one line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Describe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CastRangeAbilityComponent_TryReadReach_" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.TryReadReach*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CastRangeAbilityComponent_TryReadReach_FarEmerald_PlayForge_AbilitySpec_FarEmerald_PlayForge_ProcessDataPacket_System_Single__System_Boolean__" data-uid="FarEmerald.PlayForge.CastRangeAbilityComponent.TryReadReach(FarEmerald.PlayForge.AbilitySpec,FarEmerald.PlayForge.ProcessDataPacket,System.Single@,System.Boolean@)">
+  TryReadReach(AbilitySpec, ProcessDataPacket, out float, out bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its range, read at the ability's level, and whether along the ground; false where it reaches anywhere.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadReach(AbilitySpec spec, ProcessDataPacket data, out float range, out bool flat)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html">AbilitySpec</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>range</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>flat</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

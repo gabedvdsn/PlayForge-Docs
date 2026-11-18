@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AvoidRequireTagGroup | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AvoidRequireTagGroup | PlayForge ">
+      
+      <meta name="description" content="Represents a group of tag requirements with Avoid (must NOT have) and Require (must HAVE) conditions. Supports hierarchical tag matching via TagQuery.MatchMode on individual queries.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AvoidRequireTagGroup" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup" class="text-break">
+Class AvoidRequireTagGroup  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a group of tag requirements with Avoid (must NOT have) and Require (must HAVE) conditions.
+Supports hierarchical tag matching via TagQuery.MatchMode on individual queries.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class AvoidRequireTagGroup</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AvoidRequireTagGroup</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AvoidTags" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AvoidTags">
+  AvoidTags
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Tags that must NOT be present on the target&quot;)]
+public List&lt;TagQuery&gt; AvoidTags</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TagQuery.html">TagQuery</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Name" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Optional name for this requirement group (helps identify when importing)&quot;)]
+public string Name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_RequireTags" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.RequireTags">
+  RequireTags
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Tags that MUST be present on the target&quot;)]
+public List&lt;TagQuery&gt; RequireTags</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TagQuery.html">TagQuery</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_SourceTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.SourceTemplate">
+  SourceTemplate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Template Link&quot;)]
+[Tooltip(&quot;Optional: Link to a shared RequirementTemplate. When linked, this group can sync its values from the template.&quot;)]
+public RequirementTemplate SourceTemplate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.RequirementTemplate.html">RequirementTemplate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_SyncWithTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.SyncWithTemplate">
+  SyncWithTemplate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When enabled, this group&#39;s values will be kept in sync with the linked template.\nDisable to make local modifications while keeping the template reference.&quot;)]
+public bool SyncWithTemplate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_AvoidCount_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AvoidCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AvoidCount" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AvoidCount">
+  AvoidCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the count of avoid tag queries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AvoidCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_HasAnyRequirements_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.HasAnyRequirements*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_HasAnyRequirements" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.HasAnyRequirements">
+  HasAnyRequirements
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this group has any requirements defined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAnyRequirements { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_HasName_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.HasName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_HasName" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.HasName">
+  HasName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this group has a custom name set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_IsLinkedToTemplate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.IsLinkedToTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_IsLinkedToTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.IsLinkedToTemplate">
+  IsLinkedToTemplate
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this group is linked to a template.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLinkedToTemplate { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_RequireCount_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.RequireCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_RequireCount" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.RequireCount">
+  RequireCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the count of required tag queries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RequireCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_ShouldSyncFromTemplate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ShouldSyncFromTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_ShouldSyncFromTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ShouldSyncFromTemplate">
+  ShouldSyncFromTemplate
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this group should sync from its template.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShouldSyncFromTemplate { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_TotalCount_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.TotalCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_TotalCount" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.TotalCount">
+  TotalCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the total count of all requirements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidance_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddAvoidance*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidance_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddAvoidance(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  AddAvoidance(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an avoid tag query to this group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAvoidance(Tag tag, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidanceWithChildren_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddAvoidanceWithChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidanceWithChildren_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddAvoidanceWithChildren(FarEmerald.PlayForge.Tag)">
+  AddAvoidanceWithChildren(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an avoidance for the tag or any of its children.
+Example: AddAvoidanceWithChildren(&quot;Status.Debuff&quot;) will block
+if ANY debuff is present.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAvoidanceWithChildren(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirement_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddRequirement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirement_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddRequirement(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  AddRequirement(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a required tag query to this group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRequirement(Tag tag, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirementWithChildren_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddRequirementWithChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirementWithChildren_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.AddRequirementWithChildren(FarEmerald.PlayForge.Tag)">
+  AddRequirementWithChildren(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a requirement for the tag or any of its children.
+Example: AddRequirementWithChildren(&quot;Status.Debuff&quot;) will require
+any debuff tag (Burn, Poison, etc.)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRequirementWithChildren(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_Clear_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Clear*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Clear" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Clear">
+  Clear()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears all requirements and avoidances.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_Clone_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Clone*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Clone" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Clone">
+  Clone()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep copy of this group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AvoidRequireTagGroup Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.html">AvoidRequireTagGroup</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_CopyFrom_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.CopyFrom*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_CopyFrom_FarEmerald_PlayForge_AvoidRequireTagGroup_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.CopyFrom(FarEmerald.PlayForge.AvoidRequireTagGroup)">
+  CopyFrom(AvoidRequireTagGroup)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies values from another group into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyFrom(AvoidRequireTagGroup source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.html">AvoidRequireTagGroup</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetAllReferencedTags_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetAllReferencedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetAllReferencedTags" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetAllReferencedTags">
+  GetAllReferencedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all unique tags referenced by this group (both require and avoid).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Tag&gt; GetAllReferencedTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetDisplayName_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetDisplayName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetDisplayName" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetDisplayName">
+  GetDisplayName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the display name - returns Name if set, empty string otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDisplayName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetReferencedTagsByRoot_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetReferencedTagsByRoot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_GetReferencedTagsByRoot" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.GetReferencedTagsByRoot">
+  GetReferencedTagsByRoot()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all referenced tags grouped by their root category.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;Tag, List&lt;Tag&gt;&gt; GetReferencedTagsByRoot()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_LinkToTemplate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.LinkToTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_LinkToTemplate_FarEmerald_PlayForge_RequirementTemplate_System_Boolean_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.LinkToTemplate(FarEmerald.PlayForge.RequirementTemplate,System.Boolean)">
+  LinkToTemplate(RequirementTemplate, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Links this group to a template and optionally syncs immediately.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LinkToTemplate(RequirementTemplate template, bool syncImmediately = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <a class="xref" href="FarEmerald.PlayForge.RequirementTemplate.html">RequirementTemplate</a></dt>
+    <dd></dd>
+    <dt><code>syncImmediately</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_RemoveTag_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.RemoveTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_RemoveTag_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.RemoveTag(FarEmerald.PlayForge.Tag)">
+  RemoveTag(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all queries for a specific tag from both Require and Avoid lists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTag(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_ToDebugString_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ToDebugString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_ToDebugString" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ToDebugString">
+  ToDebugString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a detailed string representation for debugging.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToDebugString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_ToString_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ToString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_ToString" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ToString">
+  ToString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the current object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_TrySyncFromTemplate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.TrySyncFromTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_TrySyncFromTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.TrySyncFromTemplate">
+  TrySyncFromTemplate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Syncs values from the linked template if SyncWithTemplate is enabled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrySyncFromTemplate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_UnlinkFromTemplate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.UnlinkFromTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_UnlinkFromTemplate" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.UnlinkFromTemplate">
+  UnlinkFromTemplate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlinks from the current template, keeping current values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnlinkFromTemplate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_FarEmerald_PlayForge_TagCache_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate(FarEmerald.PlayForge.TagCache)">
+  Validate(TagCache)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates this group against a TagCache.
+ALL RequireTags must pass AND NONE of AvoidTags can pass.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Validate(TagCache tagCache)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tagCache</code> <a class="xref" href="FarEmerald.PlayForge.TagCache.html">TagCache</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag})">
+  Validate(IEnumerable&lt;Tag&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates this group against any enumerable of tags.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Validate(IEnumerable&lt;Tag&gt; appliedTags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appliedTags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_Validate_System_Collections_Generic_List_FarEmerald_PlayForge_Tag__" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.Validate(System.Collections.Generic.List{FarEmerald.PlayForge.Tag})">
+  Validate(List&lt;Tag&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Validates this group against a list of applied tags.
+ALL RequireTags must pass AND NONE of AvoidTags can pass.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Validate(List&lt;Tag&gt; appliedTags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appliedTags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidateDetailed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_FarEmerald_PlayForge_TagCache_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidateDetailed(FarEmerald.PlayForge.TagCache)">
+  ValidateDetailed(TagCache)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs validation and returns detailed information about failures.
+Useful for debugging or showing users why validation failed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AvoidRequireTagGroup.ValidationResult ValidateDetailed(TagCache tagCache)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tagCache</code> <a class="xref" href="FarEmerald.PlayForge.TagCache.html">TagCache</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.html">AvoidRequireTagGroup</a>.<a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html">ValidationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidateDetailed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_System_Collections_Generic_List_FarEmerald_PlayForge_Tag__" data-uid="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidateDetailed(System.Collections.Generic.List{FarEmerald.PlayForge.Tag})">
+  ValidateDetailed(List&lt;Tag&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs validation and returns detailed information about failures.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AvoidRequireTagGroup.ValidationResult ValidateDetailed(List&lt;Tag&gt; appliedTags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appliedTags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.html">AvoidRequireTagGroup</a>.<a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html">ValidationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

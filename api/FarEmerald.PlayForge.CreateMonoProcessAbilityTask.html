@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CreateMonoProcessAbilityTask | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CreateMonoProcessAbilityTask | PlayForge ">
+      
+      <meta name="description" content="Spawns mono processes, as a projectile, as the ability runs. What it spawns takes the ability as its origin, so the effects it applies are the caster&#39;s at the ability&#39;s level, and its attributes can start as the caster&#39;s. It spawns the processes the activation&#39;s data holds under , or, where the data holds none or  is on, its own.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask">
+
+
+
+  <h1 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask" class="text-break">
+Class CreateMonoProcessAbilityTask  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Spawns mono processes, as a projectile, as the ability runs. What it spawns takes the ability as its origin, so the
+effects it applies are the caster's at the ability's level, and its attributes can start as the caster's.
+It spawns the processes the activation's data holds under <a class="xref" href="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.html#FarEmerald_PlayForge_CreateMonoProcessAbilityTask_DataTag">DataTag</a>, or, where the data holds none or
+<a class="xref" href="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.html#FarEmerald_PlayForge_CreateMonoProcessAbilityTask_InternalIsOverride">InternalIsOverride</a> is on, its own.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/built-in-kinds.html">Abilities: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeMenu(Description = &quot;Spawns a process, as a projectile, whose effects are the caster&#39;s at the ability&#39;s level.&quot;)]
+public class CreateMonoProcessAbilityTask : AbstractCreateProcessAbilityTask</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html">AbstractAbilityRelatedTask</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityTask.html">AbstractAbilityTask</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractCreateProcessAbilityTask.html">AbstractCreateProcessAbilityTask</a></div>
+      <div><span class="xref">CreateMonoProcessAbilityTask</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Read_FarEmerald_PlayForge_ScalableFloat_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Read(ScalableFloat, AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Read_FarEmerald_PlayForge_ScalableInt_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Read(ScalableInt, AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_EntityOf_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_NumberSide_">AbstractAbilityRelatedTask.EntityOf(AbilityDataPacket, NumberSide)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_ApplyTo_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_GameplayEffect_">AbstractAbilityRelatedTask.ApplyTo(AbilityDataPacket, ITarget, GameplayEffect)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Prepare_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Prepare(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Clean_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Clean(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask__ctor_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask__ctor" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.#ctor">
+  CreateMonoProcessAbilityTask()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CreateMonoProcessAbilityTask()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask__ctor_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask__ctor_System_Collections_Generic_List_FarEmerald_PlayForge_AbstractMonoProcess__" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.#ctor(System.Collections.Generic.List{FarEmerald.PlayForge.AbstractMonoProcess})">
+  CreateMonoProcessAbilityTask(List&lt;AbstractMonoProcess&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CreateMonoProcessAbilityTask(List&lt;AbstractMonoProcess&gt; internalMonoProcesses)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>internalMonoProcesses</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcess.html">AbstractMonoProcess</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_DataTag" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.DataTag">
+  DataTag
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeTagContext(new string[] { &quot;Data Key&quot; })]
+public Tag DataTag</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_DataTarget" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.DataTarget">
+  DataTarget
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EDataTarget DataTarget</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EDataTarget.html">EDataTarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_InternalIsOverride" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.InternalIsOverride">
+  InternalIsOverride
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When true, the processes below are spawned whatever the data holds. When false, they&#39;re spawned where the data holds none.&quot;)]
+public bool InternalIsOverride</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_InternalMonoProcesses" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.InternalMonoProcesses">
+  InternalMonoProcesses
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;AbstractMonoProcess&gt; InternalMonoProcesses</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcess.html">AbstractMonoProcess</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_RegisterMany" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.RegisterMany">
+  RegisterMany
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When true, retrieve data as an enumerable.&quot;)]
+public bool RegisterMany</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_SpawnAt" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.SpawnAt">
+  SpawnAt
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Where a spawned process appears: where the data&#39;s Position says, or else where its prefab stands; at the caster, as a projectile does; or at the ability&#39;s target, as a fire on the ground does&quot;)]
+public CreateMonoProcessAbilityTask.ESpawnPoint SpawnAt</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.html">CreateMonoProcessAbilityTask</a>.<a class="xref" href="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.ESpawnPoint.html">ESpawnPoint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_Description_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.Description*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_Description" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.Description">
+  Description
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Description { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_IsCriticalSection_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.IsCriticalSection*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_IsCriticalSection" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.IsCriticalSection">
+  IsCriticalSection
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether another ability proxy can be active at the same time as the proxy containing this task.</p>
+<p>For example, a proxy with some animation events has a critical section, and another proxy with a critical section must not interrupt the conclusion of the animation (and the injections relevant to the animation).</p>
+<p>If a proxy with a critical section is active, no other proxy with a critical section can be active, regardless of ability activation policy.
+Under Activate Anyway or Refuse, the other is refused as Critical; under Queue, it waits in the input buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsCriticalSection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_Activate_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.Activate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CreateMonoProcessAbilityTask_Activate_FarEmerald_PlayForge_AbilityDataPacket_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.Activate(FarEmerald.PlayForge.AbilityDataPacket,System.Threading.CancellationToken)">
+  Activate(AbilityDataPacket, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override UniTask Activate(AbilityDataPacket data, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

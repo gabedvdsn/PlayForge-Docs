@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SelectGasTargetTask | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SelectGasTargetTask | PlayForge ">
+      
+      <meta name="description" content="Interactive targeting task: raycast to select a GAS target (ITarget). Waits for the player to click on a valid target in the world. Validates the hit object has an ITarget component and passes tag requirements.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.SelectGasTargetTask">
+
+
+
+  <h1 id="FarEmerald_PlayForge_SelectGasTargetTask" data-uid="FarEmerald.PlayForge.SelectGasTargetTask" class="text-break">
+Class SelectGasTargetTask  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Interactive targeting task: raycast to select a GAS target (ITarget).
+Waits for the player to click on a valid target in the world.
+Validates the hit object has an ITarget component and passes tag requirements.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/abilities/built-in-kinds.html">Abilities: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(&quot;Picked&quot;, Description = &quot;The player clicks an entity.&quot;)]
+public class SelectGasTargetTask : AbstractGasTargetingAbilityTask</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html">AbstractAbilityRelatedTask</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html">AbstractTargetingAbilityTask</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html">AbstractGasTargetingAbilityTask</a></div>
+      <div><span class="xref">SelectGasTargetTask</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractGasTargetingAbilityTask_Requirements">AbstractGasTargetingAbilityTask.Requirements</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractGasTargetingAbilityTask_TargetIsValid_FarEmerald_PlayForge_ITarget_">AbstractGasTargetingAbilityTask.TargetIsValid(ITarget)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_BreakRuntimeOnInvalid">AbstractTargetingAbilityTask.BreakRuntimeOnInvalid</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_PressWords_System_Int32_">AbstractTargetingAbilityTask.PressWords(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_IsCriticalSection">AbstractTargetingAbilityTask.IsCriticalSection</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_Prepare_FarEmerald_PlayForge_AbilityDataPacket_">AbstractTargetingAbilityTask.Prepare(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_Clean_FarEmerald_PlayForge_AbilityDataPacket_">AbstractTargetingAbilityTask.Clean(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WhenTargetingInvalid_FarEmerald_PlayForge_AbilityDataPacket_">AbstractTargetingAbilityTask.WhenTargetingInvalid(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WhenTargetingInvalid">AbstractTargetingAbilityTask.WhenTargetingInvalid()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_BreakAbilityRuntime">AbstractTargetingAbilityTask.BreakAbilityRuntime()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TargetIsValid_UnityEngine_GameObject_FarEmerald_PlayForge_ITarget__">AbstractTargetingAbilityTask.TargetIsValid(GameObject, out ITarget)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TargetIsValid_UnityEngine_Transform_UnityEngine_Vector3__">AbstractTargetingAbilityTask.TargetIsValid(Transform, out Vector3)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TargetIsValid_UnityEngine_Vector3_UnityEngine_Vector3__">AbstractTargetingAbilityTask.TargetIsValid(Vector3, out Vector3)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataTarget_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_ITarget__">AbstractTargetingAbilityTask.TryGetDataTarget(AbilityDataPacket, out ITarget)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataPoint_FarEmerald_PlayForge_AbilityDataPacket_UnityEngine_Vector3__">AbstractTargetingAbilityTask.TryGetDataPoint(AbilityDataPacket, out Vector3)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WaitForPointerPress_System_Int32_System_Threading_CancellationToken_">AbstractTargetingAbilityTask.WaitForPointerPress(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_ConnectInputHandler_FarEmerald_PlayForge_AbilityDataPacket_">AbstractTargetingAbilityTask.ConnectInputHandler(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_DisconnectInputHandler_FarEmerald_PlayForge_AbilityDataPacket_">AbstractTargetingAbilityTask.DisconnectInputHandler(AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Read_FarEmerald_PlayForge_ScalableFloat_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Read(ScalableFloat, AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_Read_FarEmerald_PlayForge_ScalableInt_FarEmerald_PlayForge_AbilityDataPacket_">AbstractAbilityRelatedTask.Read(ScalableInt, AbilityDataPacket)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_EntityOf_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_NumberSide_">AbstractAbilityRelatedTask.EntityOf(AbilityDataPacket, NumberSide)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_ApplyTo_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_GameplayEffect_">AbstractAbilityRelatedTask.ApplyTo(AbilityDataPacket, ITarget, GameplayEffect)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_MaxDistance" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.MaxDistance">
+  MaxDistance
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How far its pointer&#39;s ray reaches; 0, any distance&quot;)]
+[NumberMin(0)]
+public ScalableFloat MaxDistance</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_MouseButton" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.MouseButton">
+  MouseButton
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The pointer button that selects, as the game&#39;s input reads it: 0 the primary (left, or a touch), 1 the secondary (right), 2 the middle&quot;)]
+public int MouseButton</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_RaycastLayers" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.RaycastLayers">
+  RaycastLayers
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Layers to raycast against when selecting targets&quot;)]
+public LayerMask RaycastLayers</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/LayerMask.html">LayerMask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_RetryOnInvalid" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.RetryOnInvalid">
+  RetryOnInvalid
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When true, an invalid click re-prompts for another click instead of failing&quot;)]
+public bool RetryOnInvalid</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_TakeTargetFromData" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.TakeTargetFromData">
+  TakeTargetFromData
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When the activation&#39;s data already holds a target under TargetReal, as an AI&#39;s or a replay&#39;s does, take it rather than wait for a click&quot;)]
+public bool TakeTargetFromData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SelectGasTargetTask_Description_" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Description*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_Description" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Description">
+  Description
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Description { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SelectGasTargetTask_Prompt_" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Prompt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_Prompt" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Prompt">
+  Prompt
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The words a game shows while the task waits for the player to choose, as &quot;Click a point on the ground&quot;, beside
+the ability's name; null for one that doesn't wait for the player, as an automatic one. A slot's
+<a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html#FarEmerald_PlayForge_AbilitySpecContainer_IsTargeting">IsTargeting</a> says when it waits.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Prompt { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SelectGasTargetTask_Activate_" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Activate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SelectGasTargetTask_Activate_FarEmerald_PlayForge_AbilityDataPacket_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SelectGasTargetTask.Activate(FarEmerald.PlayForge.AbilityDataPacket,System.Threading.CancellationToken)">
+  Activate(AbilityDataPacket, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override UniTask Activate(AbilityDataPacket data, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

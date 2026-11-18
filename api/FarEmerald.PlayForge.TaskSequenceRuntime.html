@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TaskSequenceRuntime | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TaskSequenceRuntime | PlayForge ">
+      
+      <meta name="description" content="Manages the runtime execution state of a TaskSequence. Created per-run, handles stage progression, injections, and cancellation.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.TaskSequenceRuntime">
+
+
+
+  <h1 id="FarEmerald_PlayForge_TaskSequenceRuntime" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime" class="text-break">
+Class TaskSequenceRuntime  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Manages the runtime execution state of a TaskSequence.
+Created per-run, handles stage progression, injections, and cancellation.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/task-sequences/index.html">Task Sequences</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/task-sequences/waiting.html">Task Sequences: Waiting</a> · <a class="xref" href="../guides/task-sequences/clocks.html">Task Sequences: Clocks</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TaskSequenceRuntime</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TaskSequenceRuntime</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime__ctor_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime__ctor_FarEmerald_PlayForge_TaskSequenceDefinition_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.#ctor(FarEmerald.PlayForge.TaskSequenceDefinition)">
+  TaskSequenceRuntime(TaskSequenceDefinition)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceRuntime(TaskSequenceDefinition definition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>definition</code> <a class="xref" href="FarEmerald.PlayForge.TaskSequenceDefinition.html">TaskSequenceDefinition</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Clock_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Clock*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Clock" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Clock">
+  Clock
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The clock this run goes by, read as it's asked: its own, as whatever runs it sets it, then its packet's
+(<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Clock">Clock</a>), then its sequence's (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_FarEmerald_PlayForge_IForgeClock_">WithClock(IForgeClock)</a>), then
+its packet's owner's, an ability's caster's, then the game's. Its waits, delays, timeouts and
+<a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_ElapsedTime">ElapsedTime</a>, its tasks' tweens and its synced tasks go by it. Set it to give this run a clock of
+its own, as an ability's Run Sequence task does with its pick, so a packet others share keeps its own; null
+takes the rest in turn.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IForgeClock Clock { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeClock.html">IForgeClock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_CompletedSuccessfully_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CompletedSuccessfully*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_CompletedSuccessfully" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CompletedSuccessfully">
+  CompletedSuccessfully
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if the sequence completed successfully.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CompletedSuccessfully { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_CurrentStage_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CurrentStage*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_CurrentStage" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CurrentStage">
+  CurrentStage
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The currently active stage (null if not running).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequenceStage CurrentStage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Data_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Data*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Data" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Data">
+  Data
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The data packet flowing through the sequence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequenceDataPacket Data { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Definition_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Definition*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Definition" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Definition">
+  Definition
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The sequence definition being executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceDefinition Definition { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TaskSequenceDefinition.html">TaskSequenceDefinition</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_ElapsedTime_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ElapsedTime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_ElapsedTime" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ElapsedTime">
+  ElapsedTime
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Time elapsed since sequence started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ElapsedTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_FailureException_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.FailureException*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_FailureException" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.FailureException">
+  FailureException
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Exception that caused the sequence to fail, if any.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Exception FailureException { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_IsCriticalSection_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsCriticalSection*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_IsCriticalSection" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsCriticalSection">
+  IsCriticalSection
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if the sequence is currently inside a critical section.
+When true, injections are restricted to only those allowed by the critical policy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCriticalSection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_IsPaused_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsPaused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_IsPaused" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsPaused">
+  IsPaused
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while this run is paused. See <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_Pause">Pause()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPaused { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_IsRunning_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsRunning*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_IsRunning" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsRunning">
+  IsRunning
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while the sequence is actively running.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRunning { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_OnCriticalSectionExited_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.OnCriticalSectionExited*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_OnCriticalSectionExited" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.OnCriticalSectionExited">
+  OnCriticalSectionExited
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fired once when the last critical section in this sequence exits.
+For whole-sequence-critical sequences, fires when the sequence terminates.
+For stage-level critical sequences, fires when the last critical stage pops.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action OnCriticalSectionExited { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_StageIndex_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.StageIndex*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_StageIndex" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.StageIndex">
+  StageIndex
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Current top-level stage index (-1 = not started).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int StageIndex { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_CheckConditions_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CheckConditions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_CheckConditions" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CheckConditions">
+  CheckConditions()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckConditions()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_CheckConditions_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CheckConditions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_CheckConditions_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_SequenceCondition__" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CheckConditions(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.SequenceCondition})">
+  CheckConditions(IReadOnlyList&lt;SequenceCondition&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CheckConditions(IReadOnlyList&lt;SequenceCondition&gt; conditions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conditions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceCondition.html">SequenceCondition</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ClockOfRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_System_Threading_CancellationToken_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ClockOfRun(System.Threading.CancellationToken,FarEmerald.PlayForge.ProcessDataPacket)">
+  ClockOfRun(CancellationToken, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The clock of the run a token belongs to, as <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_Clock">Clock</a> reads it; for a token of no run, the clock the
+packet's work runs by (<a class="xref" href="FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_ClockFor_FarEmerald_PlayForge_ProcessDataPacket_">ClockFor(ProcessDataPacket)</a>), or the game's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IForgeClock ClockOfRun(CancellationToken token, ProcessDataPacket data = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeClock.html">IForgeClock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_CreateLinkedTokenSource_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CreateLinkedTokenSource*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_CreateLinkedTokenSource_System_Threading_CancellationToken_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.CreateLinkedTokenSource(System.Threading.CancellationToken,System.Threading.CancellationToken)">
+  CreateLinkedTokenSource(CancellationToken, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A token source linked to <code class="paramref">token</code>, and to <code class="paramref">other</code> where one is given, so it's
+cancelled as either is, whose token belongs to the run <code class="paramref">token</code> belongs to. A task that links its
+token, as for a timeout or a wait of its own, keeps its run's clock and pause this way: the library's waits and
+tweens, <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_System_Threading_CancellationToken_FarEmerald_PlayForge_ProcessDataPacket_">ClockOfRun(CancellationToken, ProcessDataPacket)</a>, <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_IsPausedRun_System_Threading_CancellationToken_">IsPausedRun(CancellationToken)</a> and <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_DataOfRun_System_Threading_CancellationToken_">DataOfRun(CancellationToken)</a> know its token as the
+run's. A token that CancellationTokenSource.CreateLinkedTokenSource links belongs to no run, so its waits go by
+the game's clock and don't hold while the run is paused. Dispose it once done, as any token source: the run lets
+go of its token then, or as the run ends. For a token of no run, it's a plain linked source.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CancellationTokenSource CreateLinkedTokenSource(CancellationToken token, CancellationToken other = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_DataOfRun_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.DataOfRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_DataOfRun_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.DataOfRun(System.Threading.CancellationToken)">
+  DataOfRun(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The packet of the run a token belongs to, or null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SequenceDataPacket DataOfRun(CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Delay_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Delay*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Delay_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Delay(System.Single,System.Threading.CancellationToken)">
+  Delay(float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for the given time of this run's clock, which a paused frame isn't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask Delay(float seconds, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_ExecuteTaskUnit_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ExecuteTaskUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_ExecuteTaskUnit_FarEmerald_PlayForge_ISequenceTask_FarEmerald_PlayForge_SequenceDataPacket_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.ExecuteTaskUnit(FarEmerald.PlayForge.ISequenceTask,FarEmerald.PlayForge.SequenceDataPacket,System.Threading.CancellationToken)">
+  ExecuteTaskUnit(ISequenceTask, SequenceDataPacket, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask ExecuteTaskUnit(ISequenceTask task, SequenceDataPacket data, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>task</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_GetRepeatCount_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.GetRepeatCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_GetRepeatCount_FarEmerald_PlayForge_SequenceStage_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.GetRepeatCount(FarEmerald.PlayForge.SequenceStage)">
+  GetRepeatCount(SequenceStage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many times the stage has repeated in this run.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetRepeatCount(SequenceStage stage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stage</code> <a class="xref" href="FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Inject_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Inject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Inject_FarEmerald_PlayForge_ISequenceInjection_System_Boolean_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Inject(FarEmerald.PlayForge.ISequenceInjection,System.Boolean)">
+  Inject(ISequenceInjection, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects into the sequence. Checks global permissions, stage-local permissions,
+and critical section restrictions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Inject(ISequenceInjection injection, bool overridePermission = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+    <dt><code>overridePermission</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_InjectStageLocal_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.InjectStageLocal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_InjectStageLocal_FarEmerald_PlayForge_ISequenceInjection_FarEmerald_PlayForge_SequenceStage_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.InjectStageLocal(FarEmerald.PlayForge.ISequenceInjection,FarEmerald.PlayForge.SequenceStage)">
+  InjectStageLocal(ISequenceInjection, SequenceStage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects a stage-local injection. Only checks stage-local permissions
+and critical section restrictions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InjectStageLocal(ISequenceInjection injection, SequenceStage stage = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+    <dt><code>stage</code> <a class="xref" href="FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_IsPausedRun_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsPausedRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_IsPausedRun_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsPausedRun(System.Threading.CancellationToken)">
+  IsPausedRun(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if the token is one a stage gave its tasks, and that stage's run is paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsPausedRun(CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_IsRepeatBroken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsRepeatBroken*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_IsRepeatBroken_FarEmerald_PlayForge_SequenceStage_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.IsRepeatBroken(FarEmerald.PlayForge.SequenceStage)">
+  IsRepeatBroken(SequenceStage)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if this run has broken the stage's repeat loop.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRepeatBroken(SequenceStage stage)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stage</code> <a class="xref" href="FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Pause_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Pause*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Pause" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Pause">
+  Pause()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Holds this run where it is: no stage starts or ends, and timeouts, max durations and delays stop
+counting. A task's own code can't be stopped from out here, so it holds if it keeps its time through
+<a class="xref" href="FarEmerald.PlayForge.SequenceTaskLibrary.html">SequenceTaskLibrary</a>. If it doesn't, it finishes when it finishes, and its stage waits.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_RequestStartStageTimeout_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.RequestStartStageTimeout*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_RequestStartStageTimeout_FarEmerald_PlayForge_SequenceTimeout_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.RequestStartStageTimeout(FarEmerald.PlayForge.SequenceTimeout)">
+  RequestStartStageTimeout(SequenceTimeout)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RequestStartStageTimeout(SequenceTimeout timeout)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timeout</code> <a class="xref" href="FarEmerald.PlayForge.SequenceTimeout.html">SequenceTimeout</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Resume_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Resume*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Resume" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Resume">
+  Resume()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Carries on from where <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_Pause">Pause()</a> stopped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceRuntime_Run_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Run*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceRuntime_Run_FarEmerald_PlayForge_ProcessDataPacket_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceRuntime.Run(FarEmerald.PlayForge.ProcessDataPacket,System.Threading.CancellationToken)">
+  Run(ProcessDataPacket, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Runs the sequence to completion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask Run(ProcessDataPacket data, CancellationToken externalToken)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>externalToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TaskSequenceProcess | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TaskSequenceProcess | PlayForge ">
+      
+      <meta name="description" content="Wraps a TaskSequence or TaskSequenceChain for execution via ProcessControl. Supports both async (SelfTerminating/RunThenWait) and sync (Synchronous) lifecycles. Async mode: RunProcess executes the sequence via Execute path. Sync mode: RunProcess is skipped; WhenUpdate drives the SyncedTaskSequence runner via Step path. Uses SequenceDataPacket for direct sequence/stage control.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.TaskSequenceProcess">
+
+
+
+  <h1 id="FarEmerald_PlayForge_TaskSequenceProcess" data-uid="FarEmerald.PlayForge.TaskSequenceProcess" class="text-break">
+Class TaskSequenceProcess  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Wraps a TaskSequence or TaskSequenceChain for execution via ProcessControl.
+Supports both async (SelfTerminating/RunThenWait) and sync (Synchronous) lifecycles.</p>
+<p>Async mode: RunProcess executes the sequence via Execute path.
+Sync mode: RunProcess is skipped; WhenUpdate drives the SyncedTaskSequence runner via Step path.</p>
+<p>Uses SequenceDataPacket for direct sequence/stage control.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/task-sequences/index.html">Task Sequences</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/task-sequences/clocks.html">Task Sequences: Clocks</a> · <a class="xref" href="../guides/task-sequences/running-one.html">Task Sequences: Running one</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TaskSequenceProcess : LazyRuntimeProcess, IProxyTaskBehaviourCaller, IProxyTaskBehaviourUser, IGameplayProcess, IGameplayProcessHandler, IHasReadableDefinition</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html">AbstractRuntimeProcess</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.LazyRuntimeProcess.html">LazyRuntimeProcess</a></div>
+      <div><span class="xref">TaskSequenceProcess</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IProxyTaskBehaviourCaller.html">IProxyTaskBehaviourCaller</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IProxyTaskBehaviourUser.html">IProxyTaskBehaviourUser</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IGameplayProcess.html">IGameplayProcess</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_name">AbstractRuntimeProcess.name</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_priorityMethod">AbstractRuntimeProcess.priorityMethod</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_stepPriority">AbstractRuntimeProcess.stepPriority</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_stepTiming">AbstractRuntimeProcess.stepTiming</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_lifecycle">AbstractRuntimeProcess.lifecycle</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_regData">AbstractRuntimeProcess.regData</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_processActive">AbstractRuntimeProcess.processActive</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_ProcessRelay">AbstractRuntimeProcess.ProcessRelay</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_Data">AbstractRuntimeProcess.Data</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_IsInitialized">AbstractRuntimeProcess.IsInitialized</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_Relay">AbstractRuntimeProcess.Relay</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_HandlerRelays">AbstractRuntimeProcess.HandlerRelays</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_CustomInstantiator">AbstractRuntimeProcess.CustomInstantiator</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_PriorityMethod">AbstractRuntimeProcess.PriorityMethod</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_Lifecycle">AbstractRuntimeProcess.Lifecycle</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_GetName">AbstractRuntimeProcess.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_GetDescription">AbstractRuntimeProcess.GetDescription()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_GetDefaultIcon">AbstractRuntimeProcess.GetDefaultIcon()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_SendProcessData_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_ProcessRelay_">AbstractRuntimeProcess.SendProcessData(ProcessDataPacket, ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_WhenDestroy">AbstractRuntimeProcess.WhenDestroy()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_TryGetProcess__1___0__">AbstractRuntimeProcess.TryGetProcess&lt;T&gt;(out T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_StepPriority">AbstractRuntimeProcess.StepPriority</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_BehaviourIsApplicable_FarEmerald_PlayForge_AbstractProxyTaskBehaviour_">AbstractRuntimeProcess.BehaviourIsApplicable(AbstractProxyTaskBehaviour)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_ApplyBehaviour_FarEmerald_PlayForge_AbstractProxyTaskBehaviour_FarEmerald_PlayForge_IProxyTaskBehaviourUser_System_Threading_CancellationToken_">AbstractRuntimeProcess.ApplyBehaviour(AbstractProxyTaskBehaviour, IProxyTaskBehaviourUser, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_ApplyBehaviour_FarEmerald_PlayForge_AbstractProxyTaskBehaviour_FarEmerald_PlayForge_IProxyTaskBehaviourUser___System_Threading_CancellationToken_">AbstractRuntimeProcess.ApplyBehaviour(AbstractProxyTaskBehaviour, IProxyTaskBehaviourUser[], CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_GetRelays">AbstractRuntimeProcess.GetRelays()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_HandlerValidateAgainst_FarEmerald_PlayForge_IGameplayProcessHandler_">AbstractRuntimeProcess.HandlerValidateAgainst(IGameplayProcessHandler)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_HandlerProcessIsSubscribed_FarEmerald_PlayForge_ProcessRelay_">AbstractRuntimeProcess.HandlerProcessIsSubscribed(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_HandlerSubscribeProcess_FarEmerald_PlayForge_ProcessRelay_">AbstractRuntimeProcess.HandlerSubscribeProcess(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_HandlerVoidProcess_FarEmerald_PlayForge_ProcessRelay_">AbstractRuntimeProcess.HandlerVoidProcess(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html#FarEmerald_PlayForge_AbstractRuntimeProcess_GetInstantiator_FarEmerald_PlayForge_AbstractMonoProcess_">AbstractRuntimeProcess.GetInstantiator(AbstractMonoProcess)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessHandlerUtil.html#FarEmerald_PlayForge_ProcessHandlerUtil_MassDataAction_FarEmerald_PlayForge_IGameplayProcessHandler_System_Action_FarEmerald_PlayForge_ProcessDataPacket__">ProcessHandlerUtil.MassDataAction(IGameplayProcessHandler, Action&lt;ProcessDataPacket&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_FarEmerald_PlayForge_SyncedTaskSequence_System_String_FarEmerald_PlayForge_EProcessStepTiming_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor(FarEmerald.PlayForge.SyncedTaskSequence,System.String,FarEmerald.PlayForge.EProcessStepTiming)">
+  TaskSequenceProcess(SyncedTaskSequence, string, EProcessStepTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a process for a SyncedTaskSequence directly.
+Always uses Synchronous lifecycle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceProcess(SyncedTaskSequence syncRunner, string name = &quot;SyncSequence&quot;, EProcessStepTiming stepTiming = EProcessStepTiming.Update)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>syncRunner</code> <a class="xref" href="FarEmerald.PlayForge.SyncedTaskSequence.html">SyncedTaskSequence</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>stepTiming</code> <a class="xref" href="FarEmerald.PlayForge.EProcessStepTiming.html">EProcessStepTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_FarEmerald_PlayForge_TaskSequence_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor(FarEmerald.PlayForge.TaskSequence)">
+  TaskSequenceProcess(TaskSequence)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a process for a single sequence.
+Lifecycle and step timing are read from the sequence's metadata.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceProcess(TaskSequence sequence)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sequence</code> <a class="xref" href="FarEmerald.PlayForge.TaskSequence.html">TaskSequence</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_FarEmerald_PlayForge_TaskSequence_FarEmerald_PlayForge_EProcessLifecycle_FarEmerald_PlayForge_EProcessStepTiming_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor(FarEmerald.PlayForge.TaskSequence,FarEmerald.PlayForge.EProcessLifecycle,FarEmerald.PlayForge.EProcessStepTiming)">
+  TaskSequenceProcess(TaskSequence, EProcessLifecycle, EProcessStepTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a process for a single sequence with explicit lifecycle and timing overrides.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceProcess(TaskSequence sequence, EProcessLifecycle lifecycle, EProcessStepTiming stepTiming)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sequence</code> <a class="xref" href="FarEmerald.PlayForge.TaskSequence.html">TaskSequence</a></dt>
+    <dd></dd>
+    <dt><code>lifecycle</code> <a class="xref" href="FarEmerald.PlayForge.EProcessLifecycle.html">EProcessLifecycle</a></dt>
+    <dd></dd>
+    <dt><code>stepTiming</code> <a class="xref" href="FarEmerald.PlayForge.EProcessStepTiming.html">EProcessStepTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess__ctor_FarEmerald_PlayForge_TaskSequenceChain_System_String_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.#ctor(FarEmerald.PlayForge.TaskSequenceChain,System.String)">
+  TaskSequenceProcess(TaskSequenceChain, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a process for a sequence chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceProcess(TaskSequenceChain chain, string name = &quot;TaskSequenceChain&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>chain</code> <a class="xref" href="FarEmerald.PlayForge.TaskSequenceChain.html">TaskSequenceChain</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_Chain_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Chain*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_Chain" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Chain">
+  Chain
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The chain being executed (null if using single sequence).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequenceChain Chain { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TaskSequenceChain.html">TaskSequenceChain</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_Clock_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Clock*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_Clock" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Clock">
+  Clock
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The clock its run goes by, before its packet's and its sequence's own, as an ability's Run Sequence task's pick
+gives it: its sequence's run, a chain's, or a synced runner's steps. Null, as it is unless set, leaves the run the
+clock it would have had. Set it before the process runs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IForgeClock Clock { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeClock.html">IForgeClock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_IsChain_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.IsChain*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_IsChain" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.IsChain">
+  IsChain
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if running a chain, false if running a single sequence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsChain { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_IsSynchronous_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.IsSynchronous*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_IsSynchronous" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.IsSynchronous">
+  IsSynchronous
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if this process runs synchronously (per-frame stepping only).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSynchronous { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_SeqData_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.SeqData*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_SeqData" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.SeqData">
+  SeqData
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequenceDataPacket SeqData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_Sequence_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Sequence*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_Sequence" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Sequence">
+  Sequence
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The sequence being executed (null if using chain).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TaskSequence Sequence { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TaskSequence.html">TaskSequence</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_StepTiming_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.StepTiming*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_StepTiming" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.StepTiming">
+  StepTiming
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the step timing based on lifecycle and conditions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override EProcessStepTiming StepTiming { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessStepTiming.html">EProcessStepTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_Inject_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Inject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_Inject_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Inject(FarEmerald.PlayForge.ISequenceInjection)">
+  Inject(ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects into the running sequence/chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Inject(ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_Interrupt_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Interrupt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_Interrupt" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.Interrupt">
+  Interrupt()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Interrupts the running sequence/chain.
+For chains, this interrupts the entire chain (not just the current sequence).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Interrupt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_RunProcess_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.RunProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_RunProcess_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.RunProcess(System.Threading.CancellationToken)">
+  RunProcess(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Runs the sequence or chain asynchronously.
+For Synchronous lifecycle, this is never called (ProcessControl skips RunProcess).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override UniTask RunProcess(CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_SkipCurrentSequence_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.SkipCurrentSequence*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_SkipCurrentSequence" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.SkipCurrentSequence">
+  SkipCurrentSequence()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Skips the current sequence in the chain and moves to the next.
+Only applicable for chains.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SkipCurrentSequence()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_TryHandlePause_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.TryHandlePause*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_TryHandlePause" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.TryHandlePause">
+  TryHandlePause()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Holds the running sequence where it is, as <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_Pause">Pause()</a> describes. With no
+run there's nothing to hold, which goes for a synchronous sequence too: it holds by not being stepped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool TryHandlePause()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_TryHandleResume_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.TryHandleResume*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_TryHandleResume" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.TryHandleResume">
+  TryHandleResume()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called via ProcessControl on resume, for a run that was kept. Return true once it has picked up where
+it stopped. Return false and it's cancelled, and a new one starts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool TryHandleResume()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenFixedUpdate_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenFixedUpdate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenFixedUpdate" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenFixedUpdate">
+  WhenFixedUpdate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenFixedUpdate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenInitialize_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenInitialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenInitialize" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenInitialize">
+  WhenInitialize()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called via ProcessControl after the process is Created</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenInitialize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenLateUpdate_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenLateUpdate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenLateUpdate" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenLateUpdate">
+  WhenLateUpdate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenLateUpdate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenTerminate_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenTerminate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenTerminate" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenTerminate">
+  WhenTerminate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fires the sequence-level OnTerminate callback for sync sequences.
+Async sequences handle this internally via TaskSequenceRuntime.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenTerminate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenTerminateQueued_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenTerminateQueued*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenTerminateQueued" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenTerminateQueued">
+  WhenTerminateQueued()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The run lasts as long as the sequence does, so a requested Terminate interrupts it. A sync sequence
+has no run, and applies the Terminate on its next step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenTerminateQueued()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenUpdate_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenUpdate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenUpdate" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenUpdate">
+  WhenUpdate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenUpdate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TaskSequenceProcess_WhenWait_" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenWait*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TaskSequenceProcess_WhenWait" data-uid="FarEmerald.PlayForge.TaskSequenceProcess.WhenWait">
+  WhenWait()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called via ProcessControl when the process is set to Waiting</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WhenWait()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

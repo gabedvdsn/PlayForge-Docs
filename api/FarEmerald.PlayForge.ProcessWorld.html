@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ProcessWorld | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ProcessWorld | PlayForge ">
+      
+      <meta name="description" content="The processes of one world and how they&#39;re stepped: every process&#39;s block, its step groups, the watches, the groups, which processes each GAS owns, the control state and its transitions, and the callbacks. A scene&#39;s ProcessControl wraps one and steps it from Unity&#39;s loop, and code can own one and step it itself, as a headless run does. It was ProcessControl itself, so no process ran without a ProcessControl in a scene.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ProcessWorld">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ProcessWorld" data-uid="FarEmerald.PlayForge.ProcessWorld" class="text-break">
+Class ProcessWorld  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The processes of one world and how they're stepped: every process's block, its step groups,
+the watches, the groups, which processes each GAS owns, the control state and its transitions, and the callbacks.
+A scene's ProcessControl wraps one and steps it from Unity's loop, and code can own one and step it itself, as a
+headless run does. It was ProcessControl itself, so no process ran without a ProcessControl in a scene.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/time.html">The Creator Lab: Time</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ProcessWorld</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ProcessWorld</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld__ctor_" data-uid="FarEmerald.PlayForge.ProcessWorld.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld__ctor" data-uid="FarEmerald.PlayForge.ProcessWorld.#ctor">
+  ProcessWorld()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A world of its own, ready to take processes, which its owner steps with <a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html#FarEmerald_PlayForge_ProcessWorld_Step">Step()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessWorld()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_AcceptsNewProcesses_" data-uid="FarEmerald.PlayForge.ProcessWorld.AcceptsNewProcesses*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_AcceptsNewProcesses" data-uid="FarEmerald.PlayForge.ProcessWorld.AcceptsNewProcesses">
+  AcceptsNewProcesses
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while ProcessControl takes new processes, which it stops doing once closed or terminated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AcceptsNewProcesses { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Active_" data-uid="FarEmerald.PlayForge.ProcessWorld.Active*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Active" data-uid="FarEmerald.PlayForge.ProcessWorld.Active">
+  Active
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Active { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Callbacks_" data-uid="FarEmerald.PlayForge.ProcessWorld.Callbacks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Callbacks" data-uid="FarEmerald.PlayForge.ProcessWorld.Callbacks">
+  Callbacks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>High-level lifecycle callbacks for observers (debuggers, recorders, etc.).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessControlCallbacks Callbacks { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_CascadeToChildren_" data-uid="FarEmerald.PlayForge.ProcessWorld.CascadeToChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_CascadeToChildren" data-uid="FarEmerald.PlayForge.ProcessWorld.CascadeToChildren">
+  CascadeToChildren
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether pausing or ending a process does the same to its children's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CascadeToChildren { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_CascadeToSiblings_" data-uid="FarEmerald.PlayForge.ProcessWorld.CascadeToSiblings*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_CascadeToSiblings" data-uid="FarEmerald.PlayForge.ProcessWorld.CascadeToSiblings">
+  CascadeToSiblings
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the processes on one object are treated as a group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CascadeToSiblings { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Control_" data-uid="FarEmerald.PlayForge.ProcessWorld.Control*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Control" data-uid="FarEmerald.PlayForge.ProcessWorld.Control">
+  Control
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The ProcessControl that steps this world in a scene, or null for a world its owner steps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessControl Control { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Created_" data-uid="FarEmerald.PlayForge.ProcessWorld.Created*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Created" data-uid="FarEmerald.PlayForge.ProcessWorld.Created">
+  Created
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The processes the world has taken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Created { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_DetailedLogs_" data-uid="FarEmerald.PlayForge.ProcessWorld.DetailedLogs*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_DetailedLogs" data-uid="FarEmerald.PlayForge.ProcessWorld.DetailedLogs">
+  DetailedLogs
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DetailedLogs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Elapsed_" data-uid="FarEmerald.PlayForge.ProcessWorld.Elapsed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Elapsed" data-uid="FarEmerald.PlayForge.ProcessWorld.Elapsed">
+  Elapsed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The game time a world of its own has been stepped through.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Elapsed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_FixedTickRate_" data-uid="FarEmerald.PlayForge.ProcessWorld.FixedTickRate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_FixedTickRate" data-uid="FarEmerald.PlayForge.ProcessWorld.FixedTickRate">
+  FixedTickRate
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ticks a second of game time, or 0 to step once a frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FixedTickRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_IsPaused_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsPaused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_IsPaused" data-uid="FarEmerald.PlayForge.ProcessWorld.IsPaused">
+  IsPaused
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while ProcessControl itself is paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPaused { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_MaxTicksPerFrame_" data-uid="FarEmerald.PlayForge.ProcessWorld.MaxTicksPerFrame*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_MaxTicksPerFrame" data-uid="FarEmerald.PlayForge.ProcessWorld.MaxTicksPerFrame">
+  MaxTicksPerFrame
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The most ticks a frame runs; the rest of its time is dropped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxTicksPerFrame { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_OutputLogs_" data-uid="FarEmerald.PlayForge.ProcessWorld.OutputLogs*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_OutputLogs" data-uid="FarEmerald.PlayForge.ProcessWorld.OutputLogs">
+  OutputLogs
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool OutputLogs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Running_" data-uid="FarEmerald.PlayForge.ProcessWorld.Running*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Running" data-uid="FarEmerald.PlayForge.ProcessWorld.Running">
+  Running
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Running { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_StartState_" data-uid="FarEmerald.PlayForge.ProcessWorld.StartState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_StartState" data-uid="FarEmerald.PlayForge.ProcessWorld.StartState">
+  StartState
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The state the world takes as it's readied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessControlState StartState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_State_" data-uid="FarEmerald.PlayForge.ProcessWorld.State*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_State" data-uid="FarEmerald.PlayForge.ProcessWorld.State">
+  State
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessControlState State { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Tick_" data-uid="FarEmerald.PlayForge.ProcessWorld.Tick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Tick" data-uid="FarEmerald.PlayForge.ProcessWorld.Tick">
+  Tick
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The world's tick: its own for a world of its own, the scene's for a scene's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ForgeTickSource Tick { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeTickSource.html">ForgeTickSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_EndDestroyedProcess_" data-uid="FarEmerald.PlayForge.ProcessWorld.EndDestroyedProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_EndDestroyedProcess_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessWorld.EndDestroyedProcess(FarEmerald.PlayForge.ProcessRelay)">
+  EndDestroyedProcess(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends the process of an object that has been destroyed, which nothing else tells ProcessControl about.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndDestroyedProcess(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_EnterStartState_" data-uid="FarEmerald.PlayForge.ProcessWorld.EnterStartState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_EnterStartState" data-uid="FarEmerald.PlayForge.ProcessWorld.EnterStartState">
+  EnterStartState()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enters the start state, after readying that deferred it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterStartState()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_FetchActiveProcesses_" data-uid="FarEmerald.PlayForge.ProcessWorld.FetchActiveProcesses*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_FetchActiveProcesses" data-uid="FarEmerald.PlayForge.ProcessWorld.FetchActiveProcesses">
+  FetchActiveProcesses()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;int, ProcessControlBlock&gt; FetchActiveProcesses()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_GetChildProcessIds_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetChildProcessIds*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_GetChildProcessIds_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetChildProcessIds(System.Int32)">
+  GetChildProcessIds(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all child process IDs for a given process</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;int&gt; GetChildProcessIds(int cacheIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_GetDefaultTransitionState_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetDefaultTransitionState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_GetDefaultTransitionState_FarEmerald_PlayForge_ProcessControlBlock_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetDefaultTransitionState(FarEmerald.PlayForge.ProcessControlBlock)">
+  GetDefaultTransitionState(ProcessControlBlock)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessState GetDefaultTransitionState(ProcessControlBlock pcb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pcb</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_GetRelays_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetRelays*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_GetRelays" data-uid="FarEmerald.PlayForge.ProcessWorld.GetRelays">
+  GetRelays()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The relays of every process the world holds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessRelay[] GetRelays()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_GetSiblingProcessIds_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetSiblingProcessIds*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_GetSiblingProcessIds_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessWorld.GetSiblingProcessIds(System.Int32)">
+  GetSiblingProcessIds(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all sibling process IDs (same GameObject) for a given process</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;int&gt; GetSiblingProcessIds(int cacheIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_HasGroup_" data-uid="FarEmerald.PlayForge.ProcessWorld.HasGroup*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_HasGroup_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessWorld.HasGroup(FarEmerald.PlayForge.Tag)">
+  HasGroup(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a group of the tag is registered here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGroup(Tag groupTag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>groupTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_IsRegistered_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsRegistered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_IsRegistered_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsRegistered(System.Int32)">
+  IsRegistered(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if a process exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRegistered(int cacheIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_IsRunning_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsRunning*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_IsRunning_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsRunning(System.Int32)">
+  IsRunning(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if a process is currently running (not waiting)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRunning(int cacheIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_IsWaiting_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsWaiting*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_IsWaiting_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessWorld.IsWaiting(System.Int32)">
+  IsWaiting(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if a process is currently waiting/paused</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWaiting(int cacheIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Of_" data-uid="FarEmerald.PlayForge.ProcessWorld.Of*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Of_System_Object_" data-uid="FarEmerald.PlayForge.ProcessWorld.Of(System.Object)">
+  Of(object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The world that holds a process, by its relay: an entity's, a runtime process's or a Mono process's. One that no
+world holds takes the scene's. An ability's processes run in their caster's world; they ran in the scene's,
+wherever the caster was.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessWorld Of(object process)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>process</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Pause_" data-uid="FarEmerald.PlayForge.ProcessWorld.Pause*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Pause_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.Pause(System.Int32,System.Boolean)">
+  Pause(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Alias for Wait - pauses the process.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Pause(int cacheIndex, bool cascade = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_ProcessCountForGAS_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessCountForGAS*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_ProcessCountForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessCountForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  ProcessCountForGAS(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many processes the GAS owns here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ProcessCountForGAS(IGameplayAbilitySystem gas)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_ProcessIdsForGAS_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessIdsForGAS*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_ProcessIdsForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessIdsForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  ProcessIdsForGAS(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The cache indices of the processes the GAS owns here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;int&gt; ProcessIdsForGAS(IGameplayAbilitySystem gas)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_ProcessReparented_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessReparented*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_ProcessReparented_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessReparented(FarEmerald.PlayForge.ProcessRelay)">
+  ProcessReparented(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A Mono process's transform has a new parent, so the hierarchy files it again under its new ancestors. It
+heard only where the process registered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessReparented(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_ProcessWillChangeState_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessWillChangeState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_ProcessWillChangeState_FarEmerald_PlayForge_ProcessControlBlock_FarEmerald_PlayForge_EProcessState_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessWillChangeState(FarEmerald.PlayForge.ProcessControlBlock,FarEmerald.PlayForge.EProcessState)">
+  ProcessWillChangeState(ProcessControlBlock, EProcessState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessWillChangeState(ProcessControlBlock pcb, EProcessState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pcb</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+    <dt><code>state</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_ProcessesForGAS_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessesForGAS*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_ProcessesForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessWorld.ProcessesForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  ProcessesForGAS(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The relays of the processes the GAS owns here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ProcessRelay&gt; ProcessesForGAS(IGameplayAbilitySystem gas)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Run_" data-uid="FarEmerald.PlayForge.ProcessWorld.Run*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Run_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.Run(System.Int32,System.Boolean)">
+  Run(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Runs the process. If cascading is enabled, also runs children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Run(int cacheIndex, bool cascade = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_SetControlState_" data-uid="FarEmerald.PlayForge.ProcessWorld.SetControlState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_SetControlState_FarEmerald_PlayForge_EProcessControlState_" data-uid="FarEmerald.PlayForge.ProcessWorld.SetControlState(FarEmerald.PlayForge.EProcessControlState)">
+  SetControlState(EProcessControlState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetControlState(EProcessControlState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_StateIs_" data-uid="FarEmerald.PlayForge.ProcessWorld.StateIs*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_StateIs_System_Int32_FarEmerald_PlayForge_EProcessState_" data-uid="FarEmerald.PlayForge.ProcessWorld.StateIs(System.Int32,FarEmerald.PlayForge.EProcessState)">
+  StateIs(int, EProcessState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StateIs(int cacheIndex, EProcessState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>state</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Step_" data-uid="FarEmerald.PlayForge.ProcessWorld.Step*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Step" data-uid="FarEmerald.PlayForge.ProcessWorld.Step">
+  Step()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps every process the world holds once, as a frame does: Update, then LateUpdate. A world of its own steps by
+Unity's frame time; a scene's, by the clock read now, as its ProcessControl steps it from Unity's loop.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Step()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Step_" data-uid="FarEmerald.PlayForge.ProcessWorld.Step*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Step_System_Single_" data-uid="FarEmerald.PlayForge.ProcessWorld.Step(System.Single)">
+  Step(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps a world of its own by a time its owner gives: its clock reads that time, its tick goes on, so what waits on
+it goes on, and every process steps once, Update and then LateUpdate. A loop of steps runs the world through its
+time within one frame, as a headless run does; its waits were Unity's next frame. A scene's world
+steps with Unity's loop, so this steps it once by the clock read now.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Step(float deltaTime)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deltaTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_StepFixed_" data-uid="FarEmerald.PlayForge.ProcessWorld.StepFixed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_StepFixed" data-uid="FarEmerald.PlayForge.ProcessWorld.StepFixed">
+  StepFixed()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps the processes that step at the fixed rate, as a physics step does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StepFixed()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_StopWatchingProcess_" data-uid="FarEmerald.PlayForge.ProcessWorld.StopWatchingProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_StopWatchingProcess_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessWorld.StopWatchingProcess(FarEmerald.PlayForge.ProcessRelay)">
+  StopWatchingProcess(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopWatchingProcess(ProcessRelay toWatch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>toWatch</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_StopWatchingProcess_" data-uid="FarEmerald.PlayForge.ProcessWorld.StopWatchingProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_StopWatchingProcess_FarEmerald_PlayForge_ProcessRelay_System_Object_" data-uid="FarEmerald.PlayForge.ProcessWorld.StopWatchingProcess(FarEmerald.PlayForge.ProcessRelay,System.Object)">
+  StopWatchingProcess(ProcessRelay, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopWatchingProcess(ProcessRelay toWatch, object caller)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>toWatch</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>caller</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Terminate_" data-uid="FarEmerald.PlayForge.ProcessWorld.Terminate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Terminate_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.Terminate(System.Int32,System.Boolean)">
+  Terminate(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Terminates the process. Always cascades to children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Terminate(int cacheIndex, bool cascade = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TerminateAll_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TerminateAll" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAll">
+  TerminateAll()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TerminateAll()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TerminateAllForGAS_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAllForGAS*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TerminateAllForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAllForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem,System.Boolean)">
+  TerminateAllForGAS(IGameplayAbilitySystem, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Terminates every process the GAS owns here, at once when <code class="paramref">immediate</code> is set. Returns how many
+were told to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TerminateAllForGAS(IGameplayAbilitySystem gas, bool immediate = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>immediate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TerminateAllImmediately_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAllImmediately*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TerminateAllImmediately" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateAllImmediately">
+  TerminateAllImmediately()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TerminateAllImmediately()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TerminateImmediate_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateImmediate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TerminateImmediate_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.TerminateImmediate(System.Int32,System.Boolean)">
+  TerminateImmediate(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TerminateImmediate(int cacheIndex, bool cascade = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TryGetGroup_" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetGroup*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TryGetGroup_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_GroupProcess__" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetGroup(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.GroupProcess@)">
+  TryGetGroup(Tag, out GroupProcess)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a group of the tag is registered here, and the group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetGroup(Tag groupTag, out GroupProcess group)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>groupTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>group</code> <a class="xref" href="FarEmerald.PlayForge.GroupProcess.html">GroupProcess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TryGetPCB_" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetPCB*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TryGetPCB_System_Int32_FarEmerald_PlayForge_ProcessControlBlock__" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetPCB(System.Int32,FarEmerald.PlayForge.ProcessControlBlock@)">
+  TryGetPCB(int, out ProcessControlBlock)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ProcessControlBlock for direct access (use cautiously)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetPCB(int cacheIndex, out ProcessControlBlock pcb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pcb</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_TryGetQueuedState_" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetQueuedState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_TryGetQueuedState_System_Int32_FarEmerald_PlayForge_EProcessState__" data-uid="FarEmerald.PlayForge.ProcessWorld.TryGetQueuedState(System.Int32,FarEmerald.PlayForge.EProcessState@)">
+  TryGetQueuedState(int, out EProcessState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetQueuedState(int cacheIndex, out EProcessState queuedState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>queuedState</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Unpause_" data-uid="FarEmerald.PlayForge.ProcessWorld.Unpause*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Unpause_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.Unpause(System.Int32,System.Boolean)">
+  Unpause(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Alias for Run - unpauses/resumes the process.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unpause(int cacheIndex, bool cascade = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Unregister_" data-uid="FarEmerald.PlayForge.ProcessWorld.Unregister*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Unregister_FarEmerald_PlayForge_ProcessControlBlock_" data-uid="FarEmerald.PlayForge.ProcessWorld.Unregister(FarEmerald.PlayForge.ProcessControlBlock)">
+  Unregister(ProcessControlBlock)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unregister(ProcessControlBlock pcb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pcb</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_Wait_" data-uid="FarEmerald.PlayForge.ProcessWorld.Wait*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_Wait_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessWorld.Wait(System.Int32,System.Boolean)">
+  Wait(int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pauses/waits the process. If cascading is enabled, also pauses children. It takes effect at once:
+a process that can hold its run keeps it, and one that can't has it cancelled, to start again on
+resume. Refused for a process that's been told to terminate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Wait(int cacheIndex, bool cascade = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessWorld_WatchProcess_" data-uid="FarEmerald.PlayForge.ProcessWorld.WatchProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessWorld_WatchProcess_FarEmerald_PlayForge_ProcessRelay_System_Object_System_Action_FarEmerald_PlayForge_ProcessDataPacket__System_Action_FarEmerald_PlayForge_EProcessState_FarEmerald_PlayForge_EProcessState_FarEmerald_PlayForge_ProcessDataPacket__System_Action_FarEmerald_PlayForge_ProcessDataPacket__" data-uid="FarEmerald.PlayForge.ProcessWorld.WatchProcess(FarEmerald.PlayForge.ProcessRelay,System.Object,System.Action{FarEmerald.PlayForge.ProcessDataPacket},System.Action{FarEmerald.PlayForge.EProcessState,FarEmerald.PlayForge.EProcessState,FarEmerald.PlayForge.ProcessDataPacket},System.Action{FarEmerald.PlayForge.ProcessDataPacket})">
+  WatchProcess(ProcessRelay, object, Action&lt;ProcessDataPacket&gt;, Action&lt;EProcessState, EProcessState, ProcessDataPacket&gt;, Action&lt;ProcessDataPacket&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WatchProcess(ProcessRelay toWatch, object caller, Action&lt;ProcessDataPacket&gt; onStartWatching = null, Action&lt;EProcessState, EProcessState, ProcessDataPacket&gt; onStateChange = null, Action&lt;ProcessDataPacket&gt; onUnregister = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>toWatch</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>caller</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>onStartWatching</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onStateChange</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a>, <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a>, <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onUnregister</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

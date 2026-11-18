@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Gameplay Effects | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Gameplay Effects | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects">
+<h1 id="gameplay-effects">Gameplay Effects</h1>
+
+<p>A <strong>Gameplay Effect</strong> asset describes a change to an entity: damage, a heal, a timed buff, a poison, a cost or a
+cooldown. An entity is anything that runs a gameplay ability system (GAS), such as the player or an enemy. Abilities
+and items apply effects to a target entity, and so can your code. The ability, item or entity that applies an effect
+is its <em>origin</em>. An effect can change attributes (numbers such as Health), grant tags, apply other effects and run
+workers.</p>
+<p>The duration's Policy decides how long an effect lives. An Instant effect makes its change once and is done. A
+Durational or Infinite effect goes on the target's effect <em>shelf</em>, its list of active effects, and stays until its time
+runs out or something removes it. The kind of change follows from that:</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Delivery</th>
+<th>The change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instant</td>
+<td>OnApply</td>
+<td>one permanent commit, such as &quot;take 30 damage&quot;</td>
+</tr>
+<tr>
+<td>Durational or Infinite, no ticks</td>
+<td>Continuous</td>
+<td>a modifier while the effect is active, reversed exactly when it ends</td>
+</tr>
+<tr>
+<td>Durational or Infinite, periodic ticks</td>
+<td>Periodic</td>
+<td>one permanent commit per tick, such as &quot;5 Health per second&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>A commit stays after the effect ends. A modifier doesn't. <a href="../effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a> has the full model.</p>
+<p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
+made from its Name: Fireball Damage gives <code>Effect.FireballDamage</code>. Each section below matches the inspector section of
+the same name.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the effect's display name.</li>
+<li><a href="leveling.html">Leveling</a>: An effect has no level of its own.</li>
+<li><a href="tags.html">Tags</a>: <strong>Granted Tags</strong> are applied to the target while the effect is active.</li>
+<li><a href="purging.html">Purging</a>: A project's <strong>Purge Levels</strong>, under Forge Project in Project Settings → PlayForge, rank its purges.</li>
+<li><a href="duration.html">Duration</a>: The fields show as the Policy uses them.</li>
+<li><a href="impact.html">Impact</a>: The impact is the change the effect makes to an attribute.</li>
+<li><a href="levels.html">Levels</a>: What the effect does, level by level.</li>
+<li><a href="cues.html">Cues</a>: What the effect shows and sounds, apart from what it changes, plays from its <strong>Cues</strong> component, from the Components list's <strong>+</strong>, a list for each of its moments: <strong>On Apply</strong> as it lands; <strong>On Reapply</strong> as an…</li>
+<li><a href="requirements.html">Requirements</a>: <strong>Chance to Apply</strong> comes first: how likely the effect is to land, from 0 to 1, which can scale by level.</li>
+<li><a href="components.html">Components</a>: An effect's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
+<li><a href="workers.html">Workers</a>: Effect workers react to this effect's own events.</li>
+<li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
+<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this effect, each with its type icon, such as an ability whose cost it is or an item that grants it.</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectChange.html">AbstractEffectChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectConfig-1.html">AbstractEffectConfig&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractPurgeFilter.html">AbstractPurgeFilter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStackingConfig.html">AbstractStackingConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStackingEffectContainer.html">AbstractStackingEffectContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AddContainedEffectChange.html">AddContainedEffectChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AddOverflowChange.html">AddOverflowChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AreaEffectComponent.html">AreaEffectComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html">AttributeImpactEntry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeTransfer.html">AttributeTransfer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html">AvoidRequireTagGroup</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html">AvoidRequireTagGroup.ValidationResult</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceChange.html">ChanceChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeImpactChange.html">ChangeImpactChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ConstantImpacter.html">ConstantImpacter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ContainedEffectPacket.html">ContainedEffectPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ContainedEffects.html">ContainedEffects</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ContainedEffects.Enumerator.html">ContainedEffects.Enumerator</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DurationChange.html">DurationChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAddBehaviour.html">EAddBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAffiliationPolicy.html">EAffiliationPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EApplyTickRemove.html">EApplyTickRemove</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTarget.html">EAttributeTarget</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTargetBinary.html">EAttributeTargetBinary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTargetExpanded.html">EAttributeTargetExpanded</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTargetLimited.html">EAttributeTargetLimited</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectCategory.html">EEffectCategory</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectDurationPolicy.html">EEffectDurationPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectInteractionPolicy.html">EEffectInteractionPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectReApplicationPolicy.html">EEffectReApplicationPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectRecipient.html">EEffectRecipient</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectStackPolicy.html">EEffectStackPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectChanges.html">EffectChanges</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectChanges.ImpactStage.html">EffectChanges.ImpactStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectChanges.Packet.html">EffectChanges.Packet</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectConditions.html">EffectConditions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectDurationRemaining.html">EffectDurationRemaining</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectModifier.html">EffectModifier</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectModifierEntry.html">EffectModifierEntry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectModifierRule.html">EffectModifierRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectModifiers.html">EffectModifiers</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectModifierSet.html">EffectModifierSet</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectPurge.html">EffectPurge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectTagRequirements.html">EffectTagRequirements</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EImpactDelivery.html">EImpactDelivery</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EMagnitudeOperation.html">EMagnitudeOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EModifierDirection.html">EModifierDirection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EMultiplyBehaviour.html">EMultiplyBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EPurgeRelation.html">EPurgeRelation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ERoundingOperation.html">ERoundingOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESpreadMoment.html">ESpreadMoment</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EStackBoundsOnMaxPolicy.html">EStackBoundsOnMaxPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ExceptTaggedPurgeFilter.html">ExceptTaggedPurgeFilter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgePurge.html">ForgePurge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectDefinition.html">GameplayEffectDefinition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectDuration.html">GameplayEffectDuration</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html">GameplayEffectImpact</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectTags.html">GameplayEffectTags</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayPipelineConfiguration.html">GameplayPipelineConfiguration</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GrantTagsChange.html">GrantTagsChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAffiliated.html">IAffiliated</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAttributeImpacter.html">IAttributeImpacter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ICarrierApplication.html">ICarrierApplication</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IHasTextures.html">IHasTextures</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html">ImpactData</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactDerivationContext.html">ImpactDerivationContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IndependentDurationsContainer.html">IndependentDurationsContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.InitializationOperation.html">InitializationOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelerEffectOrigin.html">LevelerEffectOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelerImpactDerivation.html">LevelerImpactDerivation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NonStackingEffectContainer.html">NonStackingEffectContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PurgeContext.html">PurgeContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PurgeLevels.html">PurgeLevels</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PurgeTier.html">PurgeTier</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RequirementTemplate.html">RequirementTemplate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerImpacter.html">ScalerImpacter</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SideChangeEffectComponent.html">SideChangeEffectComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SingleDurationEffectContainer.html">SingleDurationEffectContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SourceAttributeImpact.html">SourceAttributeImpact</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SourceEffectOrigin.html">SourceEffectOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SpreadEffectComponent.html">SpreadEffectComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StackAmountOperation.html">StackAmountOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StackBoundsConfig.html">StackBoundsConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StackQueueEffectContainer.html">StackQueueEffectContainer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StacksChange.html">StacksChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TrackedImpact.html">TrackedImpact</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TransferEffectComponent.html">TransferEffectComponent</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

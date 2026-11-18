@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Value Pipelines | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Value Pipelines | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.value-pipelines">
+<h1 id="value-pipelines">Value Pipelines</h1>
+
+<p>A <strong>Value Pipeline</strong> is an asset that takes a value as it lands, sends it through ordered stages, and gives what comes
+out. An effect's impact names one as its calculation, as an Unreal effect names its execution calculation: each
+hit of that impact goes through the pipeline's stages, so a project writes once how a hit's damage is worked out, and a
+new item that changes every hit is a stage, not an edit to each attack.</p>
+<p>It's generic: the value is any number an impact lands with, a blow, a heal, a drain. Create one from
+<strong>Create &gt; PlayForge &gt; Value Pipeline</strong>, or with <strong>New</strong> beside an impact's Pipeline field, which makes one named for
+the effect and uses it; once the field names one, <strong>Open</strong> shows it. A Crowd Control Rules or Effect Modifier
+field has the same two.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="not-a-scaler-asset.html">Not a Scaler asset</a>: A <strong>Scaler asset</strong> is a number worked out from its context: a level table, × an attribute, a condition.</li>
+<li><a href="when-it-runs.html">When it runs</a>: It runs for what an impact commits: an instant impact's hit, and each tick of a periodic one.</li>
+<li><a href="stages.html">Stages</a>: Each stage has a <strong>Label</strong>, the name a breakdown gives it, and <strong>Enabled</strong>, which lets the value pass it by.</li>
+<li><a href="a-typical-damage-pipeline.html">A typical damage pipeline</a>: <strong>Amplification</strong>: Multiply by the caster's Damage Amplification (a Bonus Share, read as 1 + x).</li>
+<li><a href="the-breakdown.html">The breakdown</a>: An effect's spec keeps its last run as a <strong>Breakdown</strong>: the value in, each stage's before and after with its note, and the value out.</li>
+<li><a href="trying-a-pipeline.html">Trying a pipeline</a>: A Value Pipeline's inspector has a <strong>Try</strong> section under its stages, which puts a value through them at each level of a range, as a Scaler asset's Try reads a scaler</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbsorbStage.html">AbsorbStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStopStage.html">AbstractStopStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractValueStage.html">AbstractValueStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AddStage.html">AddStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BlockStage.html">BlockStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceStage.html">ChanceStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ClampStage.html">ClampStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EStopImpacts.html">EStopImpacts</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EvadeStage.html">EvadeStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ExecuteStage.html">ExecuteStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MultiplyStage.html">MultiplyStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValueBreakdown.html">ValueBreakdown</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValuePipeline.html">ValuePipeline</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValueRun.html">ValueRun</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValueStep.html">ValueStep</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

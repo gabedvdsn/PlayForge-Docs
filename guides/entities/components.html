@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Components | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Components | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.entities.components">
+<h1 id="components">Components</h1>
+
+<p>An entity's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the entity <strong>Register</strong>, its systems set up; <strong>Death</strong>, whether it stays or ends, its context's
+<code>Killer</code> the one whose loss killed it, as its Died event names; <strong>Revive</strong>, for one that stays; and <strong>End</strong>. It's
+waited on as one of its abilities' activations winds up, <strong>WindUp</strong>, before the ability's cost and first stage, as a
+turn to face its target is. A kind that makes no sense twice is offered only while the entity holds none of it.</p>
+<p>A component of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityComponent.html"><code>AbstractEntityComponent</code></a> and overrides the hooks it needs, each a no-op
+otherwise. It's the entity's, shared by everything that holds it, so what it keeps for one entity it keeps through its
+context: <code>ctx.GetState&lt;T&gt;(this)</code>. Its context's <code>Identity</code> is the entity's settings, its Death among them.</p>
+<h2 id="services">Services</h2>
+<p>A service is a per-entity object an entity's components share, as the auras it runs, <a class="xref" href="../../api/FarEmerald.PlayForge.AuraSet.html"><code>AuraSet</code></a>, and the wait a Respawn
+counts down, <a class="xref" href="../../api/FarEmerald.PlayForge.RespawnTimer.html"><code>RespawnTimer</code></a>. One is made the first time it's asked for, <code>gas.GetService&lt;T&gt;()</code>, and found without
+making one, <code>gas.FindService&lt;T&gt;()</code>. The entity steps each by its own time each frame, <code>Step</code>, after its effects and
+before its turn and its barriers; tells each as it revives, <code>Revive</code>, before anything else of the revive; and ends each
+as it ends, <code>End</code>. A service of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityService.html"><code>AbstractEntityService</code></a> and overrides what it needs, as a heat
+meter that cools by the entity's time; a save keeps none.</p>
+<h2 id="auras">Auras</h2>
+<p>An <strong>Aura</strong> component holds an effect on those near the entity as long as it lives, as a captain's command aura
+(<a href="../effects/components.html#auras">Effects: Auras</a>). An entity that dies takes its auras' effects off, and one that stays and
+revives holds them again.</p>
+<h2 id="bounty">Bounty</h2>
+<p>A <strong>Bounty</strong> component gives the entity's killer an <strong>Effect</strong> as it dies, from the entity, so the effect reads its
+level, as gold or experience. With a <strong>Share Radius</strong>, read at its level, the killer's allies within it of the
+entity take the effect too, as an assist, measured along the ground unless <strong>Flat</strong> is off. A death no one dealt gives
+none. An entity holds as many as it gives.</p>
+<h2 id="turns-to-face">Turns To Face</h2>
+<p>A <strong>Turns To Face</strong> component turns the entity to face the target, or the point, of each of its abilities before the
+ability's first stage: at its <strong>Turn Speed</strong>, in degrees a second of its own time, a number that can read a turn rate
+attribute, 0 facing at once. The stage starts once it faces within the <strong>Start Angle</strong>, and the turn goes on to the
+<strong>Facing Angle</strong> after, even after the ability has ended, until another turn, its death or its game's word ends it.
+Where reaching the Start Angle takes longer than <strong>Max Wait</strong>, <strong>If Too Long</strong> says what happens: <strong>No Limit</strong>, the
+default, waits as long as it takes; <strong>Start Anyway</strong> starts the stage, the turn going on; <strong>Cancel</strong> cancels the
+activation. Its cost and cooldown are paid after the turn, so an interrupted turn pays nothing, and a turn taken over
+before the stage starts, by another order or its game's word, cancels the activation. An ability with nothing to face,
+or with the entity for its target, turns nothing; one a trigger sets off turns as any does, as a counterattack turns to
+its attacker; and one with a Turn To Face of its own turns its own way, or not at all
+(<a href="../abilities/components.html#turn-to-face">Abilities: Turn To Face</a>). An entity holds one at most.</p>
+<p>Code turns an entity through its hub: <code>gas.Face(target, degreesPerSecond, within)</code>, which follows the target as it
+moves, or <code>gas.Face(point, ...)</code>; <code>gas.StopTurning()</code>, as a move of the game's takes over; and <code>gas.AngleToFace</code>, how
+far it has yet to turn. A turn sets the entity's facing, flat: its object's rotation, or a runtime entity's. A game that
+turns its characters itself, by animation or a controller, puts an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeTurner.html"><code>IForgeTurner</code></a> on the entity's object, which takes
+each step of a turn in PlayForge's place. The Creator Lab's units stop a turn as they walk or stop.</p>
+<h2 id="respawn">Respawn</h2>
+<p>A <strong>Respawn</strong> component revives an entity that stays as it dies once its <strong>Delay</strong>, in seconds of its own time and read
+at its level, has passed, at its <strong>Home</strong>, where it stood as it registered, <strong>Where It Died</strong>, a <strong>Point</strong>, or a
+place of your own, as a checkpoint, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRespawnPlace.html"><code>AbstractRespawnPlace</code></a> that says <code>Where</code> from the
+entity's context and its home, as a hero comes back at its fountain. Its Death's On Revive effects land as it does, as any revive's do, and a revive
+before its time, as a buyback, ends the wait. The wait is the entity's <code>RespawnTimer</code>, a service: a HUD reads
+<code>gas.FindService&lt;RespawnTimer&gt;()</code>'s <code>Waiting</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.RespawnTimer.html#FarEmerald_PlayForge_RespawnTimer_TimeLeft"><code>TimeLeft</code></a>. An entity that ends as it dies has nothing to revive, which the Problems
+view says. A save keeps neither the entity's death nor its wait. An entity holds one at most.</p>
+<h2 id="cues">Cues</h2>
+<p>A <strong>Cues</strong> component plays what the entity shows and sounds at its moments, on it: <strong>On Spawn</strong> as it comes into the
+game, <strong>On Death</strong> as it dies, its killer behind the cue, and <strong>On Revive</strong> as it comes back. <strong>While Tagged</strong> lists
+lasting cues, each under a tag, that play for as long as the entity holds the tag, as stars over its head while
+it's Stunned: each step, a tag it has taken on begins its cues and one it has let go of ends them, and they end with
+the entity. Each list holds cues as an effect's does (<a href="../effects/cues.html">Effects: Cues</a>), a Cue Tag among them. A
+<strong>Cue Receiver</strong> component plays cue tags its own way for the entity, before the project's cue library. An entity
+holds one of each at most.</p>
+<hr>
+<p><a href="items.html">← Items</a> · <a href="index.html">Entities</a> · <a href="workers.html">Workers →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

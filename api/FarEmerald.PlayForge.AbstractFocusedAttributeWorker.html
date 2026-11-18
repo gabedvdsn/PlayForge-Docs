@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbstractFocusedAttributeWorker | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbstractFocusedAttributeWorker | PlayForge ">
+      
+      <meta name="description" content="Attribute worker focused on a specific target attribute with standard validation options. Most attribute workers should inherit from this class.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker" class="text-break">
+Class AbstractFocusedAttributeWorker  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Attribute worker focused on a specific target attribute with standard validation options.
+Most attribute workers should inherit from this class.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/workers/index.html">Workers</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public abstract class AbstractFocusedAttributeWorker : AbstractAttributeWorker</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></div>
+      <div><span class="xref">AbstractFocusedAttributeWorker</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractRelativeAttributeWorker.html">AbstractRelativeAttributeWorker</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.CantFallBelowAttributeWorker.html">CantFallBelowAttributeWorker</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ReturnDamageAttributeWorker.html">ReturnDamageAttributeWorker</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html#FarEmerald_PlayForge_AbstractAttributeWorker_Execution">AbstractAttributeWorker.Execution</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html#FarEmerald_PlayForge_AbstractAttributeWorker_Intercept_FarEmerald_PlayForge_WorkerContext_">AbstractAttributeWorker.Intercept(WorkerContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html#FarEmerald_PlayForge_AbstractAttributeWorker_DeferredIntercept_FarEmerald_PlayForge_WorkerContext_">AbstractAttributeWorker.DeferredIntercept(WorkerContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_AllowSelfModification" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.AllowSelfModification">
+  AllowSelfModification
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Include changes where the source and target are the same entity&quot;)]
+public bool AllowSelfModification</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_AnyContextTag" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.AnyContextTag">
+  AnyContextTag
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Accept changes from any context&quot;)]
+public bool AnyContextTag</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_AnyImpactType" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.AnyImpactType">
+  AnyImpactType
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Space(5)]
+[Tooltip(&quot;Accept changes from any impact type&quot;)]
+public bool AnyImpactType</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ContextMatchingPolicy" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ContextMatchingPolicy">
+  ContextMatchingPolicy
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAnyAllPolicy ContextMatchingPolicy</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAnyAllPolicy.html">EAnyAllPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ExclusivelyTargetModification" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ExclusivelyTargetModification">
+  ExclusivelyTargetModification
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Exclude changes that don&#39;t exactly match the modification type&quot;)]
+public bool ExclusivelyTargetModification</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ImpactTypes" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ImpactTypes">
+  ImpactTypes
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The impact types to accept (if not any)&quot;)]
+[ForgeTagContext(new string[] { &quot;Impact Type&quot; })]
+public List&lt;Tag&gt; ImpactTypes</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_SignPolicy" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.SignPolicy">
+  SignPolicy
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Space(5)]
+[Tooltip(&quot;The sign of the change to monitor&quot;)]
+public ESignPolicyExtended SignPolicy</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ESignPolicyExtended.html">ESignPolicyExtended</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_TargetAttribute" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.TargetAttribute">
+  TargetAttribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The attribute to monitor for changes&quot;)]
+public Attribute TargetAttribute</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_TargetModification" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.TargetModification">
+  TargetModification
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The type of modification to monitor (Current, Base, or both)&quot;)]
+public EAttributeTargetExpanded TargetModification</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTargetExpanded.html">EAttributeTargetExpanded</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_TimingConfig" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.TimingConfig">
+  TimingConfig
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;When this worker executes in the modification pipeline&quot;)]
+public AbstractAttributeWorker.EChangeEventTiming TimingConfig</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a>.<a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.EChangeEventTiming.html">EChangeEventTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ValidContextTags" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ValidContextTags">
+  ValidContextTags
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The context tags to accept (if not any)&quot;)]
+[ForgeTagContext(new string[] { &quot;Context Tag&quot; })]
+public List&lt;Tag&gt; ValidContextTags</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_Timing_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.Timing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_Timing" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.Timing">
+  Timing
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>When this worker runs in the modification pipeline.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override AbstractAttributeWorker.EChangeEventTiming Timing { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a>.<a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.EChangeEventTiming.html">EChangeEventTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_DeRegisterFromHandler_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.DeRegisterFromHandler*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_DeRegisterFromHandler_FarEmerald_PlayForge_AttributeChangeMomentHandler_FarEmerald_PlayForge_AttributeChangeMomentHandler_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.DeRegisterFromHandler(FarEmerald.PlayForge.AttributeChangeMomentHandler,FarEmerald.PlayForge.AttributeChangeMomentHandler)">
+  DeRegisterFromHandler(AttributeChangeMomentHandler, AttributeChangeMomentHandler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unregister this worker from the attribute change handlers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool DeRegisterFromHandler(AttributeChangeMomentHandler preChange, AttributeChangeMomentHandler postChange)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>preChange</code> <a class="xref" href="FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a></dt>
+    <dd></dd>
+    <dt><code>postChange</code> <a class="xref" href="FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_PreValidateWorkFor_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.PreValidateWorkFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_PreValidateWorkFor_FarEmerald_PlayForge_ChangeValue_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.PreValidateWorkFor(FarEmerald.PlayForge.ChangeValue)">
+  PreValidateWorkFor(ChangeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fast pre-validation using only the change data (no system access needed).
+Used for quick filtering before full validation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool PreValidateWorkFor(ChangeValue change)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>change</code> <a class="xref" href="FarEmerald.PlayForge.ChangeValue.html">ChangeValue</a></dt>
+    <dd><p>The change value being processed</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if this worker might apply to this change</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_RegisterWithHandler_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.RegisterWithHandler*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_RegisterWithHandler_FarEmerald_PlayForge_AttributeChangeMomentHandler_FarEmerald_PlayForge_AttributeChangeMomentHandler_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.RegisterWithHandler(FarEmerald.PlayForge.AttributeChangeMomentHandler,FarEmerald.PlayForge.AttributeChangeMomentHandler)">
+  RegisterWithHandler(AttributeChangeMomentHandler, AttributeChangeMomentHandler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Register this worker with the attribute change handlers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool RegisterWithHandler(AttributeChangeMomentHandler preChange, AttributeChangeMomentHandler postChange)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>preChange</code> <a class="xref" href="FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a></dt>
+    <dd></dd>
+    <dt><code>postChange</code> <a class="xref" href="FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ValidateWorkFor_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ValidateWorkFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractFocusedAttributeWorker_ValidateWorkFor_FarEmerald_PlayForge_WorkerContext_" data-uid="FarEmerald.PlayForge.AbstractFocusedAttributeWorker.ValidateWorkFor(FarEmerald.PlayForge.WorkerContext)">
+  ValidateWorkFor(WorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Full validation with complete context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ValidateWorkFor(WorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.WorkerContext.html">WorkerContext</a></dt>
+    <dd><p>The worker context with system access</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if this worker should execute for this change</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

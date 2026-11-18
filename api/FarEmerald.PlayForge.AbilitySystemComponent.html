@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbilitySystemComponent | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbilitySystemComponent | PlayForge ">
+      
+      <meta name="description" content="Manages abilities for an entity. Integrates with the worker system for impact processing.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AbilitySystemComponent">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AbilitySystemComponent" data-uid="FarEmerald.PlayForge.AbilitySystemComponent" class="text-break">
+Class AbilitySystemComponent  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Manages abilities for an entity.
+Integrates with the worker system for impact processing.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/activation.html">Abilities: Activation</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AbilitySystemComponent : DeferredContextSystem</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html">DeferredContextSystem</a></div>
+      <div><span class="xref">AbilitySystemComponent</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html#FarEmerald_PlayForge_DeferredContextSystem__actionQueue">DeferredContextSystem._actionQueue</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html#FarEmerald_PlayForge_DeferredContextSystem__frameSummary">DeferredContextSystem._frameSummary</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent__ctor_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent__ctor_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.#ctor(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  AbilitySystemComponent(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySystemComponent(IGameplayAbilitySystem self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Callbacks" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Callbacks">
+  Callbacks
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySystemCallbacks Callbacks</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemCallbacks.html">AbilitySystemCallbacks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ImpactWorkerCache" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ImpactWorkerCache">
+  ImpactWorkerCache
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ImpactWorkerCache ImpactWorkerCache</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactWorkerCache.html">ImpactWorkerCache</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Self" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Self">
+  Self
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IGameplayAbilitySystem Self</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_AbilityCount_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.AbilityCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_AbilityCount" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.AbilityCount">
+  AbilityCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AbilityCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_BufferedCount_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.BufferedCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_BufferedCount" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.BufferedCount">
+  BufferedCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many requests wait in the input buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BufferedCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Containers_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Containers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Containers" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Containers">
+  Containers
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The granted abilities, without copying them into a list as <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_GetAbilityContainers">GetAbilityContainers()</a> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;int, AbilitySpecContainer&gt;.ValueCollection Containers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a>&gt;.<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2.valuecollection">ValueCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_DefaultActivationPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.DefaultActivationPolicy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_DefaultActivationPolicy" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.DefaultActivationPolicy">
+  DefaultActivationPolicy
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAbilityActivationPolicy DefaultActivationPolicy { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Enabled_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Enabled*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Enabled" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Enabled">
+  Enabled
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Enabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaiming_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaiming*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaiming" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaiming">
+  IsClaiming
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if any ability is currently claiming (blocking reactivation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsClaiming { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingCritical_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingCritical*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingCritical" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingCritical">
+  IsClaimingCritical
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if an ability with a critical section holds its claim, under any policy. A critical ability asked for
+meanwhile waits it out, whatever policy either was asked under.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsClaimingCritical { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecuting_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecuting*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecuting" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecuting">
+  IsExecuting
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if any ability is currently executing (in ActiveCache).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExecuting { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingCritical_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingCritical*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingCritical" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingCritical">
+  IsExecutingCritical
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExecutingCritical { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Locked_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Locked*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Locked" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Locked">
+  Locked
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Locked { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TargetingYields_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TargetingYields*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TargetingYields" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TargetingYields">
+  TargetingYields
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an ability of the entity's still choosing its target gives way as another of its abilities activates,
+for each ability whose While Targeting leaves it to its entity: the identity's Targeting Yields.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TargetingYields { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ActivateImmediateAbilities_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ActivateImmediateAbilities*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ActivateImmediateAbilities" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ActivateImmediateAbilities">
+  ActivateImmediateAbilities()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tries each Starting Ability set to Activate Immediately. The hub calls this once its attributes, items and
+tags are in place. Tried as the abilities were given, before any attribute existed, the Cost rule refused
+every one with a cost.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActivateImmediateAbilities()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_CanActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CanActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_CanActivateAbility_System_Int32_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CanActivateAbility(System.Int32)">
+  CanActivateAbility(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanActivateAbility(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_CanGiveAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CanGiveAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_CanGiveAbility_FarEmerald_PlayForge_Ability_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CanGiveAbility(FarEmerald.PlayForge.Ability)">
+  CanGiveAbility(Ability)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanGiveAbility(Ability ability)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ClaimActive_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ClaimActive*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ClaimActive_FarEmerald_PlayForge_AbilitySpecContainer_FarEmerald_PlayForge_AbilityDataPacket_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ClaimActive(FarEmerald.PlayForge.AbilitySpecContainer,FarEmerald.PlayForge.AbilityDataPacket)">
+  ClaimActive(AbilitySpecContainer, AbilityDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ClaimActive(AbilitySpecContainer container, AbilityDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_CreateActivationRequest_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CreateActivationRequest*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_CreateActivationRequest_System_Int32_FarEmerald_PlayForge_ProcessDataPacket_System_Nullable_FarEmerald_PlayForge_EAbilityActivationPolicyExtended__System_Single_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.CreateActivationRequest(System.Int32,FarEmerald.PlayForge.ProcessDataPacket,System.Nullable{FarEmerald.PlayForge.EAbilityActivationPolicyExtended},System.Single)">
+  CreateActivationRequest(int, ProcessDataPacket, EAbilityActivationPolicyExtended?, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySystemComponent.AbilityActivationRequest CreateActivationRequest(int index, ProcessDataPacket _data = null, EAbilityActivationPolicyExtended? policy = null, float bufferWindow = -1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>_data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>?</dt>
+    <dd></dd>
+    <dt><code>bufferWindow</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>How long the request may wait in the input buffer, in seconds of the caster's time,
+or below 0 for its ability's Buffer Window.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>.<a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilityActivationRequest</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_EndActivation_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.EndActivation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_EndActivation_FarEmerald_PlayForge_AbilitySpecContainer_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_EAbilityEnd_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.EndActivation(FarEmerald.PlayForge.AbilitySpecContainer,FarEmerald.PlayForge.AbilityDataPacket,FarEmerald.PlayForge.EAbilityEnd)">
+  EndActivation(AbilitySpecContainer, AbilityDataPacket, EAbilityEnd)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when the ability has fully completed (all stages done, handle cleaned up).
+Removes the ability from ActiveCache.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndActivation(AbilitySpecContainer container, AbilityDataPacket data, EAbilityEnd how = EAbilityEnd.Done)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>how</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityEnd.html">EAbilityEnd</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_GetAbilityContainers_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.GetAbilityContainers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_GetAbilityContainers" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.GetAbilityContainers">
+  GetAbilityContainers()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;AbilitySpecContainer&gt; GetAbilityContainers()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_GiveAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.GiveAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_GiveAbility_FarEmerald_PlayForge_Ability_System_Int32_System_Int32__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.GiveAbility(FarEmerald.PlayForge.Ability,System.Int32,System.Int32@)">
+  GiveAbility(Ability, int, out int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GiveAbility(Ability ability, int level, out int abilityIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>abilityIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_HasAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.HasAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_HasAbility_FarEmerald_PlayForge_Ability_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.HasAbility(FarEmerald.PlayForge.Ability)">
+  HasAbility(Ability)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAbility(Ability ability)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Initialize_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Initialize_System_Collections_Generic_List_FarEmerald_PlayForge_Ability__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Initialize(System.Collections.Generic.List{FarEmerald.PlayForge.Ability})">
+  Initialize(List&lt;Ability&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(List&lt;Ability&gt; startingAbilities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startingAbilities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.ISequenceInjection)">
+  Inject(Ability, ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Inject(Ability ability, ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_FarEmerald_PlayForge_EAbilityActivationPolicy_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject(FarEmerald.PlayForge.EAbilityActivationPolicy,FarEmerald.PlayForge.ISequenceInjection)">
+  Inject(EAbilityActivationPolicy, ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Inject(EAbilityActivationPolicy policy, ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Inject_System_Int32_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Inject(System.Int32,FarEmerald.PlayForge.ISequenceInjection)">
+  Inject(int, ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Inject(int index, ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_InjectAll_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.InjectAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_InjectAll_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.InjectAll(FarEmerald.PlayForge.ISequenceInjection)">
+  InjectAll(ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InjectAll(ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsBuffered_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsBuffered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsBuffered_System_Int32_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsBuffered(System.Int32)">
+  IsBuffered(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a request for the ability in this slot waits in the input buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsBuffered(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingPolicy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingPolicy_FarEmerald_PlayForge_EAbilityActivationPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingPolicy(FarEmerald.PlayForge.EAbilityActivationPolicy)">
+  IsClaimingPolicy(EAbilityActivationPolicy)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if any ability in this policy is currently claiming (blocking reactivation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsClaimingPolicy(EAbilityActivationPolicy policy)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingPolicyCritical_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingPolicyCritical*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsClaimingPolicyCritical_FarEmerald_PlayForge_EAbilityActivationPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsClaimingPolicyCritical(FarEmerald.PlayForge.EAbilityActivationPolicy)">
+  IsClaimingPolicyCritical(EAbilityActivationPolicy)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if any claiming ability in this policy is critical.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsClaimingPolicyCritical(EAbilityActivationPolicy policy)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsCritical_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsCritical*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsCritical_System_Int32_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsCritical(System.Int32)">
+  IsCritical(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the ability in the slot has a critical section: a stage that holds a critical task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCritical(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingPolicy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingPolicy_FarEmerald_PlayForge_EAbilityActivationPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingPolicy(FarEmerald.PlayForge.EAbilityActivationPolicy)">
+  IsExecutingPolicy(EAbilityActivationPolicy)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if any ability in this policy is currently executing (in ActiveCache).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExecutingPolicy(EAbilityActivationPolicy policy)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingPolicyCritical_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingPolicyCritical*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_IsExecutingPolicyCritical_FarEmerald_PlayForge_EAbilityActivationPolicy_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.IsExecutingPolicyCritical(FarEmerald.PlayForge.EAbilityActivationPolicy)">
+  IsExecutingPolicyCritical(EAbilityActivationPolicy)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsExecutingPolicyCritical(EAbilityActivationPolicy policy)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ListensFor_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ListensFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ListensFor_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ListensFor(FarEmerald.PlayForge.Tag)">
+  ListensFor(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an ability it knows is set off by a gameplay event under <code class="paramref">eventTag</code>: the core sends its
+own events only where one is, so an entity that listens for none pays nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ListensFor(Tag eventTag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ProvideFrameImpactDealt_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ProvideFrameImpactDealt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ProvideFrameImpactDealt_FarEmerald_PlayForge_ImpactData_System_Boolean_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ProvideFrameImpactDealt(FarEmerald.PlayForge.ImpactData,System.Boolean)">
+  ProvideFrameImpactDealt(ImpactData, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Process impact data dealt by this GAS through source-side workers, record it
+to the source's frame summary, and fire source-side GAS callbacks.
+Inline workers execute immediately, deferred workers queue actions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideFrameImpactDealt(ImpactData impactData, bool runWorkers = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impactData</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+    <dt><code>runWorkers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ProvideWorker_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ProvideWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ProvideWorker_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ProvideWorker(FarEmerald.PlayForge.AbstractImpactWorker)">
+  ProvideWorker(AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Register an impact worker.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideWorker(AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_ReleaseClaim_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ReleaseClaim*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_ReleaseClaim_FarEmerald_PlayForge_AbilitySpecContainer_FarEmerald_PlayForge_AbilityDataPacket_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.ReleaseClaim(FarEmerald.PlayForge.AbilitySpecContainer,FarEmerald.PlayForge.AbilityDataPacket)">
+  ReleaseClaim(AbilitySpecContainer, AbilityDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called once the ability has completed all critical sections. Once released, the ability system will re-enable ability activation.
+The ability remains in ActiveCache (still executing) — only the reactivation gate opens.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseClaim(AbilitySpecContainer container, AbilityDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveAbility_FarEmerald_PlayForge_Ability_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveAbility(FarEmerald.PlayForge.Ability)">
+  RemoveAbility(Ability)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveAbility(Ability ability)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveAbilityAt_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveAbilityAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveAbilityAt_System_Int32_FarEmerald_PlayForge_Ability_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveAbilityAt(System.Int32,FarEmerald.PlayForge.Ability)">
+  RemoveAbilityAt(int, Ability)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the ability in one slot, if the slot holds <code class="paramref">expected</code> when one is given. Where an
+entity holds the same ability more than once, this takes the copy meant, as an item taking back its grant
+does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveAbilityAt(int index, Ability expected = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>expected</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveWorker_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_RemoveWorker_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.RemoveWorker(FarEmerald.PlayForge.AbstractImpactWorker)">
+  RemoveWorker(AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unregister an impact worker.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveWorker(AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_SendGameplayEvent_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.SendGameplayEvent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_SendGameplayEvent_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.SendGameplayEvent(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ProcessDataPacket)">
+  SendGameplayEvent(Tag, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a gameplay event to the entity: each ability it knows whose trigger is a gameplay event under the event's
+tag, or a tag above it, activates, in slot order, with the event's data, its target among it. The callbacks
+hear the event. How many activated. An ability activated only when code asked for it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SendGameplayEvent(Tag eventTag, ProcessDataPacket data = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_SetDeferredContext_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.SetDeferredContext*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_SetDeferredContext_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ActionQueue_FarEmerald_PlayForge_FrameSummary_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.SetDeferredContext(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ActionQueue,FarEmerald.PlayForge.FrameSummary)">
+  SetDeferredContext(IGameplayAbilitySystem, ActionQueue, FrameSummary)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the deferred execution context.
+Must be called after PreInitialize.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetDeferredContext(IGameplayAbilitySystem self, ActionQueue actionQueue, FrameSummary frameSummary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>actionQueue</code> <a class="xref" href="FarEmerald.PlayForge.ActionQueue.html">ActionQueue</a></dt>
+    <dd></dd>
+    <dt><code>frameSummary</code> <a class="xref" href="FarEmerald.PlayForge.FrameSummary.html">FrameSummary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Setup_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Setup*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Setup_FarEmerald_PlayForge_EAbilityActivationPolicy_System_Boolean_FarEmerald_PlayForge_ScalableInt_System_Boolean_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Setup(FarEmerald.PlayForge.EAbilityActivationPolicy,System.Boolean,FarEmerald.PlayForge.ScalableInt,System.Boolean)">
+  Setup(EAbilityActivationPolicy, bool, ScalableInt, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Setup(EAbilityActivationPolicy activationPolicy, bool allowDuplicates, ScalableInt maxAbilitiesOperation, bool targetingYields = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>activationPolicy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
+    <dd></dd>
+    <dt><code>allowDuplicates</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>maxAbilitiesOperation</code> <a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+    <dt><code>targetingYields</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_ActivationRefusal__FarEmerald_PlayForge_ProcessDataPacket_System_Nullable_FarEmerald_PlayForge_EAbilityActivationPolicyExtended__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.ActivationRefusal@,FarEmerald.PlayForge.ProcessDataPacket,System.Nullable{FarEmerald.PlayForge.EAbilityActivationPolicyExtended})">
+  TryActivateAbility(Ability, out ActivationRefusal, ProcessDataPacket, EAbilityActivationPolicyExtended?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the ability by its asset, in the first slot that holds it, and says why where it's refused. An
+ability activated only by its slot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(Ability ability, out ActivationRefusal refusal, ProcessDataPacket data = null, EAbilityActivationPolicyExtended? policy = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>refusal</code> <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_ProcessDataPacket_System_Nullable_FarEmerald_PlayForge_EAbilityActivationPolicyExtended__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.ProcessDataPacket,System.Nullable{FarEmerald.PlayForge.EAbilityActivationPolicyExtended})">
+  TryActivateAbility(Ability, ProcessDataPacket, EAbilityActivationPolicyExtended?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the ability by its asset, in the first slot that holds it, and says why where it's refused. An
+ability activated only by its slot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(Ability ability, ProcessDataPacket data = null, EAbilityActivationPolicyExtended? policy = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest)">
+  TryActivateAbility(AbilityActivationRequest)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the ability the request names, if it may run. The ability runs inside this call until one of its
+tasks waits: its claim, its targeting and its first stage. So an instant ability has ended, and its callbacks
+have fired, by the time this returns. An ability asked for again while its own activation call
+still runs, from its own callbacks or from another ability's that it started, starts next frame instead, so
+a loop of instant activations goes round once a frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(AbilitySystemComponent.AbilityActivationRequest req)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>req</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>.<a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilityActivationRequest</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd><p>What came of it: it started, waits in the input buffer, starts in the next frame, or was refused, and why. It
+reads as true where it wasn't refused.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_FarEmerald_PlayForge_ActivationRefusal__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest,FarEmerald.PlayForge.ActivationRefusal@)">
+  TryActivateAbility(AbilityActivationRequest, out ActivationRefusal)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the ability the request names, as <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_">TryActivateAbility(AbilityActivationRequest)</a> does, and
+says why where it's refused, as the callbacks' <a class="xref" href="FarEmerald.PlayForge.AbilitySystemCallbacks.html#FarEmerald_PlayForge_AbilitySystemCallbacks_OnAbilityRefused">OnAbilityRefused</a> tells it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(AbilitySystemComponent.AbilityActivationRequest req, out ActivationRefusal refusal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>req</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>.<a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilityActivationRequest</a></dt>
+    <dd></dd>
+    <dt><code>refusal</code> <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ActivationRefusal__FarEmerald_PlayForge_ProcessDataPacket_System_Nullable_FarEmerald_PlayForge_EAbilityActivationPolicyExtended__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ActivationRefusal@,FarEmerald.PlayForge.ProcessDataPacket,System.Nullable{FarEmerald.PlayForge.EAbilityActivationPolicyExtended})">
+  TryActivateAbility(Tag, out ActivationRefusal, ProcessDataPacket, EAbilityActivationPolicyExtended?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the first ability, by slot, whose asset tag or a context tag is <code class="paramref">tag</code> or under it, and
+says why where none activates: the first one's refusal, or not known where none carries the tag. One call
+activates one ability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(Tag tag, out ActivationRefusal refusal, ProcessDataPacket data = null, EAbilityActivationPolicyExtended? policy = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>refusal</code> <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ProcessDataPacket_System_Nullable_FarEmerald_PlayForge_EAbilityActivationPolicyExtended__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryActivateAbility(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ProcessDataPacket,System.Nullable{FarEmerald.PlayForge.EAbilityActivationPolicyExtended})">
+  TryActivateAbility(Tag, ProcessDataPacket, EAbilityActivationPolicyExtended?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Activates the first ability, by slot, whose asset tag or a context tag is <code class="paramref">tag</code> or under it, and
+says why where none activates: the first one's refusal, or not known where none carries the tag. One call
+activates one ability.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ActivationResult TryActivateAbility(Tag tag, ProcessDataPacket data = null, EAbilityActivationPolicyExtended? policy = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ActivationResult.html">ActivationResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryGetAbilityContainer_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryGetAbilityContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryGetAbilityContainer_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_AbilitySpecContainer__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryGetAbilityContainer(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.AbilitySpecContainer@)">
+  TryGetAbilityContainer(Ability, out AbilitySpecContainer)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetAbilityContainer(Ability ability, out AbilitySpecContainer container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_TryGetAbilityContainer_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryGetAbilityContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_TryGetAbilityContainer_System_Int32_FarEmerald_PlayForge_AbilitySpecContainer__" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.TryGetAbilityContainer(System.Int32,FarEmerald.PlayForge.AbilitySpecContainer@)">
+  TryGetAbilityContainer(int, out AbilitySpecContainer)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetAbilityContainer(int index, out AbilitySpecContainer container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilitySystemComponent_Yields_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Yields*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilitySystemComponent_Yields_FarEmerald_PlayForge_Ability_" data-uid="FarEmerald.PlayForge.AbilitySystemComponent.Yields(FarEmerald.PlayForge.Ability)">
+  Yields(Ability)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the ability, while it chooses its target, gives way to another's activation: its While Targeting, or
+its entity's <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_TargetingYields">TargetingYields</a> where it leaves it to its entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Yields(Ability ability)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

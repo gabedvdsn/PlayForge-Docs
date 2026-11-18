@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbstractForgeObjectDrawer&lt;T&gt; | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbstractForgeObjectDrawer&lt;T&gt; | PlayForge ">
+      
+      <meta name="description" content="A reference to a PlayForge asset, or to a Value Pipeline, Crowd Control Rules or Effect Modifier: Unity&#39;s object field, with its type&#39;s icon, and beside it a plain button, Open while it names an asset, which shows the asset in a window of its own, or New while it&#39;s empty, which asks for a new one&#39;s name in The Forge&#39;s New dialog, makes it where The Forge makes its type and uses it. A drawer adds its own actions to the field&#39;s right-click menu. It was a button that opened a dropdown list of its own, with hover colors and Clear and Open icon buttons set in C#.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1" class="text-break">
+Class AbstractForgeObjectDrawer&lt;T&gt;  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A reference to a PlayForge asset, or to a Value Pipeline, Crowd Control Rules or Effect Modifier:
+Unity's object field, with its type's icon,
+and beside it a plain button, Open while it names an asset, which shows the asset in a window of its own, or New
+while it's empty, which asks for a new one's name in The Forge's New dialog, makes it where The Forge makes its type
+and uses it. A drawer adds its own actions to the
+field's right-click menu. It was a button that opened a dropdown list of its own, with hover colors and Clear and
+Open icon buttons set in C#.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class AbstractForgeObjectDrawer&lt;T&gt; : PropertyDrawer where T : ScriptableObject</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/GUIDrawer.html">GUIDrawer</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer.html">PropertyDrawer</a></div>
+      <div><span class="xref">AbstractForgeObjectDrawer&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AbilityDrawer.html">AbilityDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AttributeDrawer.html">AttributeDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AttributeSetDrawer.html">AttributeSetDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.CrowdControlRulesDrawer.html">CrowdControlRulesDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.EffectModifierDrawer.html">EffectModifierDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.EntityDrawer.html">EntityDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.GameplayEffectDrawer.html">GameplayEffectDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.ItemDrawer.html">ItemDrawer</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.ValuePipelineDrawer.html">ValuePipelineDrawer</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer.OnGUI.html">PropertyDrawer.OnGUI(Rect, SerializedProperty, GUIContent)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer.GetPropertyHeight.html">PropertyDrawer.GetPropertyHeight(SerializedProperty, GUIContent)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer.CanCacheInspectorGUI.html">PropertyDrawer.CanCacheInspectorGUI(SerializedProperty)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer-attribute.html">PropertyDrawer.attribute</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer-fieldInfo.html">PropertyDrawer.fieldInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/PropertyDrawer-preferredLabel.html">PropertyDrawer.preferredLabel</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_AddMenuItems_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.AddMenuItems*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_AddMenuItems_UnityEngine_UIElements_DropdownMenu_UnityEditor_UIElements_ObjectField_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.AddMenuItems(UnityEngine.UIElements.DropdownMenu,UnityEditor.UIElements.ObjectField,UnityEngine.Object)">
+  AddMenuItems(DropdownMenu, ObjectField, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a drawer's own actions to the field's right-click menu. None by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void AddMenuItems(DropdownMenu menu, ObjectField field, Object host)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>menu</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.DropdownMenu.html">DropdownMenu</a></dt>
+    <dd></dd>
+    <dt><code>field</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.ObjectField.html">ObjectField</a></dt>
+    <dd></dd>
+    <dt><code>host</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_CreatePropertyGUI_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.CreatePropertyGUI*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_CreatePropertyGUI_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.CreatePropertyGUI(UnityEditor.SerializedProperty)">
+  CreatePropertyGUI(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override VisualElement CreatePropertyGUI(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_GetFieldAttributes_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.GetFieldAttributes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_GetFieldAttributes__1" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.GetFieldAttributes``1">
+  GetFieldAttributes&lt;TAttr&gt;()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The attributes on the field the drawer draws, such as an effect field's template.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IEnumerable&lt;TAttr&gt; GetFieldAttributes&lt;TAttr&gt;() where TAttr : Attribute</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TAttr&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TAttr</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_LabelOf_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.LabelOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_LabelOf_UnityEditor_SerializedProperty_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.LabelOf(UnityEditor.SerializedProperty)">
+  LabelOf(SerializedProperty)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The label the field shows: none in a list, whose rows need none, else the property's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string LabelOf(SerializedProperty property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SerializedProperty.html">SerializedProperty</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_Made_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.Made*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_Made__0_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.Made(`0,UnityEngine.Object)">
+  Made(T, Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called as New's asset is made, before the field takes it, as an effect is linked. Nothing by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Made(T asset, Object host)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>host</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_NameOf_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.NameOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_NameOf_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.NameOf(UnityEngine.Object)">
+  NameOf(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An asset's PlayForge name, or its file name when it has none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string NameOf(Object asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_New_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.New*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_New_UnityEngine_Object_System_String_System_Action__0__" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.New(UnityEngine.Object,System.String,System.Action{`0})">
+  New(Object, string, Action&lt;T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asks for the name of the asset New uses, starting as one for the asset that holds the field and the field, as in
+&quot;Goblin Attribute Set&quot;, in The Forge's New dialog, where its folder can change too; then makes it, as The Forge
+does, and hands it to <code class="paramref">made</code>. It made the asset at once, by that name. One Undo takes
+back the field's new value; the asset stays.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void New(Object host, string name, Action&lt;T&gt; made)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>host</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>made</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_Open_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.Open*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_AbstractForgeObjectDrawer_1_Open__0_" data-uid="FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer`1.Open(`0)">
+  Open(T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows an asset in a window of its own, so the asset that holds the field stays in the Inspector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Open(T asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

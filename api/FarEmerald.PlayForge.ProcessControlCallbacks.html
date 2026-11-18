@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ProcessControlCallbacks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ProcessControlCallbacks | PlayForge ">
+      
+      <meta name="description" content="Callbacks fired by  for high-level observers (debuggers, recorders, GAS-aware observers, etc.). These are in addition to the per-process ProcessWatcher system — watchers subscribe to a specific ProcessRelay, whereas callbacks fire for every process managed by ProcessControl.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ProcessControlCallbacks">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ProcessControlCallbacks" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks" class="text-break">
+Class ProcessControlCallbacks  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Callbacks fired by <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a> for high-level observers
+(debuggers, recorders, GAS-aware observers, etc.).</p>
+<p>These are in addition to the per-process ProcessWatcher system — watchers
+subscribe to a specific ProcessRelay, whereas callbacks fire for every
+process managed by ProcessControl.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ProcessControlCallbacks</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ProcessControlCallbacks</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_ControlStateChanged_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateChanged*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_ControlStateChanged_FarEmerald_PlayForge_EProcessControlState_FarEmerald_PlayForge_EProcessControlState_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateChanged(FarEmerald.PlayForge.EProcessControlState,FarEmerald.PlayForge.EProcessControlState)">
+  ControlStateChanged(EProcessControlState, EProcessControlState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ControlStateChanged(EProcessControlState oldState, EProcessControlState newState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldState</code> <a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
+    <dd></dd>
+    <dt><code>newState</code> <a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessRegistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessRegistered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessRegistered_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessRegistered(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  GASProcessRegistered(IGameplayAbilitySystem, ProcessRelay, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GASProcessRegistered(IGameplayAbilitySystem gas, ProcessRelay relay, ProcessDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessUnregistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessUnregistered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessUnregistered_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessUnregistered(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  GASProcessUnregistered(IGameplayAbilitySystem, ProcessRelay, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GASProcessUnregistered(IGameplayAbilitySystem gas, ProcessRelay relay, ProcessDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessRegistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessRegistered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessRegistered_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessRegistered(FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  ProcessRegistered(ProcessRelay, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessRegistered(ProcessRelay relay, ProcessDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessStateChanged_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateChanged*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessStateChanged_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_EProcessState_FarEmerald_PlayForge_EProcessState_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateChanged(FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.EProcessState,FarEmerald.PlayForge.EProcessState,FarEmerald.PlayForge.ProcessDataPacket)">
+  ProcessStateChanged(ProcessRelay, EProcessState, EProcessState, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessStateChanged(ProcessRelay relay, EProcessState oldState, EProcessState newState, ProcessDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>oldState</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+    <dt><code>newState</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessUnregistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessUnregistered*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_ProcessUnregistered_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessUnregistered(FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  ProcessUnregistered(ProcessRelay, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessUnregistered(ProcessRelay relay, ProcessDataPacket data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnControlStateChanged" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnControlStateChanged">
+  OnControlStateChanged
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.ControlStateDelegate OnControlStateChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateDelegate.html">ControlStateDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnGASProcessRegistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnGASProcessRegistered">
+  OnGASProcessRegistered
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.GASProcessDelegate OnGASProcessRegistered</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">GASProcessDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnGASProcessUnregistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnGASProcessUnregistered">
+  OnGASProcessUnregistered
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.GASProcessDelegate OnGASProcessUnregistered</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">GASProcessDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnProcessRegistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnProcessRegistered">
+  OnProcessRegistered
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.ProcessDelegate OnProcessRegistered</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessDelegate.html">ProcessDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnProcessStateChanged" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnProcessStateChanged">
+  OnProcessStateChanged
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.ProcessStateDelegate OnProcessStateChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateDelegate.html">ProcessStateDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnProcessUnregistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnProcessUnregistered">
+  OnProcessUnregistered
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.ProcessDelegate OnProcessUnregistered</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessDelegate.html">ProcessDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

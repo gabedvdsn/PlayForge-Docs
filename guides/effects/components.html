@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Components | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Components | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.components">
+<h1 id="components">Components</h1>
+
+<p>An effect's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the effect <strong>Land</strong> on the entity it's on, <strong>Tick</strong> each period, <strong>Hit</strong> as an impact it deals lands, and <strong>End</strong> as it comes off: an instant effect at once, a lasting one as it's removed, at the moments its workers do; and
+<strong>Death</strong> as the one it's on dies while it's on them, whether the entity stays or ends, before what the death ends comes
+off. A lasting effect's components hear it <strong>Lend</strong> what it gives while it lasts, as it starts to last: as it lands,
+before its Land, as it takes another's place under its tag, and as a load or a move puts it back, where it doesn't land
+again; and <strong>TakeBack</strong>, as it stops: as it comes off, before its End, as another takes its place, and as a load clears
+it or a move takes it away. An Aura lends its aura so. A kind that makes no sense twice is offered only while the effect holds none of it.</p>
+<p>It hears <strong>Reapply</strong> as an application it takes in lands, as a stack or a refresh; <strong>Refused</strong> as an application of it
+is refused, with why, on the one it was aimed at; and <strong>StacksChanged</strong> as its stacks change while it lasts, with the
+counts before and after. It hears a tick only as one executes: one its ongoing condition stops isn't heard.</p>
+<p>A component of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectComponent.html"><code>AbstractEffectComponent</code></a> and overrides the hooks it needs, each a no-op
+otherwise. It's the effect's, shared by everything that holds it, so what it keeps for one application of it it keeps through its
+context: <code>ctx.GetState&lt;T&gt;(this)</code>. <strong>Describe</strong> says what it does in one line with its numbers, as an Area's &quot;Lands on
+enemies within 300&quot;, which the Components section's line and The Forge's summary say beside its name.</p>
+<h2 id="auras">Auras</h2>
+<p>An <strong>Aura</strong> component holds an effect on those near the one it's on, while it lasts. Items, abilities and
+entities have one too, each its own kind. Each has the <strong>Effect</strong> it holds, a <strong>Radius</strong> from its holder, read at each check, <strong>Flat</strong>,
+whom it <strong>Takes</strong> by how each stands to its holder, its <strong>Allies</strong>, itself among them, to start, and an <strong>Interval</strong>, 0.25 s by
+default, at which it checks who's near, by its holder's own time. It puts its effect on each that comes near, from an
+origin of its own, and takes it off as they leave, die or end, as its holder dies or ends, or as the aura goes; an
+effect of its that ends on its own, a durational one, goes on again at its next check. An Infinite effect holds as long
+as they're near. Two of an item hold two, as their effect's stacking says. A purge counts an aura's effect Lent. Each
+Aura component gives its aura in its own hooks: an effect's as it lends, an ability's as it's granted, an item's as
+it's equipped, an entity's as it registers. An entity's auras are its <a class="xref" href="../../api/FarEmerald.PlayForge.AuraSet.html"><code>AuraSet</code></a>, <code>gas.GetService&lt;AuraSet&gt;()</code>, a service it steps
+(<a href="../entities/components.html#services">Entities: Services</a>), and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuras.html#FarEmerald_PlayForge_ForgeAuras_Provide_"><code>ForgeAuras.Provide(entry, holder)</code></a> and <code>Remove</code> give one of your own.</p>
+<h2 id="area">Area</h2>
+<p>An <strong>Area</strong> component lands the effect on those near its target as it lands, as Storm Hammer stuns everyone near
+the one it hits: each within its <strong>Radius</strong> of the target, read as it lands, along the ground unless <strong>Flat</strong> is off;
+of those it <strong>Takes</strong> by how each stands to its caster: its <strong>Enemies</strong>, its <strong>Allies</strong>, itself among them, its <strong>Other
+Allies</strong>, <strong>Self</strong>, <strong>All But Self</strong> or <strong>Everyone</strong> (a caster with no sides takes everyone as its allies and enemies);
+and at most <strong>Max Targets</strong> besides the target, the nearest first, or every one at 0.
+Each is found by its position, with no collider. Each takes the effect from the same origin, so its modifiers and its
+chance to apply are its own, and an effect that lands by an area spreads no further. A Radius of 0 is no area. It lands
+on its target and those it takes in the project's resolve order, its target among them, unless its <strong>Use Resolve
+Order</strong> is off (see <a href="workers.html#resolve-order">Resolve Order</a>). An effect holds one at most; without one, it lands on its
+target alone.</p>
+<h2 id="transfers">Transfers</h2>
+<p>A <strong>Transfer</strong> component moves an amount from one attribute to another, as Essence Shift
+steals Agility or Attribute Shift moves Agility into Strength. <strong>From</strong>, the effect's caster or its target, gives its
+<strong>From Attribute</strong>, and <strong>To</strong> gets its <strong>To Attribute</strong>, each side its own, so an entity can give to itself. <strong>Slot</strong>
+says which values move: Current, as a pool's Mana; Base; or Current And Base, as a stat's Strength. <strong>Amount</strong> can scale
+by level. Only what the giver has moves, so one with 3 of a steal of 5 gives 3, and nothing is made. <strong>Delivery</strong> says
+when: <strong>On Apply</strong> moves once as the effect lands and <strong>Periodic</strong> each tick, both for good; <strong>Continuous</strong> moves as the
+effect lands and holds while it lasts, a modifier on each side, read again only where a stack or a level changes its
+amount, and gives back as the effect ends, as a load or a move takes it, or as the entity it's on goes. Each side's
+change is exact: no worker takes it for a hit, no barrier soaks it and nothing scales it, so the getter gets what the
+giver gave, as far as its own bounds let it; what its maximum can't hold is lost, as an overheal is. The Problems view
+warns of a transfer whose Delivery the effect's duration can't make, as it does an additional impact's, and of one that
+names no attribute to give or get, each numbered among the effect's transfers. An effect holds as many as it
+moves, each its own.</p>
+<h2 id="side-change">Side Change</h2>
+<p>A <strong>Side Change</strong> component changes the target's sides while the effect lasts: to its caster's, as they
+are as it lands (<strong>Source</strong> Caster, a mind control), or to the <strong>Sides</strong> it names (Named, a pacify's Neutral), which show
+under Named alone. Of several on one entity, the highest <strong>Priority</strong> holds, read as it lands, a tie going to the
+latest, and as the last ends its own sides come back. Its tags follow, so whom effects and areas take changes with it.
+<strong>Interrupts</strong> breaks what the target runs as the change lands or ends, where it changes the sides, not where a change
+of higher priority keeps them. An Instant effect doesn't last, so it changes nothing. An effect holds one at most; it
+was a field of the effect's own, Side Change in its Tags section, with a switch.</p>
+<h2 id="spread">Spread</h2>
+<p>A <strong>Spread</strong> component spreads its effect, or the <strong>Effect</strong> it names, from the one it's on to those near them, at the
+moments its <strong>When</strong> names, any of them: as the effect <strong>Land</strong>s, each <strong>Tick</strong>, as it comes off (<strong>End</strong>), however it
+ends, or as the one it's on dies (<strong>Death</strong>), as a plague jumps from its victim to the enemies near it. It takes
+each within its <strong>Radius</strong> of the one it's on, read at the effect's level, along the ground unless <strong>Flat</strong> is off; of
+those it <strong>Takes</strong> by how each stands to its caster, its Enemies to start, as an Area's; at most <strong>Max Targets</strong> each
+time, the nearest first, or every one at 0; and passes over those who have the effect it spreads already, unless <strong>Skip
+Holders</strong> is off. Each takes the effect from the same origin, its caster's, so its modifiers and its chance to land
+are its own, in the project's resolve order unless <strong>Use Resolve Order</strong> is off. A landing it made spreads on only so
+far as its <strong>Hops</strong> allow: at 0, it spreads only from where the effect landed of its own; at 1, once more from each it
+spread to; and on. An effect holds as many as it has moments to spread at, each its own.</p>
+<hr>
+<p><a href="requirements.html">← Requirements</a> · <a href="index.html">Effects</a> · <a href="workers.html">Workers →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

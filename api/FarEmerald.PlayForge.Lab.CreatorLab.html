@@ -1,0 +1,2738 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CreatorLab | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CreatorLab | PlayForge ">
+      
+      <meta name="description" content="The Creator Lab: a space where an author puts units down, gives them their project&#39;s abilities, effects and items, casts, and watches the numbers move. It builds what it needs as it wakes: PlayForge, where the scene has none; the ground, a light and its camera; a world of its own, which it steps by its own time; its own caster, a neutral source for what the author drops; and its panels.  Window → PlayForge → Creator Lab opens it in a new scene. A test makes one with  and drives it through the same calls the panels make.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Lab.CreatorLab">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Lab_CreatorLab" data-uid="FarEmerald.PlayForge.Lab.CreatorLab" class="text-break">
+Class CreatorLab  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Lab.html">Lab</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Lab.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The Creator Lab: a space where an author puts units down, gives them their project's abilities, effects
+and items, casts, and watches the numbers move. It builds what it needs as it wakes:
+PlayForge, where the scene has none; the ground, a light and its camera; a world of its own, which it steps by its
+own time; its own caster, a neutral source for what the author drops; and its panels.</p>
+<p>
+Window → PlayForge → Creator Lab opens it in a new scene. A test makes one with <a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_Create_FarEmerald_PlayForge_Lab_ILabLibrary_FarEmerald_PlayForge_Lab_LabRules_System_Boolean_">Create(ILabLibrary, LabRules, bool)</a> and
+drives it through the same calls the panels make.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/in-code.html">The Creator Lab: In code</a> · <a class="xref" href="../guides/creator-lab/the-labs-rules.html">The Creator Lab: The lab's rules</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CreatorLab : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.html">Component</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Behaviour.html">Behaviour</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a></div>
+      <div><span class="xref">CreatorLab</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.IsInvoking.html">MonoBehaviour.IsInvoking()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.CancelInvoke.html">MonoBehaviour.CancelInvoke()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.Invoke(string, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.InvokeRepeating(string, float, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.CancelInvoke(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.IsInvoking(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.StartCoroutine(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.StartCoroutine(string, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">MonoBehaviour.StartCoroutine(IEnumerator)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">MonoBehaviour.StartCoroutine_Auto(IEnumerator)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">MonoBehaviour.StopCoroutine(IEnumerator)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html">MonoBehaviour.StopCoroutine(Coroutine)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">MonoBehaviour.StopCoroutine(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopAllCoroutines.html">MonoBehaviour.StopAllCoroutines()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">MonoBehaviour.print(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour-destroyCancellationToken.html">MonoBehaviour.destroyCancellationToken</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour-useGUILayout.html">MonoBehaviour.useGUILayout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour-didStart.html">MonoBehaviour.didStart</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour-didAwake.html">MonoBehaviour.didAwake</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour-runInEditMode.html">MonoBehaviour.runInEditMode</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Behaviour-enabled.html">Behaviour.enabled</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Behaviour-isActiveAndEnabled.html">Behaviour.isActiveAndEnabled</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponent(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponent__1.html">Component.GetComponent&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.TryGetComponent(Type, out Component)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent__1.html">Component.TryGetComponent&lt;T&gt;(out T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.GetComponent(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentInChildren(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentInChildren(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentInChildren&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponentInChildren__1.html">Component.GetComponentInChildren&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentsInChildren(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentsInChildren(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentsInChildren&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentsInChildren&lt;T&gt;(bool, List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponentsInChildren__1.html">Component.GetComponentsInChildren&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">Component.GetComponentsInChildren&lt;T&gt;(List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentInParent(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentInParent(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentInParent&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponentInParent__1.html">Component.GetComponentInParent&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentsInParent(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponentsInParent(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentsInParent&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Component.GetComponentsInParent&lt;T&gt;(bool, List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponentsInParent__1.html">Component.GetComponentsInParent&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponents(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Component.GetComponents(Type, List&lt;Component&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">Component.GetComponents&lt;T&gt;(List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponents__1.html">Component.GetComponents&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.GetComponentIndex.html">Component.GetComponentIndex()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.CompareTag(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.CompareTag.html">Component.CompareTag(TagHandle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessageUpwards(string, object, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessageUpwards(string, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessageUpwards(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessageUpwards(string, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessage(string, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessage(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessage(string, object, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.SendMessage(string, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.BroadcastMessage(string, object, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.BroadcastMessage(string, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.BroadcastMessage(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Component.BroadcastMessage(string, SendMessageOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component-transform.html">Component.transform</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component-gameObject.html">Component.gameObject</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Component-tag.html">Component.tag</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetInstanceID.html">Object.GetInstanceID()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetHashCode.html">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Scene)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate(Object, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate&lt;T&gt;(T, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.Destroy(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html">Object.Destroy(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.DestroyImmediate(Object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyImmediate.html">Object.DestroyImmediate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.DestroyObject(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyObject.html">Object.DestroyObject(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindSceneObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeIncludingAssets(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsOfType__1.html">Object.FindObjectsOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectsOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectOfType__1.html">Object.FindObjectOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeAll(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.ToString.html">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-name.html">Object.name</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-hideFlags.html">Object.hideFlags</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_DefaultLibrary" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.DefaultLibrary">
+  DefaultLibrary
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The library a lab takes when it's given none: the editor's, which the lab's editor assembly sets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;ILabLibrary&gt; DefaultLibrary</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_GroundSize" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.GroundSize">
+  GroundSize
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How wide the ground is, on a side&quot;)]
+public float GroundSize</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Material" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Material">
+  Material
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The material units and the ground take, tinted; with none, the render pipeline&#39;s default&quot;)]
+public Material Material</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Material.html">Material</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_OpenInForge" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.OpenInForge">
+  OpenInForge
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens an asset in The Forge, where the editor gives a way; null in a build.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Action&lt;Object&gt; OpenInForge</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Rules" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Rules">
+  Rules
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The project&#39;s rules; with none, the lab makes its own, finding Health and Movement Speed by name&quot;)]
+public LabRules Rules</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabRules.html">LabRules</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ShowPanels" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ShowPanels">
+  ShowPanels
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Whether it builds its panels; off, it runs with no UI, as a test drives it&quot;)]
+public bool ShowPanels</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Speed" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Speed">
+  Speed
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How fast its time runs against Unity&#39;s, from a quarter to four times&quot;)]
+[Range(0.25, 4)]
+public float Speed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_StepSeconds" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.StepSeconds">
+  StepSeconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The time a step of one frame takes, while paused&quot;)]
+public float StepSeconds</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ActiveRules_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ActiveRules*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ActiveRules" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ActiveRules">
+  ActiveRules
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILabRules ActiveRules { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ILabRules.html">ILabRules</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Caster_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Caster*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Caster" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Caster">
+  Caster
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's own caster: on no side, with no body, the source of what's dropped with no unit selected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit Caster { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ControlledUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ControlledUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ControlledUnit" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ControlledUnit">
+  ControlledUnit
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The unit the author controls, if any: moved and made to cast by the lab's controls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit ControlledUnit { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Controls_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Controls*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Controls" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Controls">
+  Controls
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's controls, which give the author's unit its orders through its driver.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabControls Controls { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabControls.html">LabControls</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Current_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Current*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Current" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Current">
+  Current
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab playing now.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CreatorLab Current { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html">CreatorLab</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Elapsed_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Elapsed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Elapsed" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Elapsed">
+  Elapsed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's time, in seconds, since it began.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Elapsed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Ended_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Ended*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Ended" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Ended">
+  Ended
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the battle is over: a side stands alone, or no one stands at all.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Ended { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Fighting_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Fighting*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Fighting" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Fighting">
+  Fighting
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the battle's bots fight.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Fighting { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Library_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Library*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Library" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Library">
+  Library
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILabLibrary Library { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Mode_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Mode*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Mode" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Mode">
+  Mode
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabMode Mode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabMode.html">LabMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Panels_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Panels*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Panels" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Panels">
+  Panels
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabPanels Panels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabPanels.html">LabPanels</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Paused_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Paused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Paused" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Paused">
+  Paused
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether its time stands still.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Paused { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Seats_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Seats*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Seats" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Seats">
+  Seats
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The battle's seats, a bot standing for each.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;LabSeat&gt; Seats { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabSeat.html">LabSeat</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_SelectedAsset_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SelectedAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_SelectedAsset" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SelectedAsset">
+  SelectedAsset
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScriptableObject SelectedAsset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_SelectedUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SelectedUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_SelectedUnit" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SelectedUnit">
+  SelectedUnit
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit SelectedUnit { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Showing_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Showing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Showing" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Showing">
+  Showing
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it shows of its working: its effect journal over every unit, its stops and its watches,
+and ForgeLog's messages, which its bottom panel shows.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabShowing Showing { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabShowing.html">LabShowing</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Units_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Units*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Units" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Units">
+  Units
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The units the author put down, the caster aside.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;LabUnit&gt; Units { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_View_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.View*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_View" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.View">
+  View
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabCamera View { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabCamera.html">LabCamera</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Winner_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Winner*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Winner" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Winner">
+  Winner
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The side left standing as a battle ends, or null while it goes on or none is.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabSide? Winner { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_World_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.World*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_World" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.World">
+  World
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's own world, where every unit it makes steps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessWorld World { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_AddBot_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddBot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_AddBot_UnityEngine_ScriptableObject_FarEmerald_PlayForge_Lab_LabSide_System_Nullable_UnityEngine_Vector3__System_Int32_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddBot(UnityEngine.ScriptableObject,FarEmerald.PlayForge.Lab.LabSide,System.Nullable{UnityEngine.Vector3},System.Int32)">
+  AddBot(ScriptableObject, LabSide, Vector3?, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A bot on a side, of an entity or a set, at a level: a seat, which a reset makes it from again, and the bot
+standing for it. With no point given, it stands in its side's line.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabBot AddBot(ScriptableObject entityOrSet, LabSide side, Vector3? at = null, int level = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entityOrSet</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a></dt>
+    <dd></dd>
+    <dt><code>at</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabBot.html">LabBot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddDummy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_UnityEngine_ScriptableObject_FarEmerald_PlayForge_Lab_LabSide_UnityEngine_Vector3_System_Int32_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddDummy(UnityEngine.ScriptableObject,FarEmerald.PlayForge.Lab.LabSide,UnityEngine.Vector3,System.Int32)">
+  AddDummy(ScriptableObject, LabSide, Vector3, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A test dummy: a unit that stands, counts what it takes, mends, and is revived where it falls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabDummy AddDummy(ScriptableObject entityOrSet, LabSide side, Vector3 at, int level = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entityOrSet</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a></dt>
+    <dd></dd>
+    <dt><code>at</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabDummy.html">LabDummy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_UnityEngine_ScriptableObject_FarEmerald_PlayForge_Lab_LabSide_UnityEngine_Vector3_System_Int32_System_Boolean_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AddUnit(UnityEngine.ScriptableObject,FarEmerald.PlayForge.Lab.LabSide,UnityEngine.Vector3,System.Int32,System.Boolean)">
+  AddUnit(ScriptableObject, LabSide, Vector3, int, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A unit of an entity or an attribute set, on a side, at a point, in the lab's world.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit AddUnit(ScriptableObject entityOrSet, LabSide side, Vector3 at, int level = 0, bool stays = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entityOrSet</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a></dt>
+    <dd></dd>
+    <dt><code>at</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>stays</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Announce_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Announce*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Announce" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Announce">
+  Announce()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raises <a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_Changed">Changed</a>, for a change made to a unit from outside.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Announce()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_AnyChoosing_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AnyChoosing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_AnyChoosing" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.AnyChoosing">
+  AnyChoosing()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a cast of one of the lab's units, or its caster's, waits for the author to choose its target.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AnyChoosing()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ApplyEffect_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ApplyEffect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ApplyEffect_FarEmerald_PlayForge_GameplayEffect_FarEmerald_PlayForge_Lab_LabUnit_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ApplyEffect(FarEmerald.PlayForge.GameplayEffect,FarEmerald.PlayForge.Lab.LabUnit,FarEmerald.PlayForge.Lab.LabUnit)">
+  ApplyEffect(GameplayEffect, LabUnit, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An effect lands on a unit, from the unit given or the lab's source.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ApplyEffect(GameplayEffect effect, LabUnit onto, LabUnit from = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+    <dt><code>onto</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_CancelCasts_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CancelCasts*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_CancelCasts" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CancelCasts">
+  CancelCasts()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends what the lab's caster and the selected unit are casting, as Esc does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CancelCasts()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_CastAt_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CastAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_CastAt_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CastAt(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.Lab.LabUnit)">
+  CastAt(Ability, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's source casts an ability at a unit, its target in the data, as a click targeting takes with no click.
+A source that doesn't know the ability learns it first; the lab's caster stands beside the target to cast.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CastAt(Ability ability, LabUnit target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_CastAt_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CastAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_CastAt_FarEmerald_PlayForge_Ability_UnityEngine_Vector3_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.CastAt(FarEmerald.PlayForge.Ability,UnityEngine.Vector3)">
+  CastAt(Ability, Vector3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab's source casts an ability at a point on the ground; one that needs a unit waits for a click.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CastAt(Ability ability, Vector3 point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>point</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Clear_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Clear*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Clear" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Clear">
+  Clear()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes every unit out, and every seat: the battle with them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Create_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Create*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Create_FarEmerald_PlayForge_Lab_ILabLibrary_FarEmerald_PlayForge_Lab_LabRules_System_Boolean_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Create(FarEmerald.PlayForge.Lab.ILabLibrary,FarEmerald.PlayForge.Lab.LabRules,System.Boolean)">
+  Create(ILabLibrary, LabRules, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A lab on an object of its own, playing the library given, or the default one, by the rules given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CreatorLab Create(ILabLibrary library = null, LabRules rules = null, bool panels = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>library</code> <a class="xref" href="FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a></dt>
+    <dd></dd>
+    <dt><code>rules</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabRules.html">LabRules</a></dt>
+    <dd></dd>
+    <dt><code>panels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html">CreatorLab</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Drop_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Drop*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Drop_UnityEngine_ScriptableObject_UnityEngine_Vector2_System_Nullable_FarEmerald_PlayForge_Lab_LabSide__" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Drop(UnityEngine.ScriptableObject,UnityEngine.Vector2,System.Nullable{FarEmerald.PlayForge.Lab.LabSide})">
+  Drop(ScriptableObject, Vector2, LabSide?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An asset dropped on a point of the screen: an effect lands on the unit there, an ability is cast at it or at the
+ground, an item is given to it, and an entity or a set is put down there as a dummy on the side given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Drop(ScriptableObject asset, Vector2 screen, LabSide? side = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>screen</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_DropAt_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.DropAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_DropAt_UnityEngine_ScriptableObject_FarEmerald_PlayForge_Lab_LabUnit_UnityEngine_Vector3_System_Nullable_FarEmerald_PlayForge_Lab_LabSide__" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.DropAt(UnityEngine.ScriptableObject,FarEmerald.PlayForge.Lab.LabUnit,UnityEngine.Vector3,System.Nullable{FarEmerald.PlayForge.Lab.LabSide})">
+  DropAt(ScriptableObject, LabUnit, Vector3, LabSide?)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An asset dropped on a unit, or on the ground at a point where the unit is null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DropAt(ScriptableObject asset, LabUnit unit, Vector3 point, LabSide? side = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+    <dt><code>point</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Follow_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Follow*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Follow_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Follow(FarEmerald.PlayForge.Lab.LabUnit)">
+  Follow(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Has the camera follow a unit, or none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Follow(LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Forget_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Forget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Forget_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Forget(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.Lab.LabUnit)">
+  Forget(Ability, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An ability a unit knows, taken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Forget(Ability ability, LabUnit from)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_GiveItem_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.GiveItem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_GiveItem_FarEmerald_PlayForge_Item_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.GiveItem(FarEmerald.PlayForge.Item,FarEmerald.PlayForge.Lab.LabUnit)">
+  GiveItem(Item, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An item given to a unit, equipped, at its starting level; a bot's seat keeps it for a reset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GiveItem(Item item, LabUnit to)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Play_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Play*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Play" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Play">
+  Play()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The battle's bots fight, and the lab's time runs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Play()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_PutDownOwnUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.PutDownOwnUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_PutDownOwnUnit_UnityEngine_ScriptableObject_FarEmerald_PlayForge_Lab_LabSide_UnityEngine_Vector3_System_Int32_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.PutDownOwnUnit(UnityEngine.ScriptableObject,FarEmerald.PlayForge.Lab.LabSide,UnityEngine.Vector3,System.Int32)">
+  PutDownOwnUnit(ScriptableObject, LabSide, Vector3, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Puts down a unit of an entity or a set, on a side, at a point, and takes control of it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit PutDownOwnUnit(ScriptableObject entityOrSet, LabSide side, Vector3 at, int level = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entityOrSet</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a></dt>
+    <dd></dd>
+    <dt><code>at</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_QuickBattle_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.QuickBattle*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_QuickBattle_System_Int32_UnityEngine_ScriptableObject_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.QuickBattle(System.Int32,UnityEngine.ScriptableObject)">
+  QuickBattle(int, ScriptableObject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A quick battle: Blue against Red, so many a side, each of the entity given, or the one selected, or else picked
+at random from the project's entities.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void QuickBattle(int perSide = 4, ScriptableObject entity = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>perSide</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>entity</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ReleaseControl_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ReleaseControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ReleaseControl" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ReleaseControl">
+  ReleaseControl()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lets go of the author's unit: a bot fights again as the battle does, and the camera follows it no more.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseControl()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_RemoveUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.RemoveUnit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_RemoveUnit_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.RemoveUnit(FarEmerald.PlayForge.Lab.LabUnit)">
+  RemoveUnit(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes a unit out of the lab, and its seat where it's a bot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveUnit(LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ResetBattle_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ResetBattle*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ResetBattle" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ResetBattle">
+  ResetBattle()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every bot back where it started, at full, made anew from its seat with what it was given; none fight.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetBattle()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_ResetDummies_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ResetDummies*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_ResetDummies" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.ResetDummies">
+  ResetDummies()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Each dummy back where it was put, at full health, its count cleared.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetDummies()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_SeatOf_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SeatOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_SeatOf_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SeatOf(FarEmerald.PlayForge.Lab.LabUnit)">
+  SeatOf(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The seat a bot stands for, or null for a unit that's no bot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabSeat SeatOf(LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabSeat.html">LabSeat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Select_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Select*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Select_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Select(FarEmerald.PlayForge.Lab.LabUnit)">
+  Select(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects a unit, which then shows in the selected panel and is the source of what's dropped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Select(LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Select_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Select*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Select_UnityEngine_ScriptableObject_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Select(UnityEngine.ScriptableObject)">
+  Select(ScriptableObject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects an asset, which then shows in the selected panel, level by level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Select(ScriptableObject asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_SetAbilityLevel_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SetAbilityLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_SetAbilityLevel_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_Lab_LabUnit_System_Int32_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SetAbilityLevel(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.Lab.LabUnit,System.Int32)">
+  SetAbilityLevel(Ability, LabUnit, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An ability's level on a unit; a bot's seat keeps it for a reset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAbilityLevel(Ability ability, LabUnit on, int level)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>on</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_SetMode_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SetMode*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_SetMode_FarEmerald_PlayForge_Lab_LabMode_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.SetMode(FarEmerald.PlayForge.Lab.LabMode)">
+  SetMode(LabMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the space holds: dummies, a battle, or nothing. Each mode starts with its units cleared.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMode(LabMode mode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mode</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabMode.html">LabMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Source_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Source*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Source_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Source(FarEmerald.PlayForge.Lab.LabUnit)">
+  Source(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The unit what's dropped comes from: the one selected, where it's alive, or the lab's own caster.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabUnit Source(LabUnit besides = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>besides</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Step_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Step*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Step_System_Single_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Step(System.Single)">
+  Step(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps the lab's time by a time given: its world, so its entities, their abilities and their effects go on;
+then each unit's body and each dummy's count. Unity's own time is left as it is.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Step(float deltaTime)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deltaTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_StepFrame_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.StepFrame*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_StepFrame" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.StepFrame">
+  StepFrame()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Goes one step of <a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_StepSeconds">StepSeconds</a> while paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StepFrame()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_TakeControl_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TakeControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_TakeControl_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TakeControl(FarEmerald.PlayForge.Lab.LabUnit)">
+  TakeControl(LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes control of a unit, letting go of any other: the lab's controls order it about, and a bot stops fighting
+until it's let go.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TakeControl(LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_TakeItem_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TakeItem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_TakeItem_FarEmerald_PlayForge_Item_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TakeItem(FarEmerald.PlayForge.Item,FarEmerald.PlayForge.Lab.LabUnit)">
+  TakeItem(Item, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An item taken from a unit, all of it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TakeItem(Item item, LabUnit from)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_Teach_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Teach*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Teach_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Teach(FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.Lab.LabUnit)">
+  Teach(Ability, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An ability taught a unit, at its starting level; a bot's seat keeps it for a reset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Teach(Ability ability, LabUnit to)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_CreatorLab_TryPick_" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TryPick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_TryPick_UnityEngine_Vector2_FarEmerald_PlayForge_Lab_LabUnit__UnityEngine_Vector3__" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.TryPick(UnityEngine.Vector2,FarEmerald.PlayForge.Lab.LabUnit@,UnityEngine.Vector3@)">
+  TryPick(Vector2, out LabUnit, out Vector3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The unit under a point of the screen, if any, and the point on the ground under it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryPick(Vector2 screen, out LabUnit unit, out Vector3 point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>screen</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+    <dt><code>point</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_CreatorLab_Changed" data-uid="FarEmerald.PlayForge.Lab.CreatorLab.Changed">
+  Changed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raised as what it holds or what's selected changes, for the panels to redraw.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action Changed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

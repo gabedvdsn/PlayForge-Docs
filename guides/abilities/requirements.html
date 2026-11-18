@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Requirements | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Requirements | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.requirements">
+<h1 id="requirements">Requirements</h1>
+
+<p>Requirements are what an activation must pass. If one fails, the ability doesn't run.</p>
+<ul>
+<li>The <strong>tag requirements</strong> table holds tag checks, a row for each side. <strong>Caster</strong> checks the caster, with the Caster
+Checks. <strong>While active</strong> checks the caster for as long as the ability runs: when it fails, the ability is
+interrupted, so a channel that must not have <code>State.Stunned</code> ends as a stun lands, and while it fails, the ability
+can't activate. <strong>Target</strong> checks the target the same way, after targeting. Each row's <strong>Requires</strong> cell lists the tags the
+entity must have, and its <strong>Must not have</strong> cell the tags it must not have, such as <code>State.Stunned</code>, or says None. A
+row passes when the entity has every tag it requires and none it must not have, so an empty row always passes. Click
+a cell to edit its list under the table, with the row's <strong>Template</strong> and <strong>Sync With Template</strong> (see
+<a href="../effects/index.html">Effects</a>). Each entry is a tag query: a <strong>Tag</strong>, a <strong>Match</strong> mode such as Include Children, and a
+comparison with a number. Greater Than 0 means &quot;the tag is present&quot;.</li>
+<li><strong>Caster Checks</strong> check the caster. They run when the ability is asked to activate, before targeting, and again after
+targeting. The defaults are Cooldown, Cost and Is Alive. You pick each check's type from a list, which offers the
+caster's types and those that check either side.</li>
+<li><strong>Target Checks</strong> check the target, after targeting. The default is Is Alive. If targeting found no target, they are
+skipped. Their list offers the target's types and those that check either side.</li>
+</ul>
+<p>A check a component stands behind shows under its list, locked, as Check Range does under the Target Checks while the
+ability holds a Cast Range. No list holds it: it comes and goes with its component, which enforces it, and the
+section's line counts it among the checks.</p>
+<p>The check types, by the list that offers them:</p>
+<ul>
+<li>Caster Checks:
+<ul>
+<li><strong>Cooldown</strong>: passes when the ability isn't cooling down, or, with its charges counted (see Charges), has one in
+hand.</li>
+<li><strong>Cost</strong>: passes when the ability has no cost, or the cost would leave each attribute it spends at 0 or more, and
+its Attribute Costs can be paid. The caster must have each attribute.</li>
+<li><strong>Ability Level</strong>: compares the ability's level with <strong>Level</strong>, using <strong>Comparison</strong>, as a form it unlocks at a
+rank. It starts at 2 or more.</li>
+</ul>
+</li>
+<li>Either list, checking the caster among the Caster Checks and the target among the Target Checks:
+<ul>
+<li><strong>Is Alive</strong>: passes when the checked entity isn't dead.</li>
+<li><strong>Attribute</strong>: compares the checked entity's Current value of <strong>Attribute</strong> with <strong>Value</strong>, using <strong>Comparison</strong>;
+with <strong>Share Of Base</strong>, its share of its base, from 0 to 1, as &quot;below half its health&quot;.</li>
+<li><strong>Tag Weight</strong>: compares the checked entity's weight of <strong>Tag</strong> with <strong>Weight</strong>, using <strong>Comparison</strong>, as combo
+points or stacks. It starts at 1 or more; an entity without the tag holds it at 0.</li>
+<li><strong>Has Effect</strong>: passes when the checked entity has <strong>Effect</strong> on, or any effect tagged <strong>Tagged</strong> or under it, by
+its asset tag, a context tag or a tag it grants; with <strong>Without</strong>, when it has none of it. Naming neither, it
+passes.</li>
+<li><strong>Holds Item</strong>: passes when the checked entity holds <strong>Item</strong>, or, with <strong>Equipped</strong>, wears it. Naming none, it
+passes.</li>
+<li><strong>Condition</strong>: passes while its condition, <strong>When</strong>, holds, as an effect's requirements and an On Hit read theirs:
+a tag, an attribute, a level, a comparison of numbers, or a condition of your own (see
+<a href="../scalers/index.html">Scalers</a>). It's read against the activation, with the checked entity as its target, so among the
+Caster Checks its target is the caster. With none, it passes.</li>
+</ul>
+</li>
+<li>Target Checks:
+<ul>
+<li><strong>Affiliation</strong>: passes when the target stands to its caster as <strong>Target</strong> says, as a search's Takes does. Its
+<strong>Enemies</strong> share none of the caster's sides and its <strong>Allies</strong> one, the caster itself among them; <strong>Other Allies</strong>
+leaves the caster out, <strong>Self</strong> is the caster alone, <strong>All But Self</strong> anyone else, and <strong>Everyone</strong> anyone. A
+caster with no sides takes anyone as either.</li>
+<li><strong>Line of Sight</strong>: passes when nothing on the <strong>Blocking</strong> layers blocks a line from the caster to its target, run
+<strong>Height</strong> above each, so the ground under them doesn't. 3D physics colliders block it; triggers and the two ends'
+own colliders don't.</li>
+<li><strong>Facing</strong>: passes when the target lies within <strong>Angle</strong> in front of its caster, or, with <strong>Behind Target</strong>, the
+caster stands within the angle behind its target, as a backstab wants. Each faces as its targeting packet does,
+along the ground: 90 takes 45° to either side, and 360 anywhere.</li>
+<li><strong>Check Range</strong>: the Cast Range component's, which no list offers. It shows while the ability holds a Cast Range,
+saying its range, and passes, as the component enforces the range (see Cast Range).</li>
+</ul>
+</li>
+</ul>
+<p>A failed Caster Check refuses the activation as the kind its <code>RefusedAs</code> says: Cooldown, Cost or Dead for those three,
+which name none, and Rule, naming the check, for any other; a failed Target Check ends it after targeting, told as
+Target, naming the check (see Activation). Each says why in <code>Validate</code>'s <code>error</code>, which the refusal carries as its
+<code>Detail</code>, as &quot;Its caster's Mana, 20, can't pay 30&quot;.</p>
+<p>A check of your own implements <a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityValidationRule.html"><code>IAbilityValidationRule</code></a>: <code>Validate</code> says whether the activation passes, and why not,
+and <code>GetName</code> names it; <code>RefusedAs</code>, Rule unless it says otherwise, is the kind its refusal of the caster is told as, so
+an ammunition check can say Cooldown as the built-in does. <code>[ForgeMenu]</code> names and describes it in the list, and <code>[ValidationSide]</code> says which list offers
+it, Caster or Target; without it, both do. A component stands behind a check by overriding its <code>TargetCheck</code> or
+<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck"><code>CasterCheck</code></a> with an <code>AbstractComponentValidationRule&lt;T&gt;</code> of its own kind: the check shows under the list while the
+ability holds the component, and the component enforces it, in <code>CanStart</code>.</p>
+<p>The section's Clear button empties the tag requirements and leaves the checks, since an ability without them would
+skip its cost and cooldown.</p>
+<h2 id="crowd-control">Crowd Control</h2>
+<p><strong>Crowd control</strong> holds for every ability at once, so no ability has to list Stunned among the tags it must not have. A <strong>Crowd Control Rules</strong> asset (Create → PlayForge → Crowd Control Rules) holds its rules, each a <strong>Tag</strong> the
+caster carries, as Stunned, and what it <strong>Stops</strong>: <strong>Every Ability</strong>, as a stun, or <strong>Abilities Tagged</strong>, those whose
+asset tag or a context tag is one of its <strong>Ability Tags</strong> or under it, as Silenced stops spells and Disarmed attacks.
+An entity's abilities follow its own <strong>Crowd Control</strong> (<a href="../entities/abilities.html">Entities: Abilities</a>), or, where it names none,
+its Forge Project's (<a href="../attributes/roles.html">Attributes: Roles</a>).</p>
+<p>While the caster carries a rule's tag, or one under it, an ability the rule stops is refused with <strong>Crowd Control</strong>,
+the refusal's <code>Rule</code> naming the tag, and one that runs is interrupted as the tag lands, as a stun breaks a channel. An
+ability's <strong>Ignores Crowd Control</strong> (see Activation) opts it out of the rules it names. Code asks with
+<code>rules.Stopping(ability, tags)</code>, the first rule that stops the ability, or null.</p>
+<hr>
+<p><a href="stages.html">← Stages</a> · <a href="index.html">Abilities</a> · <a href="components.html">Components →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

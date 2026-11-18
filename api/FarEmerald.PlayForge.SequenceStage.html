@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SequenceStage | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SequenceStage | PlayForge ">
+      
+      <meta name="description" content="A stage within a TaskSequence containing tasks and/or sub-stages.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.SequenceStage">
+
+
+
+  <h1 id="FarEmerald_PlayForge_SequenceStage" data-uid="FarEmerald.PlayForge.SequenceStage" class="text-break">
+Class SequenceStage  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A stage within a TaskSequence containing tasks and/or sub-stages.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/task-sequences/index.html">Task Sequences</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SequenceStage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SequenceStage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.BranchStage.html">BranchStage</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_AllowedInjections_" data-uid="FarEmerald.PlayForge.SequenceStage.AllowedInjections*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_AllowedInjections" data-uid="FarEmerald.PlayForge.SequenceStage.AllowedInjections">
+  AllowedInjections
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stage-local allowed injection types. If null, inherits from sequence.
+If empty set, no injections are allowed for this stage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;Type&gt; AllowedInjections { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Conditions_" data-uid="FarEmerald.PlayForge.SequenceStage.Conditions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Conditions" data-uid="FarEmerald.PlayForge.SequenceStage.Conditions">
+  Conditions
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stage-local conditions checked while this stage is active.
+These conditions respect stage-local AllowedInjections.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;SequenceCondition&gt; Conditions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceCondition.html">SequenceCondition</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_HasConditions_" data-uid="FarEmerald.PlayForge.SequenceStage.HasConditions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_HasConditions" data-uid="FarEmerald.PlayForge.SequenceStage.HasConditions">
+  HasConditions
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this stage has conditions that need checking.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasConditions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_HasContent_" data-uid="FarEmerald.PlayForge.SequenceStage.HasContent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_HasContent" data-uid="FarEmerald.PlayForge.SequenceStage.HasContent">
+  HasContent
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this stage has any executable content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasContent { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_HasMaxDuration_" data-uid="FarEmerald.PlayForge.SequenceStage.HasMaxDuration*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_HasMaxDuration" data-uid="FarEmerald.PlayForge.SequenceStage.HasMaxDuration">
+  HasMaxDuration
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this stage has a max duration limit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasMaxDuration { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_HasTimeouts_" data-uid="FarEmerald.PlayForge.SequenceStage.HasTimeouts*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_HasTimeouts" data-uid="FarEmerald.PlayForge.SequenceStage.HasTimeouts">
+  HasTimeouts
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTimeouts { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_MaxDurationInjection_" data-uid="FarEmerald.PlayForge.SequenceStage.MaxDurationInjection*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_MaxDurationInjection" data-uid="FarEmerald.PlayForge.SequenceStage.MaxDurationInjection">
+  MaxDurationInjection
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injection to apply when max duration is exceeded. Defaults to InterruptSequenceInjection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISequenceInjection MaxDurationInjection { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_MaxDurationSeconds_" data-uid="FarEmerald.PlayForge.SequenceStage.MaxDurationSeconds*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_MaxDurationSeconds" data-uid="FarEmerald.PlayForge.SequenceStage.MaxDurationSeconds">
+  MaxDurationSeconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Maximum duration for this stage. Null = no limit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float? MaxDurationSeconds { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Metadata_" data-uid="FarEmerald.PlayForge.SequenceStage.Metadata*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Metadata" data-uid="FarEmerald.PlayForge.SequenceStage.Metadata">
+  Metadata
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Optional metadata for debugging/logging.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequenceStageMetadata Metadata { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.SequenceStageMetadata.html">SequenceStageMetadata</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnException_" data-uid="FarEmerald.PlayForge.SequenceStage.OnException*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnException" data-uid="FarEmerald.PlayForge.SequenceStage.OnException">
+  OnException
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when an exception occurs in this stage.
+Return true to suppress the exception (stage will be skipped), false to propagate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;SequenceEventContext, Exception, bool&gt; OnException { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnInit_" data-uid="FarEmerald.PlayForge.SequenceStage.OnInit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnInit" data-uid="FarEmerald.PlayForge.SequenceStage.OnInit">
+  OnInit
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;SequenceDataPacket&gt; OnInit { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnMaxDuration_" data-uid="FarEmerald.PlayForge.SequenceStage.OnMaxDuration*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnMaxDuration" data-uid="FarEmerald.PlayForge.SequenceStage.OnMaxDuration">
+  OnMaxDuration
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when this stage's max duration is reached, before the injection is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;SequenceEventContext&gt; OnMaxDuration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnRepeat_" data-uid="FarEmerald.PlayForge.SequenceStage.OnRepeat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnRepeat" data-uid="FarEmerald.PlayForge.SequenceStage.OnRepeat">
+  OnRepeat
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when a stage repeat iteration completes (before checking if should repeat again).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;SequenceEventContext&gt; OnRepeat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnTerminate_" data-uid="FarEmerald.PlayForge.SequenceStage.OnTerminate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnTerminate" data-uid="FarEmerald.PlayForge.SequenceStage.OnTerminate">
+  OnTerminate
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;SequenceEventContext, bool&gt; OnTerminate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_OnTimeout_" data-uid="FarEmerald.PlayForge.SequenceStage.OnTimeout*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_OnTimeout" data-uid="FarEmerald.PlayForge.SequenceStage.OnTimeout">
+  OnTimeout
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when this stage's timeout is triggered, before the injection is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;SequenceEventContext, SequenceTimeout&gt; OnTimeout { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>, <a class="xref" href="FarEmerald.PlayForge.SequenceTimeout.html">SequenceTimeout</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Policy_" data-uid="FarEmerald.PlayForge.SequenceStage.Policy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Policy" data-uid="FarEmerald.PlayForge.SequenceStage.Policy">
+  Policy
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How this stage completes (WhenAll, WhenAny, etc.).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISequenceStagePolicy Policy { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceStagePolicy.html">ISequenceStagePolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Repeat_" data-uid="FarEmerald.PlayForge.SequenceStage.Repeat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Repeat" data-uid="FarEmerald.PlayForge.SequenceStage.Repeat">
+  Repeat
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>If true, stage repeats after completion until broken or interrupted.
+Works similar to sequence-level repeat but for a single stage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Repeat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_RepeatCount_" data-uid="FarEmerald.PlayForge.SequenceStage.RepeatCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_RepeatCount" data-uid="FarEmerald.PlayForge.SequenceStage.RepeatCount">
+  RepeatCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many times a repeating stage runs in all, after which its sequence moves on; 0 repeats it until it's broken,
+skipped or interrupted. It counts for a stage that repeats by its policy too.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RepeatCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_ShouldRepeat_" data-uid="FarEmerald.PlayForge.SequenceStage.ShouldRepeat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_ShouldRepeat" data-uid="FarEmerald.PlayForge.SequenceStage.ShouldRepeat">
+  ShouldRepeat
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this stage should repeat.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShouldRepeat { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_SubStages_" data-uid="FarEmerald.PlayForge.SequenceStage.SubStages*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_SubStages" data-uid="FarEmerald.PlayForge.SequenceStage.SubStages">
+  SubStages
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sub-stages to execute in this stage (treated as task units for policy).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;SequenceStage&gt; SubStages { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Tasks_" data-uid="FarEmerald.PlayForge.SequenceStage.Tasks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Tasks" data-uid="FarEmerald.PlayForge.SequenceStage.Tasks">
+  Tasks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tasks to execute in this stage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;ISequenceTask&gt; Tasks { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_Timeouts_" data-uid="FarEmerald.PlayForge.SequenceStage.Timeouts*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_Timeouts" data-uid="FarEmerald.PlayForge.SequenceStage.Timeouts">
+  Timeouts
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Optional timeout for this stage. If exceeded, TimeoutInjection is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;SequenceTimeout&gt; Timeouts { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.SequenceTimeout.html">SequenceTimeout</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_UnitCount_" data-uid="FarEmerald.PlayForge.SequenceStage.UnitCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_UnitCount" data-uid="FarEmerald.PlayForge.SequenceStage.UnitCount">
+  UnitCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the total number of executable units (tasks + sub-stages).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int UnitCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SequenceStage_IsInjectionAllowedLocal_" data-uid="FarEmerald.PlayForge.SequenceStage.IsInjectionAllowedLocal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceStage_IsInjectionAllowedLocal_FarEmerald_PlayForge_ISequenceInjection_" data-uid="FarEmerald.PlayForge.SequenceStage.IsInjectionAllowedLocal(FarEmerald.PlayForge.ISequenceInjection)">
+  IsInjectionAllowedLocal(ISequenceInjection)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if a given injection type is allowed at this stage level.
+Returns null if no stage-level restriction (inherit from sequence).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? IsInjectionAllowedLocal(ISequenceInjection injection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>injection</code> <a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

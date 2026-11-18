@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeTemplatePropagator | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeTemplatePropagator | PlayForge ">
+      
+      <meta name="description" content="Core engine for template propagation. Handles:  Propagating template field changes to child assets (non-overridden, non-excluded) Merging list properties (additions and removals from template) Detecting and recording field overrides by comparing child against template Cascading propagation through template chains (A → B → C) Finding all child assets of a given template via project scan">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator" class="text-break">
+Class ForgeTemplatePropagator  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Core engine for template propagation. Handles:</p>
+<ul>
+<li>Propagating template field changes to child assets (non-overridden, non-excluded)</li>
+<li>Merging list properties (additions and removals from template)</li>
+<li>Detecting and recording field overrides by comparing child against template</li>
+<li>Cascading propagation through template chains (A → B → C)</li>
+<li>Finding all child assets of a given template via project scan</li>
+</ul>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeTemplatePropagator</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeTemplatePropagator</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_CaptureInitialListSnapshots_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.CaptureInitialListSnapshots*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_CaptureInitialListSnapshots_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.CaptureInitialListSnapshots(FarEmerald.PlayForge.BaseForgeAsset)">
+  CaptureInitialListSnapshots(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs initial list snapshot capture after a template is assigned.
+Should be called once after SetTemplate to establish baseline for merge diffs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CaptureInitialListSnapshots(BaseForgeAsset child)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>child</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_ChildrenByTemplate_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.ChildrenByTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_ChildrenByTemplate_System_Type_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.ChildrenByTemplate(System.Type)">
+  ChildrenByTemplate(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Every asset of a type in the project, by the template it names, from one search. A family's members, looked for
+one at a time, searched the project and loaded each of its assets of the type once for every member, so a push
+to 2,000 children loaded 2,000 assets 2,000 times.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Dictionary&lt;BaseForgeAsset, List&lt;BaseForgeAsset&gt;&gt; ChildrenByTemplate(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_FindChildAssets_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.FindChildAssets*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_FindChildAssets_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.FindChildAssets(FarEmerald.PlayForge.BaseForgeAsset)">
+  FindChildAssets(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finds all assets in the project that use the given asset as their template.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;BaseForgeAsset&gt; FindChildAssets(BaseForgeAsset template)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_IsUsedAsTemplate_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.IsUsedAsTemplate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_IsUsedAsTemplate_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.IsUsedAsTemplate(FarEmerald.PlayForge.BaseForgeAsset)">
+  IsUsedAsTemplate(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks whether the given asset is used as a template by any other assets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsUsedAsTemplate(BaseForgeAsset asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToAllChildren_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.PropagateToAllChildren*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToAllChildren_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.PropagateToAllChildren(FarEmerald.PlayForge.BaseForgeAsset)">
+  PropagateToAllChildren(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Propagates from a template to all its children, then cascades to grandchildren.
+Returns the list of all assets that were modified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;BaseForgeAsset&gt; PropagateToAllChildren(BaseForgeAsset template)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToChild_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.PropagateToChild*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToChild_FarEmerald_PlayForge_BaseForgeAsset_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.PropagateToChild(FarEmerald.PlayForge.BaseForgeAsset,FarEmerald.PlayForge.BaseForgeAsset)">
+  PropagateToChild(BaseForgeAsset, BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Propagates all non-excluded, non-overridden fields from the template to the child.
+Lists are merged (additions/removals from template applied).
+Does NOT save the child — caller is responsible for marking dirty and saving.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void PropagateToChild(BaseForgeAsset template, BaseForgeAsset child)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+    <dt><code>child</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_UpdateOverrides_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.UpdateOverrides*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_UpdateOverrides_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.UpdateOverrides(FarEmerald.PlayForge.BaseForgeAsset)">
+  UpdateOverrides(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Compares a child asset against its template and automatically updates the override set.
+Fields that differ from the template are marked as overridden.
+Fields that match the template have their overrides cleared.
+Only operates on non-excluded leaf properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UpdateOverrides(BaseForgeAsset child)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>child</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_WouldPropagationModifyAny_" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.WouldPropagationModifyAny*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_WouldPropagationModifyAny_FarEmerald_PlayForge_BaseForgeAsset_System_Collections_Generic_List_FarEmerald_PlayForge_BaseForgeAsset__" data-uid="FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.WouldPropagationModifyAny(FarEmerald.PlayForge.BaseForgeAsset,System.Collections.Generic.List{FarEmerald.PlayForge.BaseForgeAsset})">
+  WouldPropagationModifyAny(BaseForgeAsset, List&lt;BaseForgeAsset&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if propagating from the template would actually modify at least one child.
+Used to avoid prompting when only excluded fields (name, textures, etc.) were changed.
+Checks non-excluded leaf fields, managed references, and list diffs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool WouldPropagationModifyAny(BaseForgeAsset template, List&lt;BaseForgeAsset&gt; children)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+    <dt><code>children</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

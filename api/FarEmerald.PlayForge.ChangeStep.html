@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct ChangeStep | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct ChangeStep | PlayForge ">
+      
+      <meta name="description" content="One step a change to an attribute took between being made and landing: an attribute worker&#39;s, before its commit or after it, inline or queued; a barrier&#39;s soak; or a gain&#39;s scaling; with the change before it and after.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ChangeStep">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ChangeStep" data-uid="FarEmerald.PlayForge.ChangeStep" class="text-break">
+Struct ChangeStep  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>One step a change to an attribute took between being made and landing: an attribute worker's, before its
+commit or after it, inline or queued; a barrier's soak; or a gain's scaling; with the change before it and after.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/entities/index.html">Entities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct ChangeStep</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ChangeStep__ctor_" data-uid="FarEmerald.PlayForge.ChangeStep.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep__ctor_FarEmerald_PlayForge_EChangeStepKind_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AbstractAttributeWorker_System_String_FarEmerald_PlayForge_AbstractAttributeWorker_EChangeEventTiming_FarEmerald_PlayForge_EWorkerExecution_FarEmerald_PlayForge_AttributeValue_FarEmerald_PlayForge_AttributeValue_System_Int32_" data-uid="FarEmerald.PlayForge.ChangeStep.#ctor(FarEmerald.PlayForge.EChangeStepKind,FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AbstractAttributeWorker,System.String,FarEmerald.PlayForge.AbstractAttributeWorker.EChangeEventTiming,FarEmerald.PlayForge.EWorkerExecution,FarEmerald.PlayForge.AttributeValue,FarEmerald.PlayForge.AttributeValue,System.Int32)">
+  ChangeStep(EChangeStepKind, IAttribute, AbstractAttributeWorker, string, EChangeEventTiming, EWorkerExecution, AttributeValue, AttributeValue, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChangeStep(EChangeStepKind kind, IAttribute attribute, AbstractAttributeWorker worker, string name, AbstractAttributeWorker.EChangeEventTiming timing, EWorkerExecution execution, AttributeValue before, AttributeValue after, int queued)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="FarEmerald.PlayForge.EChangeStepKind.html">EChangeStepKind</a></dt>
+    <dd></dd>
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>timing</code> <a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a>.<a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.EChangeEventTiming.html">EChangeEventTiming</a></dt>
+    <dd></dd>
+    <dt><code>execution</code> <a class="xref" href="FarEmerald.PlayForge.EWorkerExecution.html">EWorkerExecution</a></dt>
+    <dd></dd>
+    <dt><code>before</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>after</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>queued</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_After" data-uid="FarEmerald.PlayForge.ChangeStep.After">
+  After
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The change after it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AttributeValue After</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Attribute" data-uid="FarEmerald.PlayForge.ChangeStep.Attribute">
+  Attribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IAttribute Attribute</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Before" data-uid="FarEmerald.PlayForge.ChangeStep.Before">
+  Before
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The change before the step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AttributeValue Before</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Execution" data-uid="FarEmerald.PlayForge.ChangeStep.Execution">
+  Execution
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's step, whether it ran inline, queued its actions, or both.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly EWorkerExecution Execution</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EWorkerExecution.html">EWorkerExecution</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Kind" data-uid="FarEmerald.PlayForge.ChangeStep.Kind">
+  Kind
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly EChangeStepKind Kind</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EChangeStepKind.html">EChangeStepKind</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Name" data-uid="FarEmerald.PlayForge.ChangeStep.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The step in a word or two: the worker's kind, &quot;Barrier&quot;, or the attribute a gain was scaled by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string Name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Queued" data-uid="FarEmerald.PlayForge.ChangeStep.Queued">
+  Queued
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many actions it queued, as a deferred worker does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Queued</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Timing" data-uid="FarEmerald.PlayForge.ChangeStep.Timing">
+  Timing
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's step, whether it heard the change before its commit or after.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AbstractAttributeWorker.EChangeEventTiming Timing</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a>.<a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.EChangeEventTiming.html">EChangeEventTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Worker" data-uid="FarEmerald.PlayForge.ChangeStep.Worker">
+  Worker
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The worker, for a worker's step; null for another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AbstractAttributeWorker Worker</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ChangeStep_Changed_" data-uid="FarEmerald.PlayForge.ChangeStep.Changed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_Changed" data-uid="FarEmerald.PlayForge.ChangeStep.Changed">
+  Changed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether it changed the change.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Changed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ChangeStep_ToString_" data-uid="FarEmerald.PlayForge.ChangeStep.ToString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ChangeStep_ToString" data-uid="FarEmerald.PlayForge.ChangeStep.ToString">
+  ToString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The step in a line: &quot;Math -30 → -15 (inline)&quot;, &quot;Answering (queued 1, after)&quot;, &quot;Barrier -30 → -10&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

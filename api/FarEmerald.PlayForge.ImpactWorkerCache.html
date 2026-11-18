@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ImpactWorkerCache | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ImpactWorkerCache | PlayForge ">
+      
+      <meta name="description" content="Cache for impact workers, indexed by impacted attribute. Supports both inline and deferred execution modes.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ImpactWorkerCache">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ImpactWorkerCache" data-uid="FarEmerald.PlayForge.ImpactWorkerCache" class="text-break">
+Class ImpactWorkerCache  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Cache for impact workers, indexed by impacted attribute.
+Supports both inline and deferred execution modes.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/workers/index.html">Workers</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ImpactWorkerCache</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ImpactWorkerCache</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache__ctor_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache__ctor" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.#ctor">
+  ImpactWorkerCache()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactWorkerCache()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache__ctor_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache__ctor_System_Collections_Generic_List_FarEmerald_PlayForge_AbstractImpactWorker__" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.#ctor(System.Collections.Generic.List{FarEmerald.PlayForge.AbstractImpactWorker})">
+  ImpactWorkerCache(List&lt;AbstractImpactWorker&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactWorkerCache(List&lt;AbstractImpactWorker&gt; workers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>workers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_Clear_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.Clear*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_Clear" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.Clear">
+  Clear()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clear all workers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_GetWorkerCount_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.GetWorkerCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_GetWorkerCount_FarEmerald_PlayForge_IAttribute_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.GetWorkerCount(FarEmerald.PlayForge.IAttribute)">
+  GetWorkerCount(IAttribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get count of workers for an attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetWorkerCount(IAttribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_HasWorkers_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.HasWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_HasWorkers_FarEmerald_PlayForge_IAttribute_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.HasWorkers(FarEmerald.PlayForge.IAttribute)">
+  HasWorkers(IAttribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Check if any workers are registered for an attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasWorkers(IAttribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_ProvideWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.ProvideWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_ProvideWorker_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.ProvideWorker(FarEmerald.PlayForge.AbstractImpactWorker)">
+  ProvideWorker(AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideWorker(AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_ProvideWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.ProvideWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_ProvideWorker_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.ProvideWorker(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AbstractImpactWorker)">
+  ProvideWorker(IAttribute, AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideWorker(IAttribute attribute, AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_RemoveWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RemoveWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_RemoveWorker_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RemoveWorker(FarEmerald.PlayForge.AbstractImpactWorker)">
+  RemoveWorker(AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveWorker(AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_RemoveWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RemoveWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_RemoveWorker_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AbstractImpactWorker_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RemoveWorker(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AbstractImpactWorker)">
+  RemoveWorker(IAttribute, AbstractImpactWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveWorker(IAttribute attribute, AbstractImpactWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_RunImpactData_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RunImpactData*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_RunImpactData_FarEmerald_PlayForge_ImpactData_FarEmerald_PlayForge_ISource_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.RunImpactData(FarEmerald.PlayForge.ImpactData,FarEmerald.PlayForge.ISource)">
+  RunImpactData(ImpactData, ISource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Run all impact workers for the given impact data.
+Inline workers execute immediately, deferred workers queue actions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunImpactData(ImpactData impactData, ISource holder = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impactData</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+    <dt><code>holder</code> <a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd><p>Whose workers these are: the impact's dealer, as impact workers run for the dealer.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ImpactWorkerCache_SetDeferredContext_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.SetDeferredContext*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ImpactWorkerCache_SetDeferredContext_FarEmerald_PlayForge_ActionQueue_FarEmerald_PlayForge_FrameSummary_" data-uid="FarEmerald.PlayForge.ImpactWorkerCache.SetDeferredContext(FarEmerald.PlayForge.ActionQueue,FarEmerald.PlayForge.FrameSummary)">
+  SetDeferredContext(ActionQueue, FrameSummary)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the action queue and frame summary for deferred execution.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDeferredContext(ActionQueue actionQueue, FrameSummary frameSummary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>actionQueue</code> <a class="xref" href="FarEmerald.PlayForge.ActionQueue.html">ActionQueue</a></dt>
+    <dd></dd>
+    <dt><code>frameSummary</code> <a class="xref" href="FarEmerald.PlayForge.FrameSummary.html">FrameSummary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

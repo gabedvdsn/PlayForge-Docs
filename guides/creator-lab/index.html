@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Creator Lab | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Creator Lab | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.creator-lab">
+<h1 id="the-creator-lab">The Creator Lab</h1>
+
+<p>A space for trying a project's own assets: put units down, give them abilities, effects and items, cast, and watch the
+numbers move. Open it from <strong>Window → PlayForge → Creator Lab</strong>: it opens in a new scene and plays. The scenes open
+before are saved first, if you want them saved.</p>
+<p>The lab plays every PlayForge asset in the project's own folders.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="the-space.html">The space</a>: <strong>The ground</strong> is a plane in the middle of the scene, lit from above.</li>
+<li><a href="the-panels.html">The panels</a>: Each panel but Selected collapses to a tab at its edge with its − button.</li>
+<li><a href="dropping-assets.html">Dropping assets</a>: Drag an asset from the library and drop it on the space</li>
+<li><a href="test-dummies.html">Test dummies</a>: The <strong>Test dummies</strong> section puts down a dummy of any entity or attribute set, on a side: Blue, Red, Green, Gold or Neutral.</li>
+<li><a href="battle.html">Battle</a>: The <strong>Battle</strong> mode fights teams of bots.</li>
+<li><a href="your-unit.html">Your unit</a>: In either mode you can play a unit of your own.</li>
+<li><a href="time.html">Time</a>: The lab's units live in a world of the lab's own (<code>ProcessWorld</code>), which the lab steps by its own time, so its time stands still or runs faster without touching Unity's.</li>
+<li><a href="showing-its-working.html">Showing its working</a>: The bottom panel's pages show what happens as the lab plays.</li>
+<li><a href="the-labs-rules.html">The lab's rules</a>: The lab needs to know a few things about a project: which attribute is a unit's health, which it walks at, which tags stop, hide or shield it, and which ability is its attack.</li>
+<li><a href="in-code.html">In code</a>: <code>CreatorLab.Create(library, rules, panels)</code> makes a lab, as the tests do.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html">CreatorLab</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.CreatorLabMenu.html">CreatorLabMenu</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.html">EditorLabLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ELabStopKind.html">ELabStopKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ELabWatchKind.html">ELabWatchKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabRules.html">ILabRules</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabUnitDriver.html">ILabUnitDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabAssetKind.html">LabAssetKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabAssets.html">LabAssets</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBlow.html">LabBlow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBodyDriver.html">LabBodyDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBot.html">LabBot</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabCamera.html">LabCamera</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabControls.html">LabControls</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDriver.html">LabDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.LabDriverEditor.html">LabDriverEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDummy.html">LabDummy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabEffects.html">LabEffects</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabMode.html">LabMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabPanels.html">LabPanels</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabRules.html">LabRules</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.LabRulesEditor.html">LabRulesEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabRulesExtensions.html">LabRulesExtensions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSeat.html">LabSeat</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabShowing.html">LabShowing</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSides.html">LabSides</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSummary.html">LabSummary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabUnitSpec.html">LabUnitSpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ListLibrary.html">ListLibrary</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface ICarrierApplication | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ICarrierApplication | PlayForge ">
+      
+      <meta name="description" content="The &amp;quot;applicable&amp;quot; facet of a carrier — duration, container generation, contained effects, worker phases, validation.  exposes its application surface against this interface (not against a concrete ) so any future carrier kind that participates in the apply-shelf pipeline can plug in without subclassing the spec. Plain s — synthetic deltas, leveler snapshots, nullified markers — intentionally do NOT implement this interface. They are identity + magnitude only; forcing them to expose duration policy or worker hooks would be lying about their lifecycle.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ICarrierApplication">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ICarrierApplication" data-uid="FarEmerald.PlayForge.ICarrierApplication" class="text-break">
+Interface ICarrierApplication  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The &quot;applicable&quot; facet of a carrier — duration, container generation, contained
+effects, worker phases, validation. <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a> exposes its application
+surface against this interface (not against a concrete <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a>)
+so any future carrier kind that participates in the apply-shelf pipeline can plug in
+without subclassing the spec.</p>
+<p>Plain <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a>s — synthetic deltas, leveler
+snapshots, nullified markers — intentionally do NOT implement this interface. They
+are identity + magnitude only; forcing them to expose duration policy or worker hooks
+would be lying about their lifecycle.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICarrierApplication : IAttributeImpactCarrier, ITagSource</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetReadableDefinition">IAttributeImpactCarrier.GetReadableDefinition()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_DerivationAlive">IAttributeImpactCarrier.DerivationAlive()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetAttribute">IAttributeImpactCarrier.GetAttribute()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetOrigin">IAttributeImpactCarrier.GetOrigin()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetTarget">IAttributeImpactCarrier.GetTarget()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetImpactTypes">IAttributeImpactCarrier.GetImpactTypes()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetRetentionGroup">IAttributeImpactCarrier.GetRetentionGroup()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_TrackImpact_FarEmerald_PlayForge_ImpactData_">IAttributeImpactCarrier.TrackImpact(ImpactData)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetTrackedImpact">IAttributeImpactCarrier.GetTrackedImpact()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetContextTags">IAttributeImpactCarrier.GetContextTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetSourcedCapturedAttributes">IAttributeImpactCarrier.GetSourcedCapturedAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_RetainImpact">IAttributeImpactCarrier.RetainImpact()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GetImpacters">IAttributeImpactCarrier.GetImpacters()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateLevelerDerivation_FarEmerald_PlayForge_ISource_FarEmerald_PlayForge_IntValuePairClamped_FarEmerald_PlayForge_IAttribute_">IAttributeImpactCarrier.GenerateLevelerDerivation(ISource, IntValuePairClamped, IAttribute)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateSourceDerivation_FarEmerald_PlayForge_ISource_FarEmerald_PlayForge_IAttribute_">IAttributeImpactCarrier.GenerateSourceDerivation(ISource, IAttribute)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateSourceDerivation_FarEmerald_PlayForge_ISource_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_Tag_System_Collections_Generic_List_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_IAttributeImpactCarrier_System_Boolean_">IAttributeImpactCarrier.GenerateSourceDerivation(ISource, IAttribute, Tag, List&lt;Tag&gt;, IAttributeImpactCarrier, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateSourceDerivation_FarEmerald_PlayForge_SourcedModifiedAttributeValue_FarEmerald_PlayForge_Tag_System_Collections_Generic_List_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_IAttributeImpactCarrier_System_Boolean_">IAttributeImpactCarrier.GenerateSourceDerivation(SourcedModifiedAttributeValue, Tag, List&lt;Tag&gt;, IAttributeImpactCarrier, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ITagSource.html#FarEmerald_PlayForge_ITagSource_GetGrantedTags">ITagSource.GetGrantedTags()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_GenerateContainer_" data-uid="FarEmerald.PlayForge.ICarrierApplication.GenerateContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_GenerateContainer_System_Boolean_" data-uid="FarEmerald.PlayForge.ICarrierApplication.GenerateContainer(System.Boolean)">
+  GenerateContainer(bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generate the runtime container that will sit on the target's effect shelf.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AbstractEffectContainer GenerateContainer(bool ongoing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ongoing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_GetContainedCarriers_" data-uid="FarEmerald.PlayForge.ICarrierApplication.GetContainedCarriers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_GetContainedCarriers_FarEmerald_PlayForge_EApplyTickRemove_" data-uid="FarEmerald.PlayForge.ICarrierApplication.GetContainedCarriers(FarEmerald.PlayForge.EApplyTickRemove)">
+  GetContainedCarriers(EApplyTickRemove)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Carriers that should be applied alongside this one at the given lifecycle phase
+(apply / tick / remove). Replaces the old direct-on-spec
+<code>GetContainedEffects(EApplyTickRemove)</code> path with carrier-typed plumbing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;ICarrierApplication&gt; GetContainedCarriers(EApplyTickRemove phase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>phase</code> <a class="xref" href="FarEmerald.PlayForge.EApplyTickRemove.html">EApplyTickRemove</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ICarrierApplication.html">ICarrierApplication</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_GetDurationPolicy_" data-uid="FarEmerald.PlayForge.ICarrierApplication.GetDurationPolicy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_GetDurationPolicy" data-uid="FarEmerald.PlayForge.ICarrierApplication.GetDurationPolicy">
+  GetDurationPolicy()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Instant / Durational / Infinite — drives shelf placement.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">EEffectDurationPolicy GetDurationPolicy()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectDurationPolicy.html">EEffectDurationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerApplication_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerApplication*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerApplication_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerApplication(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerApplication(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RunWorkerApplication(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerImpact_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerImpact_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerImpact(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerImpact(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RunWorkerImpact(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerRemoval_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerRemoval*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerRemoval_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerRemoval(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerRemoval(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RunWorkerRemoval(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerTick_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerTick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_RunWorkerTick_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.ICarrierApplication.RunWorkerTick(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerTick(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RunWorkerTick(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ICarrierApplication_ValidateApplication_" data-uid="FarEmerald.PlayForge.ICarrierApplication.ValidateApplication*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ICarrierApplication_ValidateApplication_FarEmerald_PlayForge_ITarget_" data-uid="FarEmerald.PlayForge.ICarrierApplication.ValidateApplication(FarEmerald.PlayForge.ITarget)">
+  ValidateApplication(ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pre-application validation (affiliation, source / target tag requirements).
+Returns false to refuse application; the target should drop the carrier with no
+side effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ValidateApplication(ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

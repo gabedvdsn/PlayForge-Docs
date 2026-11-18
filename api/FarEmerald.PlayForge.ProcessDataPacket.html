@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ProcessDataPacket | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ProcessDataPacket | PlayForge ">
+      
+      <meta name="description" content="ProcessDataPackets (and subclasses) contain data pertaining to processes and abilities Example usage: An ability, Cast, fires a ball that homes in on its target Cast is the ability and via implicit data and/or targeting tasks assigns some data to the packet The Ball is a MonoProcess and is created via ProcessControl Before initializing the MonoProcessWrapper is passed the data packet and its initial values are set After initializing the MonoProcess is passed the data packet It is responsible for procuring data from the data packet E.g. procuring the target transform via Data.TryGetPayload[Transform](Target, GameRoot.TransformParameter, Primary, out Transform value) This procures the Transform value under the Target classification stored under the key GameRoot.TransformParameter">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ProcessDataPacket">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ProcessDataPacket" data-uid="FarEmerald.PlayForge.ProcessDataPacket" class="text-break">
+Class ProcessDataPacket  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>ProcessDataPackets (and subclasses) contain data pertaining to processes and abilities
+Example usage:
+An ability, Cast, fires a ball that homes in on its target
+Cast is the ability and via implicit data and/or targeting tasks assigns some data to the packet
+The Ball is a MonoProcess and is created via ProcessControl
+Before initializing the MonoProcessWrapper is passed the data packet and its initial values are set
+After initializing the MonoProcess is passed the data packet
+It is responsible for procuring data from the data packet
+E.g. procuring the target transform via Data.TryGetPayload[Transform](Target, GameRoot.TransformParameter, Primary, out Transform value)
+This procures the Transform value under the Target classification stored under the key GameRoot.TransformParameter</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ProcessDataPacket : IGameplayProcessHandler, IHasReadableDefinition</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ProcessDataPacket</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessHandlerUtil.html#FarEmerald_PlayForge_ProcessHandlerUtil_MassDataAction_FarEmerald_PlayForge_IGameplayProcessHandler_System_Action_FarEmerald_PlayForge_ProcessDataPacket__">ProcessHandlerUtil.MassDataAction(IGameplayProcessHandler, Action&lt;ProcessDataPacket&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_GetLoadedAssets__1_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.GetLoadedAssets&lt;T&gt;(ProcessDataPacket, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_GetTargetingPacket_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_AbstractTargetingPacket__System_Boolean_">ProcessTaskUtil.GetTargetingPacket(ProcessDataPacket, Tag, out AbstractTargetingPacket, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_SetTargetingPacket_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_AbstractTargetingPacket_">ProcessTaskUtil.SetTargetingPacket(ProcessDataPacket, Tag, AbstractTargetingPacket)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_SetTargetingPackets_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_ITarget__">ProcessTaskUtil.SetTargetingPackets(ProcessDataPacket, Tag, IEnumerable&lt;ITarget&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryApplyEffects_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.TryApplyEffects(ProcessDataPacket, ITarget, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryApplyEffects_FarEmerald_PlayForge_ProcessDataPacket_UnityEngine_GameObject_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.TryApplyEffects(ProcessDataPacket, GameObject, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryGetLoadedAssets__1_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_DataValue___0___">ProcessTaskUtil.TryGetLoadedAssets&lt;T&gt;(ProcessDataPacket, Tag, out DataValue&lt;T&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket__ctor_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket__ctor" data-uid="FarEmerald.PlayForge.ProcessDataPacket.#ctor">
+  ProcessDataPacket()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ProcessDataPacket()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket__ctor_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket__ctor_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.#ctor(FarEmerald.PlayForge.ProcessDataPacket)">
+  ProcessDataPacket(ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessDataPacket(ProcessDataPacket other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_CustomInstantiator" data-uid="FarEmerald.PlayForge.ProcessDataPacket.CustomInstantiator">
+  CustomInstantiator
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbstractMonoProcessInstantiator CustomInstantiator</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html">AbstractMonoProcessInstantiator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_HandlerRelays" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerRelays">
+  HandlerRelays
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Dictionary&lt;int, ProcessRelay&gt; HandlerRelays</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_InUse" data-uid="FarEmerald.PlayForge.ProcessDataPacket.InUse">
+  InUse
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InUse</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket__payload" data-uid="FarEmerald.PlayForge.ProcessDataPacket._payload">
+  _payload
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;Tag, List&lt;object&gt;&gt; _payload</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Clock_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Clock*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Clock" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Clock">
+  Clock
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The clock the work done with this packet runs by: a sequence's waits, timers, tweens and synced tasks, and an
+ability's waits. Null, as it is unless set, for the packet's owner's: an ability's caster's, or the game's. A
+sequence's own clock (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_FarEmerald_PlayForge_IForgeClock_">WithClock(IForgeClock)</a>) gives way to this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IForgeClock Clock { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeClock.html">IForgeClock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Path_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Path*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Path" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Path">
+  Path
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Path { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Payload_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Payload*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Payload" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Payload">
+  Payload
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;Tag, List&lt;object&gt;&gt; Payload { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SetByCallerMagnitudes_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetByCallerMagnitudes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SetByCallerMagnitudes" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetByCallerMagnitudes">
+  SetByCallerMagnitudes
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The magnitudes set for the effects made from this data, by tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;Tag, float&gt; SetByCallerMagnitudes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_AddPayload_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AddPayload*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_AddPayload__1_FarEmerald_PlayForge_Tag_System_Collections_Generic_IEnumerable___0__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AddPayload``1(FarEmerald.PlayForge.Tag,System.Collections.Generic.IEnumerable{``0})">
+  AddPayload&lt;T&gt;(Tag, IEnumerable&lt;T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddPayload&lt;T&gt;(Tag key, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_AddPayload_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AddPayload*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_AddPayload__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AddPayload``1(FarEmerald.PlayForge.Tag,``0)">
+  AddPayload&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddPayload&lt;T&gt;(Tag key, T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_AppendPath_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AppendPath*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_AppendPath_System_String_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.AppendPath(System.String)">
+  AppendPath(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendPath(string r)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>r</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Contains_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Contains*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Contains_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Contains(FarEmerald.PlayForge.Tag)">
+  Contains(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if a payload key exists and has a retrievable value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_ContainsKey_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.ContainsKey*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_ContainsKey_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.ContainsKey(FarEmerald.PlayForge.Tag)">
+  ContainsKey(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContainsKey(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Contains_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Contains*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Contains__1___0_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Contains``1(``0,FarEmerald.PlayForge.Tag)">
+  Contains&lt;T&gt;(T, Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains&lt;T&gt;(T value, Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Count_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Count*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Count_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Count(FarEmerald.PlayForge.Tag)">
+  Count(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns how many entries exist under a payload key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_CreateNew_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.CreateNew*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_CreateNew" data-uid="FarEmerald.PlayForge.ProcessDataPacket.CreateNew">
+  CreateNew()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ProcessDataPacket CreateNew()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Decrement_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Decrement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Decrement_FarEmerald_PlayForge_Tag_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Decrement(FarEmerald.PlayForge.Tag,System.Int32)">
+  Decrement(Tag, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decrements an integer payload value. Creates the key with the result if it doesn't exist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Decrement(Tag key, int amount = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>amount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_DecrementFloat_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.DecrementFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_DecrementFloat_FarEmerald_PlayForge_Tag_System_Single_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.DecrementFloat(FarEmerald.PlayForge.Tag,System.Single)">
+  DecrementFloat(Tag, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decrements a float payload value. Creates the key with the result if it doesn't exist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float DecrementFloat(Tag key, float amount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>amount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Default_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Default*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Default" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Default">
+  Default()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Empty data packet handled by GameRoot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessDataPacket Default()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetAll_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetAll__1_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetAll``1(FarEmerald.PlayForge.Tag)">
+  GetAll&lt;T&gt;(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataValue&lt;T&gt; GetAll&lt;T&gt;(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.DataValue-1.html">DataValue</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetDefaultIcon_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetDefaultIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetDefaultIcon" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetDefaultIcon">
+  GetDefaultIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Texture2D GetDefaultIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetDescription_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetDescription" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetDescription">
+  GetDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string GetDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetInstantiator_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetInstantiator*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetInstantiator_FarEmerald_PlayForge_AbstractMonoProcess_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetInstantiator(FarEmerald.PlayForge.AbstractMonoProcess)">
+  GetInstantiator(AbstractMonoProcess)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbstractMonoProcessInstantiator GetInstantiator(AbstractMonoProcess mono)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mono</code> <a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcess.html">AbstractMonoProcess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html">AbstractMonoProcessInstantiator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetLast_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetLast*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetLast__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetLast``1(FarEmerald.PlayForge.Tag,``0)">
+  GetLast&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the last payload value with a default fallback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetLast&lt;T&gt;(Tag key, T fallback = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>fallback</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetName_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetName" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetName">
+  GetName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string GetName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetOrInit_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetOrInit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetOrInit__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetOrInit``1(FarEmerald.PlayForge.Tag,``0)">
+  GetOrInit&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or initializes a value (GetOrAdd pattern).
+If the key does not exist, adds the default value and returns it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetOrInit&lt;T&gt;(Tag key, T defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetPrimary_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetPrimary*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetPrimary__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetPrimary``1(FarEmerald.PlayForge.Tag,``0)">
+  GetPrimary&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the primary (first) payload value with a default fallback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetPrimary&lt;T&gt;(Tag key, T fallback = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>fallback</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_GetRelays_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetRelays*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_GetRelays" data-uid="FarEmerald.PlayForge.ProcessDataPacket.GetRelays">
+  GetRelays()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessRelay[] GetRelays()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Get_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Get*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Get__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_EDataTarget___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Get``1(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.EDataTarget,``0)">
+  Get&lt;T&gt;(Tag, EDataTarget, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Get&lt;T&gt;(Tag key, EDataTarget target, T fallback = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.EDataTarget.html">EDataTarget</a></dt>
+    <dd></dd>
+    <dt><code>fallback</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_HandlerProcessIsSubscribed_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerProcessIsSubscribed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_HandlerProcessIsSubscribed_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerProcessIsSubscribed(FarEmerald.PlayForge.ProcessRelay)">
+  HandlerProcessIsSubscribed(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HandlerProcessIsSubscribed(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_HandlerSubscribeProcess_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerSubscribeProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_HandlerSubscribeProcess_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerSubscribeProcess(FarEmerald.PlayForge.ProcessRelay)">
+  HandlerSubscribeProcess(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void HandlerSubscribeProcess(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_HandlerValidateAgainst_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerValidateAgainst*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_HandlerValidateAgainst_FarEmerald_PlayForge_IGameplayProcessHandler_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerValidateAgainst(FarEmerald.PlayForge.IGameplayProcessHandler)">
+  HandlerValidateAgainst(IGameplayProcessHandler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HandlerValidateAgainst(IGameplayProcessHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_HandlerVoidProcess_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerVoidProcess*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_HandlerVoidProcess_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.HandlerVoidProcess(FarEmerald.PlayForge.ProcessRelay)">
+  HandlerVoidProcess(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HandlerVoidProcess(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Increment_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Increment*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Increment_FarEmerald_PlayForge_Tag_System_Int32_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Increment(FarEmerald.PlayForge.Tag,System.Int32)">
+  Increment(Tag, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Increments an integer payload value. Creates the key with the result if it doesn't exist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Increment(Tag key, int amount = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>amount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_IncrementFloat_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.IncrementFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_IncrementFloat_FarEmerald_PlayForge_Tag_System_Single_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.IncrementFloat(FarEmerald.PlayForge.Tag,System.Single)">
+  IncrementFloat(Tag, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Increments a float payload value. Creates the key with the result if it doesn't exist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float IncrementFloat(Tag key, float amount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>amount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_InsertPayload_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.InsertPayload*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_InsertPayload__1_FarEmerald_PlayForge_Tag_System_Int32___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.InsertPayload``1(FarEmerald.PlayForge.Tag,System.Int32,``0)">
+  InsertPayload&lt;T&gt;(Tag, int, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InsertPayload&lt;T&gt;(Tag key, int index, T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Remove_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Remove*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Remove_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Remove(FarEmerald.PlayForge.Tag)">
+  Remove(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Remove_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Remove*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Remove__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Remove``1(FarEmerald.PlayForge.Tag,``0)">
+  Remove&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove&lt;T&gt;(Tag key, T obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>obj</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SceneLocal_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SceneLocal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SceneLocal_UnityEngine_Transform_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SceneLocal(UnityEngine.Transform)">
+  SceneLocal(Transform)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, assigned as a child of parent in-scene</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessDataPacket SceneLocal(Transform parent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd><p>Parent transform to assign</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SceneRoot_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SceneRoot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SceneRoot" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SceneRoot">
+  SceneRoot()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, automatically assigned as a child of GameRoot in-scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessDataPacket SceneRoot()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SetByCaller_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SetByCaller_FarEmerald_PlayForge_Tag_System_Single_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetByCaller(FarEmerald.PlayForge.Tag,System.Single)">
+  SetByCaller(Tag, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a magnitude under a tag for each effect an ability applies with this data, which a Set By Caller scaler
+reads: the damage a caller knows as it casts. Each effect takes it as it's made.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetByCaller(Tag key, float magnitude)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SetPayload_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetPayload*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SetPayload__1_FarEmerald_PlayForge_Tag_System_Int32___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetPayload``1(FarEmerald.PlayForge.Tag,System.Int32,``0)">
+  SetPayload&lt;T&gt;(Tag, int, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPayload&lt;T&gt;(Tag key, int index, T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_SetPrimary_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetPrimary*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_SetPrimary__1_FarEmerald_PlayForge_Tag___0_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.SetPrimary``1(FarEmerald.PlayForge.Tag,``0)">
+  SetPrimary&lt;T&gt;(Tag, T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets or overwrites the primary (first) payload value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrimary&lt;T&gt;(Tag key, T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TakeSetByCaller_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TakeSetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TakeSetByCaller_System_Collections_Generic_IReadOnlyDictionary_FarEmerald_PlayForge_Tag_System_Single__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TakeSetByCaller(System.Collections.Generic.IReadOnlyDictionary{FarEmerald.PlayForge.Tag,System.Single})">
+  TakeSetByCaller(IReadOnlyDictionary&lt;Tag, float&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes each magnitude another set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TakeSetByCaller(IReadOnlyDictionary&lt;Tag, float&gt; magnitudes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>magnitudes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Toggle_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Toggle*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Toggle_FarEmerald_PlayForge_Tag_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Toggle(FarEmerald.PlayForge.Tag,System.Boolean)">
+  Toggle(Tag, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Toggle(Tag key, bool fallback = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>fallback</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TryGetAll_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TryGetAll__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_DataValue___0___" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetAll``1(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.DataValue{``0}@)">
+  TryGetAll&lt;T&gt;(Tag, out DataValue&lt;T&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetAll&lt;T&gt;(Tag key, out DataValue&lt;T&gt; dataValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>dataValue</code> <a class="xref" href="FarEmerald.PlayForge.DataValue-1.html">DataValue</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TryGetAt_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TryGetAt__1_FarEmerald_PlayForge_Tag_System_Int32___0__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetAt``1(FarEmerald.PlayForge.Tag,System.Int32,``0@)">
+  TryGetAt&lt;T&gt;(Tag, int, out T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The entry at <code class="paramref">index</code> under a key, if it's a <code class="typeparamref">T</code>. With <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Count_FarEmerald_PlayForge_Tag_">Count(Tag)</a>,
+a way through every entry that builds no list, as an ability's tasks go through its targets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetAt&lt;T&gt;(Tag key, int index, out T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TryGetFirst_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetFirst*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TryGetFirst__1_FarEmerald_PlayForge_Tag___0__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetFirst``1(FarEmerald.PlayForge.Tag,``0@)">
+  TryGetFirst&lt;T&gt;(Tag, out T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetFirst&lt;T&gt;(Tag key, out T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TryGetSetByCaller_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetSetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TryGetSetByCaller_FarEmerald_PlayForge_Tag_System_Single__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGetSetByCaller(FarEmerald.PlayForge.Tag,System.Single@)">
+  TryGetSetByCaller(Tag, out float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The magnitude set under the tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetSetByCaller(Tag key, out float magnitude)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_TryGet_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGet*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_TryGet__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_EDataTarget___0__" data-uid="FarEmerald.PlayForge.ProcessDataPacket.TryGet``1(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.EDataTarget,``0@)">
+  TryGet&lt;T&gt;(Tag, EDataTarget, out T)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGet&lt;T&gt;(Tag key, EDataTarget target, out T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.EDataTarget.html">EDataTarget</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

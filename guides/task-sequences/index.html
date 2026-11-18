@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Task Sequences | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Task Sequences | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.task-sequences">
+<h1 id="task-sequences">Task Sequences</h1>
+
+<p>A <strong>task sequence</strong> is a workflow over time, built in code: stages run one after another, each a set of tasks run
+together. An ability runs as one, and so can anything with steps: a projectile's flight, a channel, a cutscene, a
+tutorial, a boss's phases. A sequence runs as a process (<a href="../processes/index.html">Processes</a>), so ProcessControl starts,
+pauses and ends it like any other.</p>
+<p>The <strong>Task Sequence Examples</strong> sample shows every part of this page in code, and a component that runs any example from
+a scene.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="the-parts.html">The parts</a>: <strong>Sequence</strong>: its stages, in order, with what holds for all of them: its name, its conditions, a timeout or a longest run, whether it repeats, and the handlers that hear it end.</li>
+<li><a href="building-one.html">Building one</a>: <code>Build</code> gives the definition, which a <code>TaskSequence</code> runs and a synced runner is built from; <code>BuildSequence</code> gives the sequence itself, and <code>BuildSyncRunner</code> a synced runner (below).</li>
+<li><a href="waiting.html">Waiting</a>: <strong>Delays</strong>: <code>Delay(seconds)</code> is a stage of its own that waits; <code>DelayUntil</code> and <code>DelayWhile</code> wait on a predicate, and <code>WaitUntil</code> is a stage that does.</li>
+<li><a href="repeating.html">Repeating</a>: <code>WithRepeat(true)</code> on the builder repeats the whole sequence until it's interrupted.</li>
+<li><a href="changing-the-run.html">Changing the run</a>: From a task, through its data packet</li>
+<li><a href="time-limits-and-endings.html">Time limits and endings</a>: <code>WithTimeout(seconds, injection)</code> injects when the time is up, a skip by default; <code>WithMaxDuration(seconds)</code> ends the run, or the stage, at its longest.</li>
+<li><a href="clocks.html">Clocks</a>: A run's time is its <strong>clock</strong>'s: its waits and delays, its timeouts and longest runs, its <code>ElapsedTime</code>, the library's tweens and its synced tasks all go by it.</li>
+<li><a href="running-one.html">Running one</a>: <code>RegisterAndRun(data)</code>, or <code>ProcessControl.Register(sequence).With(data).Run()</code>, runs it as a process: it shows in the Debugger, pauses with ProcessControl, and ends with its scene.</li>
+<li><a href="chains.html">Chains</a>: A chain runs its sequences in order with one data packet; it can repeat, pause and resume, skip its current sequence, or be interrupted, and takes conditions of its own (<code>InterruptWhen</code>, <code>SkipSequenceWhen</code>).</li>
+<li><a href="synced-sequences.html">Synced sequences</a>: A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async: a process with the Synchronous lifecycle calls its <code>Step</code> each frame.</li>
+<li><a href="the-libraries.html">The libraries</a>: <code>SequenceTaskLibrary</code> has tasks to await inside a stage's <code>Task</code>, each taking the task's token, and <code>SyncSequenceTaskLibrary</code> the same tasks as <code>ISequenceTask</code>s for a synced runner, or for any stage</li>
+<li><a href="logging.html">Logging</a>: What a sequence says goes through <code>ForgeLog</code>, under its own system, <strong>Sequences</strong>: a handler's throw as an error, and, where a sequence's or a chain's logging is on (<code>WithInjectionLogging</code>, a chain's <code>WithLogging</code>)…</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.BranchBuilder.html">BranchBuilder</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BranchCase.html">BranchCase</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BranchStage.html">BranchStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BreakStageRepeatInjection.html">BreakStageRepeatInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChainInterruptInjection.html">ChainInterruptInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DelegateSequenceInjection.html">DelegateSequenceInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DelegateSequenceTask.html">DelegateSequenceTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DelegateSyncTask.html">DelegateSyncTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESyncStagePolicy.html">ESyncStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IActiveSequence.html">IActiveSequence</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.InterruptSequenceInjection.html">InterruptSequenceInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceStagePolicy.html">ISequenceStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceTask.html">ISequenceTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.JumpToStageInjection.html">JumpToStageInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MainThreadSequenceTask.html">MainThreadSequenceTask</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RepeatUntilSkippedPolicy.html">RepeatUntilSkippedPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceAnnotation.html">SequenceAnnotation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceCondition.html">SequenceCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceEventContext.html">SequenceEventContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceMetadata.html">SequenceMetadata</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceStage.html">SequenceStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceStageMetadata.html">SequenceStageMetadata</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskBase.html">SequenceTaskBase</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html">SequenceTaskLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTimeout.html">SequenceTimeout</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SkipAndMaintainInjection.html">SkipAndMaintainInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SkipStageInjection.html">SkipStageInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html">StageBuilder</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StopMaintainedAllInjection.html">StopMaintainedAllInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StopMaintainedAtIndexInjection.html">StopMaintainedAtIndexInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StopMaintainedLastInjection.html">StopMaintainedLastInjection</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SyncedTaskSequence.html">SyncedTaskSequence</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SyncedTaskSequence.ERunnerState.html">SyncedTaskSequence.ERunnerState</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceStage.html">SyncSequenceStage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskBase.html">SyncSequenceTaskBase</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html">SyncSequenceTaskLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html">TaskSequence</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html">TaskSequenceBuilder</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceChain.html">TaskSequenceChain</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceDefinition.html">TaskSequenceDefinition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceMethodAttribute.html">TaskSequenceMethodAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html">TaskSequenceProcess</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceReference.html">TaskSequenceReference</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html">TaskSequenceRuntime</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WhenAllStagePolicy.html">WhenAllStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WhenAnyStagePolicy.html">WhenAnyStagePolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WhenNStagePolicy.html">WhenNStagePolicy</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

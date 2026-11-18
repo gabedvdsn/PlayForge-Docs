@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GameplayEffectSpec | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GameplayEffectSpec | PlayForge ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.GameplayEffectSpec">
+
+
+
+  <h1 id="FarEmerald_PlayForge_GameplayEffectSpec" data-uid="FarEmerald.PlayForge.GameplayEffectSpec" class="text-break">
+Class GameplayEffectSpec  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/effect-pipeline/4-effect-lifecycle-effectsystemcomponent.html">Effect &amp; Attribute Pipeline: 4. Effect lifecycle (EffectSystemComponent)</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/scalers/asking-a-worker.html">Scalers: Asking a worker</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GameplayEffectSpec : ICarrierApplication, IAttributeImpactCarrier, ITagSource</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GameplayEffectSpec</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.ICarrierApplication.html">ICarrierApplication</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ITagSource.html">ITagSource</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec__ctor_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec__ctor_FarEmerald_PlayForge_GameplayEffect_FarEmerald_PlayForge_IEffectOrigin_FarEmerald_PlayForge_ITarget_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.#ctor(FarEmerald.PlayForge.GameplayEffect,FarEmerald.PlayForge.IEffectOrigin,FarEmerald.PlayForge.ITarget)">
+  GameplayEffectSpec(GameplayEffect, IEffectOrigin, ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffectSpec(GameplayEffect GameplayEffect, IEffectOrigin origin, ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>GameplayEffect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+    <dt><code>origin</code> <a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Base" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Base">
+  Base
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffect Base</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Origin" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Origin">
+  Origin
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEffectOrigin Origin</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Source" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Source">
+  Source
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISource Source</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Target" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Target">
+  Target
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITarget Target</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_TrackedImpact" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TrackedImpact">
+  TrackedImpact
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TrackedImpact TrackedImpact</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TrackedImpact.html">TrackedImpact</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_ApplicationId_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ApplicationId*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_ApplicationId" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ApplicationId">
+  ApplicationId
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The application's number on its target, counted from 1 as the target's effects land, or 0 until it lands. An
+application had no ID, so nothing could tell two of one effect apart, as a looping cue or a replay needs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ApplicationId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_Breakdown_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Breakdown*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Breakdown" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Breakdown">
+  Breakdown
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The last hit's run through a pipeline: each stage's before and after, and a note, as a critical hit. Null
+until one runs; one is kept for the spec and filled again by each run.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueBreakdown Breakdown { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ValueBreakdown.html">ValueBreakdown</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_Changes_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Changes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Changes" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Changes">
+  Changes
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What modifiers changed of this application: its contained effects, its numbers, its overflow, its time,
+its stacks, its chance and its tags. Null where none did.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EffectChanges Changes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EffectChanges.html">EffectChanges</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_Claimed_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Claimed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_Claimed" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.Claimed">
+  Claimed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The categories what applied it claims it as, for a purge, beside those its origin gives it: an aura claims the
+effects it holds on those near it Lent, as it takes them back as its holder goes or they leave.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EEffectCategory Claimed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectCategory.html">EEffectCategory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_ComponentStates_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ComponentStates*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_ComponentStates" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ComponentStates">
+  ComponentStates
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the effect's components keep for this application of it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ComponentStates ComponentStates { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ComponentStates.html">ComponentStates</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_FromArea_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.FromArea*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_FromArea" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.FromArea">
+  FromArea
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether it landed by another's area, so it spreads no further.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FromArea { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_HitMagnitude_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitMagnitude*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_HitMagnitude" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitMagnitude">
+  HitMagnitude
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How hard it hit, where its applier said, for its cues to scale with; 0 where it said nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float HitMagnitude { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_HitNormal_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitNormal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_HitNormal" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitNormal">
+  HitNormal
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Which way the hit faces, as off the surface it struck, where its applier said.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3? HitNormal { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_HitPoint_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitPoint*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_HitPoint" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HitPoint">
+  HitPoint
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Where the application hit, where its applier said, as a projectile's: its cues play there.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3? HitPoint { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_ProcCoefficient_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ProcCoefficient*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_ProcCoefficient" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ProcCoefficient">
+  ProcCoefficient
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What its hits carry for their on-hit effects: its effect's own where it sets one, or else the ability's
+that made it, or 1. On Hit's effects scale their chance and duration by it, and 0 sets nothing off.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ProcCoefficient { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RuntimeContainer_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RuntimeContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RuntimeContainer" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RuntimeContainer">
+  RuntimeContainer
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The shelf container currently holding this spec (null for instant effects and
+for specs not yet shelved). Set by <a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a> on
+construction and on <a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html#FarEmerald_PlayForge_AbstractEffectContainer_ReplaceValuesWith_FarEmerald_PlayForge_AbstractEffectContainer_">ReplaceValuesWith(AbstractEffectContainer)</a>.
+Lets the impacter pipeline evaluate container-dependent state (stack count)
+without the attribute system knowing about containers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbstractEffectContainer RuntimeContainer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_SetByCallerMagnitudes_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetByCallerMagnitudes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_SetByCallerMagnitudes" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetByCallerMagnitudes">
+  SetByCallerMagnitudes
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The magnitudes the caller set, by tag, which a Set By Caller scaler reads.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;Tag, float&gt; SetByCallerMagnitudes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_SpreadHop_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SpreadHop*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_SpreadHop" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SpreadHop">
+  SpreadHop
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many spreads it is from where its effect first landed: 0 for a landing of its own, 1 for one a Spread
+component made from it, and on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SpreadHop { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_DerivationAlive_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.DerivationAlive*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_DerivationAlive" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.DerivationAlive">
+  DerivationAlive()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True iff this exact spec instance is currently held by a container on the
+source's effect shelf. Diagnostic only — the recompute aggregator no longer
+filters by this. Walks <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html#FarEmerald_PlayForge_IGameplayAbilitySystem_TryGetEffectContainers_FarEmerald_PlayForge_GameplayEffect_FarEmerald_PlayForge_AbstractEffectContainer____">TryGetEffectContainers(GameplayEffect, out AbstractEffectContainer[])</a>
+(plural) so AppendNewContainer scenarios with multiple co-existing specs of
+the same effect each report alive correctly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DerivationAlive()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GenerateContainer_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GenerateContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GenerateContainer_System_Boolean_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GenerateContainer(System.Boolean)">
+  GenerateContainer(bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generate the runtime container that will sit on the target's effect shelf.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbstractEffectContainer GenerateContainer(bool ongoing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ongoing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetAttribute_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetAttribute" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetAttribute">
+  GetAttribute()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAttribute GetAttribute()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetContainedCarriers_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetContainedCarriers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetContainedCarriers_FarEmerald_PlayForge_EApplyTickRemove_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetContainedCarriers(FarEmerald.PlayForge.EApplyTickRemove)">
+  GetContainedCarriers(EApplyTickRemove)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Carriers that should be applied alongside this one at the given lifecycle phase
+(apply / tick / remove). Replaces the old direct-on-spec
+<code>GetContainedEffects(EApplyTickRemove)</code> path with carrier-typed plumbing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ICarrierApplication&gt; GetContainedCarriers(EApplyTickRemove phase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>phase</code> <a class="xref" href="FarEmerald.PlayForge.EApplyTickRemove.html">EApplyTickRemove</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ICarrierApplication.html">ICarrierApplication</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetContextTags_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetContextTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetContextTags" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetContextTags">
+  GetContextTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImpactDerivationContext GetContextTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ImpactDerivationContext.html">ImpactDerivationContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetDurationPolicy_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetDurationPolicy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetDurationPolicy" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetDurationPolicy">
+  GetDurationPolicy()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Instant / Durational / Infinite — drives shelf placement.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EEffectDurationPolicy GetDurationPolicy()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectDurationPolicy.html">EEffectDurationPolicy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetGrantedTags_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetGrantedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetGrantedTags" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetGrantedTags">
+  GetGrantedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Tag&gt; GetGrantedTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetIcon_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetIcon" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetIcon">
+  GetIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its icon: its effect's own, or, under its effect's Inherit From Origin, its origin's texture under the effect's
+Origin Texture, the ability, item or entity that applied it, its own where the origin has none of it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D GetIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactTypes_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactTypes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactTypes" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactTypes">
+  GetImpactTypes()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Tag&gt; GetImpactTypes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactedAttributes_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactedAttributes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactedAttributes_FarEmerald_PlayForge_EImpactDelivery_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactedAttributes(FarEmerald.PlayForge.EImpactDelivery)">
+  GetImpactedAttributes(EImpactDelivery)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Distinct attributes impacted at the given delivery, in entry order (null target entries are skipped). A
+<code>foreach</code> over the result allocates nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyListView&lt;IAttribute&gt; GetImpactedAttributes(EImpactDelivery delivery)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>delivery</code> <a class="xref" href="FarEmerald.PlayForge.EImpactDelivery.html">EImpactDelivery</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ReadOnlyListView-1.html">ReadOnlyListView</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpacters_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpacters*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpacters" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpacters">
+  GetImpacters()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Legacy carrier surface: impacters for the PRIMARY attribute
+(<code>ImpactSpecification.AttributeTarget</code>) across all deliveries. Transitional —
+the attribute system consumes <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_GetImpactersFor_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_EImpactDelivery_">GetImpactersFor(IAttribute, EImpactDelivery)</a> in the new model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;IAttributeImpacter&gt; GetImpacters()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html">IAttributeImpacter</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactersFor_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactersFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetImpactersFor_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_EImpactDelivery_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetImpactersFor(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.EImpactDelivery)">
+  GetImpactersFor(IAttribute, EImpactDelivery)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>All impacters whose entry targets <code class="paramref">attribute</code> with the given delivery. The list is the
+spec's own, built once: read it, don't change it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;IAttributeImpacter&gt; GetImpactersFor(IAttribute attribute, EImpactDelivery delivery)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>delivery</code> <a class="xref" href="FarEmerald.PlayForge.EImpactDelivery.html">EImpactDelivery</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html">IAttributeImpacter</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetOrigin_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetOrigin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetOrigin" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetOrigin">
+  GetOrigin()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEffectOrigin GetOrigin()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetReadableDefinition_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetReadableDefinition*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetReadableDefinition" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetReadableDefinition">
+  GetReadableDefinition()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IHasReadableDefinition GetReadableDefinition()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetRetentionGroup_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetRetentionGroup*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetRetentionGroup" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetRetentionGroup">
+  GetRetentionGroup()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tag GetRetentionGroup()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetSourcedCapturedAttributes_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetSourcedCapturedAttributes*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetSourcedCapturedAttributes" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetSourcedCapturedAttributes">
+  GetSourcedCapturedAttributes()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;IScaler, AttributeValue?&gt; GetSourcedCapturedAttributes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IScaler.html">IScaler</a>, <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a>?&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetTarget_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetTarget" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetTarget">
+  GetTarget()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITarget GetTarget()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetTrackedImpact_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetTrackedImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetTrackedImpact" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetTrackedImpact">
+  GetTrackedImpact()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TrackedImpact GetTrackedImpact()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TrackedImpact.html">TrackedImpact</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_GetWorkerState_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetWorkerState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_GetWorkerState__1_FarEmerald_PlayForge_AbstractEffectWorker_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.GetWorkerState``1(FarEmerald.PlayForge.AbstractEffectWorker)">
+  GetWorkerState&lt;T&gt;(AbstractEffectWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A worker's state for this application of the effect, made the first time the worker asks for it and kept
+while the application lasts, as a task's state is kept on its activation's data. A worker is one object on
+its effect's asset, shared by every application, so what it counts for one of them is kept here: the
+target's health as the effect began, how many times it has ticked. A worker that answers numbers reads it
+back as it's asked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetWorkerState&lt;T&gt;(AbstractEffectWorker worker) where T : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractEffectWorker.html">AbstractEffectWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_HasImpacters_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HasImpacters*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_HasImpacters_FarEmerald_PlayForge_EImpactDelivery_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.HasImpacters(FarEmerald.PlayForge.EImpactDelivery)">
+  HasImpacters(EImpactDelivery)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasImpacters(EImpactDelivery delivery)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>delivery</code> <a class="xref" href="FarEmerald.PlayForge.EImpactDelivery.html">EImpactDelivery</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RetainImpact_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RetainImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RetainImpact" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RetainImpact">
+  RetainImpact()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RetainImpact()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerApplication_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerApplication*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerApplication_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerApplication(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerApplication(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunWorkerApplication(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerImpact_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerImpact_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerImpact(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerImpact(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunWorkerImpact(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerRemoval_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerRemoval*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerRemoval_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerRemoval(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerRemoval(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunWorkerRemoval(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerTick_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerTick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_RunWorkerTick_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.RunWorkerTick(FarEmerald.PlayForge.EffectWorkerContext)">
+  RunWorkerTick(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunWorkerTick(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_SetByCaller_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_SetByCaller_FarEmerald_PlayForge_Tag_System_Single_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetByCaller(FarEmerald.PlayForge.Tag,System.Single)">
+  SetByCaller(Tag, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a magnitude under a tag, as Unreal's SetByCaller does, for a Set By Caller scaler to read: code that knows
+the amount as it applies the effect passes it in. Set it before the spec is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetByCaller(Tag key, float magnitude)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_SetRuntimeContainer_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetRuntimeContainer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_SetRuntimeContainer_FarEmerald_PlayForge_AbstractEffectContainer_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.SetRuntimeContainer(FarEmerald.PlayForge.AbstractEffectContainer)">
+  SetRuntimeContainer(AbstractEffectContainer)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRuntimeContainer(AbstractEffectContainer container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_TakeSetByCaller_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TakeSetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_TakeSetByCaller_System_Collections_Generic_IReadOnlyDictionary_FarEmerald_PlayForge_Tag_System_Single__" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TakeSetByCaller(System.Collections.Generic.IReadOnlyDictionary{FarEmerald.PlayForge.Tag,System.Single})">
+  TakeSetByCaller(IReadOnlyDictionary&lt;Tag, float&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes each magnitude another set, as an effect is made from it: its container's, or an activation's data. One
+set on this spec already gives way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TakeSetByCaller(IReadOnlyDictionary&lt;Tag, float&gt; magnitudes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>magnitudes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_TrackImpact_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TrackImpact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_TrackImpact_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TrackImpact(FarEmerald.PlayForge.ImpactData)">
+  TrackImpact(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrackImpact(ImpactData impactData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impactData</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_TryGetSetByCaller_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TryGetSetByCaller*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_TryGetSetByCaller_FarEmerald_PlayForge_Tag_System_Single__" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.TryGetSetByCaller(FarEmerald.PlayForge.Tag,System.Single@)">
+  TryGetSetByCaller(Tag, out float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The magnitude the caller set under the tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetSetByCaller(Tag key, out float magnitude)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_ValidateApplication_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ValidateApplication*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_ValidateApplication_FarEmerald_PlayForge_ITarget_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.ValidateApplication(FarEmerald.PlayForge.ITarget)">
+  ValidateApplication(ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pre-application validation (affiliation, source / target tag requirements).
+Returns false to refuse application; the target should drop the carrier with no
+side effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ValidateApplication(ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayEffectSpec_WithHit_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.WithHit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayEffectSpec_WithHit_UnityEngine_Vector3_System_Nullable_UnityEngine_Vector3__System_Single_" data-uid="FarEmerald.PlayForge.GameplayEffectSpec.WithHit(UnityEngine.Vector3,System.Nullable{UnityEngine.Vector3},System.Single)">
+  WithHit(Vector3, Vector3?, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives the application where it hit, before it's applied: its cues play at the point, facing the normal, and
+scale with the magnitude, as a sword's spark where the blade struck.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffectSpec WithHit(Vector3 point, Vector3? normal = null, float magnitude = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>point</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>normal</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

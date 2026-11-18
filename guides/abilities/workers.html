@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.workers">
+<h1 id="workers">Workers</h1>
+
+<p>Workers are reusable behaviours, picked from a list, that react to what happens to an entity. This group is subscribed
+to the entity when it learns the ability, and removed when the ability is removed. <strong>Name</strong> labels the group. It holds
+four lists:</p>
+<ul>
+<li><strong>Attribute</strong> workers run before or after an attribute changes, for example to reduce incoming damage.</li>
+<li><strong>Impact</strong> workers inspect the changes this entity deals.</li>
+<li><strong>Tag</strong> workers react when the entity's tags change.</li>
+<li><strong>Analysis</strong> workers examine the frame at its end, for example to detect death.</li>
+</ul>
+<p>Each list's <strong>+</strong> adds an empty worker to pick a kind for. The section's import button copies a worker group
+from another asset.</p>
+<h2 id="on-hit">On Hit</h2>
+<p><strong>On Hit</strong>, above the workers, holds the effects the entity's hits apply while it knows the ability, as a passive's. Its entries are an item's: an attribute, the effects, to the one hit or the holder, only on a kill, impact
+types and a condition (<a href="../items/workers.html#on-hit">Items: On Hit</a>).</p>
+<h2 id="modifiers">Modifiers</h2>
+<p><strong>Modifiers</strong>, under On Hit, change other effects as they're made, while the entity knows the ability: its holder's own, as a boon that adds a
+burst to its holder's every Chill, or those landing on it, as a cloak that halves the stuns its wearer takes.
+Each entry is a rule of its own or names a shared Effect Modifier asset (<a href="../effects/workers.html#modifiers">Effects: Modifiers</a>).</p>
+<h2 id="lifesteal">Lifesteal</h2>
+<p>An ability gives its holder lifesteal by an effect that raises the holder's <strong>Lifesteal</strong>, the attribute the project's
+Lifesteal worker names as its Share, as a passive applies it to its caster, which the Lifesteal worker heals by (<a href="../workers/lifesteal.html">Workers: Lifesteal</a>): a vampiric mask's
+Infinite effect of +0.15 Lifesteal heals its wearer 15% of each blow it deals. Its Lifesteal list is gone.</p>
+<hr>
+<p><a href="components.html">← Components</a> · <a href="index.html">Abilities</a> · <a href="local-data.html">Local Data →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

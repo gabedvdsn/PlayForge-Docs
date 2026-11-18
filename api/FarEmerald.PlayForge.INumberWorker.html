@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface INumberWorker | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface INumberWorker | PlayForge ">
+      
+      <meta name="description" content="A worker that answers numbers: a number of the Worker kind, or an Asset Part number&#39;s Worker Value, asks it for a value under a key, and it answers from what it knows, as how much health its effect&#39;s target has lost since the effect began. Any worker can implement it: an effect&#39;s workers answer about their effect, and an entity&#39;s workers, those its worker groups give it, about the entity. Every number field can ask, so a worker can drive an effect&#39;s magnitude, a task&#39;s range, a threshold or a cue&#39;s parameter.  The context it&#39;s asked in is what it&#39;s asked about: for an effect&#39;s worker, the effect&#39;s own context, whose  is the effect&#39;s spec, where its state for that application is (); for an entity&#39;s worker, the asking number&#39;s context. It answers false for a key it doesn&#39;t know, and the asker reads its default.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.INumberWorker">
+
+
+
+  <h1 id="FarEmerald_PlayForge_INumberWorker" data-uid="FarEmerald.PlayForge.INumberWorker" class="text-break">
+Interface INumberWorker  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A worker that answers numbers: a number of the Worker kind, or an Asset Part number's Worker
+Value, asks it for a value under a key, and it answers from what it knows, as how much health its effect's target
+has lost since the effect began. Any worker can implement it: an effect's workers answer about their effect, and
+an entity's workers, those its worker groups give it, about the entity. Every number field can ask, so a worker
+can drive an effect's magnitude, a task's range, a threshold or a cue's parameter.</p>
+<p>
+The context it's asked in is what it's asked about: for an effect's worker, the effect's own context, whose
+<a class="xref" href="FarEmerald.PlayForge.NumberContext.html#FarEmerald_PlayForge_NumberContext_Carrier">Carrier</a> is the effect's spec, where its state for that application is
+(<a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_GetWorkerState__1_FarEmerald_PlayForge_AbstractEffectWorker_">GetWorkerState&lt;T&gt;(AbstractEffectWorker)</a>); for an entity's worker, the asking number's context. It
+answers false for a key it doesn't know, and the asker reads its default.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/workers/index.html">Workers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/scalers/asking-a-worker.html">Scalers: Asking a worker</a> · <a class="xref" href="../guides/effects/workers.html">Effects: Workers</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface INumberWorker</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_INumberWorker_TryGetNumber_" data-uid="FarEmerald.PlayForge.INumberWorker.TryGetNumber*"></a>
+
+  <h3 id="FarEmerald_PlayForge_INumberWorker_TryGetNumber_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_NumberContext__System_Single__" data-uid="FarEmerald.PlayForge.INumberWorker.TryGetNumber(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.NumberContext@,System.Single@)">
+  TryGetNumber(Tag, in NumberContext, out float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The value under a key, about what the context holds; false for a key the worker doesn't know.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryGetNumber(Tag key, in NumberContext context, out float value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="FarEmerald.PlayForge.NumberContext.html">NumberContext</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

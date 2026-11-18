@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeTestWorld | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeTestWorld | PlayForge ">
+      
+      <meta name="description" content="One live PlayForge for one test: a real ProcessControl and GameRoot brought up by the real Bootstrapper, stepped by Unity&#39;s player loop a frame at a time. It makes what a test needs, entities on either hub, from an identity asset or from attributes, and plays them as a game does:  applies an effect,  gives an ability and starts it,  starts one the entity has, and  equips an item. Its  and  make time and chance the test&#39;s.  It ends as a test asks, or as it&#39;s disposed (await using): every process it began, every object and asset it made, and the framework&#39;s static state, so tests run in any order.  first says what broke of its .  makes one for each test, audits it and ends it. Step frames, and let ProcessControl step what runs: never call a process&#39;s update by hand.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Testing_ForgeTestWorld" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld" class="text-break">
+Class ForgeTestWorld  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Testing.html">Testing</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Testing.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>One live PlayForge for one test: a real ProcessControl and GameRoot brought up by the real
+Bootstrapper, stepped by Unity's player loop a frame at a time. It makes what a test needs, entities on either hub,
+from an identity asset or from attributes, and plays them as a game does: <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Hit_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_GameplayEffect_">Hit(IGameplayAbilitySystem, IGameplayAbilitySystem, GameplayEffect)</a> applies an effect,
+<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Int32_">Cast(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem, int)</a> gives an ability and starts it, <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Use_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_">Use(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem)</a> starts one the entity has, and
+<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Hold_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Item_System_Int32_">Hold(IGameplayAbilitySystem, Item, int)</a> equips an item. Its <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Clock_System_Single_">Clock(float)</a> and <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Rolls_System_Single___">Rolls(params float[])</a> make time and chance the test's.</p>
+<p>
+It ends as a test asks, or as it's disposed (<code>await using</code>): every process it began, every object and asset it
+made, and the framework's static state, so tests run in any order. <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Audit">Audit()</a> first says what broke of
+its <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Invariants">Invariants</a>. <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a> makes one for each test, audits it and ends it. Step frames,
+and let ProcessControl step what runs: never call a process's update by hand.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/testing/index.html">Testing Your Content</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/testing/the-world.html">Testing Your Content: The world</a> · <a class="xref" href="../guides/testing/a-test.html">Testing Your Content: A test</a> · <a class="xref" href="../guides/testing/traps.html">Testing Your Content: Traps</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ForgeTestWorld : IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeTestWorld</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Control_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Control*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Control" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Control">
+  Control
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessControl Control { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Current_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Current*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Current" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Current">
+  Current
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The world a test is in, while one is.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeTestWorld Current { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Frames_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Frames*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Frames" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Frames">
+  Frames
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps the world's frames.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FrameStepper Frames { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Invariants_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Invariants*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Invariants" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Invariants">
+  Invariants
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What must hold after the test, which <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Audit">Audit()</a> checks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Invariants Invariants { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.Invariants.html">Invariants</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Make_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Make*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Make" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Make">
+  Make
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Builds assets in code, destroyed with the world.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TestAssets Make { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.TestAssets.html">TestAssets</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Root_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Root*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Root" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Root">
+  Root
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameRoot Root { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameRoot.html">GameRoot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Audit_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Audit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Audit" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Audit">
+  Audit()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lets the frame's work finish, ends each process the world began and the test left running, and returns every
+invariant that broke: attribute parts that don't sum, dealt that isn't received, and processes still running
+that the world didn't begin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask&lt;List&lt;string&gt;&gt; Audit()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Base_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Base*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Base_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Attribute_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Base(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Attribute)">
+  Base(IGameplayAbilitySystem, Attribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An attribute's base value, or NaN where the entity hasn't the attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Base(IGameplayAbilitySystem gas, Attribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Cast*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Int32_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Cast(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.IGameplayAbilitySystem,System.Int32)">
+  Cast(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives the caster an ability at a level, and asks it to start at a target, if any; whether it started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Cast(IGameplayAbilitySystem caster, Ability ability, IGameplayAbilitySystem target = null, int level = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>caster</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Cast*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Cast_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Int32_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Cast(FarEmerald.PlayForge.IGameplayAbilitySystem,System.Int32,FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  Cast(IGameplayAbilitySystem, int, IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asks the ability in a slot to start at a target, if any; whether it started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Cast(IGameplayAbilitySystem caster, int index, IGameplayAbilitySystem target = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>caster</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Clock_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Clock*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Clock_System_Single_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Clock(System.Single)">
+  Clock(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Each frame takes <code class="paramref">step</code> seconds of the game's time until the world ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteppingClock Clock(float step)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>step</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.SteppingClock.html">SteppingClock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_DisposeAsync_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.DisposeAsync*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_DisposeAsync" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.DisposeAsync">
+  DisposeAsync()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends the world, as <code>await using</code> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask DisposeAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_End_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_End" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.End">
+  End()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes everything down, whatever state the test left it in: every process, object and asset the world made, and
+PlayForge's static state, and gives back the clock and the rolls. Forcing every process to end at once runs
+each way one ends, and what those report says nothing of the test, so it's let pass. Ending twice does nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask End()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Entity_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Entity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Entity_FarEmerald_PlayForge_Testing_Hub_FarEmerald_PlayForge_AttributeSet_System_String_System_Boolean_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Entity(FarEmerald.PlayForge.Testing.Hub,FarEmerald.PlayForge.AttributeSet,System.String,System.Boolean)">
+  Entity(Hub, AttributeSet, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A registered GAS of these attributes on either hub.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGameplayAbilitySystem Entity(Hub hub, AttributeSet set = null, string name = &quot;Entity&quot;, bool observed = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hub</code> <a class="xref" href="FarEmerald.PlayForge.Testing.Hub.html">Hub</a></dt>
+    <dd></dd>
+    <dt><code>set</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>observed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_FromIdentity_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.FromIdentity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_FromIdentity_FarEmerald_PlayForge_Testing_Hub_FarEmerald_PlayForge_EntityIdentity_System_Boolean_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.FromIdentity(FarEmerald.PlayForge.Testing.Hub,FarEmerald.PlayForge.EntityIdentity,System.Boolean)">
+  FromIdentity(Hub, EntityIdentity, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An entity made from an identity asset, a game's own or one <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Make">Make</a> built, registered on either hub,
+with its attribute set, starting abilities and items, and sides.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGameplayAbilitySystem FromIdentity(Hub hub, EntityIdentity identity, bool observed = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hub</code> <a class="xref" href="FarEmerald.PlayForge.Testing.Hub.html">Hub</a></dt>
+    <dd></dd>
+    <dt><code>identity</code> <a class="xref" href="FarEmerald.PlayForge.EntityIdentity.html">EntityIdentity</a></dt>
+    <dd></dd>
+    <dt><code>observed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Has_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Has*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Has_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Has(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.GameplayEffect)">
+  Has(IGameplayAbilitySystem, GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an effect is on the entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Has(IGameplayAbilitySystem gas, GameplayEffect effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_HasTag_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.HasTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_HasTag_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.HasTag(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Tag)">
+  HasTag(IGameplayAbilitySystem, Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the entity carries a tag, or one under it. A list of tags is checked here rather than with NUnit's
+Does.Contain, which compares a tag as the text it converts to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTag(IGameplayAbilitySystem gas, Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Hit_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Hit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Hit_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Hit(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.GameplayEffect)">
+  Hit(IGameplayAbilitySystem, IGameplayAbilitySystem, GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Applies an effect from a source to a target, as a hit; whether it landed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Hit(IGameplayAbilitySystem source, IGameplayAbilitySystem target, GameplayEffect effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Hold_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Hold*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Hold_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Item_System_Int32_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Hold(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Item,System.Int32)">
+  Hold(IGameplayAbilitySystem, Item, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives and equips an item, with as many stacks as asked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Hold(IGameplayAbilitySystem holder, Item item, int stacks = 1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>holder</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>item</code> <a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a></dt>
+    <dd></dd>
+    <dt><code>stacks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_MonoEntity_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.MonoEntity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_MonoEntity_FarEmerald_PlayForge_AttributeSet_System_String_System_Boolean_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.MonoEntity(FarEmerald.PlayForge.AttributeSet,System.String,System.Boolean)">
+  MonoEntity(AttributeSet, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A registered MonoBehaviour GAS on a GameObject of its own, as <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_RuntimeEntity_FarEmerald_PlayForge_AttributeSet_System_String_System_Boolean_">RuntimeEntity(AttributeSet, string, bool)</a> makes one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayAbilitySystem MonoEntity(AttributeSet set = null, string name = &quot;Entity&quot;, bool observed = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>set</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>observed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystem.html">GameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_NewMonoEntity_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.NewMonoEntity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_NewMonoEntity_FarEmerald_PlayForge_AttributeSet_System_String_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.NewMonoEntity(FarEmerald.PlayForge.AttributeSet,System.String)">
+  NewMonoEntity(AttributeSet, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A MonoBehaviour GAS as <a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_MonoEntity_FarEmerald_PlayForge_AttributeSet_System_String_System_Boolean_">MonoEntity(AttributeSet, string, bool)</a> makes it, not yet registered or observed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayAbilitySystem NewMonoEntity(AttributeSet set = null, string name = &quot;Entity&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>set</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystem.html">GameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Observe_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Observe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Observe_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Observe(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  Observe(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Includes an entity made elsewhere, as one from a scene, in the invariants' checks.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Observe(IGameplayAbilitySystem gas)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Own_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Own*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Own_FarEmerald_PlayForge_ProcessRelay_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Own(FarEmerald.PlayForge.ProcessRelay)">
+  Own(ProcessRelay)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Makes the world end a process that was registered some other way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Own(ProcessRelay relay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Register_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Register*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Register_FarEmerald_PlayForge_AbstractMonoProcess_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Register(FarEmerald.PlayForge.AbstractMonoProcess,FarEmerald.PlayForge.ProcessDataPacket)">
+  Register(AbstractMonoProcess, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a process the world ends if the test doesn't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessRelay Register(AbstractMonoProcess process, ProcessDataPacket data = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>process</code> <a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcess.html">AbstractMonoProcess</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Register_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Register*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Register_FarEmerald_PlayForge_AbstractRuntimeProcess_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Register(FarEmerald.PlayForge.AbstractRuntimeProcess,FarEmerald.PlayForge.ProcessDataPacket)">
+  Register(AbstractRuntimeProcess, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a process the world ends if the test doesn't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessRelay Register(AbstractRuntimeProcess process, ProcessDataPacket data = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>process</code> <a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html">AbstractRuntimeProcess</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Rolls_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Rolls*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Rolls_System_Single___" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Rolls(System.Single[])">
+  Rolls(params float[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rolls come out as these, in turn and round again, until the world ends; the result counts them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScriptedRandom Rolls(params float[] rolls)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rolls</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Testing.ScriptedRandom.html">ScriptedRandom</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_RuntimeEntity_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.RuntimeEntity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_RuntimeEntity_FarEmerald_PlayForge_AttributeSet_System_String_System_Boolean_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.RuntimeEntity(FarEmerald.PlayForge.AttributeSet,System.String,System.Boolean)">
+  RuntimeEntity(AttributeSet, string, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A registered runtime GAS of these attributes. An <code class="paramref">observed</code> entity is in the invariants' checks,
+which listen for its frame summaries, so a test that measures allocation turns it off.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RuntimeGameplayAbilitySystem RuntimeEntity(AttributeSet set = null, string name = &quot;Entity&quot;, bool observed = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>set</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>observed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html">RuntimeGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Spawn_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Spawn*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Spawn__1___0_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Spawn``1(``0,FarEmerald.PlayForge.ProcessDataPacket)">
+  Spawn&lt;T&gt;(T, ProcessDataPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a template, or a prefab, and returns the clone ProcessControl made of it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Spawn&lt;T&gt;(T template, ProcessDataPacket data = null) where T : AbstractMonoProcess</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>template</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Stacks_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Stacks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Stacks_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Stacks(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.GameplayEffect)">
+  Stacks(IGameplayAbilitySystem, GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An effect's stacks on the entity: 1 for one that doesn't stack, 0 for one that isn't on it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Stacks(IGameplayAbilitySystem gas, GameplayEffect effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Start_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Start*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Start_System_Single_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Start(System.Single)">
+  Start(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Starts a world of one's own, as a test with a base class of its own makes one: live, at a frame's end. End it as
+the test ends, or dispose it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask&lt;ForgeTestWorld&gt; Start(float deltaTime = 0.016666668)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deltaTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span>&lt;<a class="xref" href="FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Template_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Template*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Template__1_System_String_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Template``1(System.String)">
+  Template&lt;T&gt;(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A stand-in for a prefab: an object outside any scene and not active, as a prefab is, so ProcessControl clones it
+as it registers it, the clone an ordinary active object in the scene.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Template&lt;T&gt;(string name) where T : AbstractMonoProcess</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Use_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Use*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Use_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Ability_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Use(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Ability,FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  Use(IGameplayAbilitySystem, Ability, IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asks an ability the entity has already, as an item's, to start at a target, if any; whether it started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Use(IGameplayAbilitySystem caster, Ability ability, IGameplayAbilitySystem target = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>caster</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>ability</code> <a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Value_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Value*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_ForgeTestWorld_Value_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_Attribute_" data-uid="FarEmerald.PlayForge.Testing.ForgeTestWorld.Value(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.Attribute)">
+  Value(IGameplayAbilitySystem, Attribute)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An attribute's current value, or NaN where the entity hasn't the attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Value(IGameplayAbilitySystem gas, Attribute attribute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

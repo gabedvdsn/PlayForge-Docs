@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Changing the run | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Changing the run | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.task-sequences.changing-the-run">
+<h1 id="changing-the-run">Changing the run</h1>
+
+<p>From a task, through its data packet:</p>
+<pre><code class="lang-csharp">data.SkipStage();               // end this stage, on to the next
+data.SkipAndMaintain();         // on to the next, leaving this one's tasks running
+data.JumpToStage(&quot;Impact&quot;);     // or by index
+data.RestartSequence();
+data.BreakStageRepeat();
+data.Interrupt();               // end the run
+data.SetStageTimeout(2f);       // this stage gets two seconds, then it's skipped
+</code></pre>
+<p>From outside, through the sequence or its runtime: <code>Inject(injection)</code>, <code>Interrupt()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_SkipCurrentStage_"><code>SkipCurrentStage()</code></a>.</p>
+<p>By a condition, checked each frame: <code>InterruptWhen</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_SkipStageWhen_"><code>SkipStageWhen</code></a> on the sequence, <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SkipWhen_"><code>SkipWhen</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_StopRepeatWhen_"><code>StopRepeatWhen</code></a> on
+a stage, and <code>InjectWhen</code> for any injection. A condition fires once or every time it holds.</p>
+<p>A stage's condition is asked each frame by the process, so where a repeating stage's round ends, the next may have
+begun before <code>StopRepeatWhen</code> hears its predicate hold: a break from a task or from <code>OnRepeat</code> stops at the round
+exactly. <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SkipAndMaintain_"><code>SkipAndMaintain</code></a> keeps the stage current as it's called running on; called again later, it keeps that later
+one. <code>InjectStageLocal(injection, stage)</code> asks the given stage's permissions, and the injection acts on the current
+stage.</p>
+<p>What may change a run is the sequence's to say: <code>AllowInjections(types)</code>, <code>AllowOnlyInterrupt()</code> and
+<code>DisallowInjections()</code>, on the sequence or a stage. A <strong>critical</strong> stage (<code>WithCriticalFlag(true)</code>) refuses every
+injection but those it names (<code>WithCriticalAllowedInjections</code>), and <code>OnCriticalSectionExited</code> hears the last critical
+stage end.</p>
+<hr>
+<p><a href="repeating.html">← Repeating</a> · <a href="index.html">Task Sequences</a> · <a href="time-limits-and-endings.html">Time limits and endings →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

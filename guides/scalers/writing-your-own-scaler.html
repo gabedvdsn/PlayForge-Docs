@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Writing your own scaler | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Writing your own scaler | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.writing-your-own-scaler">
+<h1 id="writing-your-own-scaler">Writing your own scaler</h1>
+
+<p>A scaler of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html"><code>AbstractScaler</code></a>, or from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCachedScaler.html"><code>AbstractCachedScaler</code></a> for an attribute set's values, and
+has a public constructor with no parameters. The Kind menu lists it by its name without &quot;Scaler&quot;, as <strong>Damage Curve</strong>
+for <code>DamageCurveScaler</code>. Its inspector draws:</p>
+<ul>
+<li>Each field it adds, public or <code>[SerializeField]</code>, as Unity draws the field's type, through any property drawer you
+write for that type. The fields of an abstract base of your own draw too. <code>[HideInInspector]</code> keeps a field out, and
+<code>[ForgeShowWhen(nameof(Mode), EMode.Curved)]</code> shows one only while another field, an enum or a bool, holds one of
+the values given.</li>
+<li>The parts every scaler has, as its <code>Parts</code> say: its values per level (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelValues"><code>EScalerParts.LevelValues</code></a>), the level range
+they spread over (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelRange"><code>EScalerParts.LevelRange</code></a>), and its behaviours (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_Behaviours"><code>EScalerParts.Behaviours</code></a>). Unless you override it,
+a scaler reads all three, or its behaviours alone where its <code>UseScalingOptions()</code> returns false. Override <code>Parts</code> to
+say what yours reads, as a scaler that reads only an attribute returns <code>EScalerParts.Behaviours</code>. <code>Parts</code> can follow
+the scaler's own fields, as one that reads its values per level in one mode alone.</li>
+</ul>
+<p>A <strong>kind of number</strong> of your own is simpler: derive from <a class="xref" href="../../api/FarEmerald.PlayForge.NumberKind.html"><code>NumberKind</code></a> and override its one method,
+<code>Evaluate(in NumberContext context)</code>, which reads what the field's site has: <code>context.Caster</code>, <code>context.Target</code>,
+<code>context.Level</code>, the caller's magnitudes, Local Data, an attribute on either side, and more; <code>context.Has(...)</code> says
+which. <code>Describe()</code> gives the field's summary, as &quot;the distance to the target&quot;. <code>[NumberKind(&quot;Distance to Target&quot;, Reads = NumberReads.Caster | NumberReads.Target)]</code> names it and says what it reads, so a field offers it only where it can
+be worked out; where it can't, the field reads its number. <code>[ForgeMenu(&quot;Space&quot;)]</code> files it in the kind menu. A kind
+is a scaler, so it also works in an effect's magnitude and inside a Group or a Conditional, and its fields draw as a
+scaler's do. Test one without an effect: <code>number.Evaluate(NumberContext.For(caster, target, level))</code>. A kind is saved
+by its class's name, so renaming the class needs Unity's <code>[MovedFrom]</code>. PlayForge's own kinds, Local Data, Tracked
+Impact, Asset Part and the rest, are written this way, in <code>Runtime/PlayForge/Numbers/Kinds</code>.</p>
+<p>A <strong>condition</strong> of your own, for a Conditional, is the same: derive from <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayCondition.html"><code>GameplayCondition</code></a>, override
+<code>Evaluate(in NumberContext context)</code> to say whether it holds and <code>Describe()</code> for its line, and name it with
+<code>[GameplayCondition(&quot;Target Is Caster&quot;, Reads = NumberReads.Caster | NumberReads.Target)]</code>; the condition menu offers
+it, and <code>condition.Holds(context)</code> reads it. A kind or a condition that holds numbers reads them with itself as their
+owner, <code>MaxValue.Evaluate(context, this)</code>, and passes <code>Initialize(carrier)</code> on to them, so a number in it captures what
+it captures as an effect's spec is made. PlayForge's are in <code>Runtime/PlayForge/Numbers/Conditions</code>.</p>
+<hr>
+<p><a href="values-per-level.html">← Values per level</a> · <a href="index.html">Scalers</a> · <a href="a-number-field-in-your-own-code.html">A number field in your own code →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Duration | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Duration | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.duration">
+<h1 id="duration">Duration</h1>
+
+<p>The fields show as the Policy uses them.</p>
+<ul>
+<li><strong>Policy</strong>: Instant (default) makes the change once. Durational stays for a set time. Infinite stays until
+something removes it.</li>
+<li><strong>Duration</strong> (Durational): the effect's length in seconds, with its scaler.</li>
+<li><strong>Periodic Ticks</strong> (Durational and Infinite): a tick makes the effect's change again, as a new commit.
+<ul>
+<li><strong>Ticks</strong> (Durational): how many ticks fit in the duration, evenly spaced. The last falls as the duration ends, so
+5 ticks over 10 seconds tick every 2 seconds.</li>
+<li><strong>Tick Every</strong> (Infinite): the seconds between ticks.</li>
+</ul>
+</li>
+<li><strong>Tick On Application</strong>: run one tick as soon as the effect is applied, before the first periodic tick. It runs
+again when re-application refreshes or extends the effect. Use it with Periodic Ticks. On its own, it is a shape that
+the Problems view flags.</li>
+<li><strong>Additional Executions</strong> (while it ticks): each tick executes the change a number of times, N plus this, combined
+with its scaler. N comes from the effect's container and is normally 1. A stacking container that shares one
+duration, or takes it from one stack, uses its stack count.</li>
+<li><strong>Real Delta Time</strong> and <strong>Delta Time Scaler</strong> (Durational) change how fast the effect's clock runs. With no scaler,
+the clock follows Unity's frame time. With one, Real Delta Time combines the two. Multiply With Scaler, for example,
+slows the clock down or speeds it up.</li>
+</ul>
+<p>A tick only executes while the While On requirements hold (see Requirements).</p>
+<h2 id="re-application-durational-and-infinite">Re-application (Durational and Infinite)</h2>
+<p>What happens when the effect is applied to a target that already has it. Each application on the shelf lives in a
+<em>container</em>. The effect is matched by its asset tag, whoever applied it.</p>
+<ul>
+<li><strong>Re-application</strong>: Add Another (default) adds a separate container, and both apply. Do Nothing adds nothing new.
+Replace Existing gives the old container the new application's values and modifiers, and keeps its stack count. Past
+commits stay. Stack Existing adds stacks to the old container (see Stacking).</li>
+<li><strong>Then</strong> (all but Add Another) applies as the old container takes in the application. Do Nothing (default) leaves its
+time alone. Refresh Duration restarts it. Extend Duration adds the new duration to it. Refresh and Extend also run
+Tick On Application again.</li>
+</ul>
+<h2 id="stacking-stack-existing-only">Stacking (Stack Existing only)</h2>
+<ul>
+<li><strong>Stacking</strong>: Stacks Share One Duration (default) runs one timer for all stacks, and adding a stack doesn't reset it.
+Stacks Have Independent Durations gives each stack its own timer and ticks. Stacks drop off one at a time, and the
+effect lasts as long as its longest stack. Duration Taken From One Stack runs one stack's timer at a time. Each time
+it runs out, one stack is lost and the timer restarts.</li>
+<li><strong>Stack Behaviours</strong>: optional stacking rules, such as Stack Bounds Config, which keeps the stack count between a
+Min and a Max, and Starting Stacks, the stacks a new effect starts with, each a number field read at the effect's
+level; Starting Stacks is one, where a number, a scaler, a combine and a rounding of its own were one written
+out. An application that would take the effect past the Max overflows: its Overflow Effects land, from
+the same origin, as a bleed's fourth stack hemorrhages, on the target or, with <strong>Overflow Lands On</strong> set to Caster,
+on its caster, as a frenzy; Deny Refresh On Overflow keeps that application from refreshing or extending the
+effect; and Clear Stacks On Overflow takes the effect's stacks off.</li>
+<li><strong>Stack Amount</strong>, with its scaler: the stacks each application adds. 0 counts as 1.</li>
+</ul>
+<p>A change reads the stack count through an <strong>Effect Stacks</strong> scaler (<a href="../scalers/index.html">Scalers</a>): a magnitude of −5 with
+Multiply With Scaler takes 5 a stack. A Continuous one updates whenever the count changes. A Periodic one lands once for
+each stack already, so one that reads its stacks counts them twice, 3 stacks hitting 9 times as hard as 1: the Problems
+view warns of it, and its quick fix, <strong>Count Stacks Once</strong>, gives the number one stack gives.</p>
+<h2 id="moving-an-effect-to-another-entity">Moving an effect to another entity</h2>
+<p><code>gas.GetEffectSystem().MoveTo(effect, other)</code> moves each of the effect's containers on the entity onto another, as a
+possession hands a body's effects over. Each keeps its stacks, its time left and what applied it. A move is neither
+a removal nor an application: none of either's workers, commits or contained effects run, and neither is told. Its
+lasting changes, its granted tags, the abilities it lends and its lasting cues go with it.</p>
+<hr>
+<p><a href="purging.html">← Purging</a> · <a href="index.html">Effects</a> · <a href="impact.html">Impact →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

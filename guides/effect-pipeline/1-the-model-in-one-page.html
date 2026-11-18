@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>1. The model in one page | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="1. The model in one page | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effect-pipeline.1-the-model-in-one-page">
+<h1 id="1-the-model-in-one-page">1. The model in one page</h1>
+
+<p>Every authored impact is an <strong><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html"><code>AttributeImpactEntry</code></a></strong> on <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_Entries"><code>GameplayEffectImpact.Entries</code></a>:
+<code>{ AttributeTarget, Delivery, Operation, TargetSlot, MultiplyBehaviour, SortOrder, Magnitude, RetentionGroupOverride, ImpactTypes }</code>. One effect may carry many entries across many
+attributes (&quot;+10% speed while active AND 5 HP per tick&quot; is one asset): the first derived from
+its impact's fields, then each of its <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_AdditionalImpacts"><code>AdditionalImpacts</code></a> (§7).</p>
+<p><strong>Delivery decides everything</strong> — there is deliberately no separate &quot;retained?&quot; or
+&quot;reverse on removal?&quot; switch:</p>
+<table>
+<thead>
+<tr>
+<th>Delivery</th>
+<th>Kind</th>
+<th>When</th>
+<th>Reversal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Continuous</code></td>
+<td><strong>Modifier</strong> — transient, derived</td>
+<td>registered on apply, while the carrier lives</td>
+<td>automatic &amp; exact: unregister + recompute. The ONLY reversal mechanism.</td>
+</tr>
+<tr>
+<td><code>OnApply</code></td>
+<td><strong>Commit</strong> — permanent</td>
+<td>once at application</td>
+<td>never</td>
+</tr>
+<tr>
+<td><code>Periodic</code></td>
+<td><strong>Commit</strong> — permanent</td>
+<td>once per execute tick</td>
+<td>never</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><em>Modifier</em> = &quot;while this carrier is present&quot; — item stat bonuses, auras, durational %-buffs.
+Its magnitude is re-evaluated on every recompute; removing the carrier recomputes without it.
+A <code>×1.2</code> buff can never leave residue because its value is never stored, always derived.</li>
+<li><em>Commit</em> = an event that permanently changed the attribute — damage, heals, DoT/HoT ticks.
+The post-constraint delta is recorded into per-group committed history and survives everything.</li>
+</ul>
+<p><strong>Retention groups</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>) are pure attribution: every contribution — root value, modifiers,
+commits — belongs to a group (entry override → else the effect's <code>Definition.RetentionGroup</code>;
+attribute-set roots use their element's <code>RetentionGroup</code>). Groups partition one pool for
+queries/UI (base vs bonus health, base vs bonus damage); they never change the math.</p>
+<p>Validation: <code>Continuous</code> requires a durational/infinite effect; <code>Periodic</code> requires ticks.
+(<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html#FarEmerald_PlayForge_AttributeImpactEntry_IsDeliveryValidFor_"><code>AttributeImpactEntry.IsDeliveryValidFor</code></a>.)</p>
+<hr>
+<hr>
+<p><a href="index.html">← Effect &amp; Attribute Pipeline</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="2-attribute-state-cachedattributevalue.html">2. Attribute state (CachedAttributeValue) →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

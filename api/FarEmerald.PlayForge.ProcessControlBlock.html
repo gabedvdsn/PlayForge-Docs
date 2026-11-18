@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ProcessControlBlock | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ProcessControlBlock | PlayForge ">
+      
+      <meta name="description" content="Represents a managed process instance with state tracking and lifecycle management.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ProcessControlBlock">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ProcessControlBlock" data-uid="FarEmerald.PlayForge.ProcessControlBlock" class="text-break">
+Class ProcessControlBlock  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a managed process instance with state tracking and lifecycle management.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ProcessControlBlock</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ProcessControlBlock</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_CacheIndex" data-uid="FarEmerald.PlayForge.ProcessControlBlock.CacheIndex">
+  CacheIndex
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int CacheIndex</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Wrapper" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Wrapper">
+  Wrapper
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AbstractProcessWrapper Wrapper</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractProcessWrapper.html">AbstractProcessWrapper</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_isMono" data-uid="FarEmerald.PlayForge.ProcessControlBlock.isMono">
+  isMono
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isMono</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Control_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Control*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Control" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Control">
+  Control
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The ProcessControl that steps the process's world in a scene, or null for a world its owner steps.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessControl Control { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Handler_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Handler*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Handler" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Handler">
+  Handler
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGameplayProcessHandler Handler { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_HasRun_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HasRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_HasRun" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HasRun">
+  HasRun
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRun { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_HeldByControl_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HeldByControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_HeldByControl" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HeldByControl">
+  HeldByControl
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while this process is Waiting because ProcessControl is, and goes back when it isn't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HeldByControl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_InitializeTime_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.InitializeTime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_InitializeTime" data-uid="FarEmerald.PlayForge.ProcessControlBlock.InitializeTime">
+  InitializeTime
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float InitializeTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_IsInitialized_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.IsInitialized*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_IsInitialized" data-uid="FarEmerald.PlayForge.ProcessControlBlock.IsInitialized">
+  IsInitialized
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInitialized { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_LastState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.LastState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_LastState" data-uid="FarEmerald.PlayForge.ProcessControlBlock.LastState">
+  LastState
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessState LastState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Lifetime_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Lifetime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Lifetime" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Lifetime">
+  Lifetime
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Lifetime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_MeasureSteps_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.MeasureSteps*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_MeasureSteps" data-uid="FarEmerald.PlayForge.ProcessControlBlock.MeasureSteps">
+  MeasureSteps
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether each block counts its steps and times them, as the Debugger asks while it reads the game. Off,
+as it is by default, a step costs one check of it. Process Control showed the time between a process's steps as
+its cost, much the same for every process whatever its work.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool MeasureSteps { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_MidRun_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.MidRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_MidRun" data-uid="FarEmerald.PlayForge.ProcessControlBlock.MidRun">
+  MidRun
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MidRun { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_PeakStepSeconds_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.PeakStepSeconds*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_PeakStepSeconds" data-uid="FarEmerald.PlayForge.ProcessControlBlock.PeakStepSeconds">
+  PeakStepSeconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The longest of those steps, in seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double PeakStepSeconds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_QueuedState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueuedState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_QueuedState" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueuedState">
+  QueuedState
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessState QueuedState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Relay_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Relay*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Relay" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Relay">
+  Relay
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessRelay Relay { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_RunIsHeld_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.RunIsHeld*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_RunIsHeld" data-uid="FarEmerald.PlayForge.ProcessControlBlock.RunIsHeld">
+  RunIsHeld
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the process's run is going, or held by a pause: a paused process that holds its run picks it up on
+resume, and one that doesn't had it cancelled, so a resume starts a new one. The Debugger shows
+which.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RunIsHeld { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_State_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.State*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_State" data-uid="FarEmerald.PlayForge.ProcessControlBlock.State">
+  State
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EProcessState State { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_StepSeconds_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.StepSeconds*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_StepSeconds" data-uid="FarEmerald.PlayForge.ProcessControlBlock.StepSeconds">
+  StepSeconds
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The time those steps took, in seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double StepSeconds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Steps_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Steps*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Steps" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Steps">
+  Steps
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The steps the block has taken while <a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html#FarEmerald_PlayForge_ProcessControlBlock_MeasureSteps">MeasureSteps</a> was on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Steps { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_TerminateRequested_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TerminateRequested*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_TerminateRequested" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TerminateRequested">
+  TerminateRequested
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True once something has asked this process to terminate. It outranks a pause.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TerminateRequested { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_TotalUpdateTime_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TotalUpdateTime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_TotalUpdateTime" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TotalUpdateTime">
+  TotalUpdateTime
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The wall-clock time between the block's steps, added up over its run. It says nothing of what a step costs:
+<a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html#FarEmerald_PlayForge_ProcessControlBlock_StepSeconds">StepSeconds</a> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TotalUpdateTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_UnscaledInitializeTime_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UnscaledInitializeTime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_UnscaledInitializeTime" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UnscaledInitializeTime">
+  UnscaledInitializeTime
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float UnscaledInitializeTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_UnscaledLifetime_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UnscaledLifetime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_UnscaledLifetime" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UnscaledLifetime">
+  UnscaledLifetime
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float UnscaledLifetime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_UseSinceLastCheck_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UseSinceLastCheck*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_UseSinceLastCheck" data-uid="FarEmerald.PlayForge.ProcessControlBlock.UseSinceLastCheck">
+  UseSinceLastCheck
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float UseSinceLastCheck { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_World_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.World*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_World" data-uid="FarEmerald.PlayForge.ProcessControlBlock.World">
+  World
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The world that holds the process. Its state changes, its relay and its unregistering go there; they went to
+ProcessControl.Instance, whichever control held the process.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ProcessWorld World { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_ForceIntoState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.ForceIntoState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_ForceIntoState_FarEmerald_PlayForge_EProcessState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.ForceIntoState(FarEmerald.PlayForge.EProcessState)">
+  ForceIntoState(EProcessState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ForceIntoState(EProcessState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Generate_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Generate_System_Int32_FarEmerald_PlayForge_AbstractProcessWrapper_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate(System.Int32,FarEmerald.PlayForge.AbstractProcessWrapper)">
+  Generate(int, AbstractProcessWrapper)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessControlBlock Generate(int cacheIndex, AbstractProcessWrapper process)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>process</code> <a class="xref" href="FarEmerald.PlayForge.AbstractProcessWrapper.html">AbstractProcessWrapper</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Generate_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Generate_System_Int32_FarEmerald_PlayForge_AbstractProcessWrapper_FarEmerald_PlayForge_ProcessControl_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate(System.Int32,FarEmerald.PlayForge.AbstractProcessWrapper,FarEmerald.PlayForge.ProcessControl)">
+  Generate(int, AbstractProcessWrapper, ProcessControl)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A block for a process a ProcessControl's world holds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessControlBlock Generate(int cacheIndex, AbstractProcessWrapper process, ProcessControl control)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>process</code> <a class="xref" href="FarEmerald.PlayForge.AbstractProcessWrapper.html">AbstractProcessWrapper</a></dt>
+    <dd></dd>
+    <dt><code>control</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Generate_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Generate_System_Int32_FarEmerald_PlayForge_AbstractProcessWrapper_FarEmerald_PlayForge_ProcessWorld_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Generate(System.Int32,FarEmerald.PlayForge.AbstractProcessWrapper,FarEmerald.PlayForge.ProcessWorld)">
+  Generate(int, AbstractProcessWrapper, ProcessWorld)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A block for a process the world holds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessControlBlock Generate(int cacheIndex, AbstractProcessWrapper process, ProcessWorld world)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cacheIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>process</code> <a class="xref" href="FarEmerald.PlayForge.AbstractProcessWrapper.html">AbstractProcessWrapper</a></dt>
+    <dd></dd>
+    <dt><code>world</code> <a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_HoldForControl_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HoldForControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_HoldForControl" data-uid="FarEmerald.PlayForge.ProcessControlBlock.HoldForControl">
+  HoldForControl()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stops a running process for ProcessControl's own pause, marking it to go back when that ends.
+Nothing else goes back then: what was already Waiting was Waiting for a reason of its own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void HoldForControl()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Initialize_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Initialize" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Initialize">
+  Initialize()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Interrupt_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Interrupt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Interrupt" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Interrupt">
+  Interrupt()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Interrupt()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_KeepPaused_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.KeepPaused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_KeepPaused" data-uid="FarEmerald.PlayForge.ProcessControlBlock.KeepPaused">
+  KeepPaused()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Makes ProcessControl's pause this process's own, so it stays paused when that ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void KeepPaused()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_QueueNextState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueueNextState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_QueueNextState_FarEmerald_PlayForge_EProcessState_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueueNextState(FarEmerald.PlayForge.EProcessState)">
+  QueueNextState(EProcessState)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void QueueNextState(EProcessState state)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_QueueTerminate_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueueTerminate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_QueueTerminate" data-uid="FarEmerald.PlayForge.ProcessControlBlock.QueueTerminate">
+  QueueTerminate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Queues Terminated at someone's request. A running process only moves on when its run ends, and a run
+may be waiting for exactly this, so the process is told. A default transition queues the same
+state without asking anything to stop, so it doesn't come through here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void QueueTerminate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_ReleaseFromControl_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.ReleaseFromControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_ReleaseFromControl" data-uid="FarEmerald.PlayForge.ProcessControlBlock.ReleaseFromControl">
+  ReleaseFromControl()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends back what ProcessControl's pause stopped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReleaseFromControl()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_Step_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Step*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_Step_FarEmerald_PlayForge_EProcessStepTiming_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.Step(FarEmerald.PlayForge.EProcessStepTiming)">
+  Step(EProcessStepTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Step(EProcessStepTiming timing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timing</code> <a class="xref" href="FarEmerald.PlayForge.EProcessStepTiming.html">EProcessStepTiming</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_TryRun_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryRun*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_TryRun" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryRun">
+  TryRun()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryRun()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_TryTerminate_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryTerminate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_TryTerminate" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryTerminate">
+  TryTerminate()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryTerminate()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_TryWait_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryWait*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_TryWait" data-uid="FarEmerald.PlayForge.ProcessControlBlock.TryWait">
+  TryWait()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryWait()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControlBlock_WaitForControl_" data-uid="FarEmerald.PlayForge.ProcessControlBlock.WaitForControl*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControlBlock_WaitForControl" data-uid="FarEmerald.PlayForge.ProcessControlBlock.WaitForControl">
+  WaitForControl()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Marks a process that came in during ProcessControl's pause, to start when that ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WaitForControl()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

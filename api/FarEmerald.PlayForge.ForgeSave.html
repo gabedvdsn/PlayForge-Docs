@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeSave | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeSave | PlayForge ">
+      
+      <meta name="description" content="Saves an entity at rest and loads it back. Nothing captured an entity&#39;s state, so a game couldn&#39;t keep a battle between sessions.  takes what lasts on an entity into a : its attributes&#39; permanent commits, its levels, the abilities it knows, its items with their stacks, worn or not, its effects with their time left, its loose tags and its time scale. Modifiers aren&#39;t saved: they come back with the effects that carry them.  ends what&#39;s running, lets go of what the entity has, and puts back what the save had, on the entity it was taken from or a fresh one of its kind. A restore tells nothing as it goes. No effect is told as applied or removed, no attribute as changed, and nothing of an effect&#39;s application runs again: its workers, its commits on application, its contained effects. It tells  once, as it ends, for a listener to read the entity afresh.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ForgeSave">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ForgeSave" data-uid="FarEmerald.PlayForge.ForgeSave" class="text-break">
+Class ForgeSave  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Saves an entity at rest and loads it back. Nothing captured an entity's state, so a game
+couldn't keep a battle between sessions.</p>
+<p><a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Capture(IGameplayAbilitySystem, ForgeAssetCatalog, IForgeEntityIds)</a> takes what lasts on an entity into a <a class="xref" href="FarEmerald.PlayForge.ForgeSnapshot.html">ForgeSnapshot</a>: its attributes'
+permanent commits, its levels, the abilities it knows, its items with their stacks, worn or not, its effects with
+their time left, its loose tags and its time scale. Modifiers aren't saved: they come back with the effects that
+carry them. <a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeSnapshot_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Restore(IGameplayAbilitySystem, ForgeSnapshot, ForgeAssetCatalog, IForgeEntityIds)</a> ends what's running, lets go of what the entity has, and puts back what the save
+had, on the entity it was taken from or a fresh one of its kind.</p>
+<p>A restore tells nothing as it goes. No effect is told as applied or removed, no attribute as changed, and
+nothing of an effect's application runs again: its workers, its commits on application, its contained effects. It
+tells <a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnRestored">OnRestored</a> once, as it ends, for a listener to read the entity
+afresh.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/saving/index.html">Saving and Loading</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/saving/index.html">Saving and Loading</a> · <a class="xref" href="../guides/saving/copying-an-entity.html">Saving and Loading: Copying an entity</a> · <a class="xref" href="../guides/saving/effects-from-other-entities.html">Saving and Loading: Effects from other entities</a> · <a class="xref" href="../guides/saving/versions.html">Saving and Loading: Versions</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeSave</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeSave</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ForgeSave_Version" data-uid="FarEmerald.PlayForge.ForgeSave.Version">
+  Version
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The save format <a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Capture(IGameplayAbilitySystem, ForgeAssetCatalog, IForgeEntityIds)</a> writes and <a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeSnapshot_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Restore(IGameplayAbilitySystem, ForgeSnapshot, ForgeAssetCatalog, IForgeEntityIds)</a> reads.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int Version = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeSave_Capture_" data-uid="FarEmerald.PlayForge.ForgeSave.Capture*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeSave_Capture_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_" data-uid="FarEmerald.PlayForge.ForgeSave.Capture(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ForgeAssetCatalog,FarEmerald.PlayForge.IForgeEntityIds)">
+  Capture(IGameplayAbilitySystem, ForgeAssetCatalog, IForgeEntityIds)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes what lasts on the entity, naming its assets by their IDs in <code class="paramref">catalog</code>. An asset the
+catalog doesn't name is left out, with a warning. Null for a hub not yet built from an entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeSnapshot Capture(IGameplayAbilitySystem gas, ForgeAssetCatalog catalog, IForgeEntityIds ids = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>catalog</code> <a class="xref" href="FarEmerald.PlayForge.ForgeAssetCatalog.html">ForgeAssetCatalog</a></dt>
+    <dd></dd>
+    <dt><code>ids</code> <a class="xref" href="FarEmerald.PlayForge.IForgeEntityIds.html">IForgeEntityIds</a></dt>
+    <dd><p>Names the other entities whose effects are on this one, so a load finds them again. Without it, or where it
+can't name one, such an effect comes back as the entity's own.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeSnapshot.html">ForgeSnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeSave_Copy_" data-uid="FarEmerald.PlayForge.ForgeSave.Copy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeSave_Copy_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ForgeSave.Copy(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  Copy(IGameplayAbilitySystem, IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies what lasts on one entity onto another, as a mirror clone takes its original's state: what
+<a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Capture(IGameplayAbilitySystem, ForgeAssetCatalog, IForgeEntityIds)</a> takes, put back as <a class="xref" href="FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeSnapshot_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_">Restore(IGameplayAbilitySystem, ForgeSnapshot, ForgeAssetCatalog, IForgeEntityIds)</a> puts it, with no catalog and no IDs, as both
+entities are in this session. An effect another entity applied stays that entity's, and the entity's own level
+goes onto the other's own. A copy took a catalog naming every asset, which an asset made as the game runs
+never has.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Copy(IGameplayAbilitySystem from, IGameplayAbilitySystem onto)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>onto</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeSave_Restore_" data-uid="FarEmerald.PlayForge.ForgeSave.Restore*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeSave_Restore_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ForgeSnapshot_FarEmerald_PlayForge_ForgeAssetCatalog_FarEmerald_PlayForge_IForgeEntityIds_" data-uid="FarEmerald.PlayForge.ForgeSave.Restore(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ForgeSnapshot,FarEmerald.PlayForge.ForgeAssetCatalog,FarEmerald.PlayForge.IForgeEntityIds)">
+  Restore(IGameplayAbilitySystem, ForgeSnapshot, ForgeAssetCatalog, IForgeEntityIds)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Loads a save onto the entity. What's running ends and the entity lets go of what it has, then what the save had
+comes back: its abilities, items and effects, its levels and commits, its loose tags and time scale. One
+compile of the tags tells what the load changed, and <a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnRestored">OnRestored</a>
+fires once. False where the save can't load, as onto a hub not yet built from an entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Restore(IGameplayAbilitySystem gas, ForgeSnapshot snapshot, ForgeAssetCatalog catalog, IForgeEntityIds ids = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>snapshot</code> <a class="xref" href="FarEmerald.PlayForge.ForgeSnapshot.html">ForgeSnapshot</a></dt>
+    <dd></dd>
+    <dt><code>catalog</code> <a class="xref" href="FarEmerald.PlayForge.ForgeAssetCatalog.html">ForgeAssetCatalog</a></dt>
+    <dd></dd>
+    <dt><code>ids</code> <a class="xref" href="FarEmerald.PlayForge.IForgeEntityIds.html">IForgeEntityIds</a></dt>
+    <dd><p>Finds the other entities the save names as effects' sources. An effect whose source it can't find, as one gone
+since, comes back as the entity's own. Restore those entities first, so their abilities and items are there.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

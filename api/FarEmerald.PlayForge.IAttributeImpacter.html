@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IAttributeImpacter | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IAttributeImpacter | PlayForge ">
+      
+      <meta name="description" content="A single magnitude-evaluation unit owned by an . One carrier may expose many impacters; the cached attribute aggregator walks them and applies their contributions in op-precedence order:         — summed first → DirtyValue.   — composed via .  — added after multiplies.   — wins (resolved by ). Reversal under recompute model — retained carriers reverse automatically when removed (Recompute simply walks the new shorter retention list). One-shot committed contributions persist via CachedAttributeValue.committedOneShotDelta and are reversed only by an explicit synthetic-carrier rollback (see GameplayEffectImpact.ReverseImpactOnRemoval).">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.IAttributeImpacter">
+
+
+
+  <h1 id="FarEmerald_PlayForge_IAttributeImpacter" data-uid="FarEmerald.PlayForge.IAttributeImpacter" class="text-break">
+Interface IAttributeImpacter  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A single magnitude-evaluation unit owned by an <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a>.
+One carrier may expose many impacters; the cached attribute aggregator walks them
+and applies their contributions in op-precedence order:</p>
+<ol><li><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Add">Add</a>        — summed first → DirtyValue.</li><li><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Multiply">Multiply</a>   — composed via <a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html#FarEmerald_PlayForge_IAttributeImpacter_MultiplyBehaviour">MultiplyBehaviour</a>.</li><li><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_FlatBonus">FlatBonus</a>  — added after multiplies.</li><li><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Override">Override</a>   — wins (resolved by <a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html#FarEmerald_PlayForge_IAttributeImpacter_SortOrder">SortOrder</a>).</li></ol>
+<p><b>Reversal under recompute model</b> — retained carriers reverse automatically
+when removed (Recompute simply walks the new shorter retention list). One-shot
+committed contributions persist via <code>CachedAttributeValue.committedOneShotDelta</code>
+and are reversed only by an explicit synthetic-carrier rollback (see
+<code>GameplayEffectImpact.ReverseImpactOnRemoval</code>).</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAttributeImpacter</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_AddBehaviour_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.AddBehaviour*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_AddBehaviour" data-uid="FarEmerald.PlayForge.IAttributeImpacter.AddBehaviour">
+  AddBehaviour
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Only meaningful when <a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html#FarEmerald_PlayForge_IAttributeImpacter_Operation">Operation</a> is <a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Add">Add</a>: how this add combines with
+the others on the attribute, as its role says, a plain sum, or diminishing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">EAddBehaviour AddBehaviour { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAddBehaviour.html">EAddBehaviour</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_Group_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Group*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_Group" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Group">
+  Group
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retention group this impacter's contribution is attributed to (per-group value
+breakdown — base vs bonus health, etc.). Attribution only; never changes the
+math. Default: unattributed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Tag Group { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_MultiplyBehaviour_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.MultiplyBehaviour*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_MultiplyBehaviour" data-uid="FarEmerald.PlayForge.IAttributeImpacter.MultiplyBehaviour">
+  MultiplyBehaviour
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Only meaningful when <a class="xref" href="FarEmerald.PlayForge.IAttributeImpacter.html#FarEmerald_PlayForge_IAttributeImpacter_Operation">Operation</a> is <a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Multiply">Multiply</a>.
+Controls how this multiply impacter composes with other multiply impacters acting
+on the same attribute slot.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">EMultiplyBehaviour MultiplyBehaviour { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EMultiplyBehaviour.html">EMultiplyBehaviour</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_Operation_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Operation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_Operation" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Operation">
+  Operation
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How this impacter's magnitude folds into the aggregate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ECalculationOperation Operation { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html">ECalculationOperation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_Pipeline_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Pipeline*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_Pipeline" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Pipeline">
+  Pipeline
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The calculation its value goes through as it commits, once for each hit: an instant impact's, each tick of a
+periodic one's. None, it lands as it's evaluated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValuePipeline Pipeline { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ValuePipeline.html">ValuePipeline</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_SortOrder_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.SortOrder*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_SortOrder" data-uid="FarEmerald.PlayForge.IAttributeImpacter.SortOrder">
+  SortOrder
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tiebreaker within an operation. Lower runs first. For Override, the lowest sort
+wins; for Add / Multiply / FlatBonus the order is theoretically irrelevant but the
+field is kept so authoring can pin determinism (e.g. across reorders of effects
+that produce floating-point drift).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int SortOrder { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_Stages_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Stages*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_Stages" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Stages">
+  Stages
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The stages its holders' modifiers add, run after its pipeline as it commits and kept in the hit's breakdown; a
+lasting impact runs them on its magnitude itself. None by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;AbstractValueStage&gt; Stages { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractValueStage.html">AbstractValueStage</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_TargetSlot_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.TargetSlot*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_TargetSlot" data-uid="FarEmerald.PlayForge.IAttributeImpacter.TargetSlot">
+  TargetSlot
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Which slot of the <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a> the impact lands on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">EAttributeTarget TargetSlot { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTarget.html">EAttributeTarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_IAttributeImpacter_Evaluate_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IAttributeImpacter_Evaluate_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.IAttributeImpacter.Evaluate(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  Evaluate(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Evaluate the impacter's magnitude. Pure: must be safe to call repeatedly during a
+recompute pass. The carrier is supplied so the impacter can reach its origin's
+level, captured attributes, target context, etc.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float Evaluate(IAttributeImpactCarrier carrier)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>carrier</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GameplayAbilitySystemCallbacks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GameplayAbilitySystemCallbacks | PlayForge ">
+      
+      <meta name="description" content="Callbacks for the GameplayAbilitySystem level events. These are frame-level and cross-system events, distinct from AbilitySystemCallbacks (ability events) and AttributeSystemCallbacks (attribute events).">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks">
+
+
+
+  <h1 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks" class="text-break">
+Class GameplayAbilitySystemCallbacks  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Callbacks for the GameplayAbilitySystem level events.
+These are frame-level and cross-system events, distinct from
+AbilitySystemCallbacks (ability events) and AttributeSystemCallbacks (attribute events).</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/entities/index.html">Entities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/workers/hearing-workers-run.html">Workers: Hearing workers run</a> · <a class="xref" href="../guides/entities/death.html">Entities: Death</a> · <a class="xref" href="../guides/entities/combat-log.html">Entities: Combat Log</a> · <a class="xref" href="../guides/entities/effect-journal.html">Entities: Effect Journal</a> · <a class="xref" href="../guides/effects/requirements.html">Effects: Requirements</a> · <a class="xref" href="../guides/effect-pipeline/4-effect-lifecycle-effectsystemcomponent.html">Effect &amp; Attribute Pipeline: 4. Effect lifecycle (EffectSystemComponent)</a> · <a class="xref" href="../guides/saving/what-a-load-does.html">Saving and Loading: What a load does</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GameplayAbilitySystemCallbacks</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">GameplayAbilitySystemCallbacks</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasChangeStepListeners_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasChangeStepListeners*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasChangeStepListeners" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasChangeStepListeners">
+  HasChangeStepListeners
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether anything hears the steps this entity's changes take.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasChangeStepListeners { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasEffectWorkerListeners_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasEffectWorkerListeners*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasEffectWorkerListeners" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasEffectWorkerListeners">
+  HasEffectWorkerListeners
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether anything hears this entity's effects' workers run.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasEffectWorkerListeners { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasFrameCompleteListeners_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasFrameCompleteListeners*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasFrameCompleteListeners" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasFrameCompleteListeners">
+  HasFrameCompleteListeners
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True when anything listens for <a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnFrameComplete">OnFrameComplete</a>, so the snapshot is worth building.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasFrameCompleteListeners { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasImpactWorkerListeners_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasImpactWorkerListeners*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_HasImpactWorkerListeners" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.HasImpactWorkerListeners">
+  HasImpactWorkerListeners
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether anything hears this entity's impact workers run.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasImpactWorkerListeners { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionExecuted_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionExecuted*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionExecuted_FarEmerald_PlayForge_IRootAction_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionExecuted(FarEmerald.PlayForge.IRootAction)">
+  ActionExecuted(IRootAction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActionExecuted(IRootAction action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionFailed_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionFailed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionFailed_FarEmerald_PlayForge_IRootAction_System_Exception_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionFailed(FarEmerald.PlayForge.IRootAction,System.Exception)">
+  ActionFailed(IRootAction, Exception)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActionFailed(IRootAction action, Exception error)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a></dt>
+    <dd></dd>
+    <dt><code>error</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionInvalidated_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionInvalidated*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionInvalidated_FarEmerald_PlayForge_IRootAction_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionInvalidated(FarEmerald.PlayForge.IRootAction)">
+  ActionInvalidated(IRootAction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActionInvalidated(IRootAction action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionQueued_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionQueued*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ActionQueued_FarEmerald_PlayForge_IRootAction_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionQueued(FarEmerald.PlayForge.IRootAction)">
+  ActionQueued(IRootAction)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActionQueued(IRootAction action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_AttributeChangeStep_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.AttributeChangeStep*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_AttributeChangeStep_FarEmerald_PlayForge_ChangeStep__" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.AttributeChangeStep(FarEmerald.PlayForge.ChangeStep@)">
+  AttributeChangeStep(in ChangeStep)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AttributeChangeStep(in ChangeStep step)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>step</code> <a class="xref" href="FarEmerald.PlayForge.ChangeStep.html">ChangeStep</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectApplied_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectApplied*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectApplied_FarEmerald_PlayForge_GameplayEffectSpec_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectApplied(FarEmerald.PlayForge.GameplayEffectSpec)">
+  EffectApplied(GameplayEffectSpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EffectApplied(GameplayEffectSpec spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectRefused_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectRefused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectRefused_FarEmerald_PlayForge_GameplayEffectSpec_FarEmerald_PlayForge_EEffectRefusal_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectRefused(FarEmerald.PlayForge.GameplayEffectSpec,FarEmerald.PlayForge.EEffectRefusal)">
+  EffectRefused(GameplayEffectSpec, EEffectRefusal)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EffectRefused(GameplayEffectSpec spec, EEffectRefusal refusal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+    <dt><code>refusal</code> <a class="xref" href="FarEmerald.PlayForge.EEffectRefusal.html">EEffectRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectRemoved_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectRemoved*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectRemoved_FarEmerald_PlayForge_GameplayEffectSpec_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectRemoved(FarEmerald.PlayForge.GameplayEffectSpec)">
+  EffectRemoved(GameplayEffectSpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EffectRemoved(GameplayEffectSpec spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectTick_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectTick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectTick_FarEmerald_PlayForge_GameplayEffectSpec_System_Int32_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectTick(FarEmerald.PlayForge.GameplayEffectSpec,System.Int32)">
+  EffectTick(GameplayEffectSpec, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EffectTick(GameplayEffectSpec spec, int tickCount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+    <dt><code>tickCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectWorkerRan_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectWorkerRan*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EffectWorkerRan_FarEmerald_PlayForge_EffectWorkerRun__" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectWorkerRan(FarEmerald.PlayForge.EffectWorkerRun@)">
+  EffectWorkerRan(in EffectWorkerRun)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EffectWorkerRan(in EffectWorkerRun run)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>run</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerRun.html">EffectWorkerRun</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EntityDied_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EntityDied*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EntityDied_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EntityDied(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  EntityDied(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EntityDied(IGameplayAbilitySystem system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EntityRevived_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EntityRevived*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_EntityRevived_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EntityRevived(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  EntityRevived(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EntityRevived(IGameplayAbilitySystem system)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_FrameComplete_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.FrameComplete*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_FrameComplete_FarEmerald_PlayForge_FrameSummarySnapshot_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.FrameComplete(FarEmerald.PlayForge.FrameSummarySnapshot)">
+  FrameComplete(FrameSummarySnapshot)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FrameComplete(FrameSummarySnapshot summary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>summary</code> <a class="xref" href="FarEmerald.PlayForge.FrameSummarySnapshot.html">FrameSummarySnapshot</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_Impact_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.Impact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_Impact_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.Impact(FarEmerald.PlayForge.ImpactData)">
+  Impact(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Impact(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactDealt_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDealt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactDealt_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDealt(FarEmerald.PlayForge.ImpactData)">
+  ImpactDealt(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImpactDealt(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactReceived_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactReceived*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactReceived_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactReceived(FarEmerald.PlayForge.ImpactData)">
+  ImpactReceived(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImpactReceived(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactWorkerRan_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactWorkerRan*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ImpactWorkerRan_FarEmerald_PlayForge_ImpactWorkerRun__" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactWorkerRan(FarEmerald.PlayForge.ImpactWorkerRun@)">
+  ImpactWorkerRan(in ImpactWorkerRun)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImpactWorkerRan(in ImpactWorkerRun run)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>run</code> <a class="xref" href="FarEmerald.PlayForge.ImpactWorkerRun.html">ImpactWorkerRun</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_IncreaseDealt_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.IncreaseDealt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_IncreaseDealt_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.IncreaseDealt(FarEmerald.PlayForge.ImpactData)">
+  IncreaseDealt(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void IncreaseDealt(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_IncreaseReceived_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.IncreaseReceived*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_IncreaseReceived_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.IncreaseReceived(FarEmerald.PlayForge.ImpactData)">
+  IncreaseReceived(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void IncreaseReceived(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ReductionDealt_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ReductionDealt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ReductionDealt_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ReductionDealt(FarEmerald.PlayForge.ImpactData)">
+  ReductionDealt(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReductionDealt(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ReductionReceived_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ReductionReceived*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_ReductionReceived_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ReductionReceived(FarEmerald.PlayForge.ImpactData)">
+  ReductionReceived(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReductionReceived(ImpactData impact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impact</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_Restored_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.Restored*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_Restored" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.Restored">
+  Restored()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Restored()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_SystemDisabled_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemDisabled*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_SystemDisabled" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemDisabled">
+  SystemDisabled()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SystemDisabled()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_SystemInitialized_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemInitialized*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_SystemInitialized" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemInitialized">
+  SystemInitialized()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SystemInitialized()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_TagWorkerActivated_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerActivated*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_TagWorkerActivated_FarEmerald_PlayForge_AbstractTagWorker_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerActivated(FarEmerald.PlayForge.AbstractTagWorker)">
+  TagWorkerActivated(AbstractTagWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TagWorkerActivated(AbstractTagWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_TagWorkerResolved_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerResolved*"></a>
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_TagWorkerResolved_FarEmerald_PlayForge_AbstractTagWorker_" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerResolved(FarEmerald.PlayForge.AbstractTagWorker)">
+  TagWorkerResolved(AbstractTagWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TagWorkerResolved(AbstractTagWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnActionExecuted" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnActionExecuted">
+  OnActionExecuted
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ActionQueuedDelegate OnActionExecuted</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionQueuedDelegate.html">ActionQueuedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnActionFailed" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnActionFailed">
+  OnActionFailed
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ActionFailedDelegate OnActionFailed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionFailedDelegate.html">ActionFailedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnActionInvalidated" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnActionInvalidated">
+  OnActionInvalidated
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ActionQueuedDelegate OnActionInvalidated</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionQueuedDelegate.html">ActionQueuedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnActionQueued" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnActionQueued">
+  OnActionQueued
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ActionQueuedDelegate OnActionQueued</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionQueuedDelegate.html">ActionQueuedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnAttributeChangeStep" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnAttributeChangeStep">
+  OnAttributeChangeStep
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ChangeStepDelegate OnAttributeChangeStep</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ChangeStepDelegate.html">ChangeStepDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectApplied" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEffectApplied">
+  OnEffectApplied
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.EffectDelegate OnEffectApplied</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectDelegate.html">EffectDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectRefused" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEffectRefused">
+  OnEffectRefused
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.EffectRefusedDelegate OnEffectRefused</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectRefusedDelegate.html">EffectRefusedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectRemoved" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEffectRemoved">
+  OnEffectRemoved
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.EffectDelegate OnEffectRemoved</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectDelegate.html">EffectDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectTick" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEffectTick">
+  OnEffectTick
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.EffectTickDelegate OnEffectTick</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectTickDelegate.html">EffectTickDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectWorkerRan" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEffectWorkerRan">
+  OnEffectWorkerRan
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.EffectWorkerDelegate OnEffectWorkerRan</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectWorkerDelegate.html">EffectWorkerDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEntityDied" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEntityDied">
+  OnEntityDied
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.DeathDelegate OnEntityDied</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.DeathDelegate.html">DeathDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEntityRevived" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnEntityRevived">
+  OnEntityRevived
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A staying entity revived.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.DeathDelegate OnEntityRevived</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.DeathDelegate.html">DeathDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnFrameComplete" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnFrameComplete">
+  OnFrameComplete
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.FrameCompleteDelegate OnFrameComplete</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.FrameCompleteDelegate.html">FrameCompleteDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpact" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnImpact">
+  OnImpact
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnImpact</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpactDealt" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnImpactDealt">
+  OnImpactDealt
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnImpactDealt</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpactReceived" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnImpactReceived">
+  OnImpactReceived
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnImpactReceived</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpactWorkerRan" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnImpactWorkerRan">
+  OnImpactWorkerRan
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactWorkerDelegate OnImpactWorkerRan</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactWorkerDelegate.html">ImpactWorkerDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnIncreaseDealt" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnIncreaseDealt">
+  OnIncreaseDealt
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnIncreaseDealt</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnIncreaseReceived" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnIncreaseReceived">
+  OnIncreaseReceived
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnIncreaseReceived</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnReductionDealt" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnReductionDealt">
+  OnReductionDealt
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnReductionDealt</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnReductionReceived" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnReductionReceived">
+  OnReductionReceived
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.ImpactDelegate OnReductionReceived</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">ImpactDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnRestored" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnRestored">
+  OnRestored
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.SystemDelegate OnRestored</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemDelegate.html">SystemDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnSystemDisabled" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnSystemDisabled">
+  OnSystemDisabled
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.SystemDelegate OnSystemDisabled</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemDelegate.html">SystemDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnSystemInitialized" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnSystemInitialized">
+  OnSystemInitialized
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.SystemDelegate OnSystemInitialized</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.SystemDelegate.html">SystemDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnTagWorkerActivated" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnTagWorkerActivated">
+  OnTagWorkerActivated
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.TagWorkerDelegate OnTagWorkerActivated</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerDelegate.html">TagWorkerDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnTagWorkerResolved" data-uid="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.OnTagWorkerResolved">
+  OnTagWorkerResolved
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event GameplayAbilitySystemCallbacks.TagWorkerDelegate OnTagWorkerResolved</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html">GameplayAbilitySystemCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.TagWorkerDelegate.html">TagWorkerDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

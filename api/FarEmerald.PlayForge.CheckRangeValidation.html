@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CheckRangeValidation | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CheckRangeValidation | PlayForge ">
+      
+      <meta name="description" content="Check Range: the Cast Range component&#39;s check, its target within the component&#39;s range of its caster, among the ability&#39;s Target Checks while the ability holds the component. The component enforces it, refusing a target or a point handed beyond it and ending targeting that picks one, so this passes: it&#39;s the range&#39;s place among the checks, and comes and goes with the component. It read its range from a tag&#39;s weight or the ability&#39;s Local Data before the component held it.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.CheckRangeValidation">
+
+
+
+  <h1 id="FarEmerald_PlayForge_CheckRangeValidation" data-uid="FarEmerald.PlayForge.CheckRangeValidation" class="text-break">
+Class CheckRangeValidation  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Check Range: the Cast Range component's check, its target within the component's range of its caster, among the
+ability's Target Checks while the ability holds the component. The component enforces it, refusing a target or a
+point handed beyond it and ending targeting that picks one, so this passes: it's the range's place among the
+checks, and comes and goes with the component. It read its range from a tag's weight or the ability's Local Data
+before the component held it.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/abilities/built-in-kinds.html">Abilities: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ValidationSide(EValidationSide.Target)]
+[ForgeMenu(Name = &quot;Check Range&quot;, Description = &quot;The Cast Range component&#39;s check: its target within the component&#39;s range of its caster. It comes and goes with the component.&quot;)]
+public sealed class CheckRangeValidation : AbstractComponentValidationRule&lt;CastRangeAbilityComponent&gt;, IAbilityValidationRule, IComponentValidationRule</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractComponentValidationRule-1.html">AbstractComponentValidationRule</a>&lt;<a class="xref" href="FarEmerald.PlayForge.CastRangeAbilityComponent.html">CastRangeAbilityComponent</a>&gt;</div>
+      <div><span class="xref">CheckRangeValidation</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IAbilityValidationRule.html">IAbilityValidationRule</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IComponentValidationRule.html">IComponentValidationRule</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractComponentValidationRule-1.html#FarEmerald_PlayForge_AbstractComponentValidationRule_1_Component">AbstractComponentValidationRule&lt;CastRangeAbilityComponent&gt;.Component</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractComponentValidationRule-1.html#FarEmerald_PlayForge_AbstractComponentValidationRule_1_Validate_FarEmerald_PlayForge_AbilityDataPacket_System_Func_FarEmerald_PlayForge_ITarget__System_String__">AbstractComponentValidationRule&lt;CastRangeAbilityComponent&gt;.Validate(AbilityDataPacket, Func&lt;ITarget&gt;, out string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractComponentValidationRule-1.html#FarEmerald_PlayForge_AbstractComponentValidationRule_1_GetName">AbstractComponentValidationRule&lt;CastRangeAbilityComponent&gt;.GetName()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CheckRangeValidation__ctor_" data-uid="FarEmerald.PlayForge.CheckRangeValidation.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CheckRangeValidation__ctor_FarEmerald_PlayForge_CastRangeAbilityComponent_" data-uid="FarEmerald.PlayForge.CheckRangeValidation.#ctor(FarEmerald.PlayForge.CastRangeAbilityComponent)">
+  CheckRangeValidation(CastRangeAbilityComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CheckRangeValidation(CastRangeAbilityComponent component)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>component</code> <a class="xref" href="FarEmerald.PlayForge.CastRangeAbilityComponent.html">CastRangeAbilityComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_CheckRangeValidation_Describe_" data-uid="FarEmerald.PlayForge.CheckRangeValidation.Describe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_CheckRangeValidation_Describe" data-uid="FarEmerald.PlayForge.CheckRangeValidation.Describe">
+  Describe()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What it checks, with its component's range: &quot;Its target within 6 of its caster, along the ground&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Describe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

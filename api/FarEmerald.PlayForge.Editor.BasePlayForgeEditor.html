@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BasePlayForgeEditor | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BasePlayForgeEditor | PlayForge ">
+      
+      <meta name="description" content="Base class for all PlayForge asset inspectors: a header with the asset&#39;s name and type, and the content below it. The content scrolls in the Inspector&#39;s own scroll view, and the header stays at its top.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor" class="text-break">
+Class BasePlayForgeEditor  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.html">Editor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Editor.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Base class for all PlayForge asset inspectors: a header with the asset's name and type, and the content below it.
+The content scrolls in the Inspector's own scroll view, and the header stays at its top.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BasePlayForgeEditor : Editor</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.html">Editor</a></div>
+      <div><span class="xref">BasePlayForgeEditor</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AbilityEditor.html">AbilityEditor</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AttributeEditor.html">AttributeEditor</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.AttributeSetEditor.html">AttributeSetEditor</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.EntityIdentityEditor.html">EntityIdentityEditor</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.GameplayEffectEditor.html">GameplayEffectEditor</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.Editor.ItemEditor.html">ItemEditor</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.SaveChanges.html">Editor.SaveChanges()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.DiscardChanges.html">Editor.DiscardChanges()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateEditorWithContext(Object[], Object, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.CreateEditorWithContext.html">Editor.CreateEditorWithContext(Object[], Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateCachedEditorWithContext(Object, Object, Type, ref Editor)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateCachedEditorWithContext(Object[], Object, Type, ref Editor)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateCachedEditor(Object, Type, ref Editor)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateCachedEditor(Object[], Type, ref Editor)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.CreateEditor.html">Editor.CreateEditor(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateEditor(Object, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.CreateEditor.html">Editor.CreateEditor(Object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Editor.CreateEditor(Object[], Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Editor.DrawPropertiesExcluding(SerializedObject, params string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.DrawDefaultInspector.html">Editor.DrawDefaultInspector()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.Repaint.html">Editor.Repaint()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.OnInspectorGUI.html">Editor.OnInspectorGUI()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.RequiresConstantRepaint.html">Editor.RequiresConstantRepaint()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.DrawHeader.html">Editor.DrawHeader()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.ShouldHideOpenButton.html">Editor.ShouldHideOpenButton()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.DrawFoldoutInspector.html">Editor.DrawFoldoutInspector(Object, ref Editor)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.HasPreviewGUI.html">Editor.HasPreviewGUI()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.CreatePreview.html">Editor.CreatePreview(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.GetPreviewTitle.html">Editor.GetPreviewTitle()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">Editor.RenderStaticPreview(string, Object[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.OnPreviewGUI.html">Editor.OnPreviewGUI(Rect, GUIStyle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.OnInteractivePreviewGUI.html">Editor.OnInteractivePreviewGUI(Rect, GUIStyle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.OnPreviewSettings.html">Editor.OnPreviewSettings()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.GetInfoString.html">Editor.GetInfoString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.DrawPreview.html">Editor.DrawPreview(Rect)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.ReloadPreviewInstances.html">Editor.ReloadPreviewInstances()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.UseDefaultMargins.html">Editor.UseDefaultMargins()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.MoveNextTarget.html">Editor.MoveNextTarget()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor.ResetTarget.html">Editor.ResetTarget()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-hasUnsavedChanges.html">Editor.hasUnsavedChanges</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-saveChangesMessage.html">Editor.saveChangesMessage</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-target.html">Editor.target</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-targets.html">Editor.targets</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-serializedObject.html">Editor.serializedObject</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Editor-finishedDefaultHeaderGUI.html">Editor.finishedDefaultHeaderGUI</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.SetDirty.html">ScriptableObject.SetDirty()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ScriptableObject.CreateInstance(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">ScriptableObject.CreateInstance(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.CreateInstance__1.html">ScriptableObject.CreateInstance&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetInstanceID.html">Object.GetInstanceID()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.GetHashCode.html">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.InstantiateAsync__1.html">Object.InstantiateAsync&lt;T&gt;(T, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, Vector3, Quaternion, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Transform, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">Object.InstantiateAsync&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, Vector3, Quaternion, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Object.InstantiateAsync&lt;T&gt;(T, int, ReadOnlySpan&lt;Vector3&gt;, ReadOnlySpan&lt;Quaternion&gt;, InstantiateParameters, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Scene)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, InstantiateParameters)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Object.Instantiate(Object, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate(Object, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Vector3, Quaternion, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate__1.html">Object.Instantiate&lt;T&gt;(T, Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.Instantiate&lt;T&gt;(T, Transform, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.Destroy(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html">Object.Destroy(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.DestroyImmediate(Object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyImmediate.html">Object.DestroyImmediate(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsByType(Type, FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Object.DestroyObject(Object, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.DestroyObject.html">Object.DestroyObject(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindSceneObjectsOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeIncludingAssets(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsOfType__1.html">Object.FindObjectsOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectsOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectsByType__1.html">Object.FindObjectsByType&lt;T&gt;(FindObjectsInactive, FindObjectsSortMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindObjectOfType__1.html">Object.FindObjectOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Object.FindObjectOfType&lt;T&gt;(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindFirstObjectByType__1.html">Object.FindFirstObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.FindAnyObjectByType__1.html">Object.FindAnyObjectByType&lt;T&gt;(FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectsOfTypeAll(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindObjectOfType(Type, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindFirstObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Object.FindAnyObjectByType(Type, FindObjectsInactive)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.ToString.html">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-name.html">Object.name</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object-hideFlags.html">Object.hideFlags</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UnknownAssetName" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UnknownAssetName">
+  UnknownAssetName
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string UnknownAssetName = &quot;Error&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UnnamedAssetTag" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UnnamedAssetTag">
+  UnnamedAssetTag
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string UnnamedAssetTag = &quot;Unnamed&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor__lastPickedObject" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor._lastPickedObject">
+  _lastPickedObject
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Object _lastPickedObject</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor__pickerCallback" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor._pickerCallback">
+  _pickerCallback
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Action&lt;Object&gt; _pickerCallback</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor__pickerControlId" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor._pickerControlId">
+  _pickerControlId
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int _pickerControlId</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor__pickerType" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor._pickerType">
+  _pickerType
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Type _pickerType</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor__waitingForPicker" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor._waitingForPicker">
+  _waitingForPicker
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _waitingForPicker</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_headerContainer" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.headerContainer">
+  headerContainer
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisualElement headerContainer</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_root" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.root">
+  root
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisualElement root</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_IsMultiple_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.IsMultiple*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_IsMultiple" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.IsMultiple">
+  IsMultiple
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsMultiple { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowImportButton_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowImportButton*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowImportButton" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowImportButton">
+  ShowImportButton
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether to show the Import button</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool ShowImportButton { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowTemplateButton_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowTemplateButton*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowTemplateButton" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowTemplateButton">
+  ShowTemplateButton
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool ShowTemplateButton { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_SupportsMultipleObjects_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.SupportsMultipleObjects*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_SupportsMultipleObjects" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.SupportsMultipleObjects">
+  SupportsMultipleObjects
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether this inspector edits several assets at once. An inspector that writes every edit through its
+SerializedObject turns this on and carries [CanEditMultipleObjects]; the others still refuse a multiple
+selection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool SupportsMultipleObjects { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_AddLinkedLevels_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.AddLinkedLevels*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_AddLinkedLevels_UnityEngine_UIElements_VisualElement_FarEmerald_PlayForge_BaseForgeLevelProvider_System_String_System_Int32_System_Int32_System_String_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.AddLinkedLevels(UnityEngine.UIElements.VisualElement,FarEmerald.PlayForge.BaseForgeLevelProvider,System.String,System.Int32,System.Int32,System.String)">
+  AddLinkedLevels(VisualElement, BaseForgeLevelProvider, string, int, int, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Leveling while Link Mode is Linked To Provider: the provider in an object field, a warning when none is set,
+then the range in use, in disabled fields. Level Source drew this in tinted boxes with colored borders. An
+asset with no levels of its own, as an effect, says what it uses instead (<code class="paramref">whenUnset</code>).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddLinkedLevels(VisualElement parent, BaseForgeLevelProvider src, string kind, int starting, int max, string whenUnset = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>starting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>max</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>whenUnset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ApplyButtonHoverStyle_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ApplyButtonHoverStyle*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ApplyButtonHoverStyle_UnityEngine_UIElements_Button_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ApplyButtonHoverStyle(UnityEngine.UIElements.Button)">
+  ApplyButtonHoverStyle(Button)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ApplyButtonHoverStyle(Button btn)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>btn</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Button.html">Button</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_AssignLocalAsset_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.AssignLocalAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_AssignLocalAsset" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.AssignLocalAsset">
+  AssignLocalAsset()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract bool AssignLocalAsset()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildInspectorContent_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildInspectorContent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildInspectorContent_UnityEngine_UIElements_VisualElement_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildInspectorContent(UnityEngine.UIElements.VisualElement)">
+  BuildInspectorContent(VisualElement)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void BuildInspectorContent(VisualElement parent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildLinkToButton_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildLinkToButton*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildLinkToButton__1_UnityEngine_UIElements_VisualElement_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildLinkToButton``1(UnityEngine.UIElements.VisualElement,FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  BuildLinkToButton&lt;T&gt;(VisualElement, BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void BuildLinkToButton&lt;T&gt;(VisualElement parent, BaseForgeLevelProvider src) where T : BaseForgeLevelProvider</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildProviderSelector_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildProviderSelector*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_BuildProviderSelector_UnityEngine_UIElements_VisualElement_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.BuildProviderSelector(UnityEngine.UIElements.VisualElement,FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  BuildProviderSelector(VisualElement, BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void BuildProviderSelector(VisualElement levelSourceContent, BaseForgeLevelProvider src)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>levelSourceContent</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CountOf_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CountOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CountOf_System_Int32_System_String_System_String_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CountOf(System.Int32,System.String,System.String)">
+  CountOf(int, string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A count in a summary, as in &quot;None&quot;, &quot;1 entry&quot; or &quot;3 entries&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string CountOf(int count, string one, string many)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>one</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>many</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateBoundTextField_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateBoundTextField*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateBoundTextField_System_String_System_String_System_Boolean_System_Int32_System_String_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateBoundTextField(System.String,System.String,System.Boolean,System.Int32,System.String)">
+  CreateBoundTextField(string, string, bool, int, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A text field bound to a property, which writes when an edit is committed rather than on each keystroke.
+Binding sends the edit through the SerializedObject, so Undo takes it back, it reaches every selected
+asset, and a selection that disagrees shows as mixed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static TextField CreateBoundTextField(string propertyPath, string label, bool multiline = false, int minHeight = 0, string name = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>propertyPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>label</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>multiline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>minHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.TextField.html">TextField</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateChildLinks_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateChildLinks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateChildLinks_FarEmerald_PlayForge_BaseForgeLevelProvider_System_String_System_String_System_String_System_Func_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_BaseForgeLevelProvider___System_Action_System_Action_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateChildLinks(FarEmerald.PlayForge.BaseForgeLevelProvider,System.String,System.String,System.String,System.Func{System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.BaseForgeLevelProvider}},System.Action,System.Action,FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  CreateChildLinks(BaseForgeLevelProvider, string, string, string, Func&lt;IEnumerable&lt;BaseForgeLevelProvider&gt;&gt;, Action, Action, BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Link and Unlink for the assets that can take this one's levels, such as an item's active ability and granted
+effects: plain buttons sharing a row. Each asks first, counting what it changes, and is one Undo step. They sat
+under a divider and a small bold heading, with a sentence about them, and Unlink was tinted red. The
+children link to <code class="paramref">linkTarget</code> when it's given, as an effect's contained effects take its
+provider's levels, and to the asset itself otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected VisualElement CreateChildLinks(BaseForgeLevelProvider src, string kind, string linkFocus, string children, Func&lt;IEnumerable&lt;BaseForgeLevelProvider&gt;&gt; childAssets, Action linkAll, Action unlinkAll, BaseForgeLevelProvider linkTarget = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>linkFocus</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>children</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>childAssets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>linkAll</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+    <dt><code>unlinkAll</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+    <dt><code>linkTarget</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateInspectorGUI_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateInspectorGUI*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateInspectorGUI" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateInspectorGUI">
+  CreateInspectorGUI()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates the inspector: the header, then the content.
+Derived classes should override BuildInspectorContent instead of this.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override VisualElement CreateInspectorGUI()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateLevelProviderField_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateLevelProviderField*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateLevelProviderField_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateLevelProviderField(FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  CreateLevelProviderField(BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The level provider a linked asset takes its levels from, in Unity's object field, with its label in the
+Inspector's label column. Choosing a provider links the asset, as one Undo step, unless the link would make a
+loop; clearing the field leaves the asset linked to nothing. The field's right-click menu picks a provider of
+one type. The provider showed as a name in
+a tinted box, under a row of Link to buttons, one per type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ObjectField CreateLevelProviderField(BaseForgeLevelProvider src)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.ObjectField.html">ObjectField</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateSection_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateSection*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_CreateSection_FarEmerald_PlayForge_Editor_ForgeDrawerStyles_SectionConfig_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.CreateSection(FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionConfig)">
+  CreateSection(SectionConfig)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a collapsible section that remembers expand/collapse state per editor type.
+All instances of the same editor (e.g., all AbilityEditors) share state, so collapsing &quot;Tags&quot; on one
+Ability keeps it collapsed when switching to another Ability.
+Use this instead of CreateCollapsibleSection for automatic state persistence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ForgeDrawerStyles.SectionResult CreateSection(ForgeDrawerStyles.SectionConfig config)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>config</code> <a class="xref" href="FarEmerald.PlayForge.Editor.ForgeDrawerStyles.html">ForgeDrawerStyles</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionConfig.html">SectionConfig</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Editor.ForgeDrawerStyles.html">ForgeDrawerStyles</a>.<a class="xref" href="FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionResult.html">SectionResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_EnumName_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.EnumName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_EnumName_System_Enum_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.EnumName(System.Enum)">
+  EnumName(Enum)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name an enum field shows for a value: its InspectorName, or its own name spaced out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string EnumName(Enum value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.enum">Enum</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GenerateAssetTag_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GenerateAssetTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GenerateAssetTag_System_String_System_String_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GenerateAssetTag(System.String,System.String)">
+  GenerateAssetTag(string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected (string result, string display, bool isUnknown) GenerateAssetTag(string assetName, string typeName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assetName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.boolean-.result">result</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.boolean-.display">display</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string,system.boolean-.isunknown">isUnknown</a>)</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAsset_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAsset" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAsset">
+  GetAsset()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract BaseForgeLevelProvider GetAsset()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetGuid_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetGuid*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetGuid_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetGuid(UnityEngine.Object)">
+  GetAssetGuid(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string GetAssetGuid(Object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetTypeColor_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetTypeColor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetTypeColor" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetTypeColor">
+  GetAssetTypeColor()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Accent color for the asset type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Color GetAssetTypeColor()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetTypeLabel_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetTypeLabel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetAssetTypeLabel" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetAssetTypeLabel">
+  GetAssetTypeLabel()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asset type label (e.g., &quot;ABILITY&quot;, &quot;EFFECT&quot;)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string GetAssetTypeLabel()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDisplayDescription_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDisplayDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDisplayDescription" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDisplayDescription">
+  GetDisplayDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Short description shown below name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string GetDisplayDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDisplayName_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDisplayName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDisplayName" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDisplayName">
+  GetDisplayName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Display name shown in header (e.g., ability name)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string GetDisplayName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDocumentationTopic_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDocumentationTopic*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetDocumentationTopic" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetDocumentationTopic">
+  GetDocumentationTopic()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Documentation URL for this asset type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string GetDocumentationTopic()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetHeaderIcon_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetHeaderIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetHeaderIcon" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetHeaderIcon">
+  GetHeaderIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Icon texture for the header (can be null)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Texture2D GetHeaderIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetProviderTypeName_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetProviderTypeName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_GetProviderTypeName_System_Type_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.GetProviderTypeName(System.Type)">
+  GetProviderTypeName(Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string GetProviderTypeName(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelRange_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelRange*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelRange_System_Int32_System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelRange(System.Int32,System.Int32)">
+  LevelRange(int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A level range in a summary, as in &quot;Levels 1–4&quot;, or &quot;Level 3&quot; when it holds one level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string LevelRange(int starting, int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>starting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>max</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelingState_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelingState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelingState_FarEmerald_PlayForge_BaseForgeLevelProvider_System_Boolean_System_Int32_System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelingState(FarEmerald.PlayForge.BaseForgeLevelProvider,System.Boolean,System.Int32,System.Int32)">
+  LevelingState(BaseForgeLevelProvider, bool, int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What Leveling is drawn from: the link mode, and while linked, the provider and the range it gives. Leveling
+redraws when this changes, but not when the asset's own range does, which its bound fields follow.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string LevelingState(BaseForgeLevelProvider src, bool linkedMode, int starting, int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+    <dt><code>linkedMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>starting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>max</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelingSummary_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelingSummary*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_LevelingSummary_FarEmerald_PlayForge_BaseForgeLevelProvider_System_Boolean_System_Int32_System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.LevelingSummary(FarEmerald.PlayForge.BaseForgeLevelProvider,System.Boolean,System.Int32,System.Int32)">
+  LevelingSummary(BaseForgeLevelProvider, bool, int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Leveling's summary: the range in use, as in &quot;Levels 1–4&quot;, and for a linked asset where it comes from.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string LevelingSummary(BaseForgeLevelProvider src, bool linkedMode, int starting, int max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+    <dt><code>linkedMode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>starting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>max</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_MarkDirty_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.MarkDirty*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_MarkDirty_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.MarkDirty(UnityEngine.Object)">
+  MarkDirty(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void MarkDirty(Object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_NameOf_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.NameOf*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_NameOf_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.NameOf(FarEmerald.PlayForge.BaseForgeAsset)">
+  NameOf(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An asset's PlayForge name, or its file name when it has none, as Used By names it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string NameOf(BaseForgeAsset asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnAssetChanged_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnAssetChanged*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnAssetChanged" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnAssetChanged">
+  OnAssetChanged()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called after any change to the asset, an Undo or a Redo among them. A section drawn from the asset's
+values rather than bound redraws here. Does nothing by default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnAssetChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnDisable_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnDisable*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnDisable" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnDisable">
+  OnDisable()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDisable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnEnable_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnEnable*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnEnable" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnEnable">
+  OnEnable()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnEnable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnHeaderGUI_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnHeaderGUI*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnHeaderGUI" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnHeaderGUI">
+  OnHeaderGUI()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Override Unity's default header to hide it - we'll use UIElements instead.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnHeaderGUI()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnOpenInManager_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnOpenInManager*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OnOpenInManager" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OnOpenInManager">
+  OnOpenInManager()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when Open button is clicked. Opens PlayForge Manager to this asset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnOpenInManager()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OpenImportPicker_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OpenImportPicker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_OpenImportPicker" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.OpenImportPicker">
+  OpenImportPicker()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the Import window for the whole asset: choose a source, then the fields that differ. The asset keeps its
+name, description, icons, asset tag, template and level link. A menu of templates opened, and a dialog
+asked before an import that copied every field, the template and the link among them, and showed an error when
+no template existed though other assets did.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void OpenImportPicker()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_PingAsset_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.PingAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_PingAsset_UnityEngine_Object_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.PingAsset(UnityEngine.Object)">
+  PingAsset(Object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void PingAsset(Object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RebuildLevelSourceContent_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RebuildLevelSourceContent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RebuildLevelSourceContent" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RebuildLevelSourceContent">
+  RebuildLevelSourceContent()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void RebuildLevelSourceContent()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RebuildLevelingContent_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RebuildLevelingContent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RebuildLevelingContent" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RebuildLevelingContent">
+  RebuildLevelingContent()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void RebuildLevelingContent()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RecordLinkChange_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RecordLinkChange*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RecordLinkChange_System_String_System_Collections_Generic_IEnumerable_UnityEngine_Object__" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RecordLinkChange(System.String,System.Collections.Generic.IEnumerable{UnityEngine.Object})">
+  RecordLinkChange(string, IEnumerable&lt;Object&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Records the assets a link, an unlink or a template change is about to write, so one Undo takes the change back.
+These wrote straight into the assets with no Undo.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void RecordLinkChange(string undoName, IEnumerable&lt;Object&gt; touched)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>undoName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>touched</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RecordLinkChange_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RecordLinkChange*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RecordLinkChange_System_String_UnityEngine_Object___" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RecordLinkChange(System.String,UnityEngine.Object[])">
+  RecordLinkChange(string, params Object[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Records the assets a link, an unlink or a template change is about to write, so one Undo takes the change back.
+These wrote straight into the assets with no Undo.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void RecordLinkChange(string undoName, params Object[] touched)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>undoName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>touched</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_Refresh_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.Refresh*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_Refresh" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.Refresh">
+  Refresh()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when the Refresh button is clicked</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void Refresh()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RenameFile_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RenameFile*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_RenameFile_UnityEngine_Object_System_String_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.RenameFile(UnityEngine.Object,System.String)">
+  RenameFile(Object, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Renames an asset's file after its name, with its type's prefix and suffix from Project Settings, so the two
+don't drift apart: a character a file can't have is left out, as a new asset's file
+leaves it; a name another file in its folder has takes a number, as Unity's own duplicate does; and an Undo of
+the rename brings the file back with the name, for an asset this inspector renamed. An asset not saved yet has no
+file to rename.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RenameFile(Object asset, string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_SetupCollapsibleSections_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.SetupCollapsibleSections*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_SetupCollapsibleSections" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.SetupCollapsibleSections">
+  SetupCollapsibleSections()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For programmatic editors, this can be empty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SetupCollapsibleSections()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowAssetTag_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowAssetTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowAssetTag_UnityEngine_UIElements_Label_System_String_System_String_FarEmerald_PlayForge_Tag_System_Action_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowAssetTag(UnityEngine.UIElements.Label,System.String,System.String,FarEmerald.PlayForge.Tag,System.Action)">
+  ShowAssetTag(Label, string, string, Tag, Action)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows the asset tag a name gives. When the stored tag differs, the label turns amber and an Update button
+appears, which calls sync. Showing never writes: each asset editor rewrote the tag every time it built or
+refreshed, with no Undo and no modified mark.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ShowAssetTag(Label valueLabel, string assetName, string typeName, Tag stored, Action sync)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>valueLabel</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Label.html">Label</a></dt>
+    <dd></dd>
+    <dt><code>assetName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>stored</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>sync</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowProviderPicker_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowProviderPicker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowProviderPicker__1_FarEmerald_PlayForge_BaseForgeLevelProvider_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowProviderPicker``1(FarEmerald.PlayForge.BaseForgeLevelProvider)">
+  ShowProviderPicker&lt;T&gt;(BaseForgeLevelProvider)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ShowProviderPicker&lt;T&gt;(BaseForgeLevelProvider src) where T : BaseForgeLevelProvider</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>src</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowTemplatePicker_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowTemplatePicker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowTemplatePicker_UnityEngine_Rect_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.ShowTemplatePicker(UnityEngine.Rect)">
+  ShowTemplatePicker(Rect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ShowTemplatePicker(Rect under)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>under</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Rect.html">Rect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_StoreAssetTag_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.StoreAssetTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_StoreAssetTag_UnityEngine_Object_System_String_System_String_FarEmerald_PlayForge_Tag_System_Action_FarEmerald_PlayForge_Tag__" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.StoreAssetTag(UnityEngine.Object,System.String,System.String,FarEmerald.PlayForge.Tag,System.Action{FarEmerald.PlayForge.Tag})">
+  StoreAssetTag(Object, string, string, Tag, Action&lt;Tag&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stores the tag a name gives, recorded for Undo and marked modified. A rename calls it in the same step as the
+name's own change, so one Undo takes back both.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void StoreAssetTag(Object asset, string assetName, string typeName, Tag stored, Action&lt;Tag&gt; store)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></dt>
+    <dd></dd>
+    <dt><code>assetName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>stored</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>store</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_TagsSummary_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.TagsSummary*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_TagsSummary_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__System_String_System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.TagsSummary(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag},System.String,System.Int32)">
+  TagsSummary(IEnumerable&lt;Tag&gt;, string, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tags' summary: up to two tags by name, or how many there are, then how many tags the asset grants, as in
+&quot;Weapon.Sword · 1 granted&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string TagsSummary(IEnumerable&lt;Tag&gt; named, string kind, int granted)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>named</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>granted</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_TemplatesFor_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.TemplatesFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_TemplatesFor_FarEmerald_PlayForge_BaseForgeAsset_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.TemplatesFor(FarEmerald.PlayForge.BaseForgeAsset)">
+  TemplatesFor(BaseForgeAsset)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The assets an asset can take as its template: the others of its type, but those that take it as theirs, or a
+template of a template that does, which would make a loop, by name. Two of one name add their file's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;(BaseForgeAsset Asset, string Name)&gt; TemplatesFor(BaseForgeAsset asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;(<a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-faremerald.playforge.baseforgeasset,system.string-.asset">Asset</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-faremerald.playforge.baseforgeasset,system.string-.name">Name</a>)&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_Truncate_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.Truncate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_Truncate_System_String_System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.Truncate(System.String,System.Int32)">
+  Truncate(string, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Truncates text to max length with ellipsis</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Truncate(string text, int maxLength)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>maxLength</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeader_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeader*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeader" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeader">
+  UpdateHeader()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates all header elements. Call from Refresh() or when multiple fields change.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateHeader()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderDescription_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderDescription" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderDescription">
+  UpdateHeaderDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the line under the name: the asset's type, its asset tag, and its template, as in
+&quot;Gameplay Effect · Effect.Burning&quot;. The header showed the description here; the Identity section has it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateHeaderDescription()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderIcon_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderIcon" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderIcon">
+  UpdateHeaderIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows the asset's own texture in the header, in the type icon's place: the one under its Primary tag, else its
+first that has a texture; the type icon where it has none, or for a selection of
+several. The Forge's list rows keep the type's icon.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateHeaderIcon()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderName_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_UpdateHeaderName" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.UpdateHeaderName">
+  UpdateHeaderName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the header name label. Call when Name field changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateHeaderName()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkerCount_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkerCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkerCount_FarEmerald_PlayForge_StandardWorkerGroup_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkerCount(FarEmerald.PlayForge.StandardWorkerGroup)">
+  WorkerCount(StandardWorkerGroup)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many workers a group holds, across its four lists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static int WorkerCount(StandardWorkerGroup group)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>group</code> <a class="xref" href="FarEmerald.PlayForge.StandardWorkerGroup.html">StandardWorkerGroup</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_System_Collections_Generic_List_FarEmerald_PlayForge_OnHitEntry__System_Collections_Generic_List_FarEmerald_PlayForge_EffectModifierEntry__System_Collections_Generic_List_FarEmerald_PlayForge_AuraEntry__System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine(System.Collections.Generic.List{FarEmerald.PlayForge.OnHitEntry},System.Collections.Generic.List{FarEmerald.PlayForge.EffectModifierEntry},System.Collections.Generic.List{FarEmerald.PlayForge.AuraEntry},System.Int32)">
+  WorkersLine(List&lt;OnHitEntry&gt;, List&lt;EffectModifierEntry&gt;, List&lt;AuraEntry&gt;, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A Workers section's line with its auras among it: &quot;1 on hit, 2 auras, 1 worker&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string WorkersLine(List&lt;OnHitEntry&gt; onHit, List&lt;EffectModifierEntry&gt; modifiers, List&lt;AuraEntry&gt; auras, int workers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onHit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.OnHitEntry.html">OnHitEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.EffectModifierEntry.html">EffectModifierEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>auras</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AuraEntry.html">AuraEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>workers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_System_Collections_Generic_List_FarEmerald_PlayForge_OnHitEntry__System_Collections_Generic_List_FarEmerald_PlayForge_EffectModifierEntry__System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine(System.Collections.Generic.List{FarEmerald.PlayForge.OnHitEntry},System.Collections.Generic.List{FarEmerald.PlayForge.EffectModifierEntry},System.Int32)">
+  WorkersLine(List&lt;OnHitEntry&gt;, List&lt;EffectModifierEntry&gt;, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A Workers section's line with its modifiers among it: &quot;1 on hit, 2 modifiers, 1 worker&quot;, or &quot;None&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string WorkersLine(List&lt;OnHitEntry&gt; onHit, List&lt;EffectModifierEntry&gt; modifiers, int workers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onHit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.OnHitEntry.html">OnHitEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.EffectModifierEntry.html">EffectModifierEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>workers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Editor_BasePlayForgeEditor_WorkersLine_System_Collections_Generic_List_FarEmerald_PlayForge_OnHitEntry__System_Int32_" data-uid="FarEmerald.PlayForge.Editor.BasePlayForgeEditor.WorkersLine(System.Collections.Generic.List{FarEmerald.PlayForge.OnHitEntry},System.Int32)">
+  WorkersLine(List&lt;OnHitEntry&gt;, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A Workers section's line: its On Hit entries, then its workers, as in &quot;None&quot;, &quot;1 on hit&quot; or &quot;1 on hit, 2
+workers&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string WorkersLine(List&lt;OnHitEntry&gt; onHit, int workers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onHit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.OnHitEntry.html">OnHitEntry</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>workers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

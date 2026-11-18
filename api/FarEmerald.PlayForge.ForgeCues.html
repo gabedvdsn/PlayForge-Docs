@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ForgeCues | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ForgeCues | PlayForge ">
+      
+      <meta name="description" content="Where every cue plays, whatever raised it: an effect&#39;s, an ability&#39;s, an entity&#39;s, an item&#39;s, or a game&#39;s own code, as sparks at a ray&#39;s hit. A handler that throws is reported and the rest play on: what something shows mustn&#39;t stop what it does. And what PlayForge&#39;s cues reach in the game: the camera shaker the game gives.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.ForgeCues">
+
+
+
+  <h1 id="FarEmerald_PlayForge_ForgeCues" data-uid="FarEmerald.PlayForge.ForgeCues" class="text-break">
+Class ForgeCues  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Where every cue plays, whatever raised it: an effect's, an ability's, an entity's, an item's, or a game's own
+code, as sparks at a ray's hit. A handler that throws is reported and the rest play on: what something shows
+mustn't stop what it does. And what PlayForge's cues reach in the game: the camera shaker the game gives.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/cues/index.html">Cues</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/effects/cues.html">Effects: Cues</a> · <a class="xref" href="../guides/cues/where-cues-are-raised.html">Cues: Where cues are raised</a> · <a class="xref" href="../guides/cues/raises-and-sinks.html">Cues: Raises and sinks</a> · <a class="xref" href="../guides/cues/silencing-and-listening.html">Cues: Silencing and listening</a> · <a class="xref" href="../guides/cues/index.html">Cues</a> · <a class="xref" href="../guides/cues/handlers.html">Cues: Handlers</a> · <a class="xref" href="../guides/cues/placement.html">Cues: Placement</a> · <a class="xref" href="../guides/cues/floating-text.html">Cues: Floating text</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ForgeCues</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ForgeCues</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Camera_" data-uid="FarEmerald.PlayForge.ForgeCues.Camera*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Camera" data-uid="FarEmerald.PlayForge.ForgeCues.Camera">
+  Camera
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The camera a floating text faces, or null for the main camera.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Camera Camera { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Camera.html">Camera</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Enabled_" data-uid="FarEmerald.PlayForge.ForgeCues.Enabled*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Enabled" data-uid="FarEmerald.PlayForge.ForgeCues.Enabled">
+  Enabled
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether cues play. Off, nothing bursts or begins, as on a server or while a simulation runs ahead; a lasting
+cue that began still ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Enabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Random_" data-uid="FarEmerald.PlayForge.ForgeCues.Random*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Random" data-uid="FarEmerald.PlayForge.ForgeCues.Random">
+  Random
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The random numbers cues draw, as a placement's scatter: their own, from a seed, so a cue never moves the
+game's rolls, which a server that plays no cues and a client that plays them must draw alike. Put another in
+for your own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IForgeRandom Random { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeRandom.html">IForgeRandom</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Shaker_" data-uid="FarEmerald.PlayForge.ForgeCues.Shaker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Shaker" data-uid="FarEmerald.PlayForge.ForgeCues.Shaker">
+  Shaker
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The shaker a camera shake cue asks, or null, which shakes nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ICameraShaker Shaker { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ICameraShaker.html">ICameraShaker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Sink_" data-uid="FarEmerald.PlayForge.ForgeCues.Sink*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Sink" data-uid="FarEmerald.PlayForge.ForgeCues.Sink">
+  Sink
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The sink a world with none of its own asks, once for each raise, before any of its cues plays: by default one
+that plays everything.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeCueSink Sink { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCueSink.html">ForgeCueSink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Begin_" data-uid="FarEmerald.PlayForge.ForgeCues.Begin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Begin_FarEmerald_PlayForge_AbstractCueHandler_FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.Begin(FarEmerald.PlayForge.AbstractCueHandler,FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  Begin(AbstractCueHandler, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Begins a lasting cue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Begin(AbstractCueHandler handler, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a></dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Begin_" data-uid="FarEmerald.PlayForge.ForgeCues.Begin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Begin_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractCueHandler__FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.Begin(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.AbstractCueHandler},FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  Begin(IReadOnlyList&lt;AbstractCueHandler&gt;, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Begins each handler's lasting cue, in order, one raise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Begin(IReadOnlyList&lt;AbstractCueHandler&gt; handlers, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handlers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Burst_" data-uid="FarEmerald.PlayForge.ForgeCues.Burst*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Burst_FarEmerald_PlayForge_AbstractCueHandler_FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.Burst(FarEmerald.PlayForge.AbstractCueHandler,FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  Burst(AbstractCueHandler, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Plays a burst, raised by what <code class="paramref">from</code> says, a game's own code where it says nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Burst(AbstractCueHandler handler, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a></dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Burst_" data-uid="FarEmerald.PlayForge.ForgeCues.Burst*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Burst_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractCueHandler__FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.Burst(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.AbstractCueHandler},FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  Burst(IReadOnlyList&lt;AbstractCueHandler&gt;, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Plays each handler's burst, in order: one raise, its world's sink asked once before any plays, raised by what
+<code class="paramref">from</code> says, a game's own code where it says nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Burst(IReadOnlyList&lt;AbstractCueHandler&gt; handlers, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handlers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_End_" data-uid="FarEmerald.PlayForge.ForgeCues.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_End_FarEmerald_PlayForge_AbstractCueHandler_FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.End(FarEmerald.PlayForge.AbstractCueHandler,FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  End(AbstractCueHandler, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends a lasting cue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void End(AbstractCueHandler handler, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a></dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_End_" data-uid="FarEmerald.PlayForge.ForgeCues.End*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_End_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AbstractCueHandler__FarEmerald_PlayForge_CueContext__FarEmerald_PlayForge_CueSource_" data-uid="FarEmerald.PlayForge.ForgeCues.End(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.AbstractCueHandler},FarEmerald.PlayForge.CueContext@,FarEmerald.PlayForge.CueSource)">
+  End(IReadOnlyList&lt;AbstractCueHandler&gt;, in CueContext, CueSource)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends each handler's lasting cue, in order, one raise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void End(IReadOnlyList&lt;AbstractCueHandler&gt; handlers, in CueContext cue, CueSource from = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handlers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cue</code> <a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="FarEmerald.PlayForge.CueSource.html">CueSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_IsMuted_" data-uid="FarEmerald.PlayForge.ForgeCues.IsMuted*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_IsMuted_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ForgeCues.IsMuted(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  IsMuted(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an entity's cues are muted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsMuted(IGameplayAbilitySystem entity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_Mute_" data-uid="FarEmerald.PlayForge.ForgeCues.Mute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Mute_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Boolean_" data-uid="FarEmerald.PlayForge.ForgeCues.Mute(FarEmerald.PlayForge.IGameplayAbilitySystem,System.Boolean)">
+  Mute(IGameplayAbilitySystem, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Mutes an entity's cues, as one off screen, or plays them again. A lasting cue that began still ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Mute(IGameplayAbilitySystem entity, bool mute)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>mute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_SinkFor_" data-uid="FarEmerald.PlayForge.ForgeCues.SinkFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_SinkFor_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ForgeCues.SinkFor(FarEmerald.PlayForge.IGameplayAbilitySystem)">
+  SinkFor(IGameplayAbilitySystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The sink asked for a cue on an entity: its world's own, or else <a class="xref" href="FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Sink">Sink</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ForgeCueSink SinkFor(IGameplayAbilitySystem entity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCueSink.html">ForgeCueSink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ForgeCues_UseSink_" data-uid="FarEmerald.PlayForge.ForgeCues.UseSink*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_UseSink_FarEmerald_PlayForge_ProcessWorld_FarEmerald_PlayForge_ForgeCueSink_" data-uid="FarEmerald.PlayForge.ForgeCues.UseSink(FarEmerald.PlayForge.ProcessWorld,FarEmerald.PlayForge.ForgeCueSink)">
+  UseSink(ProcessWorld, ForgeCueSink)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives a world a sink of its own, as a server's or a client's, or takes it back with null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UseSink(ProcessWorld world, ForgeCueSink sink)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>world</code> <a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
+    <dd></dd>
+    <dt><code>sink</code> <a class="xref" href="FarEmerald.PlayForge.ForgeCueSink.html">ForgeCueSink</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_ForgeCues_Played" data-uid="FarEmerald.PlayForge.ForgeCues.Played">
+  Played
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Heard as each cue plays, after its handler: for a debugger, a recorder or a test.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static event ForgeCues.CuePlayedDelegate Played</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCues.html">ForgeCues</a>.<a class="xref" href="FarEmerald.PlayForge.ForgeCues.CuePlayedDelegate.html">CuePlayedDelegate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

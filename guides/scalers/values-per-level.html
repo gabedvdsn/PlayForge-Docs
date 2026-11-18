@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Values per level | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Values per level | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.values-per-level">
+<h1 id="values-per-level">Values per level</h1>
+
+<p>A scaler's settings sit on a shaded block under its field, so they read as the scaler's among the fields around them.
+A kind shows only what it reads: a <strong>Fixed Value</strong> shows its value, and a <strong>Randomized</strong> scaler its variance, then the
+values its base value comes from. A kind's field that applies only to some of its settings shows only for them, as an
+Asset Part's worker key for an effect's Worker Value.</p>
+<ul>
+<li><strong>Values</strong>: <strong>Per Level</strong> or <strong>Spread Over Levels</strong>. A Table reads Per Level and By Level spreads, as their kinds say,
+so they have no choice here; a scaler of another kind with values for each level chooses.
+<ul>
+<li><strong>Per Level</strong>: one value per level, ten levels to a row. Level 1 reads the first value, level 4 the 4th, and a
+level past the end reads the last.</li>
+<li><strong>Spread Over Levels</strong>: the values are points on a curve over a level range, and a level between two points reads
+between them. Three values, 10, 20 and 30, spread over levels 1 to 5 read 10, 15, 20, 25 and 30. The points are
+numbered, and under them each level shows what it reads. A scaler you make in the inspector starts Per Level. The scalers saved before the choice
+existed spread, so they read as they did.</li>
+</ul>
+</li>
+<li><strong>Levels</strong>, Per Level: an asset with a level provider, as an ability, or an effect linked to one, follows the
+provider's levels, as <strong>Fireball's levels (1–4)</strong>, with a value for each. A level past the scaler's values shows the
+last in secondary text; type there to give it a value of its own. <strong>Own levels</strong> gives the scaler a count of its own.
+An asset whose levels come from whatever uses it, as an unlinked effect, an attribute set or a Scaler asset, shows
+the count alone. A new level takes the last value.</li>
+<li><strong>Over Levels</strong>, spread: the provider's levels, <strong>Own levels</strong> up to the scaler's own <strong>Max Level</strong>, or the
+provider's <strong>up to a level</strong>: its levels, up to the Max Level, so the values reach the last at the lower of the
+Max Level and the provider's last level, and a level past it reads the last value. <strong>Points</strong>: how many values.</li>
+<li><strong>Between Points</strong>, spread: <strong>Steps</strong>, <strong>Straight Line</strong> or <strong>Smooth Curve</strong>.</li>
+<li>A read-only curve beside the table shows the values, and spread, the curve they make. Its tooltip reads them, as &quot;6
+at level 1, rising to 8 at level 5&quot;.</li>
+<li><strong>Behaviours</strong>: rules that adjust the value the scaler works out, in order.</li>
+</ul>
+<p>Quick Fill fills the levels the table shows. Nothing changes a scaler's values while it's drawn: its table keeps its
+length until you change it.</p>
+<hr>
+<p><a href="a-magnitude-field.html">← A magnitude field</a> · <a href="index.html">Scalers</a> · <a href="writing-your-own-scaler.html">Writing your own scaler →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

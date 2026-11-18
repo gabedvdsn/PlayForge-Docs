@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The action queue | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The action queue | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.workers.the-action-queue">
+<h1 id="the-action-queue">The action queue</h1>
+
+<p>What a deferred worker returns, and whatever else is queued to an entity (<code>GetActionQueue().Enqueue</code>), waits in the
+entity's action queue for its end of frame.</p>
+<ul>
+<li><p><strong>When it runs.</strong> Four passes in each end of frame: the actions queued since the last; then those the tag workers'
+activations and resolutions queue; then those their ticks queue; then those the analysis workers, the Health watch
+and the effects' conditions queue. An action queued as a pass runs joins that pass.</p>
+</li>
+<li><p><strong>In what order.</strong> By priority, higher first (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html"><code>ActionPriority</code></a>, from Critical's 100 down to Cleanup's −300), and in
+the order queued within one. <code>Enqueue(action, priorityOverride)</code> puts one at another priority.</p>
+</li>
+<li><p><strong>What's heard.</strong> Each action is heard as it's queued (<code>OnActionQueued</code>), then once more as it's done with:</p>
+<ul>
+<li>run (<code>OnActionExecuted</code>);</li>
+<li>dropped unrun (<code>OnActionInvalidated</code>): its <code>IsValid</code> said no as its turn came, it was taken off, or its entity had
+ended;</li>
+<li>failed (<code>OnActionFailed</code>, with what it threw): its <code>IsValid</code> or its <code>Execute</code> threw. It's written to the Console
+as well, and the rest of the queue runs on.</li>
+</ul>
+<p>The queue's events and the entity's callbacks both tell them. The frame's summary keeps the dropped and the failed,
+and an <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> settles a worker's action as Ran, Dropped or Failed.</p>
+</li>
+<li><p><strong>Taken off.</strong> <code>Remove(action)</code> takes one off, <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_RemoveWhere_"><code>RemoveWhere(match)</code></a> every one it picks, and <code>Clear()</code> all of them,
+each heard as dropped; the rest keep their order.</p>
+</li>
+<li><p><strong>An entity that ends.</strong> Its queue closes (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_IsClosed"><code>IsClosed</code></a>): what waited is dropped and heard, and an action queued to it
+after is dropped at once, so nothing waits on it for good.</p>
+</li>
+<li><p><strong>Another entity's queue.</strong> An action queued to another entity runs at that entity's end of frame: this frame if its
+end of frame is still to come, by the order the entities step in, or else the next.</p>
+</li>
+<li><p><strong>The guard.</strong> A pass runs 10,000 actions at most, so an action that queues another for good can't hold the frame.
+Those left past it wait for the next pass, and the queue writes an error.</p>
+</li>
+</ul>
+<hr>
+<p><a href="the-map.html">← The map</a> · <a href="index.html">Workers</a> · <a href="hearing-workers-run.html">Hearing workers run →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

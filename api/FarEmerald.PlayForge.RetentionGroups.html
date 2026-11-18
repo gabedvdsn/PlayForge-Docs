@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RetentionGroups | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RetentionGroups | PlayForge ">
+      
+      <meta name="description" content="Which retention groups&#39; parts an attribute read takes. An attribute&#39;s value is the sum of its groups&#39; parts: the base its set gives, what items add in their group, what a buff adds in its. &#215; Attribute, an Attribute condition, a Math worker&#39;s Relative To and a Threshold worker read the whole value unless they say otherwise: only these groups, as a bonus of the items&#39; strength reads their group; or all but these, as a bonus of a hero&#39;s own damage leaves its items&#39; out. A group names the groups under it too. Group Impact reads one group&#39;s part, as it did.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.RetentionGroups">
+
+
+
+  <h1 id="FarEmerald_PlayForge_RetentionGroups" data-uid="FarEmerald.PlayForge.RetentionGroups" class="text-break">
+Class RetentionGroups  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Which retention groups' parts an attribute read takes. An attribute's value
+is the sum of its groups' parts: the base its set gives, what items add in their group, what a buff adds in its.
+× Attribute, an Attribute condition, a Math worker's Relative To and a Threshold worker read the whole value
+unless they say otherwise: only these groups, as a bonus of the items' strength reads their group; or all but
+these, as a bonus of a hero's own damage leaves its items' out. A group names the groups under it too. Group Impact
+reads one group's part, as it did.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/attributes/index.html">Attributes</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class RetentionGroups</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RetentionGroups</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_Groups" data-uid="FarEmerald.PlayForge.RetentionGroups.Groups">
+  Groups
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The groups, each with the groups under it&quot;)]
+[ForgeTagContext(new string[] { &quot;Retention Group&quot; })]
+[ForgeShowWhen(&quot;Read&quot;, new object[] { ERetentionGroupRead.OnlyThese, ERetentionGroupRead.AllButThese })]
+public List&lt;Tag&gt; Groups</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_Read" data-uid="FarEmerald.PlayForge.RetentionGroups.Read">
+  Read
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Which groups&#39; parts it reads: all of them, the whole value; only these; or all but these&quot;)]
+public ERetentionGroupRead Read</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ERetentionGroupRead.html">ERetentionGroupRead</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_RetentionGroups_Describe_" data-uid="FarEmerald.PlayForge.RetentionGroups.Describe*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_Describe_FarEmerald_PlayForge_RetentionGroups_" data-uid="FarEmerald.PlayForge.RetentionGroups.Describe(FarEmerald.PlayForge.RetentionGroups)">
+  Describe(RetentionGroups)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How a read says its groups, after the attribute's name: nothing for all of them, &quot; (Bonus)&quot;, &quot; (all but Bonus)&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Describe(RetentionGroups groups)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>groups</code> <a class="xref" href="FarEmerald.PlayForge.RetentionGroups.html">RetentionGroups</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_RetentionGroups_Of_" data-uid="FarEmerald.PlayForge.RetentionGroups.Of*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_Of_FarEmerald_PlayForge_CachedAttributeValue_" data-uid="FarEmerald.PlayForge.RetentionGroups.Of(FarEmerald.PlayForge.CachedAttributeValue)">
+  Of(CachedAttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The part of <code class="paramref">cached</code> it reads.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AttributeValue Of(CachedAttributeValue cached)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cached</code> <a class="xref" href="FarEmerald.PlayForge.CachedAttributeValue.html">CachedAttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_RetentionGroups_ReadsAll_" data-uid="FarEmerald.PlayForge.RetentionGroups.ReadsAll*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_ReadsAll_FarEmerald_PlayForge_RetentionGroups_" data-uid="FarEmerald.PlayForge.RetentionGroups.ReadsAll(FarEmerald.PlayForge.RetentionGroups)">
+  ReadsAll(RetentionGroups)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a read reads the whole value: all of it, or no group, or none named to leave out.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ReadsAll(RetentionGroups groups)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>groups</code> <a class="xref" href="FarEmerald.PlayForge.RetentionGroups.html">RetentionGroups</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_RetentionGroups_TryRead_" data-uid="FarEmerald.PlayForge.RetentionGroups.TryRead*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RetentionGroups_TryRead_FarEmerald_PlayForge_RetentionGroups_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AttributeValue__" data-uid="FarEmerald.PlayForge.RetentionGroups.TryRead(FarEmerald.PlayForge.RetentionGroups,FarEmerald.PlayForge.ITarget,FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AttributeValue@)">
+  TryRead(RetentionGroups, ITarget, IAttribute, out AttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The part of <code class="paramref">entity</code>'s attribute that <code class="paramref">groups</code> reads, or its whole value where
+there's none to say; false where the entity hasn't the attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryRead(RetentionGroups groups, ITarget entity, IAttribute attribute, out AttributeValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>groups</code> <a class="xref" href="FarEmerald.PlayForge.RetentionGroups.html">RetentionGroups</a></dt>
+    <dd></dd>
+    <dt><code>entity</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

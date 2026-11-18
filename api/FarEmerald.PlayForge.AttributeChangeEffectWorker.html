@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AttributeChangeEffectWorker | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AttributeChangeEffectWorker | PlayForge ">
+      
+      <meta name="description" content="Answers how far an attribute has moved since its effect began, for a number of the Worker kind to read: how much health the target has lost since the curse landed, from every source. It notes the attribute as each application of its effect begins, and answers under its : the amount lost, gained or changed, or the attribute as it was.  With  above 0, it answers only on each Nth tick of its effect, and 0 on the others, so an impact that reads it lands every Nth tick: a curse dealing 5 a second, and every fourth second a quarter of what its target has lost since it began, is one periodic effect with a second impact of −0.25 &#215; this worker&#39;s answer. Its tick is counted before the tick&#39;s impacts are worked out, so on its Nth tick the amount lost is the amount before that tick lands.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AttributeChangeEffectWorker" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker" class="text-break">
+Class AttributeChangeEffectWorker  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Answers how far an attribute has moved since its effect began, for a number of the Worker kind
+to read: how much health the target has lost since the curse landed, from every source. It notes the attribute as
+each application of its effect begins, and answers under its <a class="xref" href="FarEmerald.PlayForge.AttributeChangeEffectWorker.html#FarEmerald_PlayForge_AttributeChangeEffectWorker_Key">Key</a>: the amount lost, gained or
+changed, or the attribute as it was.</p>
+<p>
+With <a class="xref" href="FarEmerald.PlayForge.AttributeChangeEffectWorker.html#FarEmerald_PlayForge_AttributeChangeEffectWorker_EveryTicks">EveryTicks</a> above 0, it answers only on each Nth tick of its effect, and 0 on the others, so an
+impact that reads it lands every Nth tick: a curse dealing 5 a second, and every fourth second a quarter of what
+its target has lost since it began, is one periodic effect with a second impact of −0.25 × this worker's answer.
+Its tick is counted before the tick's impacts are worked out, so on its Nth tick the amount lost is the amount
+before that tick lands.
+</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/workers/index.html">Workers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/workers/built-in-kinds.html">Workers: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(Description = &quot;Tells how far an attribute has moved since the effect began, for a number to read.&quot;)]
+public class AttributeChangeEffectWorker : AbstractEffectWorker, INumberWorker</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractEffectWorker.html">AbstractEffectWorker</a></div>
+      <div><span class="xref">AttributeChangeEffectWorker</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.INumberWorker.html">INumberWorker</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectWorker.html#FarEmerald_PlayForge_AbstractEffectWorker_OnEffectRemoval_FarEmerald_PlayForge_EffectWorkerContext_">AbstractEffectWorker.OnEffectRemoval(EffectWorkerContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractEffectWorker.html#FarEmerald_PlayForge_AbstractEffectWorker_OnEffectImpact_FarEmerald_PlayForge_EffectWorkerContext_">AbstractEffectWorker.OnEffectImpact(EffectWorkerContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_Attribute" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.Attribute">
+  Attribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The attribute it watches&quot;)]
+public Attribute Attribute</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_EveryTicks" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.EveryTicks">
+  EveryTicks
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;0: it answers at every read. Above 0, it answers only on each Nth tick of its effect, and 0 on the others, so an impact that reads it lands every Nth tick. Read as its effect lands&quot;)]
+[NumberMin(0)]
+public ScalableInt EveryTicks</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_Key" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.Key">
+  Key
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The key it answers under: a number of the Worker kind with this key reads its answer&quot;)]
+[ForgeTagContext(new string[] { &quot;Worker Key&quot; })]
+public Tag Key</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_Of" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.Of">
+  Of
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Whose attribute: the target&#39;s, the entity the effect is on, or the caster&#39;s&quot;)]
+public NumberSide Of</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberSide.html">NumberSide</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_Part" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.Part">
+  Part
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The attribute&#39;s current value, or its base&quot;)]
+public EAttributeTargetBinary Part</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTargetBinary.html">EAttributeTargetBinary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_What" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.What">
+  What
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;What it answers: how much the attribute has lost, gained or changed since the effect began, or the attribute as it began&quot;)]
+public EAttributeChangeWhat What</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeChangeWhat.html">EAttributeChangeWhat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AttributeChangeEffectWorker_OnEffectApplication_" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.OnEffectApplication*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_OnEffectApplication_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.OnEffectApplication(FarEmerald.PlayForge.EffectWorkerContext)">
+  OnEffectApplication(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when the effect is first applied.
+Return actions to queue for deferred execution.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;IRootAction&gt; OnEffectApplication(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeChangeEffectWorker_OnEffectTick_" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.OnEffectTick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_OnEffectTick_FarEmerald_PlayForge_EffectWorkerContext_" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.OnEffectTick(FarEmerald.PlayForge.EffectWorkerContext)">
+  OnEffectTick(EffectWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called when the effect ticks (for periodic effects).
+Return actions to queue for deferred execution.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;IRootAction&gt; OnEffectTick(EffectWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeChangeEffectWorker_TryGetNumber_" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.TryGetNumber*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeChangeEffectWorker_TryGetNumber_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_NumberContext__System_Single__" data-uid="FarEmerald.PlayForge.AttributeChangeEffectWorker.TryGetNumber(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.NumberContext@,System.Single@)">
+  TryGetNumber(Tag, in NumberContext, out float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its answer under its key, about the application of its effect the context carries.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetNumber(Tag key, in NumberContext context, out float value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>context</code> <a class="xref" href="FarEmerald.PlayForge.NumberContext.html">NumberContext</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

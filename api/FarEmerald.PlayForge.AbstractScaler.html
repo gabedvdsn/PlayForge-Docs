@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbstractScaler | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbstractScaler | PlayForge ">
+      
+      <meta name="description" content="Base class for all magnitude scalers. Scalers determine how a value changes based on level (relative level = (level-1)/(maxLevel-1)). Level Configuration Modes:  LockToSource: Automatically uses the owning Ability/Entity&#39;s level range. No extra setup needed. The source is determined at runtime from the IAttributeImpactDerivation spec. Unlocked: Uses its own MaxLevel setting, independent of the source. Partitioned: Uses the minimum of MaxLevel and the source&#39;s current level.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AbstractScaler">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AbstractScaler" data-uid="FarEmerald.PlayForge.AbstractScaler" class="text-break">
+Class AbstractScaler  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Base class for all magnitude scalers.
+Scalers determine how a value changes based on level (relative level = (level-1)/(maxLevel-1)).</p>
+<p>Level Configuration Modes:</p>
+<ul>
+<li>LockToSource: Automatically uses the owning Ability/Entity's level range. No extra setup needed.
+The source is determined at runtime from the IAttributeImpactDerivation spec.</li>
+<li>Unlocked: Uses its own MaxLevel setting, independent of the source.</li>
+<li>Partitioned: Uses the minimum of MaxLevel and the source's current level.</li>
+</ul>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/scalers/index.html">Scalers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/scalers/writing-your-own-scaler.html">Scalers: Writing your own scaler</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+[ForgeMenu(&quot;Scaler&quot;)]
+public abstract class AbstractScaler : IScaler</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AbstractScaler</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IScaler.html">IScaler</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractCachedScaler.html">AbstractCachedScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AttributeBackedScaler.html">AttributeBackedScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ConstantScaler.html">ConstantScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.EffectStacksScaler.html">EffectStacksScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ItemStacksScaler.html">ItemStacksScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.NumberKind.html">NumberKind</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.RandomizedScaler.html">RandomizedScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ScalerGroup.html">ScalerGroup</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.SharedScaler.html">SharedScaler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.SimpleScaler.html">SimpleScaler</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Behaviours" data-uid="FarEmerald.PlayForge.AbstractScaler.Behaviours">
+  Behaviours
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializeReference]
+public List&lt;AbstractScalerBehaviour&gt; Behaviours</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractScalerBehaviour.html">AbstractScalerBehaviour</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Configuration" data-uid="FarEmerald.PlayForge.AbstractScaler.Configuration">
+  Configuration
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Header(&quot;Configuration&quot;)]
+[Tooltip(&quot;How this scaler determines its level range.\n\nProvider&#39;s Levels: the owning Ability or Entity&#39;s level range.\nOwn Max Level: its own MaxLevel.\nClamped to Provider: the provider&#39;s levels, up to its own MaxLevel.&quot;)]
+public ELevelConfig Configuration</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ELevelConfig.html">ELevelConfig</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Interpolation" data-uid="FarEmerald.PlayForge.AbstractScaler.Interpolation">
+  Interpolation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Interpolation between level values&quot;)]
+public EScalerInterpolation Interpolation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EScalerInterpolation.html">EScalerInterpolation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_LevelValues" data-uid="FarEmerald.PlayForge.AbstractScaler.LevelValues">
+  LevelValues
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Value at each level (index 0 = level 1)&quot;)]
+public float[] LevelValues</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_MaxLevel" data-uid="FarEmerald.PlayForge.AbstractScaler.MaxLevel">
+  MaxLevel
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Maximum level for Unlocked/Partitioned modes.\nIgnored when using LockToSource (uses source&#39;s max level instead).&quot;)]
+[Min(1)]
+public int MaxLevel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Name" data-uid="FarEmerald.PlayForge.AbstractScaler.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Optional name for this scaler (helps identify when importing or viewing)&quot;)]
+public string Name</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Scaling" data-uid="FarEmerald.PlayForge.AbstractScaler.Scaling">
+  Scaling
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Generated curve from level values (auto-updated)&quot;)]
+public AnimationCurve Scaling</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_StretchOverLevels" data-uid="FarEmerald.PlayForge.AbstractScaler.StretchOverLevels">
+  StretchOverLevels
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Off, levels map exactly: level 4 reads the 4th value, and a level past the end reads the last.
+On, the values spread over the level range <a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_Configuration">Configuration</a> names, as every scaler's did. It is on
+for the scalers saved before it existed, so they keep how they read; the inspector makes new scalers with it
+off.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Off: level 4 reads the 4th value, and a level past the end reads the last. On: the values spread over the level range, and a level between two reads between them&quot;)]
+public bool StretchOverLevels</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_HasName_" data-uid="FarEmerald.PlayForge.AbstractScaler.HasName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_HasName" data-uid="FarEmerald.PlayForge.AbstractScaler.HasName">
+  HasName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if this scaler has a custom name set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_IsEmpty_" data-uid="FarEmerald.PlayForge.AbstractScaler.IsEmpty*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_IsEmpty" data-uid="FarEmerald.PlayForge.AbstractScaler.IsEmpty">
+  IsEmpty
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the scaler is no kind at all, as a Group with no members: a field that holds it reads as one with none
+does, its number, and a slot that holds it, as a Group's member, as an empty one. A scaler
+of a project's own that holds nothing to read yet overrides this.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsEmpty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_Parts_" data-uid="FarEmerald.PlayForge.AbstractScaler.Parts*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Parts" data-uid="FarEmerald.PlayForge.AbstractScaler.Parts">
+  Parts
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the scaler reads of the fields every scaler has: its values per level, the level range they spread over,
+and its behaviours. Its inspector draws these parts and no others, as a Fixed Value reads none of them; a
+kind's own fields always draw. A kind that reads none of them overrides this.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual EScalerParts Parts { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EScalerParts.html">EScalerParts</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_ApplyBehaviourEvaluation_" data-uid="FarEmerald.PlayForge.AbstractScaler.ApplyBehaviourEvaluation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_ApplyBehaviourEvaluation_FarEmerald_PlayForge_IAttributeImpactCarrier_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.ApplyBehaviourEvaluation(FarEmerald.PlayForge.IAttributeImpactCarrier,System.Single)">
+  ApplyBehaviourEvaluation(IAttributeImpactCarrier, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float ApplyBehaviourEvaluation(IAttributeImpactCarrier spec, float magnitude)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+    <dt><code>magnitude</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_CurveFor_" data-uid="FarEmerald.PlayForge.AbstractScaler.CurveFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_CurveFor_System_Single___FarEmerald_PlayForge_EScalerInterpolation_" data-uid="FarEmerald.PlayForge.AbstractScaler.CurveFor(System.Single[],FarEmerald.PlayForge.EScalerInterpolation)">
+  CurveFor(float[], EScalerInterpolation)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The curve a stretched scaler reads: its values spread from 0 to 1, joined as the interpolation says. The
+drawer writes it through the asset's SerializedObject, so an edit and its curve are one Undo step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AnimationCurve CurveFor(float[] levelValues, EScalerInterpolation interpolation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>levelValues</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>[]</dt>
+    <dd></dd>
+    <dt><code>interpolation</code> <a class="xref" href="FarEmerald.PlayForge.EScalerInterpolation.html">EScalerInterpolation</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_Evaluate_" data-uid="FarEmerald.PlayForge.AbstractScaler.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Evaluate_FarEmerald_PlayForge_AbstractStackingEffectContainer_" data-uid="FarEmerald.PlayForge.AbstractScaler.Evaluate(FarEmerald.PlayForge.AbstractStackingEffectContainer)">
+  Evaluate(AbstractStackingEffectContainer)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float Evaluate(AbstractStackingEffectContainer container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbstractStackingEffectContainer.html">AbstractStackingEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_Evaluate_" data-uid="FarEmerald.PlayForge.AbstractScaler.Evaluate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Evaluate_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AbstractScaler.Evaluate(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  Evaluate(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract float Evaluate(IAttributeImpactCarrier deriv)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deriv</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_EvaluateAtLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateAtLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_EvaluateAtLevel_System_Int32_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateAtLevel(System.Int32,System.Single)">
+  EvaluateAtLevel(int, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The scaler's value at a level: the level's own value, and past the end the last, unless the scaler stretches
+its values over the level range, where it reads its curve at the level's place in the range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float EvaluateAtLevel(int level, float relativeLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>relativeLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_EvaluateFromSpec_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateFromSpec*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_EvaluateFromSpec_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateFromSpec(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  EvaluateFromSpec(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Evaluates at the spec's level, exactly or stretched, then through the scaler's behaviours.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float EvaluateFromSpec(IAttributeImpactCarrier spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_EvaluateScalingAtRelativeLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateScalingAtRelativeLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_EvaluateScalingAtRelativeLevel_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.EvaluateScalingAtRelativeLevel(System.Single)">
+  EvaluateScalingAtRelativeLevel(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Evaluates the scaling curve at the given relative level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float EvaluateScalingAtRelativeLevel(float relativeLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relativeLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillAdditive_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillAdditive*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillAdditive_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillAdditive(System.Single,System.Single)">
+  FillAdditive(float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with additive increments per level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillAdditive(float baseValue, float incrementPerLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>baseValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>incrementPerLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillConstant_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillConstant*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillConstant_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillConstant(System.Single)">
+  FillConstant(float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills all level values with a constant.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillConstant(float value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillExponential_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillExponential*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillExponential_System_Single_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillExponential(System.Single,System.Single,System.Single)">
+  FillExponential(float, float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with exponential curve.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillExponential(float startValue, float endValue, float exponent = 2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>exponent</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillLinear_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillLinear*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillLinear_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillLinear(System.Single,System.Single)">
+  FillLinear(float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with linear interpolation from start to end.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillLinear(float startValue, float endValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillLogarithmic_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillLogarithmic*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillLogarithmic_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillLogarithmic(System.Single,System.Single)">
+  FillLogarithmic(float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with logarithmic curve (fast start, slow end).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillLogarithmic(float startValue, float endValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillMultiplicative_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillMultiplicative*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillMultiplicative_System_Single_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillMultiplicative(System.Single,System.Single)">
+  FillMultiplicative(float, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with multiplicative scaling per level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillMultiplicative(float baseValue, float multiplierPerLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>baseValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>multiplierPerLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_FillSteps_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillSteps*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_FillSteps_System_Single_System_Single_System_Int32_" data-uid="FarEmerald.PlayForge.AbstractScaler.FillSteps(System.Single,System.Single,System.Int32)">
+  FillSteps(float, float, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fills level values with step function (discrete jumps).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FillSteps(float startValue, float endValue, int stepCount)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>stepCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_GetDisplayName_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetDisplayName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_GetDisplayName" data-uid="FarEmerald.PlayForge.AbstractScaler.GetDisplayName">
+  GetDisplayName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the display name - returns Name if set, empty string otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDisplayName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_GetEffectiveMaxLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetEffectiveMaxLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_GetEffectiveMaxLevel_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetEffectiveMaxLevel(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  GetEffectiveMaxLevel(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the effective max level based on configuration. Falls back to the
+origin's own level pair when there is no live source — synthetic leveler
+carriers (tooltip/analysis evaluation via <a class="xref" href="FarEmerald.PlayForge.LevelerEffectOrigin.html">LevelerEffectOrigin</a>)
+carry their min/max on the origin itself.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int GetEffectiveMaxLevel(IAttributeImpactCarrier spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_GetEffectiveRelativeLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetEffectiveRelativeLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_GetEffectiveRelativeLevel_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetEffectiveRelativeLevel(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  GetEffectiveRelativeLevel(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float GetEffectiveRelativeLevel(IAttributeImpactCarrier deriv)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deriv</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_GetValueAtLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetValueAtLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_GetValueAtLevel_System_Int32_" data-uid="FarEmerald.PlayForge.AbstractScaler.GetValueAtLevel(System.Int32)">
+  GetValueAtLevel(int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the value for a specific level (1-indexed).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetValueAtLevel(int level)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_Initialize_" data-uid="FarEmerald.PlayForge.AbstractScaler.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Initialize_FarEmerald_PlayForge_AbstractStackingEffectContainer_" data-uid="FarEmerald.PlayForge.AbstractScaler.Initialize(FarEmerald.PlayForge.AbstractStackingEffectContainer)">
+  Initialize(AbstractStackingEffectContainer)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize(AbstractStackingEffectContainer container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbstractStackingEffectContainer.html">AbstractStackingEffectContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_Initialize_" data-uid="FarEmerald.PlayForge.AbstractScaler.Initialize*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_Initialize_FarEmerald_PlayForge_IAttributeImpactCarrier_" data-uid="FarEmerald.PlayForge.AbstractScaler.Initialize(FarEmerald.PlayForge.IAttributeImpactCarrier)">
+  Initialize(IAttributeImpactCarrier)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Initialize(IAttributeImpactCarrier deriv)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deriv</code> <a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_IsNone_" data-uid="FarEmerald.PlayForge.AbstractScaler.IsNone*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_IsNone_FarEmerald_PlayForge_AbstractScaler_" data-uid="FarEmerald.PlayForge.AbstractScaler.IsNone(FarEmerald.PlayForge.AbstractScaler)">
+  IsNone(AbstractScaler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a scaler slot reads as no kind: it holds no scaler, or one that is empty.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNone(AbstractScaler scaler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scaler</code> <a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_PopulateFromCurve_" data-uid="FarEmerald.PlayForge.AbstractScaler.PopulateFromCurve*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_PopulateFromCurve" data-uid="FarEmerald.PlayForge.AbstractScaler.PopulateFromCurve">
+  PopulateFromCurve()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Populates LevelValues from the existing AnimationCurve.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PopulateFromCurve()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_RegenerateCurve_" data-uid="FarEmerald.PlayForge.AbstractScaler.RegenerateCurve*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_RegenerateCurve" data-uid="FarEmerald.PlayForge.AbstractScaler.RegenerateCurve">
+  RegenerateCurve()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Regenerates the AnimationCurve from LevelValues array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegenerateCurve()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_ResizeLevelValues_" data-uid="FarEmerald.PlayForge.AbstractScaler.ResizeLevelValues*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_ResizeLevelValues" data-uid="FarEmerald.PlayForge.AbstractScaler.ResizeLevelValues">
+  ResizeLevelValues()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resizes the level values array to match MaxLevel.
+Preserves existing values where possible.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResizeLevelValues()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_SetValueAtLevel_" data-uid="FarEmerald.PlayForge.AbstractScaler.SetValueAtLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_SetValueAtLevel_System_Int32_System_Single_" data-uid="FarEmerald.PlayForge.AbstractScaler.SetValueAtLevel(System.Int32,System.Single)">
+  SetValueAtLevel(int, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value for a specific level (1-indexed).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetValueAtLevel(int level, float value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>level</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbstractScaler_UseScalingOptions_" data-uid="FarEmerald.PlayForge.AbstractScaler.UseScalingOptions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbstractScaler_UseScalingOptions" data-uid="FarEmerald.PlayForge.AbstractScaler.UseScalingOptions">
+  UseScalingOptions()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool UseScalingOptions()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

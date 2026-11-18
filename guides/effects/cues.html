@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Cues | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Cues | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.cues">
+<h1 id="cues">Cues</h1>
+
+<p>What the effect shows and sounds, apart from what it changes, plays from its <strong>Cues</strong> component, from the Components
+list's <strong>+</strong>, a list for each of its moments: <strong>On Apply</strong> as it lands; <strong>On Reapply</strong> as an application it takes in
+lands, as a stack or a refresh; <strong>On Tick</strong> as each tick executes; <strong>On Hit</strong> as an impact it deals lands, on the one
+it lands on, its magnitude the value it changed, as for a damage number; <strong>On Remove</strong> as a lasting effect comes off;
+<strong>While Active</strong> while it lasts, from as it lands, or a load puts it back, to as it comes off, ending as it began
+where another application replaced it; <strong>On Refused</strong> as an application is refused, as by an immunity, on the one it
+was aimed at; and <strong>On Stack Change</strong> as its stacks change while it lasts, its magnitude the stacks it has. An effect
+holds one at most. A cue plays at each moment whose list holds it: a sound on each tick is a Sound in On Tick, and one
+as the effect lands as well is in On Apply too. An applier can say where an application hit, <code>spec.WithHit(point, normal, magnitude)</code>, and its cues play there (<a href="../cues/raises-and-sinks.html">Cues: Raises and sinks</a>).</p>
+<p>Each list's cues are listed as its workers are, each cue's kind picked from the list:</p>
+<ul>
+<li><strong>Camera Shake</strong>: shakes the camera through the shaker the game gives <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Shaker"><code>ForgeCues.Shaker</code></a>, an <a class="xref" href="../../api/FarEmerald.PlayForge.ICameraShaker.html"><code>ICameraShaker</code></a>. With
+none given, it shakes nothing. Its <strong>Strength</strong> and <strong>Duration</strong>, as Prefab's Lifetime and Sound's Volume, are
+number fields read for its effect as it plays.</li>
+<li><strong>Sound</strong>: plays its clip where its <strong>Placement</strong> says, at the target by default (<a href="../cues/placement.html">Cues: Placement</a>).</li>
+<li><strong>Prefab</strong>: places its prefab where its <strong>Placement</strong> says, at the target by default, for <strong>Lifetime</strong> seconds, or,
+in While Active, for as long as the effect lasts, following the target. A cue raised at a point, as a Play Cue
+task's, places it there. With <strong>Pooled</strong> it takes its objects from a pool and gives them back, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html"><code>ForgeCuePool</code></a>, the
+pool making <strong>Preallocate</strong> of them ahead as it first plays, and an <a class="xref" href="../../api/FarEmerald.PlayForge.IPooledCue.html"><code>IPooledCue</code></a> on the prefab resets it as it's
+taken and given back.</li>
+<li><strong>Floating Text</strong>: floats a text where its <strong>Placement</strong> says, as a hit's damage or a status's name
+(<a href="../cues/floating-text.html">Cues: Floating text</a>).</li>
+<li><strong>Process</strong>: runs a MonoBehaviour process where its <strong>Placement</strong> says, on a data packet loaded for the cue, as a
+shield's while it lasts (<a href="../cues/data-packets.html">Cues: Data packets</a>).</li>
+<li><strong>Sequence</strong>: runs a task sequence on a data packet loaded for the cue, as a flicker while the effect lasts
+(<a href="../cues/handlers.html">Cues: Handlers</a>).</li>
+<li><strong>Cue Tag</strong>: plays what its tag routes to (<a href="../cues/routes.html">Cues: Routes</a>).</li>
+</ul>
+<p>A save's load ends each While Active cue and begins it again as the effect leaves and comes back, and plays no burst.
+Write a cue of your own by deriving from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html"><code>AbstractCueHandler</code></a> and overriding the moments it plays at, or <code>Burst</code>
+to play every burst one way, reading the moment that raised it from <code>cue.Moment</code>.</p>
+<p>Every cue plays through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html"><code>ForgeCues</code></a>, an effect's as any other's. A game's own code raises one there too, as
+sparks where a ray hit: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst(sparks, new CueContext(entity, ECueMoment.Raised, point: hit.point))</code></a>.
+A cue's context says what raised it, who's behind it, where it plays and, for a lasting cue, the key its
+beginning and its end share. <code>ForgeCues.Enabled = false</code> silences every cue, as on a server or while a
+simulation runs ahead, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Mute_"><code>ForgeCues.Mute(entity, true)</code></a> one entity's, as one off screen; a lasting cue that
+began still ends. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Played"><code>ForgeCues.Played</code></a> hears each cue as it plays, for a debugger or a recorder.</p>
+<p>A <strong>Cue Tag</strong> cue plays what its tag routes to, in place of naming what it shows, so an effect, an ability and an
+entity can each raise Cue.Hit.Fire and one place says how it looks. The project's <strong>Cue Library</strong>, an asset its
+settings name, plays the route for the tag, or else for its nearest parent, and a route that doesn't <strong>Override</strong>
+plays its parent's after it. An entity's <strong>Cue Receiver</strong> component plays a tag its own way first, in place of the
+library's, or before it with <strong>Pass Through</strong>; its <strong>Variant</strong> plays the library's route under its name, as
+Cue.Hit.Golem for Cue.Hit, where the library has one. <a href="../cues/index.html">Cues</a> brings cues together: where each
+is raised, the library's routes, what each tag plays, and pooling.</p>
+<hr>
+<p><a href="levels.html">← Levels</a> · <a href="index.html">Effects</a> · <a href="requirements.html">Requirements →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

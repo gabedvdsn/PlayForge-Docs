@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Scalers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Scalers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers">
+<h1 id="scalers">Scalers</h1>
+
+<p>A <strong>scaler</strong> is a value source that a magnitude field reads at a level, such as a table of damage per level. The
+level is the origin's, such as the level of the ability that applies an effect. Each section below matches what the
+inspector shows.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="a-magnitude-field.html">A magnitude field</a>: A magnitude field, such as an effect's Magnitude or Duration, is a number field (<code>ScalableFloat</code>, or <code>ScalableInt</code> for a whole number).</li>
+<li><a href="values-per-level.html">Values per level</a>: A scaler's settings sit on a shaded block under its field, so they read as the scaler's among the fields around them.</li>
+<li><a href="writing-your-own-scaler.html">Writing your own scaler</a>: A scaler of your own derives from <code>AbstractScaler</code>, or from <code>AbstractCachedScaler</code> for an attribute set's values, and has a public constructor with no parameters.</li>
+<li><a href="a-number-field-in-your-own-code.html">A number field in your own code</a>: A field of your own is one line, and a float converts to it</li>
+<li><a href="asking-a-worker.html">Asking a worker</a>: A number can't count or remember; a worker can.</li>
+<li><a href="scaler-assets.html">Scaler assets</a>: A <strong>Scaler asset</strong> (<code>Create → PlayForge → Scaler</code>) holds one scaler that many fields can use.</li>
+<li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCachedScaler.html">AbstractCachedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScalerBehaviour.html">AbstractScalerBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractVariance.html">AbstractVariance</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AllCondition.html">AllCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AlwaysCondition.html">AlwaysCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AnimationUtility.html">AnimationUtility</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AnyCondition.html">AnyCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AssetPartKind.html">AssetPartKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttenuateScalerBehaviour.html">AttenuateScalerBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeBackedScaler.html">AttributeBackedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeCondition.html">AttributeCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegulationCache.html">AttributeRegulationCache</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeBackedScaler.html">CachedAttributeBackedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeScaler.html">CachedAttributeScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedMagnitudeModifierGroupMember.html">CachedMagnitudeModifierGroupMember</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CachedMagnitudeModifierGroupMemberDrawer.html">CachedMagnitudeModifierGroupMemberDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedScalerGroup.html">CachedScalerGroup</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedSimpleScaler.html">CachedSimpleScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceCondition.html">ChanceCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceRoll.html">ChanceRoll</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ClampedScaler.html">ClampedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CompareCondition.html">CompareCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ConditionalScaler.html">ConditionalScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ConditionDrawer.html">ConditionDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ConstantScaler.html">ConstantScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CustomScaler.html">CustomScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DeriveScalerName.html">DeriveScalerName</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityPart.html">EAbilityPart</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAssetPartAmong.html">EAssetPartAmong</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAssetPartOf.html">EAssetPartOf</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeRead.html">EAttributeRead</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECalculationOperation.html">ECalculationOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECaptureAttributeWhen.html">ECaptureAttributeWhen</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ECurveTangentMode.html">ECurveTangentMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectPart.html">EEffectPart</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectStacksScaler.html">EffectStacksScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EGroupOperation.html">EGroupOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EItemPart.html">EItemPart</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ELevelConfig.html">ELevelConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ELocalDataFrom.html">ELocalDataFrom</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EScalerInterpolation.html">EScalerInterpolation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html">EScalerParts</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EScalerRelativeOperation.html">EScalerRelativeOperation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESourceTarget.html">ESourceTarget</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EStackingCurve.html">EStackingCurve</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETrackedImpactOf.html">ETrackedImpactOf</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETrackedImpactPart.html">ETrackedImpactPart</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EValueCollisionPolicy.html">EValueCollisionPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EWorkerNumberFrom.html">EWorkerNumberFrom</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.FlatVariance.html">FlatVariance</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html">ForgeChance</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayCondition.html">GameplayCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayConditionAttribute.html">GameplayConditionAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupImpactKind.html">GroupImpactKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IScaler.html">IScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemStacksScaler.html">ItemStacksScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelCondition.html">LevelCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelThreshold.html">LevelThreshold</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.LevelThresholdDrawer.html">LevelThresholdDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataKind.html">LocalDataKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MagnitudeModifierGroupMember.html">MagnitudeModifierGroupMember</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.MagnitudeModifierGroupMemberDrawer.html">MagnitudeModifierGroupMemberDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MultiplierVariance.html">MultiplierVariance</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NeverCondition.html">NeverCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NotCondition.html">NotCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberComparison.html">NumberComparison</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html">NumberContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContextAttribute.html">NumberContextAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.NumberFields.html">NumberFields</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.NumberFields.Walk.html">NumberFields.Walk</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberKind.html">NumberKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberKindAttribute.html">NumberKindAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.NumberLimits.html">NumberLimits</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberMaxAttribute.html">NumberMaxAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberMinAttribute.html">NumberMinAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberRangeAttribute.html">NumberRangeAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html">NumberReads</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberSiblingFieldAttribute.html">NumberSiblingFieldAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.NumberSiblingFieldDrawer.html">NumberSiblingFieldDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberSide.html">NumberSide</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberText.html">NumberText</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NumberTrace.html">NumberTrace</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.PercentageVariance.html">PercentageVariance</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.html">QuickFillWizard</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.EFillPattern.html">QuickFillWizard.EFillPattern</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.ERounding.html">QuickFillWizard.ERounding</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RandomizedScaler.html">RandomizedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RelativeToFieldKind.html">RelativeToFieldKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SaveScalerAssetWindow.html">SaveScalerAssetWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalableFloatDrawer.html">ScalableFloatDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableInt.html">ScalableInt</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalableIntDrawer.html">ScalableIntDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html">ScalerActions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerAsset.html">ScalerAsset</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerBehaviourDrawer.html">ScalerBehaviourDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerDisplayName.html">ScalerDisplayName</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerDrawer.html">ScalerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerGroup.html">ScalerGroup</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerOperationKeyword.html">ScalerOperationKeyword</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.html">ScalerTry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.AttributeRow.html">ScalerTry.AttributeRow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.CallerRow.html">ScalerTry.CallerRow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.Reading.html">ScalerTry.Reading</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.Side.html">ScalerTry.Side</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerValuesWindow.html">ScalerValuesWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SetByCallerScaler.html">SetByCallerScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SharedCachedScaler.html">SharedCachedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SharedScaler.html">SharedScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SimpleScaler.html">SimpleScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.StackingCurveKind.html">StackingCurveKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCondition.html">TagCondition</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ThresholdScaler.html">ThresholdScaler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TrackedImpactKind.html">TrackedImpactKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.html">ValuePipelineTry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.Reading.html">ValuePipelineTry.Reading</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.Run.html">ValuePipelineTry.Run</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.VarianceDrawer.html">VarianceDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.WorkerNumberKind.html">WorkerNumberKind</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

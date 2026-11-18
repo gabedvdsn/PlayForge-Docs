@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RelativeOperationContextImpactWorker | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RelativeOperationContextImpactWorker | PlayForge ">
+      
+      <meta name="description" content="Impact worker that applies effects relative to the impact (e.g., lifesteal). Can be configured as INLINE (immediate) or DEFERRED (end-of-frame).">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker">
+
+
+
+  <h1 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker" class="text-break">
+Class RelativeOperationContextImpactWorker  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Impact worker that applies effects relative to the impact (e.g., lifesteal).
+Can be configured as INLINE (immediate) or DEFERRED (end-of-frame).</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/workers/index.html">Workers</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/workers/built-in-kinds.html">Workers: Built-in kinds</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ForgeMenu(Description = &quot;Changes an attribute of its holder by a share of each impact.&quot;)]
+public class RelativeOperationContextImpactWorker : AbstractContextImpactWorker</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html">AbstractContextImpactWorker</a></div>
+      <div><span class="xref">RelativeOperationContextImpactWorker</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactedAttribute">AbstractContextImpactWorker.ImpactedAttribute</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_AnyImpactType">AbstractContextImpactWorker.AnyImpactType</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactType">AbstractContextImpactWorker.ImpactType</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactTarget">AbstractContextImpactWorker.ImpactTarget</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactTargetExclusive">AbstractContextImpactWorker.ImpactTargetExclusive</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactSign">AbstractContextImpactWorker.ImpactSign</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_AllowSelfImpact">AbstractContextImpactWorker.AllowSelfImpact</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_AnyContextTag">AbstractContextImpactWorker.AnyContextTag</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ContextMatchingPolicy">AbstractContextImpactWorker.ContextMatchingPolicy</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_ImpactAbilityContextTags">AbstractContextImpactWorker.ImpactAbilityContextTags</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_WorkAttribute">AbstractContextImpactWorker.WorkAttribute</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_WorkImpactType">AbstractContextImpactWorker.WorkImpactType</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_WorkSignPolicy">AbstractContextImpactWorker.WorkSignPolicy</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_PreValidateWorkFor_FarEmerald_PlayForge_ImpactData_">AbstractContextImpactWorker.PreValidateWorkFor(ImpactData)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_SubscribeToCache_FarEmerald_PlayForge_ImpactWorkerCache_">AbstractContextImpactWorker.SubscribeToCache(ImpactWorkerCache)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractContextImpactWorker.html#FarEmerald_PlayForge_AbstractContextImpactWorker_UnsubscribeFromCache_FarEmerald_PlayForge_ImpactWorkerCache_">AbstractContextImpactWorker.UnsubscribeFromCache(ImpactWorkerCache)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html#FarEmerald_PlayForge_AbstractImpactWorker_AcceptUnworkableImpact">AbstractImpactWorker.AcceptUnworkableImpact</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html#FarEmerald_PlayForge_AbstractImpactWorker_OncePerHit">AbstractImpactWorker.OncePerHit</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_ExecutionMode" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.ExecutionMode">
+  ExecutionMode
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Inline executes immediately, Deferred queues for end-of-frame. InlineAndDeferred runs deferred, as both halves do the same work&quot;)]
+public EWorkerExecution ExecutionMode</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EWorkerExecution.html">EWorkerExecution</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_Operation" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.Operation">
+  Operation
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ECalculationOperation Operation</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html">ECalculationOperation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_RelativeAttribute" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.RelativeAttribute">
+  RelativeAttribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;The attribute to use relative to the impact data&quot;)]
+public Attribute RelativeAttribute</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_WithRespectTo" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.WithRespectTo">
+  WithRespectTo
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ESourceTarget WithRespectTo</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ESourceTarget.html">ESourceTarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_WorkerImpactWorkable" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.WorkerImpactWorkable">
+  WorkerImpactWorkable
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;Only set TRUE if you know what you are doing. FALSE breaks infinite cycles.&quot;)]
+public bool WorkerImpactWorkable</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_Execution_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.Execution*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_Execution" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.Execution">
+  Execution
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Execution mode for this worker.
+Inline: Executes immediately via Activate()
+Deferred: Queues actions via CreateActions()
+Default is Deferred for safety (prevents re-entrancy issues).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override EWorkerExecution Execution { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EWorkerExecution.html">EWorkerExecution</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_ActivateInline_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.ActivateInline*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_ActivateInline_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.ActivateInline(FarEmerald.PlayForge.ImpactData)">
+  ActivateInline(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For INLINE workers: Execute immediately in response to the impact.
+Override this for simple transformations that don't call system methods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ActivateInline(ImpactData impactData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impactData</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd><p>The impact data</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_CreateDeferredActions_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.CreateDeferredActions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_CreateDeferredActions_FarEmerald_PlayForge_ImpactWorkerContext_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.CreateDeferredActions(FarEmerald.PlayForge.ImpactWorkerContext)">
+  CreateDeferredActions(ImpactWorkerContext)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For deferred execution. The list it returns is the worker's and holds its next action too, so the queue
+takes the action out of it as it's returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;IRootAction&gt; CreateDeferredActions(ImpactWorkerContext ctx)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ctx</code> <a class="xref" href="FarEmerald.PlayForge.ImpactWorkerContext.html">ImpactWorkerContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_ValidateWorkFor_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.ValidateWorkFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_RelativeOperationContextImpactWorker_ValidateWorkFor_FarEmerald_PlayForge_ImpactData_" data-uid="FarEmerald.PlayForge.RelativeOperationContextImpactWorker.ValidateWorkFor(FarEmerald.PlayForge.ImpactData)">
+  ValidateWorkFor(ImpactData)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Full validation with impact data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ValidateWorkFor(ImpactData impactData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>impactData</code> <a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AllocationProbe | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AllocationProbe | PlayForge ">
+      
+      <meta name="description" content="Measures allocation with , because the GC API returns 0 under Mono. Unity&#39;s &amp;quot;GC Allocated In Frame&amp;quot; counter reads live within a frame, so an operation is the counter&#39;s change across it. Dispose it as the test ends. A frame takes more care, because the counter&#39;s own total for a frame is noisy: 450 to 532 bytes with nothing running, shifting at random. Sampling every player loop stage shows why. All of that lands outside the player loop, in the editor&#39;s work between frames, except 40 bytes from the test runner&#39;s coroutine tick. So a frame here is the counter&#39;s change from the player loop&#39;s first stage to its last, less that tick, measured on the same frame. A clean frame reads exactly 0, with no baseline to calibrate, and a baseline would be worse than noise: taken while the noise ran high, it would hide real allocation. The cost is that anything allocated in a coroutine goes unmeasured with the test runner&#39;s. PlayForge&#39;s stepping runs in Update and its async work in UniTask continuations, which are measured. Now and then a burst of a kilobyte or so landed on a few frames at random, whatever was running. It was the editor&#39;s Build Report REST service, which listens on a port of its own: where another editor holds that port, as one open beside a batch run does, it tries again about once a second on a thread of its own, and each try allocates about 4 KB, which the counter takes as the frame&#39;s. Most frames are short, so a try rarely landed in one, but among 500 entities, whose frames fill most of a second, nearly every measure took one. A probe ends those tries (). Other noise may still land, and it doesn&#39;t repeat, where real allocation does, so a measure that isn&#39;t clean is taken again and the cleanest stands. A leak fails every attempt.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Testing.AllocationProbe">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Testing_AllocationProbe" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe" class="text-break">
+Class AllocationProbe  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Testing.html">Testing</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Testing.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Measures allocation with <span class="xref">Unity.Profiling.ProfilerRecorder</span>, because the GC API returns 0 under Mono.
+Unity's &quot;GC Allocated In Frame&quot; counter reads live within a frame, so an operation is the counter's change
+across it. Dispose it as the test ends.</p>
+<p>A frame takes more care, because the counter's own total for a frame is noisy: 450 to 532 bytes
+with nothing running, shifting at random. Sampling every player loop stage shows why. All of that
+lands outside the player loop, in the editor's work between frames, except 40 bytes from the test
+runner's coroutine tick. So a frame here is the counter's change from the player loop's first
+stage to its last, less that tick, measured on the same frame. A clean frame reads exactly 0, with
+no baseline to calibrate, and a baseline would be worse than noise: taken while the noise ran high,
+it would hide real allocation.</p>
+<p>The cost is that anything allocated in a coroutine goes unmeasured with the test runner's.
+PlayForge's stepping runs in Update and its async work in UniTask continuations, which are measured.</p>
+<p>Now and then a burst of a kilobyte or so landed on a few frames at random, whatever was running. It
+was the editor's Build Report REST service, which listens on a port of its own: where another editor
+holds that port, as one open beside a batch run does, it tries again about once a second on a thread
+of its own, and each try allocates about 4 KB, which the counter takes as the frame's. Most frames are
+short, so a try rarely landed in one, but among 500 entities, whose frames fill most of a second,
+nearly every measure took one. A probe ends those tries (<span class="xref">FarEmerald.PlayForge.Testing.AllocationProbe.EndRestServiceRetries()</span>). Other
+noise may still land, and it doesn't repeat, where real allocation does, so a measure that isn't clean
+is taken again and the cleanest stands. A leak fails every attempt.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/testing/index.html">Testing Your Content</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/testing/allocation.html">Testing Your Content: Allocation</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class AllocationProbe : IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AllocationProbe</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Testing_AllocationProbe__ctor_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_AllocationProbe__ctor" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.#ctor">
+  AllocationProbe()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AllocationProbe()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Testing_AllocationProbe_Dispose_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.Dispose*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_AllocationProbe_Dispose" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.Dispose">
+  Dispose()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_AllocationProbe_Measure_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.Measure*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_AllocationProbe_Measure_System_Action_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.Measure(System.Action)">
+  Measure(Action)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bytes <code class="paramref">operation</code> allocates, run once within this frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Measure(Action operation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>operation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_AllocationProbe_MeasureEach_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.MeasureEach*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_AllocationProbe_MeasureEach_System_Action_System_Int32_System_Int32_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.MeasureEach(System.Action,System.Int32,System.Int32)">
+  MeasureEach(Action, int, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Mean bytes per run of <code class="paramref">operation</code>, after <code class="paramref">warmup</code> unmeasured
+runs so the JIT and any caches the operation fills are out of the way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MeasureEach(Action operation, int runs = 100, int warmup = 10)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>operation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+    <dt><code>runs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>warmup</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Testing_AllocationProbe_MeasureFrames_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.MeasureFrames*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Testing_AllocationProbe_MeasureFrames_FarEmerald_PlayForge_Testing_FrameStepper_System_Int32_" data-uid="FarEmerald.PlayForge.Testing.AllocationProbe.MeasureFrames(FarEmerald.PlayForge.Testing.FrameStepper,System.Int32)">
+  MeasureFrames(FrameStepper, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps <code class="paramref">count</code> whole frames and reports what they allocated, taking the cleanest
+of up to three attempts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UniTask&lt;FrameAllocation&gt; MeasureFrames(FrameStepper frames, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frames</code> <a class="xref" href="FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a></dt>
+    <dd></dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span>&lt;<a class="xref" href="FarEmerald.PlayForge.Testing.FrameAllocation.html">FrameAllocation</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

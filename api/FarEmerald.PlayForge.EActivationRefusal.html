@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum EActivationRefusal | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum EActivationRefusal | PlayForge ">
+      
+      <meta name="description" content="Why an activation was refused, or None where it wasn&#39;t: it activated, waits in the input buffer, or starts next frame. A refused activation said only false.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.EActivationRefusal">
+
+
+
+
+  <h1 id="FarEmerald_PlayForge_EActivationRefusal" data-uid="FarEmerald.PlayForge.EActivationRefusal" class="text-break">
+Enum EActivationRefusal  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Why an activation was refused, or None where it wasn't: it activated, waits in the input buffer, or starts next
+frame. A refused activation said only false.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum EActivationRefusal</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_None"><code>None = 0</code></dt>
+  
+  <dd><p>Not refused: it activated, waits in the input buffer, or starts next frame.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_NotKnown"><code>NotKnown = 1</code></dt>
+  
+  <dd><p>The entity doesn't know the ability, or knows none that carries the tag.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Disabled"><code>Disabled = 2</code></dt>
+  
+  <dd><p>The ability system is off, as an ended entity's is.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Locked"><code>Locked = 3</code></dt>
+  
+  <dd><p>The ability system is locked.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_NoNewProcesses"><code>NoNewProcesses = 4</code></dt>
+  
+  <dd><p>ProcessControl takes no new processes, and an ability runs as one.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_LevelZero"><code>LevelZero = 5</code></dt>
+  
+  <dd><p>The ability's level is 0, and it's set to ignore activation there.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Requirements"><code>Requirements = 6</code></dt>
+  
+  <dd><p>The caster's tags fail the ability's source requirements, or its While active group.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Cooldown"><code>Cooldown = 7</code></dt>
+  
+  <dd><p>The ability's cooldown is on.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Cost"><code>Cost = 8</code></dt>
+  
+  <dd><p>The ability's cost would take an attribute it spends below 0.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Dead"><code>Dead = 9</code></dt>
+  
+  <dd><p>The caster is dead.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Rule"><code>Rule = 10</code></dt>
+  
+  <dd><p>Another of the ability's caster checks refused it, which <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html#FarEmerald_PlayForge_ActivationRefusal_Rule">Rule</a> names.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Blocked"><code>Blocked = 11</code></dt>
+  
+  <dd><p>A running ability's stage blocks it, and the request doesn't wait.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Busy"><code>Busy = 12</code></dt>
+  
+  <dd><p>Another ability holds the claim and the request doesn't wait, or the ability's own activation still holds
+it, or the input buffer has no window to wait in.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Critical"><code>Critical = 13</code></dt>
+  
+  <dd><p>Another ability's critical section holds its claim, and this ability has one too, so it's kept out, whatever
+policy either was asked under. Under Queue, it waits in the input buffer instead.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Chance"><code>Chance = 14</code></dt>
+  
+  <dd><p>Its chance to activate didn't come up.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_CrowdControl"><code>CrowdControl = 15</code></dt>
+  
+  <dd><p>A crowd control rule its caster is under stops it, as a stun stops every ability.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Range"><code>Range = 16</code></dt>
+  
+  <dd><p>The target or the point it was handed lies beyond its Cast Range, so an AI can walk closer and ask again.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EActivationRefusal_Target"><code>Target = 17</code></dt>
+  
+  <dd><p>After its targeting, its target failed one of its Target Checks, which <a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html#FarEmerald_PlayForge_ActivationRefusal_Rule">Rule</a>
+names, or its target tag requirements, where it names none. The activation had started, and ends there with
+nothing of it paid; the ability system tells it as it tells any refusal.</p>
+</dd>
+  </dl>
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

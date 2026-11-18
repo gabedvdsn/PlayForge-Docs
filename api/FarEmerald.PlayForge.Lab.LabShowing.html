@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LabShowing | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LabShowing | PlayForge ">
+      
+      <meta name="description" content="What the lab watches its units for, and the journals it keeps while it does: its effect journal over every unit, its stops, which pause its world as one fires and say which, and its watches, sampled over the last minute of its time. The lab steps it after each step of its world.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Lab.LabShowing">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Lab_LabShowing" data-uid="FarEmerald.PlayForge.Lab.LabShowing" class="text-break">
+Class LabShowing  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Lab.html">Lab</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Lab.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>What the lab watches its units for, and the journals it keeps while it does: its
+effect journal over every unit, its stops, which pause its world as one fires and say which, and its watches,
+sampled over the last minute of its time. The lab steps it after each step of its world.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/in-code.html">The Creator Lab: In code</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class LabShowing : IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">LabShowing</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing__ctor_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing__ctor_FarEmerald_PlayForge_Lab_CreatorLab_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.#ctor(FarEmerald.PlayForge.Lab.CreatorLab)">
+  LabShowing(CreatorLab)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabShowing(CreatorLab lab)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lab</code> <a class="xref" href="FarEmerald.PlayForge.Lab.CreatorLab.html">CreatorLab</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_MostLogged" data-uid="FarEmerald.PlayForge.Lab.LabShowing.MostLogged">
+  MostLogged
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many of ForgeLog's messages the lab's log keeps, its last.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int MostLogged = 300</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_MostTickWait" data-uid="FarEmerald.PlayForge.Lab.LabShowing.MostTickWait">
+  MostTickWait
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How long Step Tick goes at most, in seconds of the lab's time, before it stops waiting for a tick.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const float MostTickWait = 10</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_SampleEvery" data-uid="FarEmerald.PlayForge.Lab.LabShowing.SampleEvery">
+  SampleEvery
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How often a watch takes its value, in seconds of the lab's time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const float SampleEvery = 0.1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Window" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Window">
+  Window
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How long a watch's line is, in seconds of the lab's time: its last minute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const float Window = 60</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Journal_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Journal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Journal" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Journal">
+  Journal
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The effect journal over every unit of the lab, its caster's among them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EffectJournal Journal { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EffectJournal.html">EffectJournal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Log_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Log*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Log" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Log">
+  Log
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>ForgeLog's messages as they were let through while the lab ran, oldest first, its last few hundred.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;ForgeLogEntry&gt; Log { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.ForgeLogEntry.html">ForgeLogEntry</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_LogWritten_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.LogWritten*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_LogWritten" data-uid="FarEmerald.PlayForge.Lab.LabShowing.LogWritten">
+  LogWritten
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How many messages the log has heard, those it no longer keeps among them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LogWritten { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_StoppedBy_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StoppedBy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_StoppedBy" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StoppedBy">
+  StoppedBy
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The stop that paused the lab's world last, while it stays paused; null otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabStop StoppedBy { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_StoppedFor_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StoppedFor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_StoppedFor" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StoppedFor">
+  StoppedFor
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What fired it, in a line: &quot;Burn landed on Target, from Caster&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string StoppedFor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Stops_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Stops*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Stops" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Stops">
+  Stops
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The stops, in the order they were added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;LabStop&gt; Stops { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Watches_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Watches*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Watches" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Watches">
+  Watches
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The watches, in the order they were pinned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;LabWatch&gt; Watches { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_About_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.About*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_About_FarEmerald_PlayForge_ForgeLogEntry__FarEmerald_PlayForge_Lab_LabUnit_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.About(FarEmerald.PlayForge.ForgeLogEntry@,FarEmerald.PlayForge.Lab.LabUnit)">
+  About(in ForgeLogEntry, LabUnit)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a message is about a unit: it names the unit's entity, or points at the unit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool About(in ForgeLogEntry entry, LabUnit unit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entry</code> <a class="xref" href="FarEmerald.PlayForge.ForgeLogEntry.html">ForgeLogEntry</a></dt>
+    <dd></dd>
+    <dt><code>unit</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Add_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Add*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Add_FarEmerald_PlayForge_Lab_LabStop_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Add(FarEmerald.PlayForge.Lab.LabStop)">
+  Add(LabStop)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a stop, and starts watching for it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabStop Add(LabStop stop)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stop</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Dispose_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Dispose*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Dispose" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Dispose">
+  Dispose()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Pin_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Pin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Pin_FarEmerald_PlayForge_Lab_LabWatch_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Pin(FarEmerald.PlayForge.Lab.LabWatch)">
+  Pin(LabWatch)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pins a watch, and takes its first value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabWatch Pin(LabWatch watch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>watch</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Remove_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Remove*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Remove_FarEmerald_PlayForge_Lab_LabStop_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Remove(FarEmerald.PlayForge.Lab.LabStop)">
+  Remove(LabStop)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes a stop away.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(LabStop stop)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stop</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Resume_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Resume*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Resume" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Resume">
+  Resume()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lets go of the stop that paused the world, as it plays on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_StepTick_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StepTick*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_StepTick" data-uid="FarEmerald.PlayForge.Lab.LabShowing.StepTick">
+  StepTick()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steps the lab a frame at a time until an effect ticks on the selected unit, or on any where none is, up to
+<a class="xref" href="FarEmerald.PlayForge.Lab.LabShowing.html#FarEmerald_PlayForge_Lab_LabShowing_MostTickWait">MostTickWait</a> of its time; true where one did.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StepTick()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabShowing_Unpin_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Unpin*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Unpin_FarEmerald_PlayForge_Lab_LabWatch_" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Unpin(FarEmerald.PlayForge.Lab.LabWatch)">
+  Unpin(LabWatch)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unpins a watch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unpin(LabWatch watch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>watch</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabShowing_Stopped" data-uid="FarEmerald.PlayForge.Lab.LabShowing.Stopped">
+  Stopped
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raised as a stop pauses the lab's world.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;LabStop, string&gt; Stopped</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Impact | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Impact | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.impact">
+<h1 id="impact">Impact</h1>
+
+<p>The impact is the change the effect makes to an attribute. The first fields are its first impact, whose delivery the
+duration gives it. Additional Impacts change more attributes, or the same one again, each with a delivery of its own.</p>
+<ul>
+<li><strong>Attribute</strong>: the attribute to change. Leave it empty for an effect that only grants tags, applies other effects or
+runs workers. A target that lacks the attribute isn't changed.</li>
+<li><strong>Operation</strong>: how the impact changes the attribute, and which of its two values, in one choice, such as Add to
+Current or Multiply Base. <strong>Base</strong> is the value the attribute is measured against, and <strong>Current</strong> is the value in
+play. For Health, Base is the maximum and Current is what is left. Add adds the magnitude. Use a negative magnitude to
+subtract. Multiply multiplies by it. Override sets the value to it. Flat Bonus adds too, but as a modifier it lands
+after the attribute's multipliers, so they don't scale it.</li>
+<li><strong>Multiply Behaviour</strong> (Multiply only): Multiplicative (default) compounds with other multipliers, so ×1.5 and ×1.5
+give ×2.25. Additive Bonus adds the bonuses first, so +50% and +50% give ×2.0.</li>
+<li><strong>Add Behaviour</strong> (Add only, shown where it matters): as the attribute's role says, a Resistance's adds diminishing; a
+plain Sum; or Diminishing, on what's left (<a href="../attributes/index.html">Attributes</a>).</li>
+<li><strong>Pipeline</strong>: the calculation each hit of the impact goes through as it lands, a Value Pipeline: the caster's bonuses,
+the target's reductions, a critical roll, a barrier. It runs for an instant impact's hit and each tick of a periodic
+one (<a href="../value-pipelines/index.html">Value Pipelines</a>).</li>
+<li><strong>Magnitude</strong>: the amount: a Constant number, or by its kind a scaler's value at the origin's level, such as a By
+Level table of values per level, with Combine joining the scaler and the number (<a href="../scalers/index.html">Scalers</a>). A
+Continuous modifier works its magnitude out again whenever the attribute is recalculated. A commit works it out
+once. A <strong>Set By Caller</strong> scaler reads a magnitude the code sets as it applies the effect, under a tag: on the spec
+with <code>SetByCaller(tag, magnitude)</code>, or on an ability activation's data, which each effect the ability applies takes
+as it's made, its cost, cooldown and contained effects among them. Only the tag itself matches, and where none is
+set it reads its Default. A magnitude can also read what the effect has dealt, a part of another effect, ability or
+item on either side, or what a worker answers; SCALERS.md lists each kind.</li>
+<li><strong>Delivery</strong>, read-only: when the impact lands, which the duration gives it (see the table above). On applying,
+While the effect lasts, or Each tick, which adds &quot;, and on applying&quot; when Tick On Application is on. A note says when
+Tick On Application alone keeps a multiply or override as a modifier, so it reverses as the effect ends.</li>
+<li><strong>Commits</strong>, read-only, for a periodic impact: how many times it lands at the effect's first level, as in &quot;7 over
+6 s, level 1&quot;. For an Infinite effect, it says how far apart the ticks are.</li>
+<li><strong>Impact Types</strong>: tags that label the kind of change, such as <code>Damage.Fire</code>. Workers can accept or skip changes by
+type. <code>Never Allow</code> hides the change from workers that check types. <code>Always Allow</code> passes every type check.</li>
+<li><strong>Affiliation</strong> decides which targets the effect can be applied to. An entity's affiliation tags are its team or
+faction, set on its Entity asset. If the check fails, the effect isn't applied. Always Allow (default) allows any
+target. Affiliated allows targets that share the origin's affiliation, and Unaffiliated allows those that don't. Use
+Affiliation List compares the target with the <strong>Affiliations</strong> list instead.
+<ul>
+<li><strong>Comparison</strong> (all but Always Allow): Any (default) needs one tag to match. All needs every tag to match.</li>
+</ul>
+</li>
+</ul>
+<p>The inspector no longer shows Reverse On Removal. A Continuous modifier always reverses when the effect ends, and a
+commit never does, so the flag changes nothing. The Problems view still flags a periodic effect that sets it.</p>
+<h2 id="additional-impacts">Additional Impacts</h2>
+<p>Each additional impact changes an attribute of its own, or the same one again, with a delivery of its own. One effect
+can lower Armor while it lasts and burn Health on each tick. <strong>Add Impact</strong> adds one with a delivery the duration can
+make: Continuous on a Durational or Infinite effect, On Apply on an Instant one. While it's folded, an impact shows one
+line, such as &quot;Mana −10 · Continuous&quot;, and its trash button removes it. Each has:</p>
+<ul>
+<li><strong>Attribute</strong>, <strong>Operation</strong>, <strong>Multiply Behaviour</strong> and <strong>Magnitude</strong>, as above.</li>
+<li><strong>Delivery</strong>: Continuous lasts while the effect does, then reverses. On Apply lands once, as the effect is applied.
+Periodic lands on each tick, and as the effect is applied when Tick On Application is on. It offers what the duration
+can make: an Instant effect makes only On Apply impacts, and Periodic needs ticks. If the duration changes so that an
+impact's delivery can't happen, a warning under it says so, and the impact never applies.</li>
+<li><strong>Order</strong> (Override only): among overrides of one attribute, the lowest order wins.</li>
+<li><strong>Retention Group</strong>: the group the change counts toward. Empty, it takes the effect's.</li>
+<li><strong>Impact Types</strong>, as above.</li>
+</ul>
+<p>An impact with no Attribute changes nothing. The Cost check counts every attribute a cost spends (see
+<a href="../abilities/index.html">Abilities</a>).</p>
+<h2 id="contained-effects">Contained Effects</h2>
+<p>Other effects this one applies, with the same origin. Each row pairs a moment with an effect: On Apply (when this effect
+is applied), On Tick (on each execute tick) or On Remove (when this effect is removed); and says whom it lands on:
+the <strong>Target</strong>, this effect's, as it always did, or the <strong>Caster</strong>, as a lifesteal's heal or a curse's rebound as it ends.
+An Instant effect has no ticks and no removal, so only its On Apply rows run. An effect that is asked to apply again while
+it is still applying is refused, with a warning, so an effect that contains itself doesn't loop forever.</p>
+<h2 id="retention-group">Retention Group</h2>
+<p>The group this effect's changes count toward (default <code>Ignore</code>), unless an impact names its own. Groups split an
+attribute's value for queries and UI, such as base and bonus health. They never change the math.</p>
+<hr>
+<p><a href="duration.html">← Duration</a> · <a href="index.html">Effects</a> · <a href="levels.html">Levels →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

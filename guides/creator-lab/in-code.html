@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>In code | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="In code | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.creator-lab.in-code">
+<h1 id="in-code">In code</h1>
+
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_Create_"><code>CreatorLab.Create(library, rules, panels)</code></a> makes a lab, as the tests do. Its calls are the panels': <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_"><code>AddUnit</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_"><code>AddDummy</code></a>, <code>ApplyEffect</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_CastAt_"><code>CastAt</code></a>, <code>GiveItem</code>, <code>Drop</code> (at a point of the screen) and <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_DropAt_"><code>DropAt</code></a> (on a unit or a point),
+<code>Select</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetMode_"><code>SetMode</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_ResetDummies_"><code>ResetDummies</code></a>, <code>Clear</code>, and <code>Step</code>, <code>Paused</code>, <code>Speed</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_StepFrame_"><code>StepFrame</code></a> for its time. A library is an
+<a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabLibrary.html"><code>ILabLibrary</code></a>: in the editor every asset of the project (<a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.html"><code>EditorLabLibrary</code></a>), in code a <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ListLibrary.html"><code>ListLibrary</code></a> of the assets
+given; a game's own build gets <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ListLibrary.html#FarEmerald_PlayForge_Lab_ListLibrary_Of_"><code>ListLibrary.Of(project)</code></a>, the assets its Forge Project's catalog names, which the lab
+plays where no editor gives it a library. A library offers projects to switch between through <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabLibrary.html#FarEmerald_PlayForge_Lab_ILabLibrary_Projects"><code>ILabLibrary.Projects</code></a>,
+<code>Project</code> and <code>UseProject</code>, which have defaults. The unit you control is <code>ControlledUnit</code>, given by <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_PutDownOwnUnit_"><code>PutDownOwnUnit</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_TakeControl_"><code>TakeControl</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_ReleaseControl_"><code>ReleaseControl</code></a>, its
+camera by <code>Follow</code>; the lab's controls are its <code>Controls</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabControls.html"><code>LabControls</code></a>, whose <code>Driver</code> comes before its rules'. A
+game's own player can be a <code>LabControls</code> too, as the Demo's is: its unit set on it, or its <code>ControlledUnit()</code>
+overridden.</p>
+<p>What it shows of its working is its <code>Showing</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabShowing.html"><code>LabShowing</code></a>: its <code>Journal</code>, an <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> over every unit; its
+<code>Stops</code>, added with <code>Add(stop)</code>, and <code>StoppedBy</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabShowing.html#FarEmerald_PlayForge_Lab_LabShowing_StoppedFor"><code>StoppedFor</code></a> as one fires, <code>Resume()</code> to let it go and <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabShowing.html#FarEmerald_PlayForge_Lab_LabShowing_StepTick_"><code>StepTick()</code></a>;
+its <code>Watches</code>, pinned with <code>Pin(watch)</code>; and its <code>Log</code> of ForgeLog's messages.</p>
+<p>A build can leave the lab out by defining <code>PLAYFORGE_NO_LAB</code>. The Demo uses the lab's units, so it goes too.</p>
+<hr>
+<p><a href="the-labs-rules.html">← The lab's rules</a> · <a href="index.html">The Creator Lab</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

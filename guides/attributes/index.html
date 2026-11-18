@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Attributes | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Attributes | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.attributes">
+<h1 id="attributes">Attributes</h1>
+
+<p>An <strong>Attribute</strong> asset names one number an entity can have, such as Health, Mana or Strength. An entity is anything
+that runs a gameplay ability system (GAS), such as the player or an enemy. The asset holds no value. An entity gets its
+starting values for the attribute from its Attribute Set, and gameplay effects change them from there.</p>
+<p>At runtime each entity holds two values for each of its attributes. <strong>Base</strong> is the value the attribute is measured
+against, and <strong>Current</strong> is the value in play. For a pool such as Health, Base is the maximum and Current is what is
+left. For a stat such as Strength, the two are often the same. The Attribute Set's bounds keep them in range (see
+<a href="../attribute-sets/index.html">Attribute Sets</a>).</p>
+<p>Attribute sets, effects, validation rules and workers refer to the attribute asset itself. An attribute has no asset
+tag. Each section below matches the inspector section of the same name. A collapsed section shows one line about what
+it holds, such as the abbreviation or how many assets use the attribute.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the attribute's display name.</li>
+<li><a href="roles.html">Roles</a>: A game's settings live on its <strong>Forge Project</strong>, the asset at the root of its folder that The Forge's projects are.</li>
+<li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
+<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this attribute, each with its type icon: the Attribute Sets that give its starting values, the Gameplay Effects that change it, and the validation rules and ability costs that check or…</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html">Attribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeConstraints.html">AttributeConstraints</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeMagnitudeSpec.html">AttributeMagnitudeSpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeOverflowData.html">AttributeOverflowData</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeParts.html">AttributeParts</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSetElement.html">AttributeSetElement</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSetMeta.html">AttributeSetMeta</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.html">AttributeSystemCallbacks</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeChangeDelegate.html">AttributeSystemCallbacks.AttributeChangeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeDelegate.html">AttributeSystemCallbacks.AttributeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeImpactDelegate.html">AttributeSystemCallbacks.AttributeImpactDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeStateDelegate.html">AttributeSystemCallbacks.AttributeStateDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeValueChangeDelegate.html">AttributeSystemCallbacks.AttributeValueChangeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html">AttributeSystemComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html">CachedAttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeValue.html">ChangeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeElementCollisionPolicy.html">EAttributeElementCollisionPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeOverflowPolicy.html">EAttributeOverflowPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeRole.html">EAttributeRole</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeRoundingPolicy.html">EAttributeRoundingPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeSetLinkMode.html">EAttributeSetLinkMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ERetentionGroupRead.html">ERetentionGroupRead</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupContribution.html">GroupContribution</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAttribute.html">IAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IntValuePair.html">IntValuePair</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IntValuePairClamped.html">IntValuePairClamped</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ModifiedAttributeValue.html">ModifiedAttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RetentionGroups.html">RetentionGroups</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeAttribute.html">RuntimeAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerRootAssignment.html">ScalerRootAssignment</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

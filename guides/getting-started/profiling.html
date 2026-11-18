@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Profiling | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Profiling | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.getting-started.profiling">
+<h1 id="profiling">Profiling</h1>
+
+<p>PlayForge's work shows in Unity's Profiler under its own markers, in the Scripts category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html"><code>ForgeProfiler</code></a>):</p>
+<ul>
+<li><code>PlayForge.Update</code>, <code>PlayForge.LateUpdate</code> and <code>PlayForge.FixedUpdate</code>: the step loop at each timing.</li>
+<li><code>PlayForge.ProcessStep</code>: one process's step. Inside it, <code>PlayForge.Step.</code> and the process's type's name, with the
+process's ID as the marker's metadata.</li>
+<li><code>PlayForge.GASStep</code> and <code>PlayForge.EndOfFrame</code>: a GAS's step, where its effects tick, and its end of frame, where
+its queued actions and its tag and analysis workers run.</li>
+<li><code>PlayForge.ApplyEffect</code>: an effect's application, with its contained effects' inside it.</li>
+<li><code>PlayForge.ActivateAbility</code>: an ability's activation, up to the first of its tasks that waits.</li>
+<li><code>PlayForge.TagCompile</code> and <code>PlayForge.Recompute</code>: a GAS's tag compile and an attribute's recompute.</li>
+<li><code>PlayForge.Stage</code>: a sequence stage's start, an ability's among them: its tasks, up to the first that waits.</li>
+</ul>
+<p>The markers time the work. The counters, in the Profiler's PlayForge category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html"><code>ForgeCounters</code></a>), say how much of it
+there is:</p>
+<ul>
+<li>ProcessControl's processes running, waiting and created, and each frame's registrations, terminations, steps, state
+changes and step time.</li>
+<li>The entities by hub and the effects active, and each frame's effects applied and removed, impacts, activations,
+refused activations, tag compiles and recomputes.</li>
+<li>The sequences running, and each frame's stages started.</li>
+</ul>
+<p>Two Profiler modules chart the counters. Turn them on in the Profiler window's list of modules:</p>
+<ul>
+<li><strong>PlayForge Processes</strong> charts ProcessControl's and TaskSequence's counters. Its details list the selected frame's
+costliest processes, by their steps' time. PlayForge puts them into the capture while the Profiler records, so a
+saved capture shows them too.</li>
+<li><strong>PlayForge GAS</strong> charts the GAS's counters.</li>
+</ul>
+<p>A <code>ProfilerRecorder</code> reads a marker or a counter by its name, in the editor or in a development build. Unity compiles
+them out of release builds.</p>
+<hr>
+<p><a href="logging.html">← Logging</a> · <a href="index.html">Getting Started</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

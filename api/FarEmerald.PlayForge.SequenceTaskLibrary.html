@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SequenceTaskLibrary | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SequenceTaskLibrary | PlayForge ">
+      
+      <meta name="description" content="Reusable async building blocks for common gameplay operations. Designed to be awaited inside TaskSequence .Task() lambdas where the caller has access to the data packet and cancellation token. Usage: .Task(async (d, t) =&amp;gt; { var target = d.GetPrimary&amp;lt;Transform&amp;gt;(Tags.TARGET); await Seq.MoveTo(target, Vector3.zero, 1.5f, t, easeCurve); }) All timed methods:  Accept an optional AnimationCurve for easing (null = linear) Snap to the final value after completion to avoid float drift Respect CancellationToken for interrupt/skip/timeout support Handle zero/negative duration by snapping immediately Hold while their sequence is paused, given the token the task was handed. ArcForce can&#39;t: physics moves the body whatever the sequence is doing">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.SequenceTaskLibrary">
+
+
+
+  <h1 id="FarEmerald_PlayForge_SequenceTaskLibrary" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary" class="text-break">
+Class SequenceTaskLibrary  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Reusable async building blocks for common gameplay operations.
+Designed to be awaited inside TaskSequence .Task() lambdas where the
+caller has access to the data packet and cancellation token.</p>
+<p>Usage:
+.Task(async (d, t) =&gt;
+{
+var target = d.GetPrimary&lt;Transform&gt;(Tags.TARGET);
+await Seq.MoveTo(target, Vector3.zero, 1.5f, t, easeCurve);
+})</p>
+<p>All timed methods:</p>
+<ul>
+<li>Accept an optional AnimationCurve for easing (null = linear)</li>
+<li>Snap to the final value after completion to avoid float drift</li>
+<li>Respect CancellationToken for interrupt/skip/timeout support</li>
+<li>Handle zero/negative duration by snapping immediately</li>
+<li>Hold while their sequence is paused, given the token the task was handed. ArcForce can't: physics
+moves the body whatever the sequence is doing</li>
+</ul>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/task-sequences/index.html">Task Sequences</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/task-sequences/waiting.html">Task Sequences: Waiting</a> · <a class="xref" href="../guides/task-sequences/the-libraries.html">Task Sequences: The libraries</a> · <a class="xref" href="../guides/task-sequences/building-one.html">Task Sequences: Building one</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class SequenceTaskLibrary</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SequenceTaskLibrary</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcForce_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcForce*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcForce_UnityEngine_Rigidbody_UnityEngine_Vector3_System_Single_System_Single_System_Threading_CancellationToken_System_Boolean_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcForce(UnityEngine.Rigidbody,UnityEngine.Vector3,System.Single,System.Single,System.Threading.CancellationToken,System.Boolean)">
+  ArcForce(Rigidbody, Vector3, float, float, CancellationToken, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Launches a Rigidbody in a parabolic arc from its current position to the destination
+using physics forces. The body interacts with colliders during flight.</p>
+<p>Temporarily disables standard gravity and applies a computed custom gravity to
+achieve the exact arc shape. On completion (or cancellation), the body is snapped
+to the destination and original gravity settings are restored.</p>
+<p>Derived from the same parabola as ArcTo:
+y(t) = y₀ + Δy·(t/D) + 4·H·(t/D)·(1−t/D)</p>
+<p>Initial velocity:   v₀ = (Δx/D,  (Δy + 4H)/D,  Δz/D)
+Custom gravity:     a  = (0,      −8H/D²,        0)</p>
+<p>The arc height H is the peak offset above the straight-line path, identical
+to the transform-based ArcTo. The arc shape is a perfect parabola regardless
+of start/end height difference.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ArcForce(Rigidbody rb, Vector3 destination, float duration, float arcHeight, CancellationToken token, bool snapOnComplete = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rb</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody</a></dt>
+    <dd><p>Rigidbody to launch.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd><p>World-space landing position.</p>
+</dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Total flight time in seconds.</p>
+</dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Peak height of the parabolic offset above the linear path.</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Cancellation token for interrupt/skip/timeout.</p>
+</dd>
+    <dt><code>snapOnComplete</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, snaps position to exact destination on completion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ArcTo(Transform, Vector3, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform in a parabolic arc from its current position to the destination.
+The arc adds height above the straight-line path between start and end.</p>
+<p>The optional curve parameter eases the time progression (how fast you move
+through the arc), NOT the arc shape itself. The parabola is always smooth.</p>
+<p>Math:
+XZ = lerp(start, end, t)                       — linear
+Y  = lerp(startY, endY, t) + 4·H·t·(1−t)      — linear + parabolic offset</p>
+<p>At t=0.5 the offset is exactly H, so the apex is H above the midpoint
+of the straight line between start and end positions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ArcTo(Transform target, Vector3 destination, float duration, float arcHeight, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd><p>Transform to move.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd><p>World-space landing position.</p>
+</dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Total flight time in seconds.</p>
+</dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Peak height of the parabolic offset above the linear path.</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Cancellation token for interrupt/skip/timeout.</p>
+</dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd><p>Optional easing curve applied to time progression (not arc shape).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcTowards_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcTowards*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ArcTowards_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Single_System_Threading_CancellationToken_System_Single_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ArcTowards(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Single,System.Threading.CancellationToken,System.Single)">
+  ArcTowards(Transform, Transform, float, float, CancellationToken, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves towards a target transform at a fixed speed, arcing upward.
+The arc offset is proportional to the remaining distance for a natural curve.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ArcTowards(Transform mover, Transform target, float speed, float arcHeight, CancellationToken token, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorElement_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorElement_UnityEngine_UIElements_VisualElement_UnityEngine_Color_UnityEngine_Color_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorElement(UnityEngine.UIElements.VisualElement,UnityEngine.Color,UnityEngine.Color,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ColorElement(VisualElement, Color, Color, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's background color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ColorElement(VisualElement element, Color from, Color to, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorElementTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorElementTo_UnityEngine_UIElements_VisualElement_UnityEngine_Color_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorElementTo(UnityEngine.UIElements.VisualElement,UnityEngine.Color,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ColorElementTo(VisualElement, Color, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates from the element's current background color to the target.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ColorElementTo(VisualElement element, Color to, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ColorTo_UnityEngine_SpriteRenderer_UnityEngine_Color_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ColorTo(UnityEngine.SpriteRenderer,UnityEngine.Color,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ColorTo(SpriteRenderer, Color, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a SpriteRenderer's color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ColorTo(SpriteRenderer target, Color endColor, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html">SpriteRenderer</a></dt>
+    <dd></dd>
+    <dt><code>endColor</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_Dash_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Dash*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_Dash_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Dash(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  Dash(Transform, Vector3, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform in a direction by a distance over a duration.
+Useful for knockback, dash, or lunge effects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask Dash(Transform target, Vector3 direction, float distance, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>direction</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>distance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_Delay_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Delay*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_Delay_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Delay(System.Single,System.Threading.CancellationToken)">
+  Delay(float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits as UniTask.Delay does, without counting a frame the task's sequence is paused for.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask Delay(float seconds, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>seconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.DeltaTime*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.DeltaTime(System.Threading.CancellationToken)">
+  DeltaTime(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>This frame's step of the task's run's clock (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_Clock">Clock</a>), which is 0 while the
+task's sequence is paused. A task that uses this rather than the game's time holds with its sequence and keeps
+its clock: a slowed caster's waits last longer, and a menu's go on while the game's time stands. A token the
+task links through <a class="xref" href="FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_CreateLinkedTokenSource_System_Threading_CancellationToken_System_Threading_CancellationToken_">CreateLinkedTokenSource(CancellationToken, CancellationToken)</a> is its run's too; one that
+CancellationTokenSource links belongs to no run, so it gets the game's step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float DeltaTime(CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeAlpha_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeAlpha*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeAlpha_UnityEngine_CanvasGroup_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeAlpha(UnityEngine.CanvasGroup,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  FadeAlpha(CanvasGroup, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a CanvasGroup's alpha.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask FadeAlpha(CanvasGroup target, float endAlpha, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/CanvasGroup.html">CanvasGroup</a></dt>
+    <dd></dd>
+    <dt><code>endAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeAlpha_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeAlpha*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeAlpha_UnityEngine_SpriteRenderer_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeAlpha(UnityEngine.SpriteRenderer,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  FadeAlpha(SpriteRenderer, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a SpriteRenderer's alpha.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask FadeAlpha(SpriteRenderer target, float endAlpha, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html">SpriteRenderer</a></dt>
+    <dd></dd>
+    <dt><code>endAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeElement_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  FadeElement(VisualElement, float, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a VisualElement's opacity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask FadeElement(VisualElement element, float fromAlpha, float toAlpha, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeElementTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeElementTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeElementTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  FadeElementTo(VisualElement, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fades a VisualElement from its current opacity to the target.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask FadeElementTo(VisualElement element, float toAlpha, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>toAlpha</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeVolume_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeVolume*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_FadeVolume_UnityEngine_AudioSource_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.FadeVolume(UnityEngine.AudioSource,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  FadeVolume(AudioSource, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps an AudioSource's volume.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask FadeVolume(AudioSource source, float endVolume, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioSource.html">AudioSource</a></dt>
+    <dd></dd>
+    <dt><code>endVolume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_HeightTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.HeightTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_HeightTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.HeightTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  HeightTo(VisualElement, float, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's height in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask HeightTo(VisualElement element, float fromPx, float toPx, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_IsPaused_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.IsPaused*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_IsPaused_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.IsPaused(System.Threading.CancellationToken)">
+  IsPaused(CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while the sequence running the task that holds this token is paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsPaused(CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_Lerp_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Lerp*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_Lerp_System_Single_UnityEngine_AnimationCurve_System_Action_System_Single__System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Lerp(System.Single,UnityEngine.AnimationCurve,System.Action{System.Single},System.Threading.CancellationToken)">
+  Lerp(float, AnimationCurve, Action&lt;float&gt;, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Raw lerp: calls setter each frame with progress (0→1), applying optional easing.
+The universal building block for anything not covered by a specific method.</p>
+<p>Usage:
+await Seq.Lerp(1.5f, ease, p =&gt; {
+myLight.intensity = Mathf.Lerp(0f, 5f, p);
+myLight.range = Mathf.Lerp(1f, 10f, p);
+}, token);</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask Lerp(float duration, AnimationCurve curve, Action&lt;float&gt; setter, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpAnimFloat_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpAnimFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpAnimFloat_UnityEngine_Animator_System_String_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpAnimFloat(UnityEngine.Animator,System.String,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LerpAnimFloat(Animator, string, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps an Animator float parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LerpAnimFloat(Animator animator, string parameter, float endValue, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>animator</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Animator.html">Animator</a></dt>
+    <dd></dd>
+    <dt><code>parameter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpColor_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpColor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpColor_UnityEngine_Color_UnityEngine_Color_System_Single_System_Action_UnityEngine_Color__System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpColor(UnityEngine.Color,UnityEngine.Color,System.Single,System.Action{UnityEngine.Color},System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LerpColor(Color, Color, float, Action&lt;Color&gt;, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two Color values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LerpColor(Color from, Color to, float duration, Action&lt;Color&gt; setter, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpFloat_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpFloat*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpFloat_System_Single_System_Single_System_Single_System_Action_System_Single__System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpFloat(System.Single,System.Single,System.Single,System.Action{System.Single},System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LerpFloat(float, float, float, Action&lt;float&gt;, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two float values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LerpFloat(float from, float to, float duration, Action&lt;float&gt; setter, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpVector3_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpVector3*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LerpVector3_UnityEngine_Vector3_UnityEngine_Vector3_System_Single_System_Action_UnityEngine_Vector3__System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LerpVector3(UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Action{UnityEngine.Vector3},System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LerpVector3(Vector3, Vector3, float, Action&lt;Vector3&gt;, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps between two Vector3 values with a setter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LerpVector3(Vector3 from, Vector3 to, float duration, Action&lt;Vector3&gt; setter, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>setter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAt_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAt_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAt(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LookAt(Transform, Transform, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Smoothly rotates a transform to look at another transform's position (sampled once at start).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LookAt(Transform target, Transform lookTarget, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>lookTarget</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAt_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAt*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAt_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAt(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  LookAt(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Smoothly rotates a transform to look at a world position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LookAt(Transform target, Vector3 worldPosition, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>worldPosition</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAtTracking_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAtTracking*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_LookAtTracking_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.LookAtTracking(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Threading.CancellationToken)">
+  LookAtTracking(Transform, Transform, float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continuously rotates to face a target transform each frame at a given angular speed.
+Runs indefinitely until cancelled — pair with a stage timeout or WhenAny policy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask LookAtTracking(Transform mover, Transform target, float degreesPerSecond, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>degreesPerSecond</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MaterialColorTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MaterialColorTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MaterialColorTo_UnityEngine_Renderer_UnityEngine_Color_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_System_String_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MaterialColorTo(UnityEngine.Renderer,UnityEngine.Color,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve,System.String)">
+  MaterialColorTo(Renderer, Color, float, CancellationToken, AnimationCurve, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a Material's color property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MaterialColorTo(Renderer target, Color endColor, float duration, CancellationToken token, AnimationCurve curve = null, string property = &quot;_Color&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Renderer.html">Renderer</a></dt>
+    <dd></dd>
+    <dt><code>endColor</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Color.html">Color</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+    <dt><code>property</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MaterialFloatTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MaterialFloatTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MaterialFloatTo_UnityEngine_Renderer_System_String_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MaterialFloatTo(UnityEngine.Renderer,System.String,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  MaterialFloatTo(Renderer, string, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a Material's float property (e.g. _Metallic, _Glossiness, dissolve).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MaterialFloatTo(Renderer target, string property, float endValue, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Renderer.html">Renderer</a></dt>
+    <dd></dd>
+    <dt><code>property</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>endValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveAlongPath_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveAlongPath*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveAlongPath_UnityEngine_Transform_UnityEngine_Vector3___System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveAlongPath(UnityEngine.Transform,UnityEngine.Vector3[],System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  MoveAlongPath(Transform, Vector3[], float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform along a path of waypoints sequentially.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveAlongPath(Transform target, Vector3[] waypoints, float totalDuration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>waypoints</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>[]</dt>
+    <dd></dd>
+    <dt><code>totalDuration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveAlongPathToTarget_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveAlongPathToTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveAlongPathToTarget_UnityEngine_Transform_UnityEngine_Vector3___UnityEngine_Transform_System_Single_System_Threading_CancellationToken_System_Single_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveAlongPathToTarget(UnityEngine.Transform,UnityEngine.Vector3[],UnityEngine.Transform,System.Single,System.Threading.CancellationToken,System.Single)">
+  MoveAlongPathToTarget(Transform, Vector3[], Transform, float, CancellationToken, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves along a path of waypoints, tracking a moving target for the final waypoint.
+All waypoints except the last are static; the last waypoint follows the target transform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveAlongPathToTarget(Transform mover, Vector3[] waypoints, Transform finalTarget, float speed, CancellationToken token, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>waypoints</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>[]</dt>
+    <dd></dd>
+    <dt><code>finalTarget</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveBy_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveBy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveBy_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  MoveBy(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a transform by an offset relative to its current position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveBy(Transform target, Vector3 offset, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>offset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveLocalTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveLocalTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveLocalTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveLocalTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  MoveLocalTo(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local position to the destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveLocalTo(Transform target, Vector3 destination, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  MoveTo(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's world position to the destination over the given duration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveTo(Transform target, Vector3 destination, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveTowards_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveTowards*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_MoveTowards_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Threading_CancellationToken_System_Single_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.MoveTowards(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Threading.CancellationToken,System.Single)">
+  MoveTowards(Transform, Transform, float, CancellationToken, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves towards a target transform at a fixed speed until within stoppingDistance.
+Re-samples target position each frame for dynamic following.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask MoveTowards(Transform mover, Transform target, float speed, CancellationToken token, float stoppingDistance = 0.1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>stoppingDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_Orbit_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Orbit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_Orbit_UnityEngine_Transform_UnityEngine_Transform_System_Single_System_Single_UnityEngine_Vector3_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Orbit(UnityEngine.Transform,UnityEngine.Transform,System.Single,System.Single,UnityEngine.Vector3,System.Threading.CancellationToken)">
+  Orbit(Transform, Transform, float, float, Vector3, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Orbits around a center transform at a given radius and angular speed.
+Runs indefinitely until cancelled — pair with a stage timeout or WhenAny policy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask Orbit(Transform mover, Transform center, float radius, float degreesPerSecond, Vector3 axis, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mover</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>center</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>degreesPerSecond</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>axis</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_PlayAndWait_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PlayAndWait*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_PlayAndWait_UnityEngine_AudioSource_UnityEngine_AudioClip_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PlayAndWait(UnityEngine.AudioSource,UnityEngine.AudioClip,System.Single,System.Threading.CancellationToken)">
+  PlayAndWait(AudioSource, AudioClip, float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Plays a clip and waits for it to finish.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask PlayAndWait(AudioSource source, AudioClip clip, float volume, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioSource.html">AudioSource</a></dt>
+    <dd></dd>
+    <dt><code>clip</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AudioClip.html">AudioClip</a></dt>
+    <dd></dd>
+    <dt><code>volume</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_PlayAnimationState_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PlayAnimationState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_PlayAnimationState_UnityEngine_Animator_System_String_System_Threading_CancellationToken_System_Int32_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PlayAnimationState(UnityEngine.Animator,System.String,System.Threading.CancellationToken,System.Int32)">
+  PlayAnimationState(Animator, string, CancellationToken, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets a trigger and waits for the resulting animation state to finish.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask PlayAnimationState(Animator animator, string triggerParam, CancellationToken token, int layer = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>animator</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Animator.html">Animator</a></dt>
+    <dd></dd>
+    <dt><code>triggerParam</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>layer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_PunchScale_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PunchScale*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_PunchScale_UnityEngine_Transform_System_Single_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PunchScale(UnityEngine.Transform,System.Single,System.Single,System.Threading.CancellationToken)">
+  PunchScale(Transform, float, float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Punch scale effect: scales up then returns to original. Useful for hit feedback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask PunchScale(Transform target, float intensity, float duration, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>intensity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_PunchScaleElement_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PunchScaleElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_PunchScaleElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.PunchScaleElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Threading.CancellationToken)">
+  PunchScaleElement(VisualElement, float, float, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Punch scale on a VisualElement: scales up then returns to original.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask PunchScaleElement(VisualElement element, float intensity, float duration, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>intensity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateBy_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateBy*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateBy_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateBy(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  RotateBy(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rotates a transform by the given euler offset relative to its current rotation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask RotateBy(Transform target, Vector3 eulerOffset, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>eulerOffset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateTo_UnityEngine_Transform_UnityEngine_Quaternion_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateTo(UnityEngine.Transform,UnityEngine.Quaternion,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  RotateTo(Transform, Quaternion, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's rotation to the destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask RotateTo(Transform target, Quaternion destination, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Quaternion</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_RotateTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.RotateTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  RotateTo(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's rotation to the given euler angles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask RotateTo(Transform target, Vector3 eulerAngles, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>eulerAngles</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleElement_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleElement_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleElement(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ScaleElement(VisualElement, float, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's scale (uniform).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ScaleElement(VisualElement element, float from, float to, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleTo_UnityEngine_Transform_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleTo(UnityEngine.Transform,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ScaleTo(Transform, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local scale to a uniform value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ScaleTo(Transform target, float uniformScale, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>uniformScale</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_ScaleTo_UnityEngine_Transform_UnityEngine_Vector3_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.ScaleTo(UnityEngine.Transform,UnityEngine.Vector3,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  ScaleTo(Transform, Vector3, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lerps a transform's local scale to the destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask ScaleTo(Transform target, Vector3 destination, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>destination</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_SlideElement_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.SlideElement*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_SlideElement_UnityEngine_UIElements_VisualElement_UnityEngine_Vector2_UnityEngine_Vector2_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.SlideElement(UnityEngine.UIElements.VisualElement,UnityEngine.Vector2,UnityEngine.Vector2,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  SlideElement(VisualElement, Vector2, Vector2, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slides a VisualElement by animating its translate style property.
+Start and end are pixel offsets from the element's layout position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask SlideElement(VisualElement element, Vector2 from, Vector2 to, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>from</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_SlideElementTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.SlideElementTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_SlideElementTo_UnityEngine_UIElements_VisualElement_UnityEngine_Vector2_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.SlideElementTo(UnityEngine.UIElements.VisualElement,UnityEngine.Vector2,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  SlideElementTo(VisualElement, Vector2, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Slides a VisualElement from its current translate to the target offset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask SlideElementTo(VisualElement element, Vector2 to, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_TransformTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TransformTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_TransformTo_UnityEngine_Transform_System_Nullable_UnityEngine_Vector3__System_Nullable_UnityEngine_Quaternion__System_Nullable_UnityEngine_Vector3__System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TransformTo(UnityEngine.Transform,System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Quaternion},System.Nullable{UnityEngine.Vector3},System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  TransformTo(Transform, Vector3?, Quaternion?, Vector3?, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Simultaneously lerps position, rotation, and scale in a single pass.
+Pass null for any component you want to skip.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask TransformTo(Transform target, Vector3? position, Quaternion? rotation, Vector3? scale, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+    <dt><code>position</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>rotation</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Quaternion</a>?</dt>
+    <dd></dd>
+    <dt><code>scale</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a>?</dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_TypeText_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TypeText*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_TypeText_UnityEngine_UIElements_Label_System_String_System_Single_System_Threading_CancellationToken_System_Single_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TypeText(UnityEngine.UIElements.Label,System.String,System.Single,System.Threading.CancellationToken,System.Single)">
+  TypeText(Label, string, float, CancellationToken, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Typewriter effect: reveals text in a Label one character at a time.
+Supports an optional per-character delay multiplier for punctuation pauses.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask TypeText(Label label, string text, float charDelay, CancellationToken token, float punctuationMultiplier = 3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>label</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Label.html">Label</a></dt>
+    <dd><p>The Label element to type into.</p>
+</dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Full text to reveal.</p>
+</dd>
+    <dt><code>charDelay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Seconds between each character.</p>
+</dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>Cancellation token.</p>
+</dd>
+    <dt><code>punctuationMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Extra delay multiplier for '.', '!', '?', ','</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_TypeTextSkippable_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TypeTextSkippable*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_TypeTextSkippable_UnityEngine_UIElements_Label_System_String_System_Single_System_Func_System_Boolean__System_Threading_CancellationToken_System_Single_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.TypeTextSkippable(UnityEngine.UIElements.Label,System.String,System.Single,System.Func{System.Boolean},System.Threading.CancellationToken,System.Single)">
+  TypeTextSkippable(Label, string, float, Func&lt;bool&gt;, CancellationToken, float)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Typewriter effect that can be skipped by a condition. Returns true if completed
+normally, false if skipped (in which case the full text is set immediately).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask&lt;bool&gt; TypeTextSkippable(Label label, string text, float charDelay, Func&lt;bool&gt; skipCondition, CancellationToken token, float punctuationMultiplier = 3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>label</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Label.html">Label</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>charDelay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>skipCondition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>punctuationMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForAnyKey_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForAnyKey*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForAnyKey_UnityEngine_KeyCode___System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForAnyKey(UnityEngine.KeyCode[],System.Threading.CancellationToken)">
+  WaitForAnyKey(KeyCode[], CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for any of the keys to go down, read through ForgeInput, and returns the one that did; the first given, of
+two pressed in one frame. It looks as <a class="xref" href="FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_WaitForKey_UnityEngine_KeyCode_System_Threading_CancellationToken_">WaitForKey(KeyCode, CancellationToken)</a> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask&lt;KeyCode&gt; WaitForAnyKey(KeyCode[] keys, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>keys</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a>[]</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForKey_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForKey*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForKey_UnityEngine_KeyCode_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForKey(UnityEngine.KeyCode,System.Threading.CancellationToken)">
+  WaitForKey(KeyCode, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for a key to go down, read through ForgeInput, so a game's own input or a test's stands in. It looks from
+the frame after it starts, so the press that began it doesn't end it, and a press while the task's sequence is
+paused isn't heard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WaitForKey(KeyCode key, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForPointer_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForPointer*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitForPointer_System_Int32_System_Threading_CancellationToken_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitForPointer(System.Int32,System.Threading.CancellationToken)">
+  WaitForPointer(int, CancellationToken)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for a pointer's button to go down, read through ForgeInput: 0 the primary, the left button or a touch, 1 the
+secondary, 2 the middle. It looks as <a class="xref" href="FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_WaitForKey_UnityEngine_KeyCode_System_Threading_CancellationToken_">WaitForKey(KeyCode, CancellationToken)</a> does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WaitForPointer(int button, CancellationToken token)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>button</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitFrames_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitFrames*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitFrames_System_Int32_System_Threading_CancellationToken_Cysharp_Threading_Tasks_PlayerLoopTiming_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitFrames(System.Int32,System.Threading.CancellationToken,Cysharp.Threading.Tasks.PlayerLoopTiming)">
+  WaitFrames(int, CancellationToken, PlayerLoopTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits for N frames.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WaitFrames(int frameCount, CancellationToken token, PlayerLoopTiming timing = PlayerLoopTiming.Update)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frameCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>timing</code> <span class="xref">PlayerLoopTiming</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitUntil_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitUntil*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitUntil_System_Func_System_Boolean__System_Threading_CancellationToken_Cysharp_Threading_Tasks_PlayerLoopTiming_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitUntil(System.Func{System.Boolean},System.Threading.CancellationToken,Cysharp.Threading.Tasks.PlayerLoopTiming)">
+  WaitUntil(Func&lt;bool&gt;, CancellationToken, PlayerLoopTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits until the predicate holds, looking once a frame while the task's sequence runs. UniTask's own goes on
+looking while the sequence is paused; this one holds with it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WaitUntil(Func&lt;bool&gt; predicate, CancellationToken token, PlayerLoopTiming timing = PlayerLoopTiming.Update)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>timing</code> <span class="xref">PlayerLoopTiming</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitWhile_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitWhile*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WaitWhile_System_Func_System_Boolean__System_Threading_CancellationToken_Cysharp_Threading_Tasks_PlayerLoopTiming_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WaitWhile(System.Func{System.Boolean},System.Threading.CancellationToken,Cysharp.Threading.Tasks.PlayerLoopTiming)">
+  WaitWhile(Func&lt;bool&gt;, CancellationToken, PlayerLoopTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Waits while the predicate holds, looking once a frame while the task's sequence runs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WaitWhile(Func&lt;bool&gt; predicate, CancellationToken token, PlayerLoopTiming timing = PlayerLoopTiming.Update)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>timing</code> <span class="xref">PlayerLoopTiming</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_WidthTo_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WidthTo*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_WidthTo_UnityEngine_UIElements_VisualElement_System_Single_System_Single_System_Single_System_Threading_CancellationToken_UnityEngine_AnimationCurve_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.WidthTo(UnityEngine.UIElements.VisualElement,System.Single,System.Single,System.Single,System.Threading.CancellationToken,UnityEngine.AnimationCurve)">
+  WidthTo(VisualElement, float, float, float, CancellationToken, AnimationCurve)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Animates a VisualElement's width in pixels.
+Useful for progress bars.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask WidthTo(VisualElement element, float fromPx, float toPx, float duration, CancellationToken token, AnimationCurve curve = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></dt>
+    <dd></dd>
+    <dt><code>fromPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>toPx</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>duration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>curve</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/AnimationCurve.html">AnimationCurve</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_SequenceTaskLibrary_Yield_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Yield*"></a>
+
+  <h3 id="FarEmerald_PlayForge_SequenceTaskLibrary_Yield_System_Threading_CancellationToken_Cysharp_Threading_Tasks_PlayerLoopTiming_" data-uid="FarEmerald.PlayForge.SequenceTaskLibrary.Yield(System.Threading.CancellationToken,Cysharp.Threading.Tasks.PlayerLoopTiming)">
+  Yield(CancellationToken, PlayerLoopTiming)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Yields for one frame. Shorthand for UniTask.Yield().</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UniTask Yield(CancellationToken token, PlayerLoopTiming timing = PlayerLoopTiming.Update)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+    <dt><code>timing</code> <span class="xref">PlayerLoopTiming</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UniTask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class EffectJournalEntry | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class EffectJournalEntry | PlayForge ">
+      
+      <meta name="description" content="One entry of an effect journal: when, of what kind, on whom, the effect and who applied it, and what the kind says: why it was refused, how many ticks, the change it made, or which worker ran, at which of its effect&#39;s moments, on whose side, with the actions it queued.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.EffectJournalEntry">
+
+
+
+  <h1 id="FarEmerald_PlayForge_EffectJournalEntry" data-uid="FarEmerald.PlayForge.EffectJournalEntry" class="text-break">
+Class EffectJournalEntry  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>One entry of an effect journal: when, of what kind, on whom, the effect and who applied it, and what the kind
+says: why it was refused, how many ticks, the change it made, or which worker ran, at which of its effect's moments,
+on whose side, with the actions it queued.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/entities/index.html">Entities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/entities/effect-journal.html">Entities: Effect Journal</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class EffectJournalEntry</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">EffectJournalEntry</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Actions_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Actions*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Actions" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Actions">
+  Actions
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's run, the actions it queued, each with where it stands.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;EffectJournalAction&gt; Actions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.EffectJournalAction.html">EffectJournalAction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Attribute_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Attribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Attribute" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Attribute">
+  Attribute
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For an impact, the attribute it changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAttribute Attribute { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Breakdown_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Breakdown*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Breakdown" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Breakdown">
+  Breakdown
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For an impact, its run through its pipeline, in a line; empty where none ran.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Breakdown { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Change_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Change*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Change" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Change">
+  Change
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For an impact, what it changed the attribute by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AttributeValue Change { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Effect_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Effect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Effect" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Effect">
+  Effect
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The effect; null for an impact worker's run on a change no effect made.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffect Effect { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Entity_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Entity*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Entity" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Entity">
+  Entity
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The entity it happened on: the one the effect is on, or for a worker on the dealer's side, the dealer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGameplayAbilitySystem Entity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Frame_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Frame*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Frame" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Frame">
+  Frame
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The frame it was written in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Frame { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Hook_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Hook*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Hook" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Hook">
+  Hook
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's run, the moment of its effect it heard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EEffectWorkerHook Hook { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectWorkerHook.html">EEffectWorkerHook</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Kind_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Kind*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Kind" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Kind">
+  Kind
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EEffectJournalKind Kind { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectJournalKind.html">EEffectJournalKind</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Refusal_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Refusal*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Refusal" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Refusal">
+  Refusal
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a refusal, why.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EEffectRefusal Refusal { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EEffectRefusal.html">EEffectRefusal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Side_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Side*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Side" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Side">
+  Side
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's run, whose side it ran on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EWorkerSide Side { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EWorkerSide.html">EWorkerSide</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Source_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Source*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Source" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Source">
+  Source
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Who applied it, or dealt the hit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISource Source { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Spec_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Spec*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Spec" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Spec">
+  Spec
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Its spec, the one application of it, where there was one: a removal names the effect alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffectSpec Spec { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Ticks_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Ticks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Ticks" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Ticks">
+  Ticks
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a tick, how many ticks executed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Ticks { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Time_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Time*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Time" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Time">
+  Time
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The game's time as it was written, in seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Time { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Trace_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Trace*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Trace" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Trace">
+  Trace
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For an application, its first impact's number read as it landed, part by part.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NumberTrace Trace { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.NumberTrace.html">NumberTrace</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_Worker_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Worker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_Worker" data-uid="FarEmerald.PlayForge.EffectJournalEntry.Worker">
+  Worker
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's run, the worker: an effect worker, or the dealer's impact worker.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Worker { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_WorkerName_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.WorkerName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_WorkerName" data-uid="FarEmerald.PlayForge.EffectJournalEntry.WorkerName">
+  WorkerName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>For a worker's run, its kind in a word or two.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string WorkerName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_EffectJournalEntry_ToString_" data-uid="FarEmerald.PlayForge.EffectJournalEntry.ToString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_EffectJournalEntry_ToString" data-uid="FarEmerald.PlayForge.EffectJournalEntry.ToString">
+  ToString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The entry in a line: &quot;Burn landed on Target, from Caster&quot;, &quot;Poison refused by Target: immunity&quot;, &quot;Burn ticked
+on Target&quot;, &quot;Burn: -5 Health to Target&quot;, &quot;Burn came off Target&quot;, &quot;Burn's Noting heard it tick on Target,
+queuing Ticked&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

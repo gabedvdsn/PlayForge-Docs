@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Saving and Loading | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Saving and Loading | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.saving">
+<h1 id="saving-and-loading">Saving and Loading</h1>
+
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html"><code>ForgeSave</code></a> saves an entity at rest and loads it back. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_"><code>ForgeSave.Capture</code></a> takes what lasts on an entity
+into a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_"><code>ForgeSave.Restore</code></a> puts it back, on the entity it came from or on a fresh one of the same
+kind. A snapshot is plain serializable types, so a game writes it where it likes, through <code>JsonUtility</code> or its own
+serializer.</p>
+<pre><code class="lang-csharp">// Save
+ForgeSnapshot save = ForgeSave.Capture(gas, catalog);
+string json = JsonUtility.ToJson(save);
+
+// Load
+ForgeSnapshot loaded = JsonUtility.FromJson&lt;ForgeSnapshot&gt;(json);
+ForgeSave.Restore(gas, loaded, catalog);
+</code></pre>
+<p>Only a hub built from an entity can be saved or loaded: a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> with its Entity asset, or a
+<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> made from an identity.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="the-asset-catalog.html">The Asset Catalog</a>: A save can't hold references to assets, because a reference doesn't last from one session to the next.</li>
+<li><a href="what-a-save-holds.html">What a save holds</a>: Each attribute's permanent commits, as a total per retention group.</li>
+<li><a href="what-a-load-does.html">What a load does</a>: Running abilities are interrupted, and the input buffer empties.</li>
+<li><a href="effects-from-other-entities.html">Effects from other entities</a>: An effect knows what applied it: an entity, or one of its abilities or items.</li>
+<li><a href="rolling-back.html">Rolling back</a>: A rollback saves each step, and on a late input loads a step back and runs again.</li>
+<li><a href="copying-an-entity.html">Copying an entity</a>: <code>ForgeSave.Copy(from, onto)</code> copies what lasts on one entity onto another, as a mirror clone takes its original's state.</li>
+<li><a href="versions.html">Versions</a>: <code>ForgeSnapshot.Version</code> names the save's format, and <code>ForgeSave.Version</code> the format this PlayForge writes.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySave.html">AbilitySave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRole.html">AttributeRole</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSave.html">AttributeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CommitSave.html">CommitSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectSave.html">EffectSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESavedOrigin.html">ESavedOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAssetCatalog.html">ForgeAssetCatalog</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAssetCatalog.Entry.html">ForgeAssetCatalog.Entry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuthoringSettings.html">ForgeAuthoringSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProjectSettings.html">ForgeProjectSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRoles.html">ForgeRoles</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html">ForgeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html">ForgeSnapshot</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html">IForgeEntityIds</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSave.html">ItemSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelSave.html">LevelSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MagnitudeSave.html">MagnitudeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NewAssetSettings.html">NewAssetSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.OriginSave.html">OriginSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TypeDefaults.html">TypeDefaults</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

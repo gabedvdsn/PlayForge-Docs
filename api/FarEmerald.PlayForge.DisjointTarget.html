@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DisjointTarget | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DisjointTarget | PlayForge ">
+      
+      <meta name="description" content="The placeholder a disjointed shot is aimed at instead of its entity. It stays where the entity stood, has no tags, and takes no effects, so the shot lands on nothing.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.DisjointTarget">
+
+
+
+  <h1 id="FarEmerald_PlayForge_DisjointTarget" data-uid="FarEmerald.PlayForge.DisjointTarget" class="text-break">
+Class DisjointTarget  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The placeholder a disjointed shot is aimed at instead of its entity. It stays where the entity stood, has no
+tags, and takes no effects, so the shot lands on nothing.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DisjointTarget : ITarget, IAffiliated, ITagHandler, IHasReadableDefinition</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DisjointTarget</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IAffiliated.html">IAffiliated</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ITagHandler.html">ITagHandler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget__ctor_" data-uid="FarEmerald.PlayForge.DisjointTarget.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget__ctor_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_StaticTargetingPacket_" data-uid="FarEmerald.PlayForge.DisjointTarget.#ctor(FarEmerald.PlayForge.ITarget,FarEmerald.PlayForge.StaticTargetingPacket)">
+  DisjointTarget(ITarget, StaticTargetingPacket)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DisjointTarget(ITarget original, StaticTargetingPacket packet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>original</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+    <dt><code>packet</code> <a class="xref" href="FarEmerald.PlayForge.StaticTargetingPacket.html">StaticTargetingPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_IsDead_" data-uid="FarEmerald.PlayForge.DisjointTarget.IsDead*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_IsDead" data-uid="FarEmerald.PlayForge.DisjointTarget.IsDead">
+  IsDead
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDead { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_ApplyGameplayEffect_" data-uid="FarEmerald.PlayForge.DisjointTarget.ApplyGameplayEffect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_ApplyGameplayEffect_FarEmerald_PlayForge_GameplayEffectSpec_" data-uid="FarEmerald.PlayForge.DisjointTarget.ApplyGameplayEffect(FarEmerald.PlayForge.GameplayEffectSpec)">
+  ApplyGameplayEffect(GameplayEffectSpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ApplyGameplayEffect(GameplayEffectSpec spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_CommunicateTargetedIntent_" data-uid="FarEmerald.PlayForge.DisjointTarget.CommunicateTargetedIntent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_CommunicateTargetedIntent_FarEmerald_PlayForge_AbstractGameplayMonoProcess_" data-uid="FarEmerald.PlayForge.DisjointTarget.CommunicateTargetedIntent(FarEmerald.PlayForge.AbstractGameplayMonoProcess)">
+  CommunicateTargetedIntent(AbstractGameplayMonoProcess)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CommunicateTargetedIntent(AbstractGameplayMonoProcess entity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <a class="xref" href="FarEmerald.PlayForge.AbstractGameplayMonoProcess.html">AbstractGameplayMonoProcess</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_CompileGrantedTags_" data-uid="FarEmerald.PlayForge.DisjointTarget.CompileGrantedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_CompileGrantedTags" data-uid="FarEmerald.PlayForge.DisjointTarget.CompileGrantedTags">
+  CompileGrantedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CompileGrantedTags()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_FindAbilitySystem_" data-uid="FarEmerald.PlayForge.DisjointTarget.FindAbilitySystem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_FindAbilitySystem_FarEmerald_PlayForge_AbilitySystemComponent__" data-uid="FarEmerald.PlayForge.DisjointTarget.FindAbilitySystem(FarEmerald.PlayForge.AbilitySystemComponent@)">
+  FindAbilitySystem(out AbilitySystemComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FindAbilitySystem(out AbilitySystemComponent abilSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>abilSystem</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_FindAttributeSystem_" data-uid="FarEmerald.PlayForge.DisjointTarget.FindAttributeSystem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_FindAttributeSystem_FarEmerald_PlayForge_AttributeSystemComponent__" data-uid="FarEmerald.PlayForge.DisjointTarget.FindAttributeSystem(FarEmerald.PlayForge.AttributeSystemComponent@)">
+  FindAttributeSystem(out AttributeSystemComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FindAttributeSystem(out AttributeSystemComponent attrSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attrSystem</code> <a class="xref" href="FarEmerald.PlayForge.AttributeSystemComponent.html">AttributeSystemComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_FindItemSystem_" data-uid="FarEmerald.PlayForge.DisjointTarget.FindItemSystem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_FindItemSystem_FarEmerald_PlayForge_ItemSystemComponent__" data-uid="FarEmerald.PlayForge.DisjointTarget.FindItemSystem(FarEmerald.PlayForge.ItemSystemComponent@)">
+  FindItemSystem(out ItemSystemComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FindItemSystem(out ItemSystemComponent itemSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>itemSystem</code> <a class="xref" href="FarEmerald.PlayForge.ItemSystemComponent.html">ItemSystemComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_FindLevelSystem_" data-uid="FarEmerald.PlayForge.DisjointTarget.FindLevelSystem*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_FindLevelSystem_FarEmerald_PlayForge_SystemLevelsComponent__" data-uid="FarEmerald.PlayForge.DisjointTarget.FindLevelSystem(FarEmerald.PlayForge.SystemLevelsComponent@)">
+  FindLevelSystem(out SystemLevelsComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FindLevelSystem(out SystemLevelsComponent lvlSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lvlSystem</code> <a class="xref" href="FarEmerald.PlayForge.SystemLevelsComponent.html">SystemLevelsComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_Generate_" data-uid="FarEmerald.PlayForge.DisjointTarget.Generate*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_Generate_FarEmerald_PlayForge_ITarget_" data-uid="FarEmerald.PlayForge.DisjointTarget.Generate(FarEmerald.PlayForge.ITarget)">
+  Generate(ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisjointTarget Generate(ITarget _target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.DisjointTarget.html">DisjointTarget</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GenerateEffectSpec_" data-uid="FarEmerald.PlayForge.DisjointTarget.GenerateEffectSpec*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GenerateEffectSpec_FarEmerald_PlayForge_IEffectOrigin_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.DisjointTarget.GenerateEffectSpec(FarEmerald.PlayForge.IEffectOrigin,FarEmerald.PlayForge.GameplayEffect)">
+  GenerateEffectSpec(IEffectOrigin, GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameplayEffectSpec GenerateEffectSpec(IEffectOrigin origin, GameplayEffect GameplayEffect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>origin</code> <a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+    <dt><code>GameplayEffect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetAffiliation_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetAffiliation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetAffiliation" data-uid="FarEmerald.PlayForge.DisjointTarget.GetAffiliation">
+  GetAffiliation()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Tag&gt; GetAffiliation()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetAppliedTags_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetAppliedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetAppliedTags" data-uid="FarEmerald.PlayForge.DisjointTarget.GetAppliedTags">
+  GetAppliedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Tag&gt; GetAppliedTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetDefaultIcon_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetDefaultIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetDefaultIcon" data-uid="FarEmerald.PlayForge.DisjointTarget.GetDefaultIcon">
+  GetDefaultIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D GetDefaultIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetDescription_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetDescription" data-uid="FarEmerald.PlayForge.DisjointTarget.GetDescription">
+  GetDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetLevel_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetLevel*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetLevel_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetLevel(FarEmerald.PlayForge.Tag)">
+  GetLevel(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntValuePairClamped GetLevel(Tag key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IntValuePairClamped.html">IntValuePairClamped</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetName_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetName" data-uid="FarEmerald.PlayForge.DisjointTarget.GetName">
+  GetName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetTagWeight_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetTagWeight*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetTagWeight_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetTagWeight(FarEmerald.PlayForge.Tag)">
+  GetTagWeight(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetTagWeight(Tag _tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>_tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_GetTargetingPacket_" data-uid="FarEmerald.PlayForge.DisjointTarget.GetTargetingPacket*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_GetTargetingPacket" data-uid="FarEmerald.PlayForge.DisjointTarget.GetTargetingPacket">
+  GetTargetingPacket()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbstractTargetingPacket GetTargetingPacket()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbstractTargetingPacket.html">AbstractTargetingPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_MarkDead_" data-uid="FarEmerald.PlayForge.DisjointTarget.MarkDead*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_MarkDead" data-uid="FarEmerald.PlayForge.DisjointTarget.MarkDead">
+  MarkDead()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MarkDead()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_QueryTags_" data-uid="FarEmerald.PlayForge.DisjointTarget.QueryTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_QueryTags_FarEmerald_PlayForge_TagQuery_" data-uid="FarEmerald.PlayForge.DisjointTarget.QueryTags(FarEmerald.PlayForge.TagQuery)">
+  QueryTags(TagQuery)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool QueryTags(TagQuery query)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="FarEmerald.PlayForge.TagQuery.html">TagQuery</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_RemoveGameplayEffect_" data-uid="FarEmerald.PlayForge.DisjointTarget.RemoveGameplayEffect*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_RemoveGameplayEffect_FarEmerald_PlayForge_GameplayEffect_" data-uid="FarEmerald.PlayForge.DisjointTarget.RemoveGameplayEffect(FarEmerald.PlayForge.GameplayEffect)">
+  RemoveGameplayEffect(GameplayEffect)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveGameplayEffect(GameplayEffect effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_TryGetAttributeValue_" data-uid="FarEmerald.PlayForge.DisjointTarget.TryGetAttributeValue*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_TryGetAttributeValue_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_AttributeValue__" data-uid="FarEmerald.PlayForge.DisjointTarget.TryGetAttributeValue(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.AttributeValue@)">
+  TryGetAttributeValue(IAttribute, out AttributeValue)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetAttributeValue(IAttribute attribute, out AttributeValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_DisjointTarget_TryModifyAttribute_" data-uid="FarEmerald.PlayForge.DisjointTarget.TryModifyAttribute*"></a>
+
+  <h3 id="FarEmerald_PlayForge_DisjointTarget_TryModifyAttribute_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_SourcedModifiedAttributeValue_System_Boolean_" data-uid="FarEmerald.PlayForge.DisjointTarget.TryModifyAttribute(FarEmerald.PlayForge.IAttribute,FarEmerald.PlayForge.SourcedModifiedAttributeValue,System.Boolean)">
+  TryModifyAttribute(IAttribute, SourcedModifiedAttributeValue, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryModifyAttribute(IAttribute attribute, SourcedModifiedAttributeValue sourcedModifiedValue, bool runEvents = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attribute</code> <a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
+    <dd></dd>
+    <dt><code>sourcedModifiedValue</code> <a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
+    <dd></dd>
+    <dt><code>runEvents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

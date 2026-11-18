@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>A magnitude field | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="A magnitude field | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.a-magnitude-field">
+<h1 id="a-magnitude-field">A magnitude field</h1>
+
+<p>A magnitude field, such as an effect's Magnitude or Duration, is a number field (<a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableInt.html"><code>ScalableInt</code></a> for
+a whole number). It shows its name, then its <strong>kind</strong>, then what it reads, then its field menu, which opens as wide as
+its items. The kind menu lists Constant, Table, By Level, Shared, × Attribute and Set By Caller at its top, then the kinds
+that read the game (below): Asset Part, Group, Group Impact, Local Data, Relative to a Field and Worker. It files the
+rest by category: the scalers of every kind under <strong>Scaler</strong>, Effect Stacks and Tracked Impact under <strong>Effect</strong>, Item
+Stacks under <strong>Item</strong>, and a kind of a project's own under the category it names. A field whose code declares what its
+context provides, with <code>[NumberContext]</code>, offers only the kinds that can be worked out there: a targeting task's range,
+which has no target yet, offers no kind that reads one.</p>
+<p>Every number an asset authors is a number field, read at the level of what holds it: an ability's,
+as its Buffer Window and its tasks', at its level; an effect's, as its Stack Bounds' Min and Max, its Starting Stacks and
+a Stacks change's, at the effect's; a cue's Strength, Duration, Lifetime and Volume, for its effect as it lands; an item's
+Max Stack Size at its own level, and a set bonus's Pieces at its holder's; and an entity's own, as a barrier's Decay Per
+Second, an attribute set's Snap Interval, an aura's Interval and a worker's Threshold, Floor, Share, Every Ticks, Tick
+Pause or Required Weight, at the entity's or the change's. A level, a pointer's button, an order, a priority among
+configs and a log's size stay whole numbers, as do a kind's and a scaler's own numbers. A folded field's line shows a
+number field by what it reads, as &quot;Uses 3&quot;.</p>
+<ul>
+<li><p><strong>Constant</strong>: the field reads its number, with its unit beside it, as Tick Every's &quot;1 s&quot;. A field that used to read
+its scaler, and has none, reads 0, and a warning says so.</p>
+</li>
+<li><p><strong>Table</strong>: the field reads one value for each level, exactly: level 1 the first, level 4 the 4th, and a level past
+the last the last, as Laguna Blade's 450, 600 and 750. The range it gives shows beside the kind, as &quot;6–8 s&quot;,
+or &quot;-25 to -10&quot; where it goes below 0. Its values sit in a row under it, with no curve.</p>
+</li>
+<li><p><strong>By Level</strong>: the field reads its values spread over a level range, as points on a curve, a level between two reading
+between them (below). It's the same number by level as a Table, read another way, so choosing one for the other keeps
+its values; one saved reading exactly shows as a Table, and nothing saved changes. <a href="../spreadsheets/index.html">Spreadsheets</a>
+writes a project's Tables and By Levels to a spreadsheet and reads them back.</p>
+</li>
+<li><p><strong>Shared</strong>: the field reads a Scaler asset (below).</p>
+</li>
+<li><p>The other kinds work out a value from the values or from the entity: <strong>× Attribute</strong> reads an attribute of the
+caster or the target, its current, its base, what's missing of it (base − current) or its share of its base
+(current ÷ base), which the menu starts as the field's number times it, all of it or only some of its retention
+groups (below), and reads it as its attribute's role says, a Bonus Share as 1 + x and a Resistance as 1 − x, or as
+its Read As says, <strong>Clamped</strong> keeps a number within
+bounds, <strong>Conditional</strong> reads one number where a condition holds and another where it doesn't, <strong>Randomized</strong> rolls
+a random value, <strong>Threshold</strong> steps at thresholds, and <strong>Fixed Value</strong> is one number. <strong>Stacking Curve</strong> turns a
+<strong>Count</strong>, as an item's stacks or an attribute, into its number by a <strong>Curve</strong> and its <strong>Coefficient</strong>, a:
+<strong>Linear</strong>, a × n, as 15% a stack; <strong>Hyperbolic</strong>, 1 − 1 / (1 + a × n), a chance that nears 1 and never reaches it, 13%
+with one stack and 60% with ten at 0.15; <strong>Reciprocal</strong>, 1 / (1 + a × n), as what Dota's armor leaves of a hit at
+0.06; <strong>Inverse</strong>, a / n, as a wind-up an attack speed shortens; and <strong>Exponential</strong>, a to the n. Its <strong>Plus</strong> is
+added after, 1 making a share a multiplier. <strong>Effect Stacks</strong> reads the stack count of the effect's own container, and <strong>Item
+Stacks</strong> that of the item that applied it (<a href="../items/index.html">Items</a>); each reads 1 where there's nothing stacked. An
+attribute set's values use the cached kinds, which read other attributes as the entity's values change.</p>
+</li>
+<li><p><strong>Set By Caller</strong> reads a value the code passes in. It checks one thing: whether what the number is read in holds a
+value under exactly its <strong>Key</strong>. Code sets one on an effect's spec before applying it (<code>spec.SetByCaller(tag, value)</code>), on an ability activation's data (<code>data.SetByCaller(tag, value)</code>), which each effect the ability makes
+takes and the ability's tasks read, or on the data that spawns a process (<a href="../effects/index.html">Effects</a>). Only the key
+itself matches, not a tag above or below it in the tag tree, and a value set to 0 is a value. Where none is set, the
+field reads the kind's <strong>Default</strong>; its summary says both, as &quot;the caller's Damage, else 0&quot;.</p>
+</li>
+<li><p>A <strong>Threshold</strong> lists its thresholds, each a <strong>Level</strong> and an optional <strong>Tier</strong> name, with the <strong>Value</strong> it reads
+from that level up under them, a number of any kind; below every threshold it reads its <strong>Default Value</strong>.</p>
+</li>
+<li><p>A <strong>Conditional</strong> has a condition, <strong>When</strong>, and two numbers, <strong>True Value</strong> and <strong>False Value</strong>: it reads True
+where the condition holds, and False where it doesn't, or where it has none. Its summary says all three, as &quot;−0.1 ×
+Target's Health (base) if Target's Health &lt; 0.3 × Target's Health (base), else 0&quot;. A condition picks its kind from a
+menu, as a number does, and says itself in a line:</p>
+<ul>
+<li><strong>Tag</strong>: whether the caster or the target holds a tag, counted by its weight, so a tag granted twice counts twice;</li>
+<li><strong>Attribute</strong>: an attribute of the caster or the target, its current, its base, what's missing of it or its share
+of its base, compared with a number, as 0.3 × the target's base Health, or a share above 0.9 for &quot;above 90%&quot;;</li>
+<li><strong>Level</strong>: the level, or how far up its range it is, from 0 to 1, compared with a number;</li>
+<li><strong>Compare Numbers</strong>: one number compared with another;</li>
+<li><strong>Always</strong> and <strong>Never</strong>;</li>
+<li>and under Logic, <strong>All Of</strong>, <strong>Any Of</strong> and <strong>Not</strong>, which join others. All Of none holds; Any Of none doesn't.</li>
+</ul>
+<p>Where what the number is read in lacks what a condition reads, as a target's tag where there's no target, the
+condition doesn't hold, and neither does Not it.</p>
+</li>
+<li><p>A <strong>Clamped</strong> keeps its <strong>Value</strong> between its <strong>Min Value</strong> and <strong>Max Value</strong>, three numbers of any kind; one made
+in the inspector clamps a value by level.</p>
+</li>
+<li><p>A <strong>Randomized</strong> scaler's <strong>Variance</strong> is a kind of its own: <strong>Percentage</strong>, up or down by a <strong>Share</strong> of its value;
+<strong>Flat</strong>, by an <strong>Amount</strong>; <strong>Multiplier</strong>, times one between its <strong>Min</strong> and its <strong>Max</strong>; or one of your own, as two
+dice, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractVariance.html"><code>AbstractVariance</code></a> that overrides <code>Vary</code>, <code>Lowest</code> and <code>Highest</code>. Its numbers
+read the variance as their object, so a Share can widen by level and a Max can be 3 × its Min.</p>
+</li>
+<li><p>A scaler's own numbers read the scaler as their object: a Clamped's Max Value can be Relative to a Field, 2 × its
+Min Value, whatever field the Clamped is in.</p>
+</li>
+<li><p>A <strong>Group</strong> joins several numbers as one. It lists its members, each an <strong>Operation</strong> then its <strong>Scaler</strong>, which
+can be any kind. The members that <strong>Add</strong> are added up, that sum is multiplied by each member that <strong>Multiplies</strong>
+and divided by each that <strong>Divides</strong>, one that reads 0 dividing nothing, then each <strong>Flat Bonus</strong> is added
+on, in whatever order they're listed, so <code>(5 + Caster's Strength) × 2 + 3</code> is one number, and <code>1.7 ÷ Caster's Attack Speed</code> another, and a first member needn't add. Members that multiply or divide with none that adds work on 0, and
+the Group says so. A member that <strong>Overrides</strong> gives the group's value alone; where several do, the group's policy picks the
+highest, the lowest, their average, the first or the last, and Ignore sets them aside. A Group has no values per
+level. With no members, or none that holds a kind, it's no kind at all, so its field reads its number, as a
+Constant does.</p>
+</li>
+</ul>
+<p>Kinds that read the game, each with a summary that says what it reads:</p>
+<ul>
+<li><strong>Local Data</strong> reads the number under a <strong>Key</strong> in Local Data: <strong>Its Own</strong>, what the number belongs to, as its
+ability's or its item's asset, or the <strong>Caster</strong>'s or the <strong>Target</strong>'s as the entity holds it. Where there's no
+number under the key it reads its <strong>Default</strong>. A hero's attack range kept in its Local Data is one field read by
+every ability. The entry's number can scale too, read where the kind reads it: Its Own in the number's
+context, the Caster's or the Target's at that entity's own level. One that reads its own key stops at the Default.</li>
+<li><strong>Relative to a Field</strong> reads another number field of the same object, picked from a menu of them, and the field's
+number joins it as Combine says: a Clamped scaler's Max can be 2 × its Min, and a stack bound's Max its Min + 3. The
+other field is read in the same context, so a relative Max follows a Min that scales by level. A field offers this
+kind where its code hands its object over as it reads (below).</li>
+<li><strong>Tracked Impact</strong>, under Effect, reads what an effect has dealt: its <strong>Last</strong> impact, its <strong>Total</strong>, or its impact
+<strong>Count</strong>. Whose: <strong>This Effect</strong>, as a burn that grows by its own tick count; <strong>An Effect</strong> on the caster or the
+target, by its asset; or <strong>Effects Tagged</strong> there, added up. An impact is as it landed, after the target's workers,
+and signed, so damage is negative; <strong>By Size</strong> reads it positive, as a heal of half a blow wants. Before an effect's
+first impact, and after a load, it reads 0.</li>
+<li><strong>Group Impact</strong> reads one retention group's part of an attribute on the caster or the target, as &quot;Caster's Strength
+(Bonus)&quot;: the Strength items add, and none of the hero's own.</li>
+<li><strong>Retention groups in any attribute read</strong>: × Attribute, the Attribute condition, a relative attribute worker's
+Relative To and the Threshold worker each have <em>Groups</em>: <strong>All</strong>, the whole value, as before; <strong>Only These</strong>, as a
+bonus of the items' Strength reads their group; or <strong>All But These</strong>, as a bonus of a hero's own damage leaves its
+items' out. A group names the groups under it too, so <em>Items</em> takes <em>Items.Ring</em>. The read says which: &quot;Caster's
+Strength (Items)&quot;, &quot;Caster's Attack Damage (all but Items)&quot;.</li>
+<li><strong>Asset Part</strong> finds effects, abilities or items on the caster or the target by a tag, and reads a part of them.
+An effect matches by its asset tag, a context tag or a tag it grants, and an ability or an item by its asset tag or
+a context tag; a tag under the one given matches too.
+<ul>
+<li>Of an <strong>Effect</strong>: its Count, Stacks, Level, Last Impact, Total Impact, Impact Count, Duration Remaining, Duration,
+Time Until Tick, or a Worker Value, what that effect's workers answer under a key.</li>
+<li>Of an <strong>Ability</strong>: its Count, Level, Is Active, Is on Cooldown, or Cooldown Remaining.</li>
+<li>Of an <strong>Item</strong>: its Count, Stacks, Level, or Is Equipped.</li>
+<li><strong>Among</strong> says how several that match read as one: their Sum, the First, the Highest or the Lowest. A true-or-false
+part reads 1 or 0, so its sum is how many are so. Where none matches, a count reads 0 and any other part the
+<strong>Default</strong>.</li>
+</ul>
+</li>
+<li><strong>Worker</strong> asks workers for a number under a <strong>Key</strong>: <strong>This Effect</strong>'s own workers, or the <strong>Caster</strong>'s or the
+<strong>Target</strong>'s. Where none answers it reads its <strong>Default</strong>. See Asking a worker, below.</li>
+</ul>
+<p>Choosing a kind is one Undo step. A constant made a Table or By Level keeps its number as its first level's value.</p>
+<p>With more than one asset selected, the field edits each asset's own field. Kinds that differ show as mixed, and choosing
+one gives it to each field, from that field's own value; a field of that kind keeps its scaler. Levels and Make Constant
+work on each field's own values, and a count, range or curve the fields disagree on shows as mixed. Save as Scaler Asset
+waits for one asset.</p>
+<p>A kind other than Constant shows a one-line summary of what the field reads under its row, as &quot;0.3 × Target's Health
+(base)&quot;, then <strong>Combine</strong>, how the field joins its number with the scaler: <strong>Scaler</strong> reads the scaler's value,
+<strong>Scaler + Number</strong> and <strong>Scaler × Number</strong> add or multiply the field's number, and <strong>Number Only</strong> reads the number. A
+whole-number field, such as Ticks, also shows its <strong>Rounding</strong>: Floor, Ceil, or Round, to the nearest, a half away
+from zero. A field whose unit is &quot;%&quot; stores 0.3 and shows and takes it as 30%. A kind its field can't work out, as one
+copied from a field that has a target into one that hasn't, says so under the field, and the Problems window lists it;
+it reads the field's number.</p>
+<p>The field menu holds the items below. A scaler field of its own, as a Group member's, has the same menu, and its kind
+menu files its kinds by category, as a number field's does.</p>
+<ul>
+<li><strong>Save as Scaler Asset…</strong>: a name and a folder, then <strong>Save and Use</strong>, which saves the field's scaler as a Scaler
+asset and makes the field share it.</li>
+<li><strong>Scaler Assets</strong>: a submenu of the project's Scaler assets, the one the field shares checked. The field shares the
+one you pick.</li>
+<li><strong>Import Values…</strong>: a window that lists the Scaler assets and the other assets' fields with values per level. Pick
+one to compare its values with the field's, level by level, with both curves, then <strong>Copy Values</strong>. A shorter table's
+last value holds for the levels past its end, and the window says which levels those are. One Undo takes it back.</li>
+<li><strong>Quick Fill…</strong>: fills the table from a pattern: <strong>Same Value</strong>, <strong>Straight Line</strong>, <strong>Slow Then Fast</strong> and <strong>Fast
+Then Slow</strong> with a <strong>Strength</strong>, <strong>Steps</strong>, <strong>Add Each Level</strong>, <strong>Multiply Each Level</strong>, <strong>Ease In and Out</strong>, or a
+<strong>Custom Curve</strong> you draw, from one value to another. <strong>Rounding</strong> makes the values whole numbers or rounds them
+to a <strong>Step</strong>. A preview shows the values as the table will, with their curve, and one Undo takes them back. On a
+scaler spread over levels it fills the points, as many as <strong>Points</strong> says, and the preview shows what each level
+reads between them.</li>
+<li><strong>Make Constant</strong>: the field reads a number again, the value its first level read. A scaler field of its own, with
+no number, becomes a <strong>Fixed Value</strong> of that value.</li>
+</ul>
+<hr>
+<p><a href="index.html">← Scalers</a> · <a href="index.html">Scalers</a> · <a href="values-per-level.html">Values per level →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

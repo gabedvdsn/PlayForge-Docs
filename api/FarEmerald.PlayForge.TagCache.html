@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TagCache | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TagCache | PlayForge ">
+      
+      <meta name="description" content="Manages tag state and tag workers for an entity. Supports hierarchical tag matching with O(1) exact lookups and O(n) hierarchical lookups. Tag worker activation/resolution is deferred to end-of-frame.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.TagCache">
+
+
+
+  <h1 id="FarEmerald_PlayForge_TagCache" data-uid="FarEmerald.PlayForge.TagCache" class="text-break">
+Class TagCache  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Manages tag state and tag workers for an entity.
+Supports hierarchical tag matching with O(1) exact lookups and O(n) hierarchical lookups.
+Tag worker activation/resolution is deferred to end-of-frame.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Named in:</strong> <a class="xref" href="../guides/entities/tags.html">Entities: Tags</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TagCache</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TagCache</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.Lab.LabRulesExtensions.html#FarEmerald_PlayForge_Lab_LabRulesExtensions_HasAny_FarEmerald_PlayForge_TagCache_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_Tag__">LabRulesExtensions.HasAny(TagCache, IReadOnlyList&lt;Tag&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TagCache__ctor_" data-uid="FarEmerald.PlayForge.TagCache.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache__ctor_FarEmerald_PlayForge_ITagHandler_" data-uid="FarEmerald.PlayForge.TagCache.#ctor(FarEmerald.PlayForge.ITagHandler)">
+  TagCache(ITagHandler)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TagCache(ITagHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.ITagHandler.html">ITagHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache__ctor_" data-uid="FarEmerald.PlayForge.TagCache.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache__ctor_FarEmerald_PlayForge_ITagHandler_System_Collections_Generic_List_FarEmerald_PlayForge_AbstractTagWorker__" data-uid="FarEmerald.PlayForge.TagCache.#ctor(FarEmerald.PlayForge.ITagHandler,System.Collections.Generic.List{FarEmerald.PlayForge.AbstractTagWorker})">
+  TagCache(ITagHandler, List&lt;AbstractTagWorker&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TagCache(ITagHandler handler, List&lt;AbstractTagWorker&gt; workers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="FarEmerald.PlayForge.ITagHandler.html">ITagHandler</a></dt>
+    <dd></dd>
+    <dt><code>workers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TagCache_ActiveWorkerCount_" data-uid="FarEmerald.PlayForge.TagCache.ActiveWorkerCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_ActiveWorkerCount" data-uid="FarEmerald.PlayForge.TagCache.ActiveWorkerCount">
+  ActiveWorkerCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ActiveWorkerCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_ActiveWorkers_" data-uid="FarEmerald.PlayForge.TagCache.ActiveWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_ActiveWorkers" data-uid="FarEmerald.PlayForge.TagCache.ActiveWorkers">
+  ActiveWorkers
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Read-only view of currently-active tag workers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyCollection&lt;AbstractTagWorker&gt; ActiveWorkers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RegisteredWorkerCount_" data-uid="FarEmerald.PlayForge.TagCache.RegisteredWorkerCount*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RegisteredWorkerCount" data-uid="FarEmerald.PlayForge.TagCache.RegisteredWorkerCount">
+  RegisteredWorkerCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RegisteredWorkerCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RegisteredWorkers_" data-uid="FarEmerald.PlayForge.TagCache.RegisteredWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RegisteredWorkers" data-uid="FarEmerald.PlayForge.TagCache.RegisteredWorkers">
+  RegisteredWorkers
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Read-only view of all registered tag workers (for debuggers/inspectors).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;AbstractTagWorker&gt; RegisteredWorkers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_TagCache_AddTag_" data-uid="FarEmerald.PlayForge.TagCache.AddTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_AddTag_FarEmerald_PlayForge_Tag_System_Boolean_" data-uid="FarEmerald.PlayForge.TagCache.AddTag(FarEmerald.PlayForge.Tag,System.Boolean)">
+  AddTag(Tag, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a tag with weight 1, or increments existing weight.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTag(Tag tag, bool noDuplicates = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>noDuplicates</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_AddTags_" data-uid="FarEmerald.PlayForge.TagCache.AddTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_AddTags_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__System_Boolean_" data-uid="FarEmerald.PlayForge.TagCache.AddTags(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag},System.Boolean)">
+  AddTags(IEnumerable&lt;Tag&gt;, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds multiple tags.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddTags(IEnumerable&lt;Tag&gt; tags, bool noDuplicates = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>noDuplicates</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_BeginRebuild_" data-uid="FarEmerald.PlayForge.TagCache.BeginRebuild*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_BeginRebuild" data-uid="FarEmerald.PlayForge.TagCache.BeginRebuild">
+  BeginRebuild()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Starts a rebuild of the weights from their sources, as a compile is: the weights empty, and the changes wait
+for <a class="xref" href="FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_EndRebuild">EndRebuild()</a>, which tells what the rebuild changed. Each of its steps told, every tag would go
+and come back.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginRebuild()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_EndRebuild_" data-uid="FarEmerald.PlayForge.TagCache.EndRebuild*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_EndRebuild" data-uid="FarEmerald.PlayForge.TagCache.EndRebuild">
+  EndRebuild()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends a rebuild, and tells each tag whose weight it changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndRebuild()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_EvaluateTagWorkers_" data-uid="FarEmerald.PlayForge.TagCache.EvaluateTagWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_EvaluateTagWorkers" data-uid="FarEmerald.PlayForge.TagCache.EvaluateTagWorkers">
+  EvaluateTagWorkers()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Evaluate tag worker states and queue activate/resolve actions.
+Called during end-of-frame processing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EvaluateTagWorkers()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FarEmerald_PlayForge_TagCache_EvaluateTagWorkers_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>It evaluates them only when the tags changed, a worker came or went, or the last evaluation queued an action,
+which it then sees land: in any other frame, every worker would come out as it was. The workers were evaluated
+at the end of every frame, a poll for the tags they name. A worker whose validity reads more than the
+tags asks for every frame with <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html#FarEmerald_PlayForge_AbstractTagWorker_EvaluateEveryFrame">EvaluateEveryFrame</a>.</p>
+</div>
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_GetAppliedTags_" data-uid="FarEmerald.PlayForge.TagCache.GetAppliedTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_GetAppliedTags" data-uid="FarEmerald.PlayForge.TagCache.GetAppliedTags">
+  GetAppliedTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns all currently applied tags.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Tag&gt; GetAppliedTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_GetHierarchyDebugString_" data-uid="FarEmerald.PlayForge.TagCache.GetHierarchyDebugString*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_GetHierarchyDebugString" data-uid="FarEmerald.PlayForge.TagCache.GetHierarchyDebugString">
+  GetHierarchyDebugString()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a formatted string of all tags grouped by hierarchy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetHierarchyDebugString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_GetMatchingTags_" data-uid="FarEmerald.PlayForge.TagCache.GetMatchingTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_GetMatchingTags_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.GetMatchingTags(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  GetMatchingTags(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets all tags that match the query according to match mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Tag&gt; GetMatchingTags(Tag query, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_GetMatchingWeight_" data-uid="FarEmerald.PlayForge.TagCache.GetMatchingWeight*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_GetMatchingWeight_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.GetMatchingWeight(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  GetMatchingWeight(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the total weight of tags matching the query (hierarchical).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetMatchingWeight(Tag tag, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_GetWeight_" data-uid="FarEmerald.PlayForge.TagCache.GetWeight*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_GetWeight_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.TagCache.GetWeight(FarEmerald.PlayForge.Tag)">
+  GetWeight(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the weight (stack count) of a specific tag. Returns -1 if tag not present.
+This is an EXACT match only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetWeight(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_HasAllTags_" data-uid="FarEmerald.PlayForge.TagCache.HasAllTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_HasAllTags_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.HasAllTags(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag},FarEmerald.PlayForge.ETagMatchMode)">
+  HasAllTags(IEnumerable&lt;Tag&gt;, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if ALL of the specified tags are present.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAllTags(IEnumerable&lt;Tag&gt; tags, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_HasAnyTag_" data-uid="FarEmerald.PlayForge.TagCache.HasAnyTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_HasAnyTag_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.HasAnyTag(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag},FarEmerald.PlayForge.ETagMatchMode)">
+  HasAnyTag(IEnumerable&lt;Tag&gt;, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if ANY of the specified tags are present.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAnyTag(IEnumerable&lt;Tag&gt; tags, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_HasNoneOfTags_" data-uid="FarEmerald.PlayForge.TagCache.HasNoneOfTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_HasNoneOfTags_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.HasNoneOfTags(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag},FarEmerald.PlayForge.ETagMatchMode)">
+  HasNoneOfTags(IEnumerable&lt;Tag&gt;, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if NONE of the specified tags are present.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasNoneOfTags(IEnumerable&lt;Tag&gt; tags, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_HasTag_" data-uid="FarEmerald.PlayForge.TagCache.HasTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_HasTag_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.HasTag(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  HasTag(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if the tag is present with weight &gt; 0.
+Supports hierarchical matching via matchMode parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTag(Tag tag, ETagMatchMode matchMode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_HasTagExact_" data-uid="FarEmerald.PlayForge.TagCache.HasTagExact*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_HasTagExact_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.TagCache.HasTagExact(FarEmerald.PlayForge.Tag)">
+  HasTagExact(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns true if the tag is present with weight &gt; 0.
+This is an EXACT match only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTagExact(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_IsWorkerActive_" data-uid="FarEmerald.PlayForge.TagCache.IsWorkerActive*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_IsWorkerActive_FarEmerald_PlayForge_AbstractTagWorker_" data-uid="FarEmerald.PlayForge.TagCache.IsWorkerActive(FarEmerald.PlayForge.AbstractTagWorker)">
+  IsWorkerActive(AbstractTagWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWorkerActive(AbstractTagWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_Listen_" data-uid="FarEmerald.PlayForge.TagCache.Listen*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_Listen_FarEmerald_PlayForge_Tag_System_Action_FarEmerald_PlayForge_TagChange__FarEmerald_PlayForge_ETagChangeKind_" data-uid="FarEmerald.PlayForge.TagCache.Listen(FarEmerald.PlayForge.Tag,System.Action{FarEmerald.PlayForge.TagChange},FarEmerald.PlayForge.ETagChangeKind)">
+  Listen(Tag, Action&lt;TagChange&gt;, ETagChangeKind)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Listens to a tag and the tags under it, as a listener on <code>Status</code> hears <code>Status.Burning</code>: as each
+comes or goes, or, with <a class="xref" href="FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AnyCount">AnyCount</a>, as its weight changes at all. A change is told
+as it happens, and a rebuild's, as a compile is, as it ends, with only what it changed. Dispose the listener to
+stop it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TagListener Listen(Tag tag, Action&lt;TagChange&gt; onChange, ETagChangeKind kind = ETagChangeKind.AddedOrRemoved)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>onChange</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TagChange.html">TagChange</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>kind</code> <a class="xref" href="FarEmerald.PlayForge.ETagChangeKind.html">ETagChangeKind</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.TagListener.html">TagListener</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_LogActiveWorkers_" data-uid="FarEmerald.PlayForge.TagCache.LogActiveWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_LogActiveWorkers" data-uid="FarEmerald.PlayForge.TagCache.LogActiveWorkers">
+  LogActiveWorkers()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LogActiveWorkers()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_LogWeights_" data-uid="FarEmerald.PlayForge.TagCache.LogWeights*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_LogWeights" data-uid="FarEmerald.PlayForge.TagCache.LogWeights">
+  LogWeights()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LogWeights()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_ProvideWorker_" data-uid="FarEmerald.PlayForge.TagCache.ProvideWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_ProvideWorker_FarEmerald_PlayForge_AbstractTagWorker_" data-uid="FarEmerald.PlayForge.TagCache.ProvideWorker(FarEmerald.PlayForge.AbstractTagWorker)">
+  ProvideWorker(AbstractTagWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProvideWorker(AbstractTagWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RemoveMatchingTags_" data-uid="FarEmerald.PlayForge.TagCache.RemoveMatchingTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RemoveMatchingTags_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_ETagMatchMode_" data-uid="FarEmerald.PlayForge.TagCache.RemoveMatchingTags(FarEmerald.PlayForge.Tag,FarEmerald.PlayForge.ETagMatchMode)">
+  RemoveMatchingTags(Tag, ETagMatchMode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all tags matching the query.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RemoveMatchingTags(Tag query, ETagMatchMode matchMode = ETagMatchMode.Exact)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>matchMode</code> <a class="xref" href="FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RemoveTag_" data-uid="FarEmerald.PlayForge.TagCache.RemoveTag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RemoveTag_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.TagCache.RemoveTag(FarEmerald.PlayForge.Tag)">
+  RemoveTag(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes one instance of a tag (decrements weight).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTag(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RemoveTagCompletely_" data-uid="FarEmerald.PlayForge.TagCache.RemoveTagCompletely*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RemoveTagCompletely_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.TagCache.RemoveTagCompletely(FarEmerald.PlayForge.Tag)">
+  RemoveTagCompletely(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Completely removes a tag regardless of weight.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTagCompletely(Tag tag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RemoveTags_" data-uid="FarEmerald.PlayForge.TagCache.RemoveTags*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RemoveTags_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_Tag__" data-uid="FarEmerald.PlayForge.TagCache.RemoveTags(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.Tag})">
+  RemoveTags(IEnumerable&lt;Tag&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes multiple tags.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTags(IEnumerable&lt;Tag&gt; tags)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tags</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_RemoveWorker_" data-uid="FarEmerald.PlayForge.TagCache.RemoveWorker*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_RemoveWorker_FarEmerald_PlayForge_AbstractTagWorker_" data-uid="FarEmerald.PlayForge.TagCache.RemoveWorker(FarEmerald.PlayForge.AbstractTagWorker)">
+  RemoveWorker(AbstractTagWorker)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveWorker(AbstractTagWorker worker)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worker</code> <a class="xref" href="FarEmerald.PlayForge.AbstractTagWorker.html">AbstractTagWorker</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_ResetCache_" data-uid="FarEmerald.PlayForge.TagCache.ResetCache*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_ResetCache" data-uid="FarEmerald.PlayForge.TagCache.ResetCache">
+  ResetCache()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetCache()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_ResetWeights_" data-uid="FarEmerald.PlayForge.TagCache.ResetWeights*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_ResetWeights" data-uid="FarEmerald.PlayForge.TagCache.ResetWeights">
+  ResetWeights()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reset all tag state and resolve all active workers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetWeights()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_SetDeferredContext_" data-uid="FarEmerald.PlayForge.TagCache.SetDeferredContext*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_SetDeferredContext_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ActionQueue_FarEmerald_PlayForge_FrameSummary_" data-uid="FarEmerald.PlayForge.TagCache.SetDeferredContext(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ActionQueue,FarEmerald.PlayForge.FrameSummary)">
+  SetDeferredContext(IGameplayAbilitySystem, ActionQueue, FrameSummary)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the deferred execution context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDeferredContext(IGameplayAbilitySystem system, ActionQueue actionQueue, FrameSummary frameSummary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>system</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dd></dd>
+    <dt><code>actionQueue</code> <a class="xref" href="FarEmerald.PlayForge.ActionQueue.html">ActionQueue</a></dt>
+    <dd></dd>
+    <dt><code>frameSummary</code> <a class="xref" href="FarEmerald.PlayForge.FrameSummary.html">FrameSummary</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_TickTagWorkers_" data-uid="FarEmerald.PlayForge.TagCache.TickTagWorkers*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_TickTagWorkers" data-uid="FarEmerald.PlayForge.TagCache.TickTagWorkers">
+  TickTagWorkers()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tick all active tag workers.
+Called after tag worker activation/resolution actions are processed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TickTagWorkers()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_TagCache_TryGetWeight_" data-uid="FarEmerald.PlayForge.TagCache.TryGetWeight*"></a>
+
+  <h3 id="FarEmerald_PlayForge_TagCache_TryGetWeight_FarEmerald_PlayForge_Tag_System_Int32__" data-uid="FarEmerald.PlayForge.TagCache.TryGetWeight(FarEmerald.PlayForge.Tag,System.Int32@)">
+  TryGetWeight(Tag, out int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tries to get the weight of a tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetWeight(Tag tag, out int weight)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+    <dt><code>weight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_TagCache_TagChanged" data-uid="FarEmerald.PlayForge.TagCache.TagChanged">
+  TagChanged
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Each change to a tag's weight, as it happens, or a rebuild's, as it ends. Nothing told anyone a tag came or
+went: a tag worker polled for it every frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;TagChange&gt; TagChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="FarEmerald.PlayForge.TagChange.html">TagChange</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

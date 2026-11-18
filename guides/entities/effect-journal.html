@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Effect Journal | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Effect Journal | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.entities.effect-journal">
+<h1 id="effect-journal">Effect Journal</h1>
+
+<p>An <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> keeps the life of each effect on the entities it listens to: <code>Listen(gas)</code> one, <code>Follow(list)</code>
+these and no others, <code>Forget(gas)</code> one, and <code>Dispose()</code> all; what it wrote stays. Its <strong>Entries</strong> run oldest first, its
+last <strong>Keep</strong> of them, 500 unless it's told; <strong>Of(effect)</strong> and <strong>On(entity)</strong> filter them, <strong>Written</strong> counts every one
+it wrote, and <strong>Wrote</strong> is raised as each is. It records only while it listens, and an entity no journal listens to pays
+nothing: the Creator Lab's bottom panel reads one, and the Debugger's Timeline.</p>
+<p>Each entry is an <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournalEntry.html"><code>EffectJournalEntry</code></a>: its <strong>Kind</strong>, its <strong>Time</strong> and <strong>Frame</strong>, the <strong>Entity</strong> it happened on, the
+<strong>Effect</strong>, its <strong>Spec</strong> and its <strong>Source</strong>, and what its kind tells:</p>
+<ul>
+<li><strong>Applied</strong>: the effect landed, with its first impact's number read as it landed, part by part (<strong>Trace</strong>, a
+<a class="xref" href="../../api/FarEmerald.PlayForge.NumberTrace.html"><code>NumberTrace</code></a>).</li>
+<li><strong>Refused</strong>: it didn't, and its <strong>Refusal</strong> says why: the entity is <strong>Dead</strong>, its <strong>Affiliation</strong> policy doesn't take
+the entity, its <strong>Requirements</strong> don't hold, an <strong>Immunity</strong> names it, its <strong>Chance</strong> missed, a Block or Evade
+<strong>Stopped</strong> it, or it was asked for again inside its own application (<strong>Cycle</strong>). Callbacks hear each as
+<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectRefused"><code>OnEffectRefused(spec, refusal)</code></a>.</li>
+<li><strong>Ticked</strong>: its ticks executed, <strong>Ticks</strong> of them.</li>
+<li><strong>Impact</strong>: a change it made, to its <strong>Attribute</strong>, by its <strong>Change</strong>, with its <strong>Breakdown</strong> through its pipeline.</li>
+<li><strong>Removed</strong>: it came off.</li>
+<li><strong>Worker</strong>: one of its workers heard one of its moments, or one of its dealer's impact workers ran for its hit: the
+<strong>Worker</strong>, its <strong>WorkerName</strong>, the <strong>Hook</strong> (Application, Tick, Removal or Impact), the <strong>Side</strong> it ran on (the
+<strong>Target</strong>, or the <strong>Dealer</strong> for a hit, as <a href="../workers/the-map.html">Workers: The map</a> says), and the <strong>Actions</strong> it queued,
+each <strong>Queued</strong>, <strong>Ran</strong> or <strong>Dropped</strong>.</li>
+</ul>
+<p>An entry reads as a line: &quot;Burn landed on Target, from Caster&quot;, &quot;Poison refused by Target: immunity&quot;, &quot;Burn's Noting heard
+it tick on Target, queuing Ticked&quot;.</p>
+<hr>
+<p><a href="combat-log.html">← Combat Log</a> · <a href="index.html">Entities</a> · <a href="local-data.html">Local Data →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Quickstart: a damage ability in ~10 minutes | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Quickstart: a damage ability in ~10 minutes | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.getting-started.quickstart-a-damage-ability-in-10-minutes">
+<h1 id="quickstart-a-damage-ability-in-10-minutes">Quickstart: a damage ability in ~10 minutes</h1>
+
+<p>Everything below can be done from <strong>Window → PlayForge → The Forge</strong> (its Create menu), or via
+the <code>Create → PlayForge</code> asset menu, which lists the Forge Project, then the assets The Forge lists, in its order, then
+the numbers, rules and the Tag Library.</p>
+<ol>
+<li><strong>Attribute</strong> — create <a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a> asset &quot;Health&quot;.</li>
+<li><strong>AttributeSet</strong> — create a set; add an element for Health with Base/Current <code>100</code>,
+Overflow policy <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeOverflowPolicy.html#FarEmerald_PlayForge_EAttributeOverflowPolicy_ZeroToBase"><code>ZeroToBase</code></a> (Current can never exceed Base — pool-style).</li>
+<li><strong>EntityIdentity</strong> — create one; assign the AttributeSet, set level range.</li>
+<li><strong>GameplayEffect &quot;Fireball Damage&quot;</strong> — Duration policy <code>Instant</code>; impact: Attribute =
+Health, Operation = <code>Add</code>, Magnitude = <code>-30</code> (or attach a scaler for per-level values
+like −20/−30/−40/−50).</li>
+<li><strong>Ability &quot;Fireball&quot;</strong> — add a targeting task (e.g. <a class="xref" href="../../api/FarEmerald.PlayForge.SelectGasTargetTask.html"><code>SelectGasTargetTask</code></a>), one stage
+with an <a class="xref" href="../../api/FarEmerald.PlayForge.ApplyEffectsAbilityTask.html"><code>ApplyEffectsAbilityTask</code></a> referencing the damage effect; assign Cost/Cooldown
+effects if desired; set the level range and link the damage effect's scaler
+<a class="xref" href="../../api/FarEmerald.PlayForge.ELevelConfig.html#FarEmerald_PlayForge_ELevelConfig_LockToLevelProvider"><code>LockToLevelProvider</code></a>.</li>
+<li><strong>Scene</strong> — add a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> to a GameObject, assign the EntityIdentity,
+and bring PlayForge up with a <a class="xref" href="../../api/FarEmerald.PlayForge.Bootstrapper.html"><code>Bootstrapper</code></a>: the prefab PlayForge makes in <code>Assets/PlayForge/Bootstrap</code> as your
+first Forge Project is made, or a GameObject with the component, naming the Forge Project the scene plays. It makes
+ProcessControl and the GameRoot, which runs as the project's Game Root entity. Grant + activate the ability through
+the <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html"><code>AbilitySystemComponent</code></a>, or drive everything from code with
+<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> (no GameObject needed), which <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(gas).Run()</code></a> starts.</li>
+</ol>
+<h2 id="code-driven-abilities-sequences">Code-driven abilities (sequences)</h2>
+<p>For behavior beyond declarative tasks, use <a class="xref" href="../../api/FarEmerald.PlayForge.RunSequenceTask.html"><code>RunSequenceTask</code></a> pointing at a static
+<code>[TaskSequenceMethod]</code> builder. Load the effects it applies with a <a class="xref" href="../../api/FarEmerald.PlayForge.SetEffectsTask.html"><code>SetEffectsTask</code></a>
+asset loader, and <strong>annotate the sequence</strong> so tooltips/analysis can decipher it:</p>
+<pre><code class="lang-csharp">[TaskSequenceMethod(&quot;Ability: Chain Lightning&quot;)]
+public static TaskSequence ChainLightning() =&gt;
+    TaskSequenceBuilder.Create(&quot;Chain Lightning&quot;)
+        .WithAppliedEffects(Tags.EFFECTS, maxApplications: 4, &quot;per enemy struck&quot;)
+        .WithAnnotation(&quot;Chains to up to 4 nearby enemies&quot;)
+        .Task(async (d, t) =&gt; { /* ... d.TryApplyEffects(target, Tags.EFFECTS) ... */ })
+        .BuildSequence();
+</code></pre>
+<h2 id="running-a-process-or-a-sequence">Running a process or a sequence</h2>
+<p><code>ProcessControl.Register</code> starts a registration, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.Run.html"><code>Run</code></a> makes it: it registers the process, a MonoBehaviour or
+runtime process, a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html"><code>TaskSequence</code></a> or a chain of them, and starts it. <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessRegistration.html#FarEmerald_PlayForge_ProcessRegistration_HandledBy_"><code>HandledBy</code></a> names what the process belongs to,
+which ends it as it ends, and <code>With</code> the packet it carries. Left out, an ability's packet hands the process to the
+packet's source, and anything else to GameRoot. A refused registration says why:</p>
+<pre><code class="lang-csharp">var result = ProcessControl.Register(projectile).HandledBy(gas).With(data).Run();
+if (!result) ForgeLog.Warning($&quot;Not registered: {result.Refusal}&quot;);
+</code></pre>
+<p>A process an ability's <strong>Create Mono Process</strong> task spawns takes the ability as its origin, so the effects it
+applies are the caster's, at the ability's level. Its <strong>Spawn At</strong> puts it at the caster, as a projectile, or at the
+ability's target, as a fire on the ground, or where the data's Position says. A gameplay mono process, as <a class="xref" href="../../api/FarEmerald.PlayForge.ProjectileMonoProcess.html"><code>ProjectileMonoProcess</code></a>, carries
+attributes of its own in <strong>Attributes</strong>: each is an attribute, the role it's read by (a projectile reads its speed
+as ProjectileSpeed), and where it starts: its own value, a number or a scaler read at the spawning ability's level,
+the caster's attribute, or the caster's where it has one. The data that spawns it can set one under its role, and
+its code reads and sets them with <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractGameplayMonoProcess.html#FarEmerald_PlayForge_AbstractGameplayMonoProcess_TryGetRole_"><code>TryGetRole</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractGameplayMonoProcess.html#FarEmerald_PlayForge_AbstractGameplayMonoProcess_SetRole_"><code>SetRole</code></a>, <code>TryGetAttribute</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractGameplayMonoProcess.html#FarEmerald_PlayForge_AbstractGameplayMonoProcess_SetAttribute_"><code>SetAttribute</code></a>.</p>
+<p>A process that requires control waits after it registers; <code>relay.Run()</code> starts it.</p>
+<p><a href="../processes/index.html">Processes</a> covers processes, their lifecycles, pausing and groups, and
+<a href="../task-sequences/index.html">Task Sequences</a> task sequences: their stages, tasks, repeats, injections, chains, synced runners
+and libraries.</p>
+<h2 id="time-and-random-numbers">Time and random numbers</h2>
+<p>PlayForge reads time through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> and draws random numbers through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, which read Unity's <code>Time</code> and
+<code>Random</code> unless you put in your own: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(clock)</code></a> with an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>, and <code>ForgeRandom.Use(new SeededRandom(seed))</code>, whose rolls repeat from their seed whatever else draws from Unity's. Each <code>Use</code> returns what it
+replaced, to put back. Each entity numbers its effects' applications (<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_ApplicationId"><code>GameplayEffectSpec.ApplicationId</code></a>) and its
+abilities' activations.</p>
+<p>Each entity also has a clock of its own, <code>gas.GetClock()</code>: the game's time scaled by its <code>TimeScale</code>. Its effects run
+by it, its cooldowns among them, and so do its abilities' waits and sequences, so <code>TimeScale = 0.5f</code> slows one entity
+and no other. A scale of 0 holds the entity's time still; it isn't a pause.</p>
+<p>A sequence can run by a clock of its own: <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(UnscaledClock.Instance)</code></a> runs a pause menu's while the game's time
+stands, a <a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a> runs one at a pace of its own, and a packet's <code>Clock</code>, an entity's among them, comes before
+either. An ability's Run Sequence task picks one in its inspector, its <strong>Clock</strong>. <a href="../task-sequences/index.html">Task Sequences</a>
+has the order a run takes them in.</p>
+<p>For a run that comes out the same at any frame rate, set ProcessControl's Fixed Tick Rate, as 60. The game then steps
+in ticks, each a fixed step of its time, as many a frame as the frame's time holds: every process steps once a tick,
+its end of frame with it, and each sequence's wait goes on by the tick. Code of your own that waits for a sequence's
+next frame awaits <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next(token)</code></a>. 0, the default, steps once a frame. The ticks stand with the game's time, so
+a sequence on the unscaled clock waits for Unity's frames instead.</p>
+<h2 id="tooltips-what-does-this-ability-do">Tooltips: what does this ability do?</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbilityInspector.html#FarEmerald_PlayForge_AbilityInspector_Build_"><code>AbilityInspector.Build(ability)</code></a> returns a full static breakdown — every effect, its
+role, target scope, and per-level numbers evaluated through the real scaler pipeline, and its components, what sets it
+off on its own, its chance to activate and its Attribute Costs:</p>
+<pre><code class="lang-csharp">var breakdown = AbilityInspector.Build(fireball);
+foreach (var line in breakdown.Describe(level))   // &quot;Deals 30 Health to target&quot;, &quot;Cooldown: 8s&quot;
+    tooltip.AppendLine(line);
+
+var impact = breakdown.GameplayUsages.First().Series.Impacts[0];
+string perLevel = impact.FormatTotal();           // &quot;20/30/40/50&quot;
+</code></pre>
+<hr>
+<p><a href="the-pieces-in-one-paragraph.html">← The pieces in one paragraph</a> · <a href="index.html">Getting Started</a> · <a href="tooling-tour.html">Tooling tour →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AbilityDataPacket | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AbilityDataPacket | PlayForge ">
+      
+      <meta name="description" content="Data packet for ability execution. Extends SequenceDataPacket so that abilities run through the TaskSequence system natively — the same packet flows through targeting, execution stages, callbacks, and ProcessControl. IMPORTANT: Ability tasks must be stateless. All per-activation data flows through this packet, NOT as fields on the task itself.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.AbilityDataPacket">
+
+
+
+  <h1 id="FarEmerald_PlayForge_AbilityDataPacket" data-uid="FarEmerald.PlayForge.AbilityDataPacket" class="text-break">
+Class AbilityDataPacket  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Data packet for ability execution. Extends SequenceDataPacket so that
+abilities run through the TaskSequence system natively — the same packet
+flows through targeting, execution stages, callbacks, and ProcessControl.</p>
+<p>IMPORTANT: Ability tasks must be stateless. All per-activation data
+flows through this packet, NOT as fields on the task itself.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AbilityDataPacket : SequenceDataPacket, IGameplayProcessHandler, IHasReadableDefinition</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a></div>
+      <div><span class="xref">AbilityDataPacket</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Runtime">SequenceDataPacket.Runtime</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Chain">SequenceDataPacket.Chain</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_IsInChain">SequenceDataPacket.IsInChain</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_StageIndex">SequenceDataPacket.StageIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_CurrentStage">SequenceDataPacket.CurrentStage</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_ElapsedTime">SequenceDataPacket.ElapsedTime</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_IsSequenceRunning">SequenceDataPacket.IsSequenceRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Definition">SequenceDataPacket.Definition</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_ChainSequenceIndex">SequenceDataPacket.ChainSequenceIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_ChainSequenceCount">SequenceDataPacket.ChainSequenceCount</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SequenceName">SequenceDataPacket.SequenceName</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_StageName">SequenceDataPacket.StageName</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_StageRepeatCount">SequenceDataPacket.StageRepeatCount</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_IsCriticalSection">SequenceDataPacket.IsCriticalSection</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_IsPaused">SequenceDataPacket.IsPaused</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Interrupt">SequenceDataPacket.Interrupt()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SkipStage">SequenceDataPacket.SkipStage()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SkipAndMaintain">SequenceDataPacket.SkipAndMaintain()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_JumpToStage_System_Int32_">SequenceDataPacket.JumpToStage(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_JumpToStage_System_String_">SequenceDataPacket.JumpToStage(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_RestartSequence">SequenceDataPacket.RestartSequence()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Inject_FarEmerald_PlayForge_ISequenceInjection_System_Boolean_">SequenceDataPacket.Inject(ISequenceInjection, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_InjectStageLocal_FarEmerald_PlayForge_ISequenceInjection_">SequenceDataPacket.InjectStageLocal(ISequenceInjection)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_InjectStageLocal_FarEmerald_PlayForge_ISequenceInjection_FarEmerald_PlayForge_SequenceStage_">SequenceDataPacket.InjectStageLocal(ISequenceInjection, SequenceStage)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_CheckInjectConditions_System_Func_System_Boolean__FarEmerald_PlayForge_ISequenceInjection_System_Threading_CancellationToken_">SequenceDataPacket.CheckInjectConditions(Func&lt;bool&gt;, ISequenceInjection, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_BreakStageRepeat">SequenceDataPacket.BreakStageRepeat()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_BreakStageRepeat_FarEmerald_PlayForge_SequenceStage_">SequenceDataPacket.BreakStageRepeat(SequenceStage)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_InterruptChain">SequenceDataPacket.InterruptChain()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SkipSequence">SequenceDataPacket.SkipSequence()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SetStageTimeout_System_Single_FarEmerald_PlayForge_ISequenceInjection_">SequenceDataPacket.SetStageTimeout(float, ISequenceInjection)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_Default">SequenceDataPacket.Default()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SceneRoot">SequenceDataPacket.SceneRoot()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SceneLocal_UnityEngine_Transform_">SequenceDataPacket.SceneLocal(Transform)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_CreateNew">SequenceDataPacket.CreateNew()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket__payload">ProcessDataPacket._payload</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Payload">ProcessDataPacket.Payload</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_InUse">ProcessDataPacket.InUse</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Clock">ProcessDataPacket.Clock</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerRelays">ProcessDataPacket.HandlerRelays</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_CustomInstantiator">ProcessDataPacket.CustomInstantiator</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Path">ProcessDataPacket.Path</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_AppendPath_System_String_">ProcessDataPacket.AppendPath(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_SetByCallerMagnitudes">ProcessDataPacket.SetByCallerMagnitudes</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_SetByCaller_FarEmerald_PlayForge_Tag_System_Single_">ProcessDataPacket.SetByCaller(Tag, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TryGetSetByCaller_FarEmerald_PlayForge_Tag_System_Single__">ProcessDataPacket.TryGetSetByCaller(Tag, out float)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TakeSetByCaller_System_Collections_Generic_IReadOnlyDictionary_FarEmerald_PlayForge_Tag_System_Single__">ProcessDataPacket.TakeSetByCaller(IReadOnlyDictionary&lt;Tag, float&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_AddPayload__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.AddPayload&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_AddPayload__1_FarEmerald_PlayForge_Tag_System_Collections_Generic_IEnumerable___0__">ProcessDataPacket.AddPayload&lt;T&gt;(Tag, IEnumerable&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_InsertPayload__1_FarEmerald_PlayForge_Tag_System_Int32___0_">ProcessDataPacket.InsertPayload&lt;T&gt;(Tag, int, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_SetPayload__1_FarEmerald_PlayForge_Tag_System_Int32___0_">ProcessDataPacket.SetPayload&lt;T&gt;(Tag, int, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Get__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_EDataTarget___0_">ProcessDataPacket.Get&lt;T&gt;(Tag, EDataTarget, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetAll__1_FarEmerald_PlayForge_Tag_">ProcessDataPacket.GetAll&lt;T&gt;(Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TryGet__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_EDataTarget___0__">ProcessDataPacket.TryGet&lt;T&gt;(Tag, EDataTarget, out T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TryGetFirst__1_FarEmerald_PlayForge_Tag___0__">ProcessDataPacket.TryGetFirst&lt;T&gt;(Tag, out T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TryGetAt__1_FarEmerald_PlayForge_Tag_System_Int32___0__">ProcessDataPacket.TryGetAt&lt;T&gt;(Tag, int, out T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_TryGetAll__1_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_DataValue___0___">ProcessDataPacket.TryGetAll&lt;T&gt;(Tag, out DataValue&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Remove_FarEmerald_PlayForge_Tag_">ProcessDataPacket.Remove(Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Remove__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.Remove&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_ContainsKey_FarEmerald_PlayForge_Tag_">ProcessDataPacket.ContainsKey(Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Contains__1___0_FarEmerald_PlayForge_Tag_">ProcessDataPacket.Contains&lt;T&gt;(T, Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetPrimary__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.GetPrimary&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetLast__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.GetLast&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_SetPrimary__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.SetPrimary&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Contains_FarEmerald_PlayForge_Tag_">ProcessDataPacket.Contains(Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Count_FarEmerald_PlayForge_Tag_">ProcessDataPacket.Count(Tag)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetOrInit__1_FarEmerald_PlayForge_Tag___0_">ProcessDataPacket.GetOrInit&lt;T&gt;(Tag, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Increment_FarEmerald_PlayForge_Tag_System_Int32_">ProcessDataPacket.Increment(Tag, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Decrement_FarEmerald_PlayForge_Tag_System_Int32_">ProcessDataPacket.Decrement(Tag, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_IncrementFloat_FarEmerald_PlayForge_Tag_System_Single_">ProcessDataPacket.IncrementFloat(Tag, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_DecrementFloat_FarEmerald_PlayForge_Tag_System_Single_">ProcessDataPacket.DecrementFloat(Tag, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Toggle_FarEmerald_PlayForge_Tag_System_Boolean_">ProcessDataPacket.Toggle(Tag, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetRelays">ProcessDataPacket.GetRelays()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerValidateAgainst_FarEmerald_PlayForge_IGameplayProcessHandler_">ProcessDataPacket.HandlerValidateAgainst(IGameplayProcessHandler)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerProcessIsSubscribed_FarEmerald_PlayForge_ProcessRelay_">ProcessDataPacket.HandlerProcessIsSubscribed(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerSubscribeProcess_FarEmerald_PlayForge_ProcessRelay_">ProcessDataPacket.HandlerSubscribeProcess(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerVoidProcess_FarEmerald_PlayForge_ProcessRelay_">ProcessDataPacket.HandlerVoidProcess(ProcessRelay)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_GetInstantiator_FarEmerald_PlayForge_AbstractMonoProcess_">ProcessDataPacket.GetInstantiator(AbstractMonoProcess)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryApplyEffects_FarEmerald_PlayForge_AbilityDataPacket_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.TryApplyEffects(AbilityDataPacket, ITarget, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessHandlerUtil.html#FarEmerald_PlayForge_ProcessHandlerUtil_MassDataAction_FarEmerald_PlayForge_IGameplayProcessHandler_System_Action_FarEmerald_PlayForge_ProcessDataPacket__">ProcessHandlerUtil.MassDataAction(IGameplayProcessHandler, Action&lt;ProcessDataPacket&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_GetLoadedAssets__1_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.GetLoadedAssets&lt;T&gt;(ProcessDataPacket, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_GetTargetingPacket_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_AbstractTargetingPacket__System_Boolean_">ProcessTaskUtil.GetTargetingPacket(ProcessDataPacket, Tag, out AbstractTargetingPacket, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_SetTargetingPacket_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_AbstractTargetingPacket_">ProcessTaskUtil.SetTargetingPacket(ProcessDataPacket, Tag, AbstractTargetingPacket)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_SetTargetingPackets_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_ITarget__">ProcessTaskUtil.SetTargetingPackets(ProcessDataPacket, Tag, IEnumerable&lt;ITarget&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryApplyEffects_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_ITarget_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.TryApplyEffects(ProcessDataPacket, ITarget, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryApplyEffects_FarEmerald_PlayForge_ProcessDataPacket_UnityEngine_GameObject_FarEmerald_PlayForge_Tag_">ProcessTaskUtil.TryApplyEffects(ProcessDataPacket, GameObject, Tag)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_TryGetLoadedAssets__1_FarEmerald_PlayForge_ProcessDataPacket_FarEmerald_PlayForge_Tag_FarEmerald_PlayForge_DataValue___0___">ProcessTaskUtil.TryGetLoadedAssets&lt;T&gt;(ProcessDataPacket, Tag, out DataValue&lt;T&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_EffectOrigin" data-uid="FarEmerald.PlayForge.AbilityDataPacket.EffectOrigin">
+  EffectOrigin
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IEffectOrigin EffectOrigin</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_Request" data-uid="FarEmerald.PlayForge.AbilityDataPacket.Request">
+  Request
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AbilitySystemComponent.AbilityActivationRequest Request</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>.<a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilityActivationRequest</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_AbilitySpec_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.AbilitySpec*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_AbilitySpec" data-uid="FarEmerald.PlayForge.AbilityDataPacket.AbilitySpec">
+  AbilitySpec
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resolves the AbilitySpec (convenience cast from IEffectOrigin).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySpec AbilitySpec { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html">AbilitySpec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_Callbacks_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.Callbacks*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_Callbacks" data-uid="FarEmerald.PlayForge.AbilityDataPacket.Callbacks">
+  Callbacks
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySystemCallbacks Callbacks { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemCallbacks.html">AbilitySystemCallbacks</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_NotifyCriticalSectionExit_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.NotifyCriticalSectionExit*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_NotifyCriticalSectionExit" data-uid="FarEmerald.PlayForge.AbilityDataPacket.NotifyCriticalSectionExit">
+  NotifyCriticalSectionExit
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invoked by ability tasks that host sub-sequences (e.g. RunSequenceTask) when a nested
+critical section exits. Allows the activation handle to release its claim early, while
+the hosting ability runtime stays alive and fully tracked by ProcessControl until its
+sub-sequence completes naturally. Wired by AbilitySpecContainer when activating a handle.
+Invocation is expected to be idempotent on the consumer side.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action NotifyCriticalSectionExit { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_System_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.System*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_System" data-uid="FarEmerald.PlayForge.AbilityDataPacket.System">
+  System
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AbilitySystemComponent System { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_TargetingFailed_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TargetingFailed*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_TargetingFailed" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TargetingFailed">
+  TargetingFailed
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set by targeting tasks when targeting fails (e.g. invalid target selected with BreakRuntimeOnInvalid).
+Checked by AbilitySpecContainer to cancel the ability before execution proceeds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TargetingFailed { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_TargetingFinished_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TargetingFinished*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_TargetingFinished" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TargetingFinished">
+  TargetingFinished
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set once the targeting task gets to its end. Targeting cut short, by a throw or by anything ending its
+sequence, has no target to give, and the ability goes no further.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TargetingFinished { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_UsageEffectsApplied_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.UsageEffectsApplied*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_UsageEffectsApplied" data-uid="FarEmerald.PlayForge.AbilityDataPacket.UsageEffectsApplied">
+  UsageEffectsApplied
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UsageEffectsApplied { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GenerateFrom_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GenerateFrom*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GenerateFrom_FarEmerald_PlayForge_AbilitySpecContainer_FarEmerald_PlayForge_AbilitySystemComponent_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GenerateFrom(FarEmerald.PlayForge.AbilitySpecContainer,FarEmerald.PlayForge.AbilitySystemComponent)">
+  GenerateFrom(AbilitySpecContainer, AbilitySystemComponent)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AbilityDataPacket GenerateFrom(AbilitySpecContainer container, AbilitySystemComponent asc)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
+    <dd></dd>
+    <dt><code>asc</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GenerateFrom_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GenerateFrom*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GenerateFrom_FarEmerald_PlayForge_IEffectOrigin_FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_System_Boolean_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GenerateFrom(FarEmerald.PlayForge.IEffectOrigin,FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest,System.Boolean,FarEmerald.PlayForge.Tag)">
+  GenerateFrom(IEffectOrigin, AbilityActivationRequest, bool, Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AbilityDataPacket GenerateFrom(IEffectOrigin spec, AbilitySystemComponent.AbilityActivationRequest req, bool useImplicitTargeting, Tag implicitTargetingTag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.IEffectOrigin.html">IEffectOrigin</a></dt>
+    <dd></dd>
+    <dt><code>req</code> <a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.html">AbilitySystemComponent</a>.<a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilityActivationRequest</a></dt>
+    <dd></dd>
+    <dt><code>useImplicitTargeting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>implicitTargetingTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AbilityDataPacket.html">AbilityDataPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GetDefaultIcon_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetDefaultIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GetDefaultIcon" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetDefaultIcon">
+  GetDefaultIcon()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Texture2D GetDefaultIcon()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Texture2D.html">Texture2D</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GetDescription_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetDescription*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GetDescription" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetDescription">
+  GetDescription()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetDescription()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GetName_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetName*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GetName" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetName">
+  GetName()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_GetTaskState_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetTaskState*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_GetTaskState__1_FarEmerald_PlayForge_AbstractAbilityTask_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.GetTaskState``1(FarEmerald.PlayForge.AbstractAbilityTask)">
+  GetTaskState&lt;T&gt;(AbstractAbilityTask)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The state a task keeps for this activation, made the first time it's asked for. A task is one object
+shared by every activation of its ability, so whatever it keeps for an activation belongs here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetTaskState&lt;T&gt;(AbstractAbilityTask task) where T : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>task</code> <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityTask.html">AbstractAbilityTask</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_ResolveTarget_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.ResolveTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_ResolveTarget_FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.ResolveTarget(FarEmerald.PlayForge.Tag)">
+  ResolveTarget(Tag)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Files the entity each targeting packet points at under Target Real, in the packets' order, where tasks, rules
+and spawned processes look for it, unless a target is there already. Targeting leaves only the packets, under
+Target or the implicit tag, and nothing filed the entity, so Apply Effects never found its target.
+Then only the first was filed, so an ability that targeted several reached one of them.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResolveTarget(Tag implicitTag)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>implicitTag</code> <a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_TryGetFirstTarget_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TryGetFirstTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_TryGetFirstTarget_FarEmerald_PlayForge_ITarget__" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TryGetFirstTarget(FarEmerald.PlayForge.ITarget@)">
+  TryGetFirstTarget(out ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetFirstTarget(out ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AbilityDataPacket_TryGetTarget_" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TryGetTarget*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AbilityDataPacket_TryGetTarget_FarEmerald_PlayForge_EDataTarget_FarEmerald_PlayForge_ITarget__" data-uid="FarEmerald.PlayForge.AbilityDataPacket.TryGetTarget(FarEmerald.PlayForge.EDataTarget,FarEmerald.PlayForge.ITarget@)">
+  TryGetTarget(EDataTarget, out ITarget)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetTarget(EDataTarget policy, out ITarget target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>policy</code> <a class="xref" href="FarEmerald.PlayForge.EDataTarget.html">EDataTarget</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
