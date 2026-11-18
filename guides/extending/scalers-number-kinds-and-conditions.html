@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Scalers, number kinds and conditions | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Scalers, number kinds and conditions | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.scalers-number-kinds-and-conditions">
+<h1 id="scalers-number-kinds-and-conditions">Scalers, number kinds and conditions</h1>
+
+<p>A number field's <strong>Kind</strong> says how its number is worked out, and a Conditional's or a rule's condition says whether it
+holds. This section adds to <a href="../scalers/writing-your-own-scaler.html">Scalers: Writing your own scaler</a>, which covers the kinds' names, their
+inspectors and a number field in a class of a game's own: here are their members, the variances and behaviours, and an
+example of each.</p>
+<h2 id="number-kinds">Number kinds</h2>
+<p>A number kind derives from <a class="xref" href="../../api/FarEmerald.PlayForge.NumberKind.html"><code>NumberKind</code></a> and reads its site through a <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a>. It's the simplest way to a number
+of a game's own:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Evaluate(in NumberContext context)</code>, protected</td>
+<td>Its number.</td>
+</tr>
+<tr>
+<td><code>Describe()</code></td>
+<td>Its line in the field's summary, as &quot;the distance to the target&quot;.</td>
+</tr>
+<tr>
+<td><code>Reads</code></td>
+<td>What it reads of the site, from its <code>[NumberKind]</code>: <a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html#FarEmerald_PlayForge_NumberReads_Level"><code>NumberReads.Level</code></a>, <code>Caster</code>, <code>Target</code>, <code>Caller</code>, <code>LocalData</code>, <code>Carrier</code>, <code>Data</code>, <code>Owner</code>. A field offers it only where its site provides them.</td>
+</tr>
+<tr>
+<td><code>CanEvaluate(in context)</code></td>
+<td>Whether the site has what it reads; where it hasn't, the field reads <code>Fallback</code>, 0 unless it says, and logs why.</td>
+</tr>
+<tr>
+<td><code>WhyNot(in context)</code></td>
+<td>Why it can't be worked out, for that line. It's <code>protected internal</code>, so an override in another assembly is <code>protected override</code>.</td>
+</tr>
+<tr>
+<td><code>Explain(in context, NumberTrace trace)</code></td>
+<td>What its explanation lists, as the numbers it read.</td>
+</tr>
+</tbody>
+</table>
+<p><code>[NumberKind(&quot;Name&quot;, Reads = NumberReads.Caster | NumberReads.Target)]</code> names it and says what it reads. A kind is a
+scaler, so it works in an effect's magnitude and inside a Group or a Conditional too; its scaler <code>Evaluate</code> methods are
+sealed, and it reads none of a scaler's levels unless its <code>Parts</code> say.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [NumberKind(&quot;Distance to Target&quot;, Reads = NumberReads.Caster | NumberReads.Target)]
+    [ForgeMenu(&quot;Space&quot;, Description = &quot;How far the target stands from the caster.&quot;)]
+    public class DistanceToTargetKind : NumberKind
+    {
+        [Tooltip(&quot;Measures along the ground, leaving height out&quot;)]
+        public bool Flat = true;
+
+        protected override float Evaluate(in NumberContext context)
+        {
+            var from = context.Caster?.GetTargetingPacket();
+            var to = context.Target?.GetTargetingPacket();
+            if (from == null || to == null) return 0f;
+            var offset = to.position - from.position;
+            if (Flat) offset.y = 0f;
+            return offset.magnitude;
+        }
+
+        public override string Describe() =&gt; Flat ? &quot;the distance to the target, along the ground&quot; : &quot;the distance to the target&quot;;
+    }
+}
+</code></pre>
+<p>A number read in code is <code>number.Evaluate(context)</code>, with a <code>NumberContext</code> made <code>Of</code> what the code has: an effect's
+spec, an activation's data, a worker's context, an entity, a cue or a process. <code>NumberContext.For(caster, target, level)</code> makes one with nothing else, for a test.</p>
+<h2 id="conditions">Conditions</h2>
+<p>A condition derives from <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayCondition.html"><code>GameplayCondition</code></a> and has the same shape: <code>Evaluate(in NumberContext context)</code>, protected, says
+whether it holds; <code>Describe()</code>, <code>Reads</code>, <code>CanEvaluate</code>, <code>WhyNot</code> and <code>Explain</code> as a kind's; and <code>Initialize(carrier)</code>,
+which passes an effect's spec on to the numbers it holds as the spec is made. <code>condition.Holds(context)</code> reads it, and
+one that can't be worked out where it's read doesn't hold. <code>[GameplayCondition(&quot;Name&quot;, Reads = ...)]</code> names it; the
+condition menu lists only <code>[Serializable]</code> classes with a constructor that takes nothing. A condition is offered
+wherever one is picked: a Conditional, an effect's requirements, an On Hit, a modifier's rule, an ability's Condition
+check.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [GameplayCondition(&quot;Behind Target&quot;, Reads = NumberReads.Caster | NumberReads.Target)]
+    [ForgeMenu(&quot;Space&quot;, Description = &quot;Holds while the caster stands behind the target.&quot;)]
+    public class BehindTargetCondition : GameplayCondition
+    {
+        [Tooltip(&quot;How wide the arc behind the target is, in degrees&quot;)]
+        [NumberRange(0f, 360f)] public ScalableFloat Arc = 120f;
+
+        protected override bool Evaluate(in NumberContext context)
+        {
+            var caster = context.Caster?.GetTargetingPacket();
+            var target = context.Target?.GetTargetingPacket();
+            if (caster == null || target == null) return false;
+            var toCaster = caster.position - target.position;
+            toCaster.y = 0f;
+            var facing = target.rotation * Vector3.forward;
+            facing.y = 0f;
+            if (toCaster.sqrMagnitude &lt; 0.0001f || facing.sqrMagnitude &lt; 0.0001f) return false;
+            float arc = Arc?.Evaluate(in context, this) ?? 120f;
+            return Vector3.Angle(-facing, toCaster) &lt;= arc * 0.5f;
+        }
+
+        public override void Initialize(IAttributeImpactCarrier carrier) =&gt; Arc?.Initialize(carrier);
+
+        public override string Describe() =&gt; $&quot;the caster within {NumberText.Of(Arc)}° behind the target&quot;;
+    }
+}
+</code></pre>
+<p>A kind or a condition reads its own numbers with itself as their owner, <code>Arc.Evaluate(in context, this)</code>, so a number
+of the Relative to a Field kind can read its other fields.</p>
+<h2 id="scalers">Scalers</h2>
+<p>A scaler of the full kind derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html"><code>AbstractScaler</code></a>, which holds values for each level and behaviours, for a number
+that reads levels in a way of its own. It implements <code>Initialize(IAttributeImpactCarrier carrier)</code>, which readies it
+for an effect's spec as the spec is made, and <code>Evaluate(IAttributeImpactCarrier carrier)</code>. Its protected helpers read
+its levels:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_EvaluateFromSpec_"><code>EvaluateFromSpec(carrier)</code></a>: its values at the carrier's level, exactly or spread, through its behaviours.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_ApplyBehaviourEvaluation_"><code>ApplyBehaviourEvaluation(carrier, value)</code></a>: a value through its behaviours. Its behaviours apply only where its
+<code>Evaluate</code> calls one of these two.</li>
+<li><code>EvaluateAtLevel(level, relativeLevel)</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_GetEffectiveMaxLevel_"><code>GetEffectiveMaxLevel(carrier)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_GetEffectiveRelativeLevel_"><code>GetEffectiveRelativeLevel(carrier)</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html#FarEmerald_PlayForge_AbstractScaler_EvaluateScalingAtRelativeLevel_"><code>EvaluateScalingAtRelativeLevel(relativeLevel)</code></a>, for one that reads its levels itself.</li>
+</ul>
+<p><code>Parts</code> says which of every scaler's parts its inspector draws (<a href="../scalers/writing-your-own-scaler.html">Scalers: Writing your own scaler</a>), and
+<code>IsEmpty</code> true reads it as no scaler at all.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Its values per level, eased toward a cap so each level adds less.&quot;)]
+    public class SoftCapScaler : AbstractScaler
+    {
+        [Tooltip(&quot;The value it nears and never reaches; 0 or less, no cap&quot;)]
+        public float Cap = 100f;
+
+        public override void Initialize(IAttributeImpactCarrier carrier) { }
+
+        public override float Evaluate(IAttributeImpactCarrier carrier)
+        {
+            float raw = EvaluateFromSpec(carrier);
+            return Cap &lt;= 0f ? raw : Cap * raw / (Cap + Mathf.Abs(raw));
+        }
+    }
+}
+</code></pre>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCachedScaler.html"><code>AbstractCachedScaler</code></a> is the base of an attribute set element's <strong>Scaling</strong>, worked out from the entity's cached
+attribute values: its required <code>EvaluateActiveValue(blueprint, cache)</code> gives the value. PlayForge's own, as
+<a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeScaler.html"><code>CachedAttributeScaler</code></a>, show its shape.</p>
+<h2 id="variances">Variances</h2>
+<p>A Randomized scaler varies its value by its <strong>Variance</strong>, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractVariance.html"><code>AbstractVariance</code></a>, handed a roll from 0 to 1:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vary(value, roll, carrier)</code></td>
+<td>The value varied by the roll.</td>
+</tr>
+<tr>
+<td><code>Lowest(value, carrier)</code>, <code>Highest(value, carrier)</code></td>
+<td>The range a tooltip shows.</td>
+</tr>
+<tr>
+<td><code>Initialize(carrier)</code></td>
+<td>Readies its numbers for a spec.</td>
+</tr>
+<tr>
+<td><code>Numbers()</code></td>
+<td>Its numbers with their roles, for an explanation.</td>
+</tr>
+<tr>
+<td><code>Read(number, carrier, fallback)</code>, protected</td>
+<td>One of its numbers read for the carrier, with itself as their owner.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Name = &quot;Two Dice&quot;, Description = &quot;Up or down by a share of the value, the middle likeliest, as two dice fall.&quot;)]
+    public class TwoDiceVariance : AbstractVariance
+    {
+        [Tooltip(&quot;The most it varies by either way, as a share of the value: 0.2 for 20%&quot;)]
+        [NumberMin(0f)] public ScalableFloat Share = 0.2f;
+
+        public override float Vary(float value, float roll, IAttributeImpactCarrier carrier)
+        {
+            // The roll through a triangle's inverse, from -1 to 1, the middle likeliest
+            float centred = roll &lt; 0.5f ? Mathf.Sqrt(2f * roll) - 1f : 1f - Mathf.Sqrt(2f * (1f - roll));
+            return value * (1f + centred * Read(Share, carrier, 0f));
+        }
+
+        public override float Lowest(float value, IAttributeImpactCarrier carrier) =&gt; value * (1f - Read(Share, carrier, 0f));
+        public override float Highest(float value, IAttributeImpactCarrier carrier) =&gt; value * (1f + Read(Share, carrier, 0f));
+        public override void Initialize(IAttributeImpactCarrier carrier) =&gt; Share?.Initialize(carrier);
+        public override IEnumerable&lt;(string Role, ScalableFloat Number)&gt; Numbers() { yield return (&quot;Share&quot;, Share); }
+    }
+}
+</code></pre>
+<p>The roll comes from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, once for each spec where the scaler's <strong>Roll Once Per Spec</strong> is on.</p>
+<h2 id="scaler-behaviours">Scaler behaviours</h2>
+<p>A scaler's <strong>Behaviours</strong> adjust the value it works out, in order: each an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScalerBehaviour.html"><code>AbstractScalerBehaviour</code></a>, with
+<code>Initialize(IAttributeImpactCarrier spec)</code> and <code>Evaluate(float magnitude, IAttributeImpactCarrier spec)</code>, both
+required. Its overloads that take a stacking container are never called.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Rounds the number to a step, as 5 for multiples of 5.&quot;)]
+    public class RoundToStepScalerBehaviour : AbstractScalerBehaviour
+    {
+        [Tooltip(&quot;The step it rounds to; 0 leaves the number as it is&quot;)]
+        [Min(0f)] public float Step = 1f;
+
+        public override void Initialize(IAttributeImpactCarrier spec) { }
+
+        public override float Evaluate(float magnitude, IAttributeImpactCarrier spec) =&gt;
+            Step &gt; 0f ? Mathf.Round(magnitude / Step) * Step : magnitude;
+    }
+}
+</code></pre>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>A number is read often</strong>, as an effect's magnitude for every application and a tooltip each time it draws: no
+allocation and no side effects in <code>Evaluate</code>.</li>
+<li><strong>A kind is saved by its class's name</strong> (<a href="before-you-start.html">Before you start</a>).</li>
+<li><strong>Draw rolls from <code>ForgeRandom</code></strong>, never <code>UnityEngine.Random</code>, so a test or a replay that puts in a seeded source
+repeats them (<a href="time-randomness-and-input.html">Time, randomness and input</a>).</li>
+</ul>
+<hr>
+<p><a href="processes.html">← Processes</a> · <a href="index.html">Extending PlayForge</a> · <a href="value-stages.html">Value stages →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

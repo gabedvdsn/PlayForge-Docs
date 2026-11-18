@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Validation rules | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Validation rules | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.validation-rules">
+<h1 id="validation-rules">Validation rules</h1>
+
+<p>A validation rule refuses an ability's activation: one of the ability's <strong>Caster Checks</strong>, asked of the caster, or its
+<strong>Target Checks</strong>, asked of the target once its targeting has picked one. This section covers writing one;
+<a href="../abilities/requirements.html">Abilities: Requirements</a> covers the checks.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityValidationRule.html"><code>IAbilityValidationRule</code></a>:</p>
+<ul>
+<li><code>bool Validate(AbilityDataPacket data, Func&lt;ITarget&gt; getSource, out string error)</code>: whether it passes. <code>getSource()</code>
+gives the entity it checks: the caster among the Caster Checks, the target among the Target Checks. <code>error</code> says why
+it refused, in words a player could read.</li>
+<li><code>string GetName()</code>: its name, which a refusal names.</li>
+<li><code>RefusedAs</code>: the refusal kind it's told as among the Caster Checks, <code>Rule</code> unless it says, as the Cost check says
+<code>Cost</code>. A Target Check's refusal is always told as <code>Target</code>.</li>
+</ul>
+<p><code>[ValidationSide(EValidationSide.Caster)]</code> or <a class="xref" href="../../api/FarEmerald.PlayForge.EValidationSide.html#FarEmerald_PlayForge_EValidationSide_Target"><code>EValidationSide.Target</code></a> offers it in one list alone; without it, both
+lists offer it. <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAttributeValidationRule.html"><code>AbstractAttributeValidationRule</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html"><code>AbstractTagValidationRule</code></a> are bases for a rule about an
+attribute or a tag.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ValidationSide(EValidationSide.Target)]
+    [ForgeMenu(Name = &quot;Facing Target&quot;, Description = &quot;Activates only where the caster faces the target within an angle.&quot;)]
+    public class FacingTargetValidation : IAbilityValidationRule
+    {
+        [Tooltip(&quot;How far either side of straight ahead the target may be, in degrees&quot;)]
+        [Range(0f, 180f)] public float HalfAngle = 45f;
+
+        public bool Validate(AbilityDataPacket data, Func&lt;ITarget&gt; getSource, out string error)
+        {
+            var caster = data?.EffectOrigin?.GetSource()?.GetTargetingPacket();
+            var target = getSource?.Invoke()?.GetTargetingPacket();
+            if (caster == null || target == null)
+            {
+                error = &quot;There's no one to face&quot;;
+                return false;
+            }
+            var toTarget = target.position - caster.position;
+            toTarget.y = 0f;
+            var forward = caster.rotation * Vector3.forward;
+            forward.y = 0f;
+            if (toTarget.sqrMagnitude &lt; 0.0001f || Vector3.Angle(forward, toTarget) &lt;= HalfAngle)
+            {
+                error = null;
+                return true;
+            }
+            error = $&quot;Its target is more than {HalfAngle:0}° from where its caster faces&quot;;
+            return false;
+        }
+
+        public string GetName() =&gt; &quot;Facing Target&quot;;
+    }
+}
+</code></pre>
+<ul>
+<li><strong>A Caster Check is asked of every request</strong>, an AI's among them, before anything is paid: quick, free of allocation
+where it passes, and free of side effects.</li>
+<li><strong>A condition of a game's own</strong> does as much through PlayForge's <strong>Condition</strong> check, and serves effects' requirements
+and Conditionals as well (<a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions</a>).</li>
+<li><strong>A rule a component enforces</strong> is an <code>AbstractComponentValidationRule&lt;T&gt;</code>, which the component returns as its
+<code>TargetCheck</code> or <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck"><code>CasterCheck</code></a>; no picker offers one (<a href="components.html">Components</a>).</li>
+</ul>
+<hr>
+<p><a href="entity-services.html">← Entity services</a> · <a href="index.html">Extending PlayForge</a> · <a href="smaller-kinds.html">Smaller kinds →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

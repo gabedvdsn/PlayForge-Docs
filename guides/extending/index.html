@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Extending PlayForge | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Extending PlayForge | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending">
+<h1 id="extending-playforge">Extending PlayForge</h1>
+
+<p>PlayForge's rules are kinds a designer picks in an inspector: components, workers, tasks, scalers, conditions, stages,
+cue handlers and more. A game adds its own by writing a class of the same base. The editor finds the class, its picker
+offers it beside PlayForge's own, and it runs where they run, handed what they're handed. This guide covers each place a
+game's code plugs in: the base to derive from, the hooks it overrides and when each is called, how the kind reaches the
+inspector, what it's handed, a complete example, and the traps.</p>
+<p>Code that only uses PlayForge, as a script that casts an ability or reads an attribute, needs none of this. The kinds
+here plug into what <a href="../workers/index.html">Workers</a>, <a href="../scalers/index.html">Scalers</a>, <a href="../processes/index.html">Processes</a> and
+<a href="../task-sequences/index.html">Task Sequences</a> explain.</p>
+<table>
+<thead>
+<tr>
+<th>I want to…</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Know what every kind of my own needs: its assembly, its constructor, its name, its fields</td>
+<td><a href="before-you-start.html">Before you start</a></td>
+</tr>
+<tr>
+<td>Give effects, abilities, entities or items a feature of my own</td>
+<td><a href="components.html">Components</a></td>
+</tr>
+<tr>
+<td>React to an attribute's change, a hit, a tag, a frame's events or an effect's life</td>
+<td><a href="workers.html">Workers</a></td>
+</tr>
+<tr>
+<td>Make a change wait for the entity's end of frame</td>
+<td><a href="deferred-actions.html">Deferred actions</a></td>
+</tr>
+<tr>
+<td>Give an ability a step of my own</td>
+<td><a href="ability-tasks.html">Ability tasks</a></td>
+</tr>
+<tr>
+<td>Choose an ability's target my own way</td>
+<td><a href="targeting-tasks.html">Targeting tasks</a></td>
+</tr>
+<tr>
+<td>Build sequences in code with tasks, injections and stage rules of my own</td>
+<td><a href="sequence-tasks-injections-and-stage-policies.html">Sequence tasks, injections and stage policies</a></td>
+</tr>
+<tr>
+<td>Run something over time under ProcessControl</td>
+<td><a href="processes.html">Processes</a></td>
+</tr>
+<tr>
+<td>Work out a number my own way, or test a condition</td>
+<td><a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions</a></td>
+</tr>
+<tr>
+<td>Reshape a hit's value on its way in</td>
+<td><a href="value-stages.html">Value stages</a></td>
+</tr>
+<tr>
+<td>Play feedback: an animation, a sound, a shake</td>
+<td><a href="cue-handlers.html">Cue handlers</a></td>
+</tr>
+<tr>
+<td>Keep something for each entity as it runs</td>
+<td><a href="entity-services.html">Entity services</a></td>
+</tr>
+<tr>
+<td>Refuse an activation by a rule of my own</td>
+<td><a href="validation-rules.html">Validation rules</a></td>
+</tr>
+<tr>
+<td>Choose where an entity respawns, how charges come back, what a purge takes, a Local Data type</td>
+<td><a href="smaller-kinds.html">Smaller kinds</a></td>
+</tr>
+<tr>
+<td>Let my own character controller turn, move, shake the camera or pool a cue</td>
+<td><a href="a-games-own-objects.html">A game's own objects</a></td>
+</tr>
+<tr>
+<td>Show an entity's state in my UI</td>
+<td><a href="readers.html">Readers</a></td>
+</tr>
+<tr>
+<td>Drive PlayForge's time, random numbers or pointer input</td>
+<td><a href="time-randomness-and-input.html">Time, randomness and input</a></td>
+</tr>
+<tr>
+<td>Save data PlayForge's snapshot doesn't hold</td>
+<td><a href="saving-a-games-own-data.html">Saving a game's own data</a></td>
+</tr>
+<tr>
+<td>Name tags in code and offer them to the pickers</td>
+<td><a href="tags-in-code.html">Tags in code</a></td>
+</tr>
+<tr>
+<td>Check assets, draw a base type of my own, or start assets from templates</td>
+<td><a href="the-editor.html">The editor</a></td>
+</tr>
+<tr>
+<td>Test what I wrote</td>
+<td><a href="testing-your-extensions.html">Testing your extensions</a></td>
+</tr>
+<tr>
+<td>Drive the Creator Lab's units my own way</td>
+<td><a href="the-creator-lab.html">The Creator Lab</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="before-you-start.html">Before you start</a>: This section covers what every kind of a game's own shares: the assembly it lives in, how the editor finds it, how its picker names and files it, how its fields show, where it keeps what it counts, and how it's renamed.</li>
+<li><a href="components.html">Components</a>: A component is a feature an asset carries in its <strong>Components</strong> section: an effect's, an ability's, an entity's or an item's.</li>
+<li><a href="workers.html">Workers</a>: A worker is a small rule an entity holds in a worker group, or an effect holds in its <strong>Workers</strong>, that reacts to what happens: an attribute's change, a hit it deals, its tags, its frame's events, an effect's life.</li>
+<li><a href="deferred-actions.html">Deferred actions</a>: A deferred action is a piece of work queued to an entity that runs at its end of frame, by priority: what deferred workers return, and what any code queues with <code>entity.GetActionQueue().Enqueue(action)</code>.</li>
+<li><a href="ability-tasks.html">Ability tasks</a>: An ability task is a step of an ability's stage: it's picked in a stage's <strong>Tasks</strong>, runs with the stage, and is handed the activation's data.</li>
+<li><a href="targeting-tasks.html">Targeting tasks</a>: A targeting task picks what an activation acts on before its stages run: it's the ability's <strong>Targeting</strong>, one task, run as the activation starts.</li>
+<li><a href="sequence-tasks-injections-and-stage-policies.html">Sequence tasks, injections and stage policies</a>: A task sequence runs stages of tasks, built in code with <code>TaskSequenceBuilder</code> (Task Sequences).</li>
+<li><a href="processes.html">Processes</a>: A process is anything that runs over time under ProcessControl: a MonoBehaviour or a plain C# object stepped from Unity's player loop.</li>
+<li><a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions</a>: A number field's <strong>Kind</strong> says how its number is worked out, and a Conditional's or a rule's condition says whether it holds.</li>
+<li><a href="value-stages.html">Value stages</a>: A value stage reshapes a hit's value on its way to its attribute, one of a Value Pipeline's <strong>Stages</strong>, which an effect's impact names as its <strong>Pipeline</strong> (Value Pipelines: Stages).</li>
+<li><a href="cue-handlers.html">Cue handlers</a>: A cue handler plays feedback, a shake, a sound, an animation, at an effect's, an ability's, an entity's or an item's moments, or where a cue tag routes.</li>
+<li><a href="entity-services.html">Entity services</a>: An entity service is an object of a game's own each entity keeps as it runs, made the first time it's asked for and stepped by the entity's own time: a combo count, a cooldown of the game's own, a respawn's wait.</li>
+<li><a href="validation-rules.html">Validation rules</a>: A validation rule refuses an ability's activation: one of the ability's <strong>Caster Checks</strong>, asked of the caster, or its <strong>Target Checks</strong>, asked of the target once its targeting has picked one.</li>
+<li><a href="smaller-kinds.html">Smaller kinds</a>: This section covers the smaller kinds a game picks in one field each: where an entity respawns, how charges come back, what a purge takes, how a modifier changes an effect, a Local Data value's type, and the clock a run…</li>
+<li><a href="a-games-own-objects.html">A game's own objects</a>: PlayForge asks a game's own objects for a few things through interfaces: turning, moving, shaking the camera, and a pooled cue's comings and goings.</li>
+<li><a href="readers.html">Readers</a>: A reader is a MonoBehaviour process that shows an entity's state, a bar or a counter: <code>AbstractReader</code>, a <code>LazyMonoProcess</code>, which <code>Assign(gas)</code> gives its entity.</li>
+<li><a href="time-randomness-and-input.html">Time, randomness and input</a>: PlayForge reads its time, its random numbers and its pointer through sources a game can replace, so a game can run it on a fixed step, repeat its rolls, or aim with a gamepad.</li>
+<li><a href="saving-a-games-own-data.html">Saving a game's own data</a>: A <code>ForgeSnapshot</code> holds what PlayForge saves of an entity, and nothing of a game's own: a game saves its own data beside it.</li>
+<li><a href="tags-in-code.html">Tags in code</a>: A game's code names tags for its kinds to read: a data key, an event, a state its components grant.</li>
+<li><a href="the-editor.html">The editor</a>: A game's editor code can check PlayForge's assets, draw a base type of its own as PlayForge draws its kinds, and start new assets from its own templates.</li>
+<li><a href="testing-your-extensions.html">Testing your extensions</a>: PlayForge's test kit runs a game's own kinds in a world of entities stepped frame by frame, in Unity's Test Runner.</li>
+<li><a href="the-creator-lab.html">The Creator Lab</a>: The Creator Lab plays a project's assets on units of its own (The Creator Lab).</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityReader.html">AbilityReader</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html">AbstractAbilityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectComponent.html">AbstractEffectComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityComponent.html">AbstractEntityComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractForgeComponent.html">AbstractForgeComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractItemComponent.html">AbstractItemComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractReader.html">AbstractReader</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagRequirements.html">AbstractTagRequirements</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeReader.html">AttributeReader</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroupColor.html">AvoidRequireTagGroupColor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.BasicEffectOrigin.html">BasicEffectOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ComponentStates.html">ComponentStates</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DataWrapper.html">DataWrapper</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.DeferredContextSystem.html">DeferredContextSystem</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityEnd.html">EAbilityEnd</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectLinkMode.html">EEffectLinkMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EntityComponentContext.html">EntityComponentContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EUsageCheck.html">EUsageCheck</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html">ForgeContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeEffectTemplateAttribute.html">ForgeEffectTemplateAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html">ForgeLog</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ELevel.html">ForgeLog.ELevel</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ESystem.html">ForgeLog.ESystem</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLogEntry.html">ForgeLogEntry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeMenuAttribute.html">ForgeMenuAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeShowWhenAttribute.html">ForgeShowWhenAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html">ForgeTagContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagDefault.html">ForgeTagDefault</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExcludeUniversal.html">ForgeTagExcludeUniversal</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html">ForgeTagExposed</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagGroup.html">ForgeTagGroup</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedCountAttribute.html">ForgeTagLockedCountAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedIndicesAttribute.html">ForgeTagLockedIndicesAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagNoCreate.html">ForgeTagNoCreate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagPrefix.html">ForgeTagPrefix</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagReadOnly.html">ForgeTagReadOnly</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagRequired.html">ForgeTagRequired</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagTooltip.html">ForgeTagTooltip</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeUtils.html">ForgeUtils</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IHasIntentToTarget.html">IHasIntentToTarget</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ILevelProvider.html">ILevelProvider</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ILocalDataSource.html">ILocalDataSource</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ILocalDataUser.html">ILocalDataUser</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemComponentContext.html">ItemComponentContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LinkedSourceAttribute.html">LinkedSourceAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalAbility.html">LocalAbility</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalAttribute.html">LocalAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalBool.html">LocalBool</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataStructure.html">LocalDataStructure</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue.html">LocalDataValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html">LocalDataValue&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalEffect.html">LocalEffect</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalEntity.html">LocalEntity</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalFloat.html">LocalFloat</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalInt.html">LocalInt</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalMonoBehaviour.html">LocalMonoBehaviour</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalObject.html">LocalObject</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalScriptableObject.html">LocalScriptableObject</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalString.html">LocalString</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LocalTag.html">LocalTag</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ShownWhenAttribute.html">ShownWhenAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TemplateListSnapshot.html">TemplateListSnapshot</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TextureItem.html">TextureItem</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

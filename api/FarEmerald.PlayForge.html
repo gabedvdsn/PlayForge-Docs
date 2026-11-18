@@ -96,11 +96,26 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Ability.html">Ability</a></dt>
-      <dd></dd>
+      <dd><p>An ability: one thing an entity can do, as a fireball, a dash or a heal. An entity learns it from its Entity
+asset's Starting Abilities, from an equipped item's Active Ability or from code
+(<code>AbilitySystemComponent.GiveAbility</code>), and keeps it in a slot with a level of its own, between its
+<code>StartingLevel</code> and <code>MaxLevel</code>, kept under its asset tag.</p>
+<p>An activation passes its caster's tag requirements and its Caster Checks (<code>SourceActivationRules</code>),
+lets its <code>Behaviour</code>'s targeting task pick its target, which its Target Checks
+(<code>TargetActivationRules</code>) then check, applies its <code>Cost</code> and <code>Cooldown</code> effects to its caster and
+spends its <code>AttributeCosts</code>, as it starts or in the stage that takes them, and runs its stages of tasks.
+Its <code>Definition</code> says how it activates, its <code>Tags</code> what it is, grants and requires, and its
+<code>Components</code> add features with hooks into its life; its <code>WorkerGroup</code>, <code>OnHit</code> and
+<code>Modifiers</code> hold on its entity while the entity knows it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityActivationHandle.html">AbilityActivationHandle</a></dt>
-      <dd></dd>
+      <dd><p>One activation of an ability as it runs, which its slot, an <code>AbilitySpecContainer</code>, keeps from its claim to
+its end: its <code>Data</code>, the compiled <code>Proxy</code> that runs it, the tokens that cancel its targeting and its
+stages, whether it's targeting or running its stages, and whether it has let its claim go. <code>HandleId</code>
+numbers it among its entity's activations, from 0.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityBehaviour.html">AbilityBehaviour</a></dt>
@@ -133,7 +148,13 @@ flows through this packet, NOT as fields on the task itself.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityDefinition.html">AbilityDefinition</a></dt>
-      <dd></dd>
+      <dd><p>An ability's Definition: its <code>Name</code>, <code>Description</code> and <code>Textures</code>, and how it activates: its When
+Busy (<code>ActivationPolicy</code>) and <code>WhileTargeting</code>; under Queue, its input buffer's <code>BufferWindow</code>
+and <code>BufferPriority</code>; Activate At Start (<code>ActivateImmediately</code>), for a Starting Ability; its
+<code>Triggers</code>, the gameplay events and gained tags that set it off on its own; its <code>ChanceToActivate</code> and
+how that rolls (<code>ActivationRoll</code>); the <code>ProcCoefficient</code> its effects' hits carry where an effect sets
+none of its own; and the crowd control it ignores (<code>IgnoresCrowdControl</code>).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityEffectUsage.html">AbilityEffectUsage</a></dt>
@@ -142,11 +163,20 @@ flows through this packet, NOT as fields on the task itself.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityInspector.html">AbilityInspector</a></dt>
-      <dd></dd>
+      <dd><p>Reads what an ability does without running it, for tooltips, the editor's summaries and the Creator Lab:
+<code>Build</code> gives its <code>AbilityBreakdown</code>, each effect it applies, in what role (a stage's task, its cost
+or cooldown, or contained in another) and on whom, with its numbers at each of its levels read through their
+scalers, and its components, triggers, chance to activate and attribute costs. <code>BuildEffectSeries</code> reads
+one effect across a range of levels, against a caster and a target where it's given them, and
+<code>EvaluateAtLevel</code> one number at a level; a number that reads what the read wasn't given, as the target, is
+marked dynamic.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityLevelValidation.html">AbilityLevelValidation</a></dt>
-      <dd></dd>
+      <dd><p>A Caster Check that compares the ability's level on its caster with <code>Level</code>, by <code>Comparison</code>, as a
+form it unlocks at a rank; by default, 2 or more.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityProxy.html">AbilityProxy</a></dt>
@@ -166,7 +196,9 @@ flows through targeting, execution, callbacks, and ProcessControl.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityReader.html">AbilityReader</a></dt>
-      <dd></dd>
+      <dd><p>A reader of an ability's cooldown: <code>Assign(Tag)</code> names the tag, and each Update step it finds the GAS's
+longest effect duration under it. It shows nothing of what it finds.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySave.html">AbilitySave</a></dt>
@@ -191,11 +223,24 @@ flows through the AbilityDataPacket, not as fields on the task.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySpec.html">AbilitySpec</a></dt>
-      <dd></dd>
+      <dd><p>An ability as one entity knows it, made as the entity learns it: the <code>Ability</code> (<code>Base</code>) and its caster
+(<code>Source</code>), with its level kept on the caster under the ability's asset tag (<code>GetLevel</code>). It's the
+origin of the effects the ability applies, so they take its level and context tags, and an activation's data
+holds it as its <code>EffectOrigin</code>. It applies the ability's cost and cooldown (<code>ApplyUsageEffects</code>,
+<code>PayCosts</code>, <code>SpendCooldown</code>), reads the ability's numbers at its level (<code>Read</code>), finds its
+components (<code>Find&lt;T&gt;</code>), and keeps what they hold for this entity (<code>ComponentStates</code>) and its
+cooldown model (<code>CooldownModel</code>), which a HUD reads.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySpecContainer.html">AbilitySpecContainer</a></dt>
-      <dd></dd>
+      <dd><p>One slot of an entity's ability system: the <code>AbilitySpec</code> it holds (<code>Spec</code>), its slot (<code>Index</code>),
+and the ability's activations as they run. It says whether the ability runs (<code>IsActive</code>), holds its claim
+(<code>IsClaiming</code>), is choosing its target (<code>IsTargeting</code>), is cooling down (<code>IsCooldown</code>) and which
+stage it's in (<code>ActiveStageIndex</code>); <code>Cancel</code> interrupts its runs, but one in a critical stage, and
+<code>Inject</code> sends an injection into each. <code>AbilitySystemComponent.TryGetAbilityContainer</code> finds one by
+slot or by ability.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityStageCondition.html">AbilityStageCondition</a></dt>
@@ -224,7 +269,14 @@ Specifies what tags the source (caster) and target must have or avoid.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityTags.html">AbilityTags</a></dt>
-      <dd></dd>
+      <dd><p>An ability's Tags: its <code>AssetTag</code>, made from its Name, which its entity carries while it knows the ability
+and keeps the ability's level under; its <code>ContextTags</code>, which describe it and which the changes its effects
+make carry as context; its Passive Tags (<code>PassiveGrantedTags</code>), on its entity while it knows the ability,
+and its Active Tags (<code>ActiveGrantedTags</code>), while an activation runs; and its <code>TagRequirements</code> of its
+caster, to activate and while it runs, and of its target. <code>Names</code> says whether a list of tags names an
+ability, its asset tag or a context tag being one of them or under one, as Cancelled By and Blocks name
+abilities.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityTaskAdapter.html">AbilityTaskAdapter</a></dt>
@@ -239,7 +291,14 @@ Shared [SerializeReference] instances are reused across activations.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityTaskBehaviourStage.html">AbilityTaskBehaviourStage</a></dt>
-      <dd></dd>
+      <dd><p>One of an ability's stages, which run one after another: the <code>Tasks</code> it starts together, and its Completion
+(<code>StagePolicy</code>), which ends it as its last task ends (All) or its first (Any), cancelling the rest.
+<code>ApplyUsageEffects</code> applies the ability's cost and cooldown in it, as it starts or, with
+<code>ApplyUsageAtStageStart</code> off, as it ends well, once an activation; its <code>Condition</code> skips it unless a
+tag is there, or missing; and its own <code>CancelledBy</code> and <code>Blocks</code>, where it names any, hold while it
+runs in place of the ability's. A stage that holds a critical task is critical (<code>IsCritical</code>): it commits
+the ability, so Cancelled By doesn't cancel it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityTrigger.html">AbilityTrigger</a></dt>
@@ -270,11 +329,26 @@ activation start, wind up, which the activation waits on, commit its cost and co
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityRelatedTask.html">AbstractAbilityRelatedTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of every task an ability runs: its targeting task, an <code>AbstractTargetingAbilityTask</code>, and its
+stages' tasks and asset loaders, each an <code>AbstractAbilityTask</code>. Each is handed the activation's data:
+<code>Prepare</code> as its stage starts, <code>Activate</code>, the work its stage waits on, and <code>Clean</code> as the stage
+ends; <code>IsCriticalSection</code> says whether it's critical work, which commits its ability to its stage and keeps
+out another ability's critical work while it runs.</p>
+<p>One task object serves every activation of its ability, so what it keeps for one belongs in the
+activation's data, not in its fields. <code>Read</code> gives one of its numbers at its ability's level,
+<code>EntityOf</code> its caster or its first target, and <code>ApplyTo</code> applies an effect from the ability with the
+activation's magnitudes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAbilityTask.html">AbstractAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of a task in an ability's stage, as Apply Effects, Delay or Run Sequence: a stage starts its tasks
+together and ends as its Completion says, as its last task's <code>Activate</code> ends or its first's. A task of your
+own derives from it and overrides <code>Activate</code>, the work, and <code>IsCriticalSection</code>, with <code>Prepare</code>
+and <code>Clean</code> for what it does as its stage starts and ends; <code>[ForgeMenu]</code> files it in the stage's task
+picker. What it keeps for one activation goes in <code>data.GetTaskState&lt;T&gt;(this)</code>, as one task serves
+every activation of its ability.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAccumulatingEffectWorker.html">AbstractAccumulatingEffectWorker</a></dt>
@@ -300,7 +374,10 @@ Used for death checks, state evaluation, and other post-frame analysis.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeValidationRule.html">AbstractAttributeValidationRule</a></dt>
-      <dd></dd>
+      <dd><p>The base of an ability check that reads one of the checked entity's attributes, as Attribute does: it holds the
+<code>Attribute</code>, and a kind made from it overrides <code>Validate</code>, which checks the entity its list hands it,
+and <code>GetName</code>. Without <code>[ValidationSide]</code>, either list offers it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractAttributeWorker.html">AbstractAttributeWorker</a></dt>
@@ -345,7 +422,10 @@ Most impact workers should inherit from this class.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractCreateProcessAbilityTask.html">AbstractCreateProcessAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of an ability task that creates processes, as Create Mono Process spawns a projectile: a kind made from
+it sits under the Process submenu of a stage's task picker. A GameRoot's <code>CreateProcessTasks</code> take them
+too, each run once, with the GameRoot's own data, as the Bootstrapper brings the game up.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractCueHandler.html">AbstractCueHandler</a></dt>
@@ -371,11 +451,20 @@ effect lend and take back what it gives while it lasts.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectConfig-1.html">AbstractEffectConfig&lt;T&gt;</a></dt>
-      <dd></dd>
+      <dd><p>A behaviour of an effect's containers of type <code>T</code>: <code>GetCorrectContainer</code> picks, among the target's
+containers of the effect, the one an application goes to, the last behaviour by priority having its way. An
+effect's stack behaviours derive from it through <code>AbstractStackingConfig</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectContainer.html">AbstractEffectContainer</a></dt>
-      <dd></dd>
+      <dd><p>One lasting application of an effect on its target's shelf: its spec; its clock, the total duration, the time
+left, the period and the time to its next tick; whether its ongoing requirements hold; and whether it's still
+active. A Durational or Infinite effect's duration makes one as it lands, of the kind its re-application and
+stacking choose; while it's on the shelf it grants the effect's asset tag and granted tags, and as it comes off
+it reverses the effect's lasting impacts and lands its On Remove effects. Code finds one with
+<code>TryGetEffectContainer</code> on the entity.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractEffectWorker.html">AbstractEffectWorker</a></dt>
@@ -429,7 +518,10 @@ as it flies. A role, as ProjectileSpeed, names the attribute a process reads for
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html">AbstractGasTargetingAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of a targeting task that picks entities, as Select GAS Target and the Auto Target tasks do: its
+<code>Requirements</code>, tag queries a target must pass and tag queries it must not, decide which entities it takes,
+through <code>TargetIsValid</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractImpactWorker.html">AbstractImpactWorker</a></dt>
@@ -445,15 +537,38 @@ Impact workers run on the source system after an impact is calculated.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcess.html">AbstractMonoProcess</a></dt>
-      <dd></dd>
+      <dd><p>The base of every MonoBehaviour process: a component, on a prefab or a scene object, that ProcessControl
+registers, steps and ends, as a GAS hub or a projectile. Its lifecycle, step timing and step priority are fields
+of its inspector, Synchronous in Update and LateUpdate at the first priority by default, and as it initializes
+it takes the parent, position and rotation its packet gives. ProcessControl registers those already in a scene
+as it starts.</p>
+<p>Derive from it, or from <code>LazyMonoProcess</code> for a run that lasts until it's paused or ended, and
+override <code>RunProcess</code>, the run ProcessControl awaits, and the hooks you need: <code>WhenInitialize</code>;
+<code>WhenUpdate</code>, <code>WhenLateUpdate</code> and <code>WhenFixedUpdate</code> at its timing; <code>WhenWait</code>,
+<code>WhenTerminate</code> and <code>WhenDestroy</code>; and <code>TryHandlePause</code> and <code>TryHandleResume</code> to keep a run
+through a pause. An override of <code>WhenInitialize</code> or <code>WhenTerminate</code> calls the base's, and
+<code>WhenDestroy</code> stands in for <code>OnDestroy</code>, which a class of its own would hide.</p>
+<p>Its object comes from its registration's instantiator, its handler's or its own <code>Instantiator</code>, or is
+cloned from its prefab, and is given back or destroyed as the process ends. Processes on its child objects pause
+and end with it, as ProcessControl cascades by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html">AbstractMonoProcessInstantiator</a></dt>
-      <dd></dd>
+      <dd><p>What makes a mono process's object and takes it back, as a pool hands out an idle object and keeps it again as
+its process ends. Derive from it and override <code>PrepareNew</code>, which makes or hands out an object of the
+prefab registered, <code>PrepareExisting</code>, which readies one already in a scene, and <code>CleanProcess</code>, which
+takes the object back as its process ends. A registration's <code>InstantiatedBy</code>, a process's own
+<code>Instantiator</code> or its handler's gives one; with none, the object is cloned and destroyed.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractProcessWrapper.html">AbstractProcessWrapper</a></dt>
-      <dd></dd>
+      <dd><p>How ProcessControl holds a registered process of either kind: its relay, its data packet and its handler, with
+the process's hooks and steps passed through to it and its lifecycle, timing and priority read from it.
+<code>MonoWrapperProcess</code> holds a mono process and <code>RuntimeWrapperProcess</code> a runtime one; a relay's
+<code>Wrapper</code> is it, and <code>TryGetProcess</code> finds the process inside.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractProxyTaskBehaviour.html">AbstractProxyTaskBehaviour</a></dt>
@@ -466,7 +581,9 @@ Impact workers run on the source system after an impact is calculated.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractReader.html">AbstractReader</a></dt>
-      <dd></dd>
+      <dd><p>The base of a mono process that shows a GAS's state: <code>Assign</code> gives it the GAS and calls
+<code>SubscribeIfOnChangePolicy</code>, which a reader overrides to hear the changes it shows.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractRelativeAttributeWorker.html">AbstractRelativeAttributeWorker</a></dt>
@@ -483,7 +600,18 @@ beside them. Each says where from its entity as it dies, its killer among what i
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractRuntimeProcess.html">AbstractRuntimeProcess</a></dt>
-      <dd></dd>
+      <dd><p>The base of every runtime process: a plain C# class, with no GameObject, that ProcessControl registers, steps
+and ends, as a runtime GAS, a task sequence's process or a group's member. Its name, step priority, step timing
+and lifecycle go to its base constructor; the one with none gives its type's name, the first priority, no step
+timing and SelfTerminating. Only a runtime process joins a group.</p>
+<p>Derive from it, or from <code>LazyRuntimeProcess</code> for a run that lasts until it's paused or ended, and
+override <code>RunProcess</code>, the run ProcessControl awaits, and the hooks you need: <code>WhenInitialize</code>;
+<code>WhenUpdate</code>, <code>WhenLateUpdate</code> and <code>WhenFixedUpdate</code> at its timing; <code>WhenWait</code> and
+<code>WhenTerminate</code>; and <code>TryHandlePause</code> and <code>TryHandleResume</code> to keep a run through a pause. An
+override of <code>WhenInitialize</code> or <code>WhenTerminate</code> calls the base's: the process is <code>IsInitialized</code>
+from registration until it ends, so it can be registered again once ended, and what it handles ends with
+it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractScaler.html">AbstractScaler</a></dt>
@@ -500,19 +628,36 @@ The source is determined at runtime from the IAttributeImpactDerivation spec.</l
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractScalerBehaviour.html">AbstractScalerBehaviour</a></dt>
-      <dd></dd>
+      <dd><p>A rule in a scaler's Behaviours, which adjusts the value the scaler works out, in the list's order: at each
+read, a behaviour is handed the carrier the value is read for (<code>Initialize</code>), then the value so far, and
+gives back the value after it (<code>Evaluate</code>). Derive from it and override both.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractSetAssetsTask.html">AbstractSetAssetsTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of an asset loader, a Set task: it puts assets in the activation's data under a key as it's prepared,
+for the tasks after it to read, as a Run Sequence's sequence reads them with
+<code>data.GetLoadedAssets&lt;T&gt;(tag)</code>; its own run ends at once. An ability's Asset Loaders run once an
+activation, after its targeting and before its first stage, and one among a stage's tasks loads as the stage
+starts. A loader of your own overrides <code>Prepare</code> and <code>IsCriticalSection</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractStackingConfig.html">AbstractStackingConfig</a></dt>
-      <dd></dd>
+      <dd><p>The base of an effect's Stack Behaviours, the rules its stacking containers follow: Stack Bounds, Scaled Stack
+Amount and Starting Stacks. A behaviour of your own derives from it and overrides <code>InitializeContainer</code>, to
+set a new container up, and <code>GetStacks</code>, to settle how many stacks an application adds from the amount the
+behaviours before it settled on; <code>GetCorrectContainer</code> picks the container an application stacks into, the
+first by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractStackingEffectContainer.html">AbstractStackingEffectContainer</a></dt>
-      <dd></dd>
+      <dd><p>The base of the containers that count stacks, the kind an effect lives in when its Re-application isn't Add
+Another, as its Stacking says: its <code>Stacks</code>, and <code>Stack</code>, which adds to them, each kind keeping its
+clock its own way. An Effect Stacks number reads its count, and Tick On Application executes once for each
+stack, unless a kind says otherwise.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractStopStage.html">AbstractStopStage</a></dt>
@@ -558,11 +703,27 @@ Tag workers run as long as their tag requirements are met.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractTargetingAbilityTask.html">AbstractTargetingAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>The base of an ability's targeting task, the one task that picks what an activation acts on before its stages
+run, as a click picks an entity or a search takes the enemies in range. Its <code>Activate</code> files the targeting
+packet of what it picks under the activation's Target key, whose entity becomes the activation's target, or
+calls <code>WhenTargetingInvalid</code>, which ends the activation where <code>BreakRuntimeOnInvalid</code> is on. Targeting
+holds the activation's claim while it runs, and its slot's <code>IsTargeting</code> says while it chooses.</p>
+<p>A task of your own overrides <code>Activate</code>; <code>Prompt</code>, the words a game shows while it waits for the
+player; <code>TargetIsValid</code>, which targets it takes; and <code>ConnectInputHandler</code> and
+<code>DisconnectInputHandler</code>, to hook an input handler of its own as it's prepared and unhook it as it's
+cleaned, an override of <code>Prepare</code> calling the base's last. <code>TryGetDataTarget</code> and
+<code>TryGetDataPoint</code> take a target or a point the activation's data already holds, as an AI's does, and
+<code>WaitForPointerPress</code> waits for a press of the game's input.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractTargetingPacket.html">AbstractTargetingPacket</a></dt>
-      <dd></dd>
+      <dd><p>Where something is, for targeting: its <code>position</code>, <code>rotation</code> and <code>scale</code>, the entity it is
+(<code>target</code>) and its <code>transform</code> where it has them, and the <code>direction</code> it was aimed along, as
+Select Direction sets. Each entity gives one (<code>ITarget.GetTargetingPacket</code>), and a targeting task files the
+packet of what it picks under the activation's Target key, each packet's entity becoming one of the activation's
+targets. <code>TargetingPacket</code> follows a transform, and <code>StaticTargetingPacket</code> holds its own values.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbstractValueStage.html">AbstractValueStage</a></dt>
@@ -592,11 +753,15 @@ Higher values execute first.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActionProcess.html">ActionProcess</a></dt>
-      <dd></dd>
+      <dd><p>A runtime process that calls an action in each of its Update steps, until it's ended. Made with the action
+alone, it's named Action, SelfTerminating, and stepped in Update at the first priority; the longer constructor
+gives its name, priority, timing and lifecycle.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActionProcess-1.html">ActionProcess&lt;T&gt;</a></dt>
-      <dd></dd>
+      <dd><p>An <code>ActionProcess</code> whose action is handed the same object, its source, each time it's called.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActionQueue.html">ActionQueue</a></dt>
@@ -652,11 +817,17 @@ it's read doesn't hold, so neither does this.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AnalysisWorkerCache.html">AnalysisWorkerCache</a></dt>
-      <dd></dd>
+      <dd><p>An entity's analysis workers: each analyzes the entity and its frame's summary at its end of frame, after its
+tag workers, and the actions it returns join the entity's action queue. A worker given by more than one source,
+as two copies of an item, runs once, and stays until the last of them takes it back.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AnimationUtility.html">AnimationUtility</a></dt>
-      <dd></dd>
+      <dd><p>Sets the tangent mode of a curve's key, on its left or its right, as <code>UnityEditor.AnimationUtility</code> does,
+from code that builds into a player: in the editor it calls Unity's, and in a player it does nothing, so the
+keys keep Unity's default tangents. A scaler shapes its curve with it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AnyCondition.html">AnyCondition</a></dt>
@@ -676,11 +847,19 @@ it's read doesn't hold, and the others still can.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ApplyEffectsAbilityTask.html">ApplyEffectsAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that applies its <code>Effects</code> to each of the activation's targets, from the ability at its level
+and with the magnitudes the caller set on the activation's data, in the project's resolve order unless
+<code>UseResolveOrder</code> is off. <code>DelayBetweenApplicationMs</code> waits between one effect and the next, and
+<code>RecordLandedAs</code> tags the activation's data as an effect lands, for a later stage's Condition.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ApplyRemoveEffectsAbilityTask.html">ApplyRemoveEffectsAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that puts its <code>Effects</code> on each of the activation's targets as its stage starts, with the
+caller's magnitudes, in the project's resolve order unless <code>UseResolveOrder</code> is off, and takes those
+effects off the targets as the stage ends, whoever applied them. Its own run ends at once, so it holds its stage
+no longer than the stage's other tasks do.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ApplyToCasterTask.html">ApplyToCasterTask</a></dt>
@@ -726,11 +905,20 @@ reads 1 or 0, so added up it's how many are so. An effect's Worker Value asks th
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttenuateScalerBehaviour.html">AttenuateScalerBehaviour</a></dt>
-      <dd></dd>
+      <dd><p>A scaler behaviour that turns the value into a factor, as its <code>Policy</code> says: as it is, one plus it, or one
+minus it, so a 30% bonus reads 1.3 and a 30% reduction 0.7.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Attribute.html">Attribute</a></dt>
-      <dd></dd>
+      <dd><p>An Attribute asset: one number an entity can have, as Health, Mana or Strength. It holds no value: an entity
+takes its starting Current and Base from its attribute set, and effects change them from there. Sets, effects,
+workers and conditions name the asset itself, and some lookups compare attributes by name, so give each its own.</p>
+<p>Its Role says what it is, how bonuses to it add up and how a number reads it: a Value, a Bonus Share, a
+Multiplier, a Resistance, or a Barrier, which takes each workable loss to the attribute it absorbs for first and
+can decay. Gains Scaled By names an attribute that multiplies each workable gain to its Current, as Health's by
+Healing Received.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeBackedScaler.html">AttributeBackedScaler</a></dt>
@@ -788,7 +976,10 @@ attribute doesn't hold.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeConstraints.html">AttributeConstraints</a></dt>
-      <dd></dd>
+      <dd><p>How an attribute set element holds its attribute's values: Auto Clamp applies its bounds, Auto Scale With Base
+changes Current by the same share as Base whenever Base changes, and Rounding, with its Snap Interval for Snap
+To, rounds both values after the bounds each time they change.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeCost.html">AttributeCost</a></dt>
@@ -821,11 +1012,19 @@ or its share (current ÷ base). × Attribute, the cached attribute scaler and th
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeReader.html">AttributeReader</a></dt>
-      <dd></dd>
+      <dd><p>A reader that shows one of a GAS's attributes in UI: its current and base values in <code>CurrentText</code> and
+<code>BaseText</code>, and its current value's share of its base on <code>ValueSlider</code>. <code>AssignAttribute</code> names
+the attribute and <code>Assign</code> the GAS; it shows them each Update step, and as the attribute changes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeRegistry.html">AttributeRegistry</a></dt>
-      <dd></dd>
+      <dd><p>Every attribute the game's entities use, by name, for code that finds one by its name, with <code>GetByName</code> or
+<code>TryGetByName</code>. Names match in capitals with underscores for spaces, so Attack Speed and ATTACK_SPEED find
+the same attribute, and the first attribute registered under a name stands. An entity's attribute system
+registers each attribute it's given, as a Bootstrapper does the sets it names; the registry is cleared as play
+starts, and by <code>Reset</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeRegulationCache.html">AttributeRegulationCache</a></dt>
@@ -846,15 +1045,31 @@ read the roles it ships, as death at 0 reads <a class="xref" href="FarEmerald.Pl
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a></dt>
-      <dd></dd>
+      <dd><p>An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its
+bounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each
+element becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the
+entity's level or to another attribute.</p>
+<p>Where an attribute appears in more than one element, the elements' Collision and the Resolution Policy of
+the set the entity names decide its root. The entity carries the set's tag and its sub-sets', and holds their
+worker groups' workers as it lives. The set's level range is its own, or a level provider's while it's linked,
+and its cached scalers can size their values per level by it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSetElement.html">AttributeSetElement</a></dt>
-      <dd></dd>
+      <dd><p>One element of an attribute set: an attribute and how it starts, its Current and its Base, each a number or a
+cached scaler, Current able to follow Base; its bounds; its constraints, which clamp, scale and round it; the
+retention group its root counts toward; and its Collision, for an attribute that appears more than once across
+the set and its sub-sets. As the entity's GAS initializes, it becomes the attribute's root value, the value
+before any effect.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSetMeta.html">AttributeSetMeta</a></dt>
-      <dd></dd>
+      <dd><p>The attributes an attribute set gives an entity, worked out as the entity's attribute system takes the set: each
+element of the set and its sub-sets, by attribute and by its Collision. <code>InitializeAttributeSystem</code> then
+gives the attribute system each attribute, with the root the set's collision settings pick.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.html">AttributeSystemCallbacks</a></dt>
@@ -878,7 +1093,10 @@ lands, each tick, or for as long as the effect lasts, a modifier on both that gi
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValidation.html">AttributeValidation</a></dt>
-      <dd></dd>
+      <dd><p>A check that compares the checked entity's current value of its <code>Attribute</code> with <code>Value</code>, read at the
+ability's level, by <code>Comparison</code>; with <code>ShareOfBase</code>, its share of its base, from 0 to 1, as &quot;below
+half its health&quot;. An entity without the attribute fails it. Either list offers it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AuraAbilityComponent.html">AuraAbilityComponent</a></dt>
@@ -961,19 +1179,33 @@ Supports hierarchical tag matching via TagQuery.MatchMode on individual queries.
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroupColor.html">AvoidRequireTagGroupColor</a></dt>
-      <dd></dd>
+      <dd><p>Marks an <code>AvoidRequireTagGroup</code> field with a color, given as red, green, blue and alpha from 0 to 1, as the
+tag requirements of abilities and effects mark their groups. The package's own drawers don't read it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BaseForgeAsset.html">BaseForgeAsset</a></dt>
-      <dd></dd>
+      <dd><p>The base of every PlayForge asset, a ScriptableObject: attributes directly, and abilities, effects, items,
+attribute sets and entities through <code>BaseForgeLevelProvider</code>. It holds the asset's Local Data rows, read by
+key with <code>TryGetLocalData</code>, and its template, an asset of the same type whose fields it takes when the
+template is pushed, apart from those it overrides (<code>SetTemplate</code>, <code>IsFieldOverridden</code>). A type made
+from it gives its name, description, default icon and the tags it grants.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BaseForgeLevelProvider.html">BaseForgeLevelProvider</a></dt>
-      <dd></dd>
+      <dd><p>The base of the PlayForge assets with a level range: abilities, effects, items, attribute sets and entities. It
+gives the asset's starting and max level, its name as a provider and its asset tag, and its link to another
+provider whose range it takes, as an effect linked to its ability (<code>LinkToProvider</code>,
+<code>LinkedProvider</code>); <code>HasCircularDependency</code> says whether a link would come back round to it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BasicEffectOrigin.html">BasicEffectOrigin</a></dt>
-      <dd></dd>
+      <dd><p>The base of the effect origins an entity holds, an ability's spec and an item's: an origin with a source, the
+entity it belongs to, whose level system it registers its level with, under its asset tag, as it's made. A class
+made from it implements the rest of <code>IEffectOrigin</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BlinkTask.html">BlinkTask</a></dt>
@@ -1004,7 +1236,10 @@ none. An entity holds as many as it gives, each its own.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BranchBuilder.html">BranchBuilder</a></dt>
-      <dd></dd>
+      <dd><p>Builds a branch, a stage that picks one stage as it starts: the first whose <code>If</code> condition holds of the
+run's data packet, else its <code>Default</code>, else none. It's handed to the action given to a builder's or a
+stage's <code>Branch</code>. A synced runner can't run one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.BranchCase.html">BranchCase</a></dt>
@@ -1276,11 +1511,17 @@ Consumed hears it, so a game's own bookkeeping, as a shop's stock, follows.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CooldownValidation.html">CooldownValidation</a></dt>
-      <dd></dd>
+      <dd><p>A Caster Check that passes while the ability has a use in hand, as its cooldown model says: with the single
+cooldown, while its caster doesn't carry its Cooldown's asset tag; with Charges, while one is in hand. A
+component that waives the cooldown passes it. Its refusal is told as Cooldown.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CostValidation.html">CostValidation</a></dt>
-      <dd></dd>
+      <dd><p>A Caster Check that passes while the caster can pay the ability's cost: what its Cost effect spends would leave
+each attribute at 0 or more, and its Attribute Costs can be paid, the caster holding each attribute. A component
+that waives the cost, as a Toggle turning off does, passes it. Its refusal is told as Cost.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CreateMonoProcessAbilityTask.html">CreateMonoProcessAbilityTask</a></dt>
@@ -1379,7 +1620,9 @@ item holds one at most.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CustomScaler.html">CustomScaler</a></dt>
-      <dd></dd>
+      <dd><p>A scaler made of two delegates, one run as a carrier initializes it and one that works out its value, as
+<code>IScaler.Generate</code> makes. It isn't an <code>AbstractScaler</code>, so a number field can't hold it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DashTask.html">DashTask</a></dt>
@@ -1400,15 +1643,25 @@ saves its own value alone.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DeathAction.html">DeathAction</a></dt>
-      <dd></dd>
+      <dd><p>The deferred action that kills its entity as its turn comes, at Critical priority: the entity is marked dead,
+which its callbacks, its components, its effects and its killer hear, and it ends, or stays dead, at its frame's
+end, as its Death says. It's dropped where the entity is dead already; a death watcher and the Health role's
+watch queue it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DeathWatcherAnalysisWorker.html">DeathWatcherAnalysisWorker</a></dt>
-      <dd></dd>
+      <dd><p>An analysis worker that kills its entity as an attribute reaches its threshold, as Health reaching 0: a
+Threshold whose firing queues the entity's death, after its effects and its event where it has them. An entity
+that holds one dies by it alone, not by its project's Health role reaching 0.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DeferredContextSystem.html">DeferredContextSystem</a></dt>
-      <dd></dd>
+      <dd><p>The base of the subsystems of an entity that queue work for its end of frame, its attribute, ability and item
+systems and its analysis worker cache: it holds the entity's action queue and frame summary, which the GAS hands
+it through <code>SetDeferredContext</code> as it initializes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DelayTask.html">DelayTask</a></dt>
@@ -1417,7 +1670,10 @@ saves its own value alone.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DelegateSequenceInjection.html">DelegateSequenceInjection</a></dt>
-      <dd></dd>
+      <dd><p>An injection that does what a function of your own says: <code>applyFunc</code> is handed the run's runtime and
+returns whether it applied, as one that adds to a count on a key press or jumps to a stage by name. With no
+function it applies nothing.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DelegateSequenceTask.html">DelegateSequenceTask</a></dt>
@@ -1439,7 +1695,10 @@ attribute and use &quot;{Keyword} Scaler&quot; as the display name.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DisjointAbilityTask.html">DisjointAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that makes its caster disjoint, as in Dota: each homing shot aimed at it whose data marks it
+disjointable loses it, flies on to where the caster stood and lands on nothing. A skill shot, which aims at no
+one, isn't touched.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DisjointProxyTaskBehaviour.html">DisjointProxyTaskBehaviour</a></dt>
@@ -1595,7 +1854,9 @@ Each phase can have its own set of required and avoided tags.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectWorkerGroup.html">EffectWorkerGroup</a></dt>
-      <dd></dd>
+      <dd><p>Several effect workers as one: at each of its effect's moments its workers hear, as it lands, ticks, comes off
+and hits, it runs each of its workers in turn and returns their actions together.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EntityClock.html">EntityClock</a></dt>
@@ -1620,7 +1881,14 @@ dies. A runtime entity takes its position from its body.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EntityIdentity.html">EntityIdentity</a></dt>
-      <dd></dd>
+      <dd><p>An Entity asset: one kind of entity, as the hero or a goblin, and its starting setup: its sides and tags, its
+level range, its abilities and items and their limits, its attribute set and time scale attribute, its workers,
+modifiers and components, its crowd control rules and what its death does. Many entities can share one.</p>
+<p>A GAS hub reads it as it initializes, the <code>GameplayAbilitySystem</code> component that names it or a
+<code>RuntimeGameplayAbilitySystem</code> whose identity is made from it: the hub gives the entity its workers,
+registers its level under the asset's tag, gives its starting abilities, builds its attributes from its set and
+gives its starting items, then applies its tags.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EvadeStage.html">EvadeStage</a></dt>
@@ -1799,7 +2067,11 @@ record, nothing is timed for them.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeHelper.html">ForgeHelper</a></dt>
-      <dd></dd>
+      <dd><p>Helpers the framework's code shares, many of them extension methods: an asset's texture under a tag, the sign of
+a change and checks of it, tag requirement and query checks, tag matching by hierarchy, attribute arithmetic by
+operation, a magnitude joined with its scaler, list helpers (<code>RandomChoice</code>, <code>Shuffle</code>,
+<code>WeightedSample</code>, <code>SafeAdd</code>), and random points in a circle or a sphere.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeInput.html">ForgeInput</a></dt>
@@ -1987,7 +2259,10 @@ any asset uses them.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeTagLibrary.Entry.html">ForgeTagLibrary.Entry</a></dt>
-      <dd></dd>
+      <dd><p>A tag a Tag Library declares, which tag pickers offer under its contexts before any asset uses it: its
+<code>Name</code>, the full dotted path; its <code>DisplayName</code>, where it reads otherwise, as a unique tag's; the
+<code>Contexts</code> it's declared for, Universal where it names none; and a <code>Note</code> on what it's for.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeTagLockedCountAttribute.html">ForgeTagLockedCountAttribute</a></dt>
@@ -2058,7 +2333,9 @@ To Face and an ability's Turn To Face do.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeUtils.html">ForgeUtils</a></dt>
-      <dd></dd>
+      <dd><p>Extension methods for a list: <code>IndexMin</code> and <code>IndexMax</code> give the index of the element whose selected
+value is lowest or highest, the first where several tie, and 0 for an empty list.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeWorkerNames.html">ForgeWorkerNames</a></dt>
@@ -2143,27 +2420,56 @@ menu is its <a class="xref" href="FarEmerald.PlayForge.ForgeMenuAttribute.html">
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffect.html">GameplayEffect</a></dt>
-      <dd></dd>
+      <dd><p>A Gameplay Effect asset: a change to an entity, as damage, a heal, a timed buff, a poison, a cost or a cooldown.
+Abilities, items and code apply it to a target: <code>Generate</code>, through the target's <code>GenerateEffectSpec</code>,
+makes a <code>GameplayEffectSpec</code> for one application, which <code>ApplyGameplayEffect</code> lands.</p>
+<p>Its duration's Policy decides how long it lives: an Instant effect makes its change once, and a Durational
+or Infinite one goes on the target's effect shelf until its time runs out or something removes it. Its impacts
+change attributes, each a commit that stays or a modifier reversed as the effect ends; it can also grant tags
+and abilities, apply contained effects, run workers and carry components, and its requirements and conditions
+say whether it lands, goes on and comes off. It has no level of its own: it takes its origin's.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectDefinition.html">GameplayEffectDefinition</a></dt>
-      <dd></dd>
+      <dd><p>An effect's identity: its Name, which gives its asset tag, its Description, its Visibility, a tag a UI can read
+to decide whether to show it, its Textures, whether its icon is its origin's (Inherit From Origin, by Origin
+Texture), and the Retention Group its changes count toward unless an impact names its own.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectDuration.html">GameplayEffectDuration</a></dt>
-      <dd></dd>
+      <dd><p>An effect's duration section: its Policy and Duration, the clock it runs by, its periodic ticks, Tick On
+Application and Additional Executions, what it does as it's applied to a target that has it already, and how its
+stacks count. As a lasting effect lands, it makes the container the application lives in on the shelf and sets
+its clock, reading its numbers for that application.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectImpact.html">GameplayEffectImpact</a></dt>
-      <dd></dd>
+      <dd><p>An effect's impact section: its first impact, the attribute it changes, the operation and the value it changes,
+its magnitude, pipeline and impact types, whose delivery the duration gives it; its Additional Impacts, each
+with a delivery of its own; its affiliation check, its chance to apply and its contained effects. On every
+<code>GameplayEffect.Generate</code>, <code>RebuildEntries</code> derives the first impact's entry, which is never saved,
+and appends the additional ones after it: <code>Entries</code> is what an application commits and registers.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
-      <dd></dd>
+      <dd><p>One application of a Gameplay Effect: the effect, its origin, its source and its target, as the target's
+<code>GenerateEffectSpec</code> makes it and <code>ApplyGameplayEffect</code> lands it. It keeps what belongs to that
+application alone: magnitudes set by its caller, where it hit (<code>WithHit</code>), what modifiers changed of it,
+its workers' and components' state, what it has dealt, and, while it lasts, the container that holds it on the
+shelf. Its impacters, built once from its effect's entries, are what the attribute system evaluates for each
+delivery.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayPipelineConfiguration.html">GameplayPipelineConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>The base of an effect's stack behaviours: a Name, and a Priority that orders the behaviours as they apply,
+lowest first, so the highest has the last word. A kind can fix its own with <code>ConfigPriority</code>, as Stack
+Bounds applies last and Starting Stacks first.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GrantTagsChange.html">GrantTagsChange</a></dt>
@@ -2202,11 +2508,16 @@ ProcessControl.RegisterWithGroup(myGroupTag, someProcess, out relay);</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.HasEffectValidation.html">HasEffectValidation</a></dt>
-      <dd></dd>
+      <dd><p>A check that passes while the checked entity has an effect on: its <code>Effect</code>, or any effect tagged
+<code>Tagged</code> or a tag under it, by its asset tag, a context tag or a tag it grants; with <code>Without</code>, while
+it has none of it. Naming neither, it passes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.HoldsItemValidation.html">HoldsItemValidation</a></dt>
-      <dd></dd>
+      <dd><p>A check that passes while the checked entity holds its <code>Item</code>, or, with <code>Equipped</code>, wears it. Naming
+no item, it passes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.HomeRespawnPlace.html">HomeRespawnPlace</a></dt>
@@ -2228,19 +2539,29 @@ Supports both inline and deferred execution modes.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ImpactWorkerGroup.html">ImpactWorkerGroup</a></dt>
-      <dd></dd>
+      <dd><p>Several impact workers as one: given to an entity, it gives it each of its workers, and each runs for the
+changes it takes as it would on its own; taken back, it takes them back.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IndependentDurationsContainer.html">IndependentDurationsContainer</a></dt>
-      <dd></dd>
+      <dd><p>The container of Stacks Have Independent Durations: each stack keeps its own timer and ticks and comes off as
+its time runs out, so the effect lasts as long as its longest stack. Refresh restarts its oldest stack's time,
+and Extend adds a stack.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.InitializationOperation.html">InitializationOperation</a></dt>
-      <dd></dd>
+      <dd><p>The stack behaviour Starting Stacks: the stacks a new container of the effect is given as it's made, a number
+read at the effect's level; the application that makes it adds its own amount after. It applies first of the
+behaviours, and leaves the amount an application adds as it is.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.InjectAbilityTask.html">InjectAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that sends its <code>Injection</code>, an interrupt unless it's set to another, as a skip or a jump to a
+stage, into its ability's running activations, and ends at once.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.InputSystemPointerInput.html">InputSystemPointerInput</a></dt>
@@ -2255,7 +2576,9 @@ Supports both inline and deferred execution modes.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IsAliveValidation.html">IsAliveValidation</a></dt>
-      <dd></dd>
+      <dd><p>A check that passes while the entity it checks isn't dead: the caster among the Caster Checks, the target among
+the Target Checks, each list's default. Its refusal of the caster is told as Dead.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Item.html">Item</a></dt>
@@ -2266,7 +2589,10 @@ Supports level scaling for linked effects and abilities.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemDefinition.html">ItemDefinition</a></dt>
-      <dd></dd>
+      <dd><p>An item's Definition: its <code>Name</code>, <code>Description</code> and <code>Textures</code>; its <code>Visibility</code> tag, which
+a game's UI can filter by and the runtime doesn't act on; and its <code>MaxStackSize</code>, how many of it one
+inventory slot holds, read at the item's level, 1 or less making each its own slot (<code>StackSizeOf</code>).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemSave.html">ItemSave</a></dt>
@@ -2301,11 +2627,20 @@ Used for monitoring item lifecycle without modifying behavior.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemSystemComponent.html">ItemSystemComponent</a></dt>
-      <dd></dd>
+      <dd><p>An entity's inventory: the items it holds, each in a slot (an <code>ItemSpecContainer</code>) with its level and
+stacks, and which of them it wears. <code>GiveItem</code>, <code>EquipItem</code>, <code>UnequipItem</code>, <code>RemoveItem</code> and
+<code>ConsumeItem</code> change it, within its entity's item limits and duplicate rules; a worn item puts on its
+Granted Effects and Granted Tags, lends its Active Ability and adds its workers, and takes them back as it comes
+off. Code reaches it through the entity's hub, <code>GetItemSystem()</code>, and hears each change through its
+<code>Callbacks</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemTags.html">ItemTags</a></dt>
-      <dd></dd>
+      <dd><p>An item's Tags: its <code>AssetTag</code>, made from its Name, which its holder carries while the item is in its
+inventory, worn or not, and keeps the item's level under; its <code>ContextTags</code>, which the changes its effects
+make carry as context; and its Granted Tags (<code>PassiveGrantedTags</code>), on its holder while it's equipped.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.JumpToStageInjection.html">JumpToStageInjection</a></dt>
@@ -2324,7 +2659,11 @@ Used for monitoring item lifecycle without modifying behavior.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LazyRuntimeProcess.html">LazyRuntimeProcess</a></dt>
-      <dd></dd>
+      <dd><p>A runtime process whose run lasts until it's paused or ended: its <code>RunProcess</code> waits a tick at a time while
+it's active, so what it does goes in its steps and hooks, <code>WhenUpdate</code> and the rest. The base of most
+runtime processes, a group, a runtime GAS and a task sequence's process among them; its constructor takes a
+name, a step priority, a timing and a lifecycle.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LegacyPointerInput.html">LegacyPointerInput</a></dt>
@@ -2350,11 +2689,18 @@ Used for monitoring level changes without modifying behavior.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LevelerEffectOrigin.html">LevelerEffectOrigin</a></dt>
-      <dd></dd>
+      <dd><p>An origin that stands for an entity at a level of its own: a <code>SourceEffectOrigin</code> whose <code>GetLevel</code>
+gives the <code>Level</code> it holds, not the entity's. A leveler carrier reads its numbers through one, and a save
+puts one back where an effect's origin was one; <code>IEffectOrigin.GenerateLevelerDerivation</code> makes one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LevelerImpactDerivation.html">LevelerImpactDerivation</a></dt>
-      <dd></dd>
+      <dd><p>A carrier to read numbers in at a level it's given, not its source's: its origin is a <code>LevelerEffectOrigin</code>
+at that level, and it carries no change of its own. An entity reads its Max Abilities, Max Items and Max
+Equipped Items at its level through one, and <code>AbilityInspector</code> reads an effect's numbers level by level
+through one with no source; <code>IAttributeImpactCarrier.GenerateLevelerDerivation</code> makes one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LifestealImpactWorker.html">LifestealImpactWorker</a></dt>
@@ -2405,7 +2751,10 @@ as that number; where there's no number under the key, it reads its <a class="xr
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LocalDataStructure.html">LocalDataStructure</a></dt>
-      <dd></dd>
+      <dd><p>An entity's Local Data as its GAS holds it at runtime, a value under each key tag: loaded from its identity's
+rows as it initializes (<code>Init</code>), then written with <code>Set</code> and read with <code>TryGet</code>, or with
+<code>GetOrInit</code>, which adds a value where the key has none. A hub's <code>GetLocalDataStructure</code> gives it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LocalDataValue.html">LocalDataValue</a></dt>
@@ -2467,7 +2816,10 @@ with <a class="xref" href="FarEmerald.PlayForge.LocalDataValue.html#FarEmerald_P
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LogAction.html">LogAction</a></dt>
-      <dd></dd>
+      <dd><p>A deferred action that writes its text through ForgeLog, at Info, as its turn comes: at Cleanup priority unless
+it's given another, and only where its validity check, if it's given one, holds. A Threshold with no effects and
+no event queues one as it fires.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.MagnitudeSave.html">MagnitudeSave</a></dt>
@@ -2494,7 +2846,12 @@ is used again once the queue has run it, so a listener handed one reads it durin
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.MonoWrapperProcess.html">MonoWrapperProcess</a></dt>
-      <dd></dd>
+      <dd><p>The wrapper ProcessControl holds a mono process in, passing each hook and step to its object and reading its
+lifecycle, timing and priority from it. It gets the process's object as it registers: from the registration's
+instantiator, else its handler's where the process uses its handler's, else the process's own, else a clone of
+its prefab, or the scene object itself; as the process ends, what made the object takes it back, or the object
+is destroyed.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.MultiplierVariance.html">MultiplierVariance</a></dt>
@@ -2519,7 +2876,9 @@ Target's Damage Resistance read as what's left; an armor curve; a bonus that rea
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.NonStackingEffectContainer.html">NonStackingEffectContainer</a></dt>
-      <dd></dd>
+      <dd><p>The container of an application with no stacks, which Add Another makes for each application of its effect: its
+own clock, its ticks executing once each. Refresh restarts its time and its tick, and Extend adds to its time.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.NotCondition.html">NotCondition</a></dt>
@@ -2529,7 +2888,9 @@ doesn't hold either: not having a target's tag doesn't hold where there's no tar
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.NullTargetingPacket.html">NullTargetingPacket</a></dt>
-      <dd></dd>
+      <dd><p>A targeting packet that points at nothing: a <code>StaticTargetingPacket</code> with no entity and no transform, its
+position, rotation and scale left unset.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.NumberComparison.html">NumberComparison</a></dt>
@@ -2685,11 +3046,15 @@ save is of, and otherwise the ID an <a class="xref" href="FarEmerald.PlayForge.I
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.PipelineConfigRegistry.html">PipelineConfigRegistry</a></dt>
-      <dd></dd>
+      <dd><p>A static store of <code>GameplayPipelineConfiguration</code> lists, kept per source and per asset tag, and cleared as
+play starts. Nothing in the package registers or reads one, and <code>Register</code> adds only to a list a source and
+a tag already hold, which nothing makes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.PipelineConfigRegistry.ConfigPipeline.html">PipelineConfigRegistry.ConfigPipeline</a></dt>
-      <dd></dd>
+      <dd><p>A class with no members, which nothing in the package uses.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.PlayCueTask.html">PlayCueTask</a></dt>
@@ -2721,7 +3086,18 @@ the role the process reads it by, and where its value starts. It changes as the 
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
-      <dd></dd>
+      <dd><p>The scene's scheduler of processes: every process, a GAS, a projectile, an ability's sequence, registers with
+it, and it steps each from Unity's player loop, in Update, LateUpdate or FixedUpdate as the process's timing
+asks, moves it between its states as its lifecycle says, and ends it. A Bootstrapper brings it up as the one
+<code>Instance</code>, and it then registers the scene's own mono processes, as its Collect On Awake says.</p>
+<p><code>ProcessControl.Register(process).HandledBy(handler).With(data).Run()</code> registers a process and starts
+it, and its result holds the process's relay, which pauses, resumes and ends it; <code>RegisterGroup</code> and
+<code>RegisterWithGroup</code> hold runtime processes in a group by a tag. Its control state (<code>SetControlState</code>)
+pauses, closes or ends every process at once; its Fixed Tick Rate, above 0, steps every process at fixed steps
+of game time, so a run comes out the same at any frame rate; and its <code>Callbacks</code> hear every process
+register, change state and go. Its bookkeeping is its <code>World</code>, a <code>ProcessWorld</code>, which code can also
+own and step with no scene.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlBlock.html">ProcessControlBlock</a></dt>
@@ -2762,7 +3138,9 @@ This procures the Transform value under the Target classification stored under t
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessHandlerUtil.html">ProcessHandlerUtil</a></dt>
-      <dd></dd>
+      <dd><p>Extension methods for a process handler: <code>MassDataAction</code> runs an action on the data packet of each process
+it handles, and returns false where it handles none.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessHierarchy.html">ProcessHierarchy</a></dt>
@@ -2789,7 +3167,12 @@ A node corresponds to a GameObject that has one or more processes.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessTaskUtil.html">ProcessTaskUtil</a></dt>
-      <dd></dd>
+      <dd><p>Extension methods an ability's tasks use on a data packet: the targeting packet under a tag
+(<code>GetTargetingPacket</code>, which interrupts a sequence's run where there's none, <code>SetTargetingPacket</code> and
+<code>SetTargetingPackets</code>), and the effects loaded under a tag, applied to a target with the magnitudes the
+caller set (<code>TryApplyEffects</code>) or read back (<code>GetLoadedAssets</code>). Its async loops, <code>WhileAsync</code>,
+<code>DoWhileAsync</code> and <code>DoWhile</code>, wait a tick between rounds.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessWorld.html">ProcessWorld</a></dt>
@@ -2920,19 +3303,35 @@ by a buyback, takes nothing from it.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RunProcessTask.html">RunProcessTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that runs its <code>Processes</code> as its stage starts, each registered for the caster, and waits while
+any still runs, up to <code>MaxDuration</code> seconds read at the ability's level, counted by its run's clock or,
+with <code>UseUnscaledDeltaTime</code>, unscaled; as the stage ends, it ends those still running.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RunSequenceTask.html">RunSequenceTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that runs a task sequence, or a chain, and waits for it to end: the one the static
+<code>[TaskSequenceMethod]</code> method its <code>Sequence</code> names makes, called for each activation, or, for an
+ability built in code, a fresh run of its <code>Definition</code>. It runs as a process in the caster's world, by the
+<code>Clock</code> picked where one is, and ends as the activation is cancelled; a critical stage in the sequence
+makes the task critical, and the ability lets its claim go as the sequence's critical section ends.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RuntimeAttribute.html">RuntimeAttribute</a></dt>
-      <dd></dd>
+      <dd><p>An attribute made in code, with no asset behind it: a name, an abbreviation and a description where it's given
+them, and textures <code>AddTexture</code> adds. <code>AttributeRegistry.GetByName</code> makes one for a name it doesn't
+know, where it's asked to, and an entity's attribute system takes one with <code>ProvideAttribute(attribute,
+value)</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RuntimeEntityIdentity.html">RuntimeEntityIdentity</a></dt>
-      <dd></dd>
+      <dd><p>An entity's settings as a <code>RuntimeGameplayAbilitySystem</code> reads them: the Entity asset's fields in a plain
+class. Made from an Entity asset, it takes the asset's values, sharing its lists rather than copying them, and
+<code>Asset</code> names the asset; made in code, it describes an entity no asset does, and <code>Asset</code> is null. Two
+runtime entities can share one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html">RuntimeGameplayAbilitySystem</a></dt>
@@ -2947,7 +3346,9 @@ var relay = ProcessControl.Register(gas).With(dataPacket).Run().Relay;</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.RuntimeWrapperProcess.html">RuntimeWrapperProcess</a></dt>
-      <dd></dd>
+      <dd><p>The wrapper ProcessControl holds a runtime process in: it passes each hook and step to the process, reads its
+lifecycle, timing and priority from it, and marks it ended as it terminates, so it can be registered again.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ScalableFloat.html">ScalableFloat</a></dt>
@@ -3045,7 +3446,10 @@ and ScalableInt property drawers.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ScalerRootAssignment.html">ScalerRootAssignment</a></dt>
-      <dd></dd>
+      <dd><p>Put on a scaler field, it narrows the kinds the field's Kind menu offers: those deriving from <code>RootType</code>
+alone, where it names one, and none deriving from <code>AvoidType</code>, where it names one. An attribute set
+element's sides take the cached kinds alone so, and a number field every kind but those.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SeededRandom.html">SeededRandom</a></dt>
@@ -3186,23 +3590,35 @@ moves the body whatever the sequence is doing</li>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SequenceTimeout.html">SequenceTimeout</a></dt>
-      <dd></dd>
+      <dd><p>A time limit on a sequence or a stage: once its <code>Seconds</code> have passed by the run's clock, its
+<code>Injection</code> applies, a skip of the stage by default. <code>WithTimeout</code> on a builder or a stage adds one,
+as a packet's <code>SetStageTimeout</code> does to the current stage from a task, and an <code>OnTimeout</code> handler is
+handed the one that ran out.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetAbilitiesTask.html">SetAbilitiesTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Abilities</code>, Ability assets, in the activation's data under its <code>Tag</code>,
+Abilities by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetAssetsTask.html">SetAssetsTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Assets</code>, PlayForge assets of any kind, in the activation's data under its
+<code>Tag</code>, Assets by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetAttributeSetsTask.html">SetAttributeSetsTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>AttributeSets</code> in the activation's data under its <code>Tag</code>, Attribute Sets
+by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetAttributesTask.html">SetAttributesTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Attributes</code> in the activation's data under its <code>Tag</code>, Attributes by
+default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetBonusItemComponent.html">SetBonusItemComponent</a></dt>
@@ -3234,15 +3650,20 @@ owner, so where nothing is set it can read a value by level.
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetEffectsTask.html">SetEffectsTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Effects</code> in the activation's data under its <code>Tag</code>, Effects by default,
+for a later task to apply, as a sequence does with <code>data.TryApplyEffects(target, tag)</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetEntitiesTask.html">SetEntitiesTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Entities</code>, Entity assets, in the activation's data under its <code>Tag</code>,
+Entities by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SetTagsTask.html">SetTagsTask</a></dt>
-      <dd></dd>
+      <dd><p>An asset loader that puts its <code>Tags</code> in the activation's data under its <code>Tag</code>, Tags by default.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SharedCachedScaler.html">SharedCachedScaler</a></dt>
@@ -3295,7 +3716,9 @@ Cooldown is applied, and back as the Cooldown ends, as its caster no longer carr
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SingleDurationEffectContainer.html">SingleDurationEffectContainer</a></dt>
-      <dd></dd>
+      <dd><p>The container of Stacks Share One Duration: one timer and one tick for every stack, which a stack added leaves
+as they are; each tick executes once for each stack.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SkipAndMaintainInjection.html">SkipAndMaintainInjection</a></dt>
@@ -3316,11 +3739,20 @@ plays.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SourceAttributeImpact.html">SourceAttributeImpact</a></dt>
-      <dd></dd>
+      <dd><p>The carrier of a change no effect's spec carries: a raw delta, an attribute's root value, a transfer's two
+sides, a rescale or a returned blow. It names its source, its attribute, its impact types and its retention
+group; one made over another carrier gives that one's origin, definition and context tags.
+<code>IAttributeImpactCarrier.GenerateSourceDerivation</code> makes one, and a change made every frame keeps one and
+hands the attribute system a new value over it each time, which allocates nothing.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SourceEffectOrigin.html">SourceEffectOrigin</a></dt>
-      <dd></dd>
+      <dd><p>An origin that stands for an entity itself, for an effect the entity applies with no ability or item behind it:
+its source, definition, context tags, asset tag, level and sides are the entity's, and it's always active.
+<code>IEffectOrigin.GenerateSourceDerivation</code> makes one, as in
+<code>gas.ApplyGameplayEffect(IEffectOrigin.GenerateSourceDerivation(gas), effect)</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SpreadEffectComponent.html">SpreadEffectComponent</a></dt>
@@ -3332,15 +3764,26 @@ its chance to land are its own. A landing by spread spreads on only so far as it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StackAmountOperation.html">StackAmountOperation</a></dt>
-      <dd></dd>
+      <dd><p>The stack behaviour Scaled Stack Amount: the stacks each application adds, the amount the behaviours before it
+settled on, from the effect's Stack Amount, combined with its Scaler, read against the effect, as its Operation
+says, and made whole by its Rounding. With no scaler, the amount stands.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StackBoundsConfig.html">StackBoundsConfig</a></dt>
-      <dd></dd>
+      <dd><p>The stack behaviour Stack Bounds: a Min and a Max of stacks, each read at the effect's level. A new container is
+given the Min as it's made, and no application takes the effect past the Max, more where a modifier raises it:
+one that would overflows, its Overflow Effects landing from its origin on the target or the caster, as Overflow
+Lands On says, with Deny Refresh On Overflow and Clear Stacks On Overflow saying what becomes of the effect's
+time and stacks. It applies after the other behaviours, so its bounds have the last word.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StackQueueEffectContainer.html">StackQueueEffectContainer</a></dt>
-      <dd></dd>
+      <dd><p>The container of Duration Taken From One Stack: one stack's timer runs at a time, and each time it runs out a
+stack is lost and the timer restarts, so its time left counts the stacks still waiting. Each tick executes once
+for each stack, and a stack added restarts the timer.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StackingCurveKind.html">StackingCurveKind</a></dt>
@@ -3356,7 +3799,12 @@ needs no worker of its own. Plus 1 makes a share a multiplier.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StageBuilder.html">StageBuilder</a></dt>
-      <dd></dd>
+      <dd><p>Builds one stage of a sequence, handed to the action given to a builder's <code>Stage</code>, a stage's
+<code>SubStage</code>, or a branch's <code>If</code> and <code>Default</code>: its tasks (<code>Task</code>, <code>Do</code>, <code>SyncTask</code>,
+the delays and waits) and sub-stages, its policy (<code>WhenAll</code>, <code>WhenAny</code>, <code>WhenN</code>), its repeats,
+time limits and conditions, the injections it allows, whether it's critical, its name, and its handlers,
+<code>OnInit</code>, <code>OnRepeat</code>, <code>OnTimeout</code>, <code>OnTerminate</code> and the rest.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StandardWorkerGroup.html">StandardWorkerGroup</a></dt>
@@ -3366,11 +3814,16 @@ Workers are disbursed to the appropriate subsystems when the owning asset is app
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StartingItemContainer.html">StartingItemContainer</a></dt>
-      <dd></dd>
+      <dd><p>One of an entity's Starting Items: the item, given as the entity's GAS initializes, and whether it's equipped as
+it's given.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StaticTargetingPacket.html">StaticTargetingPacket</a></dt>
-      <dd></dd>
+      <dd><p>A targeting packet that holds its own position, rotation and scale, set as it's made and changed only through
+it: a point a click picked, a runtime entity's place, which whoever drives the entity keeps current, or a
+snapshot of a transform, or of another packet, whose entity, transform and direction it keeps.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.StopMaintainedAllInjection.html">StopMaintainedAllInjection</a></dt>
@@ -3441,7 +3894,11 @@ relay.Terminate();</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SystemLevelsComponent.html">SystemLevelsComponent</a></dt>
-      <dd></dd>
+      <dd><p>An entity's levels, each under a tag: its own, under its identity's asset tag, and each of its abilities' and
+items', under theirs, registered as they're given. <code>TrySetLevel</code> and <code>TryModifyLevel</code> set or change
+one, as a hub's <code>SetLevel</code> and <code>ModifyLevel</code> do, and its <code>Callbacks</code> hear each change; an effect
+that reads a level reads it again as it changes. A hub's <code>LevelSystem</code> gives it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagCache.html">TagCache</a></dt>
@@ -3489,11 +3946,18 @@ by maintaining cached mappings. Thread-safe for read operations.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagRegistry.TagUtil.html">TagRegistry.TagUtil</a></dt>
-      <dd></dd>
+      <dd><p>Makes the names of unique tags. <code>GenerateDeterministicTag</code> makes a tag of a prefix and a text, padded
+to a fixed length of 32 to 64 characters from their SHA-256 hash, or cut to it, so the same text always
+gives the same tag, which reads as the text; <code>Tag.GenerateAsUnique</code> makes its tags so.
+<code>GenerateUniqueRandomTag</code> makes a random name that no registered tag has.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagWeightValidation.html">TagWeightValidation</a></dt>
-      <dd></dd>
+      <dd><p>A check that compares the checked entity's weight of its <code>Tag</code> with <code>Weight</code>, read at the ability's
+level, by <code>Comparison</code>, as combo points or stacks; an entity without the tag holds it at 0. Either list
+offers it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagWorkerActivateAction.html">TagWorkerActivateAction</a></dt>
@@ -3502,7 +3966,9 @@ by maintaining cached mappings. Thread-safe for read operations.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagWorkerRequirements.html">TagWorkerRequirements</a></dt>
-      <dd></dd>
+      <dd><p>A tag worker's requirements: its packets, each a tag and a weight the entity's must reach or stay under. The
+worker is active while every packet holds, and always where it has none.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagWorkerResolveAction.html">TagWorkerResolveAction</a></dt>
@@ -3542,11 +4008,19 @@ which is always one; and with no Base there's no ratio, so no threshold is met.<
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TargetAttributeThresholdEffectWorker.html">TargetAttributeThresholdEffectWorker</a></dt>
-      <dd></dd>
+      <dd><p>The base of an effect worker that acts on each hit of its effect where an attribute meets a threshold:
+<code>TargetAttribute</code> on its context's System, which for a hit is the dealer, the effect's caster, its Current,
+its Base or both as <code>Target</code> says, compared with <code>Threshold</code> by <code>Policy</code>. Derive from it and
+override <code>OnThresholdMet</code> for the actions it queues; <code>CanCompare</code> and <code>MeetsThreshold</code> can be
+overridden too.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TargetingPacket.html">TargetingPacket</a></dt>
-      <dd></dd>
+      <dd><p>A targeting packet that follows a <code>Transform</code>: its position, rotation and scale are the transform's, read
+as they're asked for, and setting them moves it. The <code>GameplayAbilitySystem</code> component's
+<code>GetTargetingPacket</code> gives one on its own transform, with itself as the target.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TaskSequence.html">TaskSequence</a></dt>
@@ -3600,7 +4074,9 @@ Used to detect additions/removals in the template for list merge logic.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TextureItem.html">TextureItem</a></dt>
-      <dd></dd>
+      <dd><p>One of an asset's Textures: a texture under a tag of the Texture Slot context. The texture under Primary is the
+asset's icon, and with none there, the first texture is.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ThresholdAnalysisWorker.html">ThresholdAnalysisWorker</a></dt>
@@ -3609,7 +4085,10 @@ Used to detect additions/removals in the template for list merge logic.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ThresholdDebuggerEffectWorker.html">ThresholdDebuggerEffectWorker</a></dt>
-      <dd></dd>
+      <dd><p>An effect worker for debugging: on each hit of its effect where its threshold is met, as
+<code>TargetAttributeThresholdEffectWorker</code> checks it, it queues an action that logs so, with the effect's spec,
+through ForgeLog at Info.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ThresholdScaler.html">ThresholdScaler</a></dt>
@@ -3687,7 +4166,8 @@ Turn To Face of its own turns its own way, or not at all. An entity holds one at
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.UnityEventAbilityTask.html">UnityEventAbilityTask</a></dt>
-      <dd></dd>
+      <dd><p>A stage task that invokes its <code>Events</code>, each <code>UnityEvent</code> in turn, and ends at once.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.UnityRandom.html">UnityRandom</a></dt>
@@ -3800,7 +4280,12 @@ Structs
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityCallbackStatus.html">AbilityCallbackStatus</a></dt>
-      <dd></dd>
+      <dd><p>What an ability system's callback is handed: the activation's <code>Data</code> and the ability it runs
+(<code>Ability</code>, its spec); for a stage's or a task's callback, the <code>Stage</code> and its <code>Tasks</code>,
+<code>Task</code> being the one a task's callback tells of; for an injection's, the <code>Injection</code>; and
+<code>Success</code>, which at an end says whether the task or the stage got there without being cancelled or failing,
+and for an injection whether it was taken.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilityComponentContext.html">AbilityComponentContext</a></dt>
@@ -3809,7 +4294,14 @@ Structs
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html">AbilitySystemComponent.AbilityActivationRequest</a></dt>
-      <dd></dd>
+      <dd><p>A request to activate the ability in one slot of an entity's ability system, which
+<code>CreateActivationRequest</code> makes and <code>TryActivateAbility</code> takes: its slot (<code>Index</code>); the When
+Busy it's asked under (<code>Policy</code>), as its ability says unless the request names another; the <code>Data</code>
+it hands the activation, as a target an AI picked or set-by-caller magnitudes; how long it may wait in the
+input buffer (<code>BufferWindow</code>), below 0 for its ability's Buffer Window; and whether an ability still
+choosing its target gives way to it (<code>CancelsTargeting</code>), on as a player's press is, and off for a
+trigger's request and Activate At Start's.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActivationRefusal.html">ActivationRefusal</a></dt>
@@ -3838,7 +4330,11 @@ AttributeSetElement drawer clamps user input live) — all clamping flows throug
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
-      <dd></dd>
+      <dd><p>An attribute's two values as a pair: Base, the value it's measured against, and Current, the value in play, as a
+pool's maximum and what's left of it. An entity's attribute reads as one, and so do a change, a bound and a
+threshold; its operators work on both values at once, two are equal where each value is approximately, and
+<code>Ratio</code>, <code>ClampedRatio</code> and <code>LerpedRatio</code> read Current against Base.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html">AvoidRequireTagGroup.ValidationResult</a></dt>
@@ -3847,7 +4343,10 @@ AttributeSetElement drawer clamps user input live) — all clamping flows throug
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CachedMagnitudeModifierGroupMember.html">CachedMagnitudeModifierGroupMember</a></dt>
-      <dd></dd>
+      <dd><p>One member of a cached Group, which joins an attribute set's kept numbers: its <code>Calculation</code>, a cached
+scaler, and how it joins the others, its <code>RelativeOperation</code>: added up, multiplied into the sum, dividing
+it, added on after as a flat bonus, or overriding them all.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ChangeStep.html">ChangeStep</a></dt>
@@ -3864,11 +4363,17 @@ and, for a hit, whether it killed.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CompositeBehaviourPacket.html">CompositeBehaviourPacket</a></dt>
-      <dd></dd>
+      <dd><p>One application of a composite behaviour, an <code>AbstractProxyTaskBehaviour</code>, in one value: its <code>Command</code>
+tag, the <code>Behaviour</code>, the <code>Caller</code> that applies it, as an entity, and the <code>User</code> it acts on, as a
+shot aimed at that entity. <code>Generate</code> makes one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ContainedEffectPacket.html">ContainedEffectPacket</a></dt>
-      <dd></dd>
+      <dd><p>One of an effect's contained effects: the effect, the moment it lands at, as this one is applied, on each of its
+execute ticks or as it's removed, and whom it lands on, this one's target or its caster. It lands from this
+one's origin, with its set-by-caller magnitudes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ContainedEffects.html">ContainedEffects</a></dt>
@@ -3877,7 +4382,9 @@ and, for a hit, whether it killed.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ContainedEffects.Enumerator.html">ContainedEffects.Enumerator</a></dt>
-      <dd></dd>
+      <dd><p>Walks the contained effects of one moment in place, each packet whose moment it is, as a <code>foreach</code> over
+<code>ContainedEffects</code> does; it allocates nothing.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.CueContext.html">CueContext</a></dt>
@@ -3904,15 +4411,25 @@ game's own code. A network layer names it by the asset's ID, or the tag's, in pl
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.DataValue-1.html">DataValue&lt;T&gt;</a></dt>
-      <dd></dd>
+      <dd><p>The entries of one type under a data packet's key, as <code>GetAll</code> and <code>TryGetAll</code> give them: the first
+(<code>Primary</code>), the <code>Last</code>, one at random (<code>Any</code>), <code>All</code> of them or each once
+(<code>AllDistinct</code>), or by an <code>EDataTarget</code>, and it enumerates them. <code>IsValid</code> where it holds any.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectChanges.ImpactStage.html">EffectChanges.ImpactStage</a></dt>
-      <dd></dd>
+      <dd><p>A Value Pipeline stage a modifier's Change Impact adds to one application: the attribute whose impacts take
+it, every one where it names none, and the stage. An impact that commits runs it after its own pipeline; a
+lasting one takes it on its magnitude.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectChanges.Packet.html">EffectChanges.Packet</a></dt>
-      <dd></dd>
+      <dd><p>An effect a modifier adds to one application: the moment it lands at, the effect, the rule that added it,
+which won't change it again, and whom it lands on, the target or the caster. An application's changes hold
+one for each contained effect a modifier adds, and one for each overflow effect, which lands as the
+application overflows.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectComponentContext.html">EffectComponentContext</a></dt>
@@ -3921,7 +4438,10 @@ game's own code. A network layer names it by the asset's ID, or the tag's, in pl
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectDurationRemaining.html">EffectDurationRemaining</a></dt>
-      <dd></dd>
+      <dd><p>How long an entity's effect under a tag has left: its total duration and the time remaining, and whether one was
+found, as <code>GetLongestDurationFor</code> gives them for the one of the longest duration that has the tag as its
+asset tag or grants it. An Infinite one gives float.MaxValue for both; <code>Ratio</code> is the share of it left.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EffectWorkerContext.html">EffectWorkerContext</a></dt>
@@ -3941,7 +4461,9 @@ something listens, so a worker no one hears costs nothing more.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeAssetCatalog.Entry.html">ForgeAssetCatalog.Entry</a></dt>
-      <dd></dd>
+      <dd><p>One row of an Asset Catalog: the <code>Id</code> a save names an asset by, and the <code>Asset</code>. Where an ID or an
+asset repeats, the first row holds.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeLogEntry.html">ForgeLogEntry</a></dt>
@@ -3956,7 +4478,12 @@ frame, every timing's.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayEffectTags.html">GameplayEffectTags</a></dt>
-      <dd></dd>
+      <dd><p>An effect's tags: its Asset Tag, by which the effect system finds it as it's applied again or removed, and which
+its target carries while it lasts; its Context Tags, which describe it and go with each change it makes, never
+applied to the entity; its Granted Tags, applied to its target while it's on; and the tags it cleanses (Removes
+Effects Tagged) and makes its target immune to (Blocks Effects Tagged). <code>Names</code> says whether an effect is
+tagged with a tag, or a child of one, by any of the three.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GroupContribution.html">GroupContribution</a></dt>
@@ -3965,11 +4492,19 @@ frame, every timing's.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ImpactData.html">ImpactData</a></dt>
-      <dd></dd>
+      <dd><p>A change as it landed on an attribute: the <code>Target</code> it landed on, the <code>Attribute</code>, the
+<code>SourcedModifier</code> that made it, whose carrier names its source and its effect, the <code>RealImpact</code>, what
+the attribute's Current and Base changed by after workers, bounds and rounding, and the <code>OldValue</code> before
+it. Attribute callbacks, impact workers, an effect's Impact hook and the frame summary are each handed one;
+<code>Ends</code> marks a lasting modifier coming off, a change but no hit.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ImpactDerivationContext.html">ImpactDerivationContext</a></dt>
-      <dd></dd>
+      <dd><p>The context tags a change carries, which workers can filter by: its origin's, <code>OriginTags</code>, and its
+effect's own, <code>DerivationTags</code>; <code>All</code> gives them in that order. A carrier with no effect behind it
+gives its source's alone.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ImpactWorkerContext.html">ImpactWorkerContext</a></dt>
@@ -3983,15 +4518,25 @@ frame, every timing's.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IntValuePair.html">IntValuePair</a></dt>
-      <dd></dd>
+      <dd><p>A whole value and a maximum, unclamped, as a level and its max level: <code>SetLevel</code> sets a level an entity
+keeps under a tag to one, and <code>ModifyLevel</code> adds one to it, the max first in each, so a level raised past
+the old max takes it. <code>ToClamped</code> gives it as an <code>IntValuePairClamped</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IntValuePairClamped.html">IntValuePairClamped</a></dt>
-      <dd></dd>
+      <dd><p>A whole number held between a minimum and a maximum: every level PlayForge keeps is one, an entity's, an
+ability's or an item's under its tag, and so is the level an origin gives and a number reads. Setting
+<code>CurrentValue</code> clamps it, and moving a bound clamps it again; <code>Ratio</code> says where it stands between the
+two.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemCallbackStatus.html">ItemCallbackStatus</a></dt>
-      <dd></dd>
+      <dd><p>What an item system's callback is handed: the item's slot (<code>Container</code>) and <code>Spec</code>, the item system,
+and whether what it tells succeeded (<code>Success</code>), as equipping an item already worn doesn't; <code>Index</code>,
+<code>Item</code>, <code>Level</code> and <code>IsEquipped</code> read the slot.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemComponentContext.html">ItemComponentContext</a></dt>
@@ -4000,19 +4545,32 @@ frame, every timing's.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LevelCallbackStatus.html">LevelCallbackStatus</a></dt>
-      <dd></dd>
+      <dd><p>What a change to one of an entity's levels did, as its level system's callbacks and a hub's <code>SetLevel</code> and
+<code>ModifyLevel</code> report it: the level under its key, the level and max level before, and whether it took.
+<code>IsLevelUp</code>, <code>IsLevelDown</code> and the deltas compare before with after; <code>Success</code> is false where no
+level is under the key or nothing changed.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LevelThreshold.html">LevelThreshold</a></dt>
-      <dd></dd>
+      <dd><p>One tier of a Threshold number: the <code>Level</code> it starts at, the <code>Value</code> it reads from that level up, a
+number of any kind, and an optional <code>TierName</code>. Of the tiers at or below a level, the highest gives the
+value.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.MagnitudeModifierGroupMember.html">MagnitudeModifierGroupMember</a></dt>
-      <dd></dd>
+      <dd><p>One member of a Group number: its <code>Calculation</code>, a scaler or a kind of number, and how it joins the others,
+its <code>RelativeOperation</code>: added up, multiplied into the sum, dividing it, added on after as a flat bonus, or
+overriding them all.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ModifiedAttributeValue.html">ModifiedAttributeValue</a></dt>
-      <dd></dd>
+      <dd><p>A change to an attribute's Current and Base as two deltas, with no carrier behind it:
+<code>SourcedModifiedAttributeValue.ToModified</code> gives one. <code>Combine</code>, <code>Negate</code> and <code>Multiply</code>
+work on both deltas at once.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.NumberContext.html">NumberContext</a></dt>
@@ -4070,11 +4628,19 @@ enumerator. Walked as an <a class="xref" href="https://learn.microsoft.com/dotne
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a></dt>
-      <dd></dd>
+      <dd><p>A change to an attribute on its way through the attribute system: a Current and a Base, and the carrier it comes
+from, which names its source, its target, its impact types and its retention group. Code changes an attribute
+directly with one, through the entity's <code>TryModifyAttribute</code>: <code>GenerateSimple</code> makes a raw delta with
+no impact type, which workers take as they take an effect's change, and <code>GenerateUnworkable</code> one the system
+makes on its own account, unworkable, as <code>ImpactIsWorkable</code> says, so it counts as no hit. Over an effect's
+spec, the spec's impacters say what commits, and these values only travel with them.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SystemComponentData.html">SystemComponentData</a></dt>
-      <dd></dd>
+      <dd><p>A target's ability system and attribute system, each found once, as its <code>ToGASComponentData</code> gives them; a
+gameplay mono process keeps its origin's source's so. Either is null where the target has none.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a></dt>
@@ -4084,7 +4650,10 @@ Example: &quot;Status.Debuff.Burn&quot; where &quot;Status&quot; is the root, &q
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagAttributePair.html">TagAttributePair</a></dt>
-      <dd></dd>
+      <dd><p>A role and the attribute it reads on a gameplay mono process's origin: one row of the process's Attribute Pairs,
+as ProjectileSpeed read from the caster's Projectile Speed. The process's own attribute in that role comes first
+(<code>TryGetRole</code>).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagChange.html">TagChange</a></dt>
@@ -4094,7 +4663,10 @@ carries one as it happens; a compile, which rebuilds the tags from their sources
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TagWorkerRequirementPacket.html">TagWorkerRequirementPacket</a></dt>
-      <dd></dd>
+      <dd><p>One of a tag worker's requirements: a tag, whether the entity must carry it, Require, or must not, Avoid, and
+the weight that decides, read at the entity's level. Require holds while the tag's weight is at least
+<code>RequiredWeight</code>; Avoid while it's below.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.TaskSequenceReference.html">TaskSequenceReference</a></dt>
@@ -4152,19 +4724,29 @@ of the two it belongs among with <a class="xref" href="FarEmerald.PlayForge.Vali
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IActiveSequence.html">IActiveSequence</a></dt>
-      <dd></dd>
+      <dd><p>A sequence as code runs it, a <code>TaskSequence</code> or a <code>TaskSequenceChain</code>: <code>Run</code> runs it with a data
+packet, <code>TryRun</code> also says whether it finished, and <code>IsCriticalSection</code> whether its run is in a
+critical stage now. A <code>TaskSequenceReference</code>'s <code>GetActiveSequence</code> gives one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IAffiliated.html">IAffiliated</a></dt>
-      <dd></dd>
+      <dd><p>What has sides: <code>GetAffiliation</code> gives its affiliation tags, as an entity's team or faction. Every target
+and every effect origin has them, and an effect's Affiliation compares its origin's with its target's.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IAnalysisUser.html">IAnalysisUser</a></dt>
-      <dd></dd>
+      <dd><p>What holds analysis workers: <code>GetAnalysisCache</code> gives the cache a worker group gives its analysis workers
+to. Every GAS hub is one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IAttribute.html">IAttribute</a></dt>
-      <dd></dd>
+      <dd><p>An attribute as the attribute system knows it: a name, a description and an icon, an abbreviation and its
+textures. The <code>Attribute</code> asset is one and a <code>RuntimeAttribute</code> made in code is another; an entity's
+attributes, an effect's impacts and workers each name one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IAttributeImpactCarrier.html">IAttributeImpactCarrier</a></dt>
@@ -4271,23 +4853,46 @@ turner turns.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
-      <dd></dd>
+      <dd><p>An entity's gameplay ability system as code meets it, whichever hub runs it: the <code>GameplayAbilitySystem</code>
+component on a GameObject or a <code>RuntimeGameplayAbilitySystem</code> made in code. Through it code reaches the
+entity's attribute, ability, item and effect systems, its tags, levels and effects, its callbacks, clock,
+services and Local Data, and its turning, death and revival; <code>ToGASObject</code> gives the component, where there
+is one. Code that works with any entity takes one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayProcess.html">IGameplayProcess</a></dt>
-      <dd></dd>
+      <dd><p>A process as ProcessControl runs it: the packet and relay it's handed as it registers (<code>SendProcessData</code>),
+its hooks as it initializes, waits, terminates and is destroyed, its steps at its timing (<code>WhenUpdate</code>,
+<code>WhenLateUpdate</code>, <code>WhenFixedUpdate</code>), the run ProcessControl awaits (<code>RunProcess</code>), and whether
+it keeps its run through a pause (<code>TryHandlePause</code>, <code>TryHandleResume</code>). It's a process handler too, so
+the processes registered under it end with it. <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>
+implement it, and a process of your own derives from one of them.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></dt>
-      <dd></dd>
+      <dd><p>What a process is registered under, its handler: what the process belongs to, as a GAS hub, ProcessControl, a
+data packet or another process. It keeps the relays of the processes it handles (<code>GetRelays</code>), which
+ProcessControl subscribes as each registers and voids as each is removed, and gives the instantiator that makes
+the object of a mono process that uses its handler's (<code>GetInstantiator</code>). A process, a hub among them, ends
+what it handles as it ends.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IHasIntentToTarget.html">IHasIntentToTarget</a></dt>
-      <dd></dd>
+      <dd><p>What can be aimed at a target and turned to another, as a homing projectile, <code>AbstractTargetedMonoProcess</code>,
+is: <code>SetTarget</code> gives it the target and its targeting packet. A disjoint turns the shots aimed at an
+entity, through it, to where the entity stood.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IHasReadableDefinition.html">IHasReadableDefinition</a></dt>
-      <dd></dd>
+      <dd><p>What has a name, a description and an icon to show: <code>GetName</code>, <code>GetDescription</code> and
+<code>GetDefaultIcon</code>. Every PlayForge asset, an attribute, a tag and every target, a GAS hub among them, is
+one, and an origin or a carrier gives the one behind it through <code>GetReadableDefinition</code>, as a combat log
+names what dealt a hit.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IHasTextures.html">IHasTextures</a></dt>
@@ -4311,15 +4916,26 @@ can derive their MaxLevel from the provider, ensuring consistent scaling.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ILocalDataSource.html">ILocalDataSource</a></dt>
-      <dd></dd>
+      <dd><p>What holds Local Data rows, which <code>GetLocalData</code> gives: every PlayForge asset, and a runtime entity's
+identity. A GAS loads its identity's rows into a store of its own as it initializes, and a number that reads
+Local Data reads the rows of what it belongs to.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ILocalDataUser.html">ILocalDataUser</a></dt>
-      <dd></dd>
+      <dd><p>What keeps Local Data of its own at runtime, as a GAS hub does: <code>InitLocalData</code> loads a source's rows,
+<code>SetLocalData</code> and <code>TryGetLocalData</code> write and read a value by its key, and
+<code>GetLocalDataStructure</code> gives the store itself. Code and workers read and write an entity's Local Data
+through it, as a threshold analysis worker notes there that it has fired.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IManagerial.html">IManagerial</a></dt>
-      <dd></dd>
+      <dd><p>Marks PlayForge's managers, ProcessControl and GameRoot, which a Bootstrapper brings up: <code>Bootstrap</code> makes
+the one it's called on the one instance, or destroys it where another is already. A manager that is a GAS,
+GameRoot, isn't one of the game's entities: area searches pass it by, and the Mono Entities counter leaves it
+out.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.INumberWorker.html">INumberWorker</a></dt>
@@ -4349,7 +4965,11 @@ MonoBehaviour on the prefab resets itself here, as a particle system that plays 
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IProxyTaskBehaviourUser.html">IProxyTaskBehaviourUser</a></dt>
-      <dd></dd>
+      <dd><p>What a composite behaviour, an <code>AbstractProxyTaskBehaviour</code>, acts on: something with a process's data
+(<code>Data</code>), which the behaviour reads, as a disjoint reads whether a shot aimed at its caster is marked
+disjointable. Every <code>IProxyTaskBehaviourCaller</code>, which applies a behaviour to others, is one: the processes
+made from <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>, and each GAS hub.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IRootAction.html">IRootAction</a></dt>
@@ -4359,7 +4979,11 @@ Actions can be invalidated (e.g., effect removed) before execution.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IScaler.html">IScaler</a></dt>
-      <dd></dd>
+      <dd><p>What works out a number for a carrier, an effect's spec or another: <code>Initialize</code> as the carrier is made,
+which can capture what the number needs, then <code>Evaluate</code> each time it's read. Every <code>AbstractScaler</code>
+is one, and a carrier keeps what a scaler captures under the scaler. <code>Generate</code> makes a <code>CustomScaler</code>
+from two delegates, or, given none, one that reads how far up its range the origin's level is, from 0 to 1.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ISequenceInjection.html">ISequenceInjection</a></dt>
@@ -4380,23 +5004,42 @@ Task authors implement whichever path(s) their task will be used under.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ISource.html">ISource</a></dt>
-      <dd></dd>
+      <dd><p>An entity as the source of what it does: a target that is also an effect origin of its own and a handler of the
+processes it runs, with the tag cache, action queue and frame summary its workers use. Every GAS hub is one, and
+an effect's source is the entity behind its origin. <code>SetLevel</code> and <code>ModifyLevel</code> change a level it
+keeps under a tag, its own under its asset tag, and <code>GetLongestDurationFor</code> reads how long its longest
+effect under a tag has left, as a cooldown.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ITagHandler.html">ITagHandler</a></dt>
-      <dd></dd>
+      <dd><p>The tag side of an entity, as a GAS hub's: the tags it holds (<code>GetAppliedTags</code>), how many times a tag is
+granted (<code>GetTagWeight</code>, which a hub gives as −1 for a tag it doesn't hold), whether a tag query holds of
+it (<code>QueryTags</code>), and a rebuild of its tags from what grants them (<code>CompileGrantedTags</code>). Every target
+is one, and a tag worker checks its requirements against it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ITagSource.html">ITagSource</a></dt>
-      <dd></dd>
+      <dd><p>What grants tags: <code>GetGrantedTags</code> gives the tags it grants the entity that holds it, as an ability held
+grants its passive tags and, while it runs, its active ones. Every PlayForge asset is one, as are the containers
+of an entity's effects and abilities; an entity's tags are built from what its sources grant.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ITarget.html">ITarget</a></dt>
-      <dd></dd>
+      <dd><p>What an effect can land on: an entity, with its sides, its tags and a definition to show. It makes, applies and
+removes effects (<code>GenerateEffectSpec</code>, <code>ApplyGameplayEffect</code>, <code>RemoveGameplayEffect</code>), reads and
+changes its attributes, reads its levels, finds its subsystems, and says whether it's dead. Every GAS hub is
+one, and so is a stand-in, as the placeholder a disjointed shot is aimed at.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.IWorkerGroupSource.html">IWorkerGroupSource</a></dt>
-      <dd></dd>
+      <dd><p>What gives an entity workers through its worker group: <code>InitWorkers</code> gives them, and <code>RemoveWorkers</code>
+takes them back. An entity's identity and its attribute set give theirs as it initializes, an ability while the
+entity has it, and an item while it's equipped.</p>
+</dd>
     </dl>
     <h3 id="enums">
 Enums
@@ -4413,11 +5056,20 @@ Enums
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicy.html">EAbilityActivationPolicy</a></dt>
-      <dd></dd>
+      <dd><p>What an activation does while another ability holds its claim, the When Busy the inspectors show. Activate
+Anyway (<code>AlwaysActivate</code>) starts at once; Refuse (<code>ActivateIfIdle</code>) is refused, as Busy, while another
+ability asked under Refuse holds its claim; Queue (<code>QueueActivationIfBusy</code>) waits in the input buffer, for
+up to its Buffer Window, while a Queue ability holds its claim or a running stage blocks it. Whatever the
+choice, an ability with critical tasks can't start while another with critical tasks holds its claim. An
+entity's When Busy is one, and so is each activation request's <code>Policy</code>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html">EAbilityActivationPolicyExtended</a></dt>
-      <dd></dd>
+      <dd><p>An ability's When Busy as its Definition holds it: Entity's Policy (<code>UseLocalPolicy</code>), the default, takes
+its entity's When Busy, and the others are the <code>EAbilityActivationPolicy</code> choices, Activate Anyway, Refuse
+and Queue. <code>TryActivateAbility</code> and <code>CreateActivationRequest</code> can name one in place of the ability's.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAbilityEffectRole.html">EAbilityEffectRole</a></dt>
@@ -4451,7 +5103,11 @@ Enums
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EActionStatus.html">EActionStatus</a></dt>
-      <dd></dd>
+      <dd><p>How a composite behaviour's run on one user came out, as its <code>Status</code> reads it: <code>Success</code>;
+<code>Pending</code>, not yet done; <code>Failure</code>, refused by its checks, as a shot not marked disjointable;
+<code>Error</code>, as with a caller that isn't an entity; <code>NoData</code>, nothing recorded for the user; or
+<code>NoOp</code>, nothing done, as for a shot whose data says nothing of being disjointable.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EActivationRefusal.html">EActivationRefusal</a></dt>
@@ -4466,11 +5122,7 @@ frame. A refused activation said only false.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAddBehaviour.html">EAddBehaviour</a></dt>
-      <dd><p>Cross-carrier composition strategies for <a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html#FarEmerald_PlayForge_ECalculationOperation_Multiply">Multiply</a>
-impacters. This is intentionally distinct from per-effect stacking policy:
-stacking decides how the SAME effect re-applies stack against itself, while
-MultiplyBehaviour decides how DIFFERENT carriers' multiply contributions to the
-SAME attribute slot compose.</p>
+      <dd><p>How an Add impacter combines with the others on its attribute.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -4483,15 +5135,25 @@ sides takes every other one as its ally and its enemy alike.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAffiliationPolicy.html">EAffiliationPolicy</a></dt>
-      <dd></dd>
+      <dd><p>Which targets an effect may land on, by their affiliation tags against its origin's: Always Allow, the default,
+takes any; Affiliated, those that share the origin's sides; Unaffiliated, those that don't; Use Affiliation
+List, those that carry the effect's own Affiliations. The impact's Comparison says whether one tag matching does
+or every tag must, and a target it doesn't take refuses the effect.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAnyAllPolicy.html">EAnyAllPolicy</a></dt>
-      <dd></dd>
+      <dd><p>How a list of tags is matched against another: <code>Any</code> passes where one of its tags is in the other,
+<code>All</code> only where every one is. An effect's Affiliation Comparison is one, and so is the Context Matching
+Policy of a focused attribute worker and of a context impact worker.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EApplyTickRemove.html">EApplyTickRemove</a></dt>
-      <dd></dd>
+      <dd><p>The moment in an effect's life another effect lands at: as it's applied (On Apply), on each of its execute ticks
+(On Tick), or as it's removed (On Remove). A contained effect and an effect a modifier adds each name one; an
+Instant effect has no ticks and no removal, so only its On Apply ones land.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAreaCentre.html">EAreaCentre</a></dt>
@@ -4515,11 +5177,20 @@ sides takes every other one as its ally and its enemy alike.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeElementCollisionPolicy.html">EAttributeElementCollisionPolicy</a></dt>
-      <dd></dd>
+      <dd><p>An attribute set element's Collision: the group it joins where its attribute appears in more than one element
+across a set and its sub-sets. One group decides the attribute's root, the first there is of Use Set Collision
+Setting, Use This, Combine and Use Existing, and the other groups' elements are passed over: Combine adds its
+elements' values up, and each other group picks one, or averages them, by the Resolution Policy of the set the
+entity names.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeOverflowPolicy.html">EAttributeOverflowPolicy</a></dt>
-      <dd></dd>
+      <dd><p>The bounds an attribute set element holds its attribute's values in, with its Floor and Ceiling, each a Current
+and a Base: Zero To Base holds Current between 0 and Base; Floor To Base, Current between the Floor's Current
+and Base, and Base at or above the Floor's Base; Zero To Ceil, each between 0 and the Ceiling's; Floor To Ceil,
+each between its Floor and its Ceiling; Unlimited, none. They hold only while the element's Auto Clamp is on.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeRead.html">EAttributeRead</a></dt>
@@ -4535,7 +5206,10 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeRoundingPolicy.html">EAttributeRoundingPolicy</a></dt>
-      <dd></dd>
+      <dd><p>How an attribute set element rounds its attribute's Current and Base, after its bounds, each time the value
+changes: None; To Floor, down; To Ceil, up; Round, to the nearest; Snap To, to the nearest multiple of its Snap
+Interval. Rounding can make a change bigger or smaller than its effect asked for.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeSetLinkMode.html">EAttributeSetLinkMode</a></dt>
@@ -4544,31 +5218,53 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTarget.html">EAttributeTarget</a></dt>
-      <dd></dd>
+      <dd><p>Which of an attribute's two values a change goes to: its Current, its Base, or both. An effect's impact names
+one with its operation, as Add to Current or Multiply Base, and a transfer's Slot and a threshold effect
+worker's Target choose by it too.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTargetBinary.html">EAttributeTargetBinary</a></dt>
-      <dd></dd>
+      <dd><p>The part of an attribute's value something reads: its Current, its Base, what's missing of it (base − current),
+or its share (current ÷ base), as <code>AttributeParts.Read</code> reads it. A Threshold, a wait, the Attribute
+condition and an attribute-backed number read through it; some fields, as a tracked impact's part or a retention
+group's, read Base under Base and Current otherwise.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTargetExpanded.html">EAttributeTargetExpanded</a></dt>
-      <dd></dd>
+      <dd><p>Which of an attribute's values a change must touch for a worker to take it: Current, Base, Current And Base, or
+Current Or Base. A focused attribute worker's Target Modification and a context impact worker's Impact Target
+choose by it; with their exclusive switch on, a change to Current or to Base must touch that one alone.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeTargetLimited.html">EAttributeTargetLimited</a></dt>
-      <dd></dd>
+      <dd><p>A narrower <code>EAttributeTarget</code>, of the two choices that change Base: Current and Base together, or Base
+alone. <code>ForgeHelper.Translate</code> gives the <code>EAttributeTarget</code> it names.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAutoTargetMode.html">EAutoTargetMode</a></dt>
-      <dd></dd>
+      <dd><p>How an auto-targeting task, Auto Target or Auto Target By Affinity, orders the entities it finds before it takes
+its Max Targets, the first being its primary target: <code>Nearest</code> or <code>Farthest</code> first, measured from
+where its range is, or in a <code>Random</code> order; <code>All</code> leaves them as found. Max Targets still holds under
+All, and 0 takes every one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ECalculationOperation.html">ECalculationOperation</a></dt>
-      <dd></dd>
+      <dd><p>How a change applies its magnitude to an attribute's value: <code>Add</code> adds it, <code>Multiply</code> multiplies by
+it, <code>FlatBonus</code> adds it after the multipliers, so they don't scale it, and <code>Override</code> sets the value
+to it. An attribute's lasting modifiers apply in that order, and of several overrides of one value the lowest
+order wins. An effect's impact chooses one as its Operation, and some workers do.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ECaptureAttributeWhen.html">ECaptureAttributeWhen</a></dt>
-      <dd></dd>
+      <dd><p>When a × Attribute scaler reads its attribute: <code>OnCreation</code> captures it once, as the effect's spec is made,
+and reads that snapshot after; <code>OnApplication</code> reads the live value each time the scaler is read.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EChangeStepKind.html">EChangeStepKind</a></dt>
@@ -4587,7 +5283,10 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EComparisonOperator.html">EComparisonOperator</a></dt>
-      <dd></dd>
+      <dd><p>How one number compares with another: less than, less or equal, equal, not equal, greater or equal, or greater
+than. A tag query compares the tag's count with its number by it, and conditions, validation rules, waits,
+auto-targeting and the threshold effect worker compare their numbers by it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ECrowdControlStops.html">ECrowdControlStops</a></dt>
@@ -4631,7 +5330,9 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EDataTarget.html">EDataTarget</a></dt>
-      <dd></dd>
+      <dd><p>Which entry under a data packet's key a read takes where the key holds several: <code>Primary</code>, the first;
+<code>Any</code>, one at random; or <code>Last</code>, the last.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EDeathPolicy.html">EDeathPolicy</a></dt>
@@ -4645,11 +5346,19 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectDurationPolicy.html">EEffectDurationPolicy</a></dt>
-      <dd></dd>
+      <dd><p>How long an effect lives: Instant, the default, makes its change once and is done; Durational stays on the
+target's shelf for its Duration; Infinite stays until something removes it. It gives the effect's first impact
+its delivery: on applying for an Instant effect, and for a lasting one while it lasts, or on each tick where it
+ticks.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectInteractionPolicy.html">EEffectInteractionPolicy</a></dt>
-      <dd></dd>
+      <dd><p>What a lasting effect on the target does with its time as it takes in an application under Do Nothing, Replace
+Existing or Stack Existing: Do Nothing, the default, leaves it; Refresh Duration restarts it; Extend Duration
+adds the new application's duration to it, or, where stacks keep their own durations, adds a stack. Refresh and
+Extend run Tick On Application again.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectJournalKind.html">EEffectJournalKind</a></dt>
@@ -4668,7 +5377,12 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectReApplicationPolicy.html">EEffectReApplicationPolicy</a></dt>
-      <dd></dd>
+      <dd><p>What a Durational or Infinite effect does as it's applied to a target that has it already, matched by its asset
+tag whoever applied it: Add Another, the default, adds a container of its own; Do Nothing takes nothing new in;
+Replace Existing gives the old container the new application's values and modifiers, keeping its stacks and past
+commits; Stack Existing adds stacks to it. All but Add Another then do with its time as the effect's
+<code>EEffectInteractionPolicy</code> says.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectRecipient.html">EEffectRecipient</a></dt>
@@ -4682,7 +5396,12 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectStackPolicy.html">EEffectStackPolicy</a></dt>
-      <dd></dd>
+      <dd><p>How the stacks of an effect whose Re-application is Stack Existing keep time: Stacks Share One Duration, the
+default, runs one timer for all, which a stack added doesn't reset, each tick executing once for each stack;
+Stacks Have Independent Durations gives each stack its own timer and ticks, so they drop off one at a time;
+Duration Taken From One Stack runs one stack's timer at a time, a stack lost and the timer restarted each time
+it runs out.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EEffectTargetScope.html">EEffectTargetScope</a></dt>
@@ -4711,7 +5430,9 @@ reads it. An effect's impact can add up its own way, and a number can read it it
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EFromSelfSource.html">EFromSelfSource</a></dt>
-      <dd></dd>
+      <dd><p>Where a relative attribute worker reads its relative attribute: From Self, on the entity whose attribute
+changes; From Source, on the source of the change.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EGroupOperation.html">EGroupOperation</a></dt>
@@ -4754,7 +5475,11 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ELevelConfig.html">ELevelConfig</a></dt>
-      <dd></dd>
+      <dd><p>The level range a scaler's values spread over, where they spread: the level provider's
+(<code>LockToLevelProvider</code>, Provider's Levels), the scaler's own Max Level (<code>Unlocked</code>, Own Max Level), or
+the provider's up to that Max Level (<code>Clamped</code>, Clamped to Provider), so the values reach their last at the
+lower of the two.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ELocalDataFrom.html">ELocalDataFrom</a></dt>
@@ -4763,11 +5488,17 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EMagnitudeOperation.html">EMagnitudeOperation</a></dt>
-      <dd></dd>
+      <dd><p>How a field joins its number with its scaler, its Combine: Multiply With Scaler, the scaler times the number;
+Add Scaler, the scaler plus the number; Use Magnitude, the number alone; Use Scaler, the scaler alone. A number
+field, an attribute set element's sides, an effect's clock and Scaled Stack Amount each combine by it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EMathApplicationPolicy.html">EMathApplicationPolicy</a></dt>
-      <dd></dd>
+      <dd><p>How a value is used as a factor: <code>AsIs</code> as it is, <code>OnePlus</code> as 1 + x, and <code>OneMinus</code> as 1 − x, so
+a 30% bonus multiplies by 1.3 and a 30% reduction by 0.7. An Attenuate scaler behaviour's Policy turns its value
+so, and a Math attribute worker's Operation Policy the attribute it changes by.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EModifierDirection.html">EModifierDirection</a></dt>
@@ -4776,7 +5507,11 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EMultiplyBehaviour.html">EMultiplyBehaviour</a></dt>
-      <dd></dd>
+      <dd><p>How a Multiply impact combines with the other multiplies on the same value of its attribute: Multiplicative, the
+default, compounds them, ×1.5 and ×1.5 making ×2.25; Additive Bonus adds each one's bonus, its value less 1, and
+multiplies once, +50% and +50% making ×2.0. It's apart from stacking, which decides how one effect applied again
+stacks against itself.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EOnHitTo.html">EOnHitTo</a></dt>
@@ -4790,11 +5525,21 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessControlState.html">EProcessControlState</a></dt>
-      <dd></dd>
+      <dd><p>What ProcessControl does as a whole: <code>Ready</code> takes new processes and runs them; <code>Waiting</code> takes them
+and holds every process where it is; <code>Closed</code> takes no more and runs those it has; <code>ClosedWaiting</code>
+takes no more and holds those it has; <code>Terminated</code> ends every process, a running one as its run ends, and
+<code>TerminatedImmediately</code> ends them all at once, and neither takes more. <code>SetControlState</code> sets it, and
+leaving a waiting state sends back what it held; the inspector's Start State is the one it starts in.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessLifecycle.html">EProcessLifecycle</a></dt>
-      <dd></dd>
+      <dd><p>How a process starts and what follows its run: <code>SelfTerminating</code> starts running and ends as its run is
+done, as a projectile; <code>RunThenWait</code> starts running and waits when its run is done, to run again, as an
+ability; <code>RequiresControl</code> starts waiting and runs only when told, as an ability on a key; and
+<code>Synchronous</code> starts running with no run to await, stepped at its timing for as long as it lasts, as a
+health bar.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessRegistrationRefusal.html">EProcessRegistrationRefusal</a></dt>
@@ -4803,19 +5548,33 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessState.html">EProcessState</a></dt>
-      <dd></dd>
+      <dd><p>Where a registered process is in its life: <code>Created</code>, as it's registered and set up, before its first move;
+<code>Running</code>; <code>Waiting</code>, paused or waiting to run again; and <code>Terminated</code>, ended and cleaned up. A
+relay's <code>State</code> reads it, and the process's lifecycle and ProcessControl's state decide each move.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessStatus.html">EProcessStatus</a></dt>
-      <dd></dd>
+      <dd><p>Whether a process is stepped or its run awaited, as its wrapper's <code>Status</code> says: <code>Synchronous</code> for a
+process of the Synchronous lifecycle, <code>Asynchronous</code> for any other, and <code>Unknown</code> where the wrapper
+doesn't say.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessStepPriorityMethod.html">EProcessStepPriorityMethod</a></dt>
-      <dd></dd>
+      <dd><p>Where a process steps among the others of its timing: <code>First</code>, at priority 0; <code>Last</code>, after every
+other; or <code>Manual</code>, at its own step priority. Lower priorities step first, and ProcessControl registers a
+scene's own processes by it too, parents before their children.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EProcessStepTiming.html">EProcessStepTiming</a></dt>
-      <dd></dd>
+      <dd><p>Which of Unity's loops a process is stepped in while it runs, each step calling its <code>WhenUpdate</code>,
+<code>WhenLateUpdate</code> or <code>WhenFixedUpdate</code>: one of Update, LateUpdate and FixedUpdate, two of them, all
+three, or <code>None</code>, never stepped. A GAS hub steps in Update and LateUpdate: Update ticks its effects, and
+LateUpdate runs its end of frame. Under ProcessControl's Fixed Tick Rate, each tick steps the Update and
+LateUpdate processes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EPurgeRelation.html">EPurgeRelation</a></dt>
@@ -4824,7 +5583,9 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ERequireAvoidPolicy.html">ERequireAvoidPolicy</a></dt>
-      <dd></dd>
+      <dd><p>Which way a tag worker's requirement holds: Require, while the tag's weight on the entity is at least the
+required weight; Avoid, while it's below it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ERetentionGroupRead.html">ERetentionGroupRead</a></dt>
@@ -4833,7 +5594,9 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ERoundingOperation.html">ERoundingOperation</a></dt>
-      <dd></dd>
+      <dd><p>How a whole-number field, a <code>ScalableInt</code>, makes a value read through its scaler whole: Floor rounds it
+down, Ceil up, and Round to the nearest, a half away from zero. Scaled Stack Amount rounds its stacks by it too.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESavedOrigin.html">ESavedOrigin</a></dt>
@@ -4842,7 +5605,10 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EScalerInterpolation.html">EScalerInterpolation</a></dt>
-      <dd></dd>
+      <dd><p>How a scaler whose values spread over levels reads a level between two of its points: <code>Constant</code> steps from
+one to the next (Steps), <code>Linear</code> goes in a straight line (Straight Line), and <code>Smooth</code> along a smooth
+curve (Smooth Curve).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EScalerParts.html">EScalerParts</a></dt>
@@ -4851,7 +5617,10 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EScalerRelativeOperation.html">EScalerRelativeOperation</a></dt>
-      <dd></dd>
+      <dd><p>How a cached attribute-backed scaler joins the attribute it captures with its own value at the level: <code>Add</code>
+adds them, <code>Multiply</code> multiplies them, and <code>UseAttributeValue</code> and <code>UseScalerValue</code> take one
+alone.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESideSource.html">ESideSource</a></dt>
@@ -4860,15 +5629,24 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESignPolicy.html">ESignPolicy</a></dt>
-      <dd></dd>
+      <dd><p>The sign of a change or a value: <code>Positive</code>, <code>Negative</code>, <code>ZeroBiased</code>, 0 from values that cancel
+out, or <code>ZeroNeutral</code>, 0 from nothing at all. <code>ForgeHelper.SignPolicy</code> reads it from magnitudes and an
+attribute change's <code>SignPolicy</code> gives it; a context impact worker takes impacts of one sign (Impact Sign)
+and gives its own change one (Work Sign Policy).</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESignPolicyExtended.html">ESignPolicyExtended</a></dt>
-      <dd></dd>
+      <dd><p>A sign policy with <code>Any</code>, which every sign matches: a focused attribute worker's Sign Policy, the sign of
+the changes it watches, is one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESourceTarget.html">ESourceTarget</a></dt>
-      <dd></dd>
+      <dd><p>Which side's attribute is read: the <code>Source</code>, whose effect or impact it is, or the <code>Target</code>. A ×
+Attribute scaler's Capture From chooses one, as does a <code>RelativeOperationContextImpactWorker</code>'s With
+Respect To.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESpreadMoment.html">ESpreadMoment</a></dt>
@@ -4877,7 +5655,10 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EStackBoundsOnMaxPolicy.html">EStackBoundsOnMaxPolicy</a></dt>
-      <dd></dd>
+      <dd><p>What Stack Bounds does as an application finds the effect at its Max: Do Nothing, the default, keeps to the one
+effect, held at its Max; Append New Container stacks it into a container of the effect under its Max, or else a
+new one, which stacks again.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EStackingCurve.html">EStackingCurve</a></dt>
@@ -4911,7 +5692,9 @@ independent &quot;retained?&quot; switch to get wrong:</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EThresholdComparison.html">EThresholdComparison</a></dt>
-      <dd></dd>
+      <dd><p>How a Threshold analysis worker compares what it reads with its threshold while its Crossing is While It Holds:
+less than, less than or equal, greater than, greater than or equal, or equal, within 0.001.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EThresholdCrossing.html">EThresholdCrossing</a></dt>
@@ -4961,11 +5744,21 @@ Cost check asks, and its cooldown, as the Cooldown check asks.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EValueCollisionPolicy.html">EValueCollisionPolicy</a></dt>
-      <dd></dd>
+      <dd><p>Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,
+the first or the last, or none of them (<code>Ignore</code>). A Group's policy picks among its overriding members,
+Ignore setting them aside so the rest join as they would; an attribute set's Resolution Policy picks among the
+elements that give one attribute, Ignore keeping the first.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EWhileTargeting.html">EWhileTargeting</a></dt>
-      <dd></dd>
+      <dd><p>What an ability still choosing its target does as another of its entity's abilities activates, past that one's
+own checks, on a request that cancels targeting (<code>CancelsTargeting</code>), as a player's press does: the While
+Targeting the inspectors show. Entity's Rule (<code>EntitysRule</code>) does as its entity's Targeting Yields says;
+<code>Yields</code> gives way, its targeting cancelled, nothing of it paid, and its claim let go at once, so the other
+starts; <code>Holds</code> keeps its claim until its target is chosen or it's cancelled, and the other does as its
+When Busy says.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EWorkerExecution.html">EWorkerExecution</a></dt>
@@ -4985,7 +5778,10 @@ workers hear its hits on their dealer's side and impact workers run for their de
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeLog.ELevel.html">ForgeLog.ELevel</a></dt>
-      <dd></dd>
+      <dd><p>How much a message matters: <code>Verbose</code>, chatty lifecycle traces, then <code>Info</code>, <code>Warning</code> and
+<code>Error</code>. A message is let through at its system's level or above, and <code>None</code>, as a level, lets
+nothing through, framework errors included.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeLog.ESystem.html">ForgeLog.ESystem</a></dt>
@@ -5006,7 +5802,11 @@ declares (<a class="xref" href="FarEmerald.PlayForge.NumberContextAttribute.html
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SyncedTaskSequence.ERunnerState.html">SyncedTaskSequence.ERunnerState</a></dt>
-      <dd></dd>
+      <dd><p>Where a synced runner is, as its <code>State</code> says: <code>Ready</code>, built or reset and not stepped since;
+<code>Running</code>; <code>Completed</code>, every stage done; or <code>Interrupted</code>. A step of a Completed or
+Interrupted runner does nothing and returns true, and a repeating runner goes back to Ready after each
+round.</p>
+</dd>
     </dl>
     <h3 id="delegates">
 Delegates
@@ -5018,7 +5818,12 @@ Delegates
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemCallbacks.AbilitySystemCallbackDelegate.html">AbilitySystemCallbacks.AbilitySystemCallbackDelegate</a></dt>
-      <dd></dd>
+      <dd><p>The handler of an ability system's callbacks on its abilities' runs, handed an <code>AbilityCallbackStatus</code>:
+<code>OnAbilityActivate</code> as an activation takes its claim, before its targeting;
+<code>OnAbilityClaimReleased</code> as it lets the claim go; <code>OnAbilityEnd</code> as it ends;
+<code>OnAbilityStageActivate</code> and <code>OnAbilityStageEnd</code> for each stage; <code>OnAbilityTaskActivate</code> and
+<code>OnAbilityTaskEnd</code> for each task; and <code>OnAbilityInjection</code> for an injection sent into it.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AbilitySystemCallbacks.GameplayEventDelegate.html">AbilitySystemCallbacks.GameplayEventDelegate</a></dt>
@@ -5027,7 +5832,10 @@ Delegates
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActionQueue.ActionCallback.html">ActionQueue.ActionCallback</a></dt>
-      <dd></dd>
+      <dd><p>A listener of an action in the queue, handed the action: <code>OnActionQueued</code> hears it as it's queued,
+<code>OnActionExecuted</code> as it runs, and <code>OnActionInvalidated</code> as it's dropped unrun. An action the
+system makes for itself, as a rescale, is used again once the queue has run it, so read it during the call.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ActionQueue.ActionFailedCallback.html">ActionQueue.ActionFailedCallback</a></dt>
@@ -5042,23 +5850,37 @@ copy its <a class="xref" href="FarEmerald.PlayForge.ChangeValue.html#FarEmerald_
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeDelegate.html">AttributeSystemCallbacks.AttributeDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A listener of an attribute coming or going, handed the attribute: <code>OnAttributeRegister</code> hears each
+attribute the entity's attribute system takes, as its set is built, and <code>OnAttributeUnregister</code> each it
+removes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeImpactDelegate.html">AttributeSystemCallbacks.AttributeImpactDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A listener of a change that has landed on an attribute, handed its <code>ImpactData</code>: the entity, the
+attribute, what it changed by after workers, bounds and rounding, its value before, and the change that did
+it. <code>OnAttributeChanged</code>, <code>OnAttributeIncreased</code> and <code>OnAttributeReduced</code> take one.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeStateDelegate.html">AttributeSystemCallbacks.AttributeStateDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A listener of an attribute's Current emptying or filling, handed the attribute:
+<code>OnAttributeCurrentZero</code> hears a change to its Current that leaves it at 0, and
+<code>OnAttributeCurrentFull</code> one that leaves it at its Base, each as its share of its Base reads.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeValueChangeDelegate.html">AttributeSystemCallbacks.AttributeValueChangeDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A listener of an attribute's value changing, handed the attribute and its value before and after the change:
+<code>OnAttributeBaseChanged</code> hears each change that moves its Base.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCues.CuePlayedDelegate.html">ForgeCues.CuePlayedDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A listener of <code>ForgeCues.Played</code>, invoked as each cue plays, after its handler, handed whether it
+bursts, begins or ends, the handler, and the cue's context: what raised it, who's behind it and where it
+plays.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ActionFailedDelegate.html">GameplayAbilitySystemCallbacks.ActionFailedDelegate</a></dt>
@@ -5080,7 +5902,9 @@ soak or a gain's scaling.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.DeathDelegate.html">GameplayAbilitySystemCallbacks.DeathDelegate</a></dt>
-      <dd></dd>
+      <dd><p>The handler of an entity's <code>OnEntityDied</code> and <code>OnEntityRevived</code> callbacks, handed the entity's
+hub: invoked as it's marked dead, before its frame ends, and as a staying entity revives.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.EffectDelegate.html">GameplayAbilitySystemCallbacks.EffectDelegate</a></dt>
@@ -5111,7 +5935,11 @@ refilled each frame, so read it during the call, or copy what you need.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.html">GameplayAbilitySystemCallbacks.ImpactDelegate</a></dt>
-      <dd></dd>
+      <dd><p>The handler of an entity's impact callbacks, handed the <code>ImpactData</code> of an impact as it's recorded: its
+target, its attribute and the change that landed. <code>OnImpactDealt</code> hears those the entity dealt and
+<code>OnImpactReceived</code> those it took, <code>OnImpact</code> either, and <code>OnReductionDealt</code>,
+<code>OnIncreaseDealt</code>, <code>OnReductionReceived</code> and <code>OnIncreaseReceived</code> a loss or a gain alone.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactWorkerDelegate.html">GameplayAbilitySystemCallbacks.ImpactWorkerDelegate</a></dt>
@@ -5135,27 +5963,47 @@ refilled each frame, so read it during the call, or copy what you need.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ItemSystemCallbacks.ItemSystemCallbackDelegate.html">ItemSystemCallbacks.ItemSystemCallbackDelegate</a></dt>
-      <dd></dd>
+      <dd><p>The handler of an item system's callbacks, handed an <code>ItemCallbackStatus</code>: <code>OnItemGiven</code> and
+<code>OnItemRemoved</code>, as an item comes into the inventory or a slot leaves it; <code>OnItemEquipped</code> and
+<code>OnItemUnequipped</code>; <code>OnItemEffectsApplied</code> and <code>OnItemEffectsRemoved</code>, once for each effect a
+worn item puts on or takes off; and <code>OnItemAbilityGranted</code> and <code>OnItemAbilityRevoked</code>, for the
+ability it lends.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.LevelSystemCallbacks.LevelSystemCallbackDelegate.html">LevelSystemCallbacks.LevelSystemCallbackDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A handler of a level system's events, invoked as a level is registered or unregistered
+(<code>OnLevelRegistered</code>, <code>OnLevelUnregistered</code>) and as one is set or changed (<code>OnLevelChanged</code>,
+<code>OnMaxLevelChanged</code>, <code>OnLevelUp</code>, <code>OnLevelDown</code>), and handed the <code>LevelCallbackStatus</code>
+of that change.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateDelegate.html">ProcessControlCallbacks.ControlStateDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A handler of <code>OnControlStateChanged</code>, ProcessControl's callback, invoked as ProcessControl's own state
+changes, and handed the state it left and the state it entered.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">ProcessControlCallbacks.GASProcessDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A handler of <code>OnGASProcessRegistered</code> and <code>OnGASProcessUnregistered</code>, ProcessControl's callbacks,
+invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet
+whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's
+relay and its data packet.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessDelegate.html">ProcessControlCallbacks.ProcessDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A handler of <code>OnProcessRegistered</code> and <code>OnProcessUnregistered</code>, ProcessControl's callbacks,
+invoked for every process once it has registered and initialized, and just before it's removed, and handed
+its relay and its data packet.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateDelegate.html">ProcessControlCallbacks.ProcessStateDelegate</a></dt>
-      <dd></dd>
+      <dd><p>A handler of <code>OnProcessStateChanged</code>, ProcessControl's callback, invoked as any process moves from one
+state to another, and handed its relay, the state it left, the state it entered and its data packet.</p>
+</dd>
     </dl>
 
 

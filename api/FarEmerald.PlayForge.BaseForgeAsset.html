@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class BaseForgeAsset | PlayForge ">
       
-      
+      <meta name="description" content="The base of every PlayForge asset, a ScriptableObject: attributes directly, and abilities, effects, items, attribute sets and entities through BaseForgeLevelProvider. It holds the asset&#39;s Local Data rows, read by key with TryGetLocalData, and its template, an asset of the same type whose fields it takes when the template is pushed, apart from those it overrides (SetTemplate, IsFieldOverridden). A type made from it gives its name, description, default icon and the tags it grants.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,8 +97,16 @@ Class BaseForgeAsset
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
-  <div class="markdown conceptual"></div>
+  <div class="markdown summary"><p>The base of every PlayForge asset, a ScriptableObject: attributes directly, and abilities, effects, items,
+attribute sets and entities through <code>BaseForgeLevelProvider</code>. It holds the asset's Local Data rows, read by
+key with <code>TryGetLocalData</code>, and its template, an asset of the same type whose fields it takes when the
+template is pushed, apart from those it overrides (<code>SetTemplate</code>, <code>IsFieldOverridden</code>). A type made
+from it gives its name, description, default icon and the tags it grants.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/extending/index.html">Extending PlayForge</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/editor/templates.html">The Editor Tools: Templates</a></p>
+</div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class BaseForgeAsset : ScriptableObject, ILocalDataSource, IHasReadableDefinition, ITagSource</code></pre>

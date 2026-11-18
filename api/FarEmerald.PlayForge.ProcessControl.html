@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ProcessControl | PlayForge ">
       
-      
+      <meta name="description" content="The scene&#39;s scheduler of processes: every process, a GAS, a projectile, an ability&#39;s sequence, registers with it, and it steps each from Unity&#39;s player loop, in Update, LateUpdate or FixedUpdate as the process&#39;s timing asks, moves it between its states as its lifecycle says, and ends it. A Bootstrapper brings it up as the one Instance, and it then registers the scene&#39;s own mono processes, as its Collect On Awake says. ProcessControl.Register(process).HandledBy(handler).With(data).Run() registers a process and starts it, and its result holds the process&#39;s relay, which pauses, resumes and ends it; RegisterGroup and RegisterWithGroup hold runtime processes in a group by a tag. Its control state (SetControlState) pauses, closes or ends every process at once; its Fixed Tick Rate, above 0, steps every process at fixed steps of game time, so a run comes out the same at any frame rate; and its Callbacks hear every process register, change state and go. Its bookkeeping is its World, a ProcessWorld, which code can also own and step with no scene.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,10 +97,21 @@ Class ProcessControl
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The scene's scheduler of processes: every process, a GAS, a projectile, an ability's sequence, registers with
+it, and it steps each from Unity's player loop, in Update, LateUpdate or FixedUpdate as the process's timing
+asks, moves it between its states as its lifecycle says, and ends it. A Bootstrapper brings it up as the one
+<code>Instance</code>, and it then registers the scene's own mono processes, as its Collect On Awake says.</p>
+<p><code>ProcessControl.Register(process).HandledBy(handler).With(data).Run()</code> registers a process and starts
+it, and its result holds the process's relay, which pauses, resumes and ends it; <code>RegisterGroup</code> and
+<code>RegisterWithGroup</code> hold runtime processes in a group by a tag. Its control state (<code>SetControlState</code>)
+pauses, closes or ends every process at once; its Fixed Tick Rate, above 0, steps every process at fixed steps
+of game time, so a run comes out the same at any frame rate; and its <code>Callbacks</code> hear every process
+register, change state and go. Its bookkeeping is its <code>World</code>, a <code>ProcessWorld</code>, which code can also
+own and step with no scene.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/groups.html">Processes: Groups</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/processes/index.html">Processes</a> · <a class="xref" href="../guides/task-sequences/running-one.html">Task Sequences: Running one</a> · <a class="xref" href="../guides/getting-started/logging.html">Getting Started: Logging</a> · <a class="xref" href="../guides/getting-started/profiling.html">Getting Started: Profiling</a> · <a class="xref" href="../guides/abilities/index.html">Abilities</a> · <a class="xref" href="../guides/processes/pausing.html">Processes: Pausing</a> · <a class="xref" href="../guides/task-sequences/clocks.html">Task Sequences: Clocks</a> · <a class="xref" href="../guides/processes/kinds.html">Processes: Kinds</a> · <a class="xref" href="../guides/processes/registering-one.html">Processes: Registering one</a> · <a class="xref" href="../guides/processes/logging.html">Processes: Logging</a>, and 4 more sections</p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/groups.html">Processes: Groups</a> · <a class="xref" href="../guides/editor/the-debugger.html">The Editor Tools: The Debugger</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/services/fixed-ticks.html">Time, Input and Logging: Fixed ticks</a> · <a class="xref" href="../guides/processes/index.html">Processes</a> · <a class="xref" href="../guides/task-sequences/running-one.html">Task Sequences: Running one</a> · <a class="xref" href="../guides/services/process-and-sequence-logs.html">Time, Input and Logging: Process and sequence logs</a> · <a class="xref" href="../guides/services/profiling.html">Time, Input and Logging: Profiling</a> · <a class="xref" href="../guides/extending/processes.html">Extending PlayForge: Processes</a> · <a class="xref" href="../guides/getting-started/logging.html">Getting Started: Logging</a> · <a class="xref" href="../guides/getting-started/profiling.html">Getting Started: Profiling</a> · <a class="xref" href="../guides/abilities/index.html">Abilities</a>, and 16 more sections</p>
 </div>
 
   <div class="codewrapper">

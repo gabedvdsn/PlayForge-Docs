@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IGameplayProcess | PlayForge ">
       
-      
+      <meta name="description" content="A process as ProcessControl runs it: the packet and relay it&#39;s handed as it registers (SendProcessData), its hooks as it initializes, waits, terminates and is destroyed, its steps at its timing (WhenUpdate, WhenLateUpdate, WhenFixedUpdate), the run ProcessControl awaits (RunProcess), and whether it keeps its run through a pause (TryHandlePause, TryHandleResume). It&#39;s a process handler too, so the processes registered under it end with it. AbstractMonoProcess and AbstractRuntimeProcess implement it, and a process of your own derives from one of them.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,13 @@ Interface IGameplayProcess
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A process as ProcessControl runs it: the packet and relay it's handed as it registers (<code>SendProcessData</code>),
+its hooks as it initializes, waits, terminates and is destroyed, its steps at its timing (<code>WhenUpdate</code>,
+<code>WhenLateUpdate</code>, <code>WhenFixedUpdate</code>), the run ProcessControl awaits (<code>RunProcess</code>), and whether
+it keeps its run through a pause (<code>TryHandlePause</code>, <code>TryHandleResume</code>). It's a process handler too, so
+the processes registered under it end with it. <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>
+implement it, and a process of your own derives from one of them.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
 </div>

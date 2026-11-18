@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The editor | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The editor | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.the-editor">
+<h1 id="the-editor">The editor</h1>
+
+<p>A game's editor code can check PlayForge's assets, draw a base type of its own as PlayForge draws its kinds, and start
+new assets from its own templates. This section covers each. The code lives in an editor-only assembly that references
+<code>FarEmerald.PlayForge.Editor</code>.</p>
+<h2 id="validation-rules">Validation rules</h2>
+<p>The Problems view and each asset's inspector list what the project's rules find (<a href="../editor/index.html">The Editor Tools</a>). A rule of a
+game's own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeValidationRule.html"><code>ForgeValidationRule</code></a>, with a public constructor that takes nothing, and the validator finds it:</p>
+<ul>
+<li><code>Check(Object asset, List&lt;ForgeProblem&gt; problems)</code>: adds what it finds in one PlayForge asset.</li>
+<li><code>Reads(Object asset)</code>: true for an asset the rule reads to check others, so an edit to it has the others checked again.</li>
+<li><code>Name</code>: what the Problems view groups its problems under, by default its class's name spaced out without &quot;Rule&quot;.</li>
+</ul>
+<p>A problem is a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProblem.html"><code>ForgeProblem(asset, severity, message, propertyPath)</code></a>, its severity <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProblemSeverity.html#FarEmerald_PlayForge_Editor_ForgeProblemSeverity_Note"><code>ForgeProblemSeverity.Note</code></a>,
+<code>Warning</code> or <code>Error</code>, and its <code>Fix</code> a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeQuickFix.html"><code>ForgeQuickFix(name, apply)</code></a>, the button that fixes it.</p>
+<p>A rule about one kind of component derives from <code>ForgeComponentRule&lt;T&gt;</code>, which hears each component of its kind an asset
+holds, whichever kind of asset holds it: <code>Check(Object asset, T component, int nth, string path, List&lt;ForgeProblem&gt; problems)</code>, with <code>nth</code> the component's count among its kind and <code>path</code> its place, as &quot;Components.Array.data[1]&quot;.</p>
+<pre><code class="lang-csharp">using System.Collections.Generic;
+using FarEmerald.PlayForge.Editor;
+using MyGame;
+using UnityEditor;
+using Object = UnityEngine.Object;
+
+namespace MyGame.EditorRules
+{
+    public sealed class MinimumRangeRule : ForgeComponentRule&lt;MinimumRangeAbilityComponent&gt;
+    {
+        public override string Name =&gt; &quot;Minimum ranges that refuse nothing&quot;;
+
+        protected override void Check(Object asset, MinimumRangeAbilityComponent component, int nth, string path,
+            List&lt;ForgeProblem&gt; problems)
+        {
+            if (component.Least == null || !component.Least.IsConstant || component.Least.Constant &gt; 0f) return;
+            problems.Add(new ForgeProblem(asset, ForgeProblemSeverity.Warning,
+                &quot;Its Minimum Range of 0 refuses no target. Give it a range, or take the component off.&quot;, path)
+            {
+                Fix = new ForgeQuickFix(&quot;Set its range to 1&quot;, () =&gt;
+                {
+                    Undo.RecordObject(asset, &quot;Set Minimum Range&quot;);
+                    component.Least = 1f;
+                    EditorUtility.SetDirty(asset);
+                }),
+            });
+        }
+    }
+}
+</code></pre>
+<p>A rule is asked of every asset each time the validator runs: it returns at once for an asset it doesn't check.</p>
+<h2 id="drawing-a-base-type-of-a-games-own">Drawing a base type of a game's own</h2>
+<p>PlayForge draws its kinds' fields through drawers registered for their bases, so a kind of a game's own is drawn with no
+drawer of its own. A field whose type is a base of the game's own, as a <code>[SerializeReference] AbstractWeatherRule</code> on a
+component of its own, takes a drawer made from one of PlayForge's:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractTypeRefDrawer-1.html"><code>AbstractTypeRefDrawer&lt;T&gt;</code></a>: the kind picker and the kind's fields. Its virtual members say which kinds it offers
+(<code>FilterType</code>, <code>Offers</code>), how it names them (<code>CleanTypeName</code>, <code>GetStringValue</code>), whether it offers None
+(<code>AcceptClear</code>), and what follows a pick (<code>OnTypeChanged</code>).</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractGenericDrawer-1.html"><code>AbstractGenericDrawer&lt;T&gt;</code></a>: the same, folding to a line of its values, and naming kinds without the words in
+<code>TypeNameSuffixes</code>.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractWorkerDrawer-1.html"><code>AbstractWorkerDrawer&lt;T&gt;</code></a>: a generic drawer that offers no None.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractComponentDrawer-1.html"><code>AbstractComponentDrawer&lt;T&gt;</code></a>, for a base made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractForgeComponent.html"><code>AbstractForgeComponent</code></a>: a worker drawer that offers a kind that
+allows one only while its list holds none.</li>
+</ul>
+<p>In the game's runtime assembly, a base of its own and a field of it:</p>
+<pre><code class="lang-csharp">using System;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    public abstract class AbstractWeatherRule
+    {
+        public abstract float SpeedFactor { get; }
+    }
+
+    [Serializable]
+    public class RainWeatherRule : AbstractWeatherRule
+    {
+        [Range(0f, 1f)] public float Slow = 0.2f;
+
+        public override float SpeedFactor =&gt; 1f - Slow;
+    }
+
+    public class Weather : MonoBehaviour
+    {
+        [SerializeReference] public AbstractWeatherRule Rule = new RainWeatherRule();
+    }
+}
+</code></pre>
+<p>In its editor assembly, the drawer, whose picker shows the kind as <strong>Rain Weather</strong>, &quot;Rule&quot; taken off its name:</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge.Editor;
+using UnityEditor;
+
+namespace MyGame.EditorRules
+{
+    [CustomPropertyDrawer(typeof(AbstractWeatherRule), true)]
+    public class WeatherRuleDrawer : AbstractGenericDrawer&lt;AbstractWeatherRule&gt;
+    {
+        protected override bool AcceptClear(SerializedProperty prop) =&gt; false;
+    }
+}
+</code></pre>
+<h2 id="inspectors-presets-and-templates">Inspectors, presets and templates</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BasePlayForgeEditor.html"><code>BasePlayForgeEditor</code></a> is the base of PlayForge's asset inspectors, and the Forge's presets and a project's templates are
+where new assets start (<a href="../editor/index.html">The Editor Tools</a>). A <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffect.html"><code>GameplayEffect</code></a> field of a game's own marked
+<code>[ForgeEffectTemplate(&quot;Cost&quot;)]</code> or <code>[ForgeEffectTemplate(&quot;Cooldown&quot;)]</code> offers, in its right-click menu, to copy or use
+the project's Cost or Cooldown template; those are the two keys it knows.</p>
+<hr>
+<p><a href="tags-in-code.html">← Tags in code</a> · <a href="index.html">Extending PlayForge</a> · <a href="testing-your-extensions.html">Testing your extensions →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

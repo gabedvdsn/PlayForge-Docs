@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum EProcessControlState | PlayForge ">
       
-      
+      <meta name="description" content="What ProcessControl does as a whole: Ready takes new processes and runs them; Waiting takes them and holds every process where it is; Closed takes no more and runs those it has; ClosedWaiting takes no more and holds those it has; Terminated ends every process, a running one as its run ends, and TerminatedImmediately ends them all at once, and neither takes more. SetControlState sets it, and leaving a waiting state sends back what it held; the inspector&#39;s Start State is the one it starts in.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -98,7 +98,12 @@ Enum EProcessControlState
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>What ProcessControl does as a whole: <code>Ready</code> takes new processes and runs them; <code>Waiting</code> takes them
+and holds every process where it is; <code>Closed</code> takes no more and runs those it has; <code>ClosedWaiting</code>
+takes no more and holds those it has; <code>Terminated</code> ends every process, a running one as its run ends, and
+<code>TerminatedImmediately</code> ends them all at once, and neither takes more. <code>SetControlState</code> sets it, and
+leaving a waiting state sends back what it held; the inspector's Start State is the one it starts in.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
 <p><strong>Named in:</strong> <a class="xref" href="../guides/processes/pausing.html">Processes: Pausing</a></p>

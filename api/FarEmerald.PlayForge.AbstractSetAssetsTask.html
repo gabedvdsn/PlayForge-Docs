@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractSetAssetsTask | PlayForge ">
       
-      
+      <meta name="description" content="The base of an asset loader, a Set task: it puts assets in the activation&#39;s data under a key as it&#39;s prepared, for the tasks after it to read, as a Run Sequence&#39;s sequence reads them with data.GetLoadedAssets&amp;lt;T&amp;gt;(tag); its own run ends at once. An ability&#39;s Asset Loaders run once an activation, after its targeting and before its first stage, and one among a stage&#39;s tasks loads as the stage starts. A loader of your own overrides Prepare and IsCriticalSection.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,15 @@ Class AbstractSetAssetsTask
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base of an asset loader, a Set task: it puts assets in the activation's data under a key as it's prepared,
+for the tasks after it to read, as a Run Sequence's sequence reads them with
+<code>data.GetLoadedAssets&lt;T&gt;(tag)</code>; its own run ends at once. An ability's Asset Loaders run once an
+activation, after its targeting and before its first stage, and one among a stage's tasks loads as the stage
+starts. A loader of your own overrides <code>Prepare</code> and <code>IsCriticalSection</code>.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/editor/fields-and-drawers.html">The Editor Tools: Fields and drawers</a> · <a class="xref" href="../guides/extending/ability-tasks.html">Extending PlayForge: Ability tasks</a></p>
 </div>
 
   <div class="codewrapper">

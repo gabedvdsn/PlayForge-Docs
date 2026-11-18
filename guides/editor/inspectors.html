@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Inspectors | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Inspectors | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.inspectors">
+<h1 id="inspectors">Inspectors</h1>
+
+<p>PlayForge draws an inspector of its own for each of its assets, the same in the Inspector and in The Forge's detail
+pane. This section covers the layout they share, each one's sections, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BasePlayForgeEditor.html"><code>BasePlayForgeEditor</code></a>, the base of the six
+asset inspectors. The fields inside them are covered in <a href="fields-and-drawers.html">Fields and drawers</a>.</p>
+<p>Each takes Unity's own controls and PlayForge's style sheet, in the editor's light or dark theme. Each asset type has
+an icon in a color of its own, which is where the type's color shows.</p>
+<h2 id="the-header">The header</h2>
+<p>An inspector opens with a header that stays at the top of the Inspector while the content scrolls under it:</p>
+<ul>
+<li>The type's icon, or the asset's own texture where it has one: the one under its Primary tag, else its first.</li>
+<li>The asset's name, and under it its type, its asset tag and its template, as &quot;Gameplay Effect · Effect.Burning&quot;.</li>
+<li>Its one line, where it has one: an ability's effects by their first impact at each level, then its costs and its
+cooldown, as &quot;-450/-600/-750 Health; 280/420/680 Mana; 70/60/50 s&quot;; an item's, what it changes while equipped and
+the ability it grants, as &quot;+20 Armor; Blink&quot;; an entity's, its first three attributes as it starts and its starting
+abilities; an effect's, its first impact at each level. A * marks a number that reads what the editor can't give
+it, as a target.</li>
+<li>Its problem count, as <strong>2 problems</strong>, while the validator finds any: its tooltip lists them, and a click opens the
+Problems view on the asset.</li>
+<li><strong>Open in The Forge</strong>, which shows the asset there. In The Forge's detail pane it's <strong>Show in Project</strong>, with the
+asset's file name under it.</li>
+<li><strong>Help</strong> (?), which opens the asset type's guide.</li>
+<li>The asset menu (⋮): <strong>Import from Another Asset...</strong> (<a href="import-and-clear.html">Import and Clear</a>); <strong>Set Template...</strong>,
+<strong>Unassign Template &quot;Name&quot;</strong> and <strong>Push to Its Children</strong> (<a href="templates.html">Templates</a>); then The Forge's asset menu
+(<a href="the-forge.html#the-asset-menu">The asset menu</a>).</li>
+</ul>
+<p>With several assets selected, the header says how many, and leaves out what acts on one asset: the line, <strong>Open in
+The Forge</strong> and the template's items. The inspectors of the other assets, a Scaler asset's, a Value Pipeline's, a
+Tag Library's and the rest, open with the same header, with no <strong>Help</strong> and no template's items; for a type The Forge
+doesn't list, <strong>Open in The Forge</strong> is <strong>Show in Project</strong>.</p>
+<h2 id="sections">Sections</h2>
+<p>Under the header, an inspector's content is in sections, each drawn as Unity's foldout headers are: its arrow, its
+title, and, while it's collapsed, its one-line summary, as <strong>Leveling</strong> Levels 1–5. A click on the header opens or
+closes it, and each inspector type keeps which of its sections are open, so collapsing <strong>Tags</strong> on one ability keeps
+it collapsed on the next. A section's actions sit on its header and always show, where it has them:</p>
+<ul>
+<li><strong>Import</strong> opens the Import window for the section's fields (<a href="import-and-clear.html">Import and Clear</a>).</li>
+<li><strong>Clear</strong> resets them to a new asset's values, and empties its lists, at once; Undo takes it back.</li>
+<li><strong>Help</strong> (?) opens the part of the asset's guide that covers the section, as the Leveling section of
+<a href="../abilities/leveling.html">Abilities: Leveling</a> for an ability's <strong>Leveling</strong>.</li>
+</ul>
+<p>The help buttons open PlayForge's documentation site in the browser. It's built from the pages of the package's
+<code>Documentation</code> folder, which ship with it, to read offline.</p>
+<p>The sections come in one order across the inspectors: <strong>Identity</strong>, <strong>Leveling</strong> and <strong>Tags</strong>, then the type's own,
+then <strong>Components</strong>, <strong>Workers</strong> and <strong>Local Data</strong>, and last <strong>Used By</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Inspector</th>
+<th>Sections</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityEditor.html"><code>AbilityEditor</code></a></td>
+<td>Identity, Leveling, Tags, Activation, Stages, Requirements, Components, Workers, Local Data, Used By (<a href="../abilities/index.html">Abilities</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectEditor.html"><code>GameplayEffectEditor</code></a></td>
+<td>Identity, Leveling, Tags, Duration, Impact, Requirements, Components, Workers, Local Data, Used By (<a href="../effects/index.html">Effects</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemEditor.html"><code>ItemEditor</code></a></td>
+<td>Identity, Leveling, Tags, Effects, Abilities, Components, Workers, Local Data, Used By (<a href="../items/index.html">Items</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityIdentityEditor.html"><code>EntityIdentityEditor</code></a></td>
+<td>Identity, Leveling, Tags, Attributes, Abilities, Items, Death, Components, Workers, Local Data, Used By (<a href="../entities/index.html">Entities</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetEditor.html"><code>AttributeSetEditor</code></a></td>
+<td>Identity, Leveling, Attributes, Sub-Sets, Collision Settings, All Attributes, Workers, Local Data, Used By (<a href="../attribute-sets/index.html">Attribute Sets</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeEditor.html"><code>AttributeEditor</code></a></td>
+<td>Identity, Local Data, Used By (<a href="../attributes/index.html">Attributes</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Each of the six edits a selection of several assets at once, the parts that hold each asset's own objects, as an
+ability's components, asking for one.</p>
+<ul>
+<li><strong>Identity</strong> holds the asset's <strong>Name</strong>, its <strong>Description</strong>, and for an ability, effect, item, entity or attribute
+set the asset tag its name gives, which can be selected and copied. Where the stored tag isn't the one the name
+gives, the tag shows in warning text, with <strong>Update</strong>, which stores it.</li>
+<li><strong>Used By</strong> lists the PlayForge assets whose data refers to the asset, each by its type icon and name, in name
+order, and follows the project as it changes. A row opens its asset in The Forge.</li>
+<li>A template's child marks each field it overrides (<a href="templates.html">Templates</a>).</li>
+<li>An ability's inspector shows under its <strong>Components</strong> list the warnings and errors a component rule finds
+(<a href="the-problems-view-and-validation.html#a-rule-of-your-own">A rule of your own</a>).</li>
+</ul>
+<h2 id="the-other-inspectors">The other inspectors</h2>
+<table>
+<thead>
+<tr>
+<th>Inspector</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerAssetEditor.html"><code>ScalerAssetEditor</code></a></td>
+<td>A Scaler asset: its <strong>Name</strong>, which renames it as the menus and The Forge list it, its <strong>Description</strong>, its <strong>Values</strong>, <strong>Try</strong>, and <strong>Used By</strong>: each field that shares it, by asset and field, a row opening the asset in The Forge (<a href="../scalers/scaler-assets.html">Scalers: Scaler assets</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineEditor.html"><code>ValuePipelineEditor</code></a></td>
+<td>A Value Pipeline: its <strong>Description</strong>, a line of its stages, its <strong>Stages</strong>, and <strong>Try</strong> (<a href="../value-pipelines/trying-a-pipeline.html">Value Pipelines: Trying a pipeline</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectModifierEditor.html"><code>EffectModifierEditor</code></a></td>
+<td>An Effect Modifier: its <strong>Description</strong>, a line that says its rule, as &quot;Outgoing, effects tagged Status.Chill: …&quot;, and its <strong>Rule</strong>. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectModifierEditor.html#FarEmerald_PlayForge_Editor_EffectModifierEditor_Describe_"><code>EffectModifierEditor.Describe(rule)</code></a> gives the line</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CueLibraryEditor.html"><code>CueLibraryEditor</code></a></td>
+<td>A Cue Library: its <strong>Routes</strong>, and <strong>Raised</strong>, each cue tag the project's assets raise through it (<a href="../cues/raised.html">Cues: Raised</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRulesEditor.html"><code>CrowdControlRulesEditor</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RequirementTemplateEditor.html"><code>RequirementTemplateEditor</code></a></td>
+<td>Crowd Control Rules and a Requirement Template: the header, then their fields</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProjectEditor.html"><code>ForgeProjectEditor</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html"><code>ForgeTagLibraryEditor</code></a></td>
+<td>A Forge Project (<a href="forge-projects.html">Forge Projects</a>) and a Tag Library (<a href="the-tags-view.html">The Tags view</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractMonoProcessEditor.html"><code>AbstractMonoProcessEditor</code></a></td>
+<td>Every MonoBehaviour process, made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> among them: a <strong>Process</strong> section of its <strong>Lifecycle</strong>, its <strong>Timing</strong>, its <strong>Priority Method</strong> while it steps, its <strong>Priority</strong> while the method is Manual, its <strong>Instantiator</strong> and <strong>Participate In Sibling Cascade</strong>, each choice's tooltip saying what it does; then the component's own fields. It edits several at once, and shows a prefab instance's overrides (<a href="../processes/index.html">Processes</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="baseplayforgeeditor"><code>BasePlayForgeEditor</code></h2>
+<p><code>BasePlayForgeEditor</code> is the base of the six asset inspectors, a <code>UnityEditor.Editor</code>. It builds the header and hands
+the content to <code>BuildInspectorContent</code>, where an inspector adds its sections with <code>CreateSection</code>, each section's
+open state kept for the inspector's type. Its overridable members say what the header and its menu offer:
+<code>GetDocumentationTopic</code>, the guide <strong>Help</strong> opens; <code>ShowImportButton</code>, <strong>Import from Another Asset...</strong>;
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BasePlayForgeEditor.html#FarEmerald_PlayForge_Editor_BasePlayForgeEditor_ShowTemplateButton"><code>ShowTemplateButton</code></a>, the template's items; and <code>SupportsMultipleObjects</code>, whether it edits several assets at once.
+<code>OnAssetChanged</code> hears each change to the asset, an Undo among them. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BasePlayForgeEditor.html#FarEmerald_PlayForge_Editor_BasePlayForgeEditor_TemplatesFor_"><code>BasePlayForgeEditor.TemplatesFor(asset)</code></a> lists
+the assets an asset can take as its template, as <strong>Set Template...</strong> offers them.</p>
+<hr>
+<p><a href="the-tags-view.html">← The Tags view</a> · <a href="index.html">The Editor Tools</a> · <a href="import-and-clear.html">Import and Clear →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

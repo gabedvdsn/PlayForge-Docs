@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Number fields | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Number fields | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.number-fields">
+<h1 id="number-fields">Number fields</h1>
+
+<p>Every number a PlayForge asset authors is a number field, a <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a> or a <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableInt.html"><code>ScalableInt</code></a>, which
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalableFloatDrawer.html"><code>ScalableFloatDrawer</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalableIntDrawer.html"><code>ScalableIntDrawer</code></a> draw. This section covers the field in the editor, its menu and the
+windows it opens, and the Try sections; <a href="../scalers/a-magnitude-field.html">Scalers: A magnitude field</a> covers the kinds and what each
+reads.</p>
+<h2 id="the-field">The field</h2>
+<p>A number field shows its name, its kind, <strong>Constant</strong> or another, its number or the range it gives, as &quot;6–8 s&quot;, and
+its field menu (⋮).</p>
+<ul>
+<li>The kind menu files the kinds by category, and offers only those the field's context can work out, as its code
+declares with <code>[NumberContext]</code>. Fields of several selected assets whose kinds differ show the kind as mixed, and
+choosing one gives it to each.</li>
+<li>A kind other than Constant shows a line of what the field reads, as &quot;0.3 × Target's Health (base)&quot;, then
+<strong>Combine</strong>, how the field joins its number with the kind, a whole-number field's <strong>Rounding</strong>, and the kind's own
+settings, on a shaded block under the field.</li>
+<li>A field that reads its scaler and has none says it reads 0, with <strong>Make It Constant</strong>. A kind the field's context
+can't work out says so, and the field reads its number.</li>
+<li>A field whose unit is &quot;%&quot; shows and takes its number as a percentage. One with limits keeps its constant within
+them, on a slider where they're a range.</li>
+</ul>
+<p>The field menu holds <strong>Save as Scaler Asset…</strong>, <strong>Scaler Assets</strong>, a submenu of the active project's Scaler assets to
+share, the one shared checked, <strong>Import Values…</strong>, <strong>Quick Fill…</strong> and <strong>Make Constant</strong>. Each change is one Undo step,
+and reaches each selected asset's own field. A scaler field of its own, as a Group member's scaler, has the same menu.</p>
+<h2 id="its-windows">Its windows</h2>
+<ul>
+<li><strong>Save as Scaler Asset</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SaveScalerAssetWindow.html"><code>SaveScalerAssetWindow</code></a>): a <strong>Name</strong>, starting as the asset's and the field's, as
+&quot;Burning Duration&quot;, and a <strong>Folder</strong>, the Scaler type's in the active project, which <strong>Choose…</strong> changes. <strong>Save and
+Use</strong> saves the field's scaler as a Scaler asset and makes the field share it. It waits for one selected asset.</li>
+<li><strong>Import Values</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerValuesWindow.html"><code>ScalerValuesWindow</code></a>): the active project's Scaler assets, then the fields of its other assets
+with values per level. Pick one to compare its values with the field's, level by level, with both curves, then
+<strong>Copy Values</strong>, as one Undo step.</li>
+<li><strong>Quick Fill</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.html"><code>QuickFillWizard</code></a>): fills the field's values, or the points of one spread over levels, from a
+pattern, a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.EFillPattern.html"><code>QuickFillWizard.EFillPattern</code></a>: <strong>Same Value</strong>, <strong>Straight Line</strong>, <strong>Slow Then Fast</strong>, <strong>Fast Then
+Slow</strong>, <strong>Steps</strong>, <strong>Add Each Level</strong>, <strong>Multiply Each Level</strong>, <strong>Ease In and Out</strong> or <strong>Custom Curve</strong>. Its
+rounding, a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.ERounding.html"><code>QuickFillWizard.ERounding</code></a>, is <strong>None</strong>, <strong>Whole Numbers</strong> or <strong>Nearest Step</strong>. A preview shows the
+values as the table will, with their curve, and <strong>Apply</strong> writes them as one Undo step.</li>
+</ul>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html"><code>ScalerActions</code></a> does in code what the kind menu and the field menu do, each one Undo step that reaches every selected
+asset: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_SetKind_"><code>SetKind</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_MakeConstant_"><code>MakeConstant</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_CanMakeConstant_"><code>CanMakeConstant</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_UseScalerAsset_"><code>UseScalerAsset</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_SaveAsScalerAsset_"><code>SaveAsScalerAsset</code></a> and <code>CopyValues</code>.</p>
+<h2 id="try">Try</h2>
+<p>A Scaler asset's inspector and a Value Pipeline's have a <strong>Try</strong> section, which reads the asset at each level of a
+range, 1 to 5 to start, against a stand-in caster and target and the values a caller sets, each typed or filled from an
+<strong>Entity</strong>. What's typed is kept for the session, never in the asset
+(<a href="../scalers/scaler-assets.html">Scalers: Scaler assets</a>, <a href="../value-pipelines/trying-a-pipeline.html">Value Pipelines: Trying a pipeline</a>).</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.html"><code>ScalerTry</code></a> does the same in code. Its <code>From</code> and <code>To</code> are the levels; its <code>Caster</code> and <code>Target</code> are each a
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.Side.html"><code>ScalerTry.Side</code></a>, holding a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.AttributeRow.html"><code>ScalerTry.AttributeRow</code></a> for each attribute a read asks of it, given with <code>Set</code>, taken
+with <code>Lack</code>, or filled from an entity with <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.Side.html#FarEmerald_PlayForge_Editor_ScalerTry_Side_FillFrom_"><code>FillFrom</code></a>; and its <code>Caller</code> holds a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.CallerRow.html"><code>ScalerTry.CallerRow</code></a> for each key,
+given with <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.html#FarEmerald_PlayForge_Editor_ScalerTry_SetCaller_"><code>SetCaller</code></a> and taken with <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.html#FarEmerald_PlayForge_Editor_ScalerTry_UnsetCaller_"><code>UnsetCaller</code></a>. <code>Read(scaler)</code> gives a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.Reading.html"><code>ScalerTry.Reading</code></a>: the value at each
+level, and the parts behind each. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.html"><code>ValuePipelineTry</code></a> puts a <code>Value</code> through a pipeline, its chances coming up or
+missing as <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.html#FarEmerald_PlayForge_Editor_ValuePipelineTry_ChancesComeUp"><code>ChancesComeUp</code></a> says, against its <code>Numbers</code>, a <code>ScalerTry</code>; <code>Read(pipeline)</code> gives a
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.Reading.html"><code>ValuePipelineTry.Reading</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.Run.html"><code>ValuePipelineTry.Run</code></a> for each level, with each stage's step, what came out, and the
+stop that stopped the hit, where one did.</p>
+<h2 id="the-drawers">The drawers</h2>
+<table>
+<thead>
+<tr>
+<th>Drawer</th>
+<th>Draws</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ScalableFloatDrawer</code>, <code>ScalableIntDrawer</code></td>
+<td>Every <code>ScalableFloat</code> and <code>ScalableInt</code>: the number field</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerDrawer.html"><code>ScalerDrawer</code></a></td>
+<td>A scaler field on its own, as an effect's <strong>Delta Time Scaler</strong> or a Group member's scaler: its kind, the range it gives and its settings, with a number field's menu</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerBehaviourDrawer.html"><code>ScalerBehaviourDrawer</code></a></td>
+<td>A scaler's behaviour (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScalerBehaviour.html"><code>AbstractScalerBehaviour</code></a>); the list's − removes one</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.VarianceDrawer.html"><code>VarianceDrawer</code></a></td>
+<td>A Randomized scaler's variance: Percentage, Flat, Multiplier, or one of your own</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ConditionDrawer.html"><code>ConditionDrawer</code></a></td>
+<td>A condition (<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayCondition.html"><code>GameplayCondition</code></a>), as a Conditional's <strong>When</strong>: its kind, a project's own among them, its line, then its fields</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.LevelThresholdDrawer.html"><code>LevelThresholdDrawer</code></a></td>
+<td>A Threshold scaler's threshold: its level and its tier's name on one row, then what the scaler reads from there</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.MagnitudeModifierGroupMemberDrawer.html"><code>MagnitudeModifierGroupMemberDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CachedMagnitudeModifierGroupMemberDrawer.html"><code>CachedMagnitudeModifierGroupMemberDrawer</code></a></td>
+<td>A Group's member: how its result joins the members' before it, then its scaler</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.NumberSiblingFieldDrawer.html"><code>NumberSiblingFieldDrawer</code></a></td>
+<td>The field a Relative to a Field number reads, picked from the other number fields of its object; a field that reads it back stays out, so a loop can't be picked</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="fields-and-drawers.html">← Fields and drawers</a> · <a href="index.html">The Editor Tools</a> · <a href="the-problems-view-and-validation.html">The Problems view and validation →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

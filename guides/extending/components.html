@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Components | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Components | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.components">
+<h1 id="components">Components</h1>
+
+<p>A component is a feature an asset carries in its <strong>Components</strong> section: an effect's, an ability's, an entity's or an
+item's. It hears its asset's moments through hooks, each a no-op it may override, and it's the way to add a feature
+that needs more than one moment, as a mark that pays its caster when the marked one dies. Each family is a base in the
+runtime assembly, in <code>FarEmerald.PlayForge</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Held by</th>
+<th>Its context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectComponent.html"><code>AbstractEffectComponent</code></a></td>
+<td>an effect's <strong>Components</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EffectComponentContext.html"><code>EffectComponentContext</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html"><code>AbstractAbilityComponent</code></a></td>
+<td>an ability's <strong>Components</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbilityComponentContext.html"><code>AbilityComponentContext</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityComponent.html"><code>AbstractEntityComponent</code></a></td>
+<td>an Entity asset's <strong>Components</strong>, or a runtime entity's</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EntityComponentContext.html"><code>EntityComponentContext</code></a></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractItemComponent.html"><code>AbstractItemComponent</code></a></td>
+<td>an item's <strong>Components</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ItemComponentContext.html"><code>ItemComponentContext</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Every component also has, from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractForgeComponent.html"><code>AbstractForgeComponent</code></a>:</p>
+<ul>
+<li><code>AllowsSeveral</code>: false for a kind that makes no sense twice, which the <strong>Components</strong> list then offers only while the
+asset holds none.</li>
+<li><code>Describe()</code>: what it does in one line with its numbers, as &quot;Range 6&quot;, which The Forge's summary and the breakdowns
+show beside its name; null for its name alone.</li>
+<li><code>NameOf(asset)</code>, protected, an asset's name for that line: its PlayForge name, its file's, or &quot;nothing&quot;.</li>
+</ul>
+<p>Other code finds a component through its asset's <code>Find&lt;T&gt;()</code>, as <code>ability.Find&lt;IAbilityReach&gt;()</code> or
+<code>spec.Find&lt;ICooldownModel&gt;()</code>, by its class or by an interface it implements.</p>
+<h2 id="effect-components">Effect components</h2>
+<p><code>AbstractEffectComponent</code>'s hooks are called with an <code>EffectComponentContext</code>: <code>System</code>, the entity of the moment;
+<code>Spec</code>, the effect's application; <code>ExecuteTicks</code>, for a tick; <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html"><code>ImpactData</code></a>, for a hit; and <code>GetState&lt;T&gt;(this)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lend(ctx)</code></td>
+<td>As a lasting effect starts to last on the one it's on: as it lands, before <code>Land</code>; as it takes another's place under its tag; and as a load or a move puts it back, where it doesn't land again. An instant effect lends nothing.</td>
+</tr>
+<tr>
+<td><code>TakeBack(ctx)</code></td>
+<td>As a lasting effect stops lasting there, matching each <code>Lend</code>: as it comes off, before <code>End</code>; as another takes its place; and as a load clears it or a move takes it away.</td>
+</tr>
+<tr>
+<td><code>Land(ctx)</code></td>
+<td>As the effect lands, with its workers' Application.</td>
+</tr>
+<tr>
+<td><code>Tick(ctx)</code></td>
+<td>As a lasting effect executes its period's tick; not on a tick that doesn't execute.</td>
+</tr>
+<tr>
+<td><code>Hit(ctx)</code></td>
+<td>As an impact the effect deals lands. <code>System</code> is then the dealer, the effect's caster.</td>
+</tr>
+<tr>
+<td><code>End(ctx)</code></td>
+<td>As the effect comes off: an instant one as it's done, a lasting one as it's removed.</td>
+</tr>
+<tr>
+<td><code>Death(ctx)</code></td>
+<td>As the one it's on dies while it's on them, before what the death ends comes off.</td>
+</tr>
+<tr>
+<td><code>Reapply(ctx)</code></td>
+<td>As another application lands on one it's on already and is taken in: a stack, a refresh, an extension or a replacement. <code>Spec</code> is the application that came.</td>
+</tr>
+<tr>
+<td><code>Refused(ctx, refusal)</code></td>
+<td>As an application is refused, as by an immunity or a missed chance. Nothing else of it is heard.</td>
+</tr>
+<tr>
+<td><code>StacksChanged(ctx, before, after)</code></td>
+<td>As its stacks change while it lasts; not as it lands, comes off or is loaded.</td>
+</tr>
+</tbody>
+</table>
+<p><code>Lend</code> and <code>TakeBack</code> are for what an effect gives while it lasts and must give back exactly once, as an aura: a load
+calls them where <code>Land</code> and <code>End</code> aren't called.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Gives the effect's caster an effect as the one it's on dies while it lasts.&quot;)]
+    public sealed class BountyMarkEffectComponent : AbstractEffectComponent
+    {
+        [Tooltip(&quot;The effect its caster takes as the marked one dies, from the marked one, so it reads the marked one's level&quot;)]
+        public GameplayEffect Reward;
+
+        public override bool AllowsSeveral =&gt; false;
+
+        public override string Describe() =&gt; $&quot;{NameOf(Reward)} to its caster as the marked one dies&quot;;
+
+        public override void Death(EffectComponentContext ctx)
+        {
+            var marked = ctx.System;
+            if (Reward == null || marked == null || ctx.Spec?.Source is not IGameplayAbilitySystem caster
+                || ReferenceEquals(caster, marked) || caster.IsDead) return;
+            var origin = IEffectOrigin.GenerateSourceDerivation(marked);
+            caster.ApplyGameplayEffect(caster.GenerateEffectSpec(origin, Reward));
+        }
+    }
+}
+</code></pre>
+<h2 id="ability-components">Ability components</h2>
+<p><code>AbstractAbilityComponent</code>'s hooks are called with an <code>AbilityComponentContext</code>: <code>Spec</code>, the ability as its entity holds
+it; <code>Data</code>, the activation's data packet, null as the ability is granted or removed; <code>Source</code>, the entity that holds it;
+and <code>GetState&lt;T&gt;(this)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Granted(ctx)</code>, <code>Removed(ctx)</code></td>
+<td>As an entity learns the ability, and loses it.</td>
+</tr>
+<tr>
+<td><code>CanStart(ctx)</code></td>
+<td>As an activation is asked for, after the ability's own Caster Checks: a reason refuses it, nothing of it paid; null lets it go on.</td>
+</tr>
+<tr>
+<td><code>CanTakeTarget(ctx)</code></td>
+<td>As its targeting ends, whichever task picked: the pick is in <code>Data</code> under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET"><code>Tags.TARGET</code></a>, not yet resolved to an entity, as a picked point has none. A reason ends the activation there, before its wind-up, its cost and its stages.</td>
+</tr>
+<tr>
+<td><code>RefusedAs</code></td>
+<td>The refusal kind <code>CanStart</code> and <code>CanTakeTarget</code> are told as: <code>Rule</code> unless it says, as Cast Range says <code>Range</code>.</td>
+</tr>
+<tr>
+<td><code>WindUp(ctx, token)</code></td>
+<td>After its targeting and its Target Checks, before its cost and its first stage. The activation waits on it, with its entity's components' wind-ups and its other components', all together.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Start.html"><code>Start(ctx)</code></a></td>
+<td>As an activation starts, its claim taken.</td>
+</tr>
+<tr>
+<td><code>ApplyUsage(ctx)</code></td>
+<td>In place of the ability applying its cost and its cooldown: true says it did, false leaves it to the ability. Build one from <code>ctx.Spec.PayCosts(data)</code> and <code>ctx.Spec.SpendCooldown(data)</code>.</td>
+</tr>
+<tr>
+<td><code>Waives(ctx)</code></td>
+<td>The checks of its use it waives for this activation, <a class="xref" href="../../api/FarEmerald.PlayForge.EUsageCheck.html#FarEmerald_PlayForge_EUsageCheck_Cost"><code>EUsageCheck.Cost</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EUsageCheck.html#FarEmerald_PlayForge_EUsageCheck_Cooldown"><code>EUsageCheck.Cooldown</code></a> or both, as a Toggle that's on can always turn off.</td>
+</tr>
+<tr>
+<td><code>Commit(ctx)</code></td>
+<td>As an activation's cost and cooldown apply.</td>
+</tr>
+<tr>
+<td><code>CategoryOf(ctx, effect)</code></td>
+<td>The purge categories an effect its ability put on is of, beside the ability's own.</td>
+</tr>
+<tr>
+<td><code>End(ctx, how)</code></td>
+<td>As an activation ends: <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityEnd.html#FarEmerald_PlayForge_EAbilityEnd_Done"><code>EAbilityEnd.Done</code></a>, <code>Cancelled</code> or <code>Failed</code>.</td>
+</tr>
+<tr>
+<td><code>Refused(ctx, refusal)</code></td>
+<td>As an activation is refused, nothing of it paid.</td>
+</tr>
+<tr>
+<td><code>DescribeUsage()</code></td>
+<td>What it adds to the ability's Activation line after its cost and cooldown, as &quot;3 charges&quot;.</td>
+</tr>
+<tr>
+<td><code>TargetCheck</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck"><code>CasterCheck</code></a></td>
+<td>A check it stands behind, shown among the ability's Target Checks or Caster Checks while the ability holds it (<a href="validation-rules.html">Validation rules</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>A component that enforces a rule says so in the ability's checks by returning an <code>AbstractComponentValidationRule&lt;T&gt;</code>
+from <code>TargetCheck</code>. The check is the rule's place in the list and passes; the component does the refusing. A minimum
+range, the mirror of Cast Range:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;How near the caster the ability's target may not be.&quot;)]
+    public sealed class MinimumRangeAbilityComponent : AbstractAbilityComponent
+    {
+        public const string TooClose = &quot;Its target is inside its Minimum Range&quot;;
+
+        [Tooltip(&quot;How near its caster its target or point may not be, read at the ability's level&quot;)]
+        [NumberMin(0f)] public ScalableFloat Least = 3f;
+
+        // Its place among the ability's Target Checks, made as it's first asked for and kept with it
+        [NonSerialized] private CheckMinimumRangeValidation check;
+
+        public override bool AllowsSeveral =&gt; false;
+
+        public override string Describe() =&gt; $&quot;Minimum range {NumberText.Of(Least)}&quot;;
+
+        public override IAbilityValidationRule TargetCheck =&gt; check ??= new CheckMinimumRangeValidation(this);
+
+        // The pick its targeting made, whichever task made it, refused inside the range
+        public override string CanTakeTarget(AbilityComponentContext ctx)
+        {
+            if (ctx.Data is not AbilityDataPacket data
+                || !data.TryGetFirst(Tags.TARGET, out AbstractTargetingPacket picked) || picked == null
+                || ctx.Source?.GetTargetingPacket() is not { } caster) return null;
+            float least = ctx.Spec.Read(Least, data);
+            var offset = picked.position - caster.position;
+            offset.y = 0f;
+            return offset.sqrMagnitude &lt; least * least ? TooClose : null;
+        }
+    }
+
+    [ValidationSide(EValidationSide.Target)]
+    [ForgeMenu(Name = &quot;Check Minimum Range&quot;, Description = &quot;The Minimum Range component's check. It comes and goes with the component.&quot;)]
+    public sealed class CheckMinimumRangeValidation : AbstractComponentValidationRule&lt;MinimumRangeAbilityComponent&gt;
+    {
+        public CheckMinimumRangeValidation(MinimumRangeAbilityComponent component) : base(component) { }
+
+        public override string Describe() =&gt;
+            Component == null ? null : $&quot;Its target at least {NumberText.Of(Component.Least)} from its caster&quot;;
+    }
+}
+</code></pre>
+<p>A target or a point an AI hands in its request is refused soonest in <code>CanStart</code>, before targeting, reading
+<a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_POSITION"><code>Tags.POSITION</code></a> from the data, as Cast Range does: the request is then refused at once, with
+nothing of it run.</p>
+<h2 id="entity-components">Entity components</h2>
+<p><code>AbstractEntityComponent</code>'s hooks are called with an <code>EntityComponentContext</code>: <code>System</code>, the entity; <code>Killer</code>, for its
+death, the source of the last loss it took from another; <code>Identity</code>, its settings as its GAS uses them; and
+<code>GetState&lt;T&gt;(this)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Register(ctx)</code></td>
+<td>As the entity registers, its systems set up.</td>
+</tr>
+<tr>
+<td><code>Death(ctx)</code></td>
+<td>As it dies, whether it stays or ends.</td>
+</tr>
+<tr>
+<td><code>Revive(ctx)</code></td>
+<td>As a staying entity revives.</td>
+</tr>
+<tr>
+<td><code>End(ctx)</code></td>
+<td>As it ends.</td>
+</tr>
+<tr>
+<td><code>WindUp(ctx, ability, token)</code></td>
+<td>As an activation of one of its abilities winds up, with the ability's own components' wind-ups; <code>ability</code> is that activation's context.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Each of its abilities waits a moment before its first stage, as a heavy unit braces.&quot;)]
+    public sealed class BraceEntityComponent : AbstractEntityComponent
+    {
+        [Tooltip(&quot;How long it braces, in seconds of its own time, read at its level&quot;)]
+        [NumberMin(0f)] public ScalableFloat Seconds = 0.25f;
+
+        public override bool AllowsSeveral =&gt; false;
+
+        public override string Describe() =&gt; $&quot;Braces {NumberText.Of(Seconds)} s before each ability&quot;;
+
+        public override async UniTask WindUp(EntityComponentContext ctx, AbilityComponentContext ability,
+            CancellationToken token)
+        {
+            if (ctx.System == null) return;
+            float wait = Seconds?.Evaluate(NumberContext.Of(ctx.System)) ?? 0f;
+            var clock = ctx.System.GetClock();
+            for (float waited = 0f; waited &lt; wait; waited += clock.DeltaTime)
+                await ForgeTick.Next(clock, token);
+        }
+    }
+}
+</code></pre>
+<p>The wait counts the entity's own clock, so a slow on the entity slows its brace, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next(clock, token)</code></a>
+steps with the game's fixed tick where one is on.</p>
+<h2 id="item-components">Item components</h2>
+<p><code>AbstractItemComponent</code>'s hooks are called with an <code>ItemComponentContext</code>: <code>Container</code>, the item as its entity holds it;
+<code>Source</code>, the entity; <code>Restoring</code>, true where the moment comes from a load; and <code>GetState&lt;T&gt;(this)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Given(ctx)</code></td>
+<td>As an entity is given the item in a slot of its own.</td>
+</tr>
+<tr>
+<td><code>Equipped(ctx)</code>, <code>Unequipped(ctx)</code></td>
+<td>As it's equipped and unequipped, and as a load puts it back worn or takes it off, with <code>Restoring</code> true.</td>
+</tr>
+<tr>
+<td><code>Removed(ctx)</code></td>
+<td>As it's taken away; an equipped item is unequipped first.</td>
+</tr>
+<tr>
+<td><code>Used(ctx)</code></td>
+<td>As its holder's use of the item's ability ends, having paid what it costs.</td>
+</tr>
+</tbody>
+</table>
+<p>A load puts back what a component's earlier moments did, the effects it applied and the loose tags it added among them,
+so a component does nothing of that kind where <code>Restoring</code> is true:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Its holder carries a tag while the item is equipped.&quot;)]
+    public sealed class TagWhileEquippedItemComponent : AbstractItemComponent
+    {
+        [Tooltip(&quot;The tag its holder carries while it's equipped&quot;)]
+        [ForgeTagContext(ForgeContext.Granted)]
+        public Tag Tag;
+
+        public override string Describe() =&gt; Tag.IsValid ? $&quot;{Tag} while equipped&quot; : null;
+
+        public override void Equipped(ItemComponentContext ctx)
+        {
+            // A load puts back the loose tags its save held, this one among them
+            if (ctx.Restoring || !Tag.IsValid || ctx.Source is not IGameplayAbilitySystem holder) return;
+            holder.AddLooseTag(Tag);
+        }
+
+        public override void Unequipped(ItemComponentContext ctx)
+        {
+            if (ctx.Restoring || !Tag.IsValid || ctx.Source is not IGameplayAbilitySystem holder) return;
+            holder.RemoveLooseTag(Tag);
+        }
+    }
+}
+</code></pre>
+<h2 id="state-a-component-keeps">State a component keeps</h2>
+<p><code>ctx.GetState&lt;T&gt;(this)</code> makes a <code>T</code> the first time it's asked for and keeps it for that holder: one effect application,
+one entity's ability, one entity, one entity's item. A state that needs more than a constructor with no parameters is
+made and kept through the holder's <a class="xref" href="../../api/FarEmerald.PlayForge.ComponentStates.html"><code>ComponentStates</code></a>, which <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpec.html"><code>AbilitySpec</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html"><code>GameplayEffectSpec</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSpecContainer.html"><code>ItemSpecContainer</code></a>
+each have: <code>TryGet&lt;T&gt;(this, out state)</code>, then <code>Keep(this, state)</code>. A save keeps no component state.</p>
+<h2 id="capabilities-other-code-finds">Capabilities other code finds</h2>
+<p>A component can implement an interface other code asks an asset for:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityReach.html"><code>IAbilityReach</code></a>, <code>bool TryReadReach(AbilitySpec spec, ProcessDataPacket data, out float range, out bool flat)</code>: how far
+its ability reaches. Targeting tasks, the Creator Lab's bots and a game's AI read it through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeReach.html"><code>ForgeReach</code></a>.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ICooldownModel.html"><code>ICooldownModel</code></a>: how many uses its ability holds and how one is spent, in place of the single cooldown.
+<a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_CooldownModel"><code>AbilitySpec.CooldownModel</code></a> finds it, and the Cooldown check and the ability's usage go through it, as Charges does.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.IAuraComponent.html"><code>IAuraComponent</code></a> is PlayForge's own components' mark. Nothing reads it; an aura of a component's own is given and taken
+back from its <code>Lend</code> and <code>TakeBack</code> through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuras.html#FarEmerald_PlayForge_ForgeAuras_Provide_"><code>ForgeAuras.Provide</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuras.html#FarEmerald_PlayForge_ForgeAuras_Remove_"><code>ForgeAuras.Remove</code></a>.</li>
+</ul>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>A component is shared.</strong> A field it sets as one entity's moment comes is every entity's. Keep it in the context's
+state.</li>
+<li><strong><code>CanStart</code> and <code>CanTakeTarget</code> are asked often</strong>, an AI's every request among them. Keep them quick and free of
+allocation, and of side effects: a refusal must leave nothing behind.</li>
+<li><strong>A wind-up is cancelled through its token.</strong> Await with it, and let <code>OperationCanceledException</code> pass: it ends the
+activation as cancelled, its cost unpaid. Any other exception fails the activation, which is written to the Console.</li>
+<li><strong><code>Granted</code> and <code>Removed</code> have no data</strong>: <code>ctx.Data</code> is null there.</li>
+<li><strong>A load calls <code>Lend</code> and <code>TakeBack</code></strong> on a lasting effect's components, and <code>Equipped</code> and <code>Unequipped</code> on an item's
+with <code>Restoring</code> true. What a component applied as its asset landed comes back from the save on its own.</li>
+<li><strong><code>Describe()</code> runs as The Forge draws</strong>, often: no side effects.</li>
+</ul>
+<hr>
+<p><a href="before-you-start.html">← Before you start</a> · <a href="index.html">Extending PlayForge</a> · <a href="workers.html">Workers →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

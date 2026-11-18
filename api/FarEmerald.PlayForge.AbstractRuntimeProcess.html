@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractRuntimeProcess | PlayForge ">
       
-      
+      <meta name="description" content="The base of every runtime process: a plain C# class, with no GameObject, that ProcessControl registers, steps and ends, as a runtime GAS, a task sequence&#39;s process or a group&#39;s member. Its name, step priority, step timing and lifecycle go to its base constructor; the one with none gives its type&#39;s name, the first priority, no step timing and SelfTerminating. Only a runtime process joins a group. Derive from it, or from LazyRuntimeProcess for a run that lasts until it&#39;s paused or ended, and override RunProcess, the run ProcessControl awaits, and the hooks you need: WhenInitialize; WhenUpdate, WhenLateUpdate and WhenFixedUpdate at its timing; WhenWait and WhenTerminate; and TryHandlePause and TryHandleResume to keep a run through a pause. An override of WhenInitialize or WhenTerminate calls the base&#39;s: the process is IsInitialized from registration until it ends, so it can be registered again once ended, and what it handles ends with it.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,10 +97,21 @@ Class AbstractRuntimeProcess
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base of every runtime process: a plain C# class, with no GameObject, that ProcessControl registers, steps
+and ends, as a runtime GAS, a task sequence's process or a group's member. Its name, step priority, step timing
+and lifecycle go to its base constructor; the one with none gives its type's name, the first priority, no step
+timing and SelfTerminating. Only a runtime process joins a group.</p>
+<p>Derive from it, or from <code>LazyRuntimeProcess</code> for a run that lasts until it's paused or ended, and
+override <code>RunProcess</code>, the run ProcessControl awaits, and the hooks you need: <code>WhenInitialize</code>;
+<code>WhenUpdate</code>, <code>WhenLateUpdate</code> and <code>WhenFixedUpdate</code> at its timing; <code>WhenWait</code> and
+<code>WhenTerminate</code>; and <code>TryHandlePause</code> and <code>TryHandleResume</code> to keep a run through a pause. An
+override of <code>WhenInitialize</code> or <code>WhenTerminate</code> calls the base's: the process is <code>IsInitialized</code>
+from registration until it ends, so it can be registered again once ended, and what it handles ends with
+it.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/kinds.html">Processes: Kinds</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/kinds.html">Processes: Kinds</a> · <a class="xref" href="../guides/extending/processes.html">Extending PlayForge: Processes</a></p>
 </div>
 
   <div class="codewrapper">

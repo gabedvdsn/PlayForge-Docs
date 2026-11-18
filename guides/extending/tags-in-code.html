@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tags in code | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tags in code | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.tags-in-code">
+<h1 id="tags-in-code">Tags in code</h1>
+
+<p>A game's code names tags for its kinds to read: a data key, an event, a state its components grant. This section covers
+what a kind of a game's own does with tags; <a href="../tags/index.html">Tags</a> covers tags in full.</p>
+<ul>
+<li><strong>A tag field's picker</strong> offers the tags of the contexts its <code>[ForgeTagContext(...)]</code> names: PlayForge's
+(<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_Granted"><code>ForgeContext.Granted</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_Event"><code>ForgeContext.Event</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_DataKey"><code>ForgeContext.DataKey</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_ImpactType"><code>ForgeContext.ImpactType</code></a>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_ContextTag"><code>ForgeContext.ContextTag</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_AssetTag"><code>ForgeContext.AssetTag</code></a> and the rest) or a project's own, by name.</li>
+<li><strong>A tag written in code</strong> is <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></a>, the tag the editor's New Tag makes of the path.
+<code>[ForgeTagExposed(context)]</code> on a static <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field or property offers it to the pickers of that context.</li>
+<li><strong>An event</strong> goes to an entity with <code>entity.SendGameplayEvent(eventTag, data)</code>, which its abilities' triggers and Wait
+For Event tasks hear. A game's own events are tags of the Event context.</li>
+<li><strong>A tag's weight</strong> is <code>entity.GetTagWeight(tag)</code>. An absent tag's weight is -1, so a test for one is <code>&gt; 0</code>.</li>
+<li><strong>A tag is shown by its <code>ToString()</code></strong>, its display name.</li>
+</ul>
+<hr>
+<p><a href="saving-a-games-own-data.html">← Saving a game's own data</a> · <a href="index.html">Extending PlayForge</a> · <a href="the-editor.html">The editor →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

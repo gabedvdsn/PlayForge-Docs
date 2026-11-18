@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Conditions and checks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Conditions and checks | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.conditions-and-checks">
+<h1 id="conditions-and-checks">Conditions and checks</h1>
+
+<p>Besides requirements, conditions, ability checks, tasks and triggers read tags: an entity's, or an asset's.</p>
+<ul>
+<li>The <strong>Tag</strong> condition, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCondition.html"><code>TagCondition</code></a>, holds where the caster or the target, as its <strong>On</strong> says, answers its
+<strong>Query</strong>, a tag query counted by weight, so a tag granted twice counts twice. Where the number's context lacks that
+entity, as a target's tag with no target, it doesn't hold. A Conditional number, an effect's Apply, Ongoing and
+Removal Conditions, an On Hit and an ability's Condition check read conditions
+(<a href="../scalers/a-magnitude-field.html">Scalers: A magnitude field</a>).</li>
+<li>The <strong>Tag Weight</strong> check, <a class="xref" href="../../api/FarEmerald.PlayForge.TagWeightValidation.html"><code>TagWeightValidation</code></a>, among an ability's Caster or Target Checks, compares the checked
+entity's weight of its <strong>Tag</strong> with its <strong>Weight</strong>, by its <strong>Comparison</strong>, an entity without the tag holding it at
+0. A check of your own that reads a tag derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html"><code>AbstractTagValidationRule</code></a>, whose <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html#FarEmerald_PlayForge_AbstractTagValidationRule_GetValue_"><code>GetValue</code></a> gives its tag's
+weight on the checked entity, or, where that entity holds none of it, the ability's Local Data under the tag
+(<a href="../abilities/requirements.html">Abilities: Requirements</a>).</li>
+<li>A <strong>Tag Added</strong> trigger activates its ability as the entity gains a tag, or one under it, that it didn't have; a
+<strong>Wait For Tag</strong> task waits for its caster or its target to gain a tag, that very tag, or to lose it; and a stage's
+<strong>Condition</strong> runs the stage by a tag, in the activation's data or on the caster or the target
+(<a href="../abilities/stages.html">Abilities: Stages</a>).</li>
+<li>An effect's <strong>Removes Effects Tagged</strong> and <strong>Blocks Effects Tagged</strong>, the Has Effect check's <strong>Tagged</strong> and the Asset
+Part number's Effects Tagged match effects, not entities: an effect answers for a tag by its asset tag, a context tag
+or a tag it grants, each the tag or under it (<a href="../effects/tags.html">Effects: Tags</a>). <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectTags.html#FarEmerald_PlayForge_GameplayEffectTags_Names_"><code>GameplayEffectTags.Names(tags, effect)</code></a>
+asks it in code, as <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTags.html#FarEmerald_PlayForge_AbilityTags_Names_"><code>AbilityTags.Names(tags, ability)</code></a> asks whether an ability's asset tag or a context tag is one of
+the tags or under one, as Cancelled By and Blocks do.</li>
+</ul>
+<hr>
+<p><a href="crowd-control.html">← Crowd control</a> · <a href="index.html">Tags</a> · <a href="tag-workers.html">Tag workers →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

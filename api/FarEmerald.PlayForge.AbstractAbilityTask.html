@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractAbilityTask | PlayForge ">
       
-      
+      <meta name="description" content="The base of a task in an ability&#39;s stage, as Apply Effects, Delay or Run Sequence: a stage starts its tasks together and ends as its Completion says, as its last task&#39;s Activate ends or its first&#39;s. A task of your own derives from it and overrides Activate, the work, and IsCriticalSection, with Prepare and Clean for what it does as its stage starts and ends; [ForgeMenu] files it in the stage&#39;s task picker. What it keeps for one activation goes in data.GetTaskState&amp;lt;T&amp;gt;(this), as one task serves every activation of its ability.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,16 @@ Class AbstractAbilityTask
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base of a task in an ability's stage, as Apply Effects, Delay or Run Sequence: a stage starts its tasks
+together and ends as its Completion says, as its last task's <code>Activate</code> ends or its first's. A task of your
+own derives from it and overrides <code>Activate</code>, the work, and <code>IsCriticalSection</code>, with <code>Prepare</code>
+and <code>Clean</code> for what it does as its stage starts and ends; <code>[ForgeMenu]</code> files it in the stage's task
+picker. What it keeps for one activation goes in <code>data.GetTaskState&lt;T&gt;(this)</code>, as one task serves
+every activation of its ability.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/ability-tasks.html">Extending PlayForge: Ability tasks</a> · <a class="xref" href="../guides/editor/fields-and-drawers.html">The Editor Tools: Fields and drawers</a></p>
 </div>
 
   <div class="codewrapper">

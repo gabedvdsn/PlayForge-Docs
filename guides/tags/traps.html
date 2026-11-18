@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Traps | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Traps | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.traps">
+<h1 id="traps">Traps</h1>
+
+<p>Tags invite a few mistakes, each below with its way out.</p>
+<ul>
+<li><strong>Text makes a plain tag.</strong> <code>&quot;State.Stunned&quot;</code> where a tag is asked for, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate</code></a>, give the plain tag of the
+path, but New Tag made a unique one, and the two are different tags: neither equals the other, answers a query for it
+in any mode but Same Root, or is heard by the other's listener. Write <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></a>, or
+expose the tag from code so that designers pick that very one.</li>
+<li><strong>An absent tag weighs −1.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight</code></a>, <code>GetTagWeight</code>, and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetMatchingWeight_"><code>GetMatchingWeight</code></a> in Exact mode give −1 for a tag the
+entity hasn't got, not 0. Ask for more than 0, or use <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight</code></a>.</li>
+<li><strong>A tag added to the cache doesn't last.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTag_"><code>TagCache.AddTag</code></a> is dropped at the next compile, as an ability starts or
+an item changes. Grant a lasting tag with <code>AddLooseTag</code>.</li>
+<li><strong>A requirement row counts tags, not weights.</strong> An Exact entry's Greater Than 1 never passes in a row but While
+active. Ask for stacks with the Tag Weight check, a Tag condition or a tag worker.</li>
+<li><strong>A tag shows by <code>ToString()</code>.</strong> Its <code>Name</code> is padded where it's unique, and it's the <code>Name</code> a tag converts to where
+a string is asked for.</li>
+<li><strong>A tag's relatives are plain.</strong> <code>Child</code>, <code>GetParent</code>, <code>GetAncestors</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetRoot_"><code>GetRoot</code></a> make plain tags, which no
+unique tag equals. Compare families by path, with <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsChildOf_"><code>IsChildOf</code></a> or a match mode.</li>
+<li><strong>A rename reaches assets, not code.</strong> The Tags view renames what assets store, so a tag the project's code writes
+keeps its old text there: rename it in the code too.</li>
+<li><strong>The applied list is the cache's.</strong> <code>GetAppliedTags()</code> changes as tags come and go; copy it to keep it.</li>
+</ul>
+<hr>
+<p><a href="the-editors-tag-registry.html">← The editor's tag registry</a> · <a href="index.html">Tags</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

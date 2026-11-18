@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Debugger | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Debugger | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-debugger">
+<h1 id="the-debugger">The Debugger</h1>
+
+<p>The Debugger (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RuntimeDebugger.html"><code>RuntimeDebugger</code></a>, <strong>Window → PlayForge → Debugger</strong>) shows the game as it plays, and changes its
+entities as it shows them. This section covers its four views, Entities, Processes, Tags and Timeline, and the
+Profiler's PlayForge modules.</p>
+<p>Outside Play mode it says so, with <strong>Enter Play Mode</strong>. In Play mode it follows ProcessControl: its lists change as
+processes register and leave, and their values change in place, as often as <strong>Samples a Second</strong>, in its window menu,
+says: 2, 4, 10 or 30 times a second, 4 to start. While it reads them, ProcessControl times each process's steps.</p>
+<p>The toolbar switches between the views and holds the search and each view's own tools. The status bar holds
+ProcessControl's state, the processes and how many run, wait or are being created, the entities by hub, and on its
+right what the window's last action did, as &quot;Applied Burning&quot; or &quot;Burning was refused&quot;. In a narrow window, as a
+docked column, each view's list sits above its detail and the frame count moves to the status bar. Each detail's
+sections keep their fold for the session.</p>
+<h2 id="entities">Entities</h2>
+<p><strong>Entities</strong> lists the hubs ProcessControl runs, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> alike, by
+<strong>Name</strong>, <strong>Hub</strong>, Mono or Runtime, level (<strong>Lvl</strong>) and <strong>Effects</strong>, the number on it. A MonoBehaviour hub goes by its
+GameObject's name, which tells two of one asset apart. The toolbar's hub filter shows <strong>Both hubs</strong>, <strong>Mono hubs</strong> or
+<strong>Runtime hubs</strong>. With <strong>Follow Selection</strong> on, selecting an entity's GameObject, or a child of it, in the scene
+shows that entity. A double click selects a MonoBehaviour hub's GameObject.</p>
+<p>The detail's header names the entity, as &quot;Entity · Goblin Raider · Mono hub · Level 3&quot;, with <strong>Select in Scene</strong> and
+<strong>Open Asset</strong>, which opens its asset in a window of its own. Its sections each have a table, a row a click selects,
+and a foot row that acts on the row selected and adds to the table:</p>
+<ul>
+<li><strong>Attributes</strong>: each attribute's <strong>Base</strong> and <strong>Current</strong>, the current's tooltip breaking it down by retention
+group, and what <strong>Changed by</strong> it: each source of what it took in the last second, as &quot;Burning -8/s&quot;, then each
+effect that holds a modifier on it. The foot row's <strong>Base</strong> and <strong>Current</strong> set the selected attribute's values on
+Enter, as a change the entity makes on its own account, an unworkable one
+(<a href="../workers/workable-and-unworkable.html">Workers: Workable and unworkable</a>); a double click on a value goes to its field.</li>
+<li><strong>Effects</strong>: each effect on the entity, the time it has <strong>Left</strong>, its <strong>Stacks</strong>, and where it's <strong>From</strong>, as
+&quot;Player · Fireball&quot;. <strong>Remove</strong> takes the selected one off, where its source applied it; an effect picked in the
+foot row's field, with <strong>Apply</strong>, lands from the entity itself.</li>
+<li><strong>Abilities</strong>: each ability's level (<strong>Lvl</strong>), its <strong>State</strong>, as Stage 2/3, Active, Cooldown or Ready, and the
+<strong>Cooldown</strong> it has left. <strong>Activate</strong> sets the selected one off as the entity would, and <strong>Interrupt</strong> stops its
+run; an ability picked in the foot row's field, with <strong>Level</strong> and <strong>Grant</strong>, is granted at that level.</li>
+<li><strong>Tags</strong>: each tag the entity holds, its <strong>Count</strong>, by weight, and what it's <strong>From</strong>. <strong>Remove</strong> takes back the
+selected tag where it's a loose one; a tag typed in the foot row's field, or picked from the project's with its
+button, is granted as a loose tag with <strong>Add Tag</strong>, or Enter.</li>
+<li><strong>Combat Log</strong>: the entity's combat log, newest first, as its project writes it. A click on an entry shows its
+hit's run through its pipeline and its steps (<a href="../entities/combat-log.html">Entities: Combat Log</a>).</li>
+</ul>
+<h2 id="processes">Processes</h2>
+<p><strong>Processes</strong> lists every process ProcessControl holds, each column sorting: its <strong>ID</strong>, its name (<strong>Process</strong>), its
+<strong>Handler</strong>, its <strong>Lifecycle</strong>, the update loops it steps in (<strong>Timing</strong>), its <strong>State</strong>, with the state it moves to
+next where something has asked, as &quot;Running → Terminated&quot;, its <strong>Lifetime</strong>, and its average time a <strong>Step</strong> over the
+last second. The toolbar's filter shows <strong>All states</strong>, <strong>Running</strong> or <strong>Waiting</strong>, and its <strong>ProcessControl</strong> menu
+sets ProcessControl's own state, from <strong>Ready</strong> to <strong>Terminated Immediately</strong>.</p>
+<p>The detail names the process, its ID and whether it's a Mono or a Runtime process, with <strong>Select in Scene</strong> for a
+Mono one. <strong>Pause</strong>, <strong>Resume</strong>, <strong>Terminate</strong>, as its lifecycle allows, and <strong>Terminate Now</strong> act on it and the
+processes it handles. Its sections say how it runs: <strong>Process</strong>, its lifecycle, step timing, step priority and handler,
+with <strong>Show</strong>, which selects the handler's process in the list; <strong>State</strong>, its state, the state it's queued to move
+to, and its <strong>Run</strong>: going, held by a pause, not started, cancelled, so <strong>Resume</strong> starts a new one, or ended; and
+<strong>Time</strong>, its lifetime, its time running, its step time and its peak step (<a href="../processes/index.html">Processes</a>).</p>
+<h2 id="tags">Tags</h2>
+<p><strong>Tags</strong> shows every tag the listed entities hold, as a tree of their paths, each with how many <strong>Entities</strong> hold it
+and their <strong>Weight</strong>, a parent counting its children's. The hub filter applies. A tag's detail lists who holds it
+under <strong>Held By</strong>: each <strong>Entity</strong>, its <strong>Weight</strong>, what grants it, <strong>Granted by</strong>, and that one's <strong>Source</strong>: its
+attribute set, an effect and who applied it, an ability's asset tag or its passive or active tags, an item, the
+entity's own asset tag, affiliation or granted tags, or a loose tag, granted directly.</p>
+<h2 id="timeline">Timeline</h2>
+<p><strong>Timeline</strong> shows what the entities' abilities and effects did over the last seconds. While the Debugger is open in
+Play mode, it records each ability's runs, stage by stage, each refused activation, each effect's time on the shelf,
+each refused effect, and an effect journal of the entities it lists, whatever view shows; it starts afresh each time
+Play mode does. The toolbar's <strong>Record</strong> stops and starts it, <strong>Clear</strong> forgets what it recorded, and <strong>Last 10 s</strong>
+picks how far back the strips reach: 5, 10, 30 or 60 seconds.</p>
+<p>Its list has a track for each entity's ability or effect, the newest first, its number of <strong>Runs</strong>, and a strip of its
+spans: a bar for a run or an effect's time on the shelf, and a tick for an instant effect or a refusal. The search finds
+a track by its entity or its asset.</p>
+<ul>
+<li>An ability's track shows its <strong>Stages</strong>, each with its policy and its tasks, and when the selected run reached it
+and how long it stayed, or that it didn't; then its <strong>Runs</strong>, the latest first, each with its <strong>Start</strong>, its
+<strong>Length</strong>, the <strong>Stages</strong> it reached, and its <strong>Outcome</strong>: Running, Ended, Stopped, or the refusal and why. A
+click on a run shows its stages.</li>
+<li>An effect's track shows its <strong>Applications</strong>, each with its <strong>Start</strong>, <strong>End</strong> and <strong>Length</strong>, its refusals among
+them, then its <strong>Journal</strong>: each landing, tick, hit and removal of the effect on the entity, and each worker that
+ran, newest first. A click on an entry shows its parts: a number's trace, a hit's breakdown, or what a worker queued
+and what came of it (<a href="../entities/effect-journal.html">Entities: Effect Journal</a>).</li>
+</ul>
+<p>A track keeps its last 100 spans, and the journal its last 1,000 entries.</p>
+<h2 id="profiler-modules">Profiler modules</h2>
+<p>Two modules chart PlayForge's counters in Unity's Profiler; turn them on in its list of modules.</p>
+<ul>
+<li><strong>PlayForge Processes</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeProcessesProfilerModule.html"><code>PlayForgeProcessesProfilerModule</code></a>) charts Processes Running, Processes Waiting, Processes
+Created, Registrations, Terminations, Steps, State Changes, Step Time, Sequences Running and Stages Started. Its
+details list the selected frame's costliest processes, each by ID, type and step time, which PlayForge writes into
+the capture as the Profiler records, so a saved capture shows them too.</li>
+<li><strong>PlayForge GAS</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeGASProfilerModule.html"><code>PlayForgeGASProfilerModule</code></a>) charts Mono Entities, Runtime Entities, Effects Active, Effects
+Applied, Effects Removed, Impacts, Activations, Refused Activations, Tag Compiles and Recomputes.</li>
+</ul>
+<p><a href="../getting-started/profiling.html">Getting Started: Profiling</a> lists PlayForge's profiler markers and counters.</p>
+<hr>
+<p><a href="the-problems-view-and-validation.html">← The Problems view and validation</a> · <a href="index.html">The Editor Tools</a> · <a href="preferences-and-project-settings.html">Preferences and Project Settings →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbilitySpecContainer | PlayForge ">
       
-      
+      <meta name="description" content="One slot of an entity&#39;s ability system: the AbilitySpec it holds (Spec), its slot (Index), and the ability&#39;s activations as they run. It says whether the ability runs (IsActive), holds its claim (IsClaiming), is choosing its target (IsTargeting), is cooling down (IsCooldown) and which stage it&#39;s in (ActiveStageIndex); Cancel interrupts its runs, but one in a critical stage, and Inject sends an injection into each. AbilitySystemComponent.TryGetAbilityContainer finds one by slot or by ability.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,16 @@ Class AbilitySpecContainer
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>One slot of an entity's ability system: the <code>AbilitySpec</code> it holds (<code>Spec</code>), its slot (<code>Index</code>),
+and the ability's activations as they run. It says whether the ability runs (<code>IsActive</code>), holds its claim
+(<code>IsClaiming</code>), is choosing its target (<code>IsTargeting</code>), is cooling down (<code>IsCooldown</code>) and which
+stage it's in (<code>ActiveStageIndex</code>); <code>Cancel</code> interrupts its runs, but one in a critical stage, and
+<code>Inject</code> sends an injection into each. <code>AbilitySystemComponent.TryGetAbilityContainer</code> finds one by
+slot or by ability.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/targeting-tasks.html">Extending PlayForge: Targeting tasks</a></p>
 </div>
 
   <div class="codewrapper">

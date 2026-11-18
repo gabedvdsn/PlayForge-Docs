@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tag workers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tag workers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.tag-workers">
+<h1 id="tag-workers">Tag workers</h1>
+
+<p>A tag worker, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagWorker.html"><code>AbstractTagWorker</code></a>, acts while its entity's tags meet its requirements, as flames shown while
+Status.Burning weighs 3 or more. It's one of a Worker Group's <strong>Tag</strong> workers, its kind picked from the list, and its
+entity holds it as it holds the group (<a href="../workers/where-workers-come-from.html">Workers: Where workers come from</a>).</p>
+<p>Its <strong>Tag Requirements</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.TagWorkerRequirements.html"><code>TagWorkerRequirements</code></a>) list entries, each a <a class="xref" href="../../api/FarEmerald.PlayForge.TagWorkerRequirementPacket.html"><code>TagWorkerRequirementPacket</code></a>: a tag, that very
+tag; a policy, an <a class="xref" href="../../api/FarEmerald.PlayForge.ERequireAvoidPolicy.html"><code>ERequireAvoidPolicy</code></a>, <strong>Require</strong>, which passes while the tag's weight is the entry's number or more,
+or <strong>Avoid</strong>, while it's below it; and that number, read at the entity's level. The requirements are met where every
+entry passes, and always where there are none. An absent tag weighs −1 here, as <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight</code></a> gives it, so Require 1,
+and Require 0 too, ask for the tag, and Avoid 1 for its absence.</p>
+<p>Its hooks, each a virtual no-op, run at its entity's end of frame:</p>
+<ul>
+<li><code>Activate(system)</code>, once, as its requirements come to be met;</li>
+<li><code>Tick(system)</code> while they hold, after the activations: every frame at a <strong>Tick Pause</strong> of 0, every n + 1 frames at
+n, and never below 0, as at −1, the default; the pause is a number read at the entity's level;</li>
+<li><code>Resolve(system)</code>, once, as they no longer hold, or at once where the worker is taken away while active, as its
+item is unequipped.</li>
+</ul>
+<p>The entity reads its workers' requirements at the end of a frame in which its tags changed, a worker came or went, or
+its last reading started or stopped one, and queues each activation and resolution on its action queue, ahead of the
+ticks (<a href="../workers/the-action-queue.html">Workers: The action queue</a>). A worker whose <code>ValidateWorkFor(handler)</code> reads more than the
+tags, as an attribute, overrides <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagWorker.html#FarEmerald_PlayForge_AbstractTagWorker_EvaluateEveryFrame"><code>EvaluateEveryFrame</code></a> too, to be read every frame. <a class="xref" href="../../api/FarEmerald.PlayForge.TagWorkerActivateAction.html"><code>TagWorkerActivateAction</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.TagWorkerResolveAction.html"><code>TagWorkerResolveAction</code></a> are the actions queued, at <a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html#FarEmerald_PlayForge_ActionPriority_TagWorker"><code>ActionPriority.TagWorker</code></a>; the callbacks' <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnTagWorkerActivated"><code>OnTagWorkerActivated</code></a>
+and <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnTagWorkerResolved"><code>OnTagWorkerResolved</code></a> hear each, and the frame's <a class="xref" href="../../api/FarEmerald.PlayForge.FrameSummary.html"><code>FrameSummary</code></a> keeps them. <code>tags.IsWorkerActive(worker)</code>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_ActiveWorkers"><code>ActiveWorkers</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RegisteredWorkers"><code>RegisteredWorkers</code></a> say which run on an entity.</p>
+<p>One worker serves every entity whose group holds it, each tracking it apart, so it keeps nothing of one entity in its
+fields; given by two sources, as two copies of an item, it runs once, and stays until the last takes it back. It
+draws as <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerDrawer.html"><code>TagWorkerDrawer</code></a> draws a worker of any kind, its <strong>Tag Requirements</strong> a list (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementsDrawer.html"><code>TagWorkerRequirementsDrawer</code></a>)
+of rows, each the tag, the policy and the number (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementPacketDrawer.html"><code>TagWorkerRequirementPacketDrawer</code></a>).</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+// Shows a child of its entity's object while the worker's Tag Requirements are met, as flames while
+// Status.Burning weighs 3 or more
+[Serializable]
+public sealed class ShowWhileTagged : AbstractTagWorker
+{
+    [Tooltip(&quot;The child shown, by name, at any depth&quot;)]
+    public string Child = &quot;Flames&quot;;
+
+    public override void Activate(IGameplayAbilitySystem system) =&gt; Show(system, true);
+
+    public override void Resolve(IGameplayAbilitySystem system) =&gt; Show(system, false);
+
+    private void Show(IGameplayAbilitySystem system, bool shown)
+    {
+        var body = system?.ToGASObject();
+        if (body == null) return;
+        foreach (var each in body.GetComponentsInChildren&lt;Transform&gt;(true))
+            if (each.name == Child) each.gameObject.SetActive(shown);
+    }
+}
+</code></pre>
+<hr>
+<p><a href="conditions-and-checks.html">← Conditions and checks</a> · <a href="index.html">Tags</a> · <a href="the-editors-tag-registry.html">The editor's tag registry →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

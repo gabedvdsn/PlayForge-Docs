@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractReader | PlayForge ">
       
-      
+      <meta name="description" content="The base of a mono process that shows a GAS&#39;s state: Assign gives it the GAS and calls SubscribeIfOnChangePolicy, which a reader overrides to hear the changes it shows.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,8 +97,13 @@ Class AbstractReader
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
-  <div class="markdown conceptual"></div>
+  <div class="markdown summary"><p>The base of a mono process that shows a GAS's state: <code>Assign</code> gives it the GAS and calls
+<code>SubscribeIfOnChangePolicy</code>, which a reader overrides to hear the changes it shows.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/extending/index.html">Extending PlayForge</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/readers.html">Extending PlayForge: Readers</a></p>
+</div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class AbstractReader : LazyMonoProcess, IProxyTaskBehaviourCaller, IProxyTaskBehaviourUser, IGameplayProcess, IGameplayProcessHandler, IHasReadableDefinition</code></pre>

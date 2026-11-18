@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GameplayEffect | PlayForge ">
       
-      
+      <meta name="description" content="A Gameplay Effect asset: a change to an entity, as damage, a heal, a timed buff, a poison, a cost or a cooldown. Abilities, items and code apply it to a target: Generate, through the target&#39;s GenerateEffectSpec, makes a GameplayEffectSpec for one application, which ApplyGameplayEffect lands. Its duration&#39;s Policy decides how long it lives: an Instant effect makes its change once, and a Durational or Infinite one goes on the target&#39;s effect shelf until its time runs out or something removes it. Its impacts change attributes, each a commit that stays or a modifier reversed as the effect ends; it can also grant tags and abilities, apply contained effects, run workers and carry components, and its requirements and conditions say whether it lands, goes on and comes off. It has no level of its own: it takes its origin&#39;s.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,10 +97,18 @@ Class GameplayEffect
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>A Gameplay Effect asset: a change to an entity, as damage, a heal, a timed buff, a poison, a cost or a cooldown.
+Abilities, items and code apply it to a target: <code>Generate</code>, through the target's <code>GenerateEffectSpec</code>,
+makes a <code>GameplayEffectSpec</code> for one application, which <code>ApplyGameplayEffect</code> lands.</p>
+<p>Its duration's Policy decides how long it lives: an Instant effect makes its change once, and a Durational
+or Infinite one goes on the target's effect shelf until its time runs out or something removes it. Its impacts
+change attributes, each a commit that stays or a modifier reversed as the effect ends; it can also grant tags
+and abilities, apply contained effects, run workers and carry components, and its requirements and conditions
+say whether it lands, goes on and comes off. It has no level of its own: it takes its origin's.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/effects/index.html">Effects</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a> · <a class="xref" href="../guides/getting-started/the-pieces-in-one-paragraph.html">Getting Started: The pieces in one paragraph</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a> · <a class="xref" href="../guides/extending/workers.html">Extending PlayForge: Workers</a> · <a class="xref" href="../guides/extending/the-editor.html">Extending PlayForge: The editor</a> · <a class="xref" href="../guides/getting-started/the-pieces-in-one-paragraph.html">Getting Started: The pieces in one paragraph</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/extending/components.html">Extending PlayForge: Components</a> · <a class="xref" href="../guides/extending/ability-tasks.html">Extending PlayForge: Ability tasks</a></p>
 </div>
 
   <div class="codewrapper">
@@ -800,7 +808,9 @@ public EffectPurge Purges</code></pre>
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Its source's tag requirements: the tags the source must hold or lack for the effect to land and to stay on,
+and the tags that take the effect off.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -860,7 +870,8 @@ public EffectPurge Purges</code></pre>
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Its target's tag requirements, as its source's are.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">

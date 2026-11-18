@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Forge | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Forge | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-forge">
+<h1 id="the-forge">The Forge</h1>
+
+<p>The Forge (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html"><code>TheForge</code></a>) is PlayForge's main window: the active Forge Project's assets in a list, beside a detail pane
+that shows the one selected. This section covers its toolbar, its list, its detail pane, the asset menu and its
+keys. The Forge follows the project as assets are made, edited, moved and deleted, so it has no Refresh.</p>
+<p>While the Unity project has no Forge Project, The Forge asks for the first in place of its list: <strong>Make your first
+Forge Project</strong>, a <strong>Name</strong>, and <strong>Create Forge Project</strong> (<a href="forge-projects.html">Forge Projects</a>).</p>
+<h2 id="the-toolbar">The toolbar</h2>
+<p>From left to right:</p>
+<ul>
+<li><strong>Back</strong> and <strong>Forward</strong> go over the assets the detail pane has shown, as a browser's do, up to 50 back. Going to
+an asset the list hides clears the search and turns its type's filter on.</li>
+<li>The project menu, named for the active Forge Project, switches between the projects, the active one checked. <strong>No
+Project</strong> shows the assets in no project, where no project sits at the root of <code>Assets</code>. <strong>New Project…</strong> makes a
+project, and <strong>Show in Project</strong> selects the active one's asset. The menu reads <strong>No Project</strong> while none is
+active, and <strong>All Assets</strong> while the Unity project has none.</li>
+<li><strong>Create</strong> makes a new asset of any type The Forge lists (<a href="new-assets-and-presets.html">New assets and presets</a>).</li>
+<li>A filter for each PlayForge asset type, by its icon: Ability, Gameplay Effect, Item, Attribute, Attribute Set and
+Entity. On, it shows its type alone; off again, every type.</li>
+<li><strong>More</strong> holds the filters of the other types The Forge lists: Scaler Asset, Requirement Template, Value Pipeline,
+Effect Modifier and Crowd Control Rules. It shows the name of the one chosen.</li>
+<li><strong>Tags</strong> shows the project's tags in place of its assets (<a href="the-tags-view.html">The Tags view</a>).</li>
+<li>The search shows the assets whose name, file name or asset tag holds its text.</li>
+<li>The problem count, <strong>No problems</strong> or as <strong>3 problems</strong>, opens the Problems view.</li>
+<li>The help button (<strong>?</strong>), at the toolbar's end, opens this guide's section on The Forge on the documentation site.</li>
+</ul>
+<p>The status bar under the list counts what it shows, of how many, in which project, and the problems, as &quot;12 of 40
+assets in Arena · 3 problems&quot;.</p>
+<h2 id="the-list">The list</h2>
+<p>Each column sorts by a click on its title, in natural order, so 9 comes before 10, then by name:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The asset's type icon and its name: its own, or its file's where it has none. Its tooltip is the asset's path</td>
+</tr>
+<tr>
+<td><strong>Type</strong></td>
+<td>Its type</td>
+</tr>
+<tr>
+<td><strong>Asset Tag</strong></td>
+<td>Its asset tag, for an ability, effect, item, entity or attribute set</td>
+</tr>
+<tr>
+<td><strong>Levels</strong></td>
+<td>The levels it uses, as 1–5, for an asset with levels of its own</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Its one line, as its inspector's header shows it (<a href="inspectors.html#the-header">The header</a>); the whole line in its tooltip</td>
+</tr>
+<tr>
+<td>(unnamed)</td>
+<td>A warning glyph where the validator finds problems in the asset, in the destructive color for an error; its tooltip says them</td>
+</tr>
+</tbody>
+</table>
+<p>A click shows the asset in the detail pane. Several can be selected, to move, copy or trash together, and the first
+shows. A double click shows the asset in the Project window, and a right click opens the asset menu. The list's
+width, its columns' widths and the columns its header's menu hides are kept for each user, and its sort through a
+domain reload.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html#FarEmerald_PlayForge_Editor_ForgeAssetLines_Of_"><code>ForgeAssetLines.Of(asset)</code></a> gives an asset's one line in code.</p>
+<h2 id="the-detail-pane">The detail pane</h2>
+<p>The detail pane shows the selected asset's <strong>Summary</strong> above its inspector. The summary holds the asset's
+description, where it has one; then a line for each section of its inspector, with the section's one-line summary,
+as <strong>Leveling</strong> Levels 1–5; for a Scaler asset, its <strong>Kind</strong>, what it <strong>Reads</strong> and its <strong>Used By</strong>; for a
+Requirement Template, what it <strong>Requires</strong> and what it <strong>Must Not Have</strong>; and last, <strong>Problems</strong>, what the validator
+finds. It follows the asset's edits.</p>
+<p>The inspector under it is the asset's own, as the Inspector shows it (<a href="inspectors.html">Inspectors</a>). In The Forge, its
+header's <strong>Open in The Forge</strong> is <strong>Show in Project</strong>, and an ability's, effect's, item's, entity's, attribute's or
+attribute set's header shows the asset's file name under it, as the list shows its name alone.</p>
+<h2 id="the-asset-menu">The asset menu</h2>
+<p>The same actions open from a right-click on the list and from the ⋮ in an inspector's header, which adds the asset's
+own (<a href="inspectors.html#the-header">The header</a>):</p>
+<ul>
+<li><strong>Show in Project</strong> selects the asset in the Project window.</li>
+<li><strong>Open in a Window</strong> shows its inspector in a window of its own.</li>
+<li><strong>Rename…</strong> asks for its new name (<a href="renaming-duplicating-and-deleting.html">Renaming, duplicating and deleting</a>).</li>
+<li><strong>Duplicate</strong> makes a copy beside it, named as a copy, as &quot;Fireball Copy&quot;, with the tag that name gives, and shows
+the copy.</li>
+<li><strong>Move to Project</strong> and <strong>Copy to Project</strong> move or copy every selected asset into another Forge Project, each into
+its type's folder there.</li>
+<li><strong>Move to Trash</strong> moves every selected asset to the trash, asking first.</li>
+</ul>
+<p>The others act on the first selected asset.</p>
+<h2 id="the-window-menu">The window menu</h2>
+<p>The window menu, the tab's ⋮, holds <strong>Problems…</strong>, <strong>Project Settings…</strong> and <strong>Preferences…</strong>, then
+<strong>Spreadsheets</strong>: <strong>Export Numbers…</strong>, <strong>Export Selected Numbers…</strong>, <strong>Export Item Stats…</strong>, <strong>Export Selected Item
+Stats…</strong> and <strong>Import…</strong> (<a href="spreadsheets.html">Spreadsheets</a>); then <strong>Documentation</strong>, which opens the documentation site
+in the browser: <strong>The Forge</strong>, this guide's section on it; <strong>The Editor Tools</strong>, this guide; <strong>All Guides</strong>; and
+<strong>API Reference</strong>, a page for each public type.</p>
+<h2 id="keys">Keys</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Alt+Shift+F</strong></td>
+<td>Opens The Forge with its search focused</td>
+</tr>
+<tr>
+<td><strong>Alt+Left</strong>, <strong>Alt+Right</strong></td>
+<td>Back and Forward, except while a text field has the keyboard. The mouse's back and forward buttons do the same</td>
+</tr>
+<tr>
+<td><strong>F2</strong></td>
+<td>Renames the selected asset; in the Tags view, the selected tag</td>
+</tr>
+<tr>
+<td><strong>Delete</strong>, or <strong>Cmd+Backspace</strong> on a Mac</td>
+<td>Moves the selected assets to the trash, asking first</td>
+</tr>
+<tr>
+<td><strong>Enter</strong>, <strong>Escape</strong></td>
+<td>In The Forge's dialogs, New, New Project and Rename, does the dialog's action, or cancels</td>
+</tr>
+</tbody>
+</table>
+<p>In code, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_OpenToAsset_"><code>TheForge.OpenToAsset(asset)</code></a> opens The Forge on an asset, its type's filter on and the asset selected, as
+an inspector's <strong>Open in The Forge</strong> does, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_ShowWindow_"><code>TheForge.ShowWindow()</code></a> opens it as the menu does.</p>
+<hr>
+<p><a href="menus-and-shortcuts.html">← Menus and shortcuts</a> · <a href="index.html">The Editor Tools</a> · <a href="forge-projects.html">Forge Projects →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

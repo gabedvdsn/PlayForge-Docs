@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The editor&#39;s tag registry | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The editor&#39;s tag registry | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.the-editors-tag-registry">
+<h1 id="the-editors-tag-registry">The editor's tag registry</h1>
+
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html"><code>ForgeTagRegistry</code></a>, in the editor, is what the tag pickers, the Tags view and New Tag know of the project's tags: each
+tag, and each use of it, by context. It reads, as the editor loads, and again after any <code>.asset</code> file is imported, moved
+or deleted (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagRegistryAssetPostprocessor.html"><code>TagRegistryAssetPostprocessor</code></a>):</p>
+<ul>
+<li>the code tags marked <code>[ForgeTagExposed]</code>: in <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html"><code>Tags</code></a>, in the player assemblies that reference PlayForge, and in each
+type given to <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RegisterContextDefaultSource_"><code>RegisterContextDefaultSource</code></a>;</li>
+<li>every Tag Library;</li>
+<li>every <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, list and array of the project's abilities, effects, items, entities, attributes, attribute sets,
+Scaler assets, Requirement Templates, Value Pipelines, Effect Modifiers, Crowd Control Rules, Forge Projects and
+Creator Lab rules, through their nested classes and <code>[SerializeReference]</code> fields, as their components and workers,
+each use under its field's contexts.</li>
+</ul>
+<p>A tag that only a Cue Library, a scene, a prefab or an asset of the project's own type holds is offered nowhere until a
+PlayForge asset uses it or a Tag Library declares it.</p>
+<p>Tools of the project's own read it: <code>GetAllTags()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetTagsForContext_"><code>GetTagsForContext(contexts, includeUniversal)</code></a>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetTagUsage_"><code>GetTagUsage(tag)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetAllTagRecords_"><code>GetAllTagRecords()</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetAllContexts_"><code>GetAllContexts()</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetSystemDefaultTags_"><code>GetSystemDefaultTags()</code></a>, the code tags; <code>MarkDirty()</code>
+has it read again as it's next asked, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RefreshCache_"><code>RefreshCache()</code></a> at once. A tag's uses are its
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagUsageRecord.html"><code>ForgeTagRegistry.TagUsageRecord</code></a>, by context, each a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.ContextUsage.html"><code>ForgeTagRegistry.ContextUsage</code></a> of uses, each a
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.FieldUsageInfo.html"><code>ForgeTagRegistry.FieldUsageInfo</code></a>: its <code>Asset</code>, its <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.FieldUsageInfo.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_FieldUsageInfo_FieldPath"><code>FieldPath</code></a>, and whether it's code's (<code>IsSystemDefault</code>). A context
+is a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagContext.html"><code>ForgeTagRegistry.TagContext</code></a>, whose <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagContext.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_TagContext_ContextKey"><code>ContextKey</code></a> is Uncontextualized for a field that names none. The tag field
+tells the registry each pick, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RegisterTagUsage_"><code>RegisterTagUsage</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_UnregisterTagUsage_"><code>UnregisterTagUsage</code></a>, so a picker knows it at once.</p>
+<hr>
+<p><a href="tag-workers.html">← Tag workers</a> · <a href="index.html">Tags</a> · <a href="traps.html">Traps →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

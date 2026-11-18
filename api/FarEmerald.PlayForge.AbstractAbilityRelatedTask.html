@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractAbilityRelatedTask | PlayForge ">
       
-      
+      <meta name="description" content="The base of every task an ability runs: its targeting task, an AbstractTargetingAbilityTask, and its stages&#39; tasks and asset loaders, each an AbstractAbilityTask. Each is handed the activation&#39;s data: Prepare as its stage starts, Activate, the work its stage waits on, and Clean as the stage ends; IsCriticalSection says whether it&#39;s critical work, which commits its ability to its stage and keeps out another ability&#39;s critical work while it runs. One task object serves every activation of its ability, so what it keeps for one belongs in the activation&#39;s data, not in its fields. Read gives one of its numbers at its ability&#39;s level, EntityOf its caster or its first target, and ApplyTo applies an effect from the ability with the activation&#39;s magnitudes.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,19 @@ Class AbstractAbilityRelatedTask
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base of every task an ability runs: its targeting task, an <code>AbstractTargetingAbilityTask</code>, and its
+stages' tasks and asset loaders, each an <code>AbstractAbilityTask</code>. Each is handed the activation's data:
+<code>Prepare</code> as its stage starts, <code>Activate</code>, the work its stage waits on, and <code>Clean</code> as the stage
+ends; <code>IsCriticalSection</code> says whether it's critical work, which commits its ability to its stage and keeps
+out another ability's critical work while it runs.</p>
+<p>One task object serves every activation of its ability, so what it keeps for one belongs in the
+activation's data, not in its fields. <code>Read</code> gives one of its numbers at its ability's level,
+<code>EntityOf</code> its caster or its first target, and <code>ApplyTo</code> applies an effect from the ability with the
+activation's magnitudes.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/ability-tasks.html">Extending PlayForge: Ability tasks</a> · <a class="xref" href="../guides/extending/targeting-tasks.html">Extending PlayForge: Targeting tasks</a></p>
 </div>
 
   <div class="codewrapper">

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbilityTaskBehaviourStage | PlayForge ">
       
-      
+      <meta name="description" content="One of an ability&#39;s stages, which run one after another: the Tasks it starts together, and its Completion (StagePolicy), which ends it as its last task ends (All) or its first (Any), cancelling the rest. ApplyUsageEffects applies the ability&#39;s cost and cooldown in it, as it starts or, with ApplyUsageAtStageStart off, as it ends well, once an activation; its Condition skips it unless a tag is there, or missing; and its own CancelledBy and Blocks, where it names any, hold while it runs in place of the ability&#39;s. A stage that holds a critical task is critical (IsCritical): it commits the ability, so Cancelled By doesn&#39;t cancel it.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,14 @@ Class AbilityTaskBehaviourStage
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>One of an ability's stages, which run one after another: the <code>Tasks</code> it starts together, and its Completion
+(<code>StagePolicy</code>), which ends it as its last task ends (All) or its first (Any), cancelling the rest.
+<code>ApplyUsageEffects</code> applies the ability's cost and cooldown in it, as it starts or, with
+<code>ApplyUsageAtStageStart</code> off, as it ends well, once an activation; its <code>Condition</code> skips it unless a
+tag is there, or missing; and its own <code>CancelledBy</code> and <code>Blocks</code>, where it names any, hold while it
+runs in place of the ability's. A stage that holds a critical task is critical (<code>IsCritical</code>): it commits
+the ability, so Cancelled By doesn't cancel it.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
 </div>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Preferences and Project Settings | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Preferences and Project Settings | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.preferences-and-project-settings">
+<h1 id="preferences-and-project-settings">Preferences and Project Settings</h1>
+
+<p>PlayForge has two settings pages: <strong>Project Settings → PlayForge</strong>, the settings a project shares, kept in assets
+under version control, and <strong>Preferences → PlayForge</strong>, each user's own. This section covers both, and the logging
+level.</p>
+<h2 id="project-settings--playforge">Project Settings → PlayForge</h2>
+<p>The page opens with which PlayForge this is, its version, package name and the Unity it needs, as its <code>package.json</code>
+says, and a row of links: <strong>Guides</strong>, the documentation site; <strong>Editor Tools</strong>, this guide; <strong>API Reference</strong>; and
+<strong>Changelog</strong>, the package's <code>CHANGELOG.md</code>. Each site link's tooltip is its address. Then its settings:</p>
+<ul>
+<li><strong>PlayForge Folder</strong>: where a new Forge Project goes, each in a folder of its own, and the Bootstrap prefabs;
+<code>Assets/PlayForge</code> to start. <strong>…</strong> picks a folder in <code>Assets</code>. It's the Unity project's own setting, in
+<code>ProjectSettings/PlayForge.asset</code>.</li>
+</ul>
+<p>The rest is the active Forge Project's, kept in its asset, so each game has its own. With no project active, the page
+says so: choose one in The Forge, or, while the Unity project has none, <strong>Create Forge Project</strong> makes one named for the
+game.</p>
+<ul>
+<li><strong>Forge Project</strong>: what the project's game reads as it runs, through its GameRoot. <strong>Roles</strong>, the attribute
+playing each role, by its tag (<a href="../attributes/roles.html">Attributes: Roles</a>); <strong>Crowd Control</strong>, the rules an entity follows
+where it names none (<a href="../abilities/requirements.html#crowd-control">Abilities: Crowd Control</a>); <strong>Cue Library</strong> (<a href="../cues/routes.html">Cues: Routes</a>);
+<strong>Resolve Order</strong> (<a href="../effects/workers.html#resolve-order">Effects: Resolve Order</a>); <strong>Combat Log</strong> (<a href="../entities/combat-log.html">Entities: Combat Log</a>);
+<strong>Purge Levels</strong> (<a href="../effects/purging.html">Effects: Purging</a>); and <strong>Workers</strong>, every entity's
+(<a href="../workers/where-workers-come-from.html">Workers: Where workers come from</a>). <strong>Fill Roles by Name</strong> gives each of PlayForge's roles no
+attribute plays, Health, Luck and Movement Speed, the project's attribute of that name, Move Speed for Movement Speed
+too, as one Undo step.</li>
+<li><strong>New Assets</strong>: each type's folder within the project's, which The Forge and a field's <strong>New</strong> put its new assets
+in; <strong>…</strong> picks one inside the project's folder. <strong>Use Default Folders</strong> puts each back.</li>
+<li><strong>Defaults</strong>: for each type, its <strong>New Asset</strong>, which a new asset of the type starts as a copy of, and its
+<strong>Import</strong>, the assets the Import window lists first.</li>
+<li><strong>Cost and Cooldown</strong>: the <strong>Cost Effect</strong> and <strong>Cooldown Effect</strong>, which an ability's <strong>Cost</strong> and <strong>Cooldown</strong>
+fields offer to copy or use, and an Active item copies.</li>
+<li><strong>Templates</strong>: the project's own assets that Create offers to start a new asset as a copy of.</li>
+</ul>
+<p>Each edit is saved in the project's asset, and Undo takes it back.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html"><code>PlayForgeSettings</code></a> reads and writes the project's authoring settings: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_"><code>FolderFor(type)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_NewAssetDefault_"><code>NewAssetDefault(type)</code></a>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_ImportDefaults_"><code>ImportDefaults(type)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_UsageEffect_"><code>UsageEffect(key)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetUsageEffect_"><code>SetUsageEffect(key, effect)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetNewAssets_"><code>SetNewAssets</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetDefaults_"><code>SetDefaults</code></a>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_UseDefaultFolders_"><code>UseDefaultFolders()</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_DefaultFolder_"><code>DefaultFolder(type)</code></a>. <code>UseProject(project)</code> reads another project's in place of the active
+one's, and gives back the one it replaced. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectTemplateRegistry.html"><code>EffectTemplateRegistry</code></a> gets and sets the Cost and Cooldown effects by
+their keys, &quot;Cost&quot; and &quot;Cooldown&quot;. The settings themselves are the project's <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProjectSettings.html"><code>ForgeProjectSettings</code></a>, the authoring
+ones its <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuthoringSettings.html"><code>ForgeAuthoringSettings</code></a>.</p>
+<h2 id="preferences--playforge">Preferences → PlayForge</h2>
+<ul>
+<li><strong>Tags</strong>: <strong>Show Full Tag Paths</strong>, off to start, shows a tag's whole path in strong text, in place of its parents in
+secondary text before its leaf. <strong>Group Tags by Root</strong>, on to start, groups the tag picker's tags under their root.</li>
+<li><strong>Menus</strong>: <strong>Menu Width</strong>, 360 to start, from 220 to 1200, and <strong>Menu Height</strong>, 420 to start, from 160 to 1600: the
+most a PlayForge dropdown grows to, a picker's or a field's menu. A longer list scrolls.</li>
+<li><strong>Logging</strong>: <strong>Minimum Log Level</strong>, the quietest message PlayForge logs: <strong>Verbose</strong> every trace, <strong>Info</strong> notable
+events, <strong>Warning</strong> and <strong>Error</strong> problems alone, and <strong>None</strong> nothing. Info to start.</li>
+<li><strong>Use Defaults</strong> puts every preference back, the tables' column widths and hidden columns and the log level among
+them.</li>
+</ul>
+<p>Preferences are kept in EditorPrefs, for each user. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgePreferences.html"><code>PlayForgePreferences</code></a> holds them, and its <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgePreferences.html#FarEmerald_PlayForge_Editor_PlayForgePreferences_UseDefaults_"><code>UseDefaults()</code></a> does
+what <strong>Use Defaults</strong> does. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeLogSettingsBridge.html"><code>ForgeLogSettingsBridge</code></a> keeps the log level and gives it to <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a> after each domain reload:
+its <code>CurrentLevel</code>, <code>SetLevel(level)</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeLogSettingsBridge.html#FarEmerald_PlayForge_Editor_ForgeLogSettingsBridge_ResetLevel_"><code>ResetLevel()</code></a>. A build logs Info unless code sets <code>ForgeLog.MinimumLevel</code>
+(<a href="../getting-started/logging.html">Getting Started: Logging</a>). A double click on a message <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a> wrote, in the Console, opens
+the code that logged it, not <code>ForgeLog</code>.</p>
+<hr>
+<p><a href="the-debugger.html">← The Debugger</a> · <a href="index.html">The Editor Tools</a> · <a href="spreadsheets.html">Spreadsheets →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Renaming, duplicating and deleting | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Renaming, duplicating and deleting | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.renaming-duplicating-and-deleting">
+<h1 id="renaming-duplicating-and-deleting">Renaming, duplicating and deleting</h1>
+
+<p>This section covers what a rename changes, and what Duplicate and Move to Trash do.</p>
+<h2 id="renaming">Renaming</h2>
+<p>An asset is renamed from the asset menu's <strong>Rename…</strong>, F2 on The Forge's list, or its inspector's <strong>Name</strong>. The Rename
+window (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenameWindow.html"><code>ForgeRenameWindow</code></a>), titled for the asset's type, as <strong>Rename Ability</strong>, holds the asset's name selected, to
+type over; <strong>Rename</strong>, or Enter, renames it, and <strong>Cancel</strong>, or Escape, doesn't. A rename is one Undo step:</p>
+<ul>
+<li>An ability, effect, item, entity or attribute set takes the name and the asset tag it gives. Every PlayForge asset
+that stored the old tag, as a requirement's tag query, a trigger or a filter, stores the new one, unless another
+asset still has the old tag as its own, as the one it was duplicated from.</li>
+<li>An attribute takes the name. A Scaler asset's name goes to its scaler, and a Requirement Template's to its
+requirements, which the lists that offer them show.</li>
+<li>The asset's file takes the name, its spaces and any character a file can't have left out, as a new asset's file
+does, with a number added where another file in its folder has the name. Undo and Redo bring the file back with the
+name.</li>
+<li>An asset with no name of its own, as a Value Pipeline, is named by its file: renaming renames the file, its spaces
+kept, which Undo doesn't take back.</li>
+</ul>
+<p>In an inspector, leaving the <strong>Name</strong> field of an ability, effect, item, entity or attribute set renames it this way,
+its file with it. Each one's tag comes from its own name, so a selection of several can't be renamed at once.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenames.html"><code>ForgeRenames</code></a> renames in code: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenames.html#FarEmerald_PlayForge_Editor_ForgeRenames_CanRename_"><code>CanRename(asset)</code></a>, true for an asset that's its file's main asset; <code>NameOf(asset)</code>,
+its name as The Forge lists it; and <code>Rename(asset, name)</code>. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenameWindow.html#FarEmerald_PlayForge_Editor_ForgeRenameWindow_Show_"><code>ForgeRenameWindow.Show(asset)</code></a> opens the window.</p>
+<p>A tag is renamed in The Forge's Tags view (<a href="the-tags-view.html">The Tags view</a>).</p>
+<h2 id="duplicating">Duplicating</h2>
+<p><strong>Duplicate</strong> copies an asset beside it, named as a copy, as &quot;Fireball Copy&quot;, with the tag that name gives. From The
+Forge's list, The Forge shows the copy; from an inspector's header, The Forge shows it where The Forge has the
+keyboard, and the Project window selects it otherwise.</p>
+<h2 id="deleting">Deleting</h2>
+<p><strong>Move to Trash</strong>, or Delete on The Forge's list, asks once for every asset selected, naming the assets, prefabs and
+scenes that refer to any of them, up to eight, and counting the rest: their references will break. It then moves the
+assets to the trash, where they can be restored.</p>
+<hr>
+<p><a href="templates.html">← Templates</a> · <a href="index.html">The Editor Tools</a> · <a href="the-tags-view.html">The Tags view →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

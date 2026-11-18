@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tag field attributes | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tag field attributes | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.tag-field-attributes">
+<h1 id="tag-field-attributes">Tag field attributes</h1>
+
+<p>The attributes a <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, or a list of tags, takes say what its tag field offers and does.</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html"><code>ForgeTagContext</code></a>, as <code>[ForgeTagContext(ForgeContext.Granted)]</code> or <code>[ForgeTagContext(&quot;Weather&quot;)]</code>, names the
+contexts the field takes, PlayForge's or the project's own, and makes the tags it holds of each. Its
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_IncludeUniversal"><code>IncludeUniversal</code></a>, true unless set, offers the Universal tags too, and its <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_AllowCreate"><code>AllowCreate</code></a>, true unless set, offers
+<strong>New Tag…</strong> and <strong>Make It a Child Of…</strong>. A field without one offers every tag.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagNoCreate.html"><code>ForgeTagNoCreate</code></a> offers neither, as <code>AllowCreate = false</code> does.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExcludeUniversal.html"><code>ForgeTagExcludeUniversal</code></a> leaves the Universal tags out, as <code>IncludeUniversal = false</code> does.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagReadOnly.html"><code>ForgeTagReadOnly</code></a> shows the tag greyed, with no picker and no menu; code still sets it.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagTooltip.html"><code>ForgeTagTooltip</code></a>, as <code>[ForgeTagTooltip(&quot;...&quot;)]</code>, gives the field its tooltip, in place of Unity's <code>[Tooltip]</code>,
+which the field reads where it has none.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html"><code>ForgeTagExposed</code></a> goes on a static tag of code, not on an asset's field
+(<a href="tags-written-in-code.html">Tags written in code</a>).</li>
+</ul>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagDefault.html"><code>ForgeTagDefault</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagRequired.html"><code>ForgeTagRequired</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagPrefix.html"><code>ForgeTagPrefix</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagGroup.html"><code>ForgeTagGroup</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedCountAttribute.html"><code>ForgeTagLockedCountAttribute</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedIndicesAttribute.html"><code>ForgeTagLockedIndicesAttribute</code></a> are declared for a field as well, for a default tag, a tag the field must have, the
+prefixes it takes, a group of fields and a list's locked entries, but no drawer reads them, so they change nothing in
+the inspector; and <code>ForgeTagDefault</code> can't be written on a field at all, as a <code>Tag</code> can't be an attribute's argument.
+<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroupColor.html"><code>AvoidRequireTagGroupColor</code></a>, on the requirement groups' fields, gives each a colour that no drawer reads.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+// Refuses its ability while its caster is out of the weather it names
+[Serializable]
+public class NeedsWeatherAbilityComponent : AbstractAbilityComponent
+{
+    [Tooltip(&quot;The weather its caster must be under, or one beneath it&quot;)]
+    [ForgeTagContext(&quot;Weather&quot;, AllowCreate = false)]
+    [ForgeTagExcludeUniversal]
+    public Tag Weather;
+
+    public override string CanStart(AbilityComponentContext ctx)
+    {
+        var tags = ctx.Source?.GetTagCache();
+        if (!Weather.IsValid || tags == null || tags.HasTag(Weather, ETagMatchMode.IncludeChildren)) return null;
+        return $&quot;Needs {Weather}&quot;;
+    }
+}
+</code></pre>
+<hr>
+<p><a href="tags-written-in-code.html">← Tags written in code</a> · <a href="index.html">Tags</a> · <a href="the-tag-field.html">The tag field →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

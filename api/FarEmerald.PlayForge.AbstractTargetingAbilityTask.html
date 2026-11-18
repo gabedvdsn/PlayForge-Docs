@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractTargetingAbilityTask | PlayForge ">
       
-      
+      <meta name="description" content="The base of an ability&#39;s targeting task, the one task that picks what an activation acts on before its stages run, as a click picks an entity or a search takes the enemies in range. Its Activate files the targeting packet of what it picks under the activation&#39;s Target key, whose entity becomes the activation&#39;s target, or calls WhenTargetingInvalid, which ends the activation where BreakRuntimeOnInvalid is on. Targeting holds the activation&#39;s claim while it runs, and its slot&#39;s IsTargeting says while it chooses. A task of your own overrides Activate; Prompt, the words a game shows while it waits for the player; TargetIsValid, which targets it takes; and ConnectInputHandler and DisconnectInputHandler, to hook an input handler of its own as it&#39;s prepared and unhook it as it&#39;s cleaned, an override of Prepare calling the base&#39;s last. TryGetDataTarget and TryGetDataPoint take a target or a point the activation&#39;s data already holds, as an AI&#39;s does, and WaitForPointerPress waits for a press of the game&#39;s input.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,21 @@ Class AbstractTargetingAbilityTask
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>The base of an ability's targeting task, the one task that picks what an activation acts on before its stages
+run, as a click picks an entity or a search takes the enemies in range. Its <code>Activate</code> files the targeting
+packet of what it picks under the activation's Target key, whose entity becomes the activation's target, or
+calls <code>WhenTargetingInvalid</code>, which ends the activation where <code>BreakRuntimeOnInvalid</code> is on. Targeting
+holds the activation's claim while it runs, and its slot's <code>IsTargeting</code> says while it chooses.</p>
+<p>A task of your own overrides <code>Activate</code>; <code>Prompt</code>, the words a game shows while it waits for the
+player; <code>TargetIsValid</code>, which targets it takes; and <code>ConnectInputHandler</code> and
+<code>DisconnectInputHandler</code>, to hook an input handler of its own as it's prepared and unhook it as it's
+cleaned, an override of <code>Prepare</code> calling the base's last. <code>TryGetDataTarget</code> and
+<code>TryGetDataPoint</code> take a target or a point the activation's data already holds, as an AI's does, and
+<code>WaitForPointerPress</code> waits for a press of the game's input.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/abilities/index.html">Abilities</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/targeting-tasks.html">Extending PlayForge: Targeting tasks</a> · <a class="xref" href="../guides/editor/fields-and-drawers.html">The Editor Tools: Fields and drawers</a></p>
 </div>
 
   <div class="codewrapper">

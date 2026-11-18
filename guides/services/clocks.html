@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Clocks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Clocks | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.services.clocks">
+<h1 id="clocks">Clocks</h1>
+
+<p>A clock is an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>, a source of time: PlayForge has one for Unity's time, one for the game's, an unscaled one,
+a scaled one and each entity's own, and a game can write its own.</p>
+<table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Its time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.UnityClock.html"><code>UnityClock</code></a></td>
+<td>Unity's <code>Time</code>, through <a class="xref" href="../../api/FarEmerald.PlayForge.UnityClock.html#FarEmerald_PlayForge_UnityClock_Instance"><code>UnityClock.Instance</code></a>: the clock in force until code puts another in</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html"><code>GameClock</code></a></td>
+<td>The game's, through <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>: the clock in force, read each time it's asked, so it can be kept and handed on and still follows a clock put in later. A sequence on it runs by the game's time whatever its packet's owner's is</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.UnscaledClock.html"><code>UnscaledClock</code></a></td>
+<td>The game's without its time scale, through <a class="xref" href="../../api/FarEmerald.PlayForge.UnscaledClock.html#FarEmerald_PlayForge_UnscaledClock_Instance"><code>UnscaledClock.Instance</code></a>: its step is the clock in force's unscaled step and its <code>Time</code> the unscaled time, so a sequence on it runs while the game's time is slowed or stopped, as a pause menu's does</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a></td>
+<td>A scale of its own, <a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html#FarEmerald_PlayForge_ScaledClock_Scale"><code>ScaledClock.Scale</code></a>, over another clock, its <a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html#FarEmerald_PlayForge_ScaledClock_Source"><code>ScaledClock.Source</code></a> (<a href="clocks.html#scaled-clocks">Scaled clocks</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html"><code>EntityClock</code></a></td>
+<td>An entity's own, <code>gas.GetClock()</code>: the game's, at the entity's <code>TimeScale</code> (<a href="clocks.html#entity-clocks">Entity clocks</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Each has what <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> reads, <code>DeltaTime</code>, <code>UnscaledDeltaTime</code>, <code>FixedDeltaTime</code>, <code>Time</code>, <code>UnscaledTime</code> and
+<code>FrameCount</code>, and <code>FollowsTicks</code>: whether a sequence on it waits for ProcessControl's ticks where its tick rate is set.
+It's true for a clock of the game's time. The ticks run on the game's time and stand with it, so <code>UnscaledClock</code>, which
+runs while that time stands, says false, and its sequences wait for Unity's frames instead. <code>GameClock</code> and a
+<code>ScaledClock</code> say as the clock they read does.</p>
+<h2 id="scaled-clocks">Scaled clocks</h2>
+<p><code>new ScaledClock(scale, source)</code> runs at its <code>ScaledClock.Scale</code> against its <code>ScaledClock.Source</code>: 1 as that one, 0.5 at
+half, 2 at double, 0 stopped; a scale below 0 is taken as 0. Its source is the clock it's given, or, with none, the
+clock in force. Its <code>DeltaTime</code> and <code>FixedDeltaTime</code> are its source's times its scale, and its unscaled times and its
+frame are its source's.</p>
+<p>Its <code>Time</code> counts from the first time it's read, its source's time at each scale it had, so a change of its scale or its
+source carries on from where it was. Making one reads no clock, so a component's field can make one where it's declared.
+With no source, it counts whichever clock is in force as it's read: give it one to count by where a world of its own
+steps. The sequences that share one slow, speed up or stop together as it's set.</p>
+<h2 id="entity-clocks">Entity clocks</h2>
+<p>An entity's clock, <code>gas.GetClock()</code>, runs at its <code>TimeScale</code>: <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_OwnScale"><code>OwnScale</code></a>, the scale code sets, as a hit-stop's 0, times
+<a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_AttributeScale"><code>AttributeScale</code></a>, the one its <strong>Time Scale</strong> attribute gives, read as each of the entity's steps begins, and 1 where its
+identity names none (<a href="../entities/attributes.html">Entities: Attributes</a>). Setting <code>TimeScale</code> sets <code>OwnScale</code>, so a hit-stop holds
+under a slow, and the slow is still there after. Its <code>DeltaTime</code> and <code>FixedDeltaTime</code> are the game's times its scale,
+its <code>Time</code> its steps added up since it started, and its unscaled times and its frame the game's.</p>
+<p>A scale of 0 holds the entity's time still: its effects, its cooldowns among them, and its abilities' waits and
+sequences stand. It isn't a pause, which ProcessControl's is (<a href="../processes/pausing.html">Processes: Pausing</a>).</p>
+<pre><code class="lang-csharp">// A hit-stop on the entity struck: its own time held, its slows and hastes kept for after
+var clock = gas.GetClock();
+clock.OwnScale = 0f;
+// ... a moment later
+clock.OwnScale = 1f;
+</code></pre>
+<h2 id="a-clock-of-your-own">A clock of your own</h2>
+<p>A class that implements <code>IForgeClock</code> is read as any clock is: put in with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use</code></a>, named by a packet's <code>Clock</code>
+or a sequence's <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock</code></a>, or given by a clock pick of your own
+(<a href="picking-a-clock-in-an-inspector.html">Picking a clock in an inspector</a>). Its <code>FollowsTicks</code> is true unless it says
+otherwise. <code>GameClock</code>, <code>UnscaledClock</code>, <code>ScaledClock</code> and <code>EntityClock</code> read the clock in force, so a world of its
+own's steps and the fixed tick drive them; a clock that reads Unity's <code>Time</code> itself doesn't follow them.</p>
+<hr>
+<p><a href="time.html">← Time</a> · <a href="index.html">Time, Input and Logging</a> · <a href="which-clock-a-run-takes.html">Which clock a run takes →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

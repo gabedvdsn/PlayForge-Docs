@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Fields and drawers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Fields and drawers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.fields-and-drawers">
+<h1 id="fields-and-drawers">Fields and drawers</h1>
+
+<p>PlayForge's property drawers draw its fields wherever they're shown: in its own inspectors, in the Inspector of a
+component, and in an inspector of your own built with UI Toolkit. Most draw in UI Toolkit alone. This section covers
+the kinds of field they make, then lists the drawers.</p>
+<h2 id="asset-fields">Asset fields</h2>
+<p>A field that holds a PlayForge asset, a Value Pipeline, Crowd Control Rules or an Effect Modifier is Unity's object
+field, with a button beside it:</p>
+<ul>
+<li><strong>Open</strong>, while it names an asset, shows the asset in a window of its own, so the asset that holds the field stays
+in the Inspector.</li>
+<li><strong>New</strong>, while it's empty, opens the New Asset window, its name starting as the holder's and the field's, as
+&quot;Goblin Attribute Set&quot;, then makes the asset where The Forge makes its type and puts it in the field.</li>
+</ul>
+<p>While the Unity project has a Forge Project, the field's picker offers the active project's assets alone, in
+PlayForge's dropdown.</p>
+<p>An effect field has a line under it that says how the effect takes its levels: <strong>Linked to</strong> the asset that holds the
+field, with its levels; linked to another asset, with <strong>Link Here</strong>; or <strong>Not linked</strong>, with <strong>Link</strong>. <strong>Link</strong> and
+<strong>Link Here</strong> make the effect take the holder's levels, as one Undo step, and an effect <strong>New</strong> makes takes them too.
+Its right-click menu holds:</p>
+<ul>
+<li>on an ability's <strong>Cost</strong> and <strong>Cooldown</strong>, <strong>Copy the Cost Effect Template</strong>, which makes a copy of the project's
+Cost Effect named for the ability, as &quot;Fireball Cost Effect&quot;, taking its levels, and <strong>Use the Cost Effect
+Template</strong>, which puts the project's Cost Effect itself in the field; the Cooldown's alike;</li>
+<li><strong>Pick an Unlinked Effect...</strong>, a pick of the project's effects that take no asset's levels;</li>
+<li><strong>New Linked Effect...</strong>, which names a new effect in the New Asset window and makes it take the holder's levels.</li>
+</ul>
+<h2 id="kind-fields">Kind fields</h2>
+<p>A field that holds an object of one of several classes, as an ability task, a worker, a component, a cue handler or a
+purge's filter, shows the kind it holds in its box: the name its <code>[ForgeMenu]</code> gives, or its class's, spaced out,
+without the ending its kind shares, as <strong>Apply Effects</strong> for <a class="xref" href="../../api/FarEmerald.PlayForge.ApplyEffectsAbilityTask.html"><code>ApplyEffectsAbilityTask</code></a>. Pressing the box opens
+PlayForge's dropdown of the kinds it can hold, under the submenus their <code>[ForgeMenu]</code> paths name, as <strong>Effects</strong> for
+Apply Effects, with <strong>None</strong> first where the field may be empty and the kind it holds checked. Its search finds a kind
+in any submenu, and its Context says the kind's description.</p>
+<ul>
+<li>Picking a kind makes a new object of it for each selected asset, as one Undo step, and the kind's own fields show
+under it, a field marked <code>[ShownWhen]</code> only while the field it names says so.</li>
+<li>A class Unity can't find, as after it's renamed, shows as missing, and keeps its data.</li>
+<li>Workers, components, cue handlers and the other kinds that fold close to one line of their values, and keep their
+fold for the session as the object moves in its list.</li>
+<li>A component kind an asset can hold once isn't offered while its list holds one.</li>
+</ul>
+<h2 id="tag-fields">Tag fields</h2>
+<p>A tag field shows its tag by its display name, its parents in secondary text and its leaf in strong text, or its
+whole path while <strong>Show Full Tag Paths</strong> is on. Pressing it opens the tag picker: the tags its context offers in the
+active project, with <strong>None</strong>, and <strong>New Tag…</strong> where the field may make one. Its right-click menu holds <strong>None</strong>,
+<strong>New Tag…</strong>, <strong>Make It a Child Of…</strong> and <strong>Copy Path</strong>. <a href="../tags/index.html">Tags</a> covers tag fields in full.</p>
+<h2 id="lists">Lists</h2>
+<p>PlayForge's lists are Unity's reorderable lists. A list whose field holds its objects by reference, as a stage's tasks
+or a worker group's workers, adds an empty element, for its kind to be picked. A list whose elements hold such
+objects, as a Group's members, adds a copy of the last element, with copies of its objects of its own. As an element
+is removed or dragged, each keeps its fold.</p>
+<h2 id="playforges-dropdown">PlayForge's dropdown</h2>
+<p>Every picker, a kind field's, the tag picker, an asset field's, <strong>Set Template...</strong>, a sequence reference's, and a
+number field's kind menu and field menu, opens PlayForge's dropdown: a title, a search field, the choices in their submenus, and at its foot a
+Context that says more of the choice the pointer or the keys are on. It grows no wider than <strong>Menu Width</strong> nor taller
+than <strong>Menu Height</strong> (Preferences → PlayForge), and a longer list scrolls. Up and Down move, Enter picks, Right opens
+a submenu and Left goes back out of one, and Escape closes it.</p>
+<h2 id="the-drawers">The drawers</h2>
+<p>The base classes:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer-1.html"><code>AbstractForgeObjectDrawer&lt;T&gt;</code></a>: an asset field, with <strong>Open</strong> and <strong>New</strong>. A drawer made from it adds its own items
+to the field's right-click menu.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractTypeRefDrawer-1.html"><code>AbstractTypeRefDrawer&lt;T&gt;</code></a>: a kind field. A drawer made from it chooses which kinds the picker offers, how they're
+named, and whether the field may be empty.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractGenericDrawer-1.html"><code>AbstractGenericDrawer&lt;T&gt;</code></a>: a kind field that folds to a line of its values.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractWorkerDrawer-1.html"><code>AbstractWorkerDrawer&lt;T&gt;</code></a>: a folding kind field that's always of some kind, as a worker.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractComponentDrawer-1.html"><code>AbstractComponentDrawer&lt;T&gt;</code></a>: a component, which offers a kind an asset can hold once only while its list holds
+none.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.InlineFieldsDrawer.html"><code>InlineFieldsDrawer</code></a>: a field's own fields, drawn where it's held, with no foldout of their own.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Drawer</th>
+<th>Draws</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityDrawer.html"><code>AbilityDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectDrawer.html"><code>GameplayEffectDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemDrawer.html"><code>ItemDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityDrawer.html"><code>EntityDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeDrawer.html"><code>AttributeDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetDrawer.html"><code>AttributeSetDrawer</code></a></td>
+<td>A reference to an ability, effect, item, entity, attribute or attribute set</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineDrawer.html"><code>ValuePipelineDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRulesDrawer.html"><code>CrowdControlRulesDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectModifierDrawer.html"><code>EffectModifierDrawer</code></a></td>
+<td>A reference to a Value Pipeline, Crowd Control Rules or an Effect Modifier</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.LevelProviderDrawer.html"><code>LevelProviderDrawer</code></a></td>
+<td>A <code>[LinkedSource]</code> field: Unity's object field of the assets that give levels, and a line of the levels the one named gives</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTaskDrawer.html"><code>AbilityTaskDrawer</code></a></td>
+<td>An ability task (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityTask.html"><code>AbstractAbilityTask</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TargetingTaskDrawer.html"><code>TargetingTaskDrawer</code></a></td>
+<td>An ability's targeting task (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html"><code>AbstractTargetingAbilityTask</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AssetSetterDrawer.html"><code>AssetSetterDrawer</code></a></td>
+<td>An ability's asset loader (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractSetAssetsTask.html"><code>AbstractSetAssetsTask</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityValidationRuleDrawer.html"><code>AbilityValidationRuleDrawer</code></a></td>
+<td>An ability's check (<a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityValidationRule.html"><code>IAbilityValidationRule</code></a>), each list offered the checks of its side, the caster's or the target's, and those of either</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ChargeRechargeDrawer.html"><code>ChargeRechargeDrawer</code></a></td>
+<td>A Charges component's <strong>Recharge</strong>: Each Charge, All At Once, or one of your own</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SequenceInjectionDrawer.html"><code>SequenceInjectionDrawer</code></a></td>
+<td>An Inject task's injection (<a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceInjection.html"><code>ISequenceInjection</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.IProxyStagePolicyDrawer.html"><code>IProxyStagePolicyDrawer</code></a></td>
+<td>An ability stage's policy (<a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityProxyStagePolicy.html"><code>IAbilityProxyStagePolicy</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ClockChoiceDrawer.html"><code>ClockChoiceDrawer</code></a></td>
+<td>A clock picked in an inspector, as a Run Sequence task's <strong>Clock</strong>: Caster's, Game's, Unscaled, Scaled, or one of your own</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PurgeFilterDrawer.html"><code>PurgeFilterDrawer</code></a></td>
+<td>A purge's filter (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractPurgeFilter.html"><code>AbstractPurgeFilter</code></a>), as Except Tagged</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StackBehaviourDrawer.html"><code>StackBehaviourDrawer</code></a></td>
+<td>A stacking effect's stack behaviour (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStackingConfig.html"><code>AbstractStackingConfig</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RespawnPlaceDrawer.html"><code>RespawnPlaceDrawer</code></a></td>
+<td>A Respawn's place: Home, Where It Died, Point, or one of your own</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ProcessInstantiatorDrawer.html"><code>ProcessInstantiatorDrawer</code></a></td>
+<td>A mono process's instantiator (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html"><code>AbstractMonoProcessInstantiator</code></a>), or None</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CueHandlerDrawer.html"><code>CueHandlerDrawer</code></a></td>
+<td>A cue's handler (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html"><code>AbstractCueHandler</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectChangeDrawer.html"><code>EffectChangeDrawer</code></a></td>
+<td>An Effect Modifier's change (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectChange.html"><code>AbstractEffectChange</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValueStageDrawer.html"><code>ValueStageDrawer</code></a></td>
+<td>A Value Pipeline's stage (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractValueStage.html"><code>AbstractValueStage</code></a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeWorkerDrawer.html"><code>AttributeWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.FocusedAttributeWorkerDrawer.html"><code>FocusedAttributeWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RelativeAttributeWorkerDrawer.html"><code>RelativeAttributeWorkerDrawer</code></a></td>
+<td>An attribute worker, of each kind</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ImpactWorkerDrawer.html"><code>ImpactWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ContextImpactWorkerDrawer.html"><code>ContextImpactWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectWorkerDrawer.html"><code>EffectWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerDrawer.html"><code>TagWorkerDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AnalysisWorkerDrawer.html"><code>AnalysisWorkerDrawer</code></a></td>
+<td>An impact, effect, tag or analysis worker (<a href="../workers/index.html">Workers</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectComponentDrawer.html"><code>EffectComponentDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityComponentDrawer.html"><code>AbilityComponentDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityComponentDrawer.html"><code>EntityComponentDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemComponentDrawer.html"><code>ItemComponentDrawer</code></a></td>
+<td>An effect's, ability's, entity's or item's component</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AuraEntryDrawer.html"><code>AuraEntryDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectAreaDrawer.html"><code>EffectAreaDrawer</code></a></td>
+<td>An Aura component's aura and an Area component's area, drawn as the component's own fields</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StandardWorkerGroupDrawer.html"><code>StandardWorkerGroupDrawer</code></a></td>
+<td>A worker group: its four lists of workers</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementsDrawer.html"><code>TagWorkerRequirementsDrawer</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementPacketDrawer.html"><code>TagWorkerRequirementPacketDrawer</code></a></td>
+<td>A tag worker's requirements: a row for each, its tag, its policy and the weight it requires</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityBehaviourDrawer.html"><code>AbilityBehaviourDrawer</code></a></td>
+<td>An ability's behaviour (<a class="xref" href="../../api/FarEmerald.PlayForge.AbilityBehaviour.html"><code>AbilityBehaviour</code></a>) drawn whole, where an asset or a component of your own holds one: its targeting, its asset loaders, what cancels it and what it blocks, and its stages</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTaskBehaviourStageDrawer.html"><code>AbilityTaskBehaviourStageDrawer</code></a></td>
+<td>An ability's stage: a row named by its place, as Stage 1, with <strong>Critical</strong> while a task commits the ability to it, folding to a line of what it holds; open, its policy, its usage effects, its condition, what cancels it and what it blocks, then its tasks</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityStageConditionDrawer.html"><code>AbilityStageConditionDrawer</code></a></td>
+<td>A stage's condition: its tag, then, once it names one, where the stage looks for it and whether it runs while the tag is missing instead</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeCostDrawer.html"><code>AttributeCostDrawer</code></a></td>
+<td>An attribute cost: the attribute it spends, or the role whose attribute it spends, and how much</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRuleDrawer.html"><code>CrowdControlRuleDrawer</code></a></td>
+<td>A crowd control rule: its tag, what it stops, and the tags of the abilities it stops where it stops some</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TaskSequenceReferenceDrawer.html"><code>TaskSequenceReferenceDrawer</code></a></td>
+<td>A sequence reference: a pick of the project's <code>[TaskSequenceMethod]</code> methods by name, None first, each class's under its name where more than one class holds them. A method the project no longer has shows as missing</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectDurationDrawer.html"><code>GameplayEffectDurationDrawer</code></a></td>
+<td>An effect's duration: its policy, then what the policy uses</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectImpactDrawer.html"><code>GameplayEffectImpactDrawer</code></a></td>
+<td>An effect's impact: its attribute, operation and magnitude, its delivery, its impact types and whom it affects, its additional impacts with <strong>Add Impact</strong>, and its contained effects</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeImpactEntryDrawer.html"><code>AttributeImpactEntryDrawer</code></a></td>
+<td>An additional impact: a row of its attribute and a remove button, folding to a line, as &quot;Mana −10 · Continuous&quot;. Its delivery offers what the effect's duration can make, and says so where it can't</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ContainedEffectPacketDrawer.html"><code>ContainedEffectPacketDrawer</code></a></td>
+<td>A contained effect on one row: when it's applied, then the effect</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeTransferDrawer.html"><code>AttributeTransferDrawer</code></a></td>
+<td>A transfer: when it moves, who gives and of what, who gets and in what, which of the values, and how much</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectPurgeDrawer.html"><code>EffectPurgeDrawer</code></a></td>
+<td>An effect's Purges, a foldout of its fields, its arrow in line with the lists' around it</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetElementDrawer.html"><code>AttributeSetElementDrawer</code></a></td>
+<td>An attribute set element: a row of its attribute, folding to a line of what it starts at; open, what it starts at at each level, its Base and Current, its bounds, its constraints, its retention group and its collision. A typed magnitude is kept within its bounds</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeOverflowDataDrawer.html"><code>AttributeOverflowDataDrawer</code></a></td>
+<td>An attribute's bounds: its policy, then the floor and the ceiling it reads; a bound's right-click menu sets it to no limit</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeConstraintsDrawer.html"><code>AttributeConstraintsDrawer</code></a></td>
+<td>An attribute's constraints: <strong>Auto Clamp</strong>, <strong>Scale With Base</strong> and <strong>Rounding</strong>, with <strong>Snap Interval</strong> under Rounding while it snaps</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeValueDrawer.html"><code>AttributeValueDrawer</code></a></td>
+<td>An attribute value: its Current and Base side by side</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeRoleDrawer.html"><code>AttributeRoleDrawer</code></a></td>
+<td>A project's role on one row: its tag, then the attribute that plays it</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StartingItemDrawer.html"><code>StartingItemDrawer</code></a></td>
+<td>An entity's starting item on one row: the item, then <strong>Equip</strong>, which equips it as it's given</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagDrawer.html"><code>TagDrawer</code></a></td>
+<td>A tag field (<a href="fields-and-drawers.html#tag-fields">Tag fields</a>)</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagQueryDrawer.html"><code>TagQueryDrawer</code></a></td>
+<td>A tag query: its tag, which tags match it, then how many it counts, as a comparison and a number on one row</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectTagRequirementsDrawer.html"><code>EffectTagRequirementsDrawer</code></a></td>
+<td>An effect's tag requirements on one side, the target's or the source's, as a table: Applying, While On and Removed By, each with what it requires and what it must not have. A cell opens its list under the table, with its group's template</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTagRequirementsDrawer.html"><code>AbilityTagRequirementsDrawer</code></a></td>
+<td>An ability's tag requirements as the same table: the caster's, the caster's while the ability runs, and the target's</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AvoidRequireTagGroupDrawer.html"><code>AvoidRequireTagGroupDrawer</code></a></td>
+<td>A requirement group of its own, as a targeting task's or a Requirement Template's, as the same table of one row</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ChanceRollDrawer.html"><code>ChanceRollDrawer</code></a></td>
+<td>How a chance rolls: <strong>Pseudo Random</strong>, <strong>Own Luck</strong>, and <strong>Luck</strong> while Own Luck is on</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.DataWrapperDrawer.html"><code>DataWrapperDrawer</code></a></td>
+<td>A Local Data row: its key, its value's kind and its value, each a column of its own</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeFlagsDrawer.html"><code>ForgeFlagsDrawer</code></a></td>
+<td>A flags field of PlayForge's, <a class="xref" href="../../api/FarEmerald.PlayForge.EPurgeRelation.html"><code>EPurgeRelation</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EEffectCategory.html"><code>EEffectCategory</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESpreadMoment.html"><code>ESpreadMoment</code></a> or <a class="xref" href="../../api/FarEmerald.PlayForge.ECombatLogRecords.html"><code>ECombatLogRecords</code></a>, which stores only the flags picked, and writes nothing as it's drawn</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TextureItemDrawer.html"><code>TextureItemDrawer</code></a></td>
+<td>An asset's texture on one row: its tag, then the texture</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AlignedFoldoutDrawer.html"><code>AlignedFoldoutDrawer</code></a></td>
+<td>PlayForge's classes with no drawer of their own, as an ability's definition and tags, an On Hit entry, a cue's placement or a project's settings: a foldout of their fields, its arrow in line with the lists' around it, a field marked <code>[ForgeShowWhen]</code> shown only while the field it names says so. It draws in an IMGUI inspector too</td>
+</tr>
+</tbody>
+</table>
+<p>The number fields' drawers are listed in <a href="number-fields.html">Number fields</a>.</p>
+<hr>
+<p><a href="import-and-clear.html">← Import and Clear</a> · <a href="index.html">The Editor Tools</a> · <a href="number-fields.html">Number fields →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

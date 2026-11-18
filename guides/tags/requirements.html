@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Requirements | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Requirements | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.requirements">
+<h1 id="requirements">Requirements</h1>
+
+<p>Tag requirements are the tags an entity must have, and must not have, for an ability to activate and run, or for an
+effect to land, go on and come off. Each is a group, an <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html"><code>AvoidRequireTagGroup</code></a>, of two lists of tag queries:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_RequireTags"><code>RequireTags</code></a>, the inspector's <strong>Requires</strong>: each must pass.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AvoidTags"><code>AvoidTags</code></a>, its <strong>Must not have</strong>: none may pass.</li>
+</ul>
+<p>A group passes when each query it requires passes and none it must not have does, so an empty group passes. Its
+<strong>Name</strong>, optional, tells it apart where it's imported.</p>
+<p>Groups come in sets, each an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagRequirements.html"><code>AbstractTagRequirements</code></a>, which says whether any of its groups asks anything
+(<code>HasAnyRequirements</code>), how many queries they hold (<code>TotalRequirementCount</code>) and whether one names a template
+(<code>HasLinkedTemplates</code>):</p>
+<ul>
+<li>An effect has two <a class="xref" href="../../api/FarEmerald.PlayForge.EffectTagRequirements.html"><code>EffectTagRequirements</code></a>, one on its target and one on its source, each of three groups:
+<strong>Applying</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.EffectTagRequirements.html#FarEmerald_PlayForge_EffectTagRequirements_ApplicationRequirements"><code>ApplicationRequirements</code></a>), which must pass for the effect to land; <strong>While on</strong>
+(<a class="xref" href="../../api/FarEmerald.PlayForge.EffectTagRequirements.html#FarEmerald_PlayForge_EffectTagRequirements_OngoingRequirements"><code>OngoingRequirements</code></a>), without which its ticks don't execute; and <strong>Removed by</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.EffectTagRequirements.html#FarEmerald_PlayForge_EffectTagRequirements_RemovalRequirements"><code>RemovalRequirements</code></a>), which
+takes it off once met, and asks nothing while empty (<a href="../effects/requirements.html">Effects: Requirements</a>).</li>
+<li>An ability has an <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTagRequirements.html"><code>AbilityTagRequirements</code></a>: <strong>Caster</strong> (<code>SourceRequirements</code>), checked as it's asked to activate and
+again after targeting; <strong>While active</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTagRequirements.html#FarEmerald_PlayForge_AbilityTagRequirements_WhileActiveRequirements"><code>WhileActiveRequirements</code></a>), the caster's for as long as it runs, checked as
+it's asked to activate and as the caster's tags change, which interrupts it as it fails; and <strong>Target</strong>
+(<code>TargetRequirements</code>), checked after targeting, where there's a target (<a href="../abilities/requirements.html">Abilities: Requirements</a>).</li>
+<li>A targeting task has a lone group, its <strong>Requirements</strong>, which the target it takes must pass.</li>
+</ul>
+<p>A set draws as a table, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectTagRequirementsDrawer.html"><code>EffectTagRequirementsDrawer</code></a> or <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTagRequirementsDrawer.html"><code>AbilityTagRequirementsDrawer</code></a>: a row for each group, with a
+cell for what it requires and a cell for what it must not have, each listing its tags or saying None. A lone group draws
+as a table of one row, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AvoidRequireTagGroupDrawer.html"><code>AvoidRequireTagGroupDrawer</code></a>. A cell opens its list under the table, with the group's <strong>Name</strong>,
+<strong>Template</strong> and <strong>Sync With Template</strong>, and closes it as it's pressed again.</p>
+<h2 id="what-a-row-counts">What a row counts</h2>
+<p>A row reads its entity's tags as a list, each tag once, whatever its weight, so its numbers count tags: Greater Than 0
+asks for the tag, and Greater Than 1 under Include Children for two different tags under it. The ability's
+<strong>While active</strong> row alone is read against the weights, as a Tag condition, the Tag Weight check and a tag worker are
+(<a href="conditions-and-checks.html">Conditions and checks</a>); to ask for stacks of one tag, as three grants of Combo.Points, use
+one of those.</p>
+<h2 id="templates">Templates</h2>
+<p>A group's <strong>Template</strong> names a Requirement Template, <a class="xref" href="../../api/FarEmerald.PlayForge.RequirementTemplate.html"><code>RequirementTemplate</code></a>
+(<code>Create → PlayForge → Requirement Template</code>): a group of its own, its <strong>Requirements</strong>, with a <strong>Description</strong> and a
+<strong>Category</strong>, a tag of the Requirement Category context, which groups templates. Its inspector,
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RequirementTemplateEditor.html"><code>RequirementTemplateEditor</code></a>, is the shared header over those fields. <strong>Sync With Template</strong> marks the group as
+following its template (<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ShouldSyncFromTemplate"><code>ShouldSyncFromTemplate</code></a>): <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_TrySyncFromTemplate_"><code>TrySyncFromTemplate()</code></a> copies the template's tags into a group that
+follows it, <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_LinkToTemplate_"><code>LinkToTemplate(template)</code></a> links one and copies it, and <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_UnlinkFromTemplate_"><code>UnlinkFromTemplate()</code></a> lets it go, keeping its
+tags. A group checks its own tags.</p>
+<h2 id="in-code">In code</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirement_"><code>AddRequirement(tag, mode)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidance_"><code>AddAvoidance(tag, mode)</code></a> add a query of the tag's presence, and
+<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirementWithChildren_"><code>AddRequirementWithChildren(tag)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidanceWithChildren_"><code>AddAvoidanceWithChildren(tag)</code></a> one under Include Children; <code>RemoveTag(tag)</code> takes
+a tag's queries out, and <code>Clear()</code> all of them. <code>Validate</code> passes or fails a group against a cache or a list, as a
+query does, and <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_"><code>ValidateDetailed</code></a> says why, an <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html"><code>AvoidRequireTagGroup.ValidationResult</code></a>: its <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_FailedRequirements"><code>FailedRequirements</code></a>, the
+queries it requires that failed; its <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_TriggeredAvoidances"><code>TriggeredAvoidances</code></a>, those it must not have that passed; and <a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_GetSummary_"><code>GetSummary()</code></a>.
+<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_GetAllReferencedTags_"><code>GetAllReferencedTags()</code></a> lists the tags a group names, <code>Clone()</code> copies it, and <code>CopyFrom(group)</code> takes another's.</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge;
+
+public static class Landing
+{
+    static readonly Tag Grounded = Tag.GenerateAsUnique(&quot;State.Grounded&quot;);
+    static readonly Tag Disabled = Tag.GenerateAsUnique(&quot;State.Disabled&quot;);
+
+    // Grounded, and nothing under State.Disabled
+    static readonly AvoidRequireTagGroup CanLand = Make();
+
+    static AvoidRequireTagGroup Make()
+    {
+        var group = new AvoidRequireTagGroup { Name = &quot;Can Land&quot; };
+        group.AddRequirement(Grounded);
+        group.AddAvoidanceWithChildren(Disabled);
+        return group;
+    }
+
+    public static bool Allows(IGameplayAbilitySystem gas, out string why)
+    {
+        var result = CanLand.ValidateDetailed(gas.GetTagCache());
+        why = result.IsValid ? null : result.GetSummary();
+        return result.IsValid;
+    }
+}
+</code></pre>
+<hr>
+<p><a href="querying-tags.html">← Querying tags</a> · <a href="index.html">Tags</a> · <a href="crowd-control.html">Crowd control →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

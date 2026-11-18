@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Editor Tools | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Editor Tools | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor">
+<h1 id="the-editor-tools">The Editor Tools</h1>
+
+<p>PlayForge's editor tools make a game's assets, check them and watch them at work: The Forge lists a Forge Project's
+assets beside their inspectors, the inspectors and their fields edit them, the Problems view says what's wrong with
+them, and the Debugger shows the entities and processes as the game plays. This page covers each tool in depth, with
+the editor types behind it, in <code>FarEmerald.PlayForge.Editor</code>, and the Creator Lab's in <code>FarEmerald.PlayForge.Lab.Editor</code>.
+<a href="../getting-started/tooling-tour.html">Getting Started: Tooling tour</a>'s Tooling tour is the short version.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="menus-and-shortcuts.html">Menus and shortcuts</a>: This section lists where each tool opens from.</li>
+<li><a href="the-forge.html">The Forge</a>: The Forge (<code>TheForge</code>) is PlayForge's main window: the active Forge Project's assets in a list, beside a detail pane that shows the one selected.</li>
+<li><a href="forge-projects.html">Forge Projects</a>: A Forge Project (<code>ForgeProject</code>) holds one game's PlayForge assets and its settings: it's an asset, and the assets in its folder are the project's.</li>
+<li><a href="new-assets-and-presets.html">New assets and presets</a>: The Forge's <strong>Create</strong> makes an asset of any type it lists, blank or from a preset, ready to fill in.</li>
+<li><a href="templates.html">Templates</a>: An asset can take another of its type as its template, as a prefab instance takes its prefab: it's the template's child, takes the template's fields when the template is pushed, and keeps the fields it overrides.</li>
+<li><a href="renaming-duplicating-and-deleting.html">Renaming, duplicating and deleting</a>: This section covers what a rename changes, and what Duplicate and Move to Trash do.</li>
+<li><a href="the-tags-view.html">The Tags view</a>: The Forge's <strong>Tags</strong> shows the active project's tags in place of its assets: those its assets and its Tag Library use, those no asset uses, and those code exposes.</li>
+<li><a href="inspectors.html">Inspectors</a>: PlayForge draws an inspector of its own for each of its assets, the same in the Inspector and in The Forge's detail pane.</li>
+<li><a href="import-and-clear.html">Import and Clear</a>: A section's <strong>Import</strong> copies chosen fields into the asset from another, and its <strong>Clear</strong> resets the section; the asset menu's <strong>Import from Another Asset...</strong> imports the whole asset.</li>
+<li><a href="fields-and-drawers.html">Fields and drawers</a>: PlayForge's property drawers draw its fields wherever they're shown: in its own inspectors, in the Inspector of a component, and in an inspector of your own built with UI Toolkit.</li>
+<li><a href="number-fields.html">Number fields</a>: Every number a PlayForge asset authors is a number field, a <code>ScalableFloat</code> or a <code>ScalableInt</code>, which <code>ScalableFloatDrawer</code> and <code>ScalableIntDrawer</code> draw.</li>
+<li><a href="the-problems-view-and-validation.html">The Problems view and validation</a>: PlayForge's validator checks every PlayForge asset in the Unity project as it changes, and keeps what it finds; the Problems view lists it.</li>
+<li><a href="the-debugger.html">The Debugger</a>: The Debugger (<code>RuntimeDebugger</code>, <strong>Window → PlayForge → Debugger</strong>) shows the game as it plays, and changes its entities as it shows them.</li>
+<li><a href="preferences-and-project-settings.html">Preferences and Project Settings</a>: PlayForge has two settings pages: <strong>Project Settings → PlayForge</strong>, the settings a project shares, kept in assets under version control, and <strong>Preferences → PlayForge</strong>, each user's own.</li>
+<li><a href="spreadsheets.html">Spreadsheets</a>: Spreadsheets write a project's numbers by level, or its items' stats, to CSV, and read a sheet back.</li>
+<li><a href="the-creator-lab.html">The Creator Lab</a>: The Creator Lab is a scene for trying a project's own assets: units, test dummies, and its time in your hands.</li>
+<li><a href="build-verification.html">Build verification</a>: <code>BuildVerification</code> proves that PlayForge's runtime compiles and links in a player, with no editor code in it, as a build server would check.</li>
+<li><a href="editor-helpers.html">Editor helpers</a>: The types in this section are public pieces PlayForge's editor builds on, which an editor script of your own can use too.</li>
+</ul>
+<h2 id="in-the-api">In the API</h2>
+<p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityBehaviourDrawer.html">AbilityBehaviourDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityComponentDrawer.html">AbilityComponentDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityDrawer.html">AbilityDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityEditor.html">AbilityEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityStageConditionDrawer.html">AbilityStageConditionDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTaskBehaviourStageDrawer.html">AbilityTaskBehaviourStageDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTaskDrawer.html">AbilityTaskDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityValidationRuleDrawer.html">AbilityValidationRuleDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractComponentDrawer-1.html">AbstractComponentDrawer&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractForgeObjectDrawer-1.html">AbstractForgeObjectDrawer&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractGenericDrawer-1.html">AbstractGenericDrawer&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractMonoProcessEditor.html">AbstractMonoProcessEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractTypeRefDrawer-1.html">AbstractTypeRefDrawer&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbstractWorkerDrawer-1.html">AbstractWorkerDrawer&lt;T&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AlignedFoldoutDrawer.html">AlignedFoldoutDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AnalysisWorkerDrawer.html">AnalysisWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AssetSetterDrawer.html">AssetSetterDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeConstraintsDrawer.html">AttributeConstraintsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeCostDrawer.html">AttributeCostDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeDrawer.html">AttributeDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeEditor.html">AttributeEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeImpactEntryDrawer.html">AttributeImpactEntryDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeOverflowDataDrawer.html">AttributeOverflowDataDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeRoleDrawer.html">AttributeRoleDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetDrawer.html">AttributeSetDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetEditor.html">AttributeSetEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeSetElementDrawer.html">AttributeSetElementDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.html">AttributeStartValues</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Result.html">AttributeStartValues.Result</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Start.html">AttributeStartValues.Start</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeTransferDrawer.html">AttributeTransferDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeValueDrawer.html">AttributeValueDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AttributeWorkerDrawer.html">AttributeWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AuraEntryDrawer.html">AuraEntryDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BasePlayForgeEditor.html">BasePlayForgeEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BuildVerification.html">BuildVerification</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ChanceRollDrawer.html">ChanceRollDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ChargeRechargeDrawer.html">ChargeRechargeDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ClockChoiceDrawer.html">ClockChoiceDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ContainedEffectPacketDrawer.html">ContainedEffectPacketDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ContextImpactWorkerDrawer.html">ContextImpactWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRuleDrawer.html">CrowdControlRuleDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRulesDrawer.html">CrowdControlRulesDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CrowdControlRulesEditor.html">CrowdControlRulesEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CueHandlerDrawer.html">CueHandlerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.CueLibraryEditor.html">CueLibraryEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.DataWrapperDrawer.html">DataWrapperDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectAreaDrawer.html">EffectAreaDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectChangeDrawer.html">EffectChangeDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectComponentDrawer.html">EffectComponentDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectModifierDrawer.html">EffectModifierDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectModifierEditor.html">EffectModifierEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectPurgeDrawer.html">EffectPurgeDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectTemplateRegistry.html">EffectTemplateRegistry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectWorkerDrawer.html">EffectWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityComponentDrawer.html">EntityComponentDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityDrawer.html">EntityDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EntityIdentityEditor.html">EntityIdentityEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.FocusedAttributeWorkerDrawer.html">FocusedAttributeWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html">ForgeAssetLines</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeComponentRule-1.html">ForgeComponentRule&lt;TComponent&gt;</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.html">ForgeDrawerStyles</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Colors.html">ForgeDrawerStyles.Colors</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.HeaderConfig.html">ForgeDrawerStyles.HeaderConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.HeaderResult.html">ForgeDrawerStyles.HeaderResult</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Icons.html">ForgeDrawerStyles.Icons</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionConfig.html">ForgeDrawerStyles.SectionConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionResult.html">ForgeDrawerStyles.SectionResult</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeFlagsDrawer.html">ForgeFlagsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.html">ForgeImportWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.Field.html">ForgeImportWindow.Field</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeLint.html">ForgeLint</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeLogSettingsBridge.html">ForgeLogSettingsBridge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeNewAssetWindow.html">ForgeNewAssetWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePreset.html">ForgePreset</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresetMaking.html">ForgePresetMaking</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresets.html">ForgePresets</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProblem.html">ForgeProblem</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProblemSeverity.html">ForgeProblemSeverity</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProblemsWindow.html">ForgeProblemsWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProjectEditor.html">ForgeProjectEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeQuickFix.html">ForgeQuickFix</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenames.html">ForgeRenames</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenameWindow.html">ForgeRenameWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html">ForgeTagLibraryEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplateConfig.html">ForgeTemplateConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html">ForgeTemplatePropagator</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html">ForgeTemplatePush</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeValidationRule.html">ForgeValidationRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html">ForgeValidator</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectDrawer.html">GameplayEffectDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectDurationDrawer.html">GameplayEffectDurationDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectEditor.html">GameplayEffectEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.GameplayEffectImpactDrawer.html">GameplayEffectImpactDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.IForgeComponentRule.html">IForgeComponentRule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ImpactWorkerDrawer.html">ImpactWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.InlineFieldsDrawer.html">InlineFieldsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.IProxyStagePolicyDrawer.html">IProxyStagePolicyDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemComponentDrawer.html">ItemComponentDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemDrawer.html">ItemDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ItemEditor.html">ItemEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.LevelProviderDrawer.html">LevelProviderDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeGASProfilerModule.html">PlayForgeGASProfilerModule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgePreferences.html">PlayForgePreferences</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeProcessesProfilerModule.html">PlayForgeProcessesProfilerModule</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html">PlayForgeSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ProcessInstantiatorDrawer.html">ProcessInstantiatorDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PropertyFieldExtensions.html">PropertyFieldExtensions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.PurgeFilterDrawer.html">PurgeFilterDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RelativeAttributeWorkerDrawer.html">RelativeAttributeWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RequirementTemplateEditor.html">RequirementTemplateEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RespawnPlaceDrawer.html">RespawnPlaceDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.RuntimeDebugger.html">RuntimeDebugger</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerAssetEditor.html">ScalerAssetEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SectionClearUtility.html">SectionClearUtility</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SequenceInjectionDrawer.html">SequenceInjectionDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SerializedPropertyExtensions.html">SerializedPropertyExtensions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StackBehaviourDrawer.html">StackBehaviourDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StandardWorkerGroupDrawer.html">StandardWorkerGroupDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.StartingItemDrawer.html">StartingItemDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerDrawer.html">TagWorkerDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementPacketDrawer.html">TagWorkerRequirementPacketDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagWorkerRequirementsDrawer.html">TagWorkerRequirementsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TargetingTaskDrawer.html">TargetingTaskDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TaskSequenceReferenceDrawer.html">TaskSequenceReferenceDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TextureItemDrawer.html">TextureItemDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html">TheForge</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TypePickerCache.html">TypePickerCache</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineDrawer.html">ValuePipelineDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineEditor.html">ValuePipelineEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValueStageDrawer.html">ValueStageDrawer</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

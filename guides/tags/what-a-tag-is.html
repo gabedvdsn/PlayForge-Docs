@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>What a tag is | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="What a tag is | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.what-a-tag-is">
+<h1 id="what-a-tag-is">What a tag is</h1>
+
+<p>A tag, a <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>, is a path of names joined by dots, parents first: <code>Status.Debuff.Burn</code> is under <code>Status.Debuff</code>, which
+is under <code>Status</code>, its root. It's a struct an asset saves as two strings:</p>
+<ul>
+<li><code>Name</code>, which tells it apart: two tags are equal, by <code>==</code> or <code>Equals</code>, exactly when their names are.</li>
+<li><code>DisplayName</code>, how it reads. <code>ToString()</code> gives it, or the name where it has none, and PlayForge's windows show a tag
+so.</li>
+</ul>
+<p>A tag is of one of three makes:</p>
+<ul>
+<li><strong>Unique</strong>, as New Tag makes one (<a href="the-tag-field.html#new-tag">New Tag</a>): its name is its path padded to 64 characters by a hash of
+it, as <code>Status.Debuff.BurnQx3…</code>, and its display name is the path. One path always gives one name, so the padding
+only keeps it apart from the plain tag of its path. PlayForge's own tags are unique
+(<a href="playforges-own-tags.html">PlayForge's own tags</a>).</li>
+<li><strong>An asset's own tag</strong>, which its Name gives, as <code>Ability.FireBall</code> for an ability named Fire Ball
+(<a href="../abilities/identity.html">Abilities: Identity</a>): its name is its whole path, and its display name its leaf, FireBall.</li>
+<li><strong>Plain</strong>, as code makes one of a text, <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate(&quot;Status.Debuff.Burn&quot;)</code></a>: its name and its display name are both
+the path.</li>
+</ul>
+<p><code>IsValid</code> says whether a tag has a name; an empty tag field holds <code>default(Tag)</code>, which has none.</p>
+<h2 id="its-place-in-the-tree">Its place in the tree</h2>
+<p>A tag's <code>Path</code> is what its family goes by: a unique tag's display name, and any other tag's name. From it come <code>Depth</code>,
+1 for a root, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsRoot"><code>IsRoot</code></a>; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetLeafName_"><code>GetLeafName()</code></a>, Burn; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetParentPath_"><code>GetParentPath()</code></a>, Status.Debuff; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetAncestorPaths_"><code>GetAncestorPaths()</code></a>, from its
+parent to its root; and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetSegments_"><code>GetSegments()</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsChildOf_"><code>IsChildOf(tag)</code></a> asks whether its path is under another tag's, at any depth,
+and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsDirectChildOf_"><code>IsDirectChildOf(tag)</code></a> one level under; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsParentOf_"><code>IsParentOf(tag)</code></a> asks the reverse; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_MatchesOrIsChildOf_"><code>MatchesOrIsChildOf</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_MatchesOrIsParentOf_"><code>MatchesOrIsParentOf</code></a> take the tag itself too; and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_SharesAncestorWith_"><code>SharesAncestorWith</code></a> asks whether two tags have one root.</p>
+<p>A family goes by paths, and equality by names. Status.Debuff.Burn is under Status.Debuff whichever makes the two are,
+but the plain Status.Debuff and the unique one are two tags, and neither is under the other.</p>
+<h2 id="showing-a-tag">Showing a tag</h2>
+<p>Show a tag by its display name, with <code>ToString()</code>, <code>GetName()</code> or an interpolated string, <code>$&quot;{tag}&quot;</code>. Its <code>Name</code> is
+padded where it's unique, and a tag converts to its <code>Name</code> where a string is asked for, as in <code>string text = tag;</code> or
+<code>&quot;Stunned by &quot; + tag</code>.</p>
+<h2 id="the-registry">The registry</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html"><code>TagRegistry</code></a> keeps the tags made as the game runs, by name: making a tag registers it, and a Bootstrapper registers
+PlayForge's own as it starts, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_Initialize_"><code>TagRegistry.Initialize()</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_Resolve_"><code>TagRegistry.Resolve(name)</code></a> gives the registered tag of a
+name, with its display name, or else the plain tag of the name, as a saved name is read back.
+<a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_IsValidPath_"><code>TagRegistry.IsValidPath(path)</code></a> says whether a text can be a tag's path: names of letters, digits, underscores and
+spaces, joined by single dots, with no dot at either end. Its lookups of a family, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_GetDirectChildren_"><code>GetDirectChildren</code></a>,
+<a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_GetAllDescendants_"><code>GetAllDescendants</code></a>, <code>GetParent</code> and <code>GetAncestors</code>, go by the registered names, and so miss a unique tag's family: read
+that from the tag's own <code>Path</code>, with <code>IsChildOf</code>.</p>
+<hr>
+<p><a href="index.html">← Tags</a> · <a href="index.html">Tags</a> · <a href="playforges-own-tags.html">PlayForge's own tags →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Processes | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Processes | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.processes">
+<h1 id="processes">Processes</h1>
+
+<p>A process is anything that runs over time under ProcessControl: a MonoBehaviour or a plain C# object stepped from
+Unity's player loop. This section covers writing one; <a href="../processes/index.html">Processes</a> covers lifecycles, registering,
+pausing and groups.</p>
+<table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a></td>
+<td>A MonoBehaviour process. Its lifecycle and timing are fields of its inspector. <code>RunProcess(token)</code> is required.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a></td>
+<td>A MonoBehaviour process whose run lasts until it's paused or ended.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRuntimeProcess.html"><code>AbstractRuntimeProcess</code></a></td>
+<td>A plain C# process, its name, timing, priority and lifecycle given to its base's constructor. <code>RunProcess(token)</code> is required.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyRuntimeProcess.html"><code>LazyRuntimeProcess</code></a></td>
+<td>A plain C# process whose run lasts until it's paused or ended.</td>
+</tr>
+</tbody>
+</table>
+<p>Their hooks, each virtual: <code>WhenInitialize()</code>, <code>WhenUpdate()</code>, <code>WhenLateUpdate()</code> and <code>WhenFixedUpdate()</code> at its
+timing, <code>WhenWait()</code>, <code>WhenTerminate()</code>, <code>WhenTerminateQueued()</code>, <code>WhenDestroy()</code>, and <code>TryHandlePause()</code> and
+<code>TryHandleResume()</code>, true to hold a run through a pause (<a href="../processes/pausing.html">Processes: Pausing</a>). A process reads its
+packet as <code>regData</code>, or <code>Data</code>, and its handle as <code>Relay</code>.</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge;
+using ForgeAttribute = FarEmerald.PlayForge.Attribute;
+
+namespace MyGame
+{
+    // Gives an entity an amount of an attribute each second of its own time, until it dies or the process ends
+    public sealed class RegenProcess : LazyRuntimeProcess
+    {
+        private readonly IGameplayAbilitySystem entity;
+        private readonly ForgeAttribute attribute;
+        private readonly float perSecond;
+        private float waited;
+
+        public RegenProcess(IGameplayAbilitySystem entity, ForgeAttribute attribute, float perSecond)
+            : base(&quot;Regen&quot;, EProcessStepPriorityMethod.First, 0, EProcessStepTiming.Update, EProcessLifecycle.Synchronous)
+        {
+            this.entity = entity;
+            this.attribute = attribute;
+            this.perSecond = perSecond;
+        }
+
+        public override void WhenUpdate()
+        {
+            if (entity == null || entity.IsDead || attribute == null)
+            {
+                Relay.Terminate();
+                return;
+            }
+            waited += entity.GetClock().DeltaTime;
+            if (waited &lt; 1f) return;
+            waited -= 1f;
+            entity.TryModifyAttribute(attribute, SourcedModifiedAttributeValue.GenerateSimple(entity, attribute, perSecond, 0f));
+        }
+    }
+}
+</code></pre>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(new RegenProcess(hero, health, 5f)).HandledBy(hero).Run(out ProcessRelay relay)</code></a> starts it,
+and <code>relay.Terminate()</code> ends it. It changes the attribute once a second, not each frame: a change each frame would make
+a new change, and run the attribute's workers, every frame.</p>
+<ul>
+<li><strong>Call the base</strong> in an override of <code>WhenInitialize</code> or <code>WhenTerminate</code>.</li>
+<li><strong><code>WhenDestroy</code> stands in for <code>OnDestroy</code></strong>, which a MonoBehaviour process of its own would hide.</li>
+<li><strong>A Synchronous process isn't awaited</strong>: its run is its steps.</li>
+<li><strong>A mono process's object</strong> comes from an instantiator, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html"><code>AbstractMonoProcessInstantiator</code></a>, as a pool hands one out
+(<a href="../processes/registering-one.html">Processes: Registering one</a>).</li>
+</ul>
+<hr>
+<p><a href="sequence-tasks-injections-and-stage-policies.html">← Sequence tasks, injections and stage policies</a> · <a href="index.html">Extending PlayForge</a> · <a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 {
   "docfx_version": "2.81.0+ba844df625370a6bd7c1ecab0d0ec4d1d9128ac4",
-  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.lBB9CXOIwS/docfx",
+  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.AI2qMHWMjP/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -23,7 +23,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Ability",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Ability.yml\" sourcestartlinenumber=\"1\">An ability: one thing an entity can do, as a fireball, a dash or a heal. An entity learns it from its Entity\nasset's Starting Abilities, from an equipped item's Active Ability or from code\n(<code>AbilitySystemComponent.GiveAbility</code>), and keeps it in a slot with a level of its own, between its\n<code>StartingLevel</code> and <code>MaxLevel</code>, kept under its asset tag.</p>\n<p>An activation passes its caster's tag requirements and its Caster Checks (<code>SourceActivationRules</code>),\nlets its <code>Behaviour</code>'s targeting task pick its target, which its Target Checks\n(<code>TargetActivationRules</code>) then check, applies its <code>Cost</code> and <code>Cooldown</code> effects to its caster and\nspends its <code>AttributeCosts</code>, as it starts or in the stage that takes them, and runs its stages of tasks.\nIts <code>Definition</code> says how it activates, its <code>Tags</code> what it is, grants and requires, and its\n<code>Components</code> add features with hooks into its life; its <code>WorkerGroup</code>, <code>OnHit</code> and\n<code>Modifiers</code> hold on its entity while the entity knows it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -37,7 +37,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityActivationHandle",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityActivationHandle.yml\" sourcestartlinenumber=\"1\">One activation of an ability as it runs, which its slot, an <code>AbilitySpecContainer</code>, keeps from its claim to\nits end: its <code>Data</code>, the compiled <code>Proxy</code> that runs it, the tokens that cancel its targeting and its\nstages, whether it's targeting or running its stages, and whether it has let its claim go. <code>HandleId</code>\nnumbers it among its entity's activations, from 0.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -79,7 +79,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityCallbackStatus",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityCallbackStatus.yml\" sourcestartlinenumber=\"1\">What an ability system's callback is handed: the activation's <code>Data</code> and the ability it runs\n(<code>Ability</code>, its spec); for a stage's or a task's callback, the <code>Stage</code> and its <code>Tasks</code>,\n<code>Task</code> being the one a task's callback tells of; for an injection's, the <code>Injection</code>; and\n<code>Success</code>, which at an end says whether the task or the stage got there without being cancelled or failing,\nand for an injection whether it was taken.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -135,7 +135,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityDefinition",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityDefinition.yml\" sourcestartlinenumber=\"1\">An ability's Definition: its <code>Name</code>, <code>Description</code> and <code>Textures</code>, and how it activates: its When\nBusy (<code>ActivationPolicy</code>) and <code>WhileTargeting</code>; under Queue, its input buffer's <code>BufferWindow</code>\nand <code>BufferPriority</code>; Activate At Start (<code>ActivateImmediately</code>), for a Starting Ability; its\n<code>Triggers</code>, the gameplay events and gained tags that set it off on its own; its <code>ChanceToActivate</code> and\nhow that rolls (<code>ActivationRoll</code>); the <code>ProcCoefficient</code> its effects' hits carry where an effect sets\nnone of its own; and the crowd control it ignores (<code>IgnoresCrowdControl</code>).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -163,7 +163,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityInspector",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityInspector.yml\" sourcestartlinenumber=\"1\">Reads what an ability does without running it, for tooltips, the editor's summaries and the Creator Lab:\n<code>Build</code> gives its <code>AbilityBreakdown</code>, each effect it applies, in what role (a stage's task, its cost\nor cooldown, or contained in another) and on whom, with its numbers at each of its levels read through their\nscalers, and its components, triggers, chance to activate and attribute costs. <code>BuildEffectSeries</code> reads\none effect across a range of levels, against a caster and a target where it's given them, and\n<code>EvaluateAtLevel</code> one number at a level; a number that reads what the read wasn't given, as the target, is\nmarked dynamic.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -177,7 +177,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityLevelValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityLevelValidation.yml\" sourcestartlinenumber=\"1\">A Caster Check that compares the ability's level on its caster with <code>Level</code>, by <code>Comparison</code>, as a\nform it unlocks at a rank; by default, 2 or more.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -205,7 +205,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityReader",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityReader.yml\" sourcestartlinenumber=\"1\">A reader of an ability's cooldown: <code>Assign(Tag)</code> names the tag, and each Update step it finds the GAS's\nlongest effect duration under it. It shows nothing of what it finds.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -247,7 +247,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilitySpec",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilitySpec.yml\" sourcestartlinenumber=\"1\">An ability as one entity knows it, made as the entity learns it: the <code>Ability</code> (<code>Base</code>) and its caster\n(<code>Source</code>), with its level kept on the caster under the ability's asset tag (<code>GetLevel</code>). It's the\norigin of the effects the ability applies, so they take its level and context tags, and an activation's data\nholds it as its <code>EffectOrigin</code>. It applies the ability's cost and cooldown (<code>ApplyUsageEffects</code>,\n<code>PayCosts</code>, <code>SpendCooldown</code>), reads the ability's numbers at its level (<code>Read</code>), finds its\ncomponents (<code>Find&lt;T&gt;</code>), and keeps what they hold for this entity (<code>ComponentStates</code>) and its\ncooldown model (<code>CooldownModel</code>), which a HUD reads.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -261,7 +261,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilitySpecContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilitySpecContainer.yml\" sourcestartlinenumber=\"1\">One slot of an entity's ability system: the <code>AbilitySpec</code> it holds (<code>Spec</code>), its slot (<code>Index</code>),\nand the ability's activations as they run. It says whether the ability runs (<code>IsActive</code>), holds its claim\n(<code>IsClaiming</code>), is choosing its target (<code>IsTargeting</code>), is cooling down (<code>IsCooldown</code>) and which\nstage it's in (<code>ActiveStageIndex</code>); <code>Cancel</code> interrupts its runs, but one in a critical stage, and\n<code>Inject</code> sends an injection into each. <code>AbilitySystemComponent.TryGetAbilityContainer</code> finds one by\nslot or by ability.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -303,7 +303,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilitySystemCallbacks.AbilitySystemCallbackDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilitySystemCallbacks.AbilitySystemCallbackDelegate.yml\" sourcestartlinenumber=\"1\">The handler of an ability system's callbacks on its abilities' runs, handed an <code>AbilityCallbackStatus</code>:\n<code>OnAbilityActivate</code> as an activation takes its claim, before its targeting;\n<code>OnAbilityClaimReleased</code> as it lets the claim go; <code>OnAbilityEnd</code> as it ends;\n<code>OnAbilityStageActivate</code> and <code>OnAbilityStageEnd</code> for each stage; <code>OnAbilityTaskActivate</code> and\n<code>OnAbilityTaskEnd</code> for each task; and <code>OnAbilityInjection</code> for an injection sent into it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -345,7 +345,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.yml\" sourcestartlinenumber=\"1\">A request to activate the ability in one slot of an entity's ability system, which\n<code>CreateActivationRequest</code> makes and <code>TryActivateAbility</code> takes: its slot (<code>Index</code>); the When\nBusy it's asked under (<code>Policy</code>), as its ability says unless the request names another; the <code>Data</code>\nit hands the activation, as a target an AI picked or set-by-caller magnitudes; how long it may wait in the\ninput buffer (<code>BufferWindow</code>), below 0 for its ability's Buffer Window; and whether an ability still\nchoosing its target gives way to it (<code>CancelsTargeting</code>), on as a player's press is, and off for a\ntrigger's request and Activate At Start's.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -387,7 +387,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityTags",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityTags.yml\" sourcestartlinenumber=\"1\">An ability's Tags: its <code>AssetTag</code>, made from its Name, which its entity carries while it knows the ability\nand keeps the ability's level under; its <code>ContextTags</code>, which describe it and which the changes its effects\nmake carry as context; its Passive Tags (<code>PassiveGrantedTags</code>), on its entity while it knows the ability,\nand its Active Tags (<code>ActiveGrantedTags</code>), while an activation runs; and its <code>TagRequirements</code> of its\ncaster, to activate and while it runs, and of its target. <code>Names</code> says whether a list of tags names an\nability, its asset tag or a context tag being one of them or under one, as Cancelled By and Blocks name\nabilities.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -415,7 +415,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbilityTaskBehaviourStage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbilityTaskBehaviourStage.yml\" sourcestartlinenumber=\"1\">One of an ability's stages, which run one after another: the <code>Tasks</code> it starts together, and its Completion\n(<code>StagePolicy</code>), which ends it as its last task ends (All) or its first (Any), cancelling the rest.\n<code>ApplyUsageEffects</code> applies the ability's cost and cooldown in it, as it starts or, with\n<code>ApplyUsageAtStageStart</code> off, as it ends well, once an activation; its <code>Condition</code> skips it unless a\ntag is there, or missing; and its own <code>CancelledBy</code> and <code>Blocks</code>, where it names any, hold while it\nruns in place of the ability's. A stage that holds a critical task is critical (<code>IsCritical</code>): it commits\nthe ability, so Cancelled By doesn't cancel it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -471,7 +471,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractAbilityRelatedTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.yml\" sourcestartlinenumber=\"1\">The base of every task an ability runs: its targeting task, an <code>AbstractTargetingAbilityTask</code>, and its\nstages' tasks and asset loaders, each an <code>AbstractAbilityTask</code>. Each is handed the activation's data:\n<code>Prepare</code> as its stage starts, <code>Activate</code>, the work its stage waits on, and <code>Clean</code> as the stage\nends; <code>IsCriticalSection</code> says whether it's critical work, which commits its ability to its stage and keeps\nout another ability's critical work while it runs.</p>\n<p>One task object serves every activation of its ability, so what it keeps for one belongs in the\nactivation's data, not in its fields. <code>Read</code> gives one of its numbers at its ability's level,\n<code>EntityOf</code> its caster or its first target, and <code>ApplyTo</code> applies an effect from the ability with the\nactivation's magnitudes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -485,7 +485,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractAbilityTask.yml\" sourcestartlinenumber=\"1\">The base of a task in an ability's stage, as Apply Effects, Delay or Run Sequence: a stage starts its tasks\ntogether and ends as its Completion says, as its last task's <code>Activate</code> ends or its first's. A task of your\nown derives from it and overrides <code>Activate</code>, the work, and <code>IsCriticalSection</code>, with <code>Prepare</code>\nand <code>Clean</code> for what it does as its stage starts and ends; <code>[ForgeMenu]</code> files it in the stage's task\npicker. What it keeps for one activation goes in <code>data.GetTaskState&lt;T&gt;(this)</code>, as one task serves\nevery activation of its ability.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -541,7 +541,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractAttributeValidationRule",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractAttributeValidationRule.yml\" sourcestartlinenumber=\"1\">The base of an ability check that reads one of the checked entity's attributes, as Attribute does: it holds the\n<code>Attribute</code>, and a kind made from it overrides <code>Validate</code>, which checks the entity its list hands it,\nand <code>GetName</code>. Without <code>[ValidationSide]</code>, either list offers it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -653,7 +653,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractCreateProcessAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractCreateProcessAbilityTask.yml\" sourcestartlinenumber=\"1\">The base of an ability task that creates processes, as Create Mono Process spawns a projectile: a kind made from\nit sits under the Process submenu of a stage's task picker. A GameRoot's <code>CreateProcessTasks</code> take them\ntoo, each run once, with the GameRoot's own data, as the Bootstrapper brings the game up.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -709,7 +709,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractEffectConfig<T>",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractEffectConfig-1.yml\" sourcestartlinenumber=\"1\">A behaviour of an effect's containers of type <code>T</code>: <code>GetCorrectContainer</code> picks, among the target's\ncontainers of the effect, the one an application goes to, the last behaviour by priority having its way. An\neffect's stack behaviours derive from it through <code>AbstractStackingConfig</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -723,7 +723,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractEffectContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractEffectContainer.yml\" sourcestartlinenumber=\"1\">One lasting application of an effect on its target's shelf: its spec; its clock, the total duration, the time\nleft, the period and the time to its next tick; whether its ongoing requirements hold; and whether it's still\nactive. A Durational or Infinite effect's duration makes one as it lands, of the kind its re-application and\nstacking choose; while it's on the shelf it grants the effect's asset tag and granted tags, and as it comes off\nit reverses the effect's lasting impacts and lands its On Remove effects. Code finds one with\n<code>TryGetEffectContainer</code> on the entity.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -835,7 +835,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractGasTargetingAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.yml\" sourcestartlinenumber=\"1\">The base of a targeting task that picks entities, as Select GAS Target and the Auto Target tasks do: its\n<code>Requirements</code>, tag queries a target must pass and tag queries it must not, decide which entities it takes,\nthrough <code>TargetIsValid</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -877,7 +877,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractMonoProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractMonoProcess.yml\" sourcestartlinenumber=\"1\">The base of every MonoBehaviour process: a component, on a prefab or a scene object, that ProcessControl\nregisters, steps and ends, as a GAS hub or a projectile. Its lifecycle, step timing and step priority are fields\nof its inspector, Synchronous in Update and LateUpdate at the first priority by default, and as it initializes\nit takes the parent, position and rotation its packet gives. ProcessControl registers those already in a scene\nas it starts.</p>\n<p>Derive from it, or from <code>LazyMonoProcess</code> for a run that lasts until it's paused or ended, and\noverride <code>RunProcess</code>, the run ProcessControl awaits, and the hooks you need: <code>WhenInitialize</code>;\n<code>WhenUpdate</code>, <code>WhenLateUpdate</code> and <code>WhenFixedUpdate</code> at its timing; <code>WhenWait</code>,\n<code>WhenTerminate</code> and <code>WhenDestroy</code>; and <code>TryHandlePause</code> and <code>TryHandleResume</code> to keep a run\nthrough a pause. An override of <code>WhenInitialize</code> or <code>WhenTerminate</code> calls the base's, and\n<code>WhenDestroy</code> stands in for <code>OnDestroy</code>, which a class of its own would hide.</p>\n<p>Its object comes from its registration's instantiator, its handler's or its own <code>Instantiator</code>, or is\ncloned from its prefab, and is given back or destroyed as the process ends. Processes on its child objects pause\nand end with it, as ProcessControl cascades by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -891,7 +891,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractMonoProcessInstantiator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.yml\" sourcestartlinenumber=\"1\">What makes a mono process's object and takes it back, as a pool hands out an idle object and keeps it again as\nits process ends. Derive from it and override <code>PrepareNew</code>, which makes or hands out an object of the\nprefab registered, <code>PrepareExisting</code>, which readies one already in a scene, and <code>CleanProcess</code>, which\ntakes the object back as its process ends. A registration's <code>InstantiatedBy</code>, a process's own\n<code>Instantiator</code> or its handler's gives one; with none, the object is cloned and destroyed.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -905,7 +905,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractProcessWrapper",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractProcessWrapper.yml\" sourcestartlinenumber=\"1\">How ProcessControl holds a registered process of either kind: its relay, its data packet and its handler, with\nthe process's hooks and steps passed through to it and its lifecycle, timing and priority read from it.\n<code>MonoWrapperProcess</code> holds a mono process and <code>RuntimeWrapperProcess</code> a runtime one; a relay's\n<code>Wrapper</code> is it, and <code>TryGetProcess</code> finds the process inside.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -947,7 +947,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractReader",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractReader.yml\" sourcestartlinenumber=\"1\">The base of a mono process that shows a GAS's state: <code>Assign</code> gives it the GAS and calls\n<code>SubscribeIfOnChangePolicy</code>, which a reader overrides to hear the changes it shows.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -989,7 +989,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractRuntimeProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractRuntimeProcess.yml\" sourcestartlinenumber=\"1\">The base of every runtime process: a plain C# class, with no GameObject, that ProcessControl registers, steps\nand ends, as a runtime GAS, a task sequence's process or a group's member. Its name, step priority, step timing\nand lifecycle go to its base constructor; the one with none gives its type's name, the first priority, no step\ntiming and SelfTerminating. Only a runtime process joins a group.</p>\n<p>Derive from it, or from <code>LazyRuntimeProcess</code> for a run that lasts until it's paused or ended, and\noverride <code>RunProcess</code>, the run ProcessControl awaits, and the hooks you need: <code>WhenInitialize</code>;\n<code>WhenUpdate</code>, <code>WhenLateUpdate</code> and <code>WhenFixedUpdate</code> at its timing; <code>WhenWait</code> and\n<code>WhenTerminate</code>; and <code>TryHandlePause</code> and <code>TryHandleResume</code> to keep a run through a pause. An\noverride of <code>WhenInitialize</code> or <code>WhenTerminate</code> calls the base's: the process is <code>IsInitialized</code>\nfrom registration until it ends, so it can be registered again once ended, and what it handles ends with\nit.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1017,7 +1017,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractScalerBehaviour",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractScalerBehaviour.yml\" sourcestartlinenumber=\"1\">A rule in a scaler's Behaviours, which adjusts the value the scaler works out, in the list's order: at each\nread, a behaviour is handed the carrier the value is read for (<code>Initialize</code>), then the value so far, and\ngives back the value after it (<code>Evaluate</code>). Derive from it and override both.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1031,7 +1031,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractSetAssetsTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractSetAssetsTask.yml\" sourcestartlinenumber=\"1\">The base of an asset loader, a Set task: it puts assets in the activation's data under a key as it's prepared,\nfor the tasks after it to read, as a Run Sequence's sequence reads them with\n<code>data.GetLoadedAssets&lt;T&gt;(tag)</code>; its own run ends at once. An ability's Asset Loaders run once an\nactivation, after its targeting and before its first stage, and one among a stage's tasks loads as the stage\nstarts. A loader of your own overrides <code>Prepare</code> and <code>IsCriticalSection</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1045,7 +1045,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractStackingConfig",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractStackingConfig.yml\" sourcestartlinenumber=\"1\">The base of an effect's Stack Behaviours, the rules its stacking containers follow: Stack Bounds, Scaled Stack\nAmount and Starting Stacks. A behaviour of your own derives from it and overrides <code>InitializeContainer</code>, to\nset a new container up, and <code>GetStacks</code>, to settle how many stacks an application adds from the amount the\nbehaviours before it settled on; <code>GetCorrectContainer</code> picks the container an application stacks into, the\nfirst by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1059,7 +1059,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractStackingEffectContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractStackingEffectContainer.yml\" sourcestartlinenumber=\"1\">The base of the containers that count stacks, the kind an effect lives in when its Re-application isn't Add\nAnother, as its Stacking says: its <code>Stacks</code>, and <code>Stack</code>, which adds to them, each kind keeping its\nclock its own way. An Effect Stacks number reads its count, and Tick On Application executes once for each\nstack, unless a kind says otherwise.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1143,7 +1143,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractTargetingAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.yml\" sourcestartlinenumber=\"1\">The base of an ability's targeting task, the one task that picks what an activation acts on before its stages\nrun, as a click picks an entity or a search takes the enemies in range. Its <code>Activate</code> files the targeting\npacket of what it picks under the activation's Target key, whose entity becomes the activation's target, or\ncalls <code>WhenTargetingInvalid</code>, which ends the activation where <code>BreakRuntimeOnInvalid</code> is on. Targeting\nholds the activation's claim while it runs, and its slot's <code>IsTargeting</code> says while it chooses.</p>\n<p>A task of your own overrides <code>Activate</code>; <code>Prompt</code>, the words a game shows while it waits for the\nplayer; <code>TargetIsValid</code>, which targets it takes; and <code>ConnectInputHandler</code> and\n<code>DisconnectInputHandler</code>, to hook an input handler of its own as it's prepared and unhook it as it's\ncleaned, an override of <code>Prepare</code> calling the base's last. <code>TryGetDataTarget</code> and\n<code>TryGetDataPoint</code> take a target or a point the activation's data already holds, as an AI's does, and\n<code>WaitForPointerPress</code> waits for a press of the game's input.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1157,7 +1157,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AbstractTargetingPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AbstractTargetingPacket.yml\" sourcestartlinenumber=\"1\">Where something is, for targeting: its <code>position</code>, <code>rotation</code> and <code>scale</code>, the entity it is\n(<code>target</code>) and its <code>transform</code> where it has them, and the <code>direction</code> it was aimed along, as\nSelect Direction sets. Each entity gives one (<code>ITarget.GetTargetingPacket</code>), and a targeting task files the\npacket of what it picks under the activation's Target key, each packet's entity becoming one of the activation's\ntargets. <code>TargetingPacket</code> follows a transform, and <code>StaticTargetingPacket</code> holds its own values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1227,7 +1227,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ActionProcess<T>",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ActionProcess-1.yml\" sourcestartlinenumber=\"1\">An <code>ActionProcess</code> whose action is handed the same object, its source, each time it's called.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1241,7 +1241,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ActionProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ActionProcess.yml\" sourcestartlinenumber=\"1\">A runtime process that calls an action in each of its Update steps, until it's ended. Made with the action\nalone, it's named Action, SelfTerminating, and stepped in Update at the first priority; the longer constructor\ngives its name, priority, timing and lifecycle.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1255,7 +1255,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ActionQueue.ActionCallback",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ActionQueue.ActionCallback.yml\" sourcestartlinenumber=\"1\">A listener of an action in the queue, handed the action: <code>OnActionQueued</code> hears it as it's queued,\n<code>OnActionExecuted</code> as it runs, and <code>OnActionInvalidated</code> as it's dropped unrun. An action the\nsystem makes for itself, as a rescale, is used again once the queue has run it, so read it during the call.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1437,7 +1437,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AnalysisWorkerCache",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AnalysisWorkerCache.yml\" sourcestartlinenumber=\"1\">An entity's analysis workers: each analyzes the entity and its frame's summary at its end of frame, after its\ntag workers, and the actions it returns join the entity's action queue. A worker given by more than one source,\nas two copies of an item, runs once, and stays until the last of them takes it back.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1451,7 +1451,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AnimationUtility",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AnimationUtility.yml\" sourcestartlinenumber=\"1\">Sets the tangent mode of a curve's key, on its left or its right, as <code>UnityEditor.AnimationUtility</code> does,\nfrom code that builds into a player: in the editor it calls Unity's, and in a player it does nothing, so the\nkeys keep Unity's default tangents. A scaler shapes its curve with it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1507,7 +1507,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ApplyEffectsAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ApplyEffectsAbilityTask.yml\" sourcestartlinenumber=\"1\">A stage task that applies its <code>Effects</code> to each of the activation's targets, from the ability at its level\nand with the magnitudes the caller set on the activation's data, in the project's resolve order unless\n<code>UseResolveOrder</code> is off. <code>DelayBetweenApplicationMs</code> waits between one effect and the next, and\n<code>RecordLandedAs</code> tags the activation's data as an effect lands, for a later stage's Condition.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1521,7 +1521,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ApplyRemoveEffectsAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ApplyRemoveEffectsAbilityTask.yml\" sourcestartlinenumber=\"1\">A stage task that puts its <code>Effects</code> on each of the activation's targets as its stage starts, with the\ncaller's magnitudes, in the project's resolve order unless <code>UseResolveOrder</code> is off, and takes those\neffects off the targets as the stage ends, whoever applied them. Its own run ends at once, so it holds its stage\nno longer than the stage's other tasks do.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1605,7 +1605,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttenuateScalerBehaviour",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttenuateScalerBehaviour.yml\" sourcestartlinenumber=\"1\">A scaler behaviour that turns the value into a factor, as its <code>Policy</code> says: as it is, one plus it, or one\nminus it, so a 30% bonus reads 1.3 and a 30% reduction 0.7.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1619,7 +1619,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Attribute",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Attribute.yml\" sourcestartlinenumber=\"1\">An Attribute asset: one number an entity can have, as Health, Mana or Strength. It holds no value: an entity\ntakes its starting Current and Base from its attribute set, and effects change them from there. Sets, effects,\nworkers and conditions name the asset itself, and some lookups compare attributes by name, so give each its own.</p>\n<p>Its Role says what it is, how bonuses to it add up and how a number reads it: a Value, a Bonus Share, a\nMultiplier, a Resistance, or a Barrier, which takes each workable loss to the attribute it absorbs for first and\ncan decay. Gains Scaled By names an attribute that multiplies each workable gain to its Current, as Health's by\nHealing Received.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1717,7 +1717,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeConstraints",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeConstraints.yml\" sourcestartlinenumber=\"1\">How an attribute set element holds its attribute's values: Auto Clamp applies its bounds, Auto Scale With Base\nchanges Current by the same share as Base whenever Base changes, and Rounding, with its Snap Interval for Snap\nTo, rounds both values after the bounds each time they change.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1801,7 +1801,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeReader",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeReader.yml\" sourcestartlinenumber=\"1\">A reader that shows one of a GAS's attributes in UI: its current and base values in <code>CurrentText</code> and\n<code>BaseText</code>, and its current value's share of its base on <code>ValueSlider</code>. <code>AssignAttribute</code> names\nthe attribute and <code>Assign</code> the GAS; it shows them each Update step, and as the attribute changes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1815,7 +1815,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeRegistry",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeRegistry.yml\" sourcestartlinenumber=\"1\">Every attribute the game's entities use, by name, for code that finds one by its name, with <code>GetByName</code> or\n<code>TryGetByName</code>. Names match in capitals with underscores for spaces, so Attack Speed and ATTACK_SPEED find\nthe same attribute, and the first attribute registered under a name stands. An entity's attribute system\nregisters each attribute it's given, as a Bootstrapper does the sets it names; the registry is cleared as play\nstarts, and by <code>Reset</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1871,7 +1871,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSet",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSet.yml\" sourcestartlinenumber=\"1\">An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its\nbounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each\nelement becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the\nentity's level or to another attribute.</p>\n<p>Where an attribute appears in more than one element, the elements' Collision and the Resolution Policy of\nthe set the entity names decide its root. The entity carries the set's tag and its sub-sets', and holds their\nworker groups' workers as it lives. The set's level range is its own, or a level provider's while it's linked,\nand its cached scalers can size their values per level by it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1885,7 +1885,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSetElement",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSetElement.yml\" sourcestartlinenumber=\"1\">One element of an attribute set: an attribute and how it starts, its Current and its Base, each a number or a\ncached scaler, Current able to follow Base; its bounds; its constraints, which clamp, scale and round it; the\nretention group its root counts toward; and its Collision, for an attribute that appears more than once across\nthe set and its sub-sets. As the entity's GAS initializes, it becomes the attribute's root value, the value\nbefore any effect.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1899,7 +1899,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSetMeta",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSetMeta.yml\" sourcestartlinenumber=\"1\">The attributes an attribute set gives an entity, worked out as the entity's attribute system takes the set: each\nelement of the set and its sub-sets, by attribute and by its Collision. <code>InitializeAttributeSystem</code> then\ngives the attribute system each attribute, with the root the set's collision settings pick.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1927,7 +1927,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeDelegate.yml\" sourcestartlinenumber=\"1\">A listener of an attribute coming or going, handed the attribute: <code>OnAttributeRegister</code> hears each\nattribute the entity's attribute system takes, as its set is built, and <code>OnAttributeUnregister</code> each it\nremoves.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1941,7 +1941,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeImpactDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeImpactDelegate.yml\" sourcestartlinenumber=\"1\">A listener of a change that has landed on an attribute, handed its <code>ImpactData</code>: the entity, the\nattribute, what it changed by after workers, bounds and rounding, its value before, and the change that did\nit. <code>OnAttributeChanged</code>, <code>OnAttributeIncreased</code> and <code>OnAttributeReduced</code> take one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1955,7 +1955,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeStateDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeStateDelegate.yml\" sourcestartlinenumber=\"1\">A listener of an attribute's Current emptying or filling, handed the attribute:\n<code>OnAttributeCurrentZero</code> hears a change to its Current that leaves it at 0, and\n<code>OnAttributeCurrentFull</code> one that leaves it at its Base, each as its share of its Base reads.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1969,7 +1969,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeValueChangeDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeValueChangeDelegate.yml\" sourcestartlinenumber=\"1\">A listener of an attribute's value changing, handed the attribute and its value before and after the change:\n<code>OnAttributeBaseChanged</code> hears each change that moves its Base.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2025,7 +2025,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeValidation.yml\" sourcestartlinenumber=\"1\">A check that compares the checked entity's current value of its <code>Attribute</code> with <code>Value</code>, read at the\nability's level, by <code>Comparison</code>; with <code>ShareOfBase</code>, its share of its base, from 0 to 1, as &quot;below\nhalf its health&quot;. An entity without the attribute fails it. Either list offers it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2039,7 +2039,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeValue",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeValue.yml\" sourcestartlinenumber=\"1\">An attribute's two values as a pair: Base, the value it's measured against, and Current, the value in play, as a\npool's maximum and what's left of it. An entity's attribute reads as one, and so do a change, a bound and a\nthreshold; its operators work on both values at once, two are equal where each value is approximately, and\n<code>Ratio</code>, <code>ClampedRatio</code> and <code>LerpedRatio</code> read Current against Base.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2221,7 +2221,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AvoidRequireTagGroupColor",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AvoidRequireTagGroupColor.yml\" sourcestartlinenumber=\"1\">Marks an <code>AvoidRequireTagGroup</code> field with a color, given as red, green, blue and alpha from 0 to 1, as the\ntag requirements of abilities and effects mark their groups. The package's own drawers don't read it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2235,7 +2235,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.BaseForgeAsset",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.BaseForgeAsset.yml\" sourcestartlinenumber=\"1\">The base of every PlayForge asset, a ScriptableObject: attributes directly, and abilities, effects, items,\nattribute sets and entities through <code>BaseForgeLevelProvider</code>. It holds the asset's Local Data rows, read by\nkey with <code>TryGetLocalData</code>, and its template, an asset of the same type whose fields it takes when the\ntemplate is pushed, apart from those it overrides (<code>SetTemplate</code>, <code>IsFieldOverridden</code>). A type made\nfrom it gives its name, description, default icon and the tags it grants.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2249,7 +2249,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.BaseForgeLevelProvider",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.BaseForgeLevelProvider.yml\" sourcestartlinenumber=\"1\">The base of the PlayForge assets with a level range: abilities, effects, items, attribute sets and entities. It\ngives the asset's starting and max level, its name as a provider and its asset tag, and its link to another\nprovider whose range it takes, as an effect linked to its ability (<code>LinkToProvider</code>,\n<code>LinkedProvider</code>); <code>HasCircularDependency</code> says whether a link would come back round to it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2263,7 +2263,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.BasicEffectOrigin",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.BasicEffectOrigin.yml\" sourcestartlinenumber=\"1\">The base of the effect origins an entity holds, an ability's spec and an item's: an origin with a source, the\nentity it belongs to, whose level system it registers its level with, under its asset tag, as it's made. A class\nmade from it implements the rest of <code>IEffectOrigin</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2333,7 +2333,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.BranchBuilder",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.BranchBuilder.yml\" sourcestartlinenumber=\"1\">Builds a branch, a stage that picks one stage as it starts: the first whose <code>If</code> condition holds of the\nrun's data packet, else its <code>Default</code>, else none. It's handed to the action given to a builder's or a\nstage's <code>Branch</code>. A synced runner can't run one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2431,7 +2431,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CachedMagnitudeModifierGroupMember",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CachedMagnitudeModifierGroupMember.yml\" sourcestartlinenumber=\"1\">One member of a cached Group, which joins an attribute set's kept numbers: its <code>Calculation</code>, a cached\nscaler, and how it joins the others, its <code>RelativeOperation</code>: added up, multiplied into the sum, dividing\nit, added on after as a flat bonus, or overriding them all.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2809,7 +2809,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CompositeBehaviourPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CompositeBehaviourPacket.yml\" sourcestartlinenumber=\"1\">One application of a composite behaviour, an <code>AbstractProxyTaskBehaviour</code>, in one value: its <code>Command</code>\ntag, the <code>Behaviour</code>, the <code>Caller</code> that applies it, as an entity, and the <code>User</code> it acts on, as a\nshot aimed at that entity. <code>Generate</code> makes one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2907,7 +2907,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ContainedEffectPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ContainedEffectPacket.yml\" sourcestartlinenumber=\"1\">One of an effect's contained effects: the effect, the moment it lands at, as this one is applied, on each of its\nexecute ticks or as it's removed, and whom it lands on, this one's target or its caster. It lands from this\none's origin, with its set-by-caller magnitudes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2921,7 +2921,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ContainedEffects.Enumerator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ContainedEffects.Enumerator.yml\" sourcestartlinenumber=\"1\">Walks the contained effects of one moment in place, each packet whose moment it is, as a <code>foreach</code> over\n<code>ContainedEffects</code> does; it allocates nothing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2963,7 +2963,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CooldownValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CooldownValidation.yml\" sourcestartlinenumber=\"1\">A Caster Check that passes while the ability has a use in hand, as its cooldown model says: with the single\ncooldown, while its caster doesn't carry its Cooldown's asset tag; with Charges, while one is in hand. A\ncomponent that waives the cooldown passes it. Its refusal is told as Cooldown.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2977,7 +2977,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CostValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CostValidation.yml\" sourcestartlinenumber=\"1\">A Caster Check that passes while the caster can pay the ability's cost: what its Cost effect spends would leave\neach attribute at 0 or more, and its Attribute Costs can be paid, the caster holding each attribute. A component\nthat waives the cost, as a Toggle turning off does, passes it. Its refusal is told as Cost.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3243,7 +3243,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CustomScaler",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CustomScaler.yml\" sourcestartlinenumber=\"1\">A scaler made of two delegates, one run as a carrier initializes it and one that works out its value, as\n<code>IScaler.Generate</code> makes. It isn't an <code>AbstractScaler</code>, so a number field can't hold it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3271,7 +3271,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DataValue<T>",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DataValue-1.yml\" sourcestartlinenumber=\"1\">The entries of one type under a data packet's key, as <code>GetAll</code> and <code>TryGetAll</code> give them: the first\n(<code>Primary</code>), the <code>Last</code>, one at random (<code>Any</code>), <code>All</code> of them or each once\n(<code>AllDistinct</code>), or by an <code>EDataTarget</code>, and it enumerates them. <code>IsValid</code> where it holds any.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3299,7 +3299,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DeathAction",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DeathAction.yml\" sourcestartlinenumber=\"1\">The deferred action that kills its entity as its turn comes, at Critical priority: the entity is marked dead,\nwhich its callbacks, its components, its effects and its killer hear, and it ends, or stays dead, at its frame's\nend, as its Death says. It's dropped where the entity is dead already; a death watcher and the Health role's\nwatch queue it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3313,7 +3313,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DeathWatcherAnalysisWorker",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DeathWatcherAnalysisWorker.yml\" sourcestartlinenumber=\"1\">An analysis worker that kills its entity as an attribute reaches its threshold, as Health reaching 0: a\nThreshold whose firing queues the entity's death, after its effects and its event where it has them. An entity\nthat holds one dies by it alone, not by its project's Health role reaching 0.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3327,7 +3327,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DeferredContextSystem",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DeferredContextSystem.yml\" sourcestartlinenumber=\"1\">The base of the subsystems of an entity that queue work for its end of frame, its attribute, ability and item\nsystems and its analysis worker cache: it holds the entity's action queue and frame summary, which the GAS hands\nit through <code>SetDeferredContext</code> as it initializes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3355,7 +3355,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DelegateSequenceInjection",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DelegateSequenceInjection.yml\" sourcestartlinenumber=\"1\">An injection that does what a function of your own says: <code>applyFunc</code> is handed the run's runtime and\nreturns whether it applied, as one that adds to a count on a key press or jumps to a stage by name. With no\nfunction it applies nothing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3411,7 +3411,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.DisjointAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.DisjointAbilityTask.yml\" sourcestartlinenumber=\"1\">A stage task that makes its caster disjoint, as in Dota: each homing shot aimed at it whose data marks it\ndisjointable loses it, flies on to where the caster stood and lands on nothing. A skill shot, which aims at no\none, isn't touched.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3467,7 +3467,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAbilityActivationPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAbilityActivationPolicy.yml\" sourcestartlinenumber=\"1\">What an activation does while another ability holds its claim, the When Busy the inspectors show. Activate\nAnyway (<code>AlwaysActivate</code>) starts at once; Refuse (<code>ActivateIfIdle</code>) is refused, as Busy, while another\nability asked under Refuse holds its claim; Queue (<code>QueueActivationIfBusy</code>) waits in the input buffer, for\nup to its Buffer Window, while a Queue ability holds its claim or a running stage blocks it. Whatever the\nchoice, an ability with critical tasks can't start while another with critical tasks holds its claim. An\nentity's When Busy is one, and so is each activation request's <code>Policy</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3481,7 +3481,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAbilityActivationPolicyExtended",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAbilityActivationPolicyExtended.yml\" sourcestartlinenumber=\"1\">An ability's When Busy as its Definition holds it: Entity's Policy (<code>UseLocalPolicy</code>), the default, takes\nits entity's When Busy, and the others are the <code>EAbilityActivationPolicy</code> choices, Activate Anyway, Refuse\nand Queue. <code>TryActivateAbility</code> and <code>CreateActivationRequest</code> can name one in place of the ability's.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3579,7 +3579,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EActionStatus",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EActionStatus.yml\" sourcestartlinenumber=\"1\">How a composite behaviour's run on one user came out, as its <code>Status</code> reads it: <code>Success</code>;\n<code>Pending</code>, not yet done; <code>Failure</code>, refused by its checks, as a shot not marked disjointable;\n<code>Error</code>, as with a caller that isn't an entity; <code>NoData</code>, nothing recorded for the user; or\n<code>NoOp</code>, nothing done, as for a shot whose data says nothing of being disjointable.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3621,7 +3621,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAddBehaviour",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAddBehaviour.yml\" sourcestartlinenumber=\"1\">Cross-carrier composition strategies for <xref href=\"FarEmerald.PlayForge.ECalculationOperation.Multiply\" data-throw-if-not-resolved=\"false\"></xref>\nimpacters. This is intentionally distinct from per-effect stacking policy:\nstacking decides how the SAME effect re-applies stack against itself, while\nMultiplyBehaviour decides how DIFFERENT carriers' multiply contributions to the\nSAME attribute slot compose.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAddBehaviour.yml\" sourcestartlinenumber=\"1\">How an Add impacter combines with the others on its attribute.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3649,7 +3649,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAffiliationPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAffiliationPolicy.yml\" sourcestartlinenumber=\"1\">Which targets an effect may land on, by their affiliation tags against its origin's: Always Allow, the default,\ntakes any; Affiliated, those that share the origin's sides; Unaffiliated, those that don't; Use Affiliation\nList, those that carry the effect's own Affiliations. The impact's Comparison says whether one tag matching does\nor every tag must, and a target it doesn't take refuses the effect.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3663,7 +3663,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAnyAllPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAnyAllPolicy.yml\" sourcestartlinenumber=\"1\">How a list of tags is matched against another: <code>Any</code> passes where one of its tags is in the other,\n<code>All</code> only where every one is. An effect's Affiliation Comparison is one, and so is the Context Matching\nPolicy of a focused attribute worker and of a context impact worker.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3677,7 +3677,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EApplyTickRemove",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EApplyTickRemove.yml\" sourcestartlinenumber=\"1\">The moment in an effect's life another effect lands at: as it's applied (On Apply), on each of its execute ticks\n(On Tick), or as it's removed (On Remove). A contained effect and an effect a modifier adds each name one; an\nInstant effect has no ticks and no removal, so only its On Apply ones land.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3747,7 +3747,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeElementCollisionPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeElementCollisionPolicy.yml\" sourcestartlinenumber=\"1\">An attribute set element's Collision: the group it joins where its attribute appears in more than one element\nacross a set and its sub-sets. One group decides the attribute's root, the first there is of Use Set Collision\nSetting, Use This, Combine and Use Existing, and the other groups' elements are passed over: Combine adds its\nelements' values up, and each other group picks one, or averages them, by the Resolution Policy of the set the\nentity names.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3761,7 +3761,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeOverflowPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeOverflowPolicy.yml\" sourcestartlinenumber=\"1\">The bounds an attribute set element holds its attribute's values in, with its Floor and Ceiling, each a Current\nand a Base: Zero To Base holds Current between 0 and Base; Floor To Base, Current between the Floor's Current\nand Base, and Base at or above the Floor's Base; Zero To Ceil, each between 0 and the Ceiling's; Floor To Ceil,\neach between its Floor and its Ceiling; Unlimited, none. They hold only while the element's Auto Clamp is on.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3803,7 +3803,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeRoundingPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeRoundingPolicy.yml\" sourcestartlinenumber=\"1\">How an attribute set element rounds its attribute's Current and Base, after its bounds, each time the value\nchanges: None; To Floor, down; To Ceil, up; Round, to the nearest; Snap To, to the nearest multiple of its Snap\nInterval. Rounding can make a change bigger or smaller than its effect asked for.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3831,7 +3831,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeTarget",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeTarget.yml\" sourcestartlinenumber=\"1\">Which of an attribute's two values a change goes to: its Current, its Base, or both. An effect's impact names\none with its operation, as Add to Current or Multiply Base, and a transfer's Slot and a threshold effect\nworker's Target choose by it too.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3845,7 +3845,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeTargetBinary",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeTargetBinary.yml\" sourcestartlinenumber=\"1\">The part of an attribute's value something reads: its Current, its Base, what's missing of it (base − current),\nor its share (current ÷ base), as <code>AttributeParts.Read</code> reads it. A Threshold, a wait, the Attribute\ncondition and an attribute-backed number read through it; some fields, as a tracked impact's part or a retention\ngroup's, read Base under Base and Current otherwise.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3859,7 +3859,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeTargetExpanded",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeTargetExpanded.yml\" sourcestartlinenumber=\"1\">Which of an attribute's values a change must touch for a worker to take it: Current, Base, Current And Base, or\nCurrent Or Base. A focused attribute worker's Target Modification and a context impact worker's Impact Target\nchoose by it; with their exclusive switch on, a change to Current or to Base must touch that one alone.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3873,7 +3873,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeTargetLimited",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeTargetLimited.yml\" sourcestartlinenumber=\"1\">A narrower <code>EAttributeTarget</code>, of the two choices that change Base: Current and Base together, or Base\nalone. <code>ForgeHelper.Translate</code> gives the <code>EAttributeTarget</code> it names.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3887,7 +3887,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAutoTargetMode",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAutoTargetMode.yml\" sourcestartlinenumber=\"1\">How an auto-targeting task, Auto Target or Auto Target By Affinity, orders the entities it finds before it takes\nits Max Targets, the first being its primary target: <code>Nearest</code> or <code>Farthest</code> first, measured from\nwhere its range is, or in a <code>Random</code> order; <code>All</code> leaves them as found. Max Targets still holds under\nAll, and 0 takes every one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3901,7 +3901,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ECalculationOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ECalculationOperation.yml\" sourcestartlinenumber=\"1\">How a change applies its magnitude to an attribute's value: <code>Add</code> adds it, <code>Multiply</code> multiplies by\nit, <code>FlatBonus</code> adds it after the multipliers, so they don't scale it, and <code>Override</code> sets the value\nto it. An attribute's lasting modifiers apply in that order, and of several overrides of one value the lowest\norder wins. An effect's impact chooses one as its Operation, and some workers do.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3915,7 +3915,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ECaptureAttributeWhen",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ECaptureAttributeWhen.yml\" sourcestartlinenumber=\"1\">When a × Attribute scaler reads its attribute: <code>OnCreation</code> captures it once, as the effect's spec is made,\nand reads that snapshot after; <code>OnApplication</code> reads the live value each time the scaler is read.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3971,7 +3971,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EComparisonOperator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EComparisonOperator.yml\" sourcestartlinenumber=\"1\">How one number compares with another: less than, less or equal, equal, not equal, greater or equal, or greater\nthan. A tag query compares the tag's count with its number by it, and conditions, validation rules, waits,\nauto-targeting and the threshold effect worker compare their numbers by it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4097,7 +4097,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EDataTarget",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EDataTarget.yml\" sourcestartlinenumber=\"1\">Which entry under a data packet's key a read takes where the key holds several: <code>Primary</code>, the first;\n<code>Any</code>, one at random; or <code>Last</code>, the last.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4139,7 +4139,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EEffectDurationPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EEffectDurationPolicy.yml\" sourcestartlinenumber=\"1\">How long an effect lives: Instant, the default, makes its change once and is done; Durational stays on the\ntarget's shelf for its Duration; Infinite stays until something removes it. It gives the effect's first impact\nits delivery: on applying for an Instant effect, and for a lasting one while it lasts, or on each tick where it\nticks.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4153,7 +4153,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EEffectInteractionPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EEffectInteractionPolicy.yml\" sourcestartlinenumber=\"1\">What a lasting effect on the target does with its time as it takes in an application under Do Nothing, Replace\nExisting or Stack Existing: Do Nothing, the default, leaves it; Refresh Duration restarts it; Extend Duration\nadds the new application's duration to it, or, where stacks keep their own durations, adds a stack. Refresh and\nExtend run Tick On Application again.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4209,7 +4209,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EEffectReApplicationPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EEffectReApplicationPolicy.yml\" sourcestartlinenumber=\"1\">What a Durational or Infinite effect does as it's applied to a target that has it already, matched by its asset\ntag whoever applied it: Add Another, the default, adds a container of its own; Do Nothing takes nothing new in;\nReplace Existing gives the old container the new application's values and modifiers, keeping its stacks and past\ncommits; Stack Existing adds stacks to it. All but Add Another then do with its time as the effect's\n<code>EEffectInteractionPolicy</code> says.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4251,7 +4251,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EEffectStackPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EEffectStackPolicy.yml\" sourcestartlinenumber=\"1\">How the stacks of an effect whose Re-application is Stack Existing keep time: Stacks Share One Duration, the\ndefault, runs one timer for all, which a stack added doesn't reset, each tick executing once for each stack;\nStacks Have Independent Durations gives each stack its own timer and ticks, so they drop off one at a time;\nDuration Taken From One Stack runs one stack's timer at a time, a stack lost and the timer restarted each time\nit runs out.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4335,7 +4335,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EFromSelfSource",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EFromSelfSource.yml\" sourcestartlinenumber=\"1\">Where a relative attribute worker reads its relative attribute: From Self, on the entity whose attribute\nchanges; From Source, on the source of the change.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4433,7 +4433,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ELevelConfig",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ELevelConfig.yml\" sourcestartlinenumber=\"1\">The level range a scaler's values spread over, where they spread: the level provider's\n(<code>LockToLevelProvider</code>, Provider's Levels), the scaler's own Max Level (<code>Unlocked</code>, Own Max Level), or\nthe provider's up to that Max Level (<code>Clamped</code>, Clamped to Provider), so the values reach their last at the\nlower of the two.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4461,7 +4461,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EMagnitudeOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EMagnitudeOperation.yml\" sourcestartlinenumber=\"1\">How a field joins its number with its scaler, its Combine: Multiply With Scaler, the scaler times the number;\nAdd Scaler, the scaler plus the number; Use Magnitude, the number alone; Use Scaler, the scaler alone. A number\nfield, an attribute set element's sides, an effect's clock and Scaled Stack Amount each combine by it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4475,7 +4475,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EMathApplicationPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EMathApplicationPolicy.yml\" sourcestartlinenumber=\"1\">How a value is used as a factor: <code>AsIs</code> as it is, <code>OnePlus</code> as 1 + x, and <code>OneMinus</code> as 1 − x, so\na 30% bonus multiplies by 1.3 and a 30% reduction by 0.7. An Attenuate scaler behaviour's Policy turns its value\nso, and a Math attribute worker's Operation Policy the attribute it changes by.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4503,7 +4503,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EMultiplyBehaviour",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EMultiplyBehaviour.yml\" sourcestartlinenumber=\"1\">How a Multiply impact combines with the other multiplies on the same value of its attribute: Multiplicative, the\ndefault, compounds them, ×1.5 and ×1.5 making ×2.25; Additive Bonus adds each one's bonus, its value less 1, and\nmultiplies once, +50% and +50% making ×2.0. It's apart from stacking, which decides how one effect applied again\nstacks against itself.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4545,7 +4545,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessControlState",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessControlState.yml\" sourcestartlinenumber=\"1\">What ProcessControl does as a whole: <code>Ready</code> takes new processes and runs them; <code>Waiting</code> takes them\nand holds every process where it is; <code>Closed</code> takes no more and runs those it has; <code>ClosedWaiting</code>\ntakes no more and holds those it has; <code>Terminated</code> ends every process, a running one as its run ends, and\n<code>TerminatedImmediately</code> ends them all at once, and neither takes more. <code>SetControlState</code> sets it, and\nleaving a waiting state sends back what it held; the inspector's Start State is the one it starts in.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4559,7 +4559,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessLifecycle",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessLifecycle.yml\" sourcestartlinenumber=\"1\">How a process starts and what follows its run: <code>SelfTerminating</code> starts running and ends as its run is\ndone, as a projectile; <code>RunThenWait</code> starts running and waits when its run is done, to run again, as an\nability; <code>RequiresControl</code> starts waiting and runs only when told, as an ability on a key; and\n<code>Synchronous</code> starts running with no run to await, stepped at its timing for as long as it lasts, as a\nhealth bar.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4587,7 +4587,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessState",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessState.yml\" sourcestartlinenumber=\"1\">Where a registered process is in its life: <code>Created</code>, as it's registered and set up, before its first move;\n<code>Running</code>; <code>Waiting</code>, paused or waiting to run again; and <code>Terminated</code>, ended and cleaned up. A\nrelay's <code>State</code> reads it, and the process's lifecycle and ProcessControl's state decide each move.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4601,7 +4601,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessStatus",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessStatus.yml\" sourcestartlinenumber=\"1\">Whether a process is stepped or its run awaited, as its wrapper's <code>Status</code> says: <code>Synchronous</code> for a\nprocess of the Synchronous lifecycle, <code>Asynchronous</code> for any other, and <code>Unknown</code> where the wrapper\ndoesn't say.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4615,7 +4615,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessStepPriorityMethod",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessStepPriorityMethod.yml\" sourcestartlinenumber=\"1\">Where a process steps among the others of its timing: <code>First</code>, at priority 0; <code>Last</code>, after every\nother; or <code>Manual</code>, at its own step priority. Lower priorities step first, and ProcessControl registers a\nscene's own processes by it too, parents before their children.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4629,7 +4629,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EProcessStepTiming",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EProcessStepTiming.yml\" sourcestartlinenumber=\"1\">Which of Unity's loops a process is stepped in while it runs, each step calling its <code>WhenUpdate</code>,\n<code>WhenLateUpdate</code> or <code>WhenFixedUpdate</code>: one of Update, LateUpdate and FixedUpdate, two of them, all\nthree, or <code>None</code>, never stepped. A GAS hub steps in Update and LateUpdate: Update ticks its effects, and\nLateUpdate runs its end of frame. Under ProcessControl's Fixed Tick Rate, each tick steps the Update and\nLateUpdate processes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4657,7 +4657,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ERequireAvoidPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ERequireAvoidPolicy.yml\" sourcestartlinenumber=\"1\">Which way a tag worker's requirement holds: Require, while the tag's weight on the entity is at least the\nrequired weight; Avoid, while it's below it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4685,7 +4685,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ERoundingOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ERoundingOperation.yml\" sourcestartlinenumber=\"1\">How a whole-number field, a <code>ScalableInt</code>, makes a value read through its scaler whole: Floor rounds it\ndown, Ceil up, and Round to the nearest, a half away from zero. Scaled Stack Amount rounds its stacks by it too.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4713,7 +4713,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EScalerInterpolation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EScalerInterpolation.yml\" sourcestartlinenumber=\"1\">How a scaler whose values spread over levels reads a level between two of its points: <code>Constant</code> steps from\none to the next (Steps), <code>Linear</code> goes in a straight line (Straight Line), and <code>Smooth</code> along a smooth\ncurve (Smooth Curve).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4741,7 +4741,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EScalerRelativeOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EScalerRelativeOperation.yml\" sourcestartlinenumber=\"1\">How a cached attribute-backed scaler joins the attribute it captures with its own value at the level: <code>Add</code>\nadds them, <code>Multiply</code> multiplies them, and <code>UseAttributeValue</code> and <code>UseScalerValue</code> take one\nalone.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4769,7 +4769,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ESignPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ESignPolicy.yml\" sourcestartlinenumber=\"1\">The sign of a change or a value: <code>Positive</code>, <code>Negative</code>, <code>ZeroBiased</code>, 0 from values that cancel\nout, or <code>ZeroNeutral</code>, 0 from nothing at all. <code>ForgeHelper.SignPolicy</code> reads it from magnitudes and an\nattribute change's <code>SignPolicy</code> gives it; a context impact worker takes impacts of one sign (Impact Sign)\nand gives its own change one (Work Sign Policy).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4783,7 +4783,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ESignPolicyExtended",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ESignPolicyExtended.yml\" sourcestartlinenumber=\"1\">A sign policy with <code>Any</code>, which every sign matches: a focused attribute worker's Sign Policy, the sign of\nthe changes it watches, is one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4797,7 +4797,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ESourceTarget",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ESourceTarget.yml\" sourcestartlinenumber=\"1\">Which side's attribute is read: the <code>Source</code>, whose effect or impact it is, or the <code>Target</code>. A ×\nAttribute scaler's Capture From chooses one, as does a <code>RelativeOperationContextImpactWorker</code>'s With\nRespect To.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4825,7 +4825,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EStackBoundsOnMaxPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EStackBoundsOnMaxPolicy.yml\" sourcestartlinenumber=\"1\">What Stack Bounds does as an application finds the effect at its Max: Do Nothing, the default, keeps to the one\neffect, held at its Max; Append New Container stacks it into a container of the effect under its Max, or else a\nnew one, which stacks again.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4923,7 +4923,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EThresholdComparison",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EThresholdComparison.yml\" sourcestartlinenumber=\"1\">How a Threshold analysis worker compares what it reads with its threshold while its Crossing is While It Holds:\nless than, less than or equal, greater than, greater than or equal, or equal, within 0.001.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5063,7 +5063,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EValueCollisionPolicy",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EValueCollisionPolicy.yml\" sourcestartlinenumber=\"1\">Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,\nthe first or the last, or none of them (<code>Ignore</code>). A Group's policy picks among its overriding members,\nIgnore setting them aside so the rest join as they would; an attribute set's Resolution Policy picks among the\nelements that give one attribute, Ignore keeping the first.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5077,7 +5077,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EWhileTargeting",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EWhileTargeting.yml\" sourcestartlinenumber=\"1\">What an ability still choosing its target does as another of its entity's abilities activates, past that one's\nown checks, on a request that cancels targeting (<code>CancelsTargeting</code>), as a player's press does: the While\nTargeting the inspectors show. Entity's Rule (<code>EntitysRule</code>) does as its entity's Targeting Yields says;\n<code>Yields</code> gives way, its targeting cancelled, nothing of it paid, and its claim let go at once, so the other\nstarts; <code>Holds</code> keeps its claim until its target is chosen or it's cancelled, and the other does as its\nWhen Busy says.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5161,7 +5161,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.AbilityComponentDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.AbilityComponentDrawer.yml\" sourcestartlinenumber=\"1\">An ability's component: its kind, never None and named without &quot;AbilityComponent&quot;, as &quot;Cast Range&quot; for a\n<code>CastRangeAbilityComponent</code>, then its fields, folding to a line of their values. A kind an ability may hold\nonly once isn't offered while its list holds one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5371,7 +5371,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.AnalysisWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.AnalysisWorkerDrawer.yml\" sourcestartlinenumber=\"1\">An analysis worker, as a worker group's Analysis list holds one: its kind, picked from the analysis workers or\nNone, then its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5385,7 +5385,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.AssetSetterDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.AssetSetterDrawer.yml\" sourcestartlinenumber=\"1\">An asset loader, as an ability's Asset Loaders list holds one: its kind, picked from the Set tasks, as &quot;Set\nEffects&quot; for a <code>SetEffectsTask</code>, then the kind's own fields.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5441,7 +5441,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.AttributeEditor",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.AttributeEditor.yml\" sourcestartlinenumber=\"1\">The Attribute asset's inspector, which edits several attributes at once: its header, then Identity (Name,\nAbbreviation, Description, Role and, for a Barrier, what it absorbs for and how it decays, Gains Scaled By, the\nroles it plays in its project, and Textures), Local Data, and Used By, the assets that refer to it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5609,7 +5609,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.AttributeWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.AttributeWorkerDrawer.yml\" sourcestartlinenumber=\"1\">An attribute worker, as a worker group's Attribute list holds one: its kind, picked from the attribute workers\nand never None, then its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5763,7 +5763,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.ContextImpactWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.ContextImpactWorkerDrawer.yml\" sourcestartlinenumber=\"1\">A context impact worker, one made from <code>AbstractContextImpactWorker</code>: its kind, picked from those workers\nor None, then its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5889,7 +5889,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.EffectComponentDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.EffectComponentDrawer.yml\" sourcestartlinenumber=\"1\">An effect's component: its kind, never None and named without &quot;EffectComponent&quot;, as &quot;Aura&quot; for an\n<code>AuraEffectComponent</code>, then its fields, folding to a line of their values. A kind an effect may hold only\nonce isn't offered while its list holds one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5973,7 +5973,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.EffectWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.EffectWorkerDrawer.yml\" sourcestartlinenumber=\"1\">An effect worker, as an effect's Workers list holds one: its kind, picked from the effect workers or None, then\nits fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -5987,7 +5987,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.EntityComponentDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.EntityComponentDrawer.yml\" sourcestartlinenumber=\"1\">An entity's component: its kind, never None and named without &quot;EntityComponent&quot;, as &quot;Respawn&quot; for a\n<code>RespawnEntityComponent</code>, then its fields, folding to a line of their values. A kind an entity may hold\nonly once isn't offered while its list holds one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6029,7 +6029,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.FocusedAttributeWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.FocusedAttributeWorkerDrawer.yml\" sourcestartlinenumber=\"1\">A focused attribute worker, one made from <code>AbstractFocusedAttributeWorker</code>: its kind, picked from those\nworkers and never None, then its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6071,7 +6071,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Colors",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Colors.yml\" sourcestartlinenumber=\"1\">The colors PlayForge's editors draw with: accents and section tints, backgrounds, text and borders, status\ncolors, and a color for each kind of PlayForge asset, which <code>GetAssetColor</code> gives for a type, gray for\nany it doesn't name.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6113,7 +6113,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Icons",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.Icons.yml\" sourcestartlinenumber=\"1\">Characters PlayForge's editors show as small icons in labels and buttons, each a string constant, as\n<code>Check</code> (✓), <code>Cross</code> (✗) and <code>ArrowDown</code> (↓).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6659,7 +6659,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.ImpactWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.ImpactWorkerDrawer.yml\" sourcestartlinenumber=\"1\">An impact worker, as a worker group's Impact list holds one: its kind, picked from the impact workers or None,\nthen its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6687,7 +6687,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.ItemComponentDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.ItemComponentDrawer.yml\" sourcestartlinenumber=\"1\">An item's component: its kind, never None and named without &quot;ItemComponent&quot;, as &quot;Uses&quot; for a\n<code>UsesItemComponent</code>, then its fields, folding to a line of their values. A kind an item may hold only once\nisn't offered while its list holds one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6897,7 +6897,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.PropertyFieldExtensions",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.PropertyFieldExtensions.yml\" sourcestartlinenumber=\"1\">Extensions to UI Toolkit's <code>PropertyField</code>: <code>OnPopulated</code> runs a callback once the field has built its\nchildren, at once where it has, or else on the field's scheduler, asking again until it has.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -6967,7 +6967,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.RelativeAttributeWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.RelativeAttributeWorkerDrawer.yml\" sourcestartlinenumber=\"1\">A relative attribute worker, one made from <code>AbstractRelativeAttributeWorker</code>: its kind, picked from those\nworkers or None, then its fields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7233,7 +7233,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.SerializedPropertyExtensions",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.SerializedPropertyExtensions.yml\" sourcestartlinenumber=\"1\">Extensions that find the C# field behind a <code>SerializedProperty</code>: <code>GetFieldInfo</code> walks the property's\npath, going on into the object a <code>[SerializeReference]</code> field holds, and <code>GetAttribute&lt;T&gt;</code> and\n<code>HasAttribute&lt;T&gt;</code> read an attribute the field is marked with.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7345,7 +7345,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TagRegistryAssetPostprocessor",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TagRegistryAssetPostprocessor.yml\" sourcestartlinenumber=\"1\">Marks the tag registry, <code>ForgeTagRegistry</code>, out of date whenever a .asset file is imported, deleted or\nmoved, so what reads it next, as a tag field's picker, scans the project's tags again.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7359,7 +7359,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TagWorkerDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TagWorkerDrawer.yml\" sourcestartlinenumber=\"1\">A tag worker, as a worker group's Tag list holds one: its kind, picked from the tag workers or None, then its\nfields, folding to a line of their values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7373,7 +7373,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TagWorkerRequirementPacketDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TagWorkerRequirementPacketDrawer.yml\" sourcestartlinenumber=\"1\">One of a tag worker's tag requirements, in a row: its tag, Require or Avoid, and the weight, a number of any\nkind. Require holds while the entity's weight of the tag is at least the weight, and Avoid while it's below.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7387,7 +7387,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TagWorkerRequirementsDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TagWorkerRequirementsDrawer.yml\" sourcestartlinenumber=\"1\">A tag worker's <code>Requirements</code>: its list of tag requirements alone, labelled Tag Requirements.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7429,7 +7429,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TextureItemDrawer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TextureItemDrawer.yml\" sourcestartlinenumber=\"1\">A row of an asset's Textures: its tag, then its texture, a project asset, side by side on one line.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7443,7 +7443,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Editor.TheForge",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TheForge.yml\" sourcestartlinenumber=\"1\">The Forge, PlayForge's main window: a list of the project's PlayForge assets\nbeside a detail pane that holds the selected asset's inspector, under a summary of what it does and what uses it.\nThe toolbar holds Create, the type filters, Tags, the search and the problem count; the status bar holds the\ncounts. It follows the project, with no Refresh and no timer, and the validator's problems with it.\nOne click selects a row and shows its asset. It had Create, View, Analysis and Settings tabs: the\nAnalysis tab's power scores stay hidden until Items and Entities score too, and the Settings tab's settings\nare on the two settings pages.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Editor.TheForge.yml\" sourcestartlinenumber=\"1\">The Forge, PlayForge's main window: a list of the project's PlayForge assets\nbeside a detail pane that holds the selected asset's inspector, under a summary of what it does and what uses it.\nThe toolbar holds Create, the type filters, Tags, the search, the problem count and the help button, which opens\nthe editor tools guide's section on The Forge; the status bar holds the counts. It follows the project, with no Refresh and no timer, and the validator's problems with it.\nOne click selects a row and shows its asset. It had Create, View, Analysis and Settings tabs: the\nAnalysis tab's power scores stay hidden until Items and Entities score too, and the Settings tab's settings\nare on the two settings pages.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7597,7 +7597,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EffectChanges.ImpactStage",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EffectChanges.ImpactStage.yml\" sourcestartlinenumber=\"1\">A Value Pipeline stage a modifier's Change Impact adds to one application: the attribute whose impacts take\nit, every one where it names none, and the stage. An impact that commits runs it after its own pipeline; a\nlasting one takes it on its magnitude.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7611,7 +7611,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EffectChanges.Packet",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EffectChanges.Packet.yml\" sourcestartlinenumber=\"1\">An effect a modifier adds to one application: the moment it lands at, the effect, the rule that added it,\nwhich won't change it again, and whom it lands on, the target or the caster. An application's changes hold\none for each contained effect a modifier adds, and one for each overflow effect, which lands as the\napplication overflows.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7667,7 +7667,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EffectDurationRemaining",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EffectDurationRemaining.yml\" sourcestartlinenumber=\"1\">How long an entity's effect under a tag has left: its total duration and the time remaining, and whether one was\nfound, as <code>GetLongestDurationFor</code> gives them for the one of the longest duration that has the tag as its\nasset tag or grants it. An Infinite one gives float.MaxValue for both; <code>Ratio</code> is the share of it left.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7905,7 +7905,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EffectWorkerGroup",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EffectWorkerGroup.yml\" sourcestartlinenumber=\"1\">Several effect workers as one: at each of its effect's moments its workers hear, as it lands, ticks, comes off\nand hits, it runs each of its workers in turn and returns their actions together.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7975,7 +7975,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EntityIdentity",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EntityIdentity.yml\" sourcestartlinenumber=\"1\">An Entity asset: one kind of entity, as the hero or a goblin, and its starting setup: its sides and tags, its\nlevel range, its abilities and items and their limits, its attribute set and time scale attribute, its workers,\nmodifiers and components, its crowd control rules and what its death does. Many entities can share one.</p>\n<p>A GAS hub reads it as it initializes, the <code>GameplayAbilitySystem</code> component that names it or a\n<code>RuntimeGameplayAbilitySystem</code> whose identity is made from it: the hub gives the entity its workers,\nregisters its level under the asset's tag, gives its starting abilities, builds its attributes from its set and\ngives its starting items, then applies its tags.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8129,7 +8129,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeAssetCatalog.Entry",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeAssetCatalog.Entry.yml\" sourcestartlinenumber=\"1\">One row of an Asset Catalog: the <code>Id</code> a save names an asset by, and the <code>Asset</code>. Where an ID or an\nasset repeats, the first row holds.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8283,7 +8283,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeCues.CuePlayedDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeCues.CuePlayedDelegate.yml\" sourcestartlinenumber=\"1\">A listener of <code>ForgeCues.Played</code>, invoked as each cue plays, after its handler, handed whether it\nbursts, begins or ends, the handler, and the cue's context: what raised it, who's behind it and where it\nplays.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8381,7 +8381,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeHelper",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeHelper.yml\" sourcestartlinenumber=\"1\">Helpers the framework's code shares, many of them extension methods: an asset's texture under a tag, the sign of\na change and checks of it, tag requirement and query checks, tag matching by hierarchy, attribute arithmetic by\noperation, a magnitude joined with its scaler, list helpers (<code>RandomChoice</code>, <code>Shuffle</code>,\n<code>WeightedSample</code>, <code>SafeAdd</code>), and random points in a circle or a sphere.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8423,7 +8423,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeLog.ELevel",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeLog.ELevel.yml\" sourcestartlinenumber=\"1\">How much a message matters: <code>Verbose</code>, chatty lifecycle traces, then <code>Info</code>, <code>Warning</code> and\n<code>Error</code>. A message is let through at its system's level or above, and <code>None</code>, as a level, lets\nnothing through, framework errors included.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8731,7 +8731,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeTagLibrary.Entry",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeTagLibrary.Entry.yml\" sourcestartlinenumber=\"1\">A tag a Tag Library declares, which tag pickers offer under its contexts before any asset uses it: its\n<code>Name</code>, the full dotted path; its <code>DisplayName</code>, where it reads otherwise, as a unique tag's; the\n<code>Contexts</code> it's declared for, Universal where it names none; and a <code>Note</code> on what it's for.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -8913,7 +8913,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ForgeUtils",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ForgeUtils.yml\" sourcestartlinenumber=\"1\">Extension methods for a list: <code>IndexMin</code> and <code>IndexMax</code> give the index of the element whose selected\nvalue is lowest or highest, the first where several tie, and 0 for an empty list.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9067,7 +9067,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.DeathDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.DeathDelegate.yml\" sourcestartlinenumber=\"1\">The handler of an entity's <code>OnEntityDied</code> and <code>OnEntityRevived</code> callbacks, handed the entity's\nhub: invoked as it's marked dead, before its frame ends, and as a staying entity revives.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9151,7 +9151,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.ImpactDelegate.yml\" sourcestartlinenumber=\"1\">The handler of an entity's impact callbacks, handed the <code>ImpactData</code> of an impact as it's recorded: its\ntarget, its attribute and the change that landed. <code>OnImpactDealt</code> hears those the entity dealt and\n<code>OnImpactReceived</code> those it took, <code>OnImpact</code> either, and <code>OnReductionDealt</code>,\n<code>OnIncreaseDealt</code>, <code>OnReductionReceived</code> and <code>OnIncreaseReceived</code> a loss or a gain alone.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9249,7 +9249,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffect",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffect.yml\" sourcestartlinenumber=\"1\">A Gameplay Effect asset: a change to an entity, as damage, a heal, a timed buff, a poison, a cost or a cooldown.\nAbilities, items and code apply it to a target: <code>Generate</code>, through the target's <code>GenerateEffectSpec</code>,\nmakes a <code>GameplayEffectSpec</code> for one application, which <code>ApplyGameplayEffect</code> lands.</p>\n<p>Its duration's Policy decides how long it lives: an Instant effect makes its change once, and a Durational\nor Infinite one goes on the target's effect shelf until its time runs out or something removes it. Its impacts\nchange attributes, each a commit that stays or a modifier reversed as the effect ends; it can also grant tags\nand abilities, apply contained effects, run workers and carry components, and its requirements and conditions\nsay whether it lands, goes on and comes off. It has no level of its own: it takes its origin's.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9263,7 +9263,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffectDefinition",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffectDefinition.yml\" sourcestartlinenumber=\"1\">An effect's identity: its Name, which gives its asset tag, its Description, its Visibility, a tag a UI can read\nto decide whether to show it, its Textures, whether its icon is its origin's (Inherit From Origin, by Origin\nTexture), and the Retention Group its changes count toward unless an impact names its own.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9277,7 +9277,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffectDuration",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffectDuration.yml\" sourcestartlinenumber=\"1\">An effect's duration section: its Policy and Duration, the clock it runs by, its periodic ticks, Tick On\nApplication and Additional Executions, what it does as it's applied to a target that has it already, and how its\nstacks count. As a lasting effect lands, it makes the container the application lives in on the shelf and sets\nits clock, reading its numbers for that application.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9291,7 +9291,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffectImpact",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffectImpact.yml\" sourcestartlinenumber=\"1\">An effect's impact section: its first impact, the attribute it changes, the operation and the value it changes,\nits magnitude, pipeline and impact types, whose delivery the duration gives it; its Additional Impacts, each\nwith a delivery of its own; its affiliation check, its chance to apply and its contained effects. On every\n<code>GameplayEffect.Generate</code>, <code>RebuildEntries</code> derives the first impact's entry, which is never saved,\nand appends the additional ones after it: <code>Entries</code> is what an application commits and registers.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9305,7 +9305,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffectSpec",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffectSpec.yml\" sourcestartlinenumber=\"1\">One application of a Gameplay Effect: the effect, its origin, its source and its target, as the target's\n<code>GenerateEffectSpec</code> makes it and <code>ApplyGameplayEffect</code> lands it. It keeps what belongs to that\napplication alone: magnitudes set by its caller, where it hit (<code>WithHit</code>), what modifiers changed of it,\nits workers' and components' state, what it has dealt, and, while it lasts, the container that holds it on the\nshelf. Its impacters, built once from its effect's entries, are what the attribute system evaluates for each\ndelivery.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9319,7 +9319,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayEffectTags",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayEffectTags.yml\" sourcestartlinenumber=\"1\">An effect's tags: its Asset Tag, by which the effect system finds it as it's applied again or removed, and which\nits target carries while it lasts; its Context Tags, which describe it and go with each change it makes, never\napplied to the entity; its Granted Tags, applied to its target while it's on; and the tags it cleanses (Removes\nEffects Tagged) and makes its target immune to (Blocks Effects Tagged). <code>Names</code> says whether an effect is\ntagged with a tag, or a child of one, by any of the three.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9333,7 +9333,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.GameplayPipelineConfiguration",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.GameplayPipelineConfiguration.yml\" sourcestartlinenumber=\"1\">The base of an effect's stack behaviours: a Name, and a Priority that orders the behaviours as they apply,\nlowest first, so the highest has the last word. A kind can fix its own with <code>ConfigPriority</code>, as Stack\nBounds applies last and Starting Stacks first.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9417,7 +9417,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.HasEffectValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.HasEffectValidation.yml\" sourcestartlinenumber=\"1\">A check that passes while the checked entity has an effect on: its <code>Effect</code>, or any effect tagged\n<code>Tagged</code> or a tag under it, by its asset tag, a context tag or a tag it grants; with <code>Without</code>, while\nit has none of it. Naming neither, it passes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9431,7 +9431,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.HoldsItemValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.HoldsItemValidation.yml\" sourcestartlinenumber=\"1\">A check that passes while the checked entity holds its <code>Item</code>, or, with <code>Equipped</code>, wears it. Naming\nno item, it passes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9501,7 +9501,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IActiveSequence",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IActiveSequence.yml\" sourcestartlinenumber=\"1\">A sequence as code runs it, a <code>TaskSequence</code> or a <code>TaskSequenceChain</code>: <code>Run</code> runs it with a data\npacket, <code>TryRun</code> also says whether it finished, and <code>IsCriticalSection</code> whether its run is in a\ncritical stage now. A <code>TaskSequenceReference</code>'s <code>GetActiveSequence</code> gives one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9515,7 +9515,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IAffiliated",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IAffiliated.yml\" sourcestartlinenumber=\"1\">What has sides: <code>GetAffiliation</code> gives its affiliation tags, as an entity's team or faction. Every target\nand every effect origin has them, and an effect's Affiliation compares its origin's with its target's.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9529,7 +9529,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IAnalysisUser",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IAnalysisUser.yml\" sourcestartlinenumber=\"1\">What holds analysis workers: <code>GetAnalysisCache</code> gives the cache a worker group gives its analysis workers\nto. Every GAS hub is one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9543,7 +9543,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IAttribute",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IAttribute.yml\" sourcestartlinenumber=\"1\">An attribute as the attribute system knows it: a name, a description and an icon, an abbreviation and its\ntextures. The <code>Attribute</code> asset is one and a <code>RuntimeAttribute</code> made in code is another; an entity's\nattributes, an effect's impacts and workers each name one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9753,7 +9753,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IGameplayAbilitySystem",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IGameplayAbilitySystem.yml\" sourcestartlinenumber=\"1\">An entity's gameplay ability system as code meets it, whichever hub runs it: the <code>GameplayAbilitySystem</code>\ncomponent on a GameObject or a <code>RuntimeGameplayAbilitySystem</code> made in code. Through it code reaches the\nentity's attribute, ability, item and effect systems, its tags, levels and effects, its callbacks, clock,\nservices and Local Data, and its turning, death and revival; <code>ToGASObject</code> gives the component, where there\nis one. Code that works with any entity takes one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9767,7 +9767,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IGameplayProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IGameplayProcess.yml\" sourcestartlinenumber=\"1\">A process as ProcessControl runs it: the packet and relay it's handed as it registers (<code>SendProcessData</code>),\nits hooks as it initializes, waits, terminates and is destroyed, its steps at its timing (<code>WhenUpdate</code>,\n<code>WhenLateUpdate</code>, <code>WhenFixedUpdate</code>), the run ProcessControl awaits (<code>RunProcess</code>), and whether\nit keeps its run through a pause (<code>TryHandlePause</code>, <code>TryHandleResume</code>). It's a process handler too, so\nthe processes registered under it end with it. <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>\nimplement it, and a process of your own derives from one of them.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9781,7 +9781,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IGameplayProcessHandler",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IGameplayProcessHandler.yml\" sourcestartlinenumber=\"1\">What a process is registered under, its handler: what the process belongs to, as a GAS hub, ProcessControl, a\ndata packet or another process. It keeps the relays of the processes it handles (<code>GetRelays</code>), which\nProcessControl subscribes as each registers and voids as each is removed, and gives the instantiator that makes\nthe object of a mono process that uses its handler's (<code>GetInstantiator</code>). A process, a hub among them, ends\nwhat it handles as it ends.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9795,7 +9795,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IHasIntentToTarget",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IHasIntentToTarget.yml\" sourcestartlinenumber=\"1\">What can be aimed at a target and turned to another, as a homing projectile, <code>AbstractTargetedMonoProcess</code>,\nis: <code>SetTarget</code> gives it the target and its targeting packet. A disjoint turns the shots aimed at an\nentity, through it, to where the entity stood.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9809,7 +9809,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IHasReadableDefinition",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IHasReadableDefinition.yml\" sourcestartlinenumber=\"1\">What has a name, a description and an icon to show: <code>GetName</code>, <code>GetDescription</code> and\n<code>GetDefaultIcon</code>. Every PlayForge asset, an attribute, a tag and every target, a GAS hub among them, is\none, and an origin or a carrier gives the one behind it through <code>GetReadableDefinition</code>, as a combat log\nnames what dealt a hit.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9851,7 +9851,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ILocalDataSource",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ILocalDataSource.yml\" sourcestartlinenumber=\"1\">What holds Local Data rows, which <code>GetLocalData</code> gives: every PlayForge asset, and a runtime entity's\nidentity. A GAS loads its identity's rows into a store of its own as it initializes, and a number that reads\nLocal Data reads the rows of what it belongs to.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9865,7 +9865,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ILocalDataUser",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ILocalDataUser.yml\" sourcestartlinenumber=\"1\">What keeps Local Data of its own at runtime, as a GAS hub does: <code>InitLocalData</code> loads a source's rows,\n<code>SetLocalData</code> and <code>TryGetLocalData</code> write and read a value by its key, and\n<code>GetLocalDataStructure</code> gives the store itself. Code and workers read and write an entity's Local Data\nthrough it, as a threshold analysis worker notes there that it has fired.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9879,7 +9879,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IManagerial",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IManagerial.yml\" sourcestartlinenumber=\"1\">Marks PlayForge's managers, ProcessControl and GameRoot, which a Bootstrapper brings up: <code>Bootstrap</code> makes\nthe one it's called on the one instance, or destroys it where another is already. A manager that is a GAS,\nGameRoot, isn't one of the game's entities: area searches pass it by, and the Mono Entities counter leaves it\nout.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9935,7 +9935,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IProxyTaskBehaviourUser",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IProxyTaskBehaviourUser.yml\" sourcestartlinenumber=\"1\">What a composite behaviour, an <code>AbstractProxyTaskBehaviour</code>, acts on: something with a process's data\n(<code>Data</code>), which the behaviour reads, as a disjoint reads whether a shot aimed at its caster is marked\ndisjointable. Every <code>IProxyTaskBehaviourCaller</code>, which applies a behaviour to others, is one: the processes\nmade from <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>, and each GAS hub.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -9963,7 +9963,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IScaler",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IScaler.yml\" sourcestartlinenumber=\"1\">What works out a number for a carrier, an effect's spec or another: <code>Initialize</code> as the carrier is made,\nwhich can capture what the number needs, then <code>Evaluate</code> each time it's read. Every <code>AbstractScaler</code>\nis one, and a carrier keeps what a scaler captures under the scaler. <code>Generate</code> makes a <code>CustomScaler</code>\nfrom two delegates, or, given none, one that reads how far up its range the origin's level is, from 0 to 1.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10019,7 +10019,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ISource",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ISource.yml\" sourcestartlinenumber=\"1\">An entity as the source of what it does: a target that is also an effect origin of its own and a handler of the\nprocesses it runs, with the tag cache, action queue and frame summary its workers use. Every GAS hub is one, and\nan effect's source is the entity behind its origin. <code>SetLevel</code> and <code>ModifyLevel</code> change a level it\nkeeps under a tag, its own under its asset tag, and <code>GetLongestDurationFor</code> reads how long its longest\neffect under a tag has left, as a cooldown.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10033,7 +10033,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ITagHandler",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ITagHandler.yml\" sourcestartlinenumber=\"1\">The tag side of an entity, as a GAS hub's: the tags it holds (<code>GetAppliedTags</code>), how many times a tag is\ngranted (<code>GetTagWeight</code>, which a hub gives as −1 for a tag it doesn't hold), whether a tag query holds of\nit (<code>QueryTags</code>), and a rebuild of its tags from what grants them (<code>CompileGrantedTags</code>). Every target\nis one, and a tag worker checks its requirements against it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10047,7 +10047,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ITagSource",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ITagSource.yml\" sourcestartlinenumber=\"1\">What grants tags: <code>GetGrantedTags</code> gives the tags it grants the entity that holds it, as an ability held\ngrants its passive tags and, while it runs, its active ones. Every PlayForge asset is one, as are the containers\nof an entity's effects and abilities; an entity's tags are built from what its sources grant.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10061,7 +10061,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ITarget",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ITarget.yml\" sourcestartlinenumber=\"1\">What an effect can land on: an entity, with its sides, its tags and a definition to show. It makes, applies and\nremoves effects (<code>GenerateEffectSpec</code>, <code>ApplyGameplayEffect</code>, <code>RemoveGameplayEffect</code>), reads and\nchanges its attributes, reads its levels, finds its subsystems, and says whether it's dead. Every GAS hub is\none, and so is a stand-in, as the placeholder a disjointed shot is aimed at.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10075,7 +10075,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IWorkerGroupSource",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IWorkerGroupSource.yml\" sourcestartlinenumber=\"1\">What gives an entity workers through its worker group: <code>InitWorkers</code> gives them, and <code>RemoveWorkers</code>\ntakes them back. An entity's identity and its attribute set give theirs as it initializes, an ability while the\nentity has it, and an item while it's equipped.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10089,7 +10089,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ImpactData",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ImpactData.yml\" sourcestartlinenumber=\"1\">A change as it landed on an attribute: the <code>Target</code> it landed on, the <code>Attribute</code>, the\n<code>SourcedModifier</code> that made it, whose carrier names its source and its effect, the <code>RealImpact</code>, what\nthe attribute's Current and Base changed by after workers, bounds and rounding, and the <code>OldValue</code> before\nit. Attribute callbacks, impact workers, an effect's Impact hook and the frame summary are each handed one;\n<code>Ends</code> marks a lasting modifier coming off, a change but no hit.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10103,7 +10103,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ImpactDerivationContext",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ImpactDerivationContext.yml\" sourcestartlinenumber=\"1\">The context tags a change carries, which workers can filter by: its origin's, <code>OriginTags</code>, and its\neffect's own, <code>DerivationTags</code>; <code>All</code> gives them in that order. A carrier with no effect behind it\ngives its source's alone.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10159,7 +10159,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ImpactWorkerGroup",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ImpactWorkerGroup.yml\" sourcestartlinenumber=\"1\">Several impact workers as one: given to an entity, it gives it each of its workers, and each runs for the\nchanges it takes as it would on its own; taken back, it takes them back.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10187,7 +10187,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IndependentDurationsContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IndependentDurationsContainer.yml\" sourcestartlinenumber=\"1\">The container of Stacks Have Independent Durations: each stack keeps its own timer and ticks and comes off as\nits time runs out, so the effect lasts as long as its longest stack. Refresh restarts its oldest stack's time,\nand Extend adds a stack.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10201,7 +10201,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.InitializationOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.InitializationOperation.yml\" sourcestartlinenumber=\"1\">The stack behaviour Starting Stacks: the stacks a new container of the effect is given as it's made, a number\nread at the effect's level; the application that makes it adds its own amount after. It applies first of the\nbehaviours, and leaves the amount an application adds as it is.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10215,7 +10215,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.InjectAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.InjectAbilityTask.yml\" sourcestartlinenumber=\"1\">A stage task that sends its <code>Injection</code>, an interrupt unless it's set to another, as a skip or a jump to a\nstage, into its ability's running activations, and ends at once.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10243,7 +10243,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IntValuePair",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IntValuePair.yml\" sourcestartlinenumber=\"1\">A whole value and a maximum, unclamped, as a level and its max level: <code>SetLevel</code> sets a level an entity\nkeeps under a tag to one, and <code>ModifyLevel</code> adds one to it, the max first in each, so a level raised past\nthe old max takes it. <code>ToClamped</code> gives it as an <code>IntValuePairClamped</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10257,7 +10257,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IntValuePairClamped",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IntValuePairClamped.yml\" sourcestartlinenumber=\"1\">A whole number held between a minimum and a maximum: every level PlayForge keeps is one, an entity's, an\nability's or an item's under its tag, and so is the level an origin gives and a number reads. Setting\n<code>CurrentValue</code> clamps it, and moving a bound clamps it again; <code>Ratio</code> says where it stands between the\ntwo.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10285,7 +10285,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.IsAliveValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.IsAliveValidation.yml\" sourcestartlinenumber=\"1\">A check that passes while the entity it checks isn't dead: the caster among the Caster Checks, the target among\nthe Target Checks, each list's default. Its refusal of the caster is told as Dead.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10313,7 +10313,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ItemCallbackStatus",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ItemCallbackStatus.yml\" sourcestartlinenumber=\"1\">What an item system's callback is handed: the item's slot (<code>Container</code>) and <code>Spec</code>, the item system,\nand whether what it tells succeeded (<code>Success</code>), as equipping an item already worn doesn't; <code>Index</code>,\n<code>Item</code>, <code>Level</code> and <code>IsEquipped</code> read the slot.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10341,7 +10341,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ItemDefinition",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ItemDefinition.yml\" sourcestartlinenumber=\"1\">An item's Definition: its <code>Name</code>, <code>Description</code> and <code>Textures</code>; its <code>Visibility</code> tag, which\na game's UI can filter by and the runtime doesn't act on; and its <code>MaxStackSize</code>, how many of it one\ninventory slot holds, read at the item's level, 1 or less making each its own slot (<code>StackSizeOf</code>).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10425,7 +10425,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ItemSystemCallbacks.ItemSystemCallbackDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ItemSystemCallbacks.ItemSystemCallbackDelegate.yml\" sourcestartlinenumber=\"1\">The handler of an item system's callbacks, handed an <code>ItemCallbackStatus</code>: <code>OnItemGiven</code> and\n<code>OnItemRemoved</code>, as an item comes into the inventory or a slot leaves it; <code>OnItemEquipped</code> and\n<code>OnItemUnequipped</code>; <code>OnItemEffectsApplied</code> and <code>OnItemEffectsRemoved</code>, once for each effect a\nworn item puts on or takes off; and <code>OnItemAbilityGranted</code> and <code>OnItemAbilityRevoked</code>, for the\nability it lends.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10453,7 +10453,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ItemSystemComponent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ItemSystemComponent.yml\" sourcestartlinenumber=\"1\">An entity's inventory: the items it holds, each in a slot (an <code>ItemSpecContainer</code>) with its level and\nstacks, and which of them it wears. <code>GiveItem</code>, <code>EquipItem</code>, <code>UnequipItem</code>, <code>RemoveItem</code> and\n<code>ConsumeItem</code> change it, within its entity's item limits and duplicate rules; a worn item puts on its\nGranted Effects and Granted Tags, lends its Active Ability and adds its workers, and takes them back as it comes\noff. Code reaches it through the entity's hub, <code>GetItemSystem()</code>, and hears each change through its\n<code>Callbacks</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10467,7 +10467,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ItemTags",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ItemTags.yml\" sourcestartlinenumber=\"1\">An item's Tags: its <code>AssetTag</code>, made from its Name, which its holder carries while the item is in its\ninventory, worn or not, and keeps the item's level under; its <code>ContextTags</code>, which the changes its effects\nmake carry as context; and its Granted Tags (<code>PassiveGrantedTags</code>), on its holder while it's equipped.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11027,7 +11027,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LazyRuntimeProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LazyRuntimeProcess.yml\" sourcestartlinenumber=\"1\">A runtime process whose run lasts until it's paused or ended: its <code>RunProcess</code> waits a tick at a time while\nit's active, so what it does goes in its steps and hooks, <code>WhenUpdate</code> and the rest. The base of most\nruntime processes, a group, a runtime GAS and a task sequence's process among them; its constructor takes a\nname, a step priority, a timing and a lifecycle.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11055,7 +11055,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LevelCallbackStatus",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LevelCallbackStatus.yml\" sourcestartlinenumber=\"1\">What a change to one of an entity's levels did, as its level system's callbacks and a hub's <code>SetLevel</code> and\n<code>ModifyLevel</code> report it: the level under its key, the level and max level before, and whether it took.\n<code>IsLevelUp</code>, <code>IsLevelDown</code> and the deltas compare before with after; <code>Success</code> is false where no\nlevel is under the key or nothing changed.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11097,7 +11097,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LevelSystemCallbacks.LevelSystemCallbackDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LevelSystemCallbacks.LevelSystemCallbackDelegate.yml\" sourcestartlinenumber=\"1\">A handler of a level system's events, invoked as a level is registered or unregistered\n(<code>OnLevelRegistered</code>, <code>OnLevelUnregistered</code>) and as one is set or changed (<code>OnLevelChanged</code>,\n<code>OnMaxLevelChanged</code>, <code>OnLevelUp</code>, <code>OnLevelDown</code>), and handed the <code>LevelCallbackStatus</code>\nof that change.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11125,7 +11125,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LevelThreshold",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LevelThreshold.yml\" sourcestartlinenumber=\"1\">One tier of a Threshold number: the <code>Level</code> it starts at, the <code>Value</code> it reads from that level up, a\nnumber of any kind, and an optional <code>TierName</code>. Of the tiers at or below a level, the highest gives the\nvalue.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11139,7 +11139,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LevelerEffectOrigin",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LevelerEffectOrigin.yml\" sourcestartlinenumber=\"1\">An origin that stands for an entity at a level of its own: a <code>SourceEffectOrigin</code> whose <code>GetLevel</code>\ngives the <code>Level</code> it holds, not the entity's. A leveler carrier reads its numbers through one, and a save\nputs one back where an effect's origin was one; <code>IEffectOrigin.GenerateLevelerDerivation</code> makes one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11153,7 +11153,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LevelerImpactDerivation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LevelerImpactDerivation.yml\" sourcestartlinenumber=\"1\">A carrier to read numbers in at a level it's given, not its source's: its origin is a <code>LevelerEffectOrigin</code>\nat that level, and it carries no change of its own. An entity reads its Max Abilities, Max Items and Max\nEquipped Items at its level through one, and <code>AbilityInspector</code> reads an effect's numbers level by level\nthrough one with no source; <code>IAttributeImpactCarrier.GenerateLevelerDerivation</code> makes one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11265,7 +11265,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LocalDataStructure",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LocalDataStructure.yml\" sourcestartlinenumber=\"1\">An entity's Local Data as its GAS holds it at runtime, a value under each key tag: loaded from its identity's\nrows as it initializes (<code>Init</code>), then written with <code>Set</code> and read with <code>TryGet</code>, or with\n<code>GetOrInit</code>, which adds a value where the key has none. A hub's <code>GetLocalDataStructure</code> gives it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11433,7 +11433,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.LogAction",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.LogAction.yml\" sourcestartlinenumber=\"1\">A deferred action that writes its text through ForgeLog, at Info, as its turn comes: at Cleanup priority unless\nit's given another, and only where its validity check, if it's given one, holds. A Threshold with no effects and\nno event queues one as it fires.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11447,7 +11447,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.MagnitudeModifierGroupMember",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.MagnitudeModifierGroupMember.yml\" sourcestartlinenumber=\"1\">One member of a Group number: its <code>Calculation</code>, a scaler or a kind of number, and how it joins the others,\nits <code>RelativeOperation</code>: added up, multiplied into the sum, dividing it, added on after as a flat bonus, or\noverriding them all.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11503,7 +11503,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ModifiedAttributeValue",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ModifiedAttributeValue.yml\" sourcestartlinenumber=\"1\">A change to an attribute's Current and Base as two deltas, with no carrier behind it:\n<code>SourcedModifiedAttributeValue.ToModified</code> gives one. <code>Combine</code>, <code>Negate</code> and <code>Multiply</code>\nwork on both deltas at once.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11531,7 +11531,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.MonoWrapperProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.MonoWrapperProcess.yml\" sourcestartlinenumber=\"1\">The wrapper ProcessControl holds a mono process in, passing each hook and step to its object and reading its\nlifecycle, timing and priority from it. It gets the process's object as it registers: from the registration's\ninstantiator, else its handler's where the process uses its handler's, else the process's own, else a clone of\nits prefab, or the scene object itself; as the process ends, what made the object takes it back, or the object\nis destroyed.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11601,7 +11601,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.NonStackingEffectContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.NonStackingEffectContainer.yml\" sourcestartlinenumber=\"1\">The container of an application with no stacks, which Add Another makes for each application of its effect: its\nown clock, its ticks executing once each. Refresh restarts its time and its tick, and Extend adds to its time.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11629,7 +11629,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.NullTargetingPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.NullTargetingPacket.yml\" sourcestartlinenumber=\"1\">A targeting packet that points at nothing: a <code>StaticTargetingPacket</code> with no entity and no transform, its\nposition, rotation and scale left unset.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11895,7 +11895,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.PipelineConfigRegistry.ConfigPipeline",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.PipelineConfigRegistry.ConfigPipeline.yml\" sourcestartlinenumber=\"1\">A class with no members, which nothing in the package uses.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11909,7 +11909,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.PipelineConfigRegistry",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.PipelineConfigRegistry.yml\" sourcestartlinenumber=\"1\">A static store of <code>GameplayPipelineConfiguration</code> lists, kept per source and per asset tag, and cleared as\nplay starts. Nothing in the package registers or reads one, and <code>Register</code> adds only to a list a source and\na tag already hold, which nothing makes.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11979,7 +11979,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessControl",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessControl.yml\" sourcestartlinenumber=\"1\">The scene's scheduler of processes: every process, a GAS, a projectile, an ability's sequence, registers with\nit, and it steps each from Unity's player loop, in Update, LateUpdate or FixedUpdate as the process's timing\nasks, moves it between its states as its lifecycle says, and ends it. A Bootstrapper brings it up as the one\n<code>Instance</code>, and it then registers the scene's own mono processes, as its Collect On Awake says.</p>\n<p><code>ProcessControl.Register(process).HandledBy(handler).With(data).Run()</code> registers a process and starts\nit, and its result holds the process's relay, which pauses, resumes and ends it; <code>RegisterGroup</code> and\n<code>RegisterWithGroup</code> hold runtime processes in a group by a tag. Its control state (<code>SetControlState</code>)\npauses, closes or ends every process at once; its Fixed Tick Rate, above 0, steps every process at fixed steps\nof game time, so a run comes out the same at any frame rate; and its <code>Callbacks</code> hear every process\nregister, change state and go. Its bookkeeping is its <code>World</code>, a <code>ProcessWorld</code>, which code can also\nown and step with no scene.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12007,7 +12007,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessControlCallbacks.ControlStateDelegate.yml\" sourcestartlinenumber=\"1\">A handler of <code>OnControlStateChanged</code>, ProcessControl's callback, invoked as ProcessControl's own state\nchanges, and handed the state it left and the state it entered.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12021,7 +12021,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.yml\" sourcestartlinenumber=\"1\">A handler of <code>OnGASProcessRegistered</code> and <code>OnGASProcessUnregistered</code>, ProcessControl's callbacks,\ninvoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet\nwhose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's\nrelay and its data packet.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12035,7 +12035,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessControlCallbacks.ProcessDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessControlCallbacks.ProcessDelegate.yml\" sourcestartlinenumber=\"1\">A handler of <code>OnProcessRegistered</code> and <code>OnProcessUnregistered</code>, ProcessControl's callbacks,\ninvoked for every process once it has registered and initialized, and just before it's removed, and handed\nits relay and its data packet.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12049,7 +12049,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateDelegate",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessControlCallbacks.ProcessStateDelegate.yml\" sourcestartlinenumber=\"1\">A handler of <code>OnProcessStateChanged</code>, ProcessControl's callback, invoked as any process moves from one\nstate to another, and handed its relay, the state it left, the state it entered and its data packet.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12105,7 +12105,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessHandlerUtil",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessHandlerUtil.yml\" sourcestartlinenumber=\"1\">Extension methods for a process handler: <code>MassDataAction</code> runs an action on the data packet of each process\nit handles, and returns false where it handles none.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12189,7 +12189,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ProcessTaskUtil",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ProcessTaskUtil.yml\" sourcestartlinenumber=\"1\">Extension methods an ability's tasks use on a data packet: the targeting packet under a tag\n(<code>GetTargetingPacket</code>, which interrupts a sequence's run where there's none, <code>SetTargetingPacket</code> and\n<code>SetTargetingPackets</code>), and the effects loaded under a tag, applied to a target with the magnitudes the\ncaller set (<code>TryApplyEffects</code>) or read back (<code>GetLoadedAssets</code>). Its async loops, <code>WhileAsync</code>,\n<code>DoWhileAsync</code> and <code>DoWhile</code>, wait a tick between rounds.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12455,7 +12455,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.RunProcessTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.RunProcessTask.yml\" sourcestartlinenumber=\"1\">A stage task that runs its <code>Processes</code> as its stage starts, each registered for the caster, and waits while\nany still runs, up to <code>MaxDuration</code> seconds read at the ability's level, counted by its run's clock or,\nwith <code>UseUnscaledDeltaTime</code>, unscaled; as the stage ends, it ends those still running.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12469,7 +12469,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.RunSequenceTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.RunSequenceTask.yml\" sourcestartlinenumber=\"1\">A stage task that runs a task sequence, or a chain, and waits for it to end: the one the static\n<code>[TaskSequenceMethod]</code> method its <code>Sequence</code> names makes, called for each activation, or, for an\nability built in code, a fresh run of its <code>Definition</code>. It runs as a process in the caster's world, by the\n<code>Clock</code> picked where one is, and ends as the activation is cancelled; a critical stage in the sequence\nmakes the task critical, and the ability lets its claim go as the sequence's critical section ends.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12483,7 +12483,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.RuntimeAttribute",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.RuntimeAttribute.yml\" sourcestartlinenumber=\"1\">An attribute made in code, with no asset behind it: a name, an abbreviation and a description where it's given\nthem, and textures <code>AddTexture</code> adds. <code>AttributeRegistry.GetByName</code> makes one for a name it doesn't\nknow, where it's asked to, and an entity's attribute system takes one with <code>ProvideAttribute(attribute,\nvalue)</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12497,7 +12497,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.RuntimeEntityIdentity",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.RuntimeEntityIdentity.yml\" sourcestartlinenumber=\"1\">An entity's settings as a <code>RuntimeGameplayAbilitySystem</code> reads them: the Entity asset's fields in a plain\nclass. Made from an Entity asset, it takes the asset's values, sharing its lists rather than copying them, and\n<code>Asset</code> names the asset; made in code, it describes an entity no asset does, and <code>Asset</code> is null. Two\nruntime entities can share one.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12525,7 +12525,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.RuntimeWrapperProcess",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.RuntimeWrapperProcess.yml\" sourcestartlinenumber=\"1\">The wrapper ProcessControl holds a runtime process in: it passes each hook and step to the process, reads its\nlifecycle, timing and priority from it, and marks it ended as it terminates, so it can be registered again.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12665,7 +12665,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ScalerRootAssignment",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ScalerRootAssignment.yml\" sourcestartlinenumber=\"1\">Put on a scaler field, it narrows the kinds the field's Kind menu offers: those deriving from <code>RootType</code>\nalone, where it names one, and none deriving from <code>AvoidType</code>, where it names one. An attribute set\nelement's sides take the cached kinds alone so, and a number field every kind but those.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12931,7 +12931,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SequenceTimeout",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SequenceTimeout.yml\" sourcestartlinenumber=\"1\">A time limit on a sequence or a stage: once its <code>Seconds</code> have passed by the run's clock, its\n<code>Injection</code> applies, a skip of the stage by default. <code>WithTimeout</code> on a builder or a stage adds one,\nas a packet's <code>SetStageTimeout</code> does to the current stage from a task, and an <code>OnTimeout</code> handler is\nhanded the one that ran out.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12945,7 +12945,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetAbilitiesTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetAbilitiesTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Abilities</code>, Ability assets, in the activation's data under its <code>Tag</code>,\nAbilities by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12959,7 +12959,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetAssetsTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetAssetsTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Assets</code>, PlayForge assets of any kind, in the activation's data under its\n<code>Tag</code>, Assets by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12973,7 +12973,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetAttributeSetsTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetAttributeSetsTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>AttributeSets</code> in the activation's data under its <code>Tag</code>, Attribute Sets\nby default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -12987,7 +12987,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetAttributesTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetAttributesTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Attributes</code> in the activation's data under its <code>Tag</code>, Attributes by\ndefault.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13029,7 +13029,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetEffectsTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetEffectsTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Effects</code> in the activation's data under its <code>Tag</code>, Effects by default,\nfor a later task to apply, as a sequence does with <code>data.TryApplyEffects(target, tag)</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13043,7 +13043,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetEntitiesTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetEntitiesTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Entities</code>, Entity assets, in the activation's data under its <code>Tag</code>,\nEntities by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13057,7 +13057,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SetTagsTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SetTagsTask.yml\" sourcestartlinenumber=\"1\">An asset loader that puts its <code>Tags</code> in the activation's data under its <code>Tag</code>, Tags by default.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13169,7 +13169,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SingleDurationEffectContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SingleDurationEffectContainer.yml\" sourcestartlinenumber=\"1\">The container of Stacks Share One Duration: one timer and one tick for every stack, which a stack added leaves\nas they are; each tick executes once for each stack.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13225,7 +13225,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SourceAttributeImpact",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SourceAttributeImpact.yml\" sourcestartlinenumber=\"1\">The carrier of a change no effect's spec carries: a raw delta, an attribute's root value, a transfer's two\nsides, a rescale or a returned blow. It names its source, its attribute, its impact types and its retention\ngroup; one made over another carrier gives that one's origin, definition and context tags.\n<code>IAttributeImpactCarrier.GenerateSourceDerivation</code> makes one, and a change made every frame keeps one and\nhands the attribute system a new value over it each time, which allocates nothing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13239,7 +13239,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SourceEffectOrigin",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SourceEffectOrigin.yml\" sourcestartlinenumber=\"1\">An origin that stands for an entity itself, for an effect the entity applies with no ability or item behind it:\nits source, definition, context tags, asset tag, level and sides are the entity's, and it's always active.\n<code>IEffectOrigin.GenerateSourceDerivation</code> makes one, as in\n<code>gas.ApplyGameplayEffect(IEffectOrigin.GenerateSourceDerivation(gas), effect)</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13253,7 +13253,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SourcedModifiedAttributeValue",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.yml\" sourcestartlinenumber=\"1\">A change to an attribute on its way through the attribute system: a Current and a Base, and the carrier it comes\nfrom, which names its source, its target, its impact types and its retention group. Code changes an attribute\ndirectly with one, through the entity's <code>TryModifyAttribute</code>: <code>GenerateSimple</code> makes a raw delta with\nno impact type, which workers take as they take an effect's change, and <code>GenerateUnworkable</code> one the system\nmakes on its own account, unworkable, as <code>ImpactIsWorkable</code> says, so it counts as no hit. Over an effect's\nspec, the spec's impacters say what commits, and these values only travel with them.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13281,7 +13281,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StackAmountOperation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StackAmountOperation.yml\" sourcestartlinenumber=\"1\">The stack behaviour Scaled Stack Amount: the stacks each application adds, the amount the behaviours before it\nsettled on, from the effect's Stack Amount, combined with its Scaler, read against the effect, as its Operation\nsays, and made whole by its Rounding. With no scaler, the amount stands.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13295,7 +13295,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StackBoundsConfig",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StackBoundsConfig.yml\" sourcestartlinenumber=\"1\">The stack behaviour Stack Bounds: a Min and a Max of stacks, each read at the effect's level. A new container is\ngiven the Min as it's made, and no application takes the effect past the Max, more where a modifier raises it:\none that would overflows, its Overflow Effects landing from its origin on the target or the caster, as Overflow\nLands On says, with Deny Refresh On Overflow and Clear Stacks On Overflow saying what becomes of the effect's\ntime and stacks. It applies after the other behaviours, so its bounds have the last word.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13309,7 +13309,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StackQueueEffectContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StackQueueEffectContainer.yml\" sourcestartlinenumber=\"1\">The container of Duration Taken From One Stack: one stack's timer runs at a time, and each time it runs out a\nstack is lost and the timer restarts, so its time left counts the stacks still waiting. Each tick executes once\nfor each stack, and a stack added restarts the timer.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13351,7 +13351,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StageBuilder",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StageBuilder.yml\" sourcestartlinenumber=\"1\">Builds one stage of a sequence, handed to the action given to a builder's <code>Stage</code>, a stage's\n<code>SubStage</code>, or a branch's <code>If</code> and <code>Default</code>: its tasks (<code>Task</code>, <code>Do</code>, <code>SyncTask</code>,\nthe delays and waits) and sub-stages, its policy (<code>WhenAll</code>, <code>WhenAny</code>, <code>WhenN</code>), its repeats,\ntime limits and conditions, the injections it allows, whether it's critical, its name, and its handlers,\n<code>OnInit</code>, <code>OnRepeat</code>, <code>OnTimeout</code>, <code>OnTerminate</code> and the rest.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13379,7 +13379,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StartingItemContainer",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StartingItemContainer.yml\" sourcestartlinenumber=\"1\">One of an entity's Starting Items: the item, given as the entity's GAS initializes, and whether it's equipped as\nit's given.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13393,7 +13393,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.StaticTargetingPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.StaticTargetingPacket.yml\" sourcestartlinenumber=\"1\">A targeting packet that holds its own position, rotation and scale, set as it's made and changed only through\nit: a point a click picked, a runtime entity's place, which whoever drives the entity keeps current, or a\nsnapshot of a transform, or of another packet, whose entity, transform and direction it keeps.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13491,7 +13491,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SyncedTaskSequence.ERunnerState",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SyncedTaskSequence.ERunnerState.yml\" sourcestartlinenumber=\"1\">Where a synced runner is, as its <code>State</code> says: <code>Ready</code>, built or reset and not stepped since;\n<code>Running</code>; <code>Completed</code>, every stage done; or <code>Interrupted</code>. A step of a Completed or\nInterrupted runner does nothing and returns true, and a repeating runner goes back to Ready after each\nround.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13519,7 +13519,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SystemComponentData",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SystemComponentData.yml\" sourcestartlinenumber=\"1\">A target's ability system and attribute system, each found once, as its <code>ToGASComponentData</code> gives them; a\ngameplay mono process keeps its origin's source's so. Either is null where the target has none.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13533,7 +13533,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.SystemLevelsComponent",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SystemLevelsComponent.yml\" sourcestartlinenumber=\"1\">An entity's levels, each under a tag: its own, under its identity's asset tag, and each of its abilities' and\nitems', under theirs, registered as they're given. <code>TrySetLevel</code> and <code>TryModifyLevel</code> set or change\none, as a hub's <code>SetLevel</code> and <code>ModifyLevel</code> do, and its <code>Callbacks</code> hear each change; an effect\nthat reads a level reads it again as it changes. A hub's <code>LevelSystem</code> gives it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13561,7 +13561,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TagAttributePair",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TagAttributePair.yml\" sourcestartlinenumber=\"1\">A role and the attribute it reads on a gameplay mono process's origin: one row of the process's Attribute Pairs,\nas ProjectileSpeed read from the caster's Projectile Speed. The process's own attribute in that role comes first\n(<code>TryGetRole</code>).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13659,7 +13659,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TagRegistry.TagUtil",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TagRegistry.TagUtil.yml\" sourcestartlinenumber=\"1\">Makes the names of unique tags. <code>GenerateDeterministicTag</code> makes a tag of a prefix and a text, padded\nto a fixed length of 32 to 64 characters from their SHA-256 hash, or cut to it, so the same text always\ngives the same tag, which reads as the text; <code>Tag.GenerateAsUnique</code> makes its tags so.\n<code>GenerateUniqueRandomTag</code> makes a random name that no registered tag has.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13687,7 +13687,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TagWeightValidation",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TagWeightValidation.yml\" sourcestartlinenumber=\"1\">A check that compares the checked entity's weight of its <code>Tag</code> with <code>Weight</code>, read at the ability's\nlevel, by <code>Comparison</code>, as combo points or stacks; an entity without the tag holds it at 0. Either list\noffers it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13715,7 +13715,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TagWorkerRequirementPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TagWorkerRequirementPacket.yml\" sourcestartlinenumber=\"1\">One of a tag worker's requirements: a tag, whether the entity must carry it, Require, or must not, Avoid, and\nthe weight that decides, read at the entity's level. Require holds while the tag's weight is at least\n<code>RequiredWeight</code>; Avoid while it's below.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13729,7 +13729,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TagWorkerRequirements",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TagWorkerRequirements.yml\" sourcestartlinenumber=\"1\">A tag worker's requirements: its packets, each a tag and a weight the entity's must reach or stay under. The\nworker is active while every packet holds, and always where it has none.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13827,7 +13827,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TargetAttributeThresholdEffectWorker",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TargetAttributeThresholdEffectWorker.yml\" sourcestartlinenumber=\"1\">The base of an effect worker that acts on each hit of its effect where an attribute meets a threshold:\n<code>TargetAttribute</code> on its context's System, which for a hit is the dealer, the effect's caster, its Current,\nits Base or both as <code>Target</code> says, compared with <code>Threshold</code> by <code>Policy</code>. Derive from it and\noverride <code>OnThresholdMet</code> for the actions it queues; <code>CanCompare</code> and <code>MeetsThreshold</code> can be\noverridden too.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13841,7 +13841,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TargetingPacket",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TargetingPacket.yml\" sourcestartlinenumber=\"1\">A targeting packet that follows a <code>Transform</code>: its position, rotation and scale are the transform's, read\nas they're asked for, and setting them moves it. The <code>GameplayAbilitySystem</code> component's\n<code>GetTargetingPacket</code> gives one on its own transform, with itself as the target.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -14177,7 +14177,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.TextureItem",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.TextureItem.yml\" sourcestartlinenumber=\"1\">One of an asset's Textures: a texture under a tag of the Texture Slot context. The texture under Primary is the\nasset's icon, and with none there, the first texture is.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -14205,7 +14205,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.ThresholdDebuggerEffectWorker",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ThresholdDebuggerEffectWorker.yml\" sourcestartlinenumber=\"1\">An effect worker for debugging: on each hit of its effect where its threshold is met, as\n<code>TargetAttributeThresholdEffectWorker</code> checks it, it queues an action that logs so, with the effect's spec,\nthrough ForgeLog at Info.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -14359,7 +14359,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.UnityEventAbilityTask",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.UnityEventAbilityTask.yml\" sourcestartlinenumber=\"1\">A stage task that invokes its <code>Events</code>, each <code>UnityEvent</code> in turn, and ends at once.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -15152,6 +15152,196 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/editor/build-verification.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/build-verification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/editor-helpers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/editor-helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/fields-and-drawers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/fields-and-drawers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/forge-projects.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/forge-projects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/import-and-clear.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/import-and-clear.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/inspectors.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/inspectors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/menus-and-shortcuts.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/menus-and-shortcuts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/new-assets-and-presets.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/new-assets-and-presets.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/number-fields.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/number-fields.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/preferences-and-project-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/preferences-and-project-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/renaming-duplicating-and-deleting.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/renaming-duplicating-and-deleting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/spreadsheets.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/spreadsheets.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/templates.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/templates.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/the-creator-lab.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/the-creator-lab.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/the-debugger.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/the-debugger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/the-forge.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/the-forge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/the-problems-view-and-validation.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/the-problems-view-and-validation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/editor/the-tags-view.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/editor/the-tags-view.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/effect-pipeline/1-the-model-in-one-page.md",
       "output": {
         ".html": {
@@ -15536,6 +15726,236 @@
       "output": {
         ".html": {
           "relative_path": "guides/entities/workers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/a-games-own-objects.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/a-games-own-objects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/ability-tasks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/ability-tasks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/before-you-start.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/before-you-start.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/components.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/cue-handlers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/cue-handlers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/deferred-actions.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/deferred-actions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/entity-services.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/entity-services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/processes.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/processes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/readers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/readers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/saving-a-games-own-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/saving-a-games-own-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/scalers-number-kinds-and-conditions.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/scalers-number-kinds-and-conditions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/sequence-tasks-injections-and-stage-policies.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/sequence-tasks-injections-and-stage-policies.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/smaller-kinds.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/smaller-kinds.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/tags-in-code.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/tags-in-code.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/targeting-tasks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/targeting-tasks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/testing-your-extensions.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/testing-your-extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/the-creator-lab.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/the-creator-lab.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/the-editor.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/the-editor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/time-randomness-and-input.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/time-randomness-and-input.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/validation-rules.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/validation-rules.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/value-stages.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/value-stages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/extending/workers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/extending/workers.html"
         }
       },
       "version": ""
@@ -16082,6 +16502,216 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/services/chance.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/chance.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/clocks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/clocks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/entity-services.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/entity-services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/fixed-ticks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/fixed-ticks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/forgehelper.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/forgehelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/lists.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/lists.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/log-levels.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/log-levels.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/logging.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/logging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/packet-helpers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/packet-helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/picking-a-clock-in-an-inspector.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/picking-a-clock-in-an-inspector.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/pointer-input.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/pointer-input.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/process-and-sequence-logs.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/process-and-sequence-logs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/profiling.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/profiling.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/random-numbers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/random-numbers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/repeatable-runs.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/repeatable-runs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/sign-and-math-policies.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/sign-and-math-policies.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/the-attribute-registry.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/the-attribute-registry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/time-and-rolls-in-tests.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/time-and-rolls-in-tests.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/time.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/time.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/services/which-clock-a-run-takes.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/services/which-clock-a-run-takes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/spreadsheets/index.md",
       "output": {
         ".html": {
@@ -16116,6 +16746,186 @@
       "output": {
         ".html": {
           "relative_path": "guides/spreadsheets/reading-a-sheet-back.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/conditions-and-checks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/conditions-and-checks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/contexts.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/contexts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/crowd-control.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/crowd-control.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/hearing-tags-change.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/hearing-tags-change.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/how-an-entity-holds-tags.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/how-an-entity-holds-tags.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/playforges-own-tags.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/playforges-own-tags.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/querying-tags.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/querying-tags.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/requirements.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/requirements.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/tag-field-attributes.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/tag-field-attributes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/tag-workers.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/tag-workers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/tags-written-in-code.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/tags-written-in-code.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/the-editors-tag-registry.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/the-editors-tag-registry.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/the-tag-field.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/the-tag-field.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/the-tag-library.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/the-tag-library.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/the-tags-view.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/the-tags-view.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/traps.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/traps.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/tags/what-a-tag-is.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/tags/what-a-tag-is.html"
         }
       },
       "version": ""

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Value stages | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Value stages | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.value-stages">
+<h1 id="value-stages">Value stages</h1>
+
+<p>A value stage reshapes a hit's value on its way to its attribute, one of a Value Pipeline's <strong>Stages</strong>, which an effect's
+impact names as its <strong>Pipeline</strong> (<a href="../value-pipelines/stages.html">Value Pipelines: Stages</a>). This section covers writing one.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractValueStage.html"><code>AbstractValueStage</code></a>:</p>
+<ul>
+<li><code>float Apply(float value, in ValueRun run)</code>: the value it passes on. A loss is negative.</li>
+<li><code>Describe()</code>: what it does, as &quot;× 1.5&quot;, which the pipeline's line and a breakdown show; its <strong>Label</strong> replaces it.</li>
+<li><strong>Label</strong> and <strong>Enabled</strong>: every stage's; off, the value passes it by.</li>
+</ul>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ValueRun.html"><code>ValueRun</code></a> holds <code>Carrier</code>, the hit's effect spec; <code>Context</code>, the hit's <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a>, its caster, its target and its
+level; <code>Breakdown</code>; and <code>Note(text)</code>, which notes what the stage did on its step in the breakdown, as &quot;critical&quot;.</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+using ForgeAttribute = FarEmerald.PlayForge.Attribute;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Shrinks a loss by the armor of the one hit: as much armor as its Halves halves it.&quot;)]
+    public class ArmorStage : AbstractValueStage
+    {
+        [Tooltip(&quot;The attribute that is the armor of the one hit&quot;)]
+        public ForgeAttribute Armor;
+
+        [Tooltip(&quot;The armor that halves a loss, read for the hit&quot;)]
+        [NumberMin(1f)] public ScalableFloat Halves = 100f;
+
+        public override float Apply(float value, in ValueRun run)
+        {
+            if (value &gt;= 0f || Armor == null || !run.Context.TryGetAttribute(NumberSide.Target, Armor, out var armor)) return value;
+            float halves = Mathf.Max(1f, Halves?.Evaluate(in run.Context, this) ?? 100f);
+            float factor = halves / (halves + Mathf.Max(0f, armor.CurrentValue));
+            if (factor &lt; 1f) run.Note($&quot;{armor.CurrentValue:0} armor&quot;);
+            return value * factor;
+        }
+
+        public override string Describe() =&gt; $&quot;armor, {NumberText.Of(Halves)} halving a loss&quot;;
+    }
+}
+</code></pre>
+<p>A stage that stops an effect outright, as a block or a dodge, derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStopStage.html"><code>AbstractStopStage</code></a>, whose <strong>Chance</strong>,
+<strong>Roll</strong> and <strong>Stops</strong> every stop has. It names <code>StoppedEvent</code>, the event the one hit hears, <code>DealerEvent</code>, the one its
+dealer hears, and <code>Verb</code>, as &quot;blocked&quot;. The effect system honours every enabled stop in a pipeline, wherever it sits in
+the list: as the effect lands, the first stop that reaches it and rolls stops it.</p>
+<ul>
+<li><strong><code>Apply</code> runs for every hit</strong> through the pipeline: no allocation. <code>run.Note</code> with a constant string is free; one
+built with <code>$&quot;...&quot;</code>, as above, allocates only where it notes.</li>
+<li><strong>A stage is shared</strong> by every hit through its pipeline: it keeps nothing of one hit.</li>
+</ul>
+<hr>
+<p><a href="scalers-number-kinds-and-conditions.html">← Scalers, number kinds and conditions</a> · <a href="index.html">Extending PlayForge</a> · <a href="cue-handlers.html">Cue handlers →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

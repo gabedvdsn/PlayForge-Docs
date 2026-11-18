@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Process and sequence logs | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Process and sequence logs | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.services.process-and-sequence-logs">
+<h1 id="process-and-sequence-logs">Process and sequence logs</h1>
+
+<p>ProcessControl and task sequences have switches of their own that decide whether they say what they do, and most of what
+they say is information, which the level must let through to show.</p>
+<p><strong>ProcessControl</strong>, of the <strong>Processes</strong> system (<a href="../processes/logging.html">Processes: Logging</a>):</p>
+<ul>
+<li><strong>Output Logs</strong>, off by default, logs each process registered and unregistered, the scene's processes it collects as
+it starts and the hierarchy it makes of them, and, as a warning, a change of state its rules don't cover.</li>
+<li><strong>Detailed Logs</strong>, on by default, adds to those while Output Logs is on: each process's handler, each process
+collected, and each process's state as it's queued, set and forced.</li>
+<li>A world of its own has the same switches, <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html#FarEmerald_PlayForge_ProcessWorld_OutputLogs"><code>ProcessWorld.OutputLogs</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html#FarEmerald_PlayForge_ProcessWorld_DetailedLogs"><code>ProcessWorld.DetailedLogs</code></a>; a scene's world's
+are its ProcessControl's.</li>
+</ul>
+<p><strong>Sequences</strong>, of the <strong>Sequences</strong> system (<a href="../task-sequences/logging.html">Task Sequences: Logging</a>):</p>
+<ul>
+<li>A run that fails is logged as an error, with what it threw, unless its sequence's <code>WithErrorLogging(false)</code> says
+otherwise; a stage whose <code>OnException</code> hears a throw and lets it on logs it too, unless the stage's
+<code>WithErrorLogging(false)</code> says otherwise. A handler that throws, as an <code>OnComplete</code>, is logged as an error.</li>
+<li><code>WithInjectionLogging(true)</code>, on a sequence or a stage, logs each injection as it's applied: its kind, where it came
+from and the stage.</li>
+<li>A chain's <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceChain.html#FarEmerald_PlayForge_TaskSequenceChain_WithLogging_"><code>WithLogging(true)</code></a> logs its progress: each sequence it starts, finishes or skips, the conditions that fire,
+its repeats and its interruptions.</li>
+</ul>
+<p><strong>Debug tools</strong> say what they find as information too: <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogWeights_"><code>TagCache.LogWeights()</code></a>, of <strong>Tags</strong>; the Threshold Debugger
+effect worker, <a class="xref" href="../../api/FarEmerald.PlayForge.ThresholdDebuggerEffectWorker.html"><code>ThresholdDebuggerEffectWorker</code></a>, of <strong>Workers</strong>; and a queued <a class="xref" href="../../api/FarEmerald.PlayForge.LogAction.html"><code>LogAction</code></a>, of <strong>General</strong>.</p>
+<hr>
+<p><a href="log-levels.html">← Log levels</a> · <a href="index.html">Time, Input and Logging</a> · <a href="profiling.html">Profiling →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

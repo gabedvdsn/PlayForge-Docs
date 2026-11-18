@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Profiling | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Profiling | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.services.profiling">
+<h1 id="profiling">Profiling</h1>
+
+<p>PlayForge's work shows in Unity's Profiler: markers that time it, counters that say how much of it there is, and each
+recorded frame's costliest processes (<a href="../getting-started/profiling.html">Getting Started: Profiling</a>).</p>
+<h2 id="markers">Markers</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html"><code>ForgeProfiler</code></a> holds PlayForge's markers, each a sample in the Profiler's Scripts category:</p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th><code>ForgeProfiler</code></th>
+<th>What it times</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayForge.Update</code>, <code>PlayForge.LateUpdate</code>, <code>PlayForge.FixedUpdate</code></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepUpdate"><code>StepUpdate</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepLateUpdate"><code>StepLateUpdate</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepFixedUpdate"><code>StepFixedUpdate</code></a></td>
+<td>The step loop at each timing: each process that steps then, in step order</td>
+</tr>
+<tr>
+<td><code>PlayForge.ProcessStep</code></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_ProcessStep"><code>ProcessStep</code></a></td>
+<td>One process's step</td>
+</tr>
+<tr>
+<td><code>PlayForge.Step.</code> and the process's type's name</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepOf_"><code>StepOf(type)</code></a></td>
+<td>The same step under its type's own marker, inside <code>PlayForge.ProcessStep</code>, with the process's ID as its metadata; made the first time a process of the type steps</td>
+</tr>
+<tr>
+<td><code>PlayForge.GASStep</code></td>
+<td><code>GASStep</code></td>
+<td>A GAS's step: its clock, its effects' ticks, its abilities' While Active checks, its input buffer, its services, its turn and its barriers</td>
+</tr>
+<tr>
+<td><code>PlayForge.EndOfFrame</code></td>
+<td><code>EndOfFrame</code></td>
+<td>A GAS's end of frame: its queued actions, its tag and analysis workers, and its frame's summary</td>
+</tr>
+<tr>
+<td><code>PlayForge.ApplyEffect</code></td>
+<td><code>ApplyEffect</code></td>
+<td>An effect's application, its contained effects' inside it</td>
+</tr>
+<tr>
+<td><code>PlayForge.ActivateAbility</code></td>
+<td><code>ActivateAbility</code></td>
+<td>An ability's activation, up to the first of its tasks that waits</td>
+</tr>
+<tr>
+<td><code>PlayForge.TagCompile</code></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_TagCompile"><code>TagCompile</code></a></td>
+<td>A GAS's tag compile: its tags rebuilt from their sources</td>
+</tr>
+<tr>
+<td><code>PlayForge.Recompute</code></td>
+<td><code>Recompute</code></td>
+<td>An attribute's recompute, from its root through its modifiers to its bounds</td>
+</tr>
+<tr>
+<td><code>PlayForge.Stage</code></td>
+<td><code>Stage</code></td>
+<td>A sequence stage's start, an ability's among them: its tasks, up to the first that waits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="counters">Counters</h2>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html"><code>ForgeCounters</code></a> holds PlayForge's counters, in the Profiler's PlayForge category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_CategoryName"><code>ForgeCounters.CategoryName</code></a>, and
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_Category"><code>ForgeCounters.Category</code></a>). A level holds until it changes. A frame's count starts from 0 each frame, and counts every
+world's work in the frame.</p>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th><code>ForgeCounters</code></th>
+<th>Kind</th>
+<th>What it counts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processes Running</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_ProcessesRunning"><code>ProcessesRunning</code></a></td>
+<td>Level</td>
+<td>The scene's processes running, as its ProcessControl's LateUpdate loop last ended</td>
+</tr>
+<tr>
+<td>Processes Waiting</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_ProcessesWaiting"><code>ProcessesWaiting</code></a></td>
+<td>Level</td>
+<td>The scene's processes waiting</td>
+</tr>
+<tr>
+<td>Processes Created</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_ProcessesCreated"><code>ProcessesCreated</code></a></td>
+<td>Level</td>
+<td>The processes the scene's ProcessControl has taken</td>
+</tr>
+<tr>
+<td>Registrations</td>
+<td><code>Registrations</code></td>
+<td>Per frame</td>
+<td>Processes registered</td>
+</tr>
+<tr>
+<td>Terminations</td>
+<td><code>Terminations</code></td>
+<td>Per frame</td>
+<td>Processes unregistered as they ended</td>
+</tr>
+<tr>
+<td>Steps</td>
+<td><code>Steps</code></td>
+<td>Per frame</td>
+<td>Process steps, one for each process at each timing it steps in</td>
+</tr>
+<tr>
+<td>State Changes</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_StateChanges"><code>StateChanges</code></a></td>
+<td>Per frame</td>
+<td>Processes' changes of state</td>
+</tr>
+<tr>
+<td>Step Time</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_StepTime"><code>StepTime</code></a></td>
+<td>Per frame</td>
+<td>The time in the step loops, every timing's, in nanoseconds</td>
+</tr>
+<tr>
+<td>Mono Entities</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_MonoEntities"><code>MonoEntities</code></a></td>
+<td>Level</td>
+<td>The MonoBehaviour entities running, GameRoot left out</td>
+</tr>
+<tr>
+<td>Runtime Entities</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_RuntimeEntities"><code>RuntimeEntities</code></a></td>
+<td>Level</td>
+<td>The runtime entities running, in every world</td>
+</tr>
+<tr>
+<td>Effects Active</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_EffectsActive"><code>EffectsActive</code></a></td>
+<td>Level</td>
+<td>The effects on the entities' shelves, as each last stepped</td>
+</tr>
+<tr>
+<td>Effects Applied</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_EffectsApplied"><code>EffectsApplied</code></a></td>
+<td>Per frame</td>
+<td>Effect applications, a contained effect's among them</td>
+</tr>
+<tr>
+<td>Effects Removed</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_EffectsRemoved"><code>EffectsRemoved</code></a></td>
+<td>Per frame</td>
+<td>Effects taken off a shelf</td>
+</tr>
+<tr>
+<td>Impacts</td>
+<td><code>Impacts</code></td>
+<td>Per frame</td>
+<td>Impacts, as each entity received them</td>
+</tr>
+<tr>
+<td>Activations</td>
+<td><code>Activations</code></td>
+<td>Per frame</td>
+<td>Ability activations</td>
+</tr>
+<tr>
+<td>Refused Activations</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_RefusedActivations"><code>RefusedActivations</code></a></td>
+<td>Per frame</td>
+<td>Refused activations, as each was told</td>
+</tr>
+<tr>
+<td>Tag Compiles</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_TagCompiles"><code>TagCompiles</code></a></td>
+<td>Per frame</td>
+<td>Tag compiles</td>
+</tr>
+<tr>
+<td>Recomputes</td>
+<td><code>Recomputes</code></td>
+<td>Per frame</td>
+<td>Attribute recomputes</td>
+</tr>
+<tr>
+<td>Sequences Running</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_SequencesRunning"><code>SequencesRunning</code></a></td>
+<td>Level</td>
+<td>The sequences running, an ability's among them</td>
+</tr>
+<tr>
+<td>Stages Started</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html#FarEmerald_PlayForge_ForgeCounters_StagesStarted"><code>StagesStarted</code></a></td>
+<td>Per frame</td>
+<td>Sequence stages started</td>
+</tr>
+</tbody>
+</table>
+<p>Two Profiler modules chart them, turned on in the Profiler window's list of modules: <strong>PlayForge Processes</strong> charts the
+process and sequence counters, and <strong>PlayForge GAS</strong> the rest.</p>
+<h2 id="the-costliest-processes">The costliest processes</h2>
+<p>While the Profiler records, each frame's costliest processes go into its capture as the frame's metadata, so a saved
+capture keeps them, and the <strong>PlayForge Processes</strong> module's details list the selected frame's: each process's ID, its
+type and the time its steps took. The scene's ProcessControl puts them in as its frame ends.</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFrameCosts.html#FarEmerald_PlayForge_ForgeFrameCosts_Most"><code>ForgeFrameCosts.Most</code></a>, 10, is how many a frame keeps. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFrameCosts.html#FarEmerald_PlayForge_ForgeFrameCosts_LastFrame"><code>ForgeFrameCosts.LastFrame</code></a> is the last recorded frame's, the
+costliest first, each a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProcessCost.html"><code>ForgeProcessCost</code></a>: its <code>Process</code>, the process's ID, and the <code>Nanoseconds</code> its steps took in
+the frame, every timing's.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFrameCosts.html#FarEmerald_PlayForge_ForgeFrameCosts_Recording"><code>ForgeFrameCosts.Recording</code></a> says whether this frame's steps are timed: whether the Profiler recorded as the last frame
+ended. While it doesn't, nothing is timed for them.</li>
+<li>A tool of your own reads them from a frame's data as the module does: the costs under the ID
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFrameCosts.html#FarEmerald_PlayForge_ForgeFrameCosts_MetaDataId"><code>ForgeFrameCosts.MetaDataId</code></a> and the tag <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeFrameCosts.html#FarEmerald_PlayForge_ForgeFrameCosts_Tag"><code>ForgeFrameCosts.Tag</code></a>, and the type's name of the cost at <code>i</code>, in UTF-8,
+under the tag <code>ForgeFrameCosts.Tag + 1 + i</code>.</li>
+</ul>
+<h2 id="reading-them-in-code">Reading them in code</h2>
+<p>A <code>ProfilerRecorder</code> reads a marker or a counter by its name, in the editor or in a development build; Unity compiles
+them out of a release build.</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge;
+using Unity.Profiling;
+using UnityEngine;
+
+// The effects applied each frame, and the time PlayForge's Update loop took, on screen in a development build
+public class ForgeStats : MonoBehaviour
+{
+    private ProfilerRecorder applied, update;
+
+    private void OnEnable()
+    {
+        applied = ProfilerRecorder.StartNew(ForgeCounters.Category, &quot;Effects Applied&quot;);
+        update = ProfilerRecorder.StartNew(ProfilerCategory.Scripts, &quot;PlayForge.Update&quot;);
+    }
+
+    private void OnDisable()
+    {
+        applied.Dispose();
+        update.Dispose();
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label($&quot;Effects applied: {applied.LastValue}&quot;);
+        GUILayout.Label($&quot;PlayForge.Update: {update.LastValue / 1e6:0.00} ms&quot;);
+    }
+}
+</code></pre>
+<hr>
+<p><a href="process-and-sequence-logs.html">← Process and sequence logs</a> · <a href="index.html">Time, Input and Logging</a> · <a href="entity-services.html">Entity services →</a></p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AbstractMonoProcessInstantiator | PlayForge ">
       
-      
+      <meta name="description" content="What makes a mono process&#39;s object and takes it back, as a pool hands out an idle object and keeps it again as its process ends. Derive from it and override PrepareNew, which makes or hands out an object of the prefab registered, PrepareExisting, which readies one already in a scene, and CleanProcess, which takes the object back as its process ends. A registration&#39;s InstantiatedBy, a process&#39;s own Instantiator or its handler&#39;s gives one; with none, the object is cloned and destroyed.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,10 +97,15 @@ Class AbstractMonoProcessInstantiator
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>What makes a mono process's object and takes it back, as a pool hands out an idle object and keeps it again as
+its process ends. Derive from it and override <code>PrepareNew</code>, which makes or hands out an object of the
+prefab registered, <code>PrepareExisting</code>, which readies one already in a scene, and <code>CleanProcess</code>, which
+takes the object back as its process ends. A registration's <code>InstantiatedBy</code>, a process's own
+<code>Instantiator</code> or its handler's gives one; with none, the object is cloned and destroyed.</p>
+</div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/registering-one.html">Processes: Registering one</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/processes/registering-one.html">Processes: Registering one</a> · <a class="xref" href="../guides/editor/fields-and-drawers.html">The Editor Tools: Fields and drawers</a> · <a class="xref" href="../guides/extending/processes.html">Extending PlayForge: Processes</a></p>
 </div>
 
   <div class="codewrapper">
