@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Asset Part | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Asset Part | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.a-magnitude-field.asset-part">
+<h1 id="asset-part">Asset Part</h1>
+
+<p><strong>Asset Part</strong> finds effects, abilities or items on the caster or the target by a tag, and reads a part of them.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What</strong></td>
+<td>What it looks for: effects on the entity, abilities it knows, or items it holds.</td>
+</tr>
+<tr>
+<td><strong>Tagged</strong></td>
+<td>The tag they carry. A tag under the one given matches too.</td>
+</tr>
+<tr>
+<td><strong>On</strong></td>
+<td>Whose: the caster's or the target's.</td>
+</tr>
+<tr>
+<td><strong>Effect Part</strong>, <strong>Ability Part</strong>, <strong>Item Part</strong></td>
+<td>What it reads of each one it finds (below). Each shows only for its kind of asset.</td>
+</tr>
+<tr>
+<td><strong>Worker Key</strong></td>
+<td>For an effect's Worker Value, the key it asks that effect's workers for.</td>
+</tr>
+<tr>
+<td><strong>Among</strong></td>
+<td>How several that match read as one: their Sum, the First, the Highest or the Lowest.</td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td>What a part other than a count reads where none matches.</td>
+</tr>
+</tbody>
+</table>
+<p>An effect matches by its asset tag, a context tag or a tag it grants. An ability or an item matches by its asset tag
+or a context tag.</p>
+<table>
+<thead>
+<tr>
+<th>Of an</th>
+<th>The parts it reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Effect</strong></td>
+<td>Count, Stacks, Level, Last Impact, Total Impact, Impact Count, Duration Remaining, Duration, Time Until Tick, or a Worker Value: what that effect's workers answer under a key</td>
+</tr>
+<tr>
+<td><strong>Ability</strong></td>
+<td>Count, Level, Is Active, Is on Cooldown, or Cooldown Remaining</td>
+</tr>
+<tr>
+<td><strong>Item</strong></td>
+<td>Count, Stacks, Level, or Is Equipped</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A true-or-false part reads 1 or 0, so its sum is how many are so.</li>
+<li>Where none matches, a count reads 0, and any other part the <strong>Default</strong>.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -88,21 +88,25 @@
 <h1 id="value-pipelines">Value Pipelines</h1>
 
 <p>A <strong>Value Pipeline</strong> is an asset that takes a value as it lands, sends it through ordered stages, and gives what comes
-out. An effect's impact names one as its calculation, as an Unreal effect names its execution calculation: each
-hit of that impact goes through the pipeline's stages, so a project writes once how a hit's damage is worked out, and a
-new item that changes every hit is a stage, not an edit to each attack.</p>
-<p>It's generic: the value is any number an impact lands with, a blow, a heal, a drain. Create one from
-<strong>Create &gt; PlayForge &gt; Value Pipeline</strong>, or with <strong>New</strong> beside an impact's Pipeline field, which makes one named for
-the effect and uses it; once the field names one, <strong>Open</strong> shows it. A Crowd Control Rules or Effect Modifier
-field has the same two.</p>
+out.</p>
+<p>An effect's impact names one as its calculation, as an Unreal effect names its execution calculation. Each hit of that
+impact goes through the pipeline's stages. So a project writes once how a hit's damage is worked out, and a new item
+that changes every hit is a stage, not an edit to each attack.</p>
+<p>It's generic: the value is any number an impact lands with, a blow, a heal, a drain.</p>
+<p>You create one in either of two ways:</p>
+<ul>
+<li>From <strong>Create &gt; PlayForge &gt; Value Pipeline</strong>.</li>
+<li>With <strong>New</strong> beside an impact's Pipeline field, which makes one named for the effect and uses it.</li>
+</ul>
+<p>Once the field names one, <strong>Open</strong> shows it. A Crowd Control Rules or Effect Modifier field has the same two buttons.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="not-a-scaler-asset.html">Not a Scaler asset</a>: A <strong>Scaler asset</strong> is a number worked out from its context: a level table, × an attribute, a condition.</li>
-<li><a href="when-it-runs.html">When it runs</a>: It runs for what an impact commits: an instant impact's hit, and each tick of a periodic one.</li>
-<li><a href="stages.html">Stages</a>: Each stage has a <strong>Label</strong>, the name a breakdown gives it, and <strong>Enabled</strong>, which lets the value pass it by.</li>
-<li><a href="a-typical-damage-pipeline.html">A typical damage pipeline</a>: <strong>Amplification</strong>: Multiply by the caster's Damage Amplification (a Bonus Share, read as 1 + x).</li>
+<li><a href="not-a-scaler-asset.html">Not a Scaler asset</a>: A Value Pipeline and a Scaler asset both give numbers, but they work differently.</li>
+<li><a href="when-it-runs.html">When it runs</a>: A pipeline runs for what an impact commits: an instant impact's hit, and each tick of a periodic one.</li>
+<li><a href="stages.html">Stages</a>: A pipeline's stages take the value in order, each giving what goes on to the next.</li>
+<li><a href="a-typical-damage-pipeline.html">A typical damage pipeline</a>: A typical damage pipeline has five stages</li>
 <li><a href="the-breakdown.html">The breakdown</a>: An effect's spec keeps its last run as a <strong>Breakdown</strong>: the value in, each stage's before and after with its note, and the value out.</li>
-<li><a href="trying-a-pipeline.html">Trying a pipeline</a>: A Value Pipeline's inspector has a <strong>Try</strong> section under its stages, which puts a value through them at each level of a range, as a Scaler asset's Try reads a scaler</li>
+<li><a href="trying-a-pipeline.html">Trying a pipeline</a>: A Value Pipeline's inspector has a <strong>Try</strong> section under its stages.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

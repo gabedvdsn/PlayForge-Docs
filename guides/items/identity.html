@@ -87,33 +87,86 @@
         <article data-uid="guide.items.identity">
 <h1 id="identity">Identity</h1>
 
-<ul>
-<li><strong>Name</strong>: the item's display name. It also gives the asset tag, so renaming the item changes its tag. Update anything
-that names the old tag.</li>
-<li><strong>Description</strong>: free text for your UI.</li>
-<li><strong>Asset Tag</strong>: read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined. The
-tag is stored when you edit the Name, and the inspector header shows it after the item's type. If the stored tag
-differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that stores the new one.</li>
-<li><strong>Visibility</strong>: a tag your UI can read for filtering, such as <code>Always Visible</code> or <code>Not Visible</code>. The Forge lists it.
-The runtime doesn't act on it.</li>
-<li><strong>Textures</strong>: icons, each paired with a tag. The texture tagged <code>Primary</code> is the item's icon. Without one, the first
-texture is used.</li>
-<li><strong>Max Stack Size</strong>: how many of the item one inventory slot holds, a number field read at the item's level,
-as <a class="xref" href="../../api/FarEmerald.PlayForge.ItemDefinition.html#FarEmerald_PlayForge_ItemDefinition_StackSizeOf_"><code>StackSizeOf(spec)</code></a> reads it. 1 or less, and each is a slot of its own.</li>
-</ul>
+<p>The Identity section names the item, shows its asset tag, and sets how many of it one inventory slot holds.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The item's display name, which also gives the asset tag. Renaming the item changes its tag, so update anything that names the old tag.</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Free text for your UI.</td>
+</tr>
+<tr>
+<td><strong>Asset Tag</strong></td>
+<td>Read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined.</td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td>A tag your UI can read for filtering, such as <code>Always Visible</code> or <code>Not Visible</code>. The Forge lists it, and the runtime doesn't act on it.</td>
+</tr>
+<tr>
+<td><strong>Max Stack Size</strong></td>
+<td>How many of the item one inventory slot holds: a number field read at the item's level, as <a class="xref" href="../../api/FarEmerald.PlayForge.ItemDefinition.html#FarEmerald_PlayForge_ItemDefinition_StackSizeOf_"><code>StackSizeOf(spec)</code></a> reads it. At 1 or less, each is a slot of its own.</td>
+</tr>
+<tr>
+<td><strong>Textures</strong></td>
+<td>Icons, each paired with a tag. The texture tagged <code>Primary</code> is the item's icon; without one, the first texture is used.</td>
+</tr>
+</tbody>
+</table>
+<p>The asset tag is stored when you edit the Name, and the inspector header shows it after the item's type. If the stored
+tag differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that stores the new one.</p>
 <p>Whether an inventory may hold an item more than once is the entity's choice, through its <strong>Allow Duplicate Items</strong>
 setting (see <a href="../entities/index.html">Entities</a>).</p>
 <h2 id="stacking">Stacking</h2>
-<p>A give fills the item's stack first, up to its Max Stack Size, and takes no new slot. A full stack opens another
-only with Allow Duplicate Items on; without it, what doesn't fit isn't taken. <code>ItemSystemComponent.GiveItem(item, count)</code> takes what fits and returns how many it took, and <code>GiveItem(item, out index)</code> gives one, into the stack if
-there's room. <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_RemoveItem_"><code>RemoveItem(item, count)</code></a> takes stacks off, from the last slot first, and a slot whose last stack comes
-off goes; <code>RemoveItem(item)</code> still takes the whole slot. A slot's count is its container's <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSpecContainer.html#FarEmerald_PlayForge_ItemSpecContainer_ItemStacks"><code>ItemStacks</code></a>.</p>
-<p>A stack applies its effects and its ability once. An <strong>Item Stacks</strong> scaler reads the count of the item that applied
-the effect, so a magnitude of 5 with Multiply With Scaler grants +5 a stack. As the count changes, an equipped
-item's effects read it again. An effect that reads an item's stacks where no item in the project applies it reads 1, and
-the Problems view says so.</p>
-<hr>
-<p><a href="index.html">← Items</a> · <a href="index.html">Items</a> · <a href="leveling.html">Leveling →</a></p>
+<p>An item stacks in one inventory slot, up to its Max Stack Size.</p>
+<ul>
+<li>A give fills the item's stack first, up to its Max Stack Size, and takes no new slot.</li>
+<li>A full stack opens another only with Allow Duplicate Items on. Without it, what doesn't fit isn't taken.</li>
+<li>A slot's count is its container's <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSpecContainer.html#FarEmerald_PlayForge_ItemSpecContainer_ItemStacks"><code>ItemStacks</code></a>.</li>
+</ul>
+<p>Code gives and takes stacks through the entity's item system:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_GiveItem_"><code>ItemSystemComponent.GiveItem(item, count)</code></a></td>
+<td>Takes what fits, and returns how many it took.</td>
+</tr>
+<tr>
+<td><code>GiveItem(item, out index)</code></td>
+<td>Gives one, into the stack if there's room.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_RemoveItem_"><code>RemoveItem(item, count)</code></a></td>
+<td>Takes stacks off, from the last slot first. A slot whose last stack comes off goes.</td>
+</tr>
+<tr>
+<td><code>RemoveItem(item)</code></td>
+<td>Still takes the whole slot.</td>
+</tr>
+</tbody>
+</table>
+<p>A stack applies its effects and its ability once.</p>
+<ul>
+<li>An <strong>Item Stacks</strong> scaler reads the count of the item that applied the effect. So a magnitude of 5 with Multiply
+With Scaler grants +5 a stack.</li>
+<li>As the count changes, an equipped item's effects read it again.</li>
+<li>An effect that reads an item's stacks where no item in the project applies it reads 1, and the Problems view says so.</li>
+</ul>
 
 </article>
 

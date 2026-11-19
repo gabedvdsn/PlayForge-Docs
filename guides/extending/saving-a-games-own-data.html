@@ -88,7 +88,8 @@
 <h1 id="saving-a-games-own-data">Saving a game's own data</h1>
 
 <p>A <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a> holds what PlayForge saves of an entity, and nothing of a game's own: a game saves its own data beside
-it. This section covers how, and what a save leaves out; <a href="../saving/index.html">Saving and Loading</a> covers saving and loading.</p>
+it.</p>
+<p>This section covers how, and what a save leaves out; <a href="../saving/index.html">Saving and Loading</a> covers saving and loading.</p>
 <p>A snapshot is plain serializable types, so a class of the game's own holds it with the rest:</p>
 <pre><code class="lang-csharp">using System;
 using FarEmerald.PlayForge;
@@ -128,11 +129,27 @@ namespace MyGame
 <code>Restoring</code> true (<a href="components.html">Components</a>).</li>
 </ul>
 <p>An asset made at run time, or one of the game's own a save names, goes in the catalog with <code>catalog.Add(id, asset)</code>
-(<a href="../saving/the-asset-catalog.html">Saving and Loading: The Asset Catalog</a>). An effect from another entity is saved by that entity's id, through an
-<a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html"><code>IForgeEntityIds</code></a> the game gives <code>Capture</code> and <code>Restore</code>: <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html#FarEmerald_PlayForge_IForgeEntityIds_IdOf_"><code>IdOf(entity)</code></a> and <code>Find(id)</code>
-(<a href="../saving/effects-from-other-entities.html">Saving and Loading: Effects from other entities</a>).</p>
-<hr>
-<p><a href="time-randomness-and-input.html">← Time, randomness and input</a> · <a href="index.html">Extending PlayForge</a> · <a href="tags-in-code.html">Tags in code →</a></p>
+(<a href="../saving/the-asset-catalog.html">Saving and Loading: The Asset Catalog</a>).</p>
+<p>An effect from another entity is saved by that entity's id, through an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html"><code>IForgeEntityIds</code></a> the game gives <code>Capture</code> and
+<code>Restore</code> (<a href="../saving/effects-from-other-entities.html">Saving and Loading: Effects from other entities</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html#FarEmerald_PlayForge_IForgeEntityIds_IdOf_"><code>IdOf(entity)</code></a></td>
+<td>As <code>Capture</code> saves an effect from another entity: that entity's id, or null where it has none.</td>
+</tr>
+<tr>
+<td><code>Find(id)</code></td>
+<td>As <code>Restore</code> puts the effect back: the entity the id names, or null where there's none.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

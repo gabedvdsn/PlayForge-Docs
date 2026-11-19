@@ -87,66 +87,73 @@
         <article data-uid="guide.effects.duration">
 <h1 id="duration">Duration</h1>
 
-<p>The fields show as the Policy uses them.</p>
+<p>The Duration section sets how long the effect lasts, how it ticks, and what another application of it does. Its fields
+show as the Policy uses them.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Policy</strong></td>
+<td>Instant (default) makes the change once.<br>Durational stays for a set time.<br>Infinite stays until something removes it.</td>
+</tr>
+<tr>
+<td><strong>Duration</strong></td>
+<td>Durational only. The effect's length in seconds, with its scaler.</td>
+</tr>
+<tr>
+<td><strong>Periodic Ticks</strong></td>
+<td>Durational and Infinite. A tick makes the effect's change again, as a new commit.</td>
+</tr>
+<tr>
+<td><strong>Ticks</strong></td>
+<td>Durational, with Periodic Ticks. How many ticks fit in the duration, evenly spaced.</td>
+</tr>
+<tr>
+<td><strong>Tick Every</strong></td>
+<td>Infinite, with Periodic Ticks. The seconds between ticks.</td>
+</tr>
+<tr>
+<td><strong>Tick On Application</strong></td>
+<td>Durational and Infinite. Runs one tick as soon as the effect is applied, before the first periodic tick.</td>
+</tr>
+<tr>
+<td><strong>Additional Executions</strong></td>
+<td>While it ticks. Adds to the number of times each tick executes the change.</td>
+</tr>
+<tr>
+<td><strong>Real Delta Time</strong></td>
+<td>Durational only. With a scaler, combines the scaler and the frame time. Multiply With Scaler, for example, slows the clock down or speeds it up.</td>
+</tr>
+<tr>
+<td><strong>Delta Time Scaler</strong></td>
+<td>Durational only. Changes how fast the effect's clock runs. With no scaler, the clock follows Unity's frame time.</td>
+</tr>
+<tr>
+<td><strong>Re-application</strong></td>
+<td>Durational and Infinite. What happens when the effect is applied to a target that already has it.</td>
+</tr>
+<tr>
+<td><strong>Then</strong></td>
+<td>All but Add Another. What the old container does with its time as it takes in the application.</td>
+</tr>
+<tr>
+<td><strong>Stacking</strong>, <strong>Stack Behaviours</strong>, <strong>Stack Amount</strong></td>
+<td>Stack Existing only. How the stacks keep their time, the rules they follow, and how many each application adds.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Policy</strong>: Instant (default) makes the change once. Durational stays for a set time. Infinite stays until
-something removes it.</li>
-<li><strong>Duration</strong> (Durational): the effect's length in seconds, with its scaler.</li>
-<li><strong>Periodic Ticks</strong> (Durational and Infinite): a tick makes the effect's change again, as a new commit.
-<ul>
-<li><strong>Ticks</strong> (Durational): how many ticks fit in the duration, evenly spaced. The last falls as the duration ends, so
-5 ticks over 10 seconds tick every 2 seconds.</li>
-<li><strong>Tick Every</strong> (Infinite): the seconds between ticks.</li>
+<li><a href="duration/ticks.html">Ticks</a>: A tick makes a lasting effect's change again, as a new commit.</li>
+<li><a href="duration/re-application-durational-and-infinite.html">Re-application (Durational and Infinite)</a>: Re-application decides what happens when the effect is applied to a target that already has it.</li>
+<li><a href="duration/stacking-stack-existing-only.html">Stacking (Stack Existing only)</a>: Stacking sets how a Stack Existing effect's stacks keep their time, and how many stacks each application adds.</li>
+<li><a href="duration/moving-an-effect-to-another-entity.html">Moving an effect to another entity</a>: An effect on one entity can move to another, as a possession hands a body's effects over.</li>
 </ul>
-</li>
-<li><strong>Tick On Application</strong>: run one tick as soon as the effect is applied, before the first periodic tick. It runs
-again when re-application refreshes or extends the effect. Use it with Periodic Ticks. On its own, it is a shape that
-the Problems view flags.</li>
-<li><strong>Additional Executions</strong> (while it ticks): each tick executes the change a number of times, N plus this, combined
-with its scaler. N comes from the effect's container and is normally 1. A stacking container that shares one
-duration, or takes it from one stack, uses its stack count.</li>
-<li><strong>Real Delta Time</strong> and <strong>Delta Time Scaler</strong> (Durational) change how fast the effect's clock runs. With no scaler,
-the clock follows Unity's frame time. With one, Real Delta Time combines the two. Multiply With Scaler, for example,
-slows the clock down or speeds it up.</li>
-</ul>
-<p>A tick only executes while the While On requirements hold (see Requirements).</p>
-<h2 id="re-application-durational-and-infinite">Re-application (Durational and Infinite)</h2>
-<p>What happens when the effect is applied to a target that already has it. Each application on the shelf lives in a
-<em>container</em>. The effect is matched by its asset tag, whoever applied it.</p>
-<ul>
-<li><strong>Re-application</strong>: Add Another (default) adds a separate container, and both apply. Do Nothing adds nothing new.
-Replace Existing gives the old container the new application's values and modifiers, and keeps its stack count. Past
-commits stay. Stack Existing adds stacks to the old container (see Stacking).</li>
-<li><strong>Then</strong> (all but Add Another) applies as the old container takes in the application. Do Nothing (default) leaves its
-time alone. Refresh Duration restarts it. Extend Duration adds the new duration to it. Refresh and Extend also run
-Tick On Application again.</li>
-</ul>
-<h2 id="stacking-stack-existing-only">Stacking (Stack Existing only)</h2>
-<ul>
-<li><strong>Stacking</strong>: Stacks Share One Duration (default) runs one timer for all stacks, and adding a stack doesn't reset it.
-Stacks Have Independent Durations gives each stack its own timer and ticks. Stacks drop off one at a time, and the
-effect lasts as long as its longest stack. Duration Taken From One Stack runs one stack's timer at a time. Each time
-it runs out, one stack is lost and the timer restarts.</li>
-<li><strong>Stack Behaviours</strong>: optional stacking rules, such as Stack Bounds Config, which keeps the stack count between a
-Min and a Max, and Starting Stacks, the stacks a new effect starts with, each a number field read at the effect's
-level; Starting Stacks is one, where a number, a scaler, a combine and a rounding of its own were one written
-out. An application that would take the effect past the Max overflows: its Overflow Effects land, from
-the same origin, as a bleed's fourth stack hemorrhages, on the target or, with <strong>Overflow Lands On</strong> set to Caster,
-on its caster, as a frenzy; Deny Refresh On Overflow keeps that application from refreshing or extending the
-effect; and Clear Stacks On Overflow takes the effect's stacks off.</li>
-<li><strong>Stack Amount</strong>, with its scaler: the stacks each application adds. 0 counts as 1.</li>
-</ul>
-<p>A change reads the stack count through an <strong>Effect Stacks</strong> scaler (<a href="../scalers/index.html">Scalers</a>): a magnitude of −5 with
-Multiply With Scaler takes 5 a stack. A Continuous one updates whenever the count changes. A Periodic one lands once for
-each stack already, so one that reads its stacks counts them twice, 3 stacks hitting 9 times as hard as 1: the Problems
-view warns of it, and its quick fix, <strong>Count Stacks Once</strong>, gives the number one stack gives.</p>
-<h2 id="moving-an-effect-to-another-entity">Moving an effect to another entity</h2>
-<p><code>gas.GetEffectSystem().MoveTo(effect, other)</code> moves each of the effect's containers on the entity onto another, as a
-possession hands a body's effects over. Each keeps its stacks, its time left and what applied it. A move is neither
-a removal nor an application: none of either's workers, commits or contained effects run, and neither is told. Its
-lasting changes, its granted tags, the abilities it lends and its lasting cues go with it.</p>
-<hr>
-<p><a href="purging.html">← Purging</a> · <a href="index.html">Effects</a> · <a href="impact.html">Impact →</a></p>
 
 </article>
 

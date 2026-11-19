@@ -87,29 +87,14 @@
         <article data-uid="guide.task-sequences.changing-the-run">
 <h1 id="changing-the-run">Changing the run</h1>
 
-<p>From a task, through its data packet:</p>
-<pre><code class="lang-csharp">data.SkipStage();               // end this stage, on to the next
-data.SkipAndMaintain();         // on to the next, leaving this one's tasks running
-data.JumpToStage(&quot;Impact&quot;);     // or by index
-data.RestartSequence();
-data.BreakStageRepeat();
-data.Interrupt();               // end the run
-data.SetStageTimeout(2f);       // this stage gets two seconds, then it's skipped
-</code></pre>
-<p>From outside, through the sequence or its runtime: <code>Inject(injection)</code>, <code>Interrupt()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_SkipCurrentStage_"><code>SkipCurrentStage()</code></a>.</p>
-<p>By a condition, checked each frame: <code>InterruptWhen</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_SkipStageWhen_"><code>SkipStageWhen</code></a> on the sequence, <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SkipWhen_"><code>SkipWhen</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_StopRepeatWhen_"><code>StopRepeatWhen</code></a> on
-a stage, and <code>InjectWhen</code> for any injection. A condition fires once or every time it holds.</p>
-<p>A stage's condition is asked each frame by the process, so where a repeating stage's round ends, the next may have
-begun before <code>StopRepeatWhen</code> hears its predicate hold: a break from a task or from <code>OnRepeat</code> stops at the round
-exactly. <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html#FarEmerald_PlayForge_SequenceDataPacket_SkipAndMaintain_"><code>SkipAndMaintain</code></a> keeps the stage current as it's called running on; called again later, it keeps that later
-one. <code>InjectStageLocal(injection, stage)</code> asks the given stage's permissions, and the injection acts on the current
-stage.</p>
-<p>What may change a run is the sequence's to say: <code>AllowInjections(types)</code>, <code>AllowOnlyInterrupt()</code> and
-<code>DisallowInjections()</code>, on the sequence or a stage. A <strong>critical</strong> stage (<code>WithCriticalFlag(true)</code>) refuses every
-injection but those it names (<code>WithCriticalAllowedInjections</code>), and <code>OnCriticalSectionExited</code> hears the last critical
-stage end.</p>
-<hr>
-<p><a href="repeating.html">← Repeating</a> · <a href="index.html">Task Sequences</a> · <a href="time-limits-and-endings.html">Time limits and endings →</a></p>
+<p>You can change a run from one of its tasks, from outside, or by a condition, as far as the sequence allows.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="changing-the-run/from-a-task.html">From a task</a>: A task changes its run through its data packet.</li>
+<li><a href="changing-the-run/from-outside.html">From outside</a>: Code outside the run changes it through the sequence or its runtime.</li>
+<li><a href="changing-the-run/by-a-condition.html">By a condition</a>: A condition injects when its predicate holds, and is checked each frame.</li>
+<li><a href="changing-the-run/what-may-change-a-run.html">What may change a run</a>: What may change a run is the sequence's to say, on the sequence or on a stage.</li>
+</ul>
 
 </article>
 

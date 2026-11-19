@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Cost and Cooldown | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Cost and Cooldown | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.activation.cost-and-cooldown">
+<h1 id="cost-and-cooldown">Cost and Cooldown</h1>
+
+<p><strong>Cost</strong> and <strong>Cooldown</strong> are gameplay effects (<a href="../../effects/index.html">Effects</a>) that the ability applies to its caster. They
+apply as the ability starts, after its targeting, so a cancelled targeting pays nothing. A stage that takes them applies
+them instead (see <a href="../stages.html">Stages</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Usually an Instant effect that lowers a resource such as Mana.</td>
+</tr>
+<tr>
+<td><strong>Cooldown</strong></td>
+<td>Usually a Durational effect. While it is active, the caster carries its asset tag, and the Cooldown check refuses the ability.</td>
+</tr>
+<tr>
+<td><strong>Attribute Costs</strong></td>
+<td>Shown after Cost: what the ability spends of attributes as it's used, beside its Cost effect. See <a href="cost-and-cooldown.html#attribute-costs">Attribute Costs</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Each field has tools of its own:</p>
+<ul>
+<li>A line under each field says how its effect takes its levels. <strong>Link</strong> makes it take this ability's.</li>
+<li><strong>New</strong>, beside an empty field, makes an effect linked to this ability.</li>
+<li>If Project Settings → PlayForge names a Cost or Cooldown effect, the field's right-click menu copies it or uses it.</li>
+</ul>
+<h2 id="attribute-costs">Attribute Costs</h2>
+<p><strong>Attribute Costs</strong> are what the ability spends of attributes as it's used. They're paid as well as its Cost effect.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>The attribute it spends.</td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td>Where it names no attribute, a role whose attribute in the project it spends (<a href="../../attributes/roles.html">Attributes: Roles</a>).</td>
+</tr>
+<tr>
+<td><strong>Amount</strong></td>
+<td>How much it spends, a number that can scale by level.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The ability is refused with Cost while its caster has less than they come to, lacks the attribute, or no attribute
+plays the role.</li>
+<li>They're paid where a Cost is: as the ability starts, or as its stage applies usage.</li>
+<li>The section's line says them, as &quot;30 Mana&quot;.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

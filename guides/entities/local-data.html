@@ -87,17 +87,40 @@
         <article data-uid="guide.entities.local-data">
 <h1 id="local-data">Local Data</h1>
 
-<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind: Float,
-Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your
-own, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour, which the row's kinds offer beside
-PlayForge's. A row saves its own value alone. Object fields take project assets, not scene objects. Code reads a value by
-its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>, and a number, a Float or an Int, which can
-scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
-<p>When a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> component initializes, it loads the entity's Local Data into a store of its own. Code and
-workers read and write that store through the GAS, with <code>TryGetLocalData</code> and <code>SetLocalData</code>. Threshold analysis
-workers, for example, note there that they have fired. A <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> loads its identity's rows the same way, the entity asset's where it's made from one.</p>
-<hr>
-<p><a href="effect-journal.html">← Effect Journal</a> · <a href="index.html">Entities</a> · <a href="used-by.html">Used By →</a></p>
+<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key</strong></td>
+<td>A tag that names the row.</td>
+</tr>
+<tr>
+<td><strong>Kind</strong></td>
+<td>The kind of value: Float, Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your own.</td>
+</tr>
+<tr>
+<td><strong>Value</strong></td>
+<td>The row's value. A row saves its own value alone.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A kind of your own is a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, such as a point or a colour. The
+row's kinds offer it beside PlayForge's.</li>
+<li>Object fields take project assets, not scene objects.</li>
+<li>Code reads a value by its type, with <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>.</li>
+<li>A number, a Float or an Int, can scale. Code reads it with <code>data.Value.TryReadNumber(context, out float number)</code>.</li>
+</ul>
+<p>When a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> component initializes, it loads the entity's Local Data into a store of its own. A
+<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> loads its identity's rows the same way: the entity asset's, where it's made from one.</p>
+<p>Code and workers read and write that store through the GAS, with <code>TryGetLocalData</code> and <code>SetLocalData</code>. Threshold
+analysis workers, for example, note there that they have fired.</p>
 
 </article>
 

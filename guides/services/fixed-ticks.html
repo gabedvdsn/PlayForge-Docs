@@ -87,55 +87,32 @@
         <article data-uid="guide.services.fixed-ticks">
 <h1 id="fixed-ticks">Fixed ticks</h1>
 
-<p>ProcessControl's fixed tick steps the game in fixed steps of its time, as many a frame as the frame's time holds, so a
-run comes out the same at any frame rate.</p>
-<ul>
-<li><strong>Fixed Tick Rate</strong>, under <strong>Fixed Tick</strong> in ProcessControl's inspector, or <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_FixedTickRate"><code>ProcessControl.FixedTickRate</code></a> in code, is
-the ticks in a second of game time, as 60; 0, the default, steps once a frame. <strong>Max Ticks Per Frame</strong>, 8 by default,
-is the most a frame runs: a frame too long for them drops the rest of its time, so the game doesn't fall further
-behind.</li>
-<li>In each tick, what waits for a tick goes on, then every process steps at Update and then at LateUpdate, its end of
-frame with it. While a tick runs, the clock in force is the tick's: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_DeltaTime"><code>ForgeTime.DeltaTime</code></a> is its step, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_FrameCount"><code>ForgeTime.FrameCount</code></a> the ticks so far. A process that steps at FixedUpdate steps with Unity's physics, as ever.</li>
-<li>The ticks run on the game's time, so they stand while it does.</li>
-</ul>
-<p>Code waits on them through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html"><code>ForgeTick</code></a>:</p>
+<p>ProcessControl's fixed tick steps the game in fixed steps of its time. A frame runs as many as its time holds, so a run
+comes out the same at any frame rate.</p>
+<p>Set it under <strong>Fixed Tick</strong> in ProcessControl's inspector:</p>
 <table>
 <thead>
 <tr>
-<th><code>ForgeTick</code></th>
-<th>Waits for</th>
+<th>Property</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Next(token)</code></td>
-<td>The next tick, or, with ticks off, Unity's next frame, as a sequence's waits do</td>
+<td><strong>Fixed Tick Rate</strong></td>
+<td>The ticks in a second of game time, as 60. 0, the default, steps once a frame. In code, it's <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_FixedTickRate"><code>ProcessControl.FixedTickRate</code></a>.</td>
 </tr>
 <tr>
-<td><code>Next(timing, token)</code></td>
-<td>The same at a frame's timing: the Update family waits for a tick, and FixedUpdate, the physics step's, for Unity's</td>
-</tr>
-<tr>
-<td><code>NextFrame(token)</code></td>
-<td>The next tick, or, with ticks off, Unity's next frame as <code>UniTask.NextFrame</code> waits for it</td>
-</tr>
-<tr>
-<td><code>WaitUntil(condition, token)</code> and <code>WaitWhile(condition, token)</code></td>
-<td>A condition, asked once a tick, or once a frame with ticks off</td>
-</tr>
-<tr>
-<td><code>Next(clock, token)</code></td>
-<td>The next step of a clock's time: Unity's next frame, where the scene ticks, for a clock whose <code>FollowsTicks</code> is false, as <a class="xref" href="../../api/FarEmerald.PlayForge.UnscaledClock.html"><code>UnscaledClock</code></a>'s is</td>
+<td><strong>Max Ticks Per Frame</strong></td>
+<td>The most ticks a frame runs, 8 by default. A frame too long for them drops the rest of its time, so the game doesn't fall further behind.</td>
 </tr>
 </tbody>
 </table>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Ticking"><code>ForgeTick.Ticking</code></a> says whether the tick in force ticks, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Ticks"><code>ForgeTick.Ticks</code></a> how many it has run. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Scene"><code>ForgeTick.Scene</code></a>
-is the scene's tick, a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTickSource.html"><code>ForgeTickSource</code></a>, which ProcessControl's rate turns on, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Current"><code>ForgeTick.Current</code></a> is the tick in
-force: a world of its own's while it steps or one of its processes changes state, the scene's otherwise. A
-<a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html"><code>ProcessWorld</code></a> its owner steps ticks once for each <code>Step(deltaTime)</code>, so its sequences wait on its steps.</p>
-<hr>
-<p><a href="picking-a-clock-in-an-inspector.html">← Picking a clock in an inspector</a> · <a href="index.html">Time, Input and Logging</a> · <a href="random-numbers.html">Random numbers →</a></p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="fixed-ticks/inside-a-tick.html">Inside a tick</a>: A tick steps the game in this order</li>
+<li><a href="fixed-ticks/waiting-on-ticks.html">Waiting on ticks</a>: Code waits on the ticks through <code>ForgeTick</code></li>
+</ul>
 
 </article>
 

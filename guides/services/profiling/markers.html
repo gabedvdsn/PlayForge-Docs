@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Markers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Markers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.services.profiling.markers">
+<h1 id="markers">Markers</h1>
+
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html"><code>ForgeProfiler</code></a> holds PlayForge's markers, each a sample in the Profiler's Scripts category:</p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th><code>ForgeProfiler</code></th>
+<th>What it times</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayForge.Update</code>, <code>PlayForge.LateUpdate</code>, <code>PlayForge.FixedUpdate</code></td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepUpdate"><code>StepUpdate</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepLateUpdate"><code>StepLateUpdate</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepFixedUpdate"><code>StepFixedUpdate</code></a></td>
+<td>The step loop at each timing: each process that steps then, in step order</td>
+</tr>
+<tr>
+<td><code>PlayForge.ProcessStep</code></td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_ProcessStep"><code>ProcessStep</code></a></td>
+<td>One process's step</td>
+</tr>
+<tr>
+<td><code>PlayForge.Step.</code> and the process's type's name</td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_StepOf_"><code>StepOf(type)</code></a></td>
+<td>The same step under its type's own marker, inside <code>PlayForge.ProcessStep</code>, with the process's ID as its metadata; made the first time a process of the type steps</td>
+</tr>
+<tr>
+<td><code>PlayForge.GASStep</code></td>
+<td><code>GASStep</code></td>
+<td>A GAS's step: its clock, its effects' ticks, its abilities' While Active checks, its input buffer, its services, its turn and its barriers</td>
+</tr>
+<tr>
+<td><code>PlayForge.EndOfFrame</code></td>
+<td><code>EndOfFrame</code></td>
+<td>A GAS's end of frame: its queued actions, its tag and analysis workers, and its frame's summary</td>
+</tr>
+<tr>
+<td><code>PlayForge.ApplyEffect</code></td>
+<td><code>ApplyEffect</code></td>
+<td>An effect's application, its contained effects' inside it</td>
+</tr>
+<tr>
+<td><code>PlayForge.ActivateAbility</code></td>
+<td><code>ActivateAbility</code></td>
+<td>An ability's activation, up to the first of its tasks that waits</td>
+</tr>
+<tr>
+<td><code>PlayForge.TagCompile</code></td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProfiler.html#FarEmerald_PlayForge_ForgeProfiler_TagCompile"><code>TagCompile</code></a></td>
+<td>A GAS's tag compile: its tags rebuilt from their sources</td>
+</tr>
+<tr>
+<td><code>PlayForge.Recompute</code></td>
+<td><code>Recompute</code></td>
+<td>An attribute's recompute, from its root through its modifiers to its bounds</td>
+</tr>
+<tr>
+<td><code>PlayForge.Stage</code></td>
+<td><code>Stage</code></td>
+<td>A sequence stage's start, an ability's among them: its tasks, up to the first that waits</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

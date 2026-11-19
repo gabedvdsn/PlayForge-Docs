@@ -87,20 +87,100 @@
         <article data-uid="guide.task-sequences.waiting">
 <h1 id="waiting">Waiting</h1>
 
+<p>A sequence can wait as a stage, inside a task, or on the player's input.</p>
+<p><strong>Delays</strong> wait as a stage, or inside one:</p>
+<table>
+<thead>
+<tr>
+<th>Delay</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Delay(seconds)</code></td>
+<td>A stage of its own that waits.</td>
+</tr>
+<tr>
+<td><code>DelayUntil</code>, <code>DelayWhile</code></td>
+<td>Wait on a predicate.</td>
+</tr>
+<tr>
+<td><code>WaitUntil</code></td>
+<td>A stage that waits on a predicate.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SyncDelay_"><code>SyncDelay</code></a></td>
+<td>Waits inside a stage, as one of its tasks.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The library's waits</strong> go inside a task:</p>
+<table>
+<thead>
+<tr>
+<th>Wait</th>
+<th>Waits for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_Delay_"><code>SequenceTaskLibrary.Delay</code></a></td>
+<td>A number of seconds.</td>
+</tr>
+<tr>
+<td><code>WaitFrames</code></td>
+<td>A number of frames.</td>
+</tr>
+<tr>
+<td><code>Yield</code></td>
+<td>One frame.</td>
+</tr>
+<tr>
+<td><code>WaitUntil</code></td>
+<td>A predicate to hold.</td>
+</tr>
+<tr>
+<td><code>WaitWhile</code></td>
+<td>A predicate to stop holding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The player's input</strong> is read through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a>, so a game's own input or a test's stands in:</p>
+<table>
+<thead>
+<tr>
+<th>Wait</th>
+<th>Waits for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WaitForKey</code></td>
+<td>A key to go down.</td>
+</tr>
+<tr>
+<td><code>WaitForAnyKey</code></td>
+<td>Any of the keys given, and returns the key pressed.</td>
+</tr>
+<tr>
+<td><code>WaitForPointer</code></td>
+<td>A pointer's button to go down.</td>
+</tr>
+</tbody>
+</table>
+<p>Each of the library's waits holds while its sequence is paused. A press while it's paused isn't heard.</p>
+<p>A task that keeps time itself should read <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_"><code>SequenceTaskLibrary.DeltaTime(token)</code></a>. It's a step of its run's clock
+(<a href="clocks.html">Clocks</a>), and it's 0 while the sequence is paused.</p>
+<h2 id="linking-a-token">Linking a token</h2>
+<p>A task can link its token, to cancel a wait of its own without its stage.</p>
 <ul>
-<li><strong>Delays</strong>: <code>Delay(seconds)</code> is a stage of its own that waits; <code>DelayUntil</code> and <code>DelayWhile</code> wait on a predicate, and
-<code>WaitUntil</code> is a stage that does. <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SyncDelay_"><code>SyncDelay</code></a> waits inside a stage, as one of its tasks.</li>
-<li><strong>The library's waits</strong>, inside a task: <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_Delay_"><code>SequenceTaskLibrary.Delay</code></a>, <code>WaitFrames</code>, <code>Yield</code>, <code>WaitUntil</code> and <code>WaitWhile</code>.</li>
-<li><strong>The player's input</strong>, read through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a>, so a game's own input or a test's stands in: <code>WaitForKey</code>,
-<code>WaitForAnyKey</code>, which returns the key pressed, and <code>WaitForPointer</code>.</li>
+<li>Link it through <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_CreateLinkedTokenSource_"><code>TaskSequenceRuntime.CreateLinkedTokenSource(token)</code></a>. Its token belongs to the task's run, so a wait
+on it keeps the run's clock, and holds while the run is paused.</li>
+<li>A token that <code>CancellationTokenSource.CreateLinkedTokenSource</code> links belongs to no run. Its waits go by the game's
+clock, and don't hold.</li>
 </ul>
-<p>Each of the library's waits holds while its sequence is paused, and a press while it's paused isn't heard. A task that
-keeps time itself should read <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_"><code>SequenceTaskLibrary.DeltaTime(token)</code></a>, a step of its run's clock (below), which is 0 while
-the sequence is paused.</p>
-<p>A task that links its token, to cancel a wait of its own without its stage, links it through
-<a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_CreateLinkedTokenSource_"><code>TaskSequenceRuntime.CreateLinkedTokenSource(token)</code></a>, whose token belongs to the task's run, so a wait on it keeps the
-run's clock and holds while the run is paused. A token that <code>CancellationTokenSource.CreateLinkedTokenSource</code> links
-belongs to no run, so its waits go by the game's clock and don't hold. Dispose the source once done, as any:</p>
+<p>Dispose of the source once you're done, as with any:</p>
 <pre><code class="lang-csharp">.Task(async (data, token) =&gt;
 {
     // Cancelled with the stage, or on its own through charge.Cancel(), and by the run's clock either way
@@ -108,8 +188,6 @@ belongs to no run, so its waits go by the game's clock and don't hold. Dispose t
     await SequenceTaskLibrary.Delay(1.5f, charge.Token);
 })
 </code></pre>
-<hr>
-<p><a href="building-one.html">← Building one</a> · <a href="index.html">Task Sequences</a> · <a href="repeating.html">Repeating →</a></p>
 
 </article>
 

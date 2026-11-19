@@ -87,30 +87,189 @@
         <article data-uid="guide.cues.floating-text">
 <h1 id="floating-text">Floating text</h1>
 
-<p>A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default: a
-hit's damage, the gold a kill gave, a status's name as it lands.</p>
-<ul>
-<li><strong>Text</strong>: what it says. <code>{value}</code> is its number, <code>{name}</code> the name of what raised it, as an effect's, and <code>{tag}</code> its
-cue tag: <code>+{value} gold</code>, or <code>{name}</code> for a status.</li>
-<li><strong>Value</strong>: its number, <strong>From</strong> the cue's magnitude, as a hit's value from an effect's <strong>On Hit</strong>, or its
-<strong>Number</strong>, read as it plays, as a Tracked Impact's for the gold an instant effect gave. It's written with up to
-<strong>Decimals</strong> decimals; without its sign where <strong>Absolute</strong> says, as damage shown as 35; with a <strong>Plus Sign</strong> above
-0; shortened past a thousand where <strong>Abbreviate</strong> says, as 1.2k; and not at all for 0 where <strong>Hide Zero</strong> says.</li>
-<li><strong>Look</strong>: its <strong>Color</strong>, or its <strong>Negative Color</strong> below 0 where <strong>By Sign</strong> says; its <strong>Size</strong>, <strong>Font</strong>,
-<strong>Bold</strong> and <strong>Outline</strong>; turned to the camera where <strong>Face Camera</strong> says, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Camera"><code>ForgeCues.Camera</code></a> or else the main
-camera; and its <strong>Sorting Order</strong>. A <strong>Prefab</strong> holding a TextMeshPro text shows it in place of the cue's own,
-its font, size and outline its own.</li>
-<li><strong>Motion</strong>: its <strong>Lifetime</strong>; its <strong>Velocity</strong>, and a <strong>Random Velocity</strong> either way on each axis; <strong>Gravity</strong>, for
-an arc, and <strong>Drag</strong>; its opacity over its life, <strong>Fade</strong>, and its scale, <strong>Scale</strong>, as a pop; on the game's clock
-where <strong>Game Time</strong> says, else in real time.</li>
-<li><strong>Stacking</strong>, on one entity: a number <strong>Merge Within</strong> some seconds of the last adds to it, which shows the sum
-and floats again, as a burn's ticks; each text floats a <strong>Stagger</strong> above the one below it, in the lowest place
-free; and at most <strong>Max Shown</strong> float at once, the oldest going first.</li>
-</ul>
-<p>Its texts come from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html"><code>ForgeCuePool</code></a> and go back to it. For damage numbers, put one in an effect's <strong>On Hit</strong>: it plays
-as each impact the effect deals lands, on the one it lands on, told the value it changed.</p>
-<hr>
-<p><a href="placement.html">← Placement</a> · <a href="index.html">Cues</a> · <a href="routes.html">Routes →</a></p>
+<p>A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default. It
+shows a hit's damage, the gold a kill gave, or a status's name as it lands.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Text</strong></td>
+<td>What it says. <code>{value}</code> is its number, <code>{name}</code> the name of what raised it, as an effect's, and <code>{tag}</code> its cue tag.</td>
+</tr>
+<tr>
+<td><strong>Value</strong></td>
+<td>Its number, and how it's written.</td>
+</tr>
+<tr>
+<td><strong>Look</strong></td>
+<td>How it looks.</td>
+</tr>
+<tr>
+<td><strong>Motion</strong></td>
+<td>How it moves and fades.</td>
+</tr>
+<tr>
+<td><strong>Stacking</strong></td>
+<td>How its texts on one entity merge and stagger, and how many show.</td>
+</tr>
+</tbody>
+</table>
+<p>Its Text can be <code>+{value} gold</code>, for example, or <code>{name}</code> for a status.</p>
+<p>Its <strong>Value</strong> gives its number and writes it:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>From</strong></td>
+<td>Where its number comes from: the cue's magnitude, as a hit's value from an effect's <strong>On Hit</strong>, or its <strong>Number</strong>.</td>
+</tr>
+<tr>
+<td><strong>Number</strong></td>
+<td>Its number, read as it plays, as a Tracked Impact's for the gold an instant effect gave.</td>
+</tr>
+<tr>
+<td><strong>Decimals</strong></td>
+<td>The most decimals it's written with.</td>
+</tr>
+<tr>
+<td><strong>Absolute</strong></td>
+<td>Writes it without its sign, as damage shown as 35.</td>
+</tr>
+<tr>
+<td><strong>Plus Sign</strong></td>
+<td>Writes a plus before a number above 0.</td>
+</tr>
+<tr>
+<td><strong>Abbreviate</strong></td>
+<td>Shortens it past a thousand, as 1.2k.</td>
+</tr>
+<tr>
+<td><strong>Hide Zero</strong></td>
+<td>Writes nothing for a number of 0.</td>
+</tr>
+</tbody>
+</table>
+<p>Its <strong>Look</strong> sets how it shows:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Color</strong></td>
+<td>Its colour.</td>
+</tr>
+<tr>
+<td><strong>By Sign</strong></td>
+<td>Colours it by its number's sign: its Color for 0 and above, its <strong>Negative Color</strong> below 0.</td>
+</tr>
+<tr>
+<td><strong>Negative Color</strong></td>
+<td>Its colour below 0, where By Sign is on.</td>
+</tr>
+<tr>
+<td><strong>Size</strong>, <strong>Font</strong> and <strong>Bold</strong></td>
+<td>Its size and font, and whether it's written in bold.</td>
+</tr>
+<tr>
+<td><strong>Outline</strong></td>
+<td>Its outline.</td>
+</tr>
+<tr>
+<td><strong>Face Camera</strong></td>
+<td>Turns it to the camera: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Camera"><code>ForgeCues.Camera</code></a>, or else the main camera.</td>
+</tr>
+<tr>
+<td><strong>Sorting Order</strong></td>
+<td>The order it draws in among others.</td>
+</tr>
+<tr>
+<td><strong>Prefab</strong></td>
+<td>A prefab holding a TextMeshPro text, which shows it in place of the cue's own. Its font, size and outline are the prefab's own.</td>
+</tr>
+</tbody>
+</table>
+<p>Its <strong>Motion</strong> sets how it moves:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lifetime</strong></td>
+<td>How long it floats.</td>
+</tr>
+<tr>
+<td><strong>Velocity</strong></td>
+<td>How it moves.</td>
+</tr>
+<tr>
+<td><strong>Random Velocity</strong></td>
+<td>A random amount of velocity, either way on each axis.</td>
+</tr>
+<tr>
+<td><strong>Gravity</strong> and <strong>Drag</strong></td>
+<td>Gravity for an arc, and drag to slow it.</td>
+</tr>
+<tr>
+<td><strong>Fade</strong></td>
+<td>Its opacity over its life.</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Its scale over its life, as a pop.</td>
+</tr>
+<tr>
+<td><strong>Game Time</strong></td>
+<td>On, it floats on the game's clock. Off, in real time.</td>
+</tr>
+</tbody>
+</table>
+<p>Its <strong>Stacking</strong> sets how its texts on one entity share the space:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Merge Within</strong></td>
+<td>A number within this many seconds of the last adds to it, which shows the sum and floats again, as a burn's ticks.</td>
+</tr>
+<tr>
+<td><strong>Stagger</strong></td>
+<td>Each text floats this much above the one below it, in the lowest place free.</td>
+</tr>
+<tr>
+<td><strong>Max Shown</strong></td>
+<td>At most this many float at once, the oldest going first.</td>
+</tr>
+</tbody>
+</table>
+<p>Its texts come from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html"><code>ForgeCuePool</code></a> and go back to it.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>For damage numbers, put one in an effect's <strong>On Hit</strong>. It plays as each impact the effect deals lands, on the one it
+lands on, told the value it changed.</p>
+</div>
 
 </article>
 

@@ -88,18 +88,22 @@
 <h1 id="testing-your-content">Testing Your Content</h1>
 
 <p>A game's abilities, effects and items are easiest to trust when a test plays them as the game does: a burn's ticks
-landing over its second, a ring's armor while it's held, a cast paying its cost. PlayForge's test kit is the assembly
-<code>FarEmerald.PlayForge.Testing</code>, in the package's <code>TestKit</code> folder, which a project's own tests reference. It
-brings up a live PlayForge for each test, steps it a frame at a time, makes entities on either hub, and plays them; and
-after each test it checks what must always hold, and takes it all down again, so tests run in any order.</p>
+landing over its second, a ring's armor while it's held, a cast paying its cost.</p>
+<p>PlayForge's test kit is the assembly <code>FarEmerald.PlayForge.Testing</code>, in the package's <code>TestKit</code> folder, which a
+project's own tests reference. For each test, the kit:</p>
+<ul>
+<li>brings up a live PlayForge, and steps it a frame at a time;</li>
+<li>makes entities on either hub, and plays them;</li>
+<li>checks afterwards what must always hold, and takes it all down again, so tests run in any order.</li>
+</ul>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="setting-up.html">Setting up</a>: The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as its own test runner is.</li>
-<li><a href="a-test.html">A test</a>: A test class derives from <code>ForgeTest</code>, which makes a <code>ForgeTestWorld</code> before each test and audits and ends it after.</li>
-<li><a href="the-world.html">The world</a>: <strong>Entities</strong>: <code>World.Entity(hub, set, name)</code> makes an entity of an attribute set on either hub, <code>Hub.Runtime</code> (a <code>RuntimeGameplayAbilitySystem</code>) or <code>Hub.Mono</code> (a <code>GameplayAbilitySystem</code> on a GameObject of its own)…</li>
-<li><a href="what-must-hold.html">What must hold</a>: After each test that passed, the world's <strong>audit</strong> lets three frames settle, ends what the test left running of what it began, and fails the test where any of these broke</li>
-<li><a href="allocation.html">Allocation</a>: <code>AllocationProbe</code> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono: <code>Measure(action)</code> what one run allocates, <code>MeasureEach(action, runs, warmup)</code> the mean of many after a…</li>
-<li><a href="traps.html">Traps</a>: <strong>Step frames; never call a process's update by hand.</strong> The world's ProcessControl steps what runs, as the game's does; calling an update yourself runs it out of order and hides what the frame does.</li>
+<li><a href="setting-up.html">Setting up</a>: The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as the Test Framework's own test runner is.</li>
+<li><a href="a-test.html">A test</a>: A test class derives from <code>ForgeTest</code>.</li>
+<li><a href="the-world.html">The world</a>: The world makes a test's entities and assets, plays them, reads them, and controls its time, its chance and its processes.</li>
+<li><a href="what-must-hold.html">What must hold</a>: After each test that passed, the world's <strong>audit</strong> checks what must always hold</li>
+<li><a href="allocation.html">Allocation</a>: <code>AllocationProbe</code> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono.</li>
+<li><a href="traps.html">Traps</a>: These are the mistakes a test most easily makes with the kit.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationMarker.html">AllocationMarker</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html">AllocationProbe</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html">EffectConfig</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html">ForgeTest</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html">ForgeTestWorld</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameAllocation.html">FrameAllocation</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FramePulse.html">FramePulse</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameStepper.html">FrameStepper</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html">Hub</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Invariants.html">Invariants</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ScriptedRandom.html">ScriptedRandom</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.SteppingClock.html">SteppingClock</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html">TestAssets</a>.</p>

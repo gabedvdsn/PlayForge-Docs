@@ -88,21 +88,177 @@
 <h1 id="attributes">Attributes</h1>
 
 <p>An <strong>Attribute</strong> asset names one number an entity can have, such as Health, Mana or Strength. An entity is anything
-that runs a gameplay ability system (GAS), such as the player or an enemy. The asset holds no value. An entity gets its
-starting values for the attribute from its Attribute Set, and gameplay effects change them from there.</p>
-<p>At runtime each entity holds two values for each of its attributes. <strong>Base</strong> is the value the attribute is measured
-against, and <strong>Current</strong> is the value in play. For a pool such as Health, Base is the maximum and Current is what is
-left. For a stat such as Strength, the two are often the same. The Attribute Set's bounds keep them in range (see
+that runs a gameplay ability system (GAS), such as the player or an enemy.</p>
+<pre><code class="lang-mermaid">classDiagram
+class IAttribute:::ext {
+&lt;&lt;interface&gt;&gt;
+IHasReadableDefinition, ITagSource, IEquatable
+}
+class Attribute:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
+equality by Name
++Name
++Abbreviation
++Role : EAttributeRole
++AbsorbsFor : Attribute
++DecayPerSecond
++FadesWithEffect
++GainsScaledBy : Attribute
+}
+class RuntimeAttribute:::rt {
+an attribute built in code
+}
+class EAttributeRole:::rt {
+&lt;&lt;enumeration&gt;&gt;
+Value
+BonusShare
+Multiplier
+Resistance
+Barrier
+}
+class AttributeSet:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++AssetTag
++Attributes : List~AttributeSetElement~
++SubSets : List~AttributeSet~
++CollisionResolutionPolicy
++WorkerGroup : StandardWorkerGroup
++Initialize(AttributeSystemComponent)
++SelfAndSubSets()
+}
+class AttributeSetElement:::asset {
++Attribute : Attribute
++Current : AttributeMagnitudeSpec
++Base : AttributeMagnitudeSpec
++LinkCurrentToBase : bool
++Overflow : AttributeOverflowData
++Constraints : AttributeConstraints
++RetentionGroup : Tag
+}
+class AttributeSystemComponent:::rt {
++RegisterModifier(IAttribute, SMAV, impacters, runEvents) ImpactData
++UnregisterModifier(IAttribute, SMAV, runEvents)
++CommitImpact(IAttribute, SMAV, impacters, runEvents)
++ModifyAttribute(IAttribute, SMAV, runEvents)
++TryGetValue(IAttribute, out AttributeValue) bool
++GetBreakdown(attr) IReadOnlyList~GroupContribution~
++ProvideAttributeSet(AttributeSet)
++ProvideWorker(AbstractAttributeWorker)
+}
+class CachedAttributeValue:::rt {
++ActiveValue : AttributeValue
++RootValue
++Blueprint : AttributeBlueprint
++RegisterModifier(carrier, impacters, cache)
++CommitImpact()
++PreviewCommit(carrier, impacters) AttributeValue
++Recompute(cache) AttributeValue
++GetGroupValue(Tag)
+}
+class AttributeBlueprint:::rt {
++SetElement
++Derivation
++RootValue
++GetInitialValue()
++GetActiveValue()
+}
+class AttributeValue:::rt {
+&lt;&lt;struct&gt;&gt;
++CurrentValue : float
++BaseValue : float
++Ratio
+}
+class SourcedModifiedAttributeValue:::rt {
+&lt;&lt;struct&gt;&gt;
+SMAV
++Carrier : IAttributeImpactCarrier
++CurrentValue
++BaseValue
++ImpactIsWorkable : bool
++static GenerateSimple(source, attr, cur, base)
+}
+class ChangeValue:::rt {
+rented per commit
++Value : SMAV
++Add()
++Multiply()
++Override()
+}
+class ImpactData:::rt {
+&lt;&lt;struct&gt;&gt;
++Target
++Attribute
++SourcedModifier
++RealImpact
++OldValue
++LiveValue
+}
+class AttributeSystemCallbacks:::rt {
++OnAttributePreChange(IAttribute, ChangeValue)
++OnAttributePostChange(IAttribute, ChangeValue)
++OnAttributeChanged(ImpactData)
++OnAttributeBaseChanged(attr, old, new)
++OnAttributeCurrentZero(attr)
++OnAttributeCurrentFull(attr)
+}
+class AttributeChangeMomentHandler:::rt {
+the attribute workers by attribute
++AddWorker()
++RemoveWorker()
++RunWorkers(WorkerContext)
+}
+IAttribute &lt;|.. Attribute
+IAttribute &lt;|.. RuntimeAttribute
+Attribute --&gt; EAttributeRole
+AttributeSet &quot;1&quot; *-- &quot;many&quot; AttributeSetElement
+AttributeSetElement --&gt; Attribute
+AttributeSet ..&gt; AttributeSystemComponent : Initialize
+AttributeSystemComponent &quot;1&quot; *-- &quot;many&quot; CachedAttributeValue : one per IAttribute
+CachedAttributeValue --&gt; AttributeBlueprint
+CachedAttributeValue ..&gt; AttributeValue : Recompute
+AttributeSystemComponent ..&gt; SourcedModifiedAttributeValue : the four verbs take
+AttributeSystemComponent ..&gt; ChangeValue
+AttributeSystemComponent ..&gt; ImpactData : returns
+AttributeSystemComponent *-- AttributeSystemCallbacks
+AttributeSystemComponent &quot;1&quot; *-- &quot;2&quot; AttributeChangeMomentHandler : PreChange and PostChange
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>Attribute and AttributeSet assets become one CachedAttributeValue per attribute. Every change goes through one of the four verbs.</em></p>
+<p>The asset holds no value. An entity gets its starting values for the attribute from its Attribute Set, and gameplay
+effects change them from there.</p>
+<p>At runtime, each entity holds two values for each of its attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base</strong></td>
+<td>The value the attribute is measured against. For a pool such as Health, Base is the maximum.</td>
+</tr>
+<tr>
+<td><strong>Current</strong></td>
+<td>The value in play. For a pool such as Health, Current is what is left.</td>
+</tr>
+</tbody>
+</table>
+<p>For a stat such as Strength, the two are often the same. The Attribute Set's bounds keep them in range (see
 <a href="../attribute-sets/index.html">Attribute Sets</a>).</p>
 <p>Attribute sets, effects, validation rules and workers refer to the attribute asset itself. An attribute has no asset
-tag. Each section below matches the inspector section of the same name. A collapsed section shows one line about what
-it holds, such as the abbreviation or how many assets use the attribute.</p>
+tag.</p>
+<p>Each section below matches the inspector section of the same name. A collapsed section shows one line about what it
+holds, such as the abbreviation or how many assets use the attribute.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the attribute's display name.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the attribute and says what it is.</li>
 <li><a href="roles.html">Roles</a>: A game's settings live on its <strong>Forge Project</strong>, the asset at the root of its folder that The Forge's projects are.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this attribute, each with its type icon: the Attribute Sets that give its starting values, the Gameplay Effects that change it, and the validation rules and ability costs that check or…</li>
+<li><a href="used-by.html">Used By</a>: The Used By section lists the PlayForge assets that refer to this attribute, each with its type icon</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html">Attribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeChangeMomentHandler.html">AttributeChangeMomentHandler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeConstraints.html">AttributeConstraints</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeMagnitudeSpec.html">AttributeMagnitudeSpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeOverflowData.html">AttributeOverflowData</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeParts.html">AttributeParts</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSet.html">AttributeSet</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSetElement.html">AttributeSetElement</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSetMeta.html">AttributeSetMeta</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.html">AttributeSystemCallbacks</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeChangeDelegate.html">AttributeSystemCallbacks.AttributeChangeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeDelegate.html">AttributeSystemCallbacks.AttributeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeImpactDelegate.html">AttributeSystemCallbacks.AttributeImpactDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeStateDelegate.html">AttributeSystemCallbacks.AttributeStateDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.AttributeValueChangeDelegate.html">AttributeSystemCallbacks.AttributeValueChangeDelegate</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html">AttributeSystemComponent</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html">CachedAttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeValue.html">ChangeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeElementCollisionPolicy.html">EAttributeElementCollisionPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeOverflowPolicy.html">EAttributeOverflowPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeRole.html">EAttributeRole</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeRoundingPolicy.html">EAttributeRoundingPolicy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeSetLinkMode.html">EAttributeSetLinkMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ERetentionGroupRead.html">ERetentionGroupRead</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupContribution.html">GroupContribution</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IAttribute.html">IAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IntValuePair.html">IntValuePair</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IntValuePairClamped.html">IntValuePairClamped</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ModifiedAttributeValue.html">ModifiedAttributeValue</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RetentionGroups.html">RetentionGroups</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeAttribute.html">RuntimeAttribute</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalerRootAssignment.html">ScalerRootAssignment</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html">SourcedModifiedAttributeValue</a>.</p>

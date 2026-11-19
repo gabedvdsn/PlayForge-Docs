@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Item components | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Item components | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.components.item-components">
+<h1 id="item-components">Item components</h1>
+
+<p>An item component adds a feature to an item: it hears the item given, equipped, unequipped, removed and used.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractItemComponent.html"><code>AbstractItemComponent</code></a>. An item holds it in its <strong>Components</strong>, and its hooks are called with an
+<a class="xref" href="../../../api/FarEmerald.PlayForge.ItemComponentContext.html"><code>ItemComponentContext</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Container</code></td>
+<td>The item as its entity holds it.</td>
+</tr>
+<tr>
+<td><code>Source</code></td>
+<td>The entity.</td>
+</tr>
+<tr>
+<td><code>Restoring</code></td>
+<td>True where the moment comes from a load.</td>
+</tr>
+<tr>
+<td><code>GetState&lt;T&gt;(this)</code></td>
+<td>What the component keeps for this entity's item.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Given(ctx)</code></td>
+<td>As an entity is given the item in a slot of its own.</td>
+</tr>
+<tr>
+<td><code>Equipped(ctx)</code>, <code>Unequipped(ctx)</code></td>
+<td>As it's equipped and unequipped. Also as a load puts it back worn or takes it off, with <code>Restoring</code> true.</td>
+</tr>
+<tr>
+<td><code>Removed(ctx)</code></td>
+<td>As it's taken away. An equipped item is unequipped first.</td>
+</tr>
+<tr>
+<td><code>Used(ctx)</code></td>
+<td>As its holder's use of the item's ability ends, having paid what it costs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>An item's <strong>Components</strong> list offers every class derived from <code>AbstractItemComponent</code>
+(<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>).</p>
+<h2 id="example">Example</h2>
+<p>A load puts back what a component's earlier moments did, the effects it applied and the loose tags it added among them.
+So a component does nothing of that kind where <code>Restoring</code> is true, as this one shows:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Its holder carries a tag while the item is equipped.&quot;)]
+    public sealed class TagWhileEquippedItemComponent : AbstractItemComponent
+    {
+        [Tooltip(&quot;The tag its holder carries while it's equipped&quot;)]
+        [ForgeTagContext(ForgeContext.Granted)]
+        public Tag Tag;
+
+        public override string Describe() =&gt; Tag.IsValid ? $&quot;{Tag} while equipped&quot; : null;
+
+        public override void Equipped(ItemComponentContext ctx)
+        {
+            // A load puts back the loose tags its save held, this one among them
+            if (ctx.Restoring || !Tag.IsValid || ctx.Source is not IGameplayAbilitySystem holder) return;
+            holder.AddLooseTag(Tag);
+        }
+
+        public override void Unequipped(ItemComponentContext ctx)
+        {
+            if (ctx.Restoring || !Tag.IsValid || ctx.Source is not IGameplayAbilitySystem holder) return;
+            holder.RemoveLooseTag(Tag);
+        }
+    }
+}
+</code></pre>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>A load calls <code>Equipped</code> and <code>Unequipped</code></strong> on an item's components, with <code>Restoring</code> true. What a component applied
+comes back from the save on its own.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

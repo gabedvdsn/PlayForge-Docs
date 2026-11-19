@@ -87,19 +87,46 @@
         <article data-uid="guide.workers.where-workers-come-from">
 <h1 id="where-workers-come-from">Where workers come from</h1>
 
+<p>An entity holds workers from each of these sources:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What the entity holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>An attribute set's Worker Group</strong></td>
+<td>The workers of the set it's built from, for as long as it lives.</td>
+</tr>
+<tr>
+<td><strong>An entity's Worker Group</strong></td>
+<td>The same, as the entity's own. The group is on its Entity asset.</td>
+</tr>
+<tr>
+<td><strong>Its project's Workers</strong></td>
+<td>The workers its Forge Project's settings list under <strong>Workers</strong>, in Project Settings → PlayForge.</td>
+</tr>
+<tr>
+<td><strong>An item's, an ability's or an effect's Worker Group</strong></td>
+<td>Their workers, while the item is equipped, the ability known, or the effect lasts on it.</td>
+</tr>
+<tr>
+<td><strong>An effect's Workers</strong></td>
+<td>Effect workers, which run for that effect's own events.</td>
+</tr>
+<tr>
+<td><strong>Built in</strong></td>
+<td>An impact worker, which an On Hit entry gives its holder.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>An attribute set's Worker Group</strong>: the entity built from the set holds its workers as it lives.</li>
-<li><strong>An entity's Worker Group</strong> (its Entity asset): the same, as the entity's own.</li>
-<li><strong>Its project's Workers</strong>: every entity in a Forge Project holds the workers its settings list, under <strong>Workers</strong> in
-Project Settings → PlayForge, after its own, as it registers. A project starts with the Lifesteal worker,
-whose Share is yours to name.</li>
-<li><strong>An item's, an ability's or an effect's Worker Group</strong>: the entity holds them while the item is equipped, the ability
-known, or the effect lasts on it. Two of an effect lasting give its group once.</li>
-<li><strong>An effect's Workers</strong>: effect workers, which run for that effect's own events.</li>
-<li><strong>Built in</strong>: an On Hit entry gives its holder an impact worker.</li>
+<li>Every entity in a Forge Project holds its project's workers after its own, as it registers.</li>
+<li>A project starts with the Lifesteal worker, whose Share is yours to name.</li>
+<li>Two of an effect lasting on an entity give its group once.</li>
 </ul>
-<hr>
-<p><a href="index.html">← Workers</a> · <a href="index.html">Workers</a> · <a href="lifesteal.html">Lifesteal →</a></p>
 
 </article>
 

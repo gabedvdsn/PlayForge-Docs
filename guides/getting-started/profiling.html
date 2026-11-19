@@ -87,38 +87,100 @@
         <article data-uid="guide.getting-started.profiling">
 <h1 id="profiling">Profiling</h1>
 
-<p>PlayForge's work shows in Unity's Profiler under its own markers, in the Scripts category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html"><code>ForgeProfiler</code></a>):</p>
-<ul>
-<li><code>PlayForge.Update</code>, <code>PlayForge.LateUpdate</code> and <code>PlayForge.FixedUpdate</code>: the step loop at each timing.</li>
-<li><code>PlayForge.ProcessStep</code>: one process's step. Inside it, <code>PlayForge.Step.</code> and the process's type's name, with the
-process's ID as the marker's metadata.</li>
-<li><code>PlayForge.GASStep</code> and <code>PlayForge.EndOfFrame</code>: a GAS's step, where its effects tick, and its end of frame, where
-its queued actions and its tag and analysis workers run.</li>
-<li><code>PlayForge.ApplyEffect</code>: an effect's application, with its contained effects' inside it.</li>
-<li><code>PlayForge.ActivateAbility</code>: an ability's activation, up to the first of its tasks that waits.</li>
-<li><code>PlayForge.TagCompile</code> and <code>PlayForge.Recompute</code>: a GAS's tag compile and an attribute's recompute.</li>
-<li><code>PlayForge.Stage</code>: a sequence stage's start, an ability's among them: its tasks, up to the first that waits.</li>
-</ul>
-<p>The markers time the work. The counters, in the Profiler's PlayForge category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html"><code>ForgeCounters</code></a>), say how much of it
-there is:</p>
-<ul>
-<li>ProcessControl's processes running, waiting and created, and each frame's registrations, terminations, steps, state
-changes and step time.</li>
-<li>The entities by hub and the effects active, and each frame's effects applied and removed, impacts, activations,
-refused activations, tag compiles and recomputes.</li>
-<li>The sequences running, and each frame's stages started.</li>
-</ul>
+<p>PlayForge's work shows in Unity's Profiler: markers time it, counters say how much of it there is, and two modules chart
+the counters.</p>
+<p>The markers are in the Profiler's Scripts category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProfiler.html"><code>ForgeProfiler</code></a>):</p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th>What it times</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlayForge.Update</code>, <code>PlayForge.LateUpdate</code>, <code>PlayForge.FixedUpdate</code></td>
+<td>The step loop at each timing.</td>
+</tr>
+<tr>
+<td><code>PlayForge.ProcessStep</code></td>
+<td>One process's step. Inside it, <code>PlayForge.Step.</code> and the process's type's name, with the process's ID as the marker's metadata.</td>
+</tr>
+<tr>
+<td><code>PlayForge.GASStep</code></td>
+<td>A GAS's step, where its effects tick.</td>
+</tr>
+<tr>
+<td><code>PlayForge.EndOfFrame</code></td>
+<td>A GAS's end of frame, where its queued actions and its tag and analysis workers run.</td>
+</tr>
+<tr>
+<td><code>PlayForge.ApplyEffect</code></td>
+<td>An effect's application, with its contained effects' inside it.</td>
+</tr>
+<tr>
+<td><code>PlayForge.ActivateAbility</code></td>
+<td>An ability's activation, up to the first of its tasks that waits.</td>
+</tr>
+<tr>
+<td><code>PlayForge.TagCompile</code></td>
+<td>A GAS's tag compile.</td>
+</tr>
+<tr>
+<td><code>PlayForge.Recompute</code></td>
+<td>An attribute's recompute.</td>
+</tr>
+<tr>
+<td><code>PlayForge.Stage</code></td>
+<td>A sequence stage's start, an ability's among them: its tasks, up to the first that waits.</td>
+</tr>
+</tbody>
+</table>
+<p>The counters are in the Profiler's PlayForge category (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCounters.html"><code>ForgeCounters</code></a>):</p>
+<table>
+<thead>
+<tr>
+<th>Counters</th>
+<th>What they count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProcessControl's</td>
+<td>The processes running, waiting and created, and each frame's registrations, terminations, steps, state changes and step time.</td>
+</tr>
+<tr>
+<td>The GAS's</td>
+<td>The entities by hub and the effects active, and each frame's effects applied and removed, impacts, activations, refused activations, tag compiles and recomputes.</td>
+</tr>
+<tr>
+<td>TaskSequence's</td>
+<td>The sequences running, and each frame's stages started.</td>
+</tr>
+</tbody>
+</table>
 <p>Two Profiler modules chart the counters. Turn them on in the Profiler window's list of modules:</p>
-<ul>
-<li><strong>PlayForge Processes</strong> charts ProcessControl's and TaskSequence's counters. Its details list the selected frame's
-costliest processes, by their steps' time. PlayForge puts them into the capture while the Profiler records, so a
-saved capture shows them too.</li>
-<li><strong>PlayForge GAS</strong> charts the GAS's counters.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>What it charts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PlayForge Processes</strong></td>
+<td>ProcessControl's and TaskSequence's counters. Its details list the selected frame's costliest processes, by their steps' time.</td>
+</tr>
+<tr>
+<td><strong>PlayForge GAS</strong></td>
+<td>The GAS's counters.</td>
+</tr>
+</tbody>
+</table>
+<p>PlayForge puts the costliest processes into the capture while the Profiler records, so a saved capture shows them too.</p>
 <p>A <code>ProfilerRecorder</code> reads a marker or a counter by its name, in the editor or in a development build. Unity compiles
-them out of release builds.</p>
-<hr>
-<p><a href="logging.html">← Logging</a> · <a href="index.html">Getting Started</a></p>
+the markers and counters out of release builds.</p>
 
 </article>
 

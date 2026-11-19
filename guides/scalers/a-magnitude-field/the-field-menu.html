@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The field menu | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The field menu | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.a-magnitude-field.the-field-menu">
+<h1 id="the-field-menu">The field menu</h1>
+
+<p>The field menu holds a number field's tools. A scaler field of its own, as a Group member's, has the same menu, and its
+kind menu files its kinds by category, as a number field's does.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Save as Scaler Asset…</strong></td>
+<td>Asks for a name and a folder. <strong>Save and Use</strong> then saves the field's scaler as a Scaler asset and makes the field share it.</td>
+</tr>
+<tr>
+<td><strong>Scaler Assets</strong></td>
+<td>A submenu of the project's Scaler assets, the one the field shares checked. The field shares the one you pick.</td>
+</tr>
+<tr>
+<td><strong>Import Values…</strong></td>
+<td>Copies another asset's values per level (below).</td>
+</tr>
+<tr>
+<td><strong>Quick Fill…</strong></td>
+<td>Fills the table from a pattern (below).</td>
+</tr>
+<tr>
+<td><strong>Make Constant</strong></td>
+<td>The field reads a number again: the value its first level read. A scaler field of its own, with no number, becomes a <strong>Fixed Value</strong> of that value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="import-values">Import Values</h2>
+<p><strong>Import Values…</strong> opens a window that lists the Scaler assets, and the other assets' fields with values per level.</p>
+<ol>
+<li>Pick one to compare its values with the field's, level by level, with both curves.</li>
+<li>Click <strong>Copy Values</strong>.</li>
+</ol>
+<p>A shorter table's last value holds for the levels past its end, and the window says which levels those are. One Undo
+takes it back.</p>
+<h2 id="quick-fill">Quick Fill</h2>
+<p><strong>Quick Fill…</strong> fills the table from a pattern, from one value to another.</p>
+<p>Its patterns are <strong>Same Value</strong>, <strong>Straight Line</strong>, <strong>Slow Then Fast</strong> and <strong>Fast
+Then Slow</strong> with a <strong>Strength</strong>, <strong>Steps</strong>, <strong>Add Each Level</strong>, <strong>Multiply Each Level</strong>, <strong>Ease In and Out</strong>, or a
+<strong>Custom Curve</strong> you draw.</p>
+<ul>
+<li><strong>Rounding</strong> makes the values whole numbers, or rounds them to a <strong>Step</strong>.</li>
+<li>A preview shows the values as the table will, with their curve. One Undo takes them back.</li>
+<li>On a scaler spread over levels, it fills the points, as many as <strong>Points</strong> says. The preview then shows what each
+level reads between them.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

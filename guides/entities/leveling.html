@@ -87,25 +87,57 @@
         <article data-uid="guide.entities.leveling">
 <h1 id="leveling">Leveling</h1>
 
-<p>An entity's level is kept under its asset tag. A level provider is an asset whose level range another asset follows.</p>
+<p>The Leveling section sets the entity's level range. An entity's level is kept under its asset tag. A level provider is
+an asset whose level range another asset follows.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Link Mode</strong></td>
+<td><strong>Standalone</strong> (default): keeps the entity's own range.<br><strong>Linked To Provider</strong>: shows a provider's range instead.</td>
+</tr>
+<tr>
+<td><strong>Starting Level</strong></td>
+<td>The entity's level when its GAS initializes, 1 by default. It's also the entity's lowest level.</td>
+</tr>
+<tr>
+<td><strong>Max Level</strong></td>
+<td>Its highest level, 99 by default. The level always stays within this range.</td>
+</tr>
+<tr>
+<td><strong>Level Provider</strong></td>
+<td>Shown while linked: the asset whose range the section shows, an Entity, Ability, Effect, Item or Attribute Set.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Link Mode</strong>: Standalone (default) keeps the entity's own range. Linked To Provider shows a provider's range
-instead.</li>
-<li><strong>Starting Level</strong> (default 1): the entity's level when its GAS initializes, and its lowest level.</li>
-<li><strong>Max Level</strong> (default 99): its highest level. The level always stays within this range.</li>
-<li><strong>Level Provider</strong>, while linked: the asset whose range the section shows, an Entity, Ability, Effect, Item or
-Attribute Set. Right-click the field to pick from one type. A link that would make a loop is refused, with an error
-in the Console. While no provider is set, a warning says the entity uses its own range.</li>
-<li><strong>Link Items &amp; Abilities</strong> links this entity's Starting Items and Starting Abilities to it, so their per-level values
-follow its range. <strong>Unlink Items &amp; Abilities</strong> removes the links that point at this entity. Each asks first, and one
-Undo takes it back.</li>
+<li>Right-click the <strong>Level Provider</strong> field to pick from one type.</li>
+<li>A link that would make a loop is refused, with an error in the Console.</li>
+<li>While no provider is set, a warning says the entity uses its own range.</li>
 </ul>
-<p>The entity's level feeds per-level values: the effects it applies as an origin, its Max Abilities and item limits, and
-the cached scalers in its attribute set. Code changes the level through the GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and
-the entity's asset tag. At runtime, the entity's level range comes from its own Starting Level and Max Level, even while
-it is linked.</p>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Entities</a> · <a href="tags.html">Tags →</a></p>
+<p>Two buttons link the entity's Starting Items and Starting Abilities to it, or unlink them. Each asks first, and one Undo
+takes it back.</p>
+<ul>
+<li><strong>Link Items &amp; Abilities</strong> links this entity's Starting Items and Starting Abilities to it, so their per-level values
+follow its range.</li>
+<li><strong>Unlink Items &amp; Abilities</strong> removes the links that point at this entity.</li>
+</ul>
+<p>The entity's level feeds per-level values:</p>
+<ul>
+<li>the effects it applies as an origin;</li>
+<li>its Max Abilities and item limits;</li>
+<li>the cached scalers in its attribute set.</li>
+</ul>
+<p>Code changes the level through the GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and the entity's asset tag.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>At runtime, the entity's level range comes from its own Starting Level and Max Level, even while it is linked.</p>
+</div>
 
 </article>
 

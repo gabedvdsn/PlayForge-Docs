@@ -88,29 +88,13 @@
 <h1 id="conditions-and-checks">Conditions and checks</h1>
 
 <p>Besides requirements, conditions, ability checks, tasks and triggers read tags: an entity's, or an asset's.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>The <strong>Tag</strong> condition, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCondition.html"><code>TagCondition</code></a>, holds where the caster or the target, as its <strong>On</strong> says, answers its
-<strong>Query</strong>, a tag query counted by weight, so a tag granted twice counts twice. Where the number's context lacks that
-entity, as a target's tag with no target, it doesn't hold. A Conditional number, an effect's Apply, Ongoing and
-Removal Conditions, an On Hit and an ability's Condition check read conditions
-(<a href="../scalers/a-magnitude-field.html">Scalers: A magnitude field</a>).</li>
-<li>The <strong>Tag Weight</strong> check, <a class="xref" href="../../api/FarEmerald.PlayForge.TagWeightValidation.html"><code>TagWeightValidation</code></a>, among an ability's Caster or Target Checks, compares the checked
-entity's weight of its <strong>Tag</strong> with its <strong>Weight</strong>, by its <strong>Comparison</strong>, an entity without the tag holding it at
-0. A check of your own that reads a tag derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html"><code>AbstractTagValidationRule</code></a>, whose <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html#FarEmerald_PlayForge_AbstractTagValidationRule_GetValue_"><code>GetValue</code></a> gives its tag's
-weight on the checked entity, or, where that entity holds none of it, the ability's Local Data under the tag
-(<a href="../abilities/requirements.html">Abilities: Requirements</a>).</li>
-<li>A <strong>Tag Added</strong> trigger activates its ability as the entity gains a tag, or one under it, that it didn't have; a
-<strong>Wait For Tag</strong> task waits for its caster or its target to gain a tag, that very tag, or to lose it; and a stage's
-<strong>Condition</strong> runs the stage by a tag, in the activation's data or on the caster or the target
-(<a href="../abilities/stages.html">Abilities: Stages</a>).</li>
-<li>An effect's <strong>Removes Effects Tagged</strong> and <strong>Blocks Effects Tagged</strong>, the Has Effect check's <strong>Tagged</strong> and the Asset
-Part number's Effects Tagged match effects, not entities: an effect answers for a tag by its asset tag, a context tag
-or a tag it grants, each the tag or under it (<a href="../effects/tags.html">Effects: Tags</a>). <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectTags.html#FarEmerald_PlayForge_GameplayEffectTags_Names_"><code>GameplayEffectTags.Names(tags, effect)</code></a>
-asks it in code, as <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTags.html#FarEmerald_PlayForge_AbilityTags_Names_"><code>AbilityTags.Names(tags, ability)</code></a> asks whether an ability's asset tag or a context tag is one of
-the tags or under one, as Cancelled By and Blocks do.</li>
+<li><a href="conditions-and-checks/the-tag-condition.html">The Tag condition</a>: The <strong>Tag</strong> condition, <code>TagCondition</code>, holds where an entity answers its tag query.</li>
+<li><a href="conditions-and-checks/the-tag-weight-check.html">The Tag Weight check</a>: The <strong>Tag Weight</strong> check, <code>TagWeightValidation</code>, compares a tag's weight on the checked entity with a number.</li>
+<li><a href="conditions-and-checks/triggers-tasks-and-stages.html">Triggers, tasks and stages</a>: An ability's triggers, tasks and stages can act on a tag (Abilities: Stages)</li>
+<li><a href="conditions-and-checks/matching-effects-and-abilities.html">Matching effects and abilities</a>: Some fields match effects by their tags, not entities</li>
 </ul>
-<hr>
-<p><a href="crowd-control.html">← Crowd control</a> · <a href="index.html">Tags</a> · <a href="tag-workers.html">Tag workers →</a></p>
 
 </article>
 

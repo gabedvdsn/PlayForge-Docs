@@ -87,82 +87,56 @@
         <article data-uid="guide.abilities.components">
 <h1 id="components">Components</h1>
 
-<p>An ability's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the ability <strong>Granted</strong> to an entity and <strong>Removed</strong> from it; is asked whether an activation may start, <strong>CanStart</strong>, where a reason it gives refuses the activation, named by it, as the kind its <strong>RefusedAs</strong> says, Rule unless it says otherwise; is asked whether the target its targeting picked may be taken, <strong>CanTakeTarget</strong>, where a reason it gives ends the activation there, before anything of it is paid, told as the kind its <strong>RefusedAs</strong> says; is waited on as an activation winds up, <strong>WindUp</strong>, after its target checks and before its cost, as a turn to face its target is; and hears an activation <strong>Start</strong>, <strong>Commit</strong> its cost and cooldown, and <strong>End</strong>, by how it ended: done, cancelled or failed. As the activation's usage applies, a component may apply it in the ability's place, <strong>ApplyUsage</strong>, as a Toggle does, composing its own from the spec's <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_PayCosts_"><code>PayCosts</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpec.html#FarEmerald_PlayForge_AbilitySpec_SpendCooldown_"><code>SpendCooldown</code></a>; may waive the Cost and Cooldown checks while it says so, <strong>Waives</strong>; and claims the categories of the effects its ability puts on for a purge, <strong>CategoryOf</strong>, as a Toggle claims its effect a toggle's. A kind that makes no sense twice is offered only while the ability holds none of it.</p>
-<p>A component of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html"><code>AbstractAbilityComponent</code></a> and overrides the hooks it needs, each a no-op
-otherwise. It's the ability's, shared by everything that holds it, so what it keeps for one entity's ability it keeps through its
-context: <code>ctx.GetState&lt;T&gt;(this)</code>. <strong>Describe</strong> says what it does in one line with its numbers, as a Cast Range's &quot;Range
-600&quot;, which the Components section's line, The Forge's summary and the ability's breakdown say beside its name; and
-<strong>DescribeUsage</strong> what it adds to the ability's use, as Charges' &quot;3 charges&quot;, which the Activation section's line says
-after its cost and cooldown. Its rules in the editor derive from <code>ForgeComponentRule&lt;T&gt;</code>, in the editor's assembly, with a
-public constructor that takes nothing: the Problems view runs each on every asset that holds a component of its kind,
-and the ability's inspector says what it finds under its Components list, as it says the Charges'.</p>
-<p>Code finds a component by what it does, not by its class: <code>Find&lt;T&gt;()</code>, on an ability, its spec, an effect, an item and an
-entity, gives the first of its components that is a <code>T</code>, a kind or an interface it implements. An ability's reach is an
-<a class="xref" href="../../api/FarEmerald.PlayForge.IAbilityReach.html"><code>IAbilityReach</code></a>, which Cast Range implements; the targeting tasks, the Creator Lab's bots and your own code read it
-through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeReach.html"><code>ForgeReach</code></a>, so a component of your own that implements it is asked as a Cast Range is. How its uses come back
-is an <a class="xref" href="../../api/FarEmerald.PlayForge.ICooldownModel.html"><code>ICooldownModel</code></a>, which Charges implements: how many it holds, how many are in hand, what a use spends, and why
-the Cooldown check refuses it with none; an ability with none has <a class="xref" href="../../api/FarEmerald.PlayForge.SingleCooldown.html"><code>SingleCooldown</code></a>, one use, back as its Cooldown ends.
-The Cooldown check asks it, the ability spends through it, and a HUD reads it as <code>spec.CooldownModel</code>. A component's
-state that needs its holder, as a Charges component's charges need their ability, is kept with
-<code>spec.ComponentStates.TryGet</code> and <code>Keep</code>. The built-in components are written on this API alone, and PlayForge's core
-names none of them, so a component of your own reaches as far as they do. None has a shortcut: code reads one through
-<code>Find&lt;T&gt;()</code> or the component itself, as <code>spec.Find&lt;ToggleAbilityComponent&gt;()?.IsOn(spec)</code> says whether a Toggle is on.</p>
-<h2 id="cast-range">Cast Range</h2>
-<p>A <strong>Cast Range</strong> component is the one range the ability has: how far from its caster its target or its point
-may be, its <strong>Range</strong> a number that can scale by level, measured along the ground unless <strong>Flat</strong> is off; 0 reaches
-anywhere. An activation handed a target or a point beyond it, under TargetReal or Position, as an AI's is, is refused
-as <strong>Range</strong>, so nothing of it is paid and an AI can walk closer and ask again; targeting that picks a target beyond it,
-whichever task picked it, ends the activation before its stages, told as <strong>Range</strong> too. The auto-targeting tasks measured from the caster, and
-Select GAS Target In Range, search within it where their <strong>Use Cast Range</strong> is on, as it is by default, their own range
-set aside. The Creator Lab's units attack from their attack's Cast Range, and its bots cast an ability once their foe is
-within its Cast Range, where it has one (<a href="../creator-lab/index.html">The Creator Lab</a>). It's the ability's reach, an
-<code>IAbilityReach</code>: code reads it through <code>ForgeReach</code>, as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeReach.html#FarEmerald_PlayForge_ForgeReach_TryRead_"><code>ForgeReach.TryRead(caster, ability, out range)</code></a>, and a reach
-of your own takes its place in each of these.
-While the ability holds it, its Target Checks show its <strong>Check Range</strong>, locked, saying the range (see Requirements). An
-ability holds one at most.</p>
-<h2 id="charges">Charges</h2>
-<p>A <strong>Charges</strong> component says how many uses the ability holds, a number that can scale by level, each use spending a charge. With 1 it
-is an ordinary cooldown. With more, the Cooldown check refuses it only with none in hand, and its <strong>Recharge</strong> says
-how spent ones come back: <strong>Each Charge</strong> (the default) starts the Cooldown for each charge spent, a container of its
-own whatever the effect does when applied again, and each brings its charge back as it ends, so three spent a second
-apart come back a second apart; <strong>All At Once</strong> starts the Cooldown only as the last is spent, and its end brings them
-all back. Write a recharge of your own by extending <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractChargeRecharge.html"><code>AbstractChargeRecharge</code></a>: override <code>InHand</code> (how many are in
-hand) and <code>Spend</code> (what a use does), using <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityCharges.html"><code>AbilityCharges</code></a>' <code>Max</code>, <code>Spent</code>, <code>Cooldowns</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityCharges.html#FarEmerald_PlayForge_AbilityCharges_StartCooldown_"><code>StartCooldown</code></a>; one
-of your own counts even a single charge, unless its <code>CountsASingleCharge</code> says not. Charges are the ability's cooldown
-model (see Components), so code reads what's in hand of any ability as <code>spec.CooldownModel.InHand(spec)</code>. The
-component itself, <code>spec.Find&lt;ChargesAbilityComponent&gt;()</code>, holds its <strong>Charges</strong> and <strong>Recharge</strong>, and its
-<a class="xref" href="../../api/FarEmerald.PlayForge.ChargesAbilityComponent.html#FarEmerald_PlayForge_ChargesAbilityComponent_ChargesOf_"><code>ChargesOf(spec)</code></a> gives the ability's charges on its caster, an <code>AbilityCharges</code>. The section's line counts them, as &quot;3 charges&quot;,
-and a warning under the Components list, as in the
-Problems view, says where built-in charges have no Cooldown to bring them
-back, so they never run out. An ability holds one at most.</p>
-<h2 id="toggle">Toggle</h2>
-<p>A <strong>Toggle</strong> component holds an <strong>Effect</strong> the ability turns on and off on its caster, as a mana shield: used, it puts the effect
-on where its usage would be paid, paying its Cost and Attribute Costs and starting no cooldown; used again, it takes
-the effect off, paying nothing and asking no cost, and starts its Cooldown, or spends a charge. Neither its cost nor
-its cooldown stops it turning off. It counts only the effect it put on; one another put there leaves it off. A purge
-counts its effect a Toggle's, as a death that keeps toggles keeps it. Code asks the component,
-<code>spec.Find&lt;ToggleAbilityComponent&gt;()</code>: its <a class="xref" href="../../api/FarEmerald.PlayForge.ToggleAbilityComponent.html#FarEmerald_PlayForge_ToggleAbilityComponent_IsOn_"><code>IsOn(spec)</code></a> says whether its effect is on, and its <strong>Effect</strong> is the effect. It's written on the components' hooks alone: it applies the usage in its ability's
-place, waives the cost and the cooldown while it's on, and claims its effect. The Problems view warns where it toggles an Instant effect, which is never on. As its holder forgets the ability, the effect comes off; it stayed on. An ability
-holds one at most.</p>
-<h2 id="turn-to-face">Turn To Face</h2>
-<p>A <strong>Turn To Face</strong> component says how this ability turns its caster to face its target or its point before its first
-stage, in place of its entity's Turns To Face (<a href="../entities/components.html#turns-to-face">Entities: Turns To Face</a>): its own <strong>Turn Speed</strong>,
-<strong>Start Angle</strong>, <strong>Facing Angle</strong>, <strong>If Too Long</strong> and <strong>Max Wait</strong>. With <strong>Turns</strong> off it doesn't turn at all, as a
-cast behind its caster doesn't. The Target Checks come before the turn, so a Facing check that wants its target in front
-of its caster reads the caster's facing before it turns. An ability holds one at most.</p>
-<h2 id="auras">Auras</h2>
-<p>An <strong>Aura</strong> component holds an effect on those near its holder, while the entity knows the ability, as a banner that inspires the allies
-round its bearer: each a radius, whom it takes, its holder too or not, and how often it checks
-(<a href="../effects/components.html#auras">Effects: Auras</a>).</p>
-<h2 id="cues">Cues</h2>
-<p>A <strong>Cues</strong> component plays what the ability shows and sounds at its moments, on its caster: <strong>On Activate</strong> as an
-activation starts, <strong>On Commit</strong> as it pays its cost and starts its cooldown, <strong>While Active</strong> from its start to its
-end, <strong>On End</strong> as it ends however it ended, and <strong>On Refused</strong> as one is refused, nothing of it paid. Each list holds
-cues as an effect's does (<a href="../effects/cues.html">Effects: Cues</a>), a Cue Tag among them; a Prefab cue in While Active lasts
-until the activation ends. A stage's exact moment, as a sword's arc, plays through a <strong>Play Cue</strong> task. An
-ability holds one at most.</p>
-<hr>
-<p><a href="requirements.html">← Requirements</a> · <a href="index.html">Abilities</a> · <a href="workers.html">Workers →</a></p>
+<p>An ability's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A
+kind that makes no sense twice is offered only while the ability holds none of it.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="components/cast-range.html">Cast Range</a></td>
+<td>The one range the ability has.</td>
+</tr>
+<tr>
+<td><a href="components/charges.html">Charges</a></td>
+<td>How many uses the ability holds.</td>
+</tr>
+<tr>
+<td><a href="components/toggle.html">Toggle</a></td>
+<td>An effect the ability turns on and off on its caster.</td>
+</tr>
+<tr>
+<td><a href="components/turn-to-face.html">Turn To Face</a></td>
+<td>How the ability turns its caster to face its target or its point before its first stage.</td>
+</tr>
+<tr>
+<td><a href="components/auras.html">Auras</a></td>
+<td>An effect on those near its holder, while the entity knows the ability.</td>
+</tr>
+<tr>
+<td><a href="components/cues.html">Cues</a></td>
+<td>What the ability shows and sounds at its moments.</td>
+</tr>
+</tbody>
+</table>
+<p>To write a component of your own, see <a href="components/component-hooks.html">Component hooks</a>, <a href="components/writing-a-component.html">Writing a component</a>
+and <a href="components/components-in-code.html">Components in code</a>.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="components/cast-range.html">Cast Range</a>: A <strong>Cast Range</strong> component is the one range the ability has: how far from its caster its target or its point may be.</li>
+<li><a href="components/charges.html">Charges</a>: A <strong>Charges</strong> component says how many uses the ability holds, each use spending a charge.</li>
+<li><a href="components/toggle.html">Toggle</a>: A <strong>Toggle</strong> component holds an <strong>Effect</strong> the ability turns on and off on its caster, as a mana shield.</li>
+<li><a href="components/turn-to-face.html">Turn To Face</a>: A <strong>Turn To Face</strong> component says how this ability turns its caster to face its target or its point before its first stage.</li>
+<li><a href="components/auras.html">Auras</a>: An <strong>Aura</strong> component holds an effect on those near its holder, while the entity knows the ability, as a banner that inspires the allies round its bearer.</li>
+<li><a href="components/cues.html">Cues</a>: A <strong>Cues</strong> component plays what the ability shows and sounds at its moments, on its caster.</li>
+<li><a href="components/component-hooks.html">Component hooks</a>: A component hears its ability's life through hooks, each a no-op unless the component overrides it.</li>
+<li><a href="components/writing-a-component.html">Writing a component</a>: A component of your own derives from <code>AbstractAbilityComponent</code> and overrides the hooks it needs, each a no-op otherwise.</li>
+<li><a href="components/components-in-code.html">Components in code</a>: Code finds a component by what it does, not by its class.</li>
+</ul>
 
 </article>
 

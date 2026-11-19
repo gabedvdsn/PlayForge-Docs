@@ -93,32 +93,45 @@
 [NumberMin(0)]
 public ScalableFloat Range = 20f;
 </code></pre>
+<p>Read it with <code>Range.Evaluate(context)</code>, with a <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a> built <code>Of</code> what the code has: an effect's spec, an
+activation's data, a worker's context, an entity, a cue or a process.</p>
+<p><code>Range.Evaluate(context, this)</code> also hands the field's object over, which is what Relative to a Field reads. A field
+read that way declares <a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html#FarEmerald_PlayForge_NumberReads_Owner"><code>NumberReads.Owner</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html#FarEmerald_PlayForge_NumberReads_All"><code>NumberReads.All</code></a>, and its kind menu then offers that kind.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Tooltip]</code></td>
+<td>Shows on the field's name.</td>
+</tr>
+<tr>
+<td><code>[NumberMin(0)]</code>, <code>[NumberMax(10)]</code> and <code>[NumberRange(0, 1)]</code></td>
+<td>Limit the constant typed in the inspector. A range sets it on a slider.</td>
+</tr>
+<tr>
+<td><code>[ShownWhen(nameof(UsePhysics))]</code></td>
+<td>Shows a field only while a toggle of the same object is on.</td>
+</tr>
+<tr>
+<td><code>[ShownWhen(nameof(Mode), (int)EMode.Area)]</code></td>
+<td>Shows a field only while an enum is one of the values.</td>
+</tr>
+<tr>
+<td><code>[ForgeMenu(&quot;Path/Sub&quot;, Name = &quot;...&quot;, Description = &quot;...&quot;)]</code></td>
+<td>Files a kind of your own in its picker.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>Read it with <code>Range.Evaluate(context)</code>, with a <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a> built <code>Of</code> what the code has: an effect's spec, an
-activation's data, a worker's context, an entity, a cue or a process. <code>Range.Evaluate(context, this)</code> also hands the
-field's object over, which is what Relative to a Field reads; a field read that way declares <a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html#FarEmerald_PlayForge_NumberReads_Owner"><code>NumberReads.Owner</code></a>, or
-<a class="xref" href="../../api/FarEmerald.PlayForge.NumberReads.html#FarEmerald_PlayForge_NumberReads_All"><code>NumberReads.All</code></a>, and its kind menu then offers that kind.</li>
-<li><code>[Tooltip]</code> shows on the field's name.</li>
-<li><code>[NumberMin(0)]</code>, <code>[NumberMax(10)]</code> and <code>[NumberRange(0, 1)]</code> limit the constant typed in the inspector, and a range
-sets it on a slider. On a field whose unit is &quot;%&quot; the limit is in what the field stores, so <code>[NumberRange(0, 1)]</code> is
-0% to 100%, and a whole-number field takes the whole numbers inside the limits. They limit the constant alone: a
-number of another kind is worked out as the game runs, so where what it reads must stay inside limits, give it the
-Clamped kind or clamp what the code reads.</li>
-<li>In a kind of your own, as an ability task, a targeting task or a scaler, <code>[ShownWhen(nameof(UsePhysics))]</code> shows a
-field only while a toggle of the same object is on, and <code>[ShownWhen(nameof(Mode), (int)EMode.Area)]</code> only while an
-enum is one of the values, as a targeting task's Detection Layers show under Use Physics. A task reads its
-numbers with <code>Read(number, data)</code>, at its ability's level.</li>
-<li>Every kind of your own, a task, a worker, a component, a cue, a kind of number or a condition, takes
-<code>[ForgeMenu(&quot;Path/Sub&quot;, Name = &quot;...&quot;, Description = &quot;...&quot;)]</code>: its picker files it under the submenus its path
-names, a slash nesting them; Name replaces its class's name in the picker and in its field; and Description is what
-the picker's Context says while it's highlighted. A path holds for the classes made from the one that names it, and
-<code>[ForgeMenu(&quot;&quot;)]</code> puts a kind at the top whatever its base names.</li>
-<li>Unity's own <code>[Min]</code> and <code>[Range]</code> don't work on a number field: Unity gives the field to that attribute's drawer,
-which draws &quot;Use Range with float or int&quot; where the number was. As scripts load, the console names each number
-field that has one, with the attribute to use in its place.</li>
+<li><a href="a-number-field-in-your-own-code/limits.html">Limits</a>: The limits apply to the constant alone.</li>
+<li><a href="a-number-field-in-your-own-code/in-a-kind-of-your-own.html">In a kind of your own</a>: <code>[ShownWhen]</code> works in a kind of your own, as an ability task, a targeting task or a scaler.</li>
 </ul>
-<hr>
-<p><a href="writing-your-own-scaler.html">← Writing your own scaler</a> · <a href="index.html">Scalers</a> · <a href="asking-a-worker.html">Asking a worker →</a></p>
 
 </article>
 

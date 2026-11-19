@@ -87,29 +87,57 @@
         <article data-uid="guide.items.leveling">
 <h1 id="leveling">Leveling</h1>
 
-<p>An item has its own level on each entity that holds it, kept under the item's asset tag. Its Granted Effects take this
-level, and its Active Ability is granted at it. A level provider is an asset whose level range another asset follows.</p>
+<p>The Leveling section sets the item's level range. An item has its own level on each entity that holds it, kept under
+the item's asset tag. Its Granted Effects take this level, and its Active Ability is granted at it.</p>
+<p>A level provider is an asset whose level range another asset follows.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Link Mode</strong></td>
+<td><strong>Standalone</strong> (default): keeps the item's own range.<br><strong>Linked To Provider</strong>: takes the range from a level provider instead.</td>
+</tr>
+<tr>
+<td><strong>Starting Level</strong></td>
+<td>The start of the item's own range, 1 by default. It's kept within the range.</td>
+</tr>
+<tr>
+<td><strong>Max Level</strong></td>
+<td>The end of the item's own range, 4 by default.</td>
+</tr>
+<tr>
+<td><strong>Level Provider</strong></td>
+<td>Shown while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.</td>
+</tr>
+</tbody>
+</table>
+<p>Both levels are at least 1. While linked, Starting Level and Max Level show the range in use, read-only.</p>
 <ul>
-<li><strong>Link Mode</strong>: Standalone (default) keeps the item's own range. Linked To Provider takes the range from a level
-provider instead.</li>
-<li><strong>Starting Level</strong> and <strong>Max Level</strong>: the item's own range, by default 1 and 4. Both are at least 1, and the
-Starting Level is kept within the range.</li>
-<li><strong>Level Provider</strong>, while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.
-Right-click the field to pick from one type. A link that would make a loop is refused, with an error in the Console.
-While no provider is set, a warning says the item uses its own range. While linked, Starting Level and Max Level
-show the range in use, read-only.</li>
+<li>Right-click the <strong>Level Provider</strong> field to pick from one type.</li>
+<li>A link that would make a loop is refused, with an error in the Console.</li>
+<li>While no provider is set, a warning says the item uses its own range.</li>
+</ul>
+<p>Two buttons link the item's Granted Effects and Active Ability to it, or unlink them. Each asks first, and one Undo
+takes it back.</p>
+<ul>
 <li><strong>Link Ability &amp; Effects</strong> links the Granted Effects and the Active Ability to this item, so their per-level values
-follow its range. <strong>Unlink Ability &amp; Effects</strong> removes the links that point at this item. Each asks first, and one
-Undo takes it back.</li>
+follow its range.</li>
+<li><strong>Unlink Ability &amp; Effects</strong> removes the links that point at this item.</li>
 </ul>
 <p>A given item starts at its Starting Level, unless code gives it at another level. Its level then stays between that
-level and the Max Level. Code changes it through the entity's GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and the item's asset
-tag.</p>
+level and the Max Level. Code changes it through the entity's GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and the item's
+asset tag.</p>
 <p>The link serves the inspector: the Leveling section, and the scalers of effects linked to this item, read the
-provider's range. At runtime, the item's level comes from its own Starting Level and Max Level, even while it is
-linked.</p>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Items</a> · <a href="tags.html">Tags →</a></p>
+provider's range.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>At runtime, the item's level comes from its own Starting Level and Max Level, even while it is linked.</p>
+</div>
 
 </article>
 

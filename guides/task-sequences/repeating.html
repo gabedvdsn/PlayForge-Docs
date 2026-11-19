@@ -87,16 +87,39 @@
         <article data-uid="guide.task-sequences.repeating">
 <h1 id="repeating">Repeating</h1>
 
-<ul>
-<li><code>WithRepeat(true)</code> on the builder repeats the whole sequence until it's interrupted.</li>
-<li><code>WithRepeat(true)</code> on a stage repeats the stage until it's broken (<code>data.BreakStageRepeat()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_StopRepeatWhen_"><code>StopRepeatWhen</code></a>),
-skipped or interrupted; <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_WithRepeatAndDelay_"><code>WithRepeatAndDelay(seconds)</code></a> waits between repeats.</li>
-<li><code>WithRepeat(3)</code> on a stage runs it three times in all, then the sequence moves on. A break, a skip or an interrupt
-still ends it sooner.</li>
-</ul>
+<p>A sequence, or one of its stages, can repeat.</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>On</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithRepeat(true)</code></td>
+<td>The builder</td>
+<td>Repeats the whole sequence until it's interrupted.</td>
+</tr>
+<tr>
+<td><code>WithRepeat(true)</code></td>
+<td>A stage</td>
+<td>Repeats the stage until it's broken (<code>data.BreakStageRepeat()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_StopRepeatWhen_"><code>StopRepeatWhen</code></a>), skipped or interrupted.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_WithRepeatAndDelay_"><code>WithRepeatAndDelay(seconds)</code></a></td>
+<td>A stage</td>
+<td>Repeats the stage in the same way, and waits between repeats.</td>
+</tr>
+<tr>
+<td><code>WithRepeat(3)</code></td>
+<td>A stage</td>
+<td>Runs the stage three times in all, then the sequence moves on. A break, a skip or an interrupt still ends it sooner.</td>
+</tr>
+</tbody>
+</table>
 <p>A stage's <code>OnRepeat</code> hears each repeat, and <code>runtime.GetRepeatCount(stage)</code> says how many runs are done.</p>
-<hr>
-<p><a href="waiting.html">← Waiting</a> · <a href="index.html">Task Sequences</a> · <a href="changing-the-run.html">Changing the run →</a></p>
 
 </article>
 

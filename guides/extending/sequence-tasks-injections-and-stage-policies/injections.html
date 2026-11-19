@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Injections | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Injections | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.sequence-tasks-injections-and-stage-policies.injections">
+<h1 id="injections">Injections</h1>
+
+<p>An injection changes a run as it goes, as a skip, a jump or an interrupt.</p>
+<p>Implement <a class="xref" href="../../../api/FarEmerald.PlayForge.ISequenceInjection.html"><code>ISequenceInjection</code></a>. Its hook is handed the run, a <a class="xref" href="../../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html"><code>TaskSequenceRuntime</code></a>, which gives it <code>Data</code>,
+<code>StageIndex</code>, <code>CurrentStage</code>, <code>IsRunning</code>, <code>IsPaused</code>, <code>Pause()</code>, <code>Resume()</code> and <code>Inject</code>.</p>
+<p>The skips, jumps and interrupts themselves are the built-in injections': <a class="xref" href="../../../api/FarEmerald.PlayForge.SkipStageInjection.html"><code>SkipStageInjection</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.JumpToStageInjection.html"><code>JumpToStageInjection</code></a>,
+<a class="xref" href="../../../api/FarEmerald.PlayForge.InterruptSequenceInjection.html"><code>InterruptSequenceInjection</code></a> and the rest. An injection of a game's own composes them.</p>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool Apply(TaskSequenceRuntime runtime)</code></td>
+<td>As it's injected into a run. It acts on the run, and says whether it took effect.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>An injection reaches a run four ways:</p>
+<ul>
+<li><code>runtime.Inject(injection)</code>, into one run;</li>
+<li><code>sequence.Inject(injection)</code>, into every run of a sequence;</li>
+<li>the builder's <code>InjectWhen</code>;</li>
+<li>an ability's Inject task, whose picker lists a <code>[Serializable]</code> injection with a constructor that takes nothing. It
+shows <code>SkipIfTaggedInjection</code> as <strong>Skip If Tagged</strong>.</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>This injection skips the current stage where the caster carries a tag:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Name = &quot;Skip If Tagged&quot;, Description = &quot;Skips the current stage where the caster carries a tag.&quot;)]
+    public class SkipIfTaggedInjection : ISequenceInjection
+    {
+        [Tooltip(&quot;The tag on the caster that skips the stage&quot;)]
+        [ForgeTagContext(ForgeContext.Granted)]
+        public Tag Tag;
+
+        public bool Apply(TaskSequenceRuntime runtime)
+        {
+            if (!Tag.IsValid || runtime?.Data is not AbilityDataPacket data) return false;
+            var caster = data.EffectOrigin?.GetSource();
+            if (caster == null || caster.GetTagWeight(Tag) &lt;= 0) return false;
+            // This injection passed the run's checks as it came in; the skip it composes is part of it
+            return runtime.Inject(SkipStageInjection.Instance, overridePermission: true);
+        }
+    }
+}
+</code></pre>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>Permissions name injections by their exact type.</strong> A sequence or a stage that lists its allowed injections,
+<code>AllowInjections(typeof(SkipIfTaggedInjection))</code>, takes only those types, not types made from them.</li>
+<li><strong>A critical section takes only an interrupt</strong> unless its critical policy lists more.</li>
+<li><strong>An injection is one object every run shares</strong>: what it keeps for one run goes in the run's data.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

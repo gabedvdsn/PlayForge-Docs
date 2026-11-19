@@ -88,29 +88,44 @@
 <h1 id="workers">Workers</h1>
 
 <p>Workers are reusable behaviours, picked from a list, that react to what happens to an entity. This group is subscribed
-to the entity when it learns the ability, and removed when the ability is removed. <strong>Name</strong> labels the group. It holds
-four lists:</p>
+to the entity when it learns the ability, and removed when the ability is removed.</p>
+<p><strong>Name</strong> labels the group. It holds four lists:</p>
+<table>
+<thead>
+<tr>
+<th>List</th>
+<th>What its workers do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>Run before or after an attribute changes, for example to reduce incoming damage.</td>
+</tr>
+<tr>
+<td><strong>Impact</strong></td>
+<td>Inspect the changes this entity deals.</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>React when the entity's tags change.</td>
+</tr>
+<tr>
+<td><strong>Analysis</strong></td>
+<td>Examine the frame at its end, for example to detect death.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Attribute</strong> workers run before or after an attribute changes, for example to reduce incoming damage.</li>
-<li><strong>Impact</strong> workers inspect the changes this entity deals.</li>
-<li><strong>Tag</strong> workers react when the entity's tags change.</li>
-<li><strong>Analysis</strong> workers examine the frame at its end, for example to detect death.</li>
+<li>Each list's <strong>+</strong> adds an empty worker to pick a kind for.</li>
+<li>The section's import button copies a worker group from another asset.</li>
 </ul>
-<p>Each list's <strong>+</strong> adds an empty worker to pick a kind for. The section's import button copies a worker group
-from another asset.</p>
-<h2 id="on-hit">On Hit</h2>
-<p><strong>On Hit</strong>, above the workers, holds the effects the entity's hits apply while it knows the ability, as a passive's. Its entries are an item's: an attribute, the effects, to the one hit or the holder, only on a kill, impact
-types and a condition (<a href="../items/workers.html#on-hit">Items: On Hit</a>).</p>
-<h2 id="modifiers">Modifiers</h2>
-<p><strong>Modifiers</strong>, under On Hit, change other effects as they're made, while the entity knows the ability: its holder's own, as a boon that adds a
-burst to its holder's every Chill, or those landing on it, as a cloak that halves the stuns its wearer takes.
-Each entry is a rule of its own or names a shared Effect Modifier asset (<a href="../effects/workers.html#modifiers">Effects: Modifiers</a>).</p>
-<h2 id="lifesteal">Lifesteal</h2>
-<p>An ability gives its holder lifesteal by an effect that raises the holder's <strong>Lifesteal</strong>, the attribute the project's
-Lifesteal worker names as its Share, as a passive applies it to its caster, which the Lifesteal worker heals by (<a href="../workers/lifesteal.html">Workers: Lifesteal</a>): a vampiric mask's
-Infinite effect of +0.15 Lifesteal heals its wearer 15% of each blow it deals. Its Lifesteal list is gone.</p>
-<hr>
-<p><a href="components.html">← Components</a> · <a href="index.html">Abilities</a> · <a href="local-data.html">Local Data →</a></p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="workers/on-hit.html">On Hit</a>: <strong>On Hit</strong>, above the workers, holds the effects the entity's hits apply while it knows the ability, as a passive's.</li>
+<li><a href="workers/modifiers.html">Modifiers</a>: <strong>Modifiers</strong>, under On Hit, change other effects as they're made, while the entity knows the ability.</li>
+<li><a href="workers/lifesteal.html">Lifesteal</a>: An ability gives its holder lifesteal by an effect that raises the holder's <strong>Lifesteal</strong>, as a passive applies it to its caster.</li>
+</ul>
 
 </article>
 

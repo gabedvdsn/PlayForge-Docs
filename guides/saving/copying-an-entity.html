@@ -87,16 +87,17 @@
         <article data-uid="guide.saving.copying-an-entity">
 <h1 id="copying-an-entity">Copying an entity</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Copy_"><code>ForgeSave.Copy(from, onto)</code></a> copies what lasts on one entity onto another, as a mirror clone takes its original's
-state. It's a capture and a restore with no catalog and no IDs, since both entities are in the same session, so it
-copies assets made as the game runs too. An effect another entity applied stays that entity's, and the entity's own
-level goes onto the other's own.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Copy_"><code>ForgeSave.Copy(from, onto)</code></a> copies what lasts on one entity onto another, as a mirror clone takes its original's state.</p>
+<p>It's a capture and a restore with no catalog and no IDs, since both entities are in the same session. So it copies
+assets made as the game runs too.</p>
+<ul>
+<li>An effect another entity applied stays that entity's.</li>
+<li>The entity's own level goes onto the other's own.</li>
+</ul>
 <pre><code class="lang-csharp">var clone = new RuntimeGameplayAbilitySystem(identity);
 ProcessControl.Register(clone).Run();
 ForgeSave.Copy(original, clone);
 </code></pre>
-<hr>
-<p><a href="rolling-back.html">← Rolling back</a> · <a href="index.html">Saving and Loading</a> · <a href="versions.html">Versions →</a></p>
 
 </article>
 

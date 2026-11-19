@@ -87,33 +87,50 @@
         <article data-uid="guide.attributes.roles">
 <h1 id="roles">Roles</h1>
 
-<p>A game's settings live on its <strong>Forge Project</strong>, the asset at the root of its folder that The Forge's projects
-are. Among them are its <strong>Roles</strong>: the part each attribute plays in the game, each a <strong>role tag</strong> and the attribute that
-plays it. PlayForge's own features read the roles it ships, and a game's code reads its own by their tags, so no
-attribute's name is built in:</p>
+<p>A game's settings live on its <strong>Forge Project</strong>, the asset at the root of its folder that The Forge's projects are.
+Among them are its <strong>Roles</strong>: the part each attribute plays in the game, each a <strong>role tag</strong> and the attribute that
+plays it.</p>
+<p>PlayForge's own features read the roles it ships, and a game's code reads its own by their tags, so no attribute's name
+is built in.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Tag</th>
+<th>What reads it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Health</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_HEALTH"><code>Tags.ROLE_HEALTH</code></a></td>
+<td>What an entity dies of as it reaches 0, where no death watcher of its own watches for its death and its Death doesn't say otherwise (<a href="../entities/death.html">Entities: Death</a>).<br>What On Hit counts, lifesteal heals and Execute reads, where they name no attribute.<br>Whose loss names the killer, for Kill and Died.</td>
+</tr>
+<tr>
+<td><strong>Luck</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_LUCK"><code>Tags.ROLE_LUCK</code></a></td>
+<td>It's read on the caster of every chance that gives no luck of its own.</td>
+</tr>
+<tr>
+<td><strong>Movement Speed</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_MOVEMENT_SPEED"><code>Tags.ROLE_MOVEMENT_SPEED</code></a></td>
+<td>What the Creator Lab's units walk at, where its rules name none.</td>
+</tr>
+<tr>
+<td><strong>A role of your own</strong></td>
+<td>Any tag, such as <code>Role.Energy</code>, in the same list</td>
+<td>Code reads it with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRoles.html#FarEmerald_PlayForge_ForgeRoles_AttributeFor_"><code>ForgeRoles.AttributeFor(tag)</code></a>, and an ability's attribute cost can spend it (<a href="../abilities/activation.html">Abilities: Activation</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>An entity whose set has no attribute in the Health role doesn't die of it. Each role is optional, and an empty one
+leaves things as they were.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Health</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_HEALTH"><code>Tags.ROLE_HEALTH</code></a>): what an entity dies of as it reaches 0, where no death watcher of its own watches
-for its death and its Death doesn't say otherwise (<a href="../entities/death.html">Entities: Death</a>); what On Hit counts, lifesteal
-heals and Execute reads where they name no attribute; and whose loss names the killer, for Kill and Died. An entity
-whose set has no attribute in this role doesn't die of it.</li>
-<li><strong>Luck</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_LUCK"><code>Tags.ROLE_LUCK</code></a>): read on the caster of every chance that gives no luck of its own.</li>
-<li><strong>Movement Speed</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_MOVEMENT_SPEED"><code>Tags.ROLE_MOVEMENT_SPEED</code></a>): what the Creator Lab's units walk at, where its rules name none.</li>
-<li><strong>A role of your own</strong>: any tag, as <code>Role.Energy</code>, in the same list. Code reads it with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRoles.html#FarEmerald_PlayForge_ForgeRoles_AttributeFor_"><code>ForgeRoles.AttributeFor(tag)</code></a>,
-and an ability's attribute cost can spend it (<a href="../abilities/activation.html">Abilities: Activation</a>).</li>
+<li><a href="roles/project-settings.html">Project Settings</a>: <strong>Project Settings → PlayForge</strong> shows the active project's settings under <strong>Forge Project</strong>.</li>
+<li><a href="roles/the-project-a-game-reads.html">The project a game reads</a>: A running game reads its settings from <code>ForgeProject.Current</code>.</li>
+<li><a href="roles/what-the-problems-window-checks.html">What the Problems window checks</a>: The Problems window checks attribute costs, roles and deaths against each asset's project.</li>
 </ul>
-<p>Each role is optional, and an empty one leaves things as they were. <strong>Project Settings → PlayForge</strong> shows the active
-project's settings under <strong>Forge Project</strong>: <strong>Fill Roles by Name</strong> fills each of PlayForge's roles no attribute plays yet
-with the project's attribute of its name, and <strong>Create Forge Project</strong> makes the default project where there's none.
-The settings also hold the project's default <strong>Crowd Control</strong> (<a href="../abilities/requirements.html#crowd-control">Abilities: Crowd Control</a>).</p>
-<p>A running game reads its settings from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Current"><code>ForgeProject.Current</code></a>: the project code sets with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Use_"><code>ForgeProject.Use(project)</code></a>,
-as a test or a game with no GameRoot does, or else the one its <strong>GameRoot</strong> names in its <strong>Project</strong> field. A build has
-the project because the GameRoot names it, and play mode reads it as a build does, not The Forge's active project. In
-the editor, the inspectors and the Problems window read each asset against its own project, the one whose folder holds
-it. The Problems window warns of an attribute cost that spends nothing, or a role no attribute plays in its project; an
-entity whose starting abilities spend attributes its set doesn't give; and an entity that stays when it dies whose set
-lacks the Health role's attribute, with no death watcher of its own.</p>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Attributes</a> · <a href="local-data.html">Local Data →</a></p>
 
 </article>
 

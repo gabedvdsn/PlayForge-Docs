@@ -87,28 +87,34 @@
         <article data-uid="guide.entities.tags">
 <h1 id="tags">Tags</h1>
 
+<p>The Tags section sets the entity's sides and the tags it carries.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Affiliation</strong></td>
+<td>The entity's team or faction tags. An effect's Affiliation check compares its origin's affiliation with its target's.</td>
+</tr>
+<tr>
+<td><strong>Context Tags</strong></td>
+<td>Tags that describe the entity, such as <code>Undead</code>. Changes the entity makes as an origin itself carry them as context, and workers can filter by them.</td>
+</tr>
+<tr>
+<td><strong>Granted Tags</strong></td>
+<td>Tags that are always applied to the entity.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Affiliation</strong>: the entity's team or faction tags. An effect's Affiliation check compares its origin's affiliation
-with its target's. Code that starts a GAS can pass affiliation tags in its registration data, and those replace this
-list; as the game runs, <code>SetAffiliation</code> on either hub sets them, as a side switch or a scripted betrayal. The
-GAS also applies these tags to the entity, on either hub. An effect's Side Change goes over them while it lasts
-(<a href="../effects/index.html">Effects</a>), and <code>GetSides</code> says which it's under.</li>
-<li><strong>Context Tags</strong> describe the entity, such as <code>Undead</code>. Changes the entity makes as an origin itself carry them as
-context, and workers can filter by them.</li>
-<li><strong>Granted Tags</strong> are always applied to the entity.</li>
+<li><a href="tags/affiliation-at-runtime.html">Affiliation at runtime</a>: An entity's affiliation can change as the game runs, from code or from an effect.</li>
+<li><a href="tags/hearing-tag-changes.html">Hearing tag changes</a>: Code hears an entity's tags change through its tag cache.</li>
 </ul>
-<p>Code hears an entity's tags change through its tag cache. <code>gas.GetTagCache().Listen(tag, onChange)</code> hears the tag,
-and every tag under it, come and go, as it happens; pass <a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AnyCount"><code>ETagChangeKind.AnyCount</code></a> to hear every change to a tag's
-weight. Each change says the tag and its weight before and after. When the entity rebuilds its tags from their
-sources, as it does when an ability starts or ends, an item changes or a loose tag is granted, it tells only what the
-rebuild changed. Dispose the listener to stop it. <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TagChanged"><code>TagChanged</code></a> hears every change to any tag.</p>
-<pre><code class="lang-csharp">var listener = gas.GetTagCache().Listen(stunned, change =&gt; animator.SetBool(&quot;Stunned&quot;, change.Added));
-listener.Dispose();
-</code></pre>
-<p>A tag worker is evaluated at the end of a frame in which the entity's tags changed. One whose <code>ValidateWorkFor</code>
-reads more than the tags overrides <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagWorker.html#FarEmerald_PlayForge_AbstractTagWorker_EvaluateEveryFrame"><code>EvaluateEveryFrame</code></a> to be evaluated every frame.</p>
-<hr>
-<p><a href="leveling.html">← Leveling</a> · <a href="index.html">Entities</a> · <a href="attributes.html">Attributes →</a></p>
 
 </article>
 

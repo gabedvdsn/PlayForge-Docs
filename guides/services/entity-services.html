@@ -87,17 +87,53 @@
         <article data-uid="guide.services.entity-services">
 <h1 id="entity-services">Entity services</h1>
 
-<p>An entity service is a per-entity object an entity's components share, made the first time it's asked for and stepped by
-the entity's own time. The auras an entity runs, <a class="xref" href="../../api/FarEmerald.PlayForge.AuraSet.html"><code>AuraSet</code></a>, and the wait a Respawn counts down, <a class="xref" href="../../api/FarEmerald.PlayForge.RespawnTimer.html"><code>RespawnTimer</code></a>, are two.</p>
-<ul>
-<li><code>gas.GetService&lt;T&gt;()</code> gives the entity's service of a kind, made the first time it's asked for, and
-<code>gas.FindService&lt;T&gt;()</code> gives it without making one, or null.</li>
-<li>A service derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityService.html"><code>AbstractEntityService</code></a>, with a parameterless constructor, and overrides the hooks it needs,
-each a no-op otherwise: <code>Step(deltaTime)</code>, each frame by the entity's own time, after its effects tick and before its
-turn; <code>Revive()</code>, as an entity that stays revives, before anything else of the revive; and <code>End()</code>, as the entity
-ends, which keeps none after. Its <code>System</code> is the entity it's of.</li>
-</ul>
-<p><a href="../entities/components.html#services">Entities: Services</a> has the rest.</p>
+<p>An entity service is a per-entity object that an entity's components share. It's made the first time it's asked for,
+and stepped by the entity's own time.</p>
+<p>The auras an entity runs, <a class="xref" href="../../api/FarEmerald.PlayForge.AuraSet.html"><code>AuraSet</code></a>, and the wait a Respawn counts down, <a class="xref" href="../../api/FarEmerald.PlayForge.RespawnTimer.html"><code>RespawnTimer</code></a>, are two of them.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gas.GetService&lt;T&gt;()</code></td>
+<td>Gives the entity's service of a kind, made the first time it's asked for.</td>
+</tr>
+<tr>
+<td><code>gas.FindService&lt;T&gt;()</code></td>
+<td>Gives it without making one, or null.</td>
+</tr>
+</tbody>
+</table>
+<p>A service derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityService.html"><code>AbstractEntityService</code></a>, with a parameterless constructor. It overrides the hooks it needs, each
+a no-op otherwise. Its <code>System</code> is the entity it's of.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>When it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Step(deltaTime)</code></td>
+<td>Each frame, by the entity's own time, after its effects tick and before its turn.</td>
+</tr>
+<tr>
+<td><code>Revive()</code></td>
+<td>As an entity that stays revives, before anything else of the revive.</td>
+</tr>
+<tr>
+<td><code>End()</code></td>
+<td>As the entity ends. The entity keeps none of its services after.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../entities/components/services.html">Entities: Components: Services</a> has the rest.</p>
+<p>This service keeps a heat meter that cools by its entity's own time:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 using UnityEngine;
 
@@ -122,8 +158,6 @@ public static class Overheat
     public static float HeatOf(IGameplayAbilitySystem gunner) =&gt; gunner.FindService&lt;Heat&gt;()?.Value ?? 0f;
 }
 </code></pre>
-<hr>
-<p><a href="profiling.html">← Profiling</a> · <a href="index.html">Time, Input and Logging</a> · <a href="forgehelper.html">ForgeHelper →</a></p>
 
 </article>
 

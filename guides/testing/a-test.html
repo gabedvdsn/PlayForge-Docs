@@ -87,8 +87,9 @@
         <article data-uid="guide.testing.a-test">
 <h1 id="a-test">A test</h1>
 
-<p>A test class derives from <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html"><code>ForgeTest</code></a>, which makes a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html"><code>ForgeTestWorld</code></a> before each test and audits and ends it after.
-A test is a <code>[UnityTest]</code> whose body runs through <code>Live</code>, from a frame's end:</p>
+<p>A test class derives from <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html"><code>ForgeTest</code></a>. <code>ForgeTest</code> makes a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html"><code>ForgeTestWorld</code></a> before each test, and audits and ends it
+after the test.</p>
+<p>A test is a <code>[UnityTest]</code> whose body runs through <code>Live</code>, from a frame's end:</p>
 <pre><code class="lang-csharp">using System.Collections;
 using FarEmerald.PlayForge;
 using FarEmerald.PlayForge.Testing;
@@ -122,8 +123,6 @@ public IEnumerator My_test() =&gt; UniTask.ToCoroutine(async () =&gt;
     // ... the test, through world; then, if it wants the checks, await world.Audit()
 });
 </code></pre>
-<hr>
-<p><a href="setting-up.html">← Setting up</a> · <a href="index.html">Testing Your Content</a> · <a href="the-world.html">The world →</a></p>
 
 </article>
 

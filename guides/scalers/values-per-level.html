@@ -87,39 +87,40 @@
         <article data-uid="guide.scalers.values-per-level">
 <h1 id="values-per-level">Values per level</h1>
 
-<p>A scaler's settings sit on a shaded block under its field, so they read as the scaler's among the fields around them.
-A kind shows only what it reads: a <strong>Fixed Value</strong> shows its value, and a <strong>Randomized</strong> scaler its variance, then the
-values its base value comes from. A kind's field that applies only to some of its settings shows only for them, as an
-Asset Part's worker key for an effect's Worker Value.</p>
+<p>A scaler's settings sit on a shaded block under its field, so they read as the scaler's among the fields around them.</p>
+<p>A kind shows only what it reads. A <strong>Fixed Value</strong> shows its value, and a <strong>Randomized</strong> scaler its variance, then the
+values its base value comes from.</p>
+<p>A kind's field that applies only to some of its settings shows only for them, as an Asset Part's worker key for an
+effect's Worker Value.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Values</strong></td>
+<td><strong>Per Level</strong> or <strong>Spread Over Levels</strong>. A Table reads Per Level and By Level spreads, as their kinds say, so they have no choice here. A scaler of another kind with values for each level chooses.</td>
+</tr>
+<tr>
+<td><strong>Behaviours</strong></td>
+<td>Rules that adjust the value the scaler works out, in order.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Values</strong>: <strong>Per Level</strong> or <strong>Spread Over Levels</strong>. A Table reads Per Level and By Level spreads, as their kinds say,
-so they have no choice here; a scaler of another kind with values for each level chooses.
-<ul>
-<li><strong>Per Level</strong>: one value per level, ten levels to a row. Level 1 reads the first value, level 4 the 4th, and a
-level past the end reads the last.</li>
-<li><strong>Spread Over Levels</strong>: the values are points on a curve over a level range, and a level between two points reads
-between them. Three values, 10, 20 and 30, spread over levels 1 to 5 read 10, 15, 20, 25 and 30. The points are
-numbered, and under them each level shows what it reads. A scaler you make in the inspector starts Per Level. The scalers saved before the choice
-existed spread, so they read as they did.</li>
-</ul>
-</li>
-<li><strong>Levels</strong>, Per Level: an asset with a level provider, as an ability, or an effect linked to one, follows the
-provider's levels, as <strong>Fireball's levels (1–4)</strong>, with a value for each. A level past the scaler's values shows the
-last in secondary text; type there to give it a value of its own. <strong>Own levels</strong> gives the scaler a count of its own.
-An asset whose levels come from whatever uses it, as an unlinked effect, an attribute set or a Scaler asset, shows
-the count alone. A new level takes the last value.</li>
-<li><strong>Over Levels</strong>, spread: the provider's levels, <strong>Own levels</strong> up to the scaler's own <strong>Max Level</strong>, or the
-provider's <strong>up to a level</strong>: its levels, up to the Max Level, so the values reach the last at the lower of the
-Max Level and the provider's last level, and a level past it reads the last value. <strong>Points</strong>: how many values.</li>
-<li><strong>Between Points</strong>, spread: <strong>Steps</strong>, <strong>Straight Line</strong> or <strong>Smooth Curve</strong>.</li>
 <li>A read-only curve beside the table shows the values, and spread, the curve they make. Its tooltip reads them, as &quot;6
 at level 1, rising to 8 at level 5&quot;.</li>
-<li><strong>Behaviours</strong>: rules that adjust the value the scaler works out, in order.</li>
+<li>Quick Fill fills the levels the table shows.</li>
+<li>Nothing changes a scaler's values while it's drawn: its table keeps its length until you change it.</li>
 </ul>
-<p>Quick Fill fills the levels the table shows. Nothing changes a scaler's values while it's drawn: its table keeps its
-length until you change it.</p>
-<hr>
-<p><a href="a-magnitude-field.html">← A magnitude field</a> · <a href="index.html">Scalers</a> · <a href="writing-your-own-scaler.html">Writing your own scaler →</a></p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="values-per-level/per-level.html">Per Level</a>: With <strong>Per Level</strong>, the scaler has one value per level, ten levels to a row.</li>
+<li><a href="values-per-level/spread-over-levels.html">Spread Over Levels</a>: With <strong>Spread Over Levels</strong>, the values are points on a curve over a level range, and a level between two points reads between them.</li>
+</ul>
 
 </article>
 

@@ -87,51 +87,30 @@
         <article data-uid="guide.task-sequences.clocks">
 <h1 id="clocks">Clocks</h1>
 
-<p>A run's time is its <strong>clock</strong>'s: its waits and delays, its timeouts and longest runs, its <code>ElapsedTime</code>, the library's
-tweens and its synced tasks all go by it. A run takes the first clock it finds:</p>
-<ol>
-<li>its own, <code>runtime.Clock</code>, which whatever runs it sets: a chain's <code>Clock</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s, or an ability's
-Run Sequence task's pick, so a packet others share keeps its own;</li>
-<li>its packet's, <code>data.Clock</code>, which whatever starts the run sets;</li>
-<li>its sequence's own, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(clock)</code></a> on the builder;</li>
-<li>its packet's owner's: an ability's caster's own clock, its time scale times the game's;</li>
-<li>the game's, <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>, which reads the clock in force, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Clock"><code>ForgeTime.Clock</code></a>, as it's asked.</li>
-</ol>
-<pre><code class="lang-csharp">// A pause menu's runs while the game's time stands
-var menu = TaskSequenceBuilder.Create(&quot;Menu&quot;).WithClock(UnscaledClock.Instance) /* … */;
-
-// A finisher's slow motion: every sequence on the clock slows, speeds up or stops with it
-var slowMotion = new ScaledClock(0.25f);
-var finisher = TaskSequenceBuilder.Create(&quot;Finisher&quot;).WithClock(slowMotion) /* … */;
-
-// One run on an entity's time, from its packet
-var data = SequenceDataPacket.Default();
-data.Clock = gas.GetClock();
-</code></pre>
+<p>A run's time is its <strong>clock</strong>'s. These all go by it:</p>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.UnscaledClock.html#FarEmerald_PlayForge_UnscaledClock_Instance"><code>UnscaledClock.Instance</code></a> reads the game's time without its time scale.</li>
-<li>A <a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a> runs at a <code>Scale</code> of its own over its <code>Source</code>, the clock in force unless it's given one, and counts
-its own <code>Time</code> through each change of scale.</li>
-<li>An entity's <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html"><code>EntityClock</code></a> is a clock as any other is.</li>
-<li>A clock of your own implements <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>, and is read as it is. The clocks above read the clock in force, so a world
-of its own's steps and the fixed tick still drive them; one that reads Unity's time itself doesn't follow them.</li>
+<li>its waits and delays;</li>
+<li>its timeouts and longest runs;</li>
+<li>its <code>ElapsedTime</code>;</li>
+<li>the library's tweens;</li>
+<li>its synced tasks.</li>
 </ul>
-<p><code>runtime.Clock</code> is a run's clock, and <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_"><code>TaskSequenceRuntime.ClockOfRun(token)</code></a> the clock of the run a task's token
-belongs to. A synced runner takes its sequence's clock (<code>runner.Clock</code>), a packet's before it (<code>runner.ClockFor(data)</code>),
-and <code>runner.Step(data)</code> steps by it.</p>
-<p>An inspector picks a clock with an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractClockChoice.html"><code>AbstractClockChoice</code></a> field, <code>[SerializeReference]</code>: None, which leaves a run the
-clock it would have had, the <strong>Caster's</strong>, the <strong>Game's</strong>, <strong>Unscaled</strong>, or <strong>Scaled</strong>, a pace of its own over the
-clock it picks, the caster's unless it picks another. A <code>[Serializable]</code> class of your own made from it is offered
-beside them, its <code>ClockFor(data)</code> giving the clock for a run on a packet. An ability's Run Sequence task has one, which
-gives the sequence it runs a clock of its own and leaves the ability's other tasks the caster's; so do the Task Sequence
-Examples' components, and a Sequence cue, whose run goes by its pick, else the sequence's own clock, else that of
-the one the cue plays on.</p>
-<p>Under ProcessControl's fixed tick, a sequence waits for the next tick, and the ticks run on the game's time, so they stand
-with it. A clock that runs while the game's time stands says so, <code>FollowsTicks</code> false as the unscaled clock's is, and its
-sequences wait for Unity's frames instead. Code outside a sequence awaits <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next(clock)</code></a> for the next step of a
-clock's time. A synced sequence run as a process steps with ProcessControl, by its ticks, whatever its clock.</p>
-<hr>
-<p><a href="time-limits-and-endings.html">← Time limits and endings</a> · <a href="index.html">Task Sequences</a> · <a href="running-one.html">Running one →</a></p>
+<p>A run takes the first clock it finds:</p>
+<ol>
+<li>Its own, <code>runtime.Clock</code>, which whatever runs it sets: a chain's <code>Clock</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s, or an
+ability's Run Sequence task's pick. So a packet others share keeps its own.</li>
+<li>Its packet's, <code>data.Clock</code>, which whatever starts the run sets.</li>
+<li>Its sequence's own, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(clock)</code></a> on the builder.</li>
+<li>Its packet's owner's: an ability's caster's own clock, its time scale times the game's.</li>
+<li>The game's, <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>, which reads the clock in force, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Clock"><code>ForgeTime.Clock</code></a>, as it's asked.</li>
+</ol>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="clocks/clocks-you-can-use.html">Clocks you can use</a>: Besides the game's clock, a run can go by an unscaled clock, a scaled clock, an entity's clock or a clock of your own.</li>
+<li><a href="clocks/reading-a-runs-clock.html">Reading a run's clock</a>: Code reads a run's clock from its runtime, from a task's token, or from a synced runner.</li>
+<li><a href="clocks/picking-a-clock-in-an-inspector.html">Picking a clock in an inspector</a>: An inspector picks a clock with an <code>AbstractClockChoice</code> field, marked <code>[SerializeReference]</code>.</li>
+<li><a href="clocks/clocks-and-fixed-ticks.html">Clocks and fixed ticks</a>: Under ProcessControl's fixed tick, a sequence waits for the next tick.</li>
+</ul>
 
 </article>
 

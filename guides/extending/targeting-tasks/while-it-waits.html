@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>While it waits | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="While it waits | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.targeting-tasks.while-it-waits">
+<h1 id="while-it-waits">While it waits</h1>
+
+<p>A task that waits for the player holds its ability in targeting, and the game shows it.</p>
+<ul>
+<li><strong>The slot says it's choosing.</strong> <a class="xref" href="../../../api/FarEmerald.PlayForge.AbilitySpecContainer.html#FarEmerald_PlayForge_AbilitySpecContainer_IsTargeting"><code>AbilitySpecContainer.IsTargeting</code></a> is true while a run of the ability waits on its
+targeting. A game shows the ability's targeting's <code>Prompt</code> beside its name while it is.</li>
+<li>A task that doesn't wait for the player returns a null <code>Prompt</code>.</li>
+<li><strong>Another ability can take its place.</strong> Another of the entity's abilities may activate on a request that cancels
+targeting, as a player's press. An ability still choosing then gives way where its <strong>While Targeting</strong> says it yields.
+<ul>
+<li><strong>Yields</strong> gives way.</li>
+<li><strong>Entity's Rule</strong> follows the entity's <strong>Targeting Yields</strong>.</li>
+<li><strong>Holds</strong> keeps it.</li>
+</ul>
+</li>
+<li>A trigger's request and an activation at start don't cancel targeting: <a class="xref" href="../../../api/FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html#FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_CancelsTargeting"><code>AbilityActivationRequest.CancelsTargeting</code></a> is
+off for them. Code that makes a request chooses.</li>
+<li><strong>Giving way cancels the task's token.</strong> Its claim lets go at once, so the other activation starts while the cancelled
+task winds down. Nothing of the activation is paid, it ends as cancelled, and the task's <code>Clean</code> runs.</li>
+</ul>
+<p>So a task awaits with its token, as <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WaitForPointerPress_"><code>WaitForPointerPress</code></a> does. Once its token is cancelled, it files nothing and
+applies nothing: a pick filed after the token was cancelled lands in an activation that's gone.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

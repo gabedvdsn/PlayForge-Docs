@@ -87,27 +87,21 @@
         <article data-uid="guide.cues.handlers">
 <h1 id="handlers">Handlers</h1>
 
-<p>Each cue in a list is a handler, its kind picked from the list. It plays at each moment whose list holds it, and, in a
-list of lasting cues, as a While Active, from its beginning to its end:</p>
+<p>Each cue in a list is a handler, its kind picked from the list.</p>
+<p>A handler plays at each moment whose list holds it. In a list of lasting cues, as a While Active, it plays from its
+beginning to its end.</p>
+<p>PlayForge ships the handlers below, and you can write your own.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Camera Shake</strong> shakes the camera through the shaker the game gives <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Shaker"><code>ForgeCues.Shaker</code></a>, an <a class="xref" href="../../api/FarEmerald.PlayForge.ICameraShaker.html"><code>ICameraShaker</code></a>.</li>
-<li><strong>Sound</strong> plays its clip where its Placement says (<a href="placement.html">Placement</a>).</li>
-<li><strong>Prefab</strong> places its prefab where its Placement says, for its <strong>Lifetime</strong>, or, as a lasting cue, until its cue
-ends (<a href="pooling.html">Pooling</a>).</li>
-<li><strong>Floating Text</strong> floats a text where its Placement says, as a hit's damage, the gold a kill gave or a status's
-name (<a href="floating-text.html">Floating text</a>).</li>
-<li><strong>Process</strong> runs a MonoBehaviour process where its Placement says, on a packet loaded for the cue, with its <strong>Data</strong>
-list last (<a href="data-packets.html">Data packets</a>): a burst's runs its own course, and a lasting one's runs until its cue
-ends (<a href="pooling.html">Pooling</a>).</li>
-<li><strong>Sequence</strong> runs a task sequence on a packet loaded for the cue, with its <strong>Data</strong> list last: a burst's runs its
-course, and a lasting one's runs until its cue ends. It goes by the clock its <strong>Clock</strong> picks, else the sequence's
-own, else that of the one it plays on.</li>
-<li><strong>Cue Tag</strong> plays what its tag routes to (<a href="routes.html">Routes</a>).</li>
+<li><a href="handlers/camera-shake-cue.html">Camera Shake cue</a>: A <strong>Camera Shake</strong> cue shakes the camera as its moment comes.</li>
+<li><a href="handlers/sound-cue.html">Sound cue</a>: A <strong>Sound</strong> cue plays its clip where its Placement says (Placement).</li>
+<li><a href="handlers/prefab-cue.html">Prefab cue</a>: A <strong>Prefab</strong> cue places its prefab where its Placement says.</li>
+<li><a href="handlers/floating-text-cue.html">Floating Text cue</a>: A <strong>Floating Text</strong> cue floats a text where its Placement says, as a hit's damage, the gold a kill gave or a status's name.</li>
+<li><a href="handlers/process-cue.html">Process cue</a>: A <strong>Process</strong> cue runs a MonoBehaviour process where its Placement says, on a packet loaded for the cue.</li>
+<li><a href="handlers/sequence-cue.html">Sequence cue</a>: A <strong>Sequence</strong> cue runs a task sequence on a packet loaded for the cue, with its <strong>Data</strong> list last.</li>
+<li><a href="handlers/cue-tag-cue.html">Cue Tag cue</a>: A <strong>Cue Tag</strong> cue plays what its tag routes to (Routes).</li>
+<li><a href="handlers/writing-your-own-handler.html">Writing your own handler</a>: Write a handler of your own by deriving from <code>AbstractCueHandler</code>.</li>
 </ul>
-<p>Write a handler of your own by deriving from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html"><code>AbstractCueHandler</code></a>: override the moments it plays at, or <code>Burst</code> to play
-every burst one way, reading the moment from <code>cue.Moment</code>, and <code>Begin</code> and <code>End</code> for a lasting one.</p>
-<hr>
-<p><a href="where-cues-are-raised.html">← Where cues are raised</a> · <a href="index.html">Cues</a> · <a href="placement.html">Placement →</a></p>
 
 </article>
 

@@ -88,24 +88,61 @@
 <h1 id="collision-settings">Collision Settings</h1>
 
 <p>These settings decide an attribute's root value when it appears in more than one element, across this set and its
-sub-sets. Elements are taken in order: this set's elements first, then each sub-set's in turn.</p>
-<p>First, each element's <strong>Collision</strong> choice puts it in a group. One group decides, picked in this order: Use Set
-Collision Setting, Use This, Combine, Use Existing. Elements in the other groups are ignored.</p>
-<ul>
-<li>In the <strong>Combine</strong> group, the values are added up. Bounds, rounding and the retention group come from the first
-element.</li>
-<li>The other groups choose by the <strong>Resolution Policy</strong> here:
-<ul>
-<li><strong>Use Maximum</strong> (default): the element with the highest Base magnitude.</li>
-<li><strong>Use Minimum</strong>: the element with the lowest Base magnitude.</li>
-<li><strong>Use Average</strong>: the average of the elements' values. Bounds and rounding come from the first element.</li>
-<li><strong>Use First</strong> and <strong>Use Last</strong>: the first or the last element.</li>
-<li><strong>Ignore</strong>: the first element stands.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><a href="sub-sets.html">← Sub-Sets</a> · <a href="index.html">Attribute Sets</a> · <a href="all-attributes.html">All Attributes →</a></p>
+sub-sets.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Resolution Policy</strong></td>
+<td>How the deciding group picks a value, unless it's the Combine group. Use Maximum by default.</td>
+</tr>
+</tbody>
+</table>
+<p>The root value is decided in three steps:</p>
+<ol>
+<li>Elements are taken in order: this set's elements first, then each sub-set's in turn.</li>
+<li>Each element's <strong>Collision</strong> choice puts it in a group.</li>
+<li>One group decides, picked in this order: Use Set Collision Setting, Use This, Combine, Use Existing. Elements in the
+other groups are ignored.</li>
+</ol>
+<p>In the <strong>Combine</strong> group, the values are added up. Bounds, rounding and the retention group come from the first
+element.</p>
+<p>The other groups choose by the <strong>Resolution Policy</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>What it picks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Use Maximum</strong> (default)</td>
+<td>The element with the highest Base magnitude.</td>
+</tr>
+<tr>
+<td><strong>Use Minimum</strong></td>
+<td>The element with the lowest Base magnitude.</td>
+</tr>
+<tr>
+<td><strong>Use Average</strong></td>
+<td>The average of the elements' values. Bounds and rounding come from the first element.</td>
+</tr>
+<tr>
+<td><strong>Use First</strong> and <strong>Use Last</strong></td>
+<td>The first or the last element.</td>
+</tr>
+<tr>
+<td><strong>Ignore</strong></td>
+<td>The first element stands.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

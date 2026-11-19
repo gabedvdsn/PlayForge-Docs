@@ -87,17 +87,40 @@
         <article data-uid="guide.services.pointer-input">
 <h1 id="pointer-input">Pointer input</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a> is what PlayForge reads of the player's input: the press and aim of click targeting, the task libraries'
-waits for a key or a press, and the Creator Lab's controls.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a> is the input read now, an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeInput.html"><code>IForgeInput</code></a>: the project's own, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Default_"><code>ForgeInput.Default()</code></a>, until code puts
-another in with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use(input)</code></a>, which returns the one it replaced; <code>ForgeInput.Use(null)</code> puts the project's
-own back. The project's own is:</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a> is what PlayForge reads of the player's input:</p>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.InputSystemPointerInput.html"><code>InputSystemPointerInput</code></a>, where the Input System package is installed and the Player settings'
-<strong>Active Input Handling</strong> takes it, as it does where it takes both;</li>
-<li>else <a class="xref" href="../../api/FarEmerald.PlayForge.LegacyPointerInput.html"><code>LegacyPointerInput</code></a>, where it takes the Input Manager;</li>
-<li>else an input that never presses and aims nowhere.</li>
+<li>the press and aim of click targeting;</li>
+<li>the task libraries' waits for a key or a press;</li>
+<li>the Creator Lab's controls.</li>
 </ul>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a> is the input read now, an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeInput.html"><code>IForgeInput</code></a>. It's the project's own, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Default_"><code>ForgeInput.Default()</code></a>, until code
+puts another in.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use(input)</code></a></td>
+<td>Puts an input in, and returns the one it replaced.</td>
+</tr>
+<tr>
+<td><code>ForgeInput.Use(null)</code></td>
+<td>Puts the project's own back.</td>
+</tr>
+</tbody>
+</table>
+<p>The project's own input is the first of these that applies:</p>
+<ol>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.InputSystemPointerInput.html"><code>InputSystemPointerInput</code></a>, where the Input System package is installed and the Player settings'
+<strong>Active Input Handling</strong> takes it, as it does where it takes both.</li>
+<li>Else <a class="xref" href="../../api/FarEmerald.PlayForge.LegacyPointerInput.html"><code>LegacyPointerInput</code></a>, where it takes the Input Manager.</li>
+<li>Else an input that never presses and aims nowhere.</li>
+</ol>
+<p>An <code>IForgeInput</code> has seven members:</p>
 <table>
 <thead>
 <tr>
@@ -138,74 +161,12 @@ own back. The project's own is:</p>
 </table>
 <p>Only the first two must be written. The rest read as nothing held, no position, no scroll and no key, unless an input
 gives its own.</p>
-<h2 id="what-reads-it">What reads it</h2>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Click targeting</strong>, the Select tasks (Position, Direction, GAS Target, GAS Or Position and GAS Target In Range),
-waits for <code>PointerPressed</code> of its <strong>Mouse Button</strong>, then aims along <code>TryGetPointerRay</code>
-(<a href="../abilities/activation.html">Abilities: Activation</a>).</li>
-<li><strong>The task libraries' waits</strong>: <code>WaitForKey</code> and <code>WaitForAnyKey</code> read <code>KeyPressed</code>, and <code>WaitForPointer</code> reads
-<code>PointerPressed</code>, in <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html"><code>SequenceTaskLibrary</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html"><code>SyncSequenceTaskLibrary</code></a> alike
-(<a href="../task-sequences/waiting.html">Task Sequences: Waiting</a>).</li>
-<li><strong>The Creator Lab</strong>: its presses and keys, the pointer's place, the middle button held to pan and the wheel to zoom
-(<a href="../creator-lab/index.html">The Creator Lab</a>).</li>
+<li><a href="pointer-input/what-reads-it.html">What reads it</a>: Three parts of PlayForge read <code>ForgeInput</code></li>
+<li><a href="pointer-input/the-defaults.html">The defaults</a>: The project's own inputs are <code>LegacyPointerInput</code> and <code>InputSystemPointerInput</code>.</li>
+<li><a href="pointer-input/input-of-your-own.html">Input of your own</a>: A game with a crosshair, a gamepad's reticle or a controller's ray writes an <code>IForgeInput</code>, and puts it in.</li>
 </ul>
-<h2 id="the-defaults">The defaults</h2>
-<p>Each of the project's own aims through its <code>Camera</code>, or <code>Camera.main</code> where that's null.</p>
-<ul>
-<li><code>LegacyPointerInput</code> reads the Input Manager's mouse and keys. It has no pointer position where no mouse is present.</li>
-<li><code>InputSystemPointerInput</code> reads the Input System's: a mouse presses each of its three buttons, and a pen or a touch
-the primary. Its <code>ScrollDelta</code> is the mouse's scroll over 120, a notch on most mice. Its keys are the letters, the top
-row's digits, F1 to F12, Escape, Space, Return, Tab, Backspace, Delete, the arrows, and left and right Shift, Control
-and Alt; any other <code>KeyCode</code> reads as never pressed.</li>
-</ul>
-<p>Each is compiled only where its input handling is on, so code that names one sits under the same condition:
-<code>#if ENABLE_LEGACY_INPUT_MANAGER</code> for <code>LegacyPointerInput</code>, and <code>#if ENABLE_INPUT_SYSTEM</code>, with the Input System package
-installed, for <code>InputSystemPointerInput</code>.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_TryAimThrough_"><code>ForgeInput.TryAimThrough(camera, screenPoint, out ray)</code></a> gives the ray from a camera through a point on the screen: the
-camera given, or else <code>Camera.main</code>. With neither, it logs a warning of the <strong>Input</strong> system and returns false.
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_CameraOr_"><code>ForgeInput.CameraOr(camera)</code></a> is the camera given, or else <code>Camera.main</code>, as a floating text faces.</p>
-<h2 id="input-of-your-own">Input of your own</h2>
-<p>A game with a crosshair, a gamepad's reticle or a controller's ray writes an <code>IForgeInput</code> and puts it in. Give it all
-seven members, passing those it doesn't change on to the project's own: an input that writes only the two click
-targeting reads has no key, no pointer position and no scroll, so <code>WaitForKey</code>, <code>WaitForAnyKey</code> and the Creator Lab's
-keys, clicks and camera hear nothing through it. An input put in stays until code puts another in, past the end of play
-mode where domain reload is off, so code that puts one in puts back the one it replaced.</p>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-// A third-person game's targeting: it presses as the project's own input does, but aims from the crosshair in the
-// middle of the screen, through the player's camera
-public sealed class CrosshairInput : IForgeInput
-{
-    private readonly IForgeInput device = ForgeInput.Default();
-
-    public Camera Camera { get; set; }
-
-    public bool PointerPressed(int button) =&gt; device.PointerPressed(button);
-
-    public bool TryGetPointerRay(out Ray ray) =&gt;
-        ForgeInput.TryAimThrough(Camera, new Vector2(Screen.width * 0.5f, Screen.height * 0.5f), out ray);
-
-    // The rest as the device reads them, so the task libraries' waits and the Creator Lab still hear it
-    public bool PointerHeld(int button) =&gt; device.PointerHeld(button);
-    public bool TryGetPointerPosition(out Vector2 position) =&gt; device.TryGetPointerPosition(out position);
-    public float ScrollDelta =&gt; device.ScrollDelta;
-    public bool KeyPressed(KeyCode key) =&gt; device.KeyPressed(key);
-    public bool KeyHeld(KeyCode key) =&gt; device.KeyHeld(key);
-}
-
-// Puts it in while the player's camera is on, and gives back the input it replaced
-public class CrosshairTargeting : MonoBehaviour
-{
-    public Camera PlayerCamera;
-    private IForgeInput previous;
-
-    private void OnEnable() =&gt; previous = ForgeInput.Use(new CrosshairInput { Camera = PlayerCamera });
-    private void OnDisable() =&gt; ForgeInput.Use(previous);
-}
-</code></pre>
-<hr>
-<p><a href="time-and-rolls-in-tests.html">← Time and rolls in tests</a> · <a href="index.html">Time, Input and Logging</a> · <a href="logging.html">Logging →</a></p>
 
 </article>
 

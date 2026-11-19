@@ -87,22 +87,42 @@
         <article data-uid="guide.attribute-sets.leveling">
 <h1 id="leveling">Leveling</h1>
 
-<p>The set's level range is the one the cached scalers on its elements are authored for. A cached scaler is a value source
-for an element, such as a table with one value per level. At runtime those scalers follow the level of the entity that
-owns the set. Linking the set to that Entity asset gives the scalers one value per entity level. A level provider is an
-asset whose level range another asset follows.</p>
+<p>The Leveling section sets the level range the cached scalers on the set's elements are authored for. A cached scaler
+is a value source for an element, such as a table with one value per level.</p>
+<p>At runtime, those scalers follow the level of the entity that owns the set. Linking the set to that Entity asset gives
+the scalers one value per entity level. A level provider is an asset whose level range another asset follows.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Link Mode</strong></td>
+<td><strong>Standalone</strong> (default): keeps the set's own range.<br><strong>Linked To Provider</strong>: takes the range from a level provider instead.</td>
+</tr>
+<tr>
+<td><strong>Starting Level</strong></td>
+<td>The start of the set's own range, 1 by default.</td>
+</tr>
+<tr>
+<td><strong>Max Level</strong></td>
+<td>The end of the set's own range, 4 by default. Cached scalers on its elements whose Level Configuration is Lock To Level Provider use it to size their per-level values.</td>
+</tr>
+<tr>
+<td><strong>Level Provider</strong></td>
+<td>Shown while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Link Mode</strong>: Standalone (default) keeps the set's own range. Linked To Provider takes the range from a level
-provider instead.</li>
-<li><strong>Starting Level</strong> (default 1) and <strong>Max Level</strong> (default 4): the set's own range. Cached scalers on its elements
-whose Level Configuration is Lock To Level Provider use the Max Level to size their per-level values.</li>
-<li><strong>Level Provider</strong>, while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.
-Right-click the field to pick from one type. A link that would make a loop is refused, with an error in the Console.
-While no provider is set, a warning says the set uses its own range. While linked, Starting Level and Max Level show
-the range in use, read-only.</li>
+<li>Right-click the <strong>Level Provider</strong> field to pick from one type.</li>
+<li>A link that would make a loop is refused, with an error in the Console.</li>
+<li>While no provider is set, a warning says the set uses its own range.</li>
+<li>While linked, Starting Level and Max Level show the range in use, read-only.</li>
 </ul>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Attribute Sets</a> · <a href="attributes.html">Attributes →</a></p>
 
 </article>
 

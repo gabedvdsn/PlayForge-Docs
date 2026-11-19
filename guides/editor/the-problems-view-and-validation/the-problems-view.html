@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The Problems view | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The Problems view | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-problems-view-and-validation.the-problems-view">
+<h1 id="the-problems-view">The Problems view</h1>
+
+<p>The Problems view (<a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProblemsWindow.html"><code>ForgeProblemsWindow</code></a>) lists what the validator finds. It follows the validator, so it has no Refresh.</p>
+<!-- screenshot: problems -->
+<h2 id="opening-the-view">Opening the view</h2>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>Opens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Window → PlayForge → Problems</strong></td>
+<td>The view.</td>
+</tr>
+<tr>
+<td>The Forge's problem count, or its window menu</td>
+<td>The view.</td>
+</tr>
+<tr>
+<td>An inspector header's problem count</td>
+<td>The view, searching for that asset.</td>
+</tr>
+</tbody>
+</table>
+<p>In code, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProblemsWindow.html#FarEmerald_PlayForge_Editor_ForgeProblemsWindow_ShowWindow_"><code>ForgeProblemsWindow.ShowWindow()</code></a> opens the view, and <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProblemsWindow.html#FarEmerald_PlayForge_Editor_ForgeProblemsWindow_ShowFor_"><code>ForgeProblemsWindow.ShowFor(asset)</code></a> opens it on an
+asset.</p>
+<h2 id="toolbar">Toolbar</h2>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>List</strong>, <strong>By Rule</strong></td>
+<td>Switch between the view's two views.</td>
+</tr>
+<tr>
+<td><strong>Errors</strong>, <strong>Warnings</strong>, <strong>Notes</strong></td>
+<td>Each is a filter that counts its problems, such as <strong>2 Errors</strong>.</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Finds a problem by its asset or its words.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list-view">List view</h2>
+<p><strong>List</strong> has a row for each problem: the errors first and the notes last, then by asset. A row shows its severity, its
+asset by type icon and name, and what's wrong. The columns sort.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Click</td>
+<td>Selects the asset and shows it in the Project window.</td>
+</tr>
+<tr>
+<td>Double-click</td>
+<td>Opens the asset in a window of its own.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="by-rule-view">By Rule view</h2>
+<p><strong>By Rule</strong> groups the problems under the rule each breaks, a rule with errors first. A rule's arrow folds it.</p>
+<!-- screenshot: problems-view-by-rule -->
+<p>A problem that one step fixes has a quick fix: a button named for the step, such as <strong>Store the Tag</strong>. Its rule has
+<strong>Fix All</strong>, or <strong>Fix 2</strong> where only two of its problems have one. Each is one Undo step.</p>
+<h2 id="status-bar">Status bar</h2>
+<p>The status bar says how many problems there are, in how many assets, and the notes beside them. It also says how many
+are shown, and, in By Rule, how many have a quick fix.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

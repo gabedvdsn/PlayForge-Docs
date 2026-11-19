@@ -87,31 +87,147 @@
         <article data-uid="guide.tags">
 <h1 id="tags">Tags</h1>
 
-<p>A <strong>tag</strong> is a name in a tree, as <code>State.Stunned</code> under <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeChangeEffectWorker.State.html"><code>State</code></a>, and PlayForge names with tags whatever it matches by
-name: what an entity carries, as Stunned while a stun lasts; what an ability, an effect or an item is, by its asset tag
-and its context tags; an entity's sides; a gameplay event, a kind of impact, a cue and an attribute's role; and the keys
-of an activation's data and of an asset's Local Data. Requirements, crowd control, conditions and workers read the tags
-an entity carries. This page covers what a tag is, how a project makes, declares and finds its tags in the editor, how
+<p>A <strong>tag</strong> is a name in a tree, such as <code>State.Stunned</code> under <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeChangeEffectWorker.State.html"><code>State</code></a>. PlayForge uses tags to name whatever it matches by
+name.</p>
+<pre><code class="lang-mermaid">classDiagram
+class Tag:::rt {
+&lt;&lt;Serializable struct&gt;&gt;
++Name : string, the identity
++DisplayName : string
++static Generate(name, displayName) Tag
++Child(name) Tag
++ToString() the display name, for UI
++IsValid : bool
++GetParent() Tag
++IsChildOf(Tag) bool
++MatchesOrIsChildOf(Tag) bool
+}
+class ETagMatchMode:::rt {
+&lt;&lt;enumeration&gt;&gt;
+Exact
+IncludeChildren
+IncludeParents
+SameRoot
+}
+class TagCache:::rt {
+one per entity
++GetAppliedTags()
++GetWeight(Tag) int, -1 when absent
++HasTag(Tag, ETagMatchMode) bool
++HasAnyTag()
++TagChanged : event
++Listen(Tag, handler, ETagChangeKind) TagListener
++BeginRebuild()
++EndRebuild()
++ProvideWorker(AbstractTagWorker)
+}
+class TagChange:::rt {
+&lt;&lt;readonly struct&gt;&gt;
++Tag
++Before
++After
++Added : bool
++Removed : bool
+}
+class TagListener:::rt {
+IDisposable
+hears its tag and the tags under it
+}
+class TagQuery:::asset {
+&lt;&lt;Serializable&gt;&gt;
++Tag
++Operator : EComparisonOperator
++Magnitude
++MatchMode : ETagMatchMode
++Validate(tags or TagCache) bool
++CountMatches()
+}
+class AvoidRequireTagGroup:::asset {
++AvoidTags : List~TagQuery~
++RequireTags : List~TagQuery~
++SourceTemplate : RequirementTemplate
++Validate(tags or TagCache) bool
+}
+class ITagHandler:::ext {
+&lt;&lt;interface&gt;&gt;
++GetAppliedTags()
++GetTagWeight(Tag)
++QueryTags(TagQuery)
++CompileGrantedTags()
+}
+class ITagSource:::ext {
+&lt;&lt;interface&gt;&gt;
++GetGrantedTags()
+}
+class TagRegistry:::rt {
+&lt;&lt;static&gt;&gt;
++Initialize()
++Register()
++Resolve(name) Tag
++GetAllTags()
++GetDirectChildren()
+}
+class Tags:::rt {
+&lt;&lt;static partial&gt;&gt;
+built-in tags marked ForgeTagExposed
+SYSTEM, GAME_ROOT, NONE
+IMPACT_DEALT, IMPACT_TAKEN, KILL, DIED, REVIVED
+TARGET, TARGET_REAL, SOURCE, DERIVATION, EFFECTS
+}
+class GrantedTagCompiler:::rt {
+&lt;&lt;internal static&gt;&gt;
++Compile(TagCache, AttributeSet, effects, abilities, items)
++AddEffect(TagCache, spec)
+}
+class ForgeEvents:::rt {
+&lt;&lt;static&gt;&gt;
++Send(to, Tag, source, subject)
+queued on the receiver, only if it listens
+}
+TagCache ..&gt; TagChange : TagChanged
+TagCache ..&gt; TagListener : Listen
+TagCache ..&gt; ETagMatchMode
+TagQuery --&gt; ETagMatchMode
+AvoidRequireTagGroup o-- TagQuery
+ITagHandler ..&gt; TagQuery : QueryTags
+GrantedTagCompiler ..&gt; TagCache : compiles into
+TagRegistry ..&gt; Tag : Resolve
+Tags ..&gt; Tag
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>Each entity's TagCache holds weights, listeners and tag workers. Show a tag with ToString(), its DisplayName, never its raw Name.</em></p>
+<p>PlayForge names these with tags:</p>
+<ul>
+<li>what an entity carries, such as Stunned while a stun lasts;</li>
+<li>what an ability, an effect or an item is, by its asset tag and its context tags;</li>
+<li>an entity's sides;</li>
+<li>a gameplay event, a kind of impact, a cue and an attribute's role;</li>
+<li>the keys of an activation's data, and of an asset's Local Data.</li>
+</ul>
+<p>Requirements, crowd control, conditions and workers read the tags an entity carries.</p>
+<p>This page covers what a tag is, and how a project makes, declares and finds its tags in the editor. It also covers how
 an entity holds its tags and tells their changes, and what reads them.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="what-a-tag-is.html">What a tag is</a>: A tag, a <code>Tag</code>, is a path of names joined by dots, parents first: <code>Status.Debuff.Burn</code> is under <code>Status.Debuff</code>, which is under <code>Status</code>, its root.</li>
-<li><a href="playforges-own-tags.html">PlayForge's own tags</a>: <code>Tags</code> holds PlayForge's own tags, each a static property, unique, that the editor's pickers offer for its kind.</li>
-<li><a href="contexts.html">Contexts</a>: A context is a kind of tag, as Granted, Event or Local Data Key, and a tag field takes the kinds its <code>ForgeTagContext</code> attribute names: its picker offers the tags of those kinds, and the Universal ones.</li>
-<li><a href="the-tag-library.html">The Tag Library</a>: A <strong>Tag Library</strong> asset, <code>ForgeTagLibrary</code>, declares tags for contexts, so those contexts' pickers offer them before any asset uses them, and keeps the project's own contexts.</li>
+<li><a href="what-a-tag-is.html">What a tag is</a>: A tag, a <code>Tag</code>, is a path of names joined by dots, parents first.</li>
+<li><a href="playforges-own-tags.html">PlayForge's own tags</a>: <code>Tags</code> holds PlayForge's own tags, each a unique tag in a static property.</li>
+<li><a href="contexts.html">Contexts</a>: A context is a kind of tag, such as Granted, Event or Local Data Key.</li>
+<li><a href="the-tag-library.html">The Tag Library</a>: A <strong>Tag Library</strong> asset, <code>ForgeTagLibrary</code>, declares tags for contexts, so those contexts' pickers offer them before any asset uses them.</li>
 <li><a href="tags-written-in-code.html">Tags written in code</a>: Code makes a tag of a path with <code>Tag.GenerateAsUnique</code>, and offers it to the editor's pickers with <code>[ForgeTagExposed]</code>.</li>
-<li><a href="tag-field-attributes.html">Tag field attributes</a>: The attributes a <code>Tag</code> field, or a list of tags, takes say what its tag field offers and does.</li>
-<li><a href="the-tag-field.html">The tag field</a>: Each <code>Tag</code> field, alone or in a list, draws as a tag field, <code>TagDrawer</code>, which shows its tag by its display name and picks another from the tags its contexts offer.</li>
-<li><a href="the-tags-view.html">The Tags view</a>: The Forge's <strong>Tags</strong>, in its toolbar (<code>Window → PlayForge → The Forge</code>), lists the active Forge Project's tags and what uses each, declares a tag for contexts, and renames it.</li>
-<li><a href="how-an-entity-holds-tags.html">How an entity holds tags</a>: An entity carries the tags its sources grant it, each with a weight: the number of grants of it the entity holds now.</li>
-<li><a href="hearing-tags-change.html">Hearing tags change</a>: An entity's <code>TagCache</code> tells each change to a tag's weight, to listeners on that tag and on the tags above it.</li>
+<li><a href="tag-field-attributes.html">Tag field attributes</a>: Attributes on a <code>Tag</code> field, or on a list of tags, say what its tag field offers and does.</li>
+<li><a href="the-tag-field.html">The tag field</a>: Each <code>Tag</code> field, alone or in a list, draws as a tag field, <code>TagDrawer</code>.</li>
+<li><a href="the-tags-view.html">The Tags view</a>: The Forge's <strong>Tags</strong> view lists the active Forge Project's tags and what uses each.</li>
+<li><a href="how-an-entity-holds-tags.html">How an entity holds tags</a>: An entity carries the tags its sources grant it, each with a weight.</li>
+<li><a href="hearing-tags-change.html">Hearing tags change</a>: An entity's <code>TagCache</code> tells each change to a tag's weight.</li>
 <li><a href="querying-tags.html">Querying tags</a>: A match mode, <code>ETagMatchMode</code>, says which of an entity's tags answer for the tag it's asked about.</li>
 <li><a href="requirements.html">Requirements</a>: Tag requirements are the tags an entity must have, and must not have, for an ability to activate and run, or for an effect to land, go on and come off.</li>
-<li><a href="crowd-control.html">Crowd control</a>: Crowd control stops abilities by the tags their caster carries, so no ability has to list Stunned among the tags it must not have.</li>
+<li><a href="crowd-control.html">Crowd control</a>: Crowd control stops abilities by the tags their caster carries.</li>
 <li><a href="conditions-and-checks.html">Conditions and checks</a>: Besides requirements, conditions, ability checks, tasks and triggers read tags: an entity's, or an asset's.</li>
 <li><a href="tag-workers.html">Tag workers</a>: A tag worker, <code>AbstractTagWorker</code>, acts while its entity's tags meet its requirements, as flames shown while Status.Burning weighs 3 or more.</li>
-<li><a href="the-editors-tag-registry.html">The editor's tag registry</a>: <code>ForgeTagRegistry</code>, in the editor, is what the tag pickers, the Tags view and New Tag know of the project's tags: each tag, and each use of it, by context.</li>
-<li><a href="traps.html">Traps</a>: Tags invite a few mistakes, each below with its way out.</li>
+<li><a href="the-editors-tag-registry.html">The editor's tag registry</a>: <code>ForgeTagRegistry</code>, in the editor, is what the tag pickers, the Tags view and New Tag know of the project's tags.</li>
+<li><a href="traps.html">Traps</a>: Tags invite a few mistakes.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AbilityTagRequirementsDrawer.html">AbilityTagRequirementsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.AvoidRequireTagGroupDrawer.html">AvoidRequireTagGroupDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.EffectTagRequirementsDrawer.html">EffectTagRequirementsDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html">ETagChangeKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ETagMatchMode.html">ETagMatchMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.html">ForgeTagLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.Entry.html">ForgeTagLibrary.Entry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html">ForgeTagRegistry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.ContextUsage.html">ForgeTagRegistry.ContextUsage</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.FieldUsageInfo.html">ForgeTagRegistry.FieldUsageInfo</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagContext.html">ForgeTagRegistry.TagContext</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagUsageRecord.html">ForgeTagRegistry.TagUsageRecord</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ITagHandler.html">ITagHandler</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ITagSource.html">ITagSource</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html">TagCache</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagChange.html">TagChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagDrawer.html">TagDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagListener.html">TagListener</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html">TagQuery</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagQueryDrawer.html">TagQueryDrawer</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html">TagRegistry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html">TagRegistry.TagUtil</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagRegistryAssetPostprocessor.html">TagRegistryAssetPostprocessor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html">Tags</a>.</p>

@@ -87,76 +87,175 @@
         <article data-uid="guide.effects.components">
 <h1 id="components">Components</h1>
 
-<p>An effect's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the effect <strong>Land</strong> on the entity it's on, <strong>Tick</strong> each period, <strong>Hit</strong> as an impact it deals lands, and <strong>End</strong> as it comes off: an instant effect at once, a lasting one as it's removed, at the moments its workers do; and
-<strong>Death</strong> as the one it's on dies while it's on them, whether the entity stays or ends, before what the death ends comes
-off. A lasting effect's components hear it <strong>Lend</strong> what it gives while it lasts, as it starts to last: as it lands,
-before its Land, as it takes another's place under its tag, and as a load or a move puts it back, where it doesn't land
-again; and <strong>TakeBack</strong>, as it stops: as it comes off, before its End, as another takes its place, and as a load clears
-it or a move takes it away. An Aura lends its aura so. A kind that makes no sense twice is offered only while the effect holds none of it.</p>
-<p>It hears <strong>Reapply</strong> as an application it takes in lands, as a stack or a refresh; <strong>Refused</strong> as an application of it
-is refused, with why, on the one it was aimed at; and <strong>StacksChanged</strong> as its stacks change while it lasts, with the
-counts before and after. It hears a tick only as one executes: one its ongoing condition stops isn't heard.</p>
-<p>A component of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectComponent.html"><code>AbstractEffectComponent</code></a> and overrides the hooks it needs, each a no-op
-otherwise. It's the effect's, shared by everything that holds it, so what it keeps for one application of it it keeps through its
-context: <code>ctx.GetState&lt;T&gt;(this)</code>. <strong>Describe</strong> says what it does in one line with its numbers, as an Area's &quot;Lands on
-enemies within 300&quot;, which the Components section's line and The Forge's summary say beside its name.</p>
-<h2 id="auras">Auras</h2>
-<p>An <strong>Aura</strong> component holds an effect on those near the one it's on, while it lasts. Items, abilities and
-entities have one too, each its own kind. Each has the <strong>Effect</strong> it holds, a <strong>Radius</strong> from its holder, read at each check, <strong>Flat</strong>,
-whom it <strong>Takes</strong> by how each stands to its holder, its <strong>Allies</strong>, itself among them, to start, and an <strong>Interval</strong>, 0.25 s by
-default, at which it checks who's near, by its holder's own time. It puts its effect on each that comes near, from an
-origin of its own, and takes it off as they leave, die or end, as its holder dies or ends, or as the aura goes; an
-effect of its that ends on its own, a durational one, goes on again at its next check. An Infinite effect holds as long
-as they're near. Two of an item hold two, as their effect's stacking says. A purge counts an aura's effect Lent. Each
-Aura component gives its aura in its own hooks: an effect's as it lends, an ability's as it's granted, an item's as
-it's equipped, an entity's as it registers. An entity's auras are its <a class="xref" href="../../api/FarEmerald.PlayForge.AuraSet.html"><code>AuraSet</code></a>, <code>gas.GetService&lt;AuraSet&gt;()</code>, a service it steps
-(<a href="../entities/components.html#services">Entities: Services</a>), and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuras.html#FarEmerald_PlayForge_ForgeAuras_Provide_"><code>ForgeAuras.Provide(entry, holder)</code></a> and <code>Remove</code> give one of your own.</p>
-<h2 id="area">Area</h2>
-<p>An <strong>Area</strong> component lands the effect on those near its target as it lands, as Storm Hammer stuns everyone near
-the one it hits: each within its <strong>Radius</strong> of the target, read as it lands, along the ground unless <strong>Flat</strong> is off;
-of those it <strong>Takes</strong> by how each stands to its caster: its <strong>Enemies</strong>, its <strong>Allies</strong>, itself among them, its <strong>Other
-Allies</strong>, <strong>Self</strong>, <strong>All But Self</strong> or <strong>Everyone</strong> (a caster with no sides takes everyone as its allies and enemies);
-and at most <strong>Max Targets</strong> besides the target, the nearest first, or every one at 0.
-Each is found by its position, with no collider. Each takes the effect from the same origin, so its modifiers and its
-chance to apply are its own, and an effect that lands by an area spreads no further. A Radius of 0 is no area. It lands
-on its target and those it takes in the project's resolve order, its target among them, unless its <strong>Use Resolve
-Order</strong> is off (see <a href="workers.html#resolve-order">Resolve Order</a>). An effect holds one at most; without one, it lands on its
-target alone.</p>
-<h2 id="transfers">Transfers</h2>
-<p>A <strong>Transfer</strong> component moves an amount from one attribute to another, as Essence Shift
-steals Agility or Attribute Shift moves Agility into Strength. <strong>From</strong>, the effect's caster or its target, gives its
-<strong>From Attribute</strong>, and <strong>To</strong> gets its <strong>To Attribute</strong>, each side its own, so an entity can give to itself. <strong>Slot</strong>
-says which values move: Current, as a pool's Mana; Base; or Current And Base, as a stat's Strength. <strong>Amount</strong> can scale
-by level. Only what the giver has moves, so one with 3 of a steal of 5 gives 3, and nothing is made. <strong>Delivery</strong> says
-when: <strong>On Apply</strong> moves once as the effect lands and <strong>Periodic</strong> each tick, both for good; <strong>Continuous</strong> moves as the
-effect lands and holds while it lasts, a modifier on each side, read again only where a stack or a level changes its
-amount, and gives back as the effect ends, as a load or a move takes it, or as the entity it's on goes. Each side's
-change is exact: no worker takes it for a hit, no barrier soaks it and nothing scales it, so the getter gets what the
-giver gave, as far as its own bounds let it; what its maximum can't hold is lost, as an overheal is. The Problems view
-warns of a transfer whose Delivery the effect's duration can't make, as it does an additional impact's, and of one that
-names no attribute to give or get, each numbered among the effect's transfers. An effect holds as many as it
-moves, each its own.</p>
-<h2 id="side-change">Side Change</h2>
-<p>A <strong>Side Change</strong> component changes the target's sides while the effect lasts: to its caster's, as they
-are as it lands (<strong>Source</strong> Caster, a mind control), or to the <strong>Sides</strong> it names (Named, a pacify's Neutral), which show
-under Named alone. Of several on one entity, the highest <strong>Priority</strong> holds, read as it lands, a tie going to the
-latest, and as the last ends its own sides come back. Its tags follow, so whom effects and areas take changes with it.
-<strong>Interrupts</strong> breaks what the target runs as the change lands or ends, where it changes the sides, not where a change
-of higher priority keeps them. An Instant effect doesn't last, so it changes nothing. An effect holds one at most; it
-was a field of the effect's own, Side Change in its Tags section, with a switch.</p>
-<h2 id="spread">Spread</h2>
-<p>A <strong>Spread</strong> component spreads its effect, or the <strong>Effect</strong> it names, from the one it's on to those near them, at the
-moments its <strong>When</strong> names, any of them: as the effect <strong>Land</strong>s, each <strong>Tick</strong>, as it comes off (<strong>End</strong>), however it
-ends, or as the one it's on dies (<strong>Death</strong>), as a plague jumps from its victim to the enemies near it. It takes
-each within its <strong>Radius</strong> of the one it's on, read at the effect's level, along the ground unless <strong>Flat</strong> is off; of
-those it <strong>Takes</strong> by how each stands to its caster, its Enemies to start, as an Area's; at most <strong>Max Targets</strong> each
-time, the nearest first, or every one at 0; and passes over those who have the effect it spreads already, unless <strong>Skip
-Holders</strong> is off. Each takes the effect from the same origin, its caster's, so its modifiers and its chance to land
-are its own, in the project's resolve order unless <strong>Use Resolve Order</strong> is off. A landing it made spreads on only so
-far as its <strong>Hops</strong> allow: at 0, it spreads only from where the effect landed of its own; at 1, once more from each it
-spread to; and on. An effect holds as many as it has moments to spread at, each its own.</p>
-<hr>
-<p><a href="requirements.html">← Requirements</a> · <a href="index.html">Effects</a> · <a href="workers.html">Workers →</a></p>
+<p>An effect's components are features it carries. Each is a class with hooks into the effect's life.</p>
+<pre><code class="lang-mermaid">classDiagram
+direction LR
+class AbstractForgeComponent:::ext {
+&lt;&lt;abstract&gt;&gt;
+AllowsSeveral
+per-holder state through ctx.GetState
+}
+class AbstractEffectComponent:::ext {
+&lt;&lt;abstract&gt;&gt;
+Lend(EffectComponentContext)
+Land(ctx)
+Tick(ctx)
+Hit(ctx)
+TakeBack(ctx)
+End(ctx)
+Death(ctx)
+also Reapply, Refused, StacksChanged
+}
+class AreaEffectComponent:::rt {
++Area : EffectArea
+}
+class TransferEffectComponent:::rt {
++Transfer : AttributeTransfer
+}
+class AuraEffectComponent:::rt {
++Aura : AuraEntry
+}
+class SideChangeEffectComponent:::rt {
++Source : ESideSource
++Sides
++Priority
++Interrupts : bool
+}
+class SpreadEffectComponent:::rt {
++When : ESpreadMoment
++Effect : GameplayEffect
++Radius
++MaxTargets
++Hops
+}
+class CuesEffectComponent:::rt {
+the effect's cues, by moment
++OnApply, OnTick, OnHit, OnRemove
++WhileActive, from Lend to TakeBack
+}
+class EffectArea:::asset {
++Radius
++Flat
++Takes : EAffiliationFilter
++MaxTargets
+}
+class AbstractCueHandler:::ext {
+&lt;&lt;abstract&gt;&gt;
+Burst(CueContext)
+OnApplied(ctx)
+OnTicked(ctx)
+OnRemoved(ctx)
+Begin(ctx)
+End(ctx)
+}
+class PrefabCue:::rt
+class SoundCue:::rt
+class CameraShakeCue:::rt {
+shakes through ForgeCues.Shaker
+}
+class EffectModifier:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Description
++Rule : EffectModifierRule
+}
+class EffectModifierRule:::asset {
++Direction : Outgoing, Incoming or Both
++EffectTags
++When : GameplayCondition
++Changes : List~AbstractEffectChange~
+}
+class AbstractEffectChange:::ext {
+&lt;&lt;abstract&gt;&gt;
+Apply(EffectChanges, spec, rule)
+Describe()
+also contained effect, overflow, stacks, chance
+}
+class ChangeImpactChange:::rt {
+adds a value stage
+}
+class DurationChange:::rt
+class GrantTagsChange:::rt
+class EffectPurge:::asset {
++Strength : a tier tag
++Kinds : List~Tag~
++AppliedBy : EPurgeRelation
++Filters : List~AbstractPurgeFilter~
+}
+class AbstractPurgeFilter:::ext {
+&lt;&lt;abstract&gt;&gt;
+Takes(in PurgeContext) bool
+}
+class ExceptTaggedPurgeFilter:::rt
+AbstractForgeComponent &lt;|-- AbstractEffectComponent
+AbstractEffectComponent &lt;|-- AreaEffectComponent
+AbstractEffectComponent &lt;|-- TransferEffectComponent
+AbstractEffectComponent &lt;|-- AuraEffectComponent
+AbstractEffectComponent &lt;|-- SideChangeEffectComponent
+AbstractEffectComponent &lt;|-- SpreadEffectComponent
+AbstractEffectComponent &lt;|-- CuesEffectComponent
+CuesEffectComponent o-- AbstractCueHandler : by moment
+AreaEffectComponent --&gt; EffectArea
+AbstractCueHandler &lt;|-- PrefabCue
+AbstractCueHandler &lt;|-- SoundCue
+AbstractCueHandler &lt;|-- CameraShakeCue
+EffectModifier *-- EffectModifierRule
+EffectModifierRule o-- AbstractEffectChange
+AbstractEffectChange &lt;|-- ChangeImpactChange
+AbstractEffectChange &lt;|-- DurationChange
+AbstractEffectChange &lt;|-- GrantTagsChange
+EffectPurge o-- AbstractPurgeFilter
+AbstractPurgeFilter &lt;|-- ExceptTaggedPurgeFilter
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>What an effect carries besides its impacts: components with lifecycle hooks, cues for presentation, modifiers that change other effects, and purges.</em></p>
+<p>Add a component with the Components list's <strong>+</strong>. A kind that makes no sense twice is offered only while the effect
+holds none of it.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="components/auras.html">Aura</a></td>
+<td>Holds an effect on those near the one it's on, while it lasts.</td>
+</tr>
+<tr>
+<td><a href="components/area.html">Area</a></td>
+<td>Lands the effect on those near its target as it lands.</td>
+</tr>
+<tr>
+<td><a href="components/transfers.html">Transfer</a></td>
+<td>Moves an amount from one attribute to another.</td>
+</tr>
+<tr>
+<td><a href="components/side-change.html">Side Change</a></td>
+<td>Changes the target's sides while the effect lasts.</td>
+</tr>
+<tr>
+<td><a href="components/spread.html">Spread</a></td>
+<td>Spreads the effect from the one it's on to those near them.</td>
+</tr>
+<tr>
+<td><a href="cues.html">Cues</a></td>
+<td>Shows and sounds the effect's moments.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="components/auras.html">Auras</a>: An <strong>Aura</strong> component holds an effect on those near the one it's on, while it lasts.</li>
+<li><a href="components/area.html">Area</a>: An <strong>Area</strong> component lands the effect on those near its target as it lands, as Storm Hammer stuns everyone near the one it hits.</li>
+<li><a href="components/transfers.html">Transfers</a>: A <strong>Transfer</strong> component moves an amount from one attribute to another, as Essence Shift steals Agility or Attribute Shift moves Agility into Strength.</li>
+<li><a href="components/side-change.html">Side Change</a>: A <strong>Side Change</strong> component changes the target's sides while the effect lasts.</li>
+<li><a href="components/spread.html">Spread</a>: A <strong>Spread</strong> component spreads its effect, or the <strong>Effect</strong> it names, from the one it's on to those near them, as a plague jumps from its victim to the enemies near it.</li>
+<li><a href="components/component-hooks.html">Component hooks</a>: A component hears its effect's moments through hooks, at the moments its workers do.</li>
+<li><a href="components/custom-components.html">Custom components</a>: A component of your own derives from <code>AbstractEffectComponent</code> and overrides the hooks it needs.</li>
+</ul>
 
 </article>
 

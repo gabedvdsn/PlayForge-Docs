@@ -87,41 +87,39 @@
         <article data-uid="guide.services.random-numbers">
 <h1 id="random-numbers">Random numbers</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a> is where PlayForge draws its random numbers: the game's rolls and random picks all draw from its source,
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a> is where PlayForge draws its random numbers. The game's rolls and random picks all draw from its source,
 an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeRandom.html"><code>IForgeRandom</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it draws</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Value"><code>ForgeRandom.Value</code></a></td>
+<td>A number from 0 to 1, as <code>Random.value</code>.</td>
+</tr>
+<tr>
+<td><code>InsideUnitCircle</code>, <code>InsideUnitSphere</code></td>
+<td>A point within a radius of 1.</td>
+</tr>
+<tr>
+<td><code>Range(min, max)</code></td>
+<td>A float from the first to the second.</td>
+</tr>
+<tr>
+<td><code>Range(min, maxExclusive)</code></td>
+<td>A whole number, up to but not including the second. Where the range is empty, the first itself.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>The source is Unity's, <a class="xref" href="../../api/FarEmerald.PlayForge.UnityRandom.html"><code>UnityRandom</code></a>, through <a class="xref" href="../../api/FarEmerald.PlayForge.UnityRandom.html#FarEmerald_PlayForge_UnityRandom_Instance"><code>UnityRandom.Instance</code></a>, until code puts another in. It reads
-<code>UnityEngine.Random</code>, so <code>Random.InitState(seed)</code> seeds it, and anything else that draws from Unity's moves it. A
-<a class="xref" href="../../api/FarEmerald.PlayForge.SeededRandom.html"><code>SeededRandom</code></a>, made with a seed, draws numbers of its own that nothing else draws from: two runs from one seed draw
-the same numbers.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(source)</code></a> puts a source in and returns the one it replaced, and <code>ForgeRandom.Use(null)</code> puts Unity's
-back. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Source"><code>ForgeRandom.Source</code></a> is the one drawn from now.</li>
-<li>It draws <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Value"><code>ForgeRandom.Value</code></a>, from 0 to 1, as <code>Random.value</code>; <code>InsideUnitCircle</code> and <code>InsideUnitSphere</code>, a point
-within a radius of 1; <code>Range(min, max)</code> for floats; and <code>Range(min, maxExclusive)</code> for whole numbers, up to but not
-including the second, and the first itself where the range is empty.</li>
+<li><a href="random-numbers/the-source.html">The source</a>: <code>ForgeRandom</code> draws from Unity's source, <code>UnityRandom</code>, through <code>UnityRandom.Instance</code>, until code puts another in.</li>
+<li><a href="random-numbers/what-draws-from-it.html">What draws from it</a>: These draw from <code>ForgeRandom</code></li>
 </ul>
-<p>What draws from it: every chance PlayForge rolls (<a href="chance.html">Chance</a>); auto targeting whose <strong>Mode</strong> is <strong>Random</strong>; a
-<strong>Randomized</strong> scaler's roll (<a href="../scalers/a-magnitude-field.html">Scalers: A magnitude field</a>); <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html"><code>ForgeHelper</code></a>'s random picks and points
-(<a href="forgehelper.html">ForgeHelper</a>); and the Creator Lab. Cues don't: a placement's scatter and a floating text's random
-velocity draw from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, a <code>SeededRandom</code> of their own, so a cue never moves the game's rolls
-(<a href="../cues/placement.html">Cues: Placement</a>).</p>
-<p>An <code>IForgeRandom</code> of your own gives <code>Value</code>, from 0 to 1, and <code>InsideUnitCircle</code> and <code>InsideUnitSphere</code>, a point in a
-circle and in a sphere of radius 1. A source put in stays until code puts another in, past the end of play mode where
-domain reload is off, so code that puts one in puts back the one it replaced.</p>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-
-// A match's rolls from its seed: its replay, from the same seed, rolls the same
-int seed = 20261118;
-IForgeRandom previous = ForgeRandom.Use(new SeededRandom(seed));
-
-int die = ForgeRandom.Range(1, 7);          // 1 to 6
-float spread = ForgeRandom.Range(-5f, 5f);
-
-// ... and, as the match ends
-ForgeRandom.Use(previous);
-</code></pre>
-<hr>
-<p><a href="fixed-ticks.html">← Fixed ticks</a> · <a href="index.html">Time, Input and Logging</a> · <a href="chance.html">Chance →</a></p>
 
 </article>
 

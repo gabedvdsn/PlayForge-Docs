@@ -89,37 +89,46 @@
 
 <p>Workers are reusable behaviours, picked from a list, that react to what happens to an entity. This group is subscribed
 when the entity's GAS initializes, and stays for the entity's lifetime. The attribute set's workers are subscribed at
-the same time. <strong>Name</strong> labels the group. It holds four lists:</p>
+the same time.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>Labels the group.</td>
+</tr>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>Workers that run before or after an attribute changes, for example to reduce incoming damage.</td>
+</tr>
+<tr>
+<td><strong>Impact</strong></td>
+<td>Workers that inspect the changes the entity deals.</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>Workers that react when the entity's tags change.</td>
+</tr>
+<tr>
+<td><strong>Analysis</strong></td>
+<td>Workers that examine the frame at its end, for example to detect death.</td>
+</tr>
+</tbody>
+</table>
+<p>Each list's <strong>+</strong> adds an empty worker to pick a kind for. The section's import button copies a worker group from
+another asset. Above the worker group, the section holds the entity's <strong>Modifiers</strong>.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Attribute</strong> workers run before or after an attribute changes, for example to reduce incoming damage.</li>
-<li><strong>Impact</strong> workers inspect the changes the entity deals.</li>
-<li><strong>Tag</strong> workers react when the entity's tags change.</li>
-<li><strong>Analysis</strong> workers examine the frame at its end, for example to detect death.</li>
+<li><a href="workers/threshold.html">Threshold</a>: A <strong>Threshold</strong>, an analysis worker, acts as an attribute crosses a value, without code.</li>
+<li><a href="workers/cant-fall-below-and-return-damage.html">Can't Fall Below and Return Damage</a>: Two attribute workers keep the common rules.</li>
+<li><a href="workers/modifiers.html">Modifiers</a>: <strong>Modifiers</strong>, above the workers, change other effects as they're made, for as long as the entity lives.</li>
+<li><a href="workers/lifesteal.html">Lifesteal</a>: An entity's own lifesteal is its <strong>Lifesteal</strong>: the attribute its project's Lifesteal worker names as its Share.</li>
 </ul>
-<p>Each list's <strong>+</strong> adds an empty worker to pick a kind for. The section's import button copies a worker group
-from another asset.</p>
-<p>A <strong>Threshold</strong>, an analysis worker, acts as an attribute crosses a value, without code: Megaera rages as her
-Health falls past half, and Ice Blast shatters below 13%. It reads its <strong>Target</strong> attribute's <strong>What</strong>: its current, its
-base, what's missing of it, or its share of its base, so a <strong>Threshold</strong> of 0.5 on its share is half. <strong>Crossing</strong> says
-when it fires: while its <strong>Comparison</strong> holds, as it always did; or as what it reads falls to the threshold or below,
-rises above it, or either. <strong>Trigger Once</strong> fires at its first crossing alone; off, each time. As it fires it applies its
-<strong>Effects</strong> to the entity, from the entity itself, or, with <strong>Applied By</strong> set to Crosser, from the one whose change
-crossed it this frame, so a shatter is its caster's, kill and all; and it sends its <strong>Event</strong>, a gameplay event its
-abilities' triggers hear, its source the one who crossed it and its subject the entity. It checks at the frame's end,
-as the death watcher, a Threshold that kills, does, so the frame's hits and heals net out. An entity that revives re-arms
-it, and its first check after notes its side again.</p>
-<p>Two attribute workers keep the common rules. <strong>Can't Fall Below</strong> holds its attribute at its <strong>Floor</strong>: a loss
-that would take it lower takes it to the floor, as Shallow Grave keeps its target at 1 Health, in a buff's worker group
-while it lasts. <strong>Return Damage</strong> sends its <strong>Share</strong> of each workable loss its attribute takes from another back to the
-one who dealt it, typed Returned, so a return on the other side doesn't send it back again and no lifesteal heals from it,
-as Blade Mail.</p>
-<p><strong>Modifiers</strong>, above the workers, change other effects as they're made for as long as the entity lives: its own, as a
-Frost Mage's every Chill granting Frozen, or those landing on it. Each entry is a rule of its own or names a
-shared Effect Modifier asset (<a href="../effects/workers.html#modifiers">Effects: Modifiers</a>).</p>
-<p>An entity's own lifesteal is its <strong>Lifesteal</strong>, the attribute its project's Lifesteal worker names as its Share, its
-set's value for it, which the Lifesteal worker heals by (<a href="../workers/lifesteal.html">Workers: Lifesteal</a>); its Lifesteal list is gone.</p>
-<hr>
-<p><a href="components.html">← Components</a> · <a href="index.html">Entities</a> · <a href="death.html">Death →</a></p>
 
 </article>
 

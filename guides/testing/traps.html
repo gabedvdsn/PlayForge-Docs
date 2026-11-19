@@ -87,17 +87,16 @@
         <article data-uid="guide.testing.traps">
 <h1 id="traps">Traps</h1>
 
+<p>These are the mistakes a test most easily makes with the kit.</p>
 <ul>
 <li><strong>Step frames; never call a process's update by hand.</strong> The world's ProcessControl steps what runs, as the game's
-does; calling an update yourself runs it out of order and hides what the frame does.</li>
-<li><strong>A tag converts to text.</strong> NUnit's <code>Does.Contain(tag)</code> compares a list of tags as text and fails; check with
-<code>World.HasTag</code>, or <code>Contains</code> on the list itself.</li>
+does. Calling an update yourself runs it out of order, and hides what the frame does.</li>
+<li><strong>A tag converts to text.</strong> NUnit's <code>Does.Contain(tag)</code> compares a list of tags as text, and fails. Check with
+<code>World.HasTag</code>, or with <code>Contains</code> on the list itself.</li>
 <li><strong>Unscaled time isn't stepped.</strong> Anything timed on Unity's unscaled time stays on the wall clock.</li>
-<li><strong>One world at a time.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Current"><code>ForgeTestWorld.Current</code></a> is the one a test is in; PlayForge's static state is the world's
+<li><strong>One world at a time.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_Current"><code>ForgeTestWorld.Current</code></a> is the one a test is in. PlayForge's static state is the world's
 while it lives, and the world gives back the clock and the rolls as it ends.</li>
 </ul>
-<hr>
-<p><a href="allocation.html">← Allocation</a> · <a href="index.html">Testing Your Content</a></p>
 
 </article>
 

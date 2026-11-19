@@ -87,6 +87,7 @@
         <article data-uid="guide.task-sequences.building-one">
 <h1 id="building-one">Building one</h1>
 
+<p>You build a sequence in code, stage by stage, with <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html"><code>TaskSequenceBuilder</code></a>.</p>
 <pre><code class="lang-csharp">var cast = TaskSequenceBuilder.Create(&quot;Fireball&quot;)
     .WithMaxDuration(5f)
     .Stage(stage =&gt; stage
@@ -102,14 +103,41 @@
 
 cast.RegisterAndRun(SequenceDataPacket.SceneRoot());
 </code></pre>
-<p><code>Build</code> gives the definition, which a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html"><code>TaskSequence</code></a> runs and a synced runner is built from; <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_BuildSequence_"><code>BuildSequence</code></a> gives the
-sequence itself, and <code>BuildSyncRunner</code> a synced runner (below). A static method marked <code>[TaskSequenceMethod]</code> that
-returns a sequence, a chain or a definition appears in an ability's sequence dropdown, and in a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceReference.html"><code>TaskSequenceReference</code></a>
-field; an ability runs a chain as a process too, which asks its conditions each frame.</p>
-<p>A task reads and writes the run's <strong>data packet</strong>, a <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html"><code>SequenceDataPacket</code></a>: what started the run put its caster, targets
-and values there, and a task can leave values for the stages after it (<code>SetPrimary</code>, <code>GetPrimary</code>).</p>
-<hr>
-<p><a href="the-parts.html">← The parts</a> · <a href="index.html">Task Sequences</a> · <a href="waiting.html">Waiting →</a></p>
+<p>The builder ends with one of three methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Build</code></td>
+<td>The definition, which a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html"><code>TaskSequence</code></a> runs and a synced runner is built from.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_BuildSequence_"><code>BuildSequence</code></a></td>
+<td>The sequence itself.</td>
+</tr>
+<tr>
+<td><code>BuildSyncRunner</code></td>
+<td>A synced runner (<a href="synced-sequences.html">Synced sequences</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>A static method marked <code>[TaskSequenceMethod]</code> that returns a sequence, a chain or a definition appears in two places:</p>
+<ul>
+<li>an ability's sequence dropdown;</li>
+<li>a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceReference.html"><code>TaskSequenceReference</code></a> field.</li>
+</ul>
+<p>An ability runs a chain as a process too, which asks its conditions each frame.</p>
+<h2 id="the-data-packet">The data packet</h2>
+<p>A task reads and writes the run's <strong>data packet</strong>, a <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html"><code>SequenceDataPacket</code></a>.</p>
+<ul>
+<li>What started the run put its caster, targets and values there.</li>
+<li>A task can leave values for the stages after it (<code>SetPrimary</code>, <code>GetPrimary</code>).</li>
+</ul>
 
 </article>
 

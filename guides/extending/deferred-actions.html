@@ -87,94 +87,14 @@
         <article data-uid="guide.extending.deferred-actions">
 <h1 id="deferred-actions">Deferred actions</h1>
 
-<p>A deferred action is a piece of work queued to an entity that runs at its end of frame, by priority: what deferred
-workers return, and what any code queues with <code>entity.GetActionQueue().Enqueue(action)</code>. This section covers writing one;
-<a href="../workers/the-action-queue.html">Workers: The action queue</a> covers when the queue runs and what it tells.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.IRootAction.html"><code>IRootAction</code></a> has four members:</p>
+<p>A deferred action is a piece of work queued to an entity that runs at its end of frame, by priority.</p>
+<p>Deferred workers return them, and any code queues one with <code>entity.GetActionQueue().Enqueue(action)</code>. This section
+covers writing one; <a href="../workers/the-action-queue.html">Workers: The action queue</a> covers when the queue runs and what it tells.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><code>int Priority { get; }</code>: higher runs first, in the order queued within one. <a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html"><code>ActionPriority</code></a> names the levels:
-<code>Critical</code> (100), <code>High</code> (50), <code>Normal</code> (0), <code>Low</code> (-50), <a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html#FarEmerald_PlayForge_ActionPriority_TagWorker"><code>TagWorker</code></a> (-100), <code>Analysis</code> (-200), <code>Cleanup</code> (-300).
-<code>Enqueue(action, priorityOverride)</code> queues one at another.</li>
-<li><code>bool IsValid { get; }</code>: asked as its turn comes; false drops it unrun.</li>
-<li><code>string Description { get; }</code>: its line in the logs, the debugger and the effect journal.</li>
-<li><code>void Execute(ISource system)</code>: its work. <code>system</code> is the entity whose queue runs it.</li>
+<li><a href="deferred-actions/writing-an-action.html">Writing an action</a>: An action of a game's own does a piece of work at an entity's end of frame, as sending it an event once the frame's changes have run.</li>
+<li><a href="deferred-actions/playforges-own-actions.html">PlayForge's own actions</a>: PlayForge's own actions are each usable from a game's code.</li>
 </ul>
-<p>PlayForge's own, each usable from a game's code:</p>
-<table>
-<thead>
-<tr>
-<th>Action</th>
-<th>Does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.ModifyAttributeAction.html"><code>ModifyAttributeAction(target, attribute, value, runEvents = true, priority = null)</code></a></td>
-<td>Changes an attribute by a <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html"><code>SourcedModifiedAttributeValue</code></a>.</td>
-</tr>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.ApplyEffectAction.html"><code>ApplyEffectAction(target, effect, origin, priority = null)</code></a></td>
-<td>Applies an effect from an origin.</td>
-</tr>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.RemoveEffectAction.html"><code>RemoveEffectAction(target, effect, priority = null)</code></a></td>
-<td>Removes an effect.</td>
-</tr>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.LambdaAction.html"><code>LambdaAction(action, description, priority, isValid)</code></a></td>
-<td>Runs a function, while its validity check, if it's given one, holds.</td>
-</tr>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.LogAction.html"><code>LogAction</code></a></td>
-<td>Writes a line through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a>.</td>
-</tr>
-<tr>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.DeathAction.html"><code>DeathAction(system)</code></a></td>
-<td>Kills the entity, at <code>Critical</code>.</td>
-</tr>
-</tbody>
-</table>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.EffectScopedAction.html"><code>EffectScopedAction</code></a> is a base for an action that holds while its carrier's origin is active: an ability's while a run
-of it is active, an item's while it's equipped, an entity's always. It takes the carrier in its constructor, keeps it
-as <code>carrier</code>, and leaves <code>Description</code> and <code>Execute</code> to its kind.</p>
-<p>An action of a game's own:</p>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-
-namespace MyGame
-{
-    // Sends an entity a gameplay event once the frame's changes have run
-    public sealed class SendEventAction : IRootAction
-    {
-        private readonly IGameplayAbilitySystem to;
-        private readonly Tag eventTag;
-
-        public SendEventAction(IGameplayAbilitySystem to, Tag eventTag, int priority = ActionPriority.Low)
-        {
-            this.to = to;
-            this.eventTag = eventTag;
-            Priority = priority;
-        }
-
-        public int Priority { get; }
-        public bool IsValid =&gt; to != null &amp;&amp; !to.IsDead &amp;&amp; eventTag.IsValid;
-        public string Description =&gt; $&quot;Send {eventTag}&quot;;
-
-        public void Execute(ISource system) =&gt; to.SendGameplayEvent(eventTag);
-    }
-}
-</code></pre>
-<ul>
-<li><strong>The queue runs in the entity's end of frame</strong>, which a Mono hub runs as it steps in LateUpdate: its process timing
-takes LateUpdate, as Update And Late does, or its queue never runs.</li>
-<li><strong>An action queued to another entity runs at that entity's end of frame</strong>: this frame if it's still to come, by the
-order the entities step in, or the next.</li>
-<li><strong>An action that throws is caught</strong>: it's told as failed, written to the Console, and the rest of the queue runs.</li>
-<li><strong>An action the system makes for itself is used again</strong> once the queue has run it, so a listener of the queue's events
-reads it during the call and keeps nothing of it.</li>
-<li><strong>An action that queues another for good is cut off</strong> at 10,000 a pass, with an error.</li>
-</ul>
-<hr>
-<p><a href="workers.html">← Workers</a> · <a href="index.html">Extending PlayForge</a> · <a href="ability-tasks.html">Ability tasks →</a></p>
 
 </article>
 

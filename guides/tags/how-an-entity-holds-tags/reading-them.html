@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Reading them | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Reading them | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.how-an-entity-holds-tags.reading-them">
+<h1 id="reading-them">Reading them</h1>
+
+<p>An entity's <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html"><code>TagCache</code></a> holds its tags and their weights, and <code>gas.GetTagCache()</code> gives it. A <a class="xref" href="../../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a>
+component's cache is null until the component initializes.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight(tag)</code></a></td>
+<td>Gives the weight of that very tag: <strong>−1 where the entity hasn't it</strong>, not 0. <code>gas.GetTagWeight(tag)</code> is <code>GetWeight</code>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight(tag, out weight)</code></a></td>
+<td>Says whether the entity has the tag, and gives its weight.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_HasTagExact_"><code>HasTagExact(tag)</code></a></td>
+<td>Says whether the entity has that very tag.</td>
+</tr>
+<tr>
+<td><code>HasTag(tag, mode)</code></td>
+<td>Says whether it has the tag, by a match mode (<a href="../querying-tags.html">Querying tags</a>).</td>
+</tr>
+<tr>
+<td><code>HasAnyTag</code>, <code>HasAllTags</code>, <code>HasNoneOfTags</code></td>
+<td>Ask the same of several tags, Exact unless told.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetMatchingWeight_"><code>GetMatchingWeight(tag, mode)</code></a></td>
+<td>Adds up the weights of the tags that match, 0 where none does. In Exact mode it is <code>GetWeight</code>: −1 for an absent tag.</td>
+</tr>
+<tr>
+<td><code>GetMatchingTags(tag, mode)</code></td>
+<td>Gives the tags held that match.</td>
+</tr>
+<tr>
+<td><code>GetAppliedTags()</code></td>
+<td>Gives each tag held, once. <code>gas.GetAppliedTags()</code> is the same list.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The list <code>GetAppliedTags()</code> gives is the cache's own, reused until a tag comes or goes. Read it, and copy it to keep
+it.</p>
+</div>
+<h2 id="changing-the-weights-directly">Changing the weights directly</h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTag_"><code>AddTag</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTags_"><code>AddTags</code></a>, <code>RemoveTag</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveTags_"><code>RemoveTags</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveTagCompletely_"><code>RemoveTagCompletely</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveMatchingTags_"><code>RemoveMatchingTags</code></a> change the weights
+directly. An Instant effect's tags are granted this way, for the moment it applies. Each change is told as it happens.</p>
+<p>The next compile rebuilds the weights from their sources, and drops these changes. So a tag meant to last is a loose
+tag (<a href="loose-tags.html">Loose tags</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_ResetWeights_"><code>ResetWeights()</code></a></td>
+<td>Empties the weights, telling each tag's going.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_ResetCache_"><code>ResetCache()</code></a></td>
+<td>Empties the weights, and resolves the active tag workers as well.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_BeginRebuild_"><code>BeginRebuild()</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_EndRebuild_"><code>EndRebuild()</code></a></td>
+<td>Frame a compile.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogWeights_"><code>LogWeights()</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogActiveWorkers_"><code>LogActiveWorkers()</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetHierarchyDebugString_"><code>GetHierarchyDebugString()</code></a></td>
+<td>Write the cache out, for debugging.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

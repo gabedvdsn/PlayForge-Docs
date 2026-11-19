@@ -87,19 +87,39 @@
         <article data-uid="guide.entities.items">
 <h1 id="items">Items</h1>
 
-<ul>
-<li><strong>Starting Items</strong>: items the entity is given when its GAS initializes, one row each. <strong>Equip</strong> equips the item as it
-is given.</li>
-<li><strong>Max Items</strong> (default 99): the most items the inventory can hold.</li>
-<li><strong>Max Equipped Items</strong> (default 99): the most items equipped at once.</li>
-<li><strong>Allow Duplicates</strong> (default off): let the inventory hold the same item more than once.</li>
-<li><strong>Equipped Too</strong> (default off): let more than one copy of the same item be equipped at once. It needs Allow
-Duplicates, since an inventory that holds one of each item has no second copy to equip.</li>
-</ul>
-<p>Each Max field is a number, or, by its kind, a scaler that changes the limit with the entity's level, with its rounding
+<p>The Items section sets the items the entity starts with and the limits on its inventory.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Starting Items</strong></td>
+<td>Items the entity is given when its GAS initializes, one row each. A row's <strong>Equip</strong> equips the item as it is given.</td>
+</tr>
+<tr>
+<td><strong>Max Items</strong></td>
+<td>The most items the inventory can hold, 99 by default.</td>
+</tr>
+<tr>
+<td><strong>Max Equipped Items</strong></td>
+<td>The most items equipped at once, 99 by default.</td>
+</tr>
+<tr>
+<td><strong>Allow Duplicates</strong></td>
+<td>Lets the inventory hold the same item more than once. Off by default.</td>
+</tr>
+<tr>
+<td><strong>Equipped Too</strong></td>
+<td>Lets more than one copy of the same item be equipped at once. Off by default; it needs Allow Duplicates, since an inventory that holds one of each item has no second copy to equip.</td>
+</tr>
+</tbody>
+</table>
+<p>Each Max field is a number or, by its kind, a scaler that changes the limit with the entity's level, with its rounding
 (<a href="../scalers/index.html">Scalers</a>). A give or equip that breaks a limit fails.</p>
-<hr>
-<p><a href="abilities.html">← Abilities</a> · <a href="index.html">Entities</a> · <a href="components.html">Components →</a></p>
 
 </article>
 

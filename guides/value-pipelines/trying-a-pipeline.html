@@ -87,28 +87,55 @@
         <article data-uid="guide.value-pipelines.trying-a-pipeline">
 <h1 id="trying-a-pipeline">Trying a pipeline</h1>
 
-<p>A Value Pipeline's inspector has a <strong>Try</strong> section under its stages, which puts a value through them at each level of
-a range, as a Scaler asset's Try reads a scaler:</p>
+<p>A Value Pipeline's inspector has a <strong>Try</strong> section under its stages. It puts a value through them at each level of a
+range, as a Scaler asset's Try reads a scaler.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Value In</strong></td>
+<td>The value a hit lands with, going in: a loss below 0, as a blow of 100 is −100, and a gain above.</td>
+</tr>
+<tr>
+<td><strong>Chances Come Up</strong></td>
+<td>Settles each roll, so a try gives the same each time (below).</td>
+</tr>
+<tr>
+<td><strong>Levels</strong></td>
+<td>The hit's levels, 1 to 5 to start, for a stage whose number scales by level.</td>
+</tr>
+<tr>
+<td><strong>Caster</strong>, <strong>Target</strong> and <strong>Caller</strong></td>
+<td>The same stand-ins as a Scaler asset's Try (below).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chances Come Up</strong> settles each chance a stage rolls:</p>
 <ul>
-<li><strong>Value In</strong> is the value a hit lands with, going in: a loss below 0, as a blow of 100 is −100, and a gain above.</li>
-<li><strong>Chances Come Up</strong> settles each roll, so a try gives the same each time: on, each chance a stage rolls comes up
-where it can, a critical strike doubling the hit and a block stopping it; off, each misses where it can. A chance of
-1 always comes up and one of 0 never does.</li>
-<li><strong>Levels</strong>, 1 to 5 to start, are the hit's levels, for a stage whose number scales by level.</li>
-<li>Its <strong>Caster</strong>, <strong>Target</strong> and <strong>Caller</strong> are a Scaler asset's Try's: a row for each attribute a stage reads on a
-side, as a Multiply stage's Damage Amplification or an Absorb stage's Barrier, typed or filled from an <strong>Entity</strong>,
-and a row for each key a caller sets.</li>
+<li>On, each comes up where it can: a critical strike doubles the hit, and a block stops it.</li>
+<li>Off, each misses where it can.</li>
+<li>A chance of 1 always comes up, and one of 0 never does.</li>
 </ul>
+<p>The <strong>Caster</strong> and <strong>Target</strong> have a row for each attribute a stage reads on that side, as a Multiply stage's Damage
+Amplification or an Absorb stage's Barrier. You type its values, or fill them from an <strong>Entity</strong>. The <strong>Caller</strong> has a
+row for each key a caller sets.</p>
 <p>Its <strong>Out</strong> row says what lands at each level. Click one to see its steps under the table: the value in, each stage's
-value in and out with its note, as &quot;critical&quot;, and what comes out. A Block or Evade stage rolls first, as it does as an
-effect lands, and one that comes up stops the hit: nothing of it lands, and its level shows &quot;—&quot;. No effect is behind a
-try, so what an Absorb stage soaks comes off no one, and a stage of your own that reads <code>run.Carrier</code> reads none.
-What's typed is kept for the session, never in the asset.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.html"><code>ValuePipelineTry</code></a> does the same in code, <code>new ValuePipelineTry { Value = -100f }.Read(pipeline)</code>, and
-<code>pipeline.Run(value, in context)</code> puts a value through a pipeline against a number context of your own, with no
-effect behind it.</p>
-<hr>
-<p><a href="the-breakdown.html">← The breakdown</a> · <a href="index.html">Value Pipelines</a> · <a href="built-in-kinds.html">Built-in kinds →</a></p>
+value in and out with its note, as &quot;critical&quot;, and what comes out.</p>
+<ul>
+<li>A Block or Evade stage rolls first, as it does as an effect lands. One that comes up stops the hit: nothing of it
+lands, and its level shows &quot;—&quot;.</li>
+<li>No effect is behind a try. So what an Absorb stage soaks comes off no one, and a stage of your own that reads
+<code>run.Carrier</code> reads none.</li>
+<li>What's typed is kept for the session, never in the asset.</li>
+</ul>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ValuePipelineTry.html"><code>ValuePipelineTry</code></a> does the same in code: <code>new ValuePipelineTry { Value = -100f }.Read(pipeline)</code>.
+<code>pipeline.Run(value, in context)</code> puts a value through a pipeline against a number context of your own, with no effect
+behind it.</p>
 
 </article>
 

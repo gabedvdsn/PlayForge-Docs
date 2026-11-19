@@ -87,18 +87,80 @@
         <article data-uid="guide.entities.identity">
 <h1 id="identity">Identity</h1>
 
-<ul>
-<li><strong>Name</strong>: the entity's display name. It also gives the asset tag, so renaming the entity changes its tag. Update
-anything that names the old tag.</li>
-<li><strong>Description</strong>: free text for your UI.</li>
-<li><strong>Asset Tag</strong>: read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined. The
-tag is stored when you edit the Name, and the inspector header shows it after the entity's type. If the stored tag
-differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that stores the new one.</li>
-<li><strong>Textures</strong>: icons, each paired with a tag. The texture tagged <code>Primary</code> is the entity's icon. Without one, the first
-texture is used.</li>
-</ul>
-<hr>
-<p><a href="index.html">← Entities</a> · <a href="index.html">Entities</a> · <a href="leveling.html">Leveling →</a></p>
+<p>The Identity section names the entity, shows its asset tag and holds its icons.</p>
+<pre><code class="lang-mermaid">sequenceDiagram
+autonumber
+participant B as Bootstrapper
+participant PC as ProcessControl
+participant W as ProcessWorld
+participant PCB as ProcessControlBlock
+participant H as GAS hub
+participant C as GASCore
+participant S as Subsystems
+B-&gt;&gt;B: Bootstrap(), TagRegistry.Initialize, AttributeRegistry.Add
+B-&gt;&gt;PC: instantiate ProcessControlPrefab if there is no Instance
+B-&gt;&gt;PC: Bootstrap(deferStartState true)
+PC-&gt;&gt;W: ResetProcessControl(Ready), ApplyTickRate()
+B-&gt;&gt;PC: Register(GameRootPrefab).With(Default()).Run(out relay)
+B-&gt;&gt;PC: EnterStartState, BootstrapOverrides(), DeferredInit()
+PC-&gt;&gt;PC: CollectSceneProcesses(), by priority then depth
+PC-&gt;&gt;W: Register(p).With(Default()).In(this).Run()
+Note over PC,W: The taker is the given world, else the Instance's World. The handler is the given one, else the packet's source, else GameRoot
+W-&gt;&gt;W: refuse AlreadyRegistered or ProcessControlClosed
+W-&gt;&gt;PCB: ProcessControlBlock.Generate makes the ProcessRelay
+W-&gt;&gt;W: HandlerSubscribeProcess(relay), SetProcess, ConfigureWrapper
+W-&gt;&gt;PCB: Initialize()
+PCB-&gt;&gt;H: SendProcessData(data, relay), WhenInitialize()
+alt Mono hub
+H-&gt;&gt;C: new GASCore(this, Callbacks)
+H-&gt;&gt;C: Initialize(new RuntimeEntityIdentity(EntityData), affiliation)
+else Runtime hub
+Note over H,C: Its constructor already built and initialized the GASCore. WhenInitialize applies a registration AFFILIATION
+end
+C-&gt;&gt;C: localData.Init(identity), ForgeEntities.Add(owner)
+C-&gt;&gt;S: Setup each subsystem, AttributeSystem.Setup(AttributeSet)
+C-&gt;&gt;C: InitializeEndOfFrame() makes ActionQueue, FrameSummary, AnalysisCache
+C-&gt;&gt;S: SetDeferredContext
+C-&gt;&gt;S: InitWorkers of the identity, the AttributeSet, the project's Every-Entity group
+C-&gt;&gt;S: LevelSystem.Register(AssetTag), AbilitySystem.Initialize(StartingAbilities)
+C-&gt;&gt;S: AttributeSystem.Initialize(), a CachedAttributeValue each, a zero pulse
+C-&gt;&gt;S: ItemSystem.Initialize(StartingItems), CompileGrantedTags()
+C-&gt;&gt;S: ActivateImmediateAbilities(), SpawnBody(), components Register
+C--&gt;&gt;H: Callbacks.SystemInitialized()
+W-&gt;&gt;W: Callbacks.OnProcessRegistered
+W-&gt;&gt;PCB: the default transition for its lifecycle
+Note over W,PCB: SelfTerminating, RunThenWait and Synchronous go to Running. RequiresControl waits for relay.Run()
+</code></pre>
+<p><em>From the Bootstrapper to a registered entity. The runtime hub initializes in its constructor, the Mono hub when it registers.</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The entity's display name, which also gives the asset tag. Renaming the entity changes its tag, so update anything that names the old tag.</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Free text for your UI.</td>
+</tr>
+<tr>
+<td><strong>Asset Tag</strong></td>
+<td>Read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined.</td>
+</tr>
+<tr>
+<td><strong>Textures</strong></td>
+<td>Icons, each paired with a tag. The texture tagged <code>Primary</code> is the entity's icon; without one, the first texture is used.</td>
+</tr>
+</tbody>
+</table>
+<p>The asset tag is stored when you edit the Name, and the inspector header shows it after the entity's type. If the
+stored tag differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that stores the new
+one.</p>
 
 </article>
 

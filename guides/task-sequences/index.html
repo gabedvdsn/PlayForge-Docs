@@ -87,26 +87,31 @@
         <article data-uid="guide.task-sequences">
 <h1 id="task-sequences">Task Sequences</h1>
 
-<p>A <strong>task sequence</strong> is a workflow over time, built in code: stages run one after another, each a set of tasks run
-together. An ability runs as one, and so can anything with steps: a projectile's flight, a channel, a cutscene, a
-tutorial, a boss's phases. A sequence runs as a process (<a href="../processes/index.html">Processes</a>), so ProcessControl starts,
-pauses and ends it like any other.</p>
-<p>The <strong>Task Sequence Examples</strong> sample shows every part of this page in code, and a component that runs any example from
-a scene.</p>
+<p>A <strong>task sequence</strong> is a workflow over time, built in code. Its stages run one after another, and each stage is a set
+of tasks run together.</p>
+<p>An ability runs as a task sequence. So can anything with steps: a projectile's flight, a channel, a cutscene, a
+tutorial, a boss's phases.</p>
+<p>A sequence runs as a process (<a href="../processes/index.html">Processes</a>), so ProcessControl starts, pauses and ends it like any
+other.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The <strong>Task Sequence Examples</strong> sample shows every part of this guide in code. It also has a component that runs any
+example from a scene.</p>
+</div>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="the-parts.html">The parts</a>: <strong>Sequence</strong>: its stages, in order, with what holds for all of them: its name, its conditions, a timeout or a longest run, whether it repeats, and the handlers that hear it end.</li>
-<li><a href="building-one.html">Building one</a>: <code>Build</code> gives the definition, which a <code>TaskSequence</code> runs and a synced runner is built from; <code>BuildSequence</code> gives the sequence itself, and <code>BuildSyncRunner</code> a synced runner (below).</li>
-<li><a href="waiting.html">Waiting</a>: <strong>Delays</strong>: <code>Delay(seconds)</code> is a stage of its own that waits; <code>DelayUntil</code> and <code>DelayWhile</code> wait on a predicate, and <code>WaitUntil</code> is a stage that does.</li>
-<li><a href="repeating.html">Repeating</a>: <code>WithRepeat(true)</code> on the builder repeats the whole sequence until it's interrupted.</li>
-<li><a href="changing-the-run.html">Changing the run</a>: From a task, through its data packet</li>
-<li><a href="time-limits-and-endings.html">Time limits and endings</a>: <code>WithTimeout(seconds, injection)</code> injects when the time is up, a skip by default; <code>WithMaxDuration(seconds)</code> ends the run, or the stage, at its longest.</li>
-<li><a href="clocks.html">Clocks</a>: A run's time is its <strong>clock</strong>'s: its waits and delays, its timeouts and longest runs, its <code>ElapsedTime</code>, the library's tweens and its synced tasks all go by it.</li>
-<li><a href="running-one.html">Running one</a>: <code>RegisterAndRun(data)</code>, or <code>ProcessControl.Register(sequence).With(data).Run()</code>, runs it as a process: it shows in the Debugger, pauses with ProcessControl, and ends with its scene.</li>
-<li><a href="chains.html">Chains</a>: A chain runs its sequences in order with one data packet; it can repeat, pause and resume, skip its current sequence, or be interrupted, and takes conditions of its own (<code>InterruptWhen</code>, <code>SkipSequenceWhen</code>).</li>
-<li><a href="synced-sequences.html">Synced sequences</a>: A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async: a process with the Synchronous lifecycle calls its <code>Step</code> each frame.</li>
-<li><a href="the-libraries.html">The libraries</a>: <code>SequenceTaskLibrary</code> has tasks to await inside a stage's <code>Task</code>, each taking the task's token, and <code>SyncSequenceTaskLibrary</code> the same tasks as <code>ISequenceTask</code>s for a synced runner, or for any stage</li>
-<li><a href="logging.html">Logging</a>: What a sequence says goes through <code>ForgeLog</code>, under its own system, <strong>Sequences</strong>: a handler's throw as an error, and, where a sequence's or a chain's logging is on (<code>WithInjectionLogging</code>, a chain's <code>WithLogging</code>)…</li>
+<li><a href="the-parts.html">The parts</a>: A task sequence is built from five parts: sequences, stages, tasks, injections and chains.</li>
+<li><a href="building-one.html">Building one</a>: You build a sequence in code, stage by stage, with <code>TaskSequenceBuilder</code>.</li>
+<li><a href="waiting.html">Waiting</a>: A sequence can wait as a stage, inside a task, or on the player's input.</li>
+<li><a href="repeating.html">Repeating</a>: A sequence, or one of its stages, can repeat.</li>
+<li><a href="changing-the-run.html">Changing the run</a>: You can change a run from one of its tasks, from outside, or by a condition, as far as the sequence allows.</li>
+<li><a href="time-limits-and-endings.html">Time limits and endings</a>: A run can have time limits, and handlers that hear how it ends.</li>
+<li><a href="clocks.html">Clocks</a>: A run's time is its <strong>clock</strong>'s.</li>
+<li><a href="running-one.html">Running one</a>: You can run a sequence as a process, in place, or through a runtime of your own.</li>
+<li><a href="chains.html">Chains</a>: A chain runs its sequences in order, with one data packet.</li>
+<li><a href="synced-sequences.html">Synced sequences</a>: A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async.</li>
+<li><a href="the-libraries.html">The libraries</a>: Two libraries hold ready-made tasks, one for async stages and one for synced ones.</li>
+<li><a href="logging.html">Logging</a>: What a sequence says goes through <code>ForgeLog</code>, under its own system, <strong>Sequences</strong>.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

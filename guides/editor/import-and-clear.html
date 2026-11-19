@@ -87,33 +87,14 @@
         <article data-uid="guide.editor.import-and-clear">
 <h1 id="import-and-clear">Import and Clear</h1>
 
-<p>A section's <strong>Import</strong> copies chosen fields into the asset from another, and its <strong>Clear</strong> resets the section; the
-asset menu's <strong>Import from Another Asset...</strong> imports the whole asset. This section covers the Import window
-(<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.html"><code>ForgeImportWindow</code></a>) and Clear (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SectionClearUtility.html"><code>SectionClearUtility</code></a>).</p>
-<h2 id="the-import-window">The Import window</h2>
-<p>The window is titled for what it imports, as <strong>Import Leveling</strong>, names the asset it imports into, and goes in three
-steps:</p>
-<ol>
-<li><strong>Choose a source</strong>: the type's <strong>Defaults</strong>, the assets Project Settings → PlayForge lists first for it, then the
-active project's other assets of the type, by name. The search finds a source by its name or its asset tag. A
-Workers section's Import lists any PlayForge asset with the same fields at the same paths, whatever its type, so an
-item's workers are a source for an ability's.</li>
-<li><strong>Choose what to import</strong>: a row for each field that differs, checked, with its value now and the source's.
-Uncheck a field to leave it. A list is replaced, unless its row's <strong>Add</strong> is on, which adds the source's items after
-its own. <strong>Show matching</strong> lists the fields that are the same as well; otherwise a line names them.</li>
-<li><strong>Import N Changes</strong> imports the checked fields as one Undo step, and closes the window.</li>
-</ol>
-<p><strong>Import from Another Asset...</strong> offers every field but those that make the asset itself: its name, description,
-textures and asset tag, its template, and its level link.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.html#FarEmerald_PlayForge_Editor_ForgeImportWindow_ShowFor_"><code>ForgeImportWindow.ShowFor(serializedObject, what, paths)</code></a> opens the window for fields of your own choosing, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.html#FarEmerald_PlayForge_Editor_ForgeImportWindow_ShowForAsset_"><code>ForgeImportWindow.ShowForAsset(serializedObject)</code></a> for a whole asset. <code>Choose(source)</code> picks the source, <code>Changes</code>
-lists what the import would change, each a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.Field.html"><code>ForgeImportWindow.Field</code></a>, its <code>Path</code>, <code>Label</code>, whether it <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.Field.html#FarEmerald_PlayForge_Editor_ForgeImportWindow_Field_IsList"><code>IsList</code></a>, and
-whether it's included (<code>Include</code>) or added to (<code>Append</code>), and <code>Import()</code> imports them.</p>
-<h2 id="clear">Clear</h2>
-<p><strong>Clear</strong> sets each of the section's fields to a new asset's value and empties its lists, at once, with no question,
-as one Undo step. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SectionClearUtility.html#FarEmerald_PlayForge_Editor_SectionClearUtility_Clear_"><code>SectionClearUtility.Clear(serializedObject, sectionName, paths)</code></a> does the same in code.</p>
-<hr>
-<p><a href="inspectors.html">← Inspectors</a> · <a href="index.html">The Editor Tools</a> · <a href="fields-and-drawers.html">Fields and drawers →</a></p>
+<p>A section's <strong>Import</strong> copies chosen fields into the asset from another, and its <strong>Clear</strong> resets the section. The asset
+menu's <strong>Import from Another Asset...</strong> imports the whole asset.</p>
+<p>This section covers the Import window (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeImportWindow.html"><code>ForgeImportWindow</code></a>) and Clear (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SectionClearUtility.html"><code>SectionClearUtility</code></a>).</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="import-and-clear/the-import-window.html">The Import window</a>: The Import window copies chosen fields into an asset from another.</li>
+<li><a href="import-and-clear/clear.html">Clear</a>: A section's <strong>Clear</strong> resets the section's fields at once, with no question.</li>
+</ul>
 
 </article>
 

@@ -87,6 +87,50 @@
         <article data-uid="guide.processes.registering-one">
 <h1 id="registering-one">Registering one</h1>
 
+<p>You register a process with ProcessControl, which gives you a relay to control it with.</p>
+<pre><code class="lang-mermaid">sequenceDiagram
+participant U as Unity
+participant PC as ProcessControl
+participant W as ProcessWorld
+participant H as GAS hub
+participant C as GASCore
+participant T as TaskSequenceProcess
+Note over U,T: FixedUpdate
+U-&gt;&gt;PC: FixedUpdate()
+PC-&gt;&gt;W: StepProcesses(FixedUpdate)
+Note over U,T: Update
+U-&gt;&gt;PC: Update()
+PC-&gt;&gt;W: SweepDestroyed()
+alt ticks off
+PC-&gt;&gt;W: StepProcesses(Update)
+else FixedTickRate above 0
+PC-&gt;&gt;W: RunTicks(), up to maxTicksPerFrame
+W-&gt;&gt;W: each tick ForgeTime.Use(tickClock), Tick.Advance()
+W-&gt;&gt;W: StepProcesses(Update), then StepProcesses(LateUpdate)
+end
+W-&gt;&gt;H: pcb.Step, Wrapper.WhenUpdate(relay)
+H-&gt;&gt;C: Tick()
+C-&gt;&gt;C: FollowTimeScale, Clock.Step()
+C-&gt;&gt;C: EffectSystem.Tick(), TickEffectShelf, ClearFinishedEffects
+C-&gt;&gt;C: AbilitySystem.CheckWhileActive(), StepBuffer(dt)
+C-&gt;&gt;C: Services.Step(dt), the auras and a Respawn's wait, Turn.Step(dt), StepBarriers(dt)
+W-&gt;&gt;T: StepAt(Update) when it has conditions, CheckConditions(), or SyncedTaskSequence.Step(data, dt)
+Note over U,T: LateUpdate
+U-&gt;&gt;PC: LateUpdate()
+PC-&gt;&gt;W: StepProcesses(LateUpdate), with ticks off
+W-&gt;&gt;H: pcb.Step, Wrapper.WhenLateUpdate(relay)
+H-&gt;&gt;C: EndOfFrame()
+C-&gt;&gt;C: ActionQueue.ProcessAll
+C-&gt;&gt;C: EvaluateTagWorkers, ProcessAll, TickTagWorkers, ProcessAll
+C-&gt;&gt;C: AnalysisCache.Analyze, WatchProjectHealth, EffectSystem.CheckConditions(), ProcessAll
+C-&gt;&gt;C: FrameComplete(snapshot) if anyone listens, FrameSummary.Clear()
+C-&gt;&gt;C: a pending death runs Die(), FollowBody()
+C--&gt;&gt;H: a pending destruction, SystemDisabled, HandleDestruction()
+PC-&gt;&gt;PC: ForgeFrameCosts.EndFrame()
+Note over H,C: A GAS that does not step in LateUpdate never runs its end of frame
+Note over PC,T: Async work resumes at UniTask's Update slot, before ProcessControl.Update, or inside RunTicks when ticks are on
+</code></pre>
+<p><em>Which phase each system steps in. A GAS hub steps at UpdateAndLate: GASCore.Tick() in Update, its end of frame in LateUpdate.</em></p>
 <pre><code class="lang-csharp">ProcessControl.Register(process).HandledBy(gas).With(data).Run(out ProcessRelay relay);
 
 relay.Pause();       // Waiting at once, out of the steps
@@ -94,14 +138,19 @@ relay.Unpause();     // Running again
 relay.Terminate();   // ended, and cleaned up
 await relay.WhenTerminated();
 </code></pre>
-<p>The <strong>relay</strong> is the handle on a registered process: its state, how long it has lived, and what's done to it. A mono
-process's relay reaches its children too: processes on child GameObjects pause and end with it unless told not to.</p>
-<p>A mono process's object comes from an instantiator, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html"><code>AbstractMonoProcessInstantiator</code></a>, as a pool hands out an idle
-object and takes it back as the process ends. A registration can give one of its own, <code>.InstantiatedBy(pool)</code>, which
-goes ahead of its handler's and the object's own; with none, the object is cloned, and destroyed as its process ends.
-An object whose process has ended is no longer <code>IsInitialized</code>, so a pool's object can run again.</p>
-<hr>
-<p><a href="kinds.html">← Kinds</a> · <a href="index.html">Processes</a> · <a href="pausing.html">Pausing →</a></p>
+<p>The <strong>relay</strong> is the handle on a registered process. It holds the process's state and how long it has lived, and it's
+how you act on the process.</p>
+<p>A mono process's relay reaches its children too. Processes on child GameObjects pause and end with it, unless told not
+to.</p>
+<h2 id="instantiators">Instantiators</h2>
+<p>A mono process's object comes from an instantiator, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html"><code>AbstractMonoProcessInstantiator</code></a>. An instantiator works as a
+pool does: it hands out an idle object, and takes it back as the process ends.</p>
+<ul>
+<li>A registration can give an instantiator of its own with <code>.InstantiatedBy(pool)</code>. It goes ahead of the handler's
+instantiator and the object's own.</li>
+<li>With no instantiator, the object is cloned, and destroyed as its process ends.</li>
+</ul>
+<p>An object whose process has ended is no longer <code>IsInitialized</code>, so a pool's object can run again.</p>
 
 </article>
 

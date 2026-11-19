@@ -87,16 +87,150 @@
         <article data-uid="guide.scalers">
 <h1 id="scalers">Scalers</h1>
 
-<p>A <strong>scaler</strong> is a value source that a magnitude field reads at a level, such as a table of damage per level. The
-level is the origin's, such as the level of the ability that applies an effect. Each section below matches what the
-inspector shows.</p>
+<p>A <strong>scaler</strong> is a value source that a magnitude field reads at a level, such as a table of damage per level. The level
+is the origin's, such as the level of the ability that applies an effect.</p>
+<pre><code class="lang-mermaid">classDiagram
+class ScalableFloat:::asset {
+&lt;&lt;Serializable&gt;&gt;
++Magnitude : float
++RealMagnitude : EMagnitudeOperation
++Scaler : AbstractScaler
++Evaluate(in NumberContext) float
++Evaluate(IAttributeImpactCarrier) float
++IsConstant : bool
++static From(func) ScalableFloat
+}
+class ScalableInt:::asset {
+&lt;&lt;Serializable&gt;&gt;
+the same, plus Rounding
++Rounding : ERoundingOperation
++Evaluate(in NumberContext) int
+}
+class NumberContext:::rt {
+&lt;&lt;readonly struct&gt;&gt;
++Caster, Target, Level, Origin, Carrier
++Magnitudes, LocalData, Data, Owner
++static Of(IAttributeImpactCarrier) NumberContext
++static Of(ProcessDataPacket) NumberContext
++static Of(ItemSpec) NumberContext
+Of also takes a container, a worker context,
+an ISource or GAS, a CueContext, a gameplay process
++static For(caster, target, level) NumberContext
++WithTarget(target) NumberContext
++Has(NumberReads) bool
++TryGetAttribute(side, attr, out v) bool
+}
+class NumberReads:::rt {
+&lt;&lt;Flags enumeration&gt;&gt;
+None, Level, Caster, Target, Caller
+LocalData, Carrier, Data, Owner, All
+}
+class IScaler:::ext {
+&lt;&lt;interface&gt;&gt;
++Initialize()
++Evaluate() float
+}
+class AbstractScaler:::ext {
+&lt;&lt;Serializable abstract&gt;&gt;
++Configuration : ELevelConfig
++MaxLevel : int
++LevelValues
++Interpolation
++Scaling : AnimationCurve
++Behaviours : List~AbstractScalerBehaviour~
+Evaluate(carrier) float
++GetValueAtLevel(int) float
+plain: Constant, Simple, AttributeBacked, EffectStacks,
+ItemStacks, Randomized, ScalerGroup, Shared
+}
+class NumberKind:::ext {
+&lt;&lt;Serializable abstract&gt;&gt;
+a number that reads the game
+Evaluate(in NumberContext) float
+Describe() string
+Reads : NumberReads
+Fallback
+Explain(ctx, NumberTrace)
+kinds: AssetPart, GroupImpact, LocalData,
+RelativeToField, StackingCurve, TrackedImpact
+}
+class SharedScaler:::rt {
+reads a ScalerAsset
+}
+class ScalerAsset:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Description
++Category
++Scaler : AbstractScaler
+}
+class SetByCallerScaler:::rt {
++Key
+}
+class ConditionalScaler:::rt {
++When : GameplayCondition
+}
+class WorkerNumberKind:::rt {
+asks NumberWorkers
+}
+class GameplayCondition:::ext {
+&lt;&lt;Serializable abstract&gt;&gt;
++Holds(in NumberContext) bool
+Evaluate(in NumberContext) bool
+Describe()
+Reads
+Tag, Attribute, Compare, Level, Always,
+Never, All, Any, Not, Chance
+}
+class ValuePipeline:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Description
++Stages : List~AbstractValueStage~
++Run(float value, carrier, ValueBreakdown) float
+}
+class AbstractValueStage:::ext {
+&lt;&lt;abstract&gt;&gt;
+Apply(float, in ValueRun) float
+Describe()
+Multiply, Add, Chance, Clamp,
+Absorb, Block, Evade, Execute
+}
+class AbstractCachedScaler:::ext {
+&lt;&lt;abstract&gt;&gt;
+attribute-set values only
+EvaluateActiveValue(blueprint, cache)
+RegulateContactWith(attr, cache)
+}
+class ForgeChance:::rt {
+&lt;&lt;static&gt;&gt;
++Roll(chance, ctx, ChanceRoll, key) bool
++LuckOf()
+}
+ScalableFloat --&gt; AbstractScaler : Scaler
+ScalableInt --&gt; AbstractScaler : Scaler
+ScalableFloat ..&gt; NumberContext : Evaluate reads
+NumberContext ..&gt; NumberReads
+IScaler &lt;|.. AbstractScaler
+AbstractScaler &lt;|-- NumberKind
+AbstractScaler &lt;|-- SharedScaler
+SharedScaler --&gt; ScalerAsset
+NumberKind &lt;|-- SetByCallerScaler
+NumberKind &lt;|-- ConditionalScaler
+NumberKind &lt;|-- WorkerNumberKind
+ConditionalScaler --&gt; GameplayCondition : When
+ValuePipeline o-- AbstractValueStage
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>Every authored number is a ScalableFloat or ScalableInt: a magnitude and a scaler, read with a NumberContext. NumberContext.Of has an overload for every place a number is read, ItemSpec included.</em></p>
+<p>Each section below matches what the inspector shows.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="a-magnitude-field.html">A magnitude field</a>: A magnitude field, such as an effect's Magnitude or Duration, is a number field (<code>ScalableFloat</code>, or <code>ScalableInt</code> for a whole number).</li>
+<li><a href="a-magnitude-field.html">A magnitude field</a>: A magnitude field, such as an effect's Magnitude or Duration, is a number field.</li>
 <li><a href="values-per-level.html">Values per level</a>: A scaler's settings sit on a shaded block under its field, so they read as the scaler's among the fields around them.</li>
-<li><a href="writing-your-own-scaler.html">Writing your own scaler</a>: A scaler of your own derives from <code>AbstractScaler</code>, or from <code>AbstractCachedScaler</code> for an attribute set's values, and has a public constructor with no parameters.</li>
+<li><a href="writing-your-own-scaler.html">Writing your own scaler</a>: You can add three kinds of your own: a scaler, a kind of number, and a condition for a Conditional.</li>
 <li><a href="a-number-field-in-your-own-code.html">A number field in your own code</a>: A field of your own is one line, and a float converts to it</li>
-<li><a href="asking-a-worker.html">Asking a worker</a>: A number can't count or remember; a worker can.</li>
+<li><a href="asking-a-worker.html">Asking a worker</a>: A number can't count or remember, but a worker can.</li>
 <li><a href="scaler-assets.html">Scaler assets</a>: A <strong>Scaler asset</strong> (<code>Create → PlayForge → Scaler</code>) holds one scaler that many fields can use.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>

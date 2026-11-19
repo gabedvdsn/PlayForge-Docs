@@ -87,27 +87,14 @@
         <article data-uid="guide.entities.combat-log">
 <h1 id="combat-log">Combat Log</h1>
 
-<p>Each entity keeps a combat log of what happens to it, which a test reads as the game does, through
-<code>gas.GetCombatLog()</code>, and the Debugger shows under the entity it has selected. What it writes is the project's to say,
-under <strong>Combat Log</strong> in Project Settings → PlayForge: its <strong>Records</strong>, the <strong>Hits Taken</strong> (a workable change another's
-effect makes to its attributes), the <strong>Hits Dealt</strong>, and its other <strong>Changes</strong> (its own, a cost, regeneration, a transfer);
-and its <strong>Events</strong>, the gameplay events it's sent by tag, or one under it, as Died, Kill or your own, written though no
-ability listens for them. <strong>Keep</strong> is how many entries each entity keeps, its last, 100 by default; 0 keeps none, as for a
-build.</p>
-<p>Each entry is a <a class="xref" href="../../api/FarEmerald.PlayForge.CombatLogEntry.html"><code>CombatLogEntry</code></a>: its <strong>Kind</strong> (Taken, Dealt, Changed or Event), its <strong>Time</strong> and <strong>Frame</strong>, the
-<strong>Other</strong> entity (the dealer of a hit taken, the one a hit dealt struck, an event's source or the one it names), the
-<strong>Effect</strong> behind it, the <strong>Attribute</strong>, its value <strong>Before</strong> and <strong>After</strong> and the <strong>Change</strong>, the hit's <strong>Steps</strong> through
-its pipeline, and whether it <strong>Killed</strong>, marked on the blow that killed in both logs. The log's <strong>Entries</strong> run
-oldest first; <strong>Of(kind)</strong>, <strong>By(effect)</strong> and <strong>With(entity)</strong> filter them, and <strong>Total(kind, attribute)</strong> adds their
-changes up, as the damage an entity took. An entry reads as a line: &quot;Took -20 Health from Lina (Fireball)&quot;.</p>
-<p>An entry tells how its change came to land, too: its change as <strong>Made</strong>, before any step, and its
-<strong>ChangeSteps</strong>, each step it took on the way: each attribute worker that heard it, with its <strong>Timing</strong> (before the
-commit or after), its <strong>Execution</strong> (inline, or the actions it <strong>Queued</strong>) and the change <strong>Before</strong> and <strong>After</strong> it; a
-barrier's soak; a gain's scaling, as Healing Received's. <strong>StepsText</strong> reads them as a line: &quot;-30 as made → Math -30 →
--15 (inline) → Answering (queued 1, after) → landed -15&quot;. The steps are recorded only where the log keeps entries, or
-something hears the entity's <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnAttributeChangeStep"><code>OnAttributeChangeStep</code></a>.</p>
-<hr>
-<p><a href="death.html">← Death</a> · <a href="index.html">Entities</a> · <a href="effect-journal.html">Effect Journal →</a></p>
+<p>Each entity keeps a combat log of what happens to it. A test reads it as the game does, through <code>gas.GetCombatLog()</code>,
+and the Debugger shows it under the entity it has selected.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="combat-log/what-the-log-writes.html">What the log writes</a>: What a combat log writes is the project's to say, under <strong>Combat Log</strong> in Project Settings → PlayForge.</li>
+<li><a href="combat-log/log-entries.html">Log entries</a>: Each entry in a combat log is a <code>CombatLogEntry</code>.</li>
+<li><a href="combat-log/how-a-change-landed.html">How a change landed</a>: A combat log entry also tells how its change came to land.</li>
+</ul>
 
 </article>
 

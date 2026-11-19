@@ -87,29 +87,18 @@
         <article data-uid="guide.editor.the-tags-view">
 <h1 id="the-tags-view">The Tags view</h1>
 
-<p>The Forge's <strong>Tags</strong> shows the active project's tags in place of its assets: those its assets and its Tag Library
-use, those no asset uses, and those code exposes. This section covers the view in brief; <a href="../tags/index.html">Tags</a> covers
-tags, their contexts, the tag picker and the Tag Library.</p>
+<p>The Forge's <strong>Tags</strong> shows the active project's tags in place of its assets. It lists those its assets and its Tag
+Library use, those no asset uses, and those code exposes.</p>
+<!-- screenshot: the-forge-tags -->
+<p>This section covers the view in brief. <a href="../tags/index.html">Tags</a> covers tags, their contexts, the tag picker and the Tag
+Library.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>The list's columns each sort: <strong>Tag</strong>, by its leaf, or its whole path while <strong>Show Full Tag Paths</strong> is on; <strong>For</strong>,
-the contexts its uses are in; and <strong>Uses</strong>, how many of the project's assets use it. The search finds a tag by its
-path.</li>
-<li>A tag's detail shows its name, its whole path, what it's <strong>For</strong> and its <strong>Uses</strong>; then <strong>Declared For</strong>, the
-contexts the Tag Library declares it for, so their fields' pickers offer it, those its code declares checked and
-locked; then each asset that uses it, with the fields it's in, a row that opens the asset in The Forge.</li>
-<li><strong>Rename…</strong>, in a row's right-click menu, or F2, asks for the tag's new <strong>Path</strong>, then renames the tag and the tags
-under its path in every PlayForge asset and Tag Library entry that names them, as one Undo step. A path the
-registry can't take, one of PlayForge's own tags' text, or one another tag has, is refused, and so is a tag that's
-an asset's own, which follows its asset's name, or one of PlayForge's own, which code writes.</li>
+<li><a href="the-tags-view/the-tag-list.html">The tag list</a>: The tag list takes the asset list's place while the toolbar's <strong>Tags</strong> is on.</li>
+<li><a href="the-tags-view/a-tags-detail.html">A tag's detail</a>: A tag's detail, beside the list, shows the tag, what it's declared for and what uses it.</li>
+<li><a href="the-tags-view/renaming-a-tag.html">Renaming a tag</a>: A tag rename changes the tag, and the tags under its path, everywhere PlayForge stores them.</li>
+<li><a href="the-tags-view/tags-in-code.html">Tags in code</a>: <code>ForgeTagRegistry</code> knows the tags in use.</li>
 </ul>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html"><code>ForgeTagRegistry</code></a> knows the tags in use: <code>GetAllTags()</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetAllTagRecords_"><code>GetAllTagRecords()</code></a>, each a
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagUsageRecord.html"><code>ForgeTagRegistry.TagUsageRecord</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetTagUsage_"><code>GetTagUsage(tag)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetTagsForContext_"><code>GetTagsForContext(...)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_GetAllContexts_"><code>GetAllContexts()</code></a>, each a
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.TagContext.html"><code>ForgeTagRegistry.TagContext</code></a>, with each context's uses a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.ContextUsage.html"><code>ForgeTagRegistry.ContextUsage</code></a> and each use a
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.FieldUsageInfo.html"><code>ForgeTagRegistry.FieldUsageInfo</code></a>: the asset and the field. It reads the project again after an import of an <code>.asset</code>
-file, which <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagRegistryAssetPostprocessor.html"><code>TagRegistryAssetPostprocessor</code></a> tells it; <code>MarkDirty()</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RefreshCache_"><code>RefreshCache()</code></a> ask it to. A Tag Library's
-inspector (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html"><code>ForgeTagLibraryEditor</code></a>) is the shared header, then its entries and its contexts.</p>
-<hr>
-<p><a href="renaming-duplicating-and-deleting.html">← Renaming, duplicating and deleting</a> · <a href="index.html">The Editor Tools</a> · <a href="inspectors.html">Inspectors →</a></p>
 
 </article>
 

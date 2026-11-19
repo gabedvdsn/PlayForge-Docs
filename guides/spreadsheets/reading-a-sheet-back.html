@@ -87,21 +87,30 @@
         <article data-uid="guide.spreadsheets.reading-a-sheet-back">
 <h1 id="reading-a-sheet-back">Reading a sheet back</h1>
 
-<p>A row names its asset both ways: by its <strong>asset tag</strong>, which stays as files move and are renamed, and by its <strong>name</strong>,
-which reads well in a spreadsheet. A row with a tag finds the asset with that tag; a row with none finds the one asset
-of that name. These are reported, and their rows left:</p>
+<p>Reading a sheet back finds the asset each row names, and lists the changes the sheet makes before it makes them.</p>
+<p>A row names its asset in two ways:</p>
 <ul>
-<li>a tag no asset has, or a name no asset has, or one that two assets share (give that row its tag);</li>
+<li>by its <strong>asset tag</strong>, which stays the same as files move and are renamed;</li>
+<li>by its <strong>name</strong>, which reads well in a spreadsheet.</li>
+</ul>
+<p>A row with a tag finds the asset with that tag. A row with no tag finds the one asset of that name.</p>
+<p>The import reports these problems, and leaves their rows out:</p>
+<ul>
+<li>a tag no asset has, a name no asset has, or a name two assets share (give that row its tag);</li>
 <li>a field the asset hasn't got, or a kind a sheet can't set;</li>
 <li>an item with no effect adding to a column's attribute;</li>
 <li>a cell that isn't a number;</li>
 <li>two rows setting one shared effect's number to different values.</li>
 </ul>
-<p>The <strong>import window</strong> lists each change: the asset, the field, what it reads now and what it will. Each is ticked;
-untick one to leave it. The rows that can't be read sit under a fold. <strong>Import</strong> makes the ticked changes as one Undo
-step. A sheet read back just as it was written changes nothing.</p>
-<hr>
-<p><a href="item-stats.html">← Item stats</a> · <a href="index.html">Spreadsheets</a></p>
+<p>To import a sheet:</p>
+<ol>
+<li>In The Forge's window menu, choose <strong>Spreadsheets</strong> &gt; <strong>Import…</strong>, and pick the CSV file.</li>
+<li>The <strong>import window</strong> lists each change: the asset, the field, what it reads now and what it will read. The rows that
+can't be read sit under a fold.</li>
+<li>Each change is ticked. Untick one to leave it.</li>
+<li>Click <strong>Import</strong> to make the ticked changes, as one Undo step.</li>
+</ol>
+<p>A sheet read back just as it was written changes nothing.</p>
 
 </article>
 

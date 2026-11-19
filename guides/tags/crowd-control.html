@@ -87,18 +87,60 @@
         <article data-uid="guide.tags.crowd-control">
 <h1 id="crowd-control">Crowd control</h1>
 
-<p>Crowd control stops abilities by the tags their caster carries, so no ability has to list Stunned among the tags it
-must not have. A Crowd Control Rules asset, <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRules.html"><code>CrowdControlRules</code></a> (<code>Create → PlayForge → Crowd Control Rules</code>), holds its
-<strong>Rules</strong>, each a <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRule.html"><code>CrowdControlRule</code></a>: the <strong>Tag</strong> its holder carries, as Stunned, and what it <strong>Stops</strong>, an
-<a class="xref" href="../../api/FarEmerald.PlayForge.ECrowdControlStops.html"><code>ECrowdControlStops</code></a>: <strong>Every Ability</strong>, as a stun, or <strong>Abilities Tagged</strong>, those whose asset tag or a context tag is
-one of its <strong>Ability Tags</strong> or under one, as Silenced stops spells.</p>
-<p>While the caster carries a rule's tag, or one under it, an ability the rule stops is refused, as Crowd Control, the
-refusal's <code>Rule</code> naming the tag, and one running is interrupted. An ability's <strong>Ignores Crowd Control</strong> names the rules
-it ignores, by their tags, a tag ignoring those under it too. An entity follows its own rules, its <strong>Crowd Control</strong>, or
-else its Forge Project's: <code>gas.GetCrowdControl()</code> gives them, and <code>rules.Stopping(ability, tags)</code> the first rule that
-stops an ability, or null. <a href="../abilities/requirements.html#crowd-control">Abilities: Crowd Control</a> has the rest.</p>
-<hr>
-<p><a href="requirements.html">← Requirements</a> · <a href="index.html">Tags</a> · <a href="conditions-and-checks.html">Conditions and checks →</a></p>
+<p>Crowd control stops abilities by the tags their caster carries. So no ability has to list Stunned among the tags it
+must not have.</p>
+<p>A Crowd Control Rules asset, <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRules.html"><code>CrowdControlRules</code></a>, holds its <strong>Rules</strong>. Make one with
+<code>Create → PlayForge → Crowd Control Rules</code>.</p>
+<p>Each rule is a <a class="xref" href="../../api/FarEmerald.PlayForge.CrowdControlRule.html"><code>CrowdControlRule</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tag</strong></td>
+<td>The tag its holder carries, as Stunned.</td>
+</tr>
+<tr>
+<td><strong>Stops</strong></td>
+<td>What it stops, an <a class="xref" href="../../api/FarEmerald.PlayForge.ECrowdControlStops.html"><code>ECrowdControlStops</code></a>:<br><strong>Every Ability</strong>, as a stun does.<br><strong>Abilities Tagged</strong>: those whose asset tag or a context tag is one of its <strong>Ability Tags</strong>, or under one, as Silenced stops spells.</td>
+</tr>
+<tr>
+<td><strong>Ability Tags</strong></td>
+<td>The tags <strong>Abilities Tagged</strong> looks for.</td>
+</tr>
+</tbody>
+</table>
+<p>While the caster carries a rule's tag, or one under it:</p>
+<ul>
+<li>an ability the rule stops is refused, as Crowd Control, the refusal's <code>Rule</code> naming the tag;</li>
+<li>an ability the rule stops that's running is interrupted.</li>
+</ul>
+<p>An ability's <strong>Ignores Crowd Control</strong> names the rules it ignores, by their tags. Each tag there also ignores the rules
+whose tags are under it.</p>
+<p>An entity follows its own rules, its <strong>Crowd Control</strong>, or else its Forge Project's.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gas.GetCrowdControl()</code></td>
+<td>Gives the rules an entity follows.</td>
+</tr>
+<tr>
+<td><code>rules.Stopping(ability, tags)</code></td>
+<td>Gives the first rule that stops an ability, or null.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../abilities/requirements/crowd-control.html">Abilities: Requirements: Crowd Control</a> has the rest.</p>
 
 </article>
 

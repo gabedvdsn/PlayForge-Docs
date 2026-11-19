@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tasks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tasks | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.stages.tasks">
+<h1 id="tasks">Tasks</h1>
+
+<p>A stage's <strong>Tasks</strong> are its work, such as Apply Effects, Delay or Run Sequence.</p>
+<p>To add a task:</p>
+<ol>
+<li>Click the list's <strong>+</strong>. It adds an empty task.</li>
+<li>Pick a kind for it from the searchable picker, in which each task sits under its category (see
+<a href="built-in-tasks.html">Built-in tasks</a>).</li>
+</ol>
+<p>A task's numbers, as Delay's milliseconds and Channel's duration, are numbers that can scale by level. They're read as
+the task runs, at its ability's level. A stage that holds a critical task is critical.</p>
+<h2 id="your-own-tasks-in-the-picker">Your own tasks in the picker</h2>
+<p>A task of your own names its submenu with <code>[ForgeMenu(&quot;Effects&quot;, Description = &quot;...&quot;)]</code>.</p>
+<ul>
+<li>A slash nests one submenu in another.</li>
+<li>A class's path holds for those made from it.</li>
+<li>A task that names no submenu sits after the submenus.</li>
+<li>A task's Description is what the picker's Context says while it's highlighted.</li>
+</ul>
+<h2 id="run-sequence">Run Sequence</h2>
+<p>Run Sequence runs the sequence a static method makes. You pick it in <strong>Sequence</strong> by name, from a searchable dropdown of
+the project's <code>[TaskSequenceMethod]</code> methods; where more than one class holds them, each class's sit under its name.</p>
+<p>For an ability built in code, it runs a fresh run of the sequence its <code>Definition</code> describes, which
+<a class="xref" href="../../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html"><code>TaskSequenceBuilder</code></a> makes.</p>
+<p>Its <strong>Clock</strong> picks the clock that sequence runs by. The ability's other tasks keep the caster's.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Clock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>The sequence's own, or the caster's.</td>
+</tr>
+<tr>
+<td>Caster's</td>
+<td>The caster's.</td>
+</tr>
+<tr>
+<td>Game's</td>
+<td>The game's.</td>
+</tr>
+<tr>
+<td>Unscaled</td>
+<td>Runs while the game is paused.</td>
+</tr>
+<tr>
+<td>Scaled</td>
+<td>A pace of its own.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

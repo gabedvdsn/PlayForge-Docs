@@ -87,13 +87,44 @@
         <article data-uid="guide.extending.the-creator-lab">
 <h1 id="the-creator-lab">The Creator Lab</h1>
 
-<p>The Creator Lab plays a project's assets on units of its own (<a href="../creator-lab/index.html">The Creator Lab</a>). This section covers
-driving its units the game's own way, through a driver.</p>
-<p>A driver is an <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabUnitDriver.html"><code>ILabUnitDriver</code></a>: <code>MoveTo(LabUnit unit, Vector3 point)</code>, <code>Attack(LabUnit unit, LabUnit target)</code>,
-<code>bool Cast(LabUnit unit, Ability ability, ProcessDataPacket data)</code> and <code>Stop(LabUnit unit)</code>. <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDriver.html"><code>LabDriver</code></a>, a
-ScriptableObject, implements each as the lab does unless overridden, and is made with
-<code>Create → PlayForge → Lab Driver</code>; a class of the game's own derives from it, and its asset is named on the lab's rules'
-<strong>Driver</strong> (<a href="../creator-lab/your-unit.html">The Creator Lab: Your unit</a>).</p>
+<p>The Creator Lab plays a project's assets on units of its own (<a href="../creator-lab/index.html">The Creator Lab</a>).</p>
+<p>This section covers driving its units the game's own way, through a driver.</p>
+<h2 id="writing-a-driver">Writing a driver</h2>
+<p>A driver of a game's own moves, attacks with, casts with and stops the lab's units its own way, as through a NavMesh.</p>
+<p>A driver is an <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabUnitDriver.html"><code>ILabUnitDriver</code></a>. Derive from <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDriver.html"><code>LabDriver</code></a>, a ScriptableObject that implements each member as the lab does
+unless overridden.</p>
+<h3 id="hooks">Hooks</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MoveTo(LabUnit unit, Vector3 point)</code></td>
+<td>As the lab moves a unit to a point.</td>
+</tr>
+<tr>
+<td><code>Attack(LabUnit unit, LabUnit target)</code></td>
+<td>As a unit attacks another.</td>
+</tr>
+<tr>
+<td><code>bool Cast(LabUnit unit, Ability ability, ProcessDataPacket data)</code></td>
+<td>As a unit casts an ability.</td>
+</tr>
+<tr>
+<td><code>Stop(LabUnit unit)</code></td>
+<td>As a unit stops.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-the-picker">In the picker</h3>
+<p><code>LabDriver</code> is made with <code>Create → PlayForge → Lab Driver</code>. A class of the game's own derives from it, and its asset is
+named on the lab's rules' <strong>Driver</strong> (<a href="../creator-lab/your-unit.html">The Creator Lab: Your unit</a>).</p>
+<h3 id="example">Example</h3>
+<p>This driver moves and stops its units through a NavMesh agent, where a unit has one on a NavMesh:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge.Lab;
 using UnityEngine;
 using UnityEngine.AI;
@@ -117,11 +148,12 @@ namespace MyGame.Lab
     }
 }
 </code></pre>
-<p>The lab is its own assembly, <code>FarEmerald.PlayForge.Lab</code>, left out where the project defines <code>PLAYFORGE_NO_LAB</code>. A
+<h3 id="traps">Traps</h3>
+<ul>
+<li><strong>The lab is its own assembly</strong>, <code>FarEmerald.PlayForge.Lab</code>, left out where the project defines <code>PLAYFORGE_NO_LAB</code>. A
 driver's assembly references it and carries the same constraint, <code>!PLAYFORGE_NO_LAB</code> among its <strong>Define Constraints</strong>,
-so it's left out with it.</p>
-<hr>
-<p><a href="testing-your-extensions.html">← Testing your extensions</a> · <a href="index.html">Extending PlayForge</a></p>
+so it's left out with it.</li>
+</ul>
 
 </article>
 

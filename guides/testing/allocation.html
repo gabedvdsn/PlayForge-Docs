@@ -87,12 +87,30 @@
         <article data-uid="guide.testing.allocation">
 <h1 id="allocation">Allocation</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html"><code>AllocationProbe</code></a> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono:
-<code>Measure(action)</code> what one run allocates, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html#FarEmerald_PlayForge_Testing_AllocationProbe_MeasureEach_"><code>MeasureEach(action, runs, warmup)</code></a> the mean of many after a warm-up, and
-<code>await MeasureFrames(Frames, count)</code> what whole frames allocate, the cleanest of up to three tries, as stray noise
-doesn't repeat and a leak does. Dispose it as the test ends.</p>
-<hr>
-<p><a href="what-must-hold.html">← What must hold</a> · <a href="index.html">Testing Your Content</a> · <a href="traps.html">Traps →</a></p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html"><code>AllocationProbe</code></a> measures what's allocated, with the profiler's counter, as the GC's own reads 0 under Mono.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Measure(action)</code></td>
+<td>What one run allocates.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.AllocationProbe.html#FarEmerald_PlayForge_Testing_AllocationProbe_MeasureEach_"><code>MeasureEach(action, runs, warmup)</code></a></td>
+<td>The mean of many runs, after a warm-up.</td>
+</tr>
+<tr>
+<td><code>await MeasureFrames(Frames, count)</code></td>
+<td>What whole frames allocate: the cleanest of up to three tries, as stray noise doesn't repeat and a leak does.</td>
+</tr>
+</tbody>
+</table>
+<p>Dispose the probe as the test ends.</p>
 
 </article>
 

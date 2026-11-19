@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Asset and number helpers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Asset and number helpers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.editor-helpers.asset-and-number-helpers">
+<h1 id="asset-and-number-helpers">Asset and number helpers</h1>
+
+<p>These types work out what an asset or a number field holds, as the editor shows it.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.html"><code>AttributeStartValues</code></a></td>
+<td>What each attribute an attribute set gives starts at, at each level, worked out as the runtime does. <code>Of(set)</code> gives an <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Result.html"><code>AttributeStartValues.Result</code></a>, with an <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Start.html"><code>AttributeStartValues.Start</code></a> for each attribute. The Attribute Set and Entity inspectors' tables read it.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.NumberFields.html"><code>NumberFields</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.NumberLimits.html"><code>NumberLimits</code></a></td>
+<td>What the number fields know: which properties are numbers, a field's unit, limits and context, the kinds a field's menu offers and where it files them, and what a number's kind reads. <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.NumberFields.html#FarEmerald_PlayForge_Editor_NumberFields_ScalersIn_"><code>NumberFields.ScalersIn</code></a> walks into the scalers it holds, as a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.NumberFields.Walk.html"><code>NumberFields.Walk</code></a> says.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html"><code>ScalerActions</code></a></td>
+<td>The number field's kind menu and field menu in code (<a href="../number-fields.html">Number fields</a>).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html"><code>ForgeAssetLines</code></a></td>
+<td>An asset's one line, as its header and The Forge's <strong>Summary</strong> show it.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Waiting on ticks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Waiting on ticks | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.services.fixed-ticks.waiting-on-ticks">
+<h1 id="waiting-on-ticks">Waiting on ticks</h1>
+
+<p>Code waits on the ticks through <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html"><code>ForgeTick</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th><code>ForgeTick</code></th>
+<th>Waits for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Next(token)</code></td>
+<td>The next tick, or, with ticks off, Unity's next frame, as a sequence's waits do</td>
+</tr>
+<tr>
+<td><code>Next(timing, token)</code></td>
+<td>The same at a frame's timing: the Update family waits for a tick, and FixedUpdate, the physics step's, for Unity's</td>
+</tr>
+<tr>
+<td><code>NextFrame(token)</code></td>
+<td>The next tick, or, with ticks off, Unity's next frame as <code>UniTask.NextFrame</code> waits for it</td>
+</tr>
+<tr>
+<td><code>WaitUntil(condition, token)</code> and <code>WaitWhile(condition, token)</code></td>
+<td>A condition, asked once a tick, or once a frame with ticks off</td>
+</tr>
+<tr>
+<td><code>Next(clock, token)</code></td>
+<td>The next step of a clock's time. For a clock whose <code>FollowsTicks</code> is false, as <a class="xref" href="../../../api/FarEmerald.PlayForge.UnscaledClock.html"><code>UnscaledClock</code></a>'s is, that's Unity's next frame, where the scene ticks. For any other clock, it waits as <code>Next(token)</code> does</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Ticking"><code>ForgeTick.Ticking</code></a></td>
+<td>Whether the tick in force ticks.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Ticks"><code>ForgeTick.Ticks</code></a></td>
+<td>How many ticks it has run.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Scene"><code>ForgeTick.Scene</code></a></td>
+<td>The scene's tick, a <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTickSource.html"><code>ForgeTickSource</code></a>, which ProcessControl's rate turns on.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Current"><code>ForgeTick.Current</code></a></td>
+<td>The tick in force: a world of its own's while it steps or one of its processes changes state, the scene's otherwise.</td>
+</tr>
+</tbody>
+</table>
+<p>A <a class="xref" href="../../../api/FarEmerald.PlayForge.ProcessWorld.html"><code>ProcessWorld</code></a> its owner steps ticks once for each <code>Step(deltaTime)</code>. So its sequences wait on its steps.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

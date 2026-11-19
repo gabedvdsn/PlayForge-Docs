@@ -87,15 +87,153 @@
         <article data-uid="guide.processes.kinds">
 <h1 id="kinds">Kinds</h1>
 
-<ul>
-<li><strong>Mono processes</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a> under it) are MonoBehaviours: prefabs or scene
-objects, with Unity's components. ProcessControl makes and destroys them.</li>
-<li><strong>Runtime processes</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.LazyRuntimeProcess.html"><code>LazyRuntimeProcess</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRuntimeProcess.html"><code>AbstractRuntimeProcess</code></a> under it) are plain C# classes, with no
-GameObject, for logic alone.</li>
-</ul>
-<p>A mono process's lifecycle and timing are fields in its inspector; a runtime process gives them to its base constructor.</p>
-<hr>
-<p><a href="lifecycles.html">← Lifecycles</a> · <a href="index.html">Processes</a> · <a href="registering-one.html">Registering one →</a></p>
+<p>A process is one of two kinds: a mono process or a runtime process.</p>
+<pre><code class="lang-mermaid">classDiagram
+class IGameplayProcessHandler:::ext {
+&lt;&lt;interface&gt;&gt;
++GetRelays()
++HandlerSubscribeProcess(relay)
++HandlerVoidProcess(relay)
++GetInstantiator(AbstractMonoProcess)
+}
+class IGameplayProcess:::ext {
+&lt;&lt;interface&gt;&gt;
++SendProcessData(data, relay)
++WhenInitialize()
++WhenUpdate()
++WhenLateUpdate()
++WhenFixedUpdate()
++RunProcess(CancellationToken) UniTask
++WhenTerminate()
++TryHandlePause()
+}
+class AbstractMonoProcess:::ext {
+&lt;&lt;abstract MonoBehaviour&gt;&gt;
++ProcessLifecycle = Synchronous
++ProcessTiming = UpdateAndLate
++PriorityMethod = First
++Instantiator
++Data : ProcessDataPacket
++ProcessRelay : ProcessRelay
++abstract RunProcess(token) UniTask
+}
+class LazyMonoProcess:::ext {
+RunProcess idles on ForgeTick.Next
+}
+class AbstractGameplayMonoProcess:::ext {
++Attributes : List~ProcessAttribute~
++TryGetAttribute(IAttribute, out float) bool
++TryGetRole(Tag, out float) bool
++GiveMagnitudes(GameplayEffectSpec)
++AttributeChanged event
+}
+class AbstractEffectingMonoProcess:::ext {
++Effects : List~GameplayEffect~
+#ApplyEffects(ITarget)
+}
+class AbstractTargetedMonoProcess:::ext {
++SetTarget(ITarget, AbstractTargetingPacket)
+RunTargetedProcess(token) UniTask
+}
+class ProjectileMonoProcess:::rt {
+flies at the PROJECTILE_SPEED role
+GetProjectileSpeed() float
+}
+class AbstractRuntimeProcess:::ext {
+&lt;&lt;abstract&gt;&gt;
++ctor(name, method, priority, timing, lifecycle)
+defaults SelfTerminating, timing None
+}
+class LazyRuntimeProcess:::ext {
+RunProcess idles
+}
+class GroupProcess:::rt {
++MaxMembers : int
++OnMemberJoined
++OnMemberLeft
++PauseAll()
++TerminateAllMembers()
+}
+class ActionProcess:::rt {
+invokes an action on every WhenUpdate
+}
+class TaskSequenceProcess:::rt {
++Sequence : TaskSequence
++Chain : TaskSequenceChain
++IsSynchronous : bool
++Interrupt()
+}
+class GameplayAbilitySystem:::rt {
+&lt;&lt;MonoBehaviour&gt;&gt;
+the scene hub
+}
+class GameRoot:::rt {
++static Instance : GameRoot
++Project : ForgeProject
+}
+class RuntimeGameplayAbilitySystem:::rt {
+a hub with no GameObject
+}
+class AbstractReader:::ext {
++Assign(gas)
+}
+class AttributeReader:::rt
+class AbilityReader:::rt
+class AbstractMonoProcessInstantiator:::ext {
+&lt;&lt;abstract&gt;&gt;
++Create(process, data, isInstantiated)
+PrepareExisting()
+PrepareNew()
+CleanProcess()
+}
+IGameplayProcessHandler &lt;|-- IGameplayProcess
+IGameplayProcess &lt;|.. AbstractMonoProcess
+IGameplayProcess &lt;|.. AbstractRuntimeProcess
+AbstractMonoProcess &lt;|-- LazyMonoProcess
+LazyMonoProcess &lt;|-- GameplayAbilitySystem
+GameplayAbilitySystem &lt;|-- GameRoot
+LazyMonoProcess &lt;|-- AbstractGameplayMonoProcess
+AbstractGameplayMonoProcess &lt;|-- AbstractEffectingMonoProcess
+AbstractEffectingMonoProcess &lt;|-- AbstractTargetedMonoProcess
+AbstractTargetedMonoProcess &lt;|-- ProjectileMonoProcess
+LazyMonoProcess &lt;|-- AbstractReader
+AbstractReader &lt;|-- AttributeReader
+AbstractReader &lt;|-- AbilityReader
+AbstractRuntimeProcess &lt;|-- LazyRuntimeProcess
+LazyRuntimeProcess &lt;|-- RuntimeGameplayAbilitySystem
+LazyRuntimeProcess &lt;|-- TaskSequenceProcess
+LazyRuntimeProcess &lt;|-- GroupProcess
+LazyRuntimeProcess &lt;|-- ActionProcess
+AbstractMonoProcess ..&gt; AbstractMonoProcessInstantiator : Instantiator
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>Every process implements IGameplayProcess. A Lazy base idles in RunProcess and lives on its step hooks; both GAS hubs, TaskSequenceProcess and GroupProcess derive from one.</em></p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Built on</th>
+<th>What it is</th>
+<th>Its lifecycle and timing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mono processes</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a> under it</td>
+<td>MonoBehaviours: prefabs or scene objects, with Unity's components. ProcessControl makes and destroys them.</td>
+<td>Fields in its inspector</td>
+</tr>
+<tr>
+<td><strong>Runtime processes</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyRuntimeProcess.html"><code>LazyRuntimeProcess</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRuntimeProcess.html"><code>AbstractRuntimeProcess</code></a> under it</td>
+<td>Plain C# classes, with no GameObject, for logic alone.</td>
+<td>Given to its base constructor</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

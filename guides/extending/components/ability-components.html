@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Ability components | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Ability components | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.components.ability-components">
+<h1 id="ability-components">Ability components</h1>
+
+<p>An ability component adds a feature to an ability: it can refuse an activation, make it wait as it winds up, and take
+over how its cost and cooldown apply.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html"><code>AbstractAbilityComponent</code></a>. An ability holds it in its <strong>Components</strong>, and its hooks are called with an
+<a class="xref" href="../../../api/FarEmerald.PlayForge.AbilityComponentContext.html"><code>AbilityComponentContext</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Spec</code></td>
+<td>The ability as its entity holds it.</td>
+</tr>
+<tr>
+<td><code>Data</code></td>
+<td>The activation's data packet. It's null as the ability is granted or removed.</td>
+</tr>
+<tr>
+<td><code>Source</code></td>
+<td>The entity that holds it.</td>
+</tr>
+<tr>
+<td><code>GetState&lt;T&gt;(this)</code></td>
+<td>What the component keeps for this entity's ability.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Granted(ctx)</code>, <code>Removed(ctx)</code></td>
+<td>As an entity learns the ability, and loses it.</td>
+</tr>
+<tr>
+<td><code>CanStart(ctx)</code></td>
+<td>As an activation is asked for, after the ability's own Caster Checks. A reason refuses it, nothing of it paid; null lets it go on.</td>
+</tr>
+<tr>
+<td><code>CanTakeTarget(ctx)</code></td>
+<td>As its targeting ends, whichever task picked. A reason ends the activation there, before its wind-up, its cost and its stages.</td>
+</tr>
+<tr>
+<td><code>RefusedAs</code></td>
+<td>As a refusal from <code>CanStart</code> or <code>CanTakeTarget</code> is told: the refusal kind it's told as. It's <code>Rule</code> unless it says, as Cast Range says <code>Range</code>.</td>
+</tr>
+<tr>
+<td><code>WindUp(ctx, token)</code></td>
+<td>After its targeting and its Target Checks, before its cost and its first stage. The activation waits on it, with its entity's components' wind-ups and its other components', all together.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.AttributeStartValues.Start.html"><code>Start(ctx)</code></a></td>
+<td>As an activation starts, its claim taken.</td>
+</tr>
+<tr>
+<td><code>ApplyUsage(ctx)</code></td>
+<td>In place of the ability applying its cost and its cooldown: true says it did, and false leaves it to the ability. Build one from <code>ctx.Spec.PayCosts(data)</code> and <code>ctx.Spec.SpendCooldown(data)</code>.</td>
+</tr>
+<tr>
+<td><code>Waives(ctx)</code></td>
+<td>The checks of its use it waives for this activation: <a class="xref" href="../../../api/FarEmerald.PlayForge.EUsageCheck.html#FarEmerald_PlayForge_EUsageCheck_Cost"><code>EUsageCheck.Cost</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.EUsageCheck.html#FarEmerald_PlayForge_EUsageCheck_Cooldown"><code>EUsageCheck.Cooldown</code></a> or both. A Toggle that's on waives them, so it can always turn off.</td>
+</tr>
+<tr>
+<td><code>Commit(ctx)</code></td>
+<td>As an activation's cost and cooldown apply.</td>
+</tr>
+<tr>
+<td><code>CategoryOf(ctx, effect)</code></td>
+<td>As a purge finds an effect its ability put on: the purge categories it's of, beside the ability's own.</td>
+</tr>
+<tr>
+<td><code>End(ctx, how)</code></td>
+<td>As an activation ends: <a class="xref" href="../../../api/FarEmerald.PlayForge.EAbilityEnd.html#FarEmerald_PlayForge_EAbilityEnd_Done"><code>EAbilityEnd.Done</code></a>, <code>Cancelled</code> or <code>Failed</code>.</td>
+</tr>
+<tr>
+<td><code>Refused(ctx, refusal)</code></td>
+<td>As an activation is refused, nothing of it paid.</td>
+</tr>
+<tr>
+<td><code>DescribeUsage()</code></td>
+<td>What it adds to the ability's Activation line after its cost and cooldown, as &quot;3 charges&quot;.</td>
+</tr>
+<tr>
+<td><code>TargetCheck</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_CasterCheck"><code>CasterCheck</code></a></td>
+<td>A check it stands behind, shown among the ability's Target Checks or Caster Checks while the ability holds it (<a href="../validation-rules.html">Validation rules</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>In <code>CanTakeTarget</code>, the pick is in <code>Data</code> under <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET"><code>Tags.TARGET</code></a>, not yet resolved to an entity, as a picked point has
+none.</p>
+<h2 id="in-the-picker">In the picker</h2>
+<p>An ability's <strong>Components</strong> list offers every class derived from <code>AbstractAbilityComponent</code>
+(<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>). One whose <code>AllowsSeveral</code> is false, as the example's, is offered only
+while the ability holds none.</p>
+<h2 id="example">Example</h2>
+<p>A component that enforces a rule says so in the ability's checks by returning an <code>AbstractComponentValidationRule&lt;T&gt;</code>
+from <code>TargetCheck</code>. The check is the rule's place in the list, and it passes: the component does the refusing.</p>
+<p>This example is a minimum range, the mirror of Cast Range:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;How near the caster the ability's target may not be.&quot;)]
+    public sealed class MinimumRangeAbilityComponent : AbstractAbilityComponent
+    {
+        public const string TooClose = &quot;Its target is inside its Minimum Range&quot;;
+
+        [Tooltip(&quot;How near its caster its target or point may not be, read at the ability's level&quot;)]
+        [NumberMin(0f)] public ScalableFloat Least = 3f;
+
+        // Its place among the ability's Target Checks, made as it's first asked for and kept with it
+        [NonSerialized] private CheckMinimumRangeValidation check;
+
+        public override bool AllowsSeveral =&gt; false;
+
+        public override string Describe() =&gt; $&quot;Minimum range {NumberText.Of(Least)}&quot;;
+
+        public override IAbilityValidationRule TargetCheck =&gt; check ??= new CheckMinimumRangeValidation(this);
+
+        // The pick its targeting made, whichever task made it, refused inside the range
+        public override string CanTakeTarget(AbilityComponentContext ctx)
+        {
+            if (ctx.Data is not AbilityDataPacket data
+                || !data.TryGetFirst(Tags.TARGET, out AbstractTargetingPacket picked) || picked == null
+                || ctx.Source?.GetTargetingPacket() is not { } caster) return null;
+            float least = ctx.Spec.Read(Least, data);
+            var offset = picked.position - caster.position;
+            offset.y = 0f;
+            return offset.sqrMagnitude &lt; least * least ? TooClose : null;
+        }
+    }
+
+    [ValidationSide(EValidationSide.Target)]
+    [ForgeMenu(Name = &quot;Check Minimum Range&quot;, Description = &quot;The Minimum Range component's check. It comes and goes with the component.&quot;)]
+    public sealed class CheckMinimumRangeValidation : AbstractComponentValidationRule&lt;MinimumRangeAbilityComponent&gt;
+    {
+        public CheckMinimumRangeValidation(MinimumRangeAbilityComponent component) : base(component) { }
+
+        public override string Describe() =&gt;
+            Component == null ? null : $&quot;Its target at least {NumberText.Of(Component.Least)} from its caster&quot;;
+    }
+}
+</code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>A target or a point an AI hands in its request is refused soonest in <code>CanStart</code>, before targeting. Read
+<a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_POSITION"><code>Tags.POSITION</code></a> from the data, as Cast Range does: the request is then refused at once, with
+nothing of it run.</p>
+</div>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong><code>CanStart</code> and <code>CanTakeTarget</code> are asked often</strong>, an AI's every request among them. Keep them quick and free of
+allocation, and of side effects: a refusal must leave nothing behind.</li>
+<li><strong>A wind-up is cancelled through its token.</strong> Await with it, and let <code>OperationCanceledException</code> pass: it ends the
+activation as cancelled, its cost unpaid. Any other exception fails the activation, which is written to the Console.</li>
+<li><strong><code>Granted</code> and <code>Removed</code> have no data</strong>: <code>ctx.Data</code> is null there.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

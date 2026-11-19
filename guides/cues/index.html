@@ -88,21 +88,26 @@
 <h1 id="cues">Cues</h1>
 
 <p>A <strong>cue</strong> is what something shows and sounds, apart from what it changes: a spark as a hit lands, a hum while a shield
-holds, a shake as a giant falls. Effects, abilities, entities and items each list their cues, and a game's own code
-raises one where it likes. Every cue plays through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html"><code>ForgeCues</code></a>, after Unreal's gameplay cues: a <strong>burst</strong> at a moment,
-as a hit's spark, or a <strong>lasting</strong> cue's beginning and its end, as a shield's hum, which share a key.</p>
+holds, a shake as a giant falls.</p>
+<p>Effects, abilities, entities and items each list their cues, and a game's own code raises one where it likes. Every
+cue plays through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html"><code>ForgeCues</code></a>, after Unreal's gameplay cues.</p>
+<p>A cue plays in one of two ways:</p>
+<ul>
+<li>a <strong>burst</strong> at a moment, as a hit's spark;</li>
+<li>a <strong>lasting</strong> cue's beginning and its end, which share a key, as a shield's hum.</li>
+</ul>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="where-cues-are-raised.html">Where cues are raised</a>: <strong>Effects</strong>: an effect's <strong>Cues</strong> component plays its cues as it lands, as an application it takes in lands, as each tick executes, as an impact it deals lands, as it comes off, while it lasts, as an application is…</li>
+<li><a href="where-cues-are-raised.html">Where cues are raised</a>: Effects, abilities, entities and items raise their cues through a <strong>Cues</strong> component, and code raises them through <code>ForgeCues</code>.</li>
 <li><a href="handlers.html">Handlers</a>: Each cue in a list is a handler, its kind picked from the list.</li>
-<li><a href="placement.html">Placement</a>: A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong></li>
-<li><a href="floating-text.html">Floating text</a>: A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default: a hit's damage, the gold a kill gave, a status's name as it lands.</li>
-<li><a href="routes.html">Routes</a>: A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows, so an effect, an ability and an entity can each raise Cue.Hit.Fire and one place says how it looks.</li>
+<li><a href="placement.html">Placement</a>: A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong>.</li>
+<li><a href="floating-text.html">Floating text</a>: A <strong>Floating Text</strong> cue floats a text where its Placement says, 2 units above the one the cue is on by default.</li>
+<li><a href="routes.html">Routes</a>: A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows.</li>
 <li><a href="raised.html">Raised</a>: The Cue Library's inspector lists under <strong>Raised</strong> each cue tag the project's assets raise through it, by a Cue Tag cue, in tag order.</li>
-<li><a href="pooling.html">Pooling</a>: A Prefab cue with <strong>Pooled</strong> takes its objects from <code>ForgeCuePool</code> and gives them back as its cue ends, a burst's after its Lifetime, in place of making and destroying one each time; the pool makes <strong>Preallocate</strong> of…</li>
-<li><a href="data-packets.html">Data packets</a>: A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue, <code>CuePackets.For(cue, data)</code>.</li>
-<li><a href="raises-and-sinks.html">Raises and sinks</a>: Each raise of a list of cues names what the list belongs to, its <code>CueSource</code>: an effect, an ability, an entity or an item, by its asset; a cue tag raised from code, as <code>ForgeCueRoutes.Burst(cue)</code>; or a game's own code…</li>
-<li><a href="silencing-and-listening.html">Silencing and listening</a>: <code>ForgeCues.Enabled = false</code> silences every cue, as on a server or while a simulation runs ahead.</li>
+<li><a href="pooling.html">Pooling</a>: A Prefab cue with <strong>Pooled</strong> takes its objects from <code>ForgeCuePool</code> and gives them back, in place of making and destroying one each time.</li>
+<li><a href="data-packets.html">Data packets</a>: A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue: <code>CuePackets.For(cue, data)</code>.</li>
+<li><a href="raises-and-sinks.html">Raises and sinks</a>: Each raise of a list of cues names what the list belongs to, its <code>CueSource</code></li>
+<li><a href="silencing-and-listening.html">Silencing and listening</a>: You can silence cues, or listen to each one as it plays.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

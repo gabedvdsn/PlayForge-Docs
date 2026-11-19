@@ -87,20 +87,22 @@
         <article data-uid="guide.cues.routes">
 <h1 id="routes">Routes</h1>
 
-<p>A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows, so an effect, an ability and an entity can
-each raise Cue.Hit.Fire and one place says how it looks. That place is the project's <strong>Cue Library</strong>, an asset from
-Create &gt; PlayForge &gt; Cue Library, which Project Settings &gt; PlayForge names under Forge Project. Each of its routes is a
-cue tag and the handlers it plays.</p>
+<p>A <strong>Cue Tag</strong> cue names a tag, as Cue.Hit.Fire, in place of what it shows. So an effect, an ability and an entity can
+each raise Cue.Hit.Fire, and one place says how it looks.</p>
+<p>That place is the project's <strong>Cue Library</strong>, an asset from Create &gt; PlayForge &gt; Cue Library. Project Settings &gt;
+PlayForge names it under Forge Project.</p>
+<p>Each of the library's routes is a cue tag and the handlers it plays:</p>
 <ul>
-<li>A tag plays its own route, or else its nearest parent's: with no route for Cue.Hit.Fire, Cue.Hit's plays.</li>
+<li>A tag plays its own route, or else its nearest parent's. With no route for Cue.Hit.Fire, Cue.Hit's plays.</li>
 <li>A route that doesn't <strong>Override</strong> plays its parent's after it, so Cue.Hit.Fire's flames add to Cue.Hit's spark.</li>
-<li>An entity's <strong>Cue Receiver</strong> component plays a tag its own way first, in place of the library's, or before it with
-<strong>Pass Through</strong>. Its <strong>Variant</strong> plays the library's route under its name, as Cue.Hit.Golem for Cue.Hit, where the
-library has one, so a golem's hit sounds of stone.</li>
 <li>Code can give a library of its own, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueRoutes.html#FarEmerald_PlayForge_ForgeCueRoutes_Library"><code>ForgeCueRoutes.Library</code></a>, in place of the project's.</li>
 </ul>
-<hr>
-<p><a href="floating-text.html">← Floating text</a> · <a href="index.html">Cues</a> · <a href="raised.html">Raised →</a></p>
+<p>An entity's <strong>Cue Receiver</strong> component plays a tag its own way first, in place of the library's.</p>
+<ul>
+<li>With <strong>Pass Through</strong>, it plays its own way before the library's route, not in place of it.</li>
+<li>Its <strong>Variant</strong> plays the library's route under its name, as Cue.Hit.Golem for Cue.Hit, where the library has one.
+So a golem's hit sounds of stone.</li>
+</ul>
 
 </article>
 

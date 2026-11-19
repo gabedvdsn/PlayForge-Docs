@@ -87,18 +87,19 @@
         <article data-uid="guide.cues.data-packets">
 <h1 id="data-packets">Data packets</h1>
 
-<p>A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue,
-<a class="xref" href="../../api/FarEmerald.PlayForge.CuePackets.html#FarEmerald_PlayForge_CuePackets_For_"><code>CuePackets.For(cue, data)</code></a>. It loads in four steps, each step's keys taking the place of an earlier step's:</p>
+<p>A cue that runs a process or a sequence hands it a data packet of its own, loaded for what raised the cue:
+<a class="xref" href="../../api/FarEmerald.PlayForge.CuePackets.html#FarEmerald_PlayForge_CuePackets_For_"><code>CuePackets.For(cue, data)</code></a>.</p>
+<p>The packet loads in four steps. Each step's keys take the place of an earlier step's:</p>
 <ol>
 <li><strong>An ability's activation:</strong> an ability's cue starts from a copy of its activation's packet, with its targets, its
 targeting data and the numbers its caller set.</li>
 <li><strong>The cue's context:</strong>
 <ul>
 <li>the cue itself under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_CUE"><code>Tags.CUE</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.CueContext.html"><code>CueContext</code></a>;</li>
-<li>its asset under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ASSET"><code>Tags.ASSET</code></a>, the effect, the ability, the item or the entity's identity, and its spec under
-<a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_SPEC"><code>Tags.SPEC</code></a>, the effect's, the ability's or the item's;</li>
-<li>its source under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_SOURCE"><code>Tags.SOURCE</code></a>, and the one it plays on under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a> where the activation named no
-target;</li>
+<li>its asset under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ASSET"><code>Tags.ASSET</code></a>: the effect, the ability, the item, or the entity's identity;</li>
+<li>its spec under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_SPEC"><code>Tags.SPEC</code></a>: the effect's, the ability's or the item's;</li>
+<li>its source under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_SOURCE"><code>Tags.SOURCE</code></a>;</li>
+<li>the one it plays on under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a>, where the activation named no target;</li>
 <li>where it plays under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_POSITION"><code>Tags.POSITION</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROTATION"><code>Tags.ROTATION</code></a>, and what it follows under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TRANSFORM"><code>Tags.TRANSFORM</code></a>;</li>
 <li>its owner's clock: the activation's for an ability's cue, else that of the one it plays on.</li>
 </ul>
@@ -107,8 +108,6 @@ target;</li>
 <li><strong>The cue's own Data list,</strong> last, so it has the last word. A row with no value puts nothing.</li>
 </ol>
 <p>A process or a sequence reads it as it reads any packet: <code>data.TryGetFirst(Tags.CUE, out CueContext cue)</code>.</p>
-<hr>
-<p><a href="pooling.html">← Pooling</a> · <a href="index.html">Cues</a> · <a href="raises-and-sinks.html">Raises and sinks →</a></p>
 
 </article>
 

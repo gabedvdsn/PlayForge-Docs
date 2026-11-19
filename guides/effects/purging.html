@@ -87,22 +87,70 @@
         <article data-uid="guide.effects.purging">
 <h1 id="purging">Purging</h1>
 
-<p>A project's <strong>Purge Levels</strong>, under Forge Project in Project Settings → PlayForge, rank its purges. Each <strong>Tier</strong>
-is a tag, weakest first, as Purge.Basic, Purge.Strong; an effect is at the first tier whose tag it carries, as its asset
-tag or a context tag, or a child of one. A purge of a tier takes the effects at that tier or under it, as a Strong
-dispel takes the Basic too, and an effect at no tier is never purged, but by death.</p>
-<p>A purge, an effect's <strong>Purges</strong> or <a class="xref" href="../../api/FarEmerald.PlayForge.ForgePurge.html#FarEmerald_PlayForge_ForgePurge_Purge_"><code>ForgePurge.Purge(entity, purge)</code></a> in code, has a <strong>Strength</strong>, a tier's tag; its
-<strong>Kinds</strong>, tags an effect must carry one of to be taken, as Status.Debuff, or any where it names none; <strong>Applied By</strong>,
-whom it takes the effects of, by who applied each against the one purged: itself, its allies (its buffs) or its
-enemies (its debuffs), an applier sharing none of its sides an enemy; and <strong>Filters</strong> of a project's own, each an
-<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractPurgeFilter.html"><code>AbstractPurgeFilter</code></a> whose <code>Takes</code> says yes or no, as <strong>Except Tagged</strong> spares the effects carrying the tags it names.
-An effect a purge takes comes off at the next tick, as a removed effect does, and a purge never takes the effect doing
-it. <code>ForgePurge.Purge(entity, strength)</code> purges by a strength alone, of every kind.</p>
-<p>A staying entity's death purges its effects too, all but those it keeps: each tier's <strong>Kept On Death</strong> keeps the
-effects at it, and the table's <strong>Kept On Death</strong> categories keep theirs whatever their tiers, an ability's cooldowns,
-lent effects and toggles as a project starts (<a href="../entities/death.html">Entities: Death</a>).</p>
-<hr>
-<p><a href="tags.html">← Tags</a> · <a href="index.html">Effects</a> · <a href="duration.html">Duration →</a></p>
+<p>Purging takes effects off an entity by strength. A project's <strong>Purge Levels</strong>, under Forge Project in Project Settings →
+PlayForge, rank its purges.</p>
+<p>Purge Levels holds the project's tiers, weakest first:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tier</strong></td>
+<td>A tag, as Purge.Basic or Purge.Strong. An effect is at the first tier whose tag it carries, as its asset tag or a context tag, or a child of one.</td>
+</tr>
+<tr>
+<td><strong>Kept On Death</strong> (on a tier)</td>
+<td>A death keeps the effects at this tier.</td>
+</tr>
+<tr>
+<td><strong>Kept On Death</strong> (on Purge Levels)</td>
+<td>Categories a death keeps whatever their tiers. A project starts with an ability's cooldowns, lent effects and toggles.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A purge of a tier takes the effects at that tier or under it, as a Strong dispel takes the Basic too.</li>
+<li>An effect at no tier is never purged, but by death.</li>
+</ul>
+<p>A purge, an effect's <strong>Purges</strong> or <a class="xref" href="../../api/FarEmerald.PlayForge.ForgePurge.html#FarEmerald_PlayForge_ForgePurge_Purge_"><code>ForgePurge.Purge(entity, purge)</code></a> in code, has these fields:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Strength</strong></td>
+<td>A tier's tag. The purge takes the effects at that tier or under it.</td>
+</tr>
+<tr>
+<td><strong>Kinds</strong></td>
+<td>Tags an effect must carry one of to be taken, as Status.Debuff. Where it names none, it takes any kind.</td>
+</tr>
+<tr>
+<td><strong>Applied By</strong></td>
+<td>Whom it takes the effects of, by who applied each, against the one purged: itself, its allies (its buffs) or its enemies (its debuffs). An applier sharing none of its sides is an enemy.</td>
+</tr>
+<tr>
+<td><strong>Filters</strong></td>
+<td>Filters of a project's own, each an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractPurgeFilter.html"><code>AbstractPurgeFilter</code></a> whose <code>Takes</code> says yes or no. <strong>Except Tagged</strong> spares the effects carrying the tags it names.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>An effect a purge takes comes off at the next tick, as a removed effect does.</li>
+<li>A purge never takes the effect doing it.</li>
+<li><code>ForgePurge.Purge(entity, strength)</code> purges by a strength alone, of every kind.</li>
+</ul>
+<p>A staying entity's death purges its effects too, all but those it keeps (<a href="../entities/death.html">Entities: Death</a>). Each tier's
+<strong>Kept On Death</strong> keeps the effects at that tier, and the categories in Purge Levels' own <strong>Kept On Death</strong> keep theirs
+whatever their tiers.</p>
 
 </article>
 

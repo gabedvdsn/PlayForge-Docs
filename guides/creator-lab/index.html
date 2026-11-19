@@ -87,22 +87,23 @@
         <article data-uid="guide.creator-lab">
 <h1 id="the-creator-lab">The Creator Lab</h1>
 
-<p>A space for trying a project's own assets: put units down, give them abilities, effects and items, cast, and watch the
-numbers move. Open it from <strong>Window → PlayForge → Creator Lab</strong>: it opens in a new scene and plays. The scenes open
-before are saved first, if you want them saved.</p>
+<p>The Creator Lab is a space for trying a project's own assets. You put units down, give them abilities, effects and
+items, cast, and watch the numbers move.</p>
+<p>To open it, choose <strong>Window → PlayForge → Creator Lab</strong>. It opens in a new scene and plays. The scenes open before are
+saved first, if you want them saved.</p>
 <p>The lab plays every PlayForge asset in the project's own folders.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="the-space.html">The space</a>: <strong>The ground</strong> is a plane in the middle of the scene, lit from above.</li>
-<li><a href="the-panels.html">The panels</a>: Each panel but Selected collapses to a tab at its edge with its − button.</li>
-<li><a href="dropping-assets.html">Dropping assets</a>: Drag an asset from the library and drop it on the space</li>
-<li><a href="test-dummies.html">Test dummies</a>: The <strong>Test dummies</strong> section puts down a dummy of any entity or attribute set, on a side: Blue, Red, Green, Gold or Neutral.</li>
+<li><a href="the-space.html">The space</a>: The space is the scene the lab plays in: its ground, its camera, its units and the lab's caster.</li>
+<li><a href="the-panels.html">The panels</a>: The lab's panels sit at the edges of the screen.</li>
+<li><a href="dropping-assets.html">Dropping assets</a>: You give assets to units by dragging them from the library and dropping them on the space.</li>
+<li><a href="test-dummies.html">Test dummies</a>: A test dummy is a unit that stands and counts what it takes.</li>
 <li><a href="battle.html">Battle</a>: The <strong>Battle</strong> mode fights teams of bots.</li>
-<li><a href="your-unit.html">Your unit</a>: In either mode you can play a unit of your own.</li>
-<li><a href="time.html">Time</a>: The lab's units live in a world of the lab's own (<code>ProcessWorld</code>), which the lab steps by its own time, so its time stands still or runs faster without touching Unity's.</li>
+<li><a href="your-unit.html">Your unit</a>: In either mode you can play a unit of your own, with the Demo's controls.</li>
+<li><a href="time.html">Time</a>: The lab's units live in a world of the lab's own (<code>ProcessWorld</code>), which the lab steps by its own time.</li>
 <li><a href="showing-its-working.html">Showing its working</a>: The bottom panel's pages show what happens as the lab plays.</li>
-<li><a href="the-labs-rules.html">The lab's rules</a>: The lab needs to know a few things about a project: which attribute is a unit's health, which it walks at, which tags stop, hide or shield it, and which ability is its attack.</li>
-<li><a href="in-code.html">In code</a>: <code>CreatorLab.Create(library, rules, panels)</code> makes a lab, as the tests do.</li>
+<li><a href="the-labs-rules.html">The lab's rules</a>: The lab's rules tell it a few things about a project: which attribute is a unit's health, which it walks at, which tags stop, hide or shield it, and which ability is its attack.</li>
+<li><a href="in-code.html">In code</a>: The lab can be made, driven and read from code.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html">CreatorLab</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.CreatorLabMenu.html">CreatorLabMenu</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.html">EditorLabLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ELabStopKind.html">ELabStopKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ELabWatchKind.html">ELabWatchKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabRules.html">ILabRules</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ILabUnitDriver.html">ILabUnitDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabAssetKind.html">LabAssetKind</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabAssets.html">LabAssets</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBlow.html">LabBlow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBodyDriver.html">LabBodyDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabBot.html">LabBot</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabCamera.html">LabCamera</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabControls.html">LabControls</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDriver.html">LabDriver</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.LabDriverEditor.html">LabDriverEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabDummy.html">LabDummy</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabEffects.html">LabEffects</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabMode.html">LabMode</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabPanels.html">LabPanels</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabRules.html">LabRules</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.Editor.LabRulesEditor.html">LabRulesEditor</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabRulesExtensions.html">LabRulesExtensions</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSeat.html">LabSeat</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabShowing.html">LabShowing</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSides.html">LabSides</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabStop.html">LabStop</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabSummary.html">LabSummary</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabUnitSpec.html">LabUnitSpec</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabWatch.html">LabWatch</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.ListLibrary.html">ListLibrary</a>.</p>

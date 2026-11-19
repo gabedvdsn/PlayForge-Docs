@@ -87,102 +87,16 @@
         <article data-uid="guide.editor.new-assets-and-presets">
 <h1 id="new-assets-and-presets">New assets and presets</h1>
 
-<p>The Forge's <strong>Create</strong> makes an asset of any type it lists, blank or from a preset, ready to fill in. This section
-covers the New Asset window, what a new asset starts as, PlayForge's presets and a project's own templates.</p>
-<h2 id="create">Create</h2>
-<p><strong>Create</strong> lists each type The Forge lists. A type with presets opens a submenu: <strong>Blank</strong>, then PlayForge's presets,
-then, after a line, the project's own templates. Each item opens the New Asset window (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeNewAssetWindow.html"><code>ForgeNewAssetWindow</code></a>), titled
-for what it makes, as <strong>New Damage Effect</strong>:</p>
+<p>The Forge's <strong>Create</strong> makes an asset of any type it lists, blank or from a preset, ready to fill in. This section covers
+the New Asset window, what a new asset starts as, PlayForge's presets and a project's own templates.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Name</strong>: the new asset's name, which gives its asset tag. It starts as &quot;New&quot; and the preset's name or the type's.</li>
-<li><strong>Folder</strong>: the type's folder in the active project; <strong>Choose…</strong> picks another in <code>Assets</code>.</li>
-<li>A line that says the file it will be, as <code>File: IronSword.asset</code>.</li>
-<li><strong>Create</strong> makes it, and The Forge shows it; <strong>Cancel</strong> closes the window. Enter and Escape do the same.</li>
+<li><a href="new-assets-and-presets/create.html">Create</a>: <strong>Create</strong>, on The Forge's toolbar, lists each type The Forge lists.</li>
+<li><a href="new-assets-and-presets/the-new-asset-window.html">The New Asset window</a>: The New Asset window (<code>ForgeNewAssetWindow</code>) names a new asset and says where it goes.</li>
+<li><a href="new-assets-and-presets/what-a-new-asset-starts-as.html">What a new asset starts as</a>: A new asset is made in four steps</li>
+<li><a href="new-assets-and-presets/playforges-presets.html">PlayForge's presets</a>: PlayForge's presets fill a new effect, item, ability or entity with a common setup.</li>
+<li><a href="new-assets-and-presets/the-projects-templates.html">The project's templates</a>: A project can keep assets of its own that new assets start as copies of.</li>
 </ul>
-<p>A field's <strong>New</strong> button opens the same window, its name starting as the holder's and the field's, as &quot;Goblin
-Attribute Set&quot; (<a href="fields-and-drawers.html#asset-fields">Asset fields</a>). <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeNewAssetWindow.html#FarEmerald_PlayForge_Editor_ForgeNewAssetWindow_Show_"><code>ForgeNewAssetWindow.Show(type, onCreated)</code></a> opens it from code, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeNewAssetWindow.html#FarEmerald_PlayForge_Editor_ForgeNewAssetWindow_CreateAsset_"><code>CreateAsset()</code></a> makes the asset as <strong>Create</strong> does.</p>
-<h2 id="what-a-new-asset-starts-as">What a new asset starts as</h2>
-<ol>
-<li>A copy of its type's <strong>New Asset</strong> default, where Project Settings → PlayForge names one.</li>
-<li>Filled by its preset, or a copy of its template.</li>
-<li>Named, with the asset tag its name gives: the type, then the name's words capitalized and joined, its punctuation
-left out, as <code>Item.IronSword</code> for Iron Sword. An attribute takes no asset tag; a Scaler asset's name is its
-scaler's, and a Requirement Template's its requirements'.</li>
-<li>Saved in the folder, its file its name, with its spaces and any character a file can't have on any platform left
-out, and a number added where the folder has the name already.</li>
-</ol>
-<p>The first asset made while the Unity project has no Forge Project makes one, named for the game, in a folder of its
-own under the PlayForge Folder.</p>
-<h2 id="playforges-presets">PlayForge's presets</h2>
-<table>
-<thead>
-<tr>
-<th>Create</th>
-<th>Makes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Gameplay Effect → Damage</strong></td>
-<td>An instant −10 to the attribute playing the project's Health role, on those of other sides</td>
-</tr>
-<tr>
-<td><strong>Gameplay Effect → Damage over Time</strong></td>
-<td>5 seconds of −4 Health, a tick a second, on those of other sides. Applied again, it replaces the one before</td>
-</tr>
-<tr>
-<td><strong>Gameplay Effect → Buff</strong></td>
-<td>+10 to an attribute you choose, for 10 seconds, on its own side. Applied again, it replaces the one before</td>
-</tr>
-<tr>
-<td><strong>Gameplay Effect → Debuff</strong></td>
-<td>−10 to an attribute you choose, for 10 seconds, on those of other sides. Applied again, it replaces the one before</td>
-</tr>
-<tr>
-<td><strong>Gameplay Effect → Stun</strong></td>
-<td>1.5 seconds under the tag of the first rule in the project's Crowd Control that stops every ability, as Stunned</td>
-</tr>
-<tr>
-<td><strong>Gameplay Effect → Aura</strong></td>
-<td>An infinite effect with an Aura component, which reaches its holder's allies within 5; the aura's effect is yours to choose</td>
-</tr>
-<tr>
-<td><strong>Item → On-Hit</strong></td>
-<td>An item with an On Hit entry, which lands on the one hit; its effects are yours to name</td>
-</tr>
-<tr>
-<td><strong>Item → Active</strong></td>
-<td>An item that grants an ability of its own, named for the item: one stage that applies its effects, and a Cost and a Cooldown effect, named for it and taking its levels</td>
-</tr>
-<tr>
-<td><strong>Ability → Passive</strong></td>
-<td>An ability that activates as it's granted, with implicit targeting, so the effects its one stage applies land on its holder</td>
-</tr>
-<tr>
-<td><strong>Entity → Hero</strong></td>
-<td>An entity with an attribute set of its own, named for it, as &quot;Goblin Attributes&quot; for Goblin: the attributes playing the project's roles, Health first, at 100, the rest at 0</td>
-</tr>
-</tbody>
-</table>
-<p>An Active item's Cost and Cooldown are copies of the project's <strong>Cost Effect</strong> and <strong>Cooldown Effect</strong> where Project
-Settings → PlayForge names them, and otherwise a Cost of −10 to an attribute you choose and a Cooldown of 5 seconds.
-The assets a preset makes besides its own go in their types' folders, or in the folder the window names where that
-isn't the new asset's type's folder.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresets.html"><code>ForgePresets</code></a> holds the presets in code: <code>For(type)</code> lists a type's, PlayForge's then the project's templates, each a
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePreset.html"><code>ForgePreset</code></a>: its <code>Name</code> in the menu, the <code>Type</code> it makes, the <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePreset.html#FarEmerald_PlayForge_Editor_ForgePreset_AssetName"><code>AssetName</code></a> a new one starts as, its <code>Description</code>,
-and, for a template, the <code>Template</code> it copies; and <code>Make(preset, name)</code> makes an asset from one. As a preset fills a new asset it
-reaches a <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresetMaking.html"><code>ForgePresetMaking</code></a>: the new asset's <code>Name</code> and <code>Folder</code>, the <code>Project</code> and its <code>Health</code> attribute, <code>Make&lt;T&gt;</code>
-to make another asset it needs, and <code>Then</code> to act once the new asset is saved.</p>
-<h2 id="the-projects-templates">The project's templates</h2>
-<p>Project Settings → PlayForge → <strong>Templates</strong> lists assets of the project's own that a new asset can start as a copy
-of. Create lists each under its type, by its name, after PlayForge's presets. A new one is a plain copy that takes its
-own name and tag: it doesn't follow its template afterwards, as a child of <strong>Set Template...</strong> does
-(<a href="templates.html">Templates</a>).</p>
-<p>An ability's <strong>Cost</strong> and <strong>Cooldown</strong> fields take the project's <strong>Cost Effect</strong> and <strong>Cooldown Effect</strong> from their
-right-click menu (<a href="fields-and-drawers.html#asset-fields">Asset fields</a>).</p>
-<hr>
-<p><a href="forge-projects.html">← Forge Projects</a> · <a href="index.html">The Editor Tools</a> · <a href="templates.html">Templates →</a></p>
 
 </article>
 

@@ -87,37 +87,18 @@
         <article data-uid="guide.tags.the-tag-field">
 <h1 id="the-tag-field">The tag field</h1>
 
-<p>Each <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, alone or in a list, draws as a tag field, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagDrawer.html"><code>TagDrawer</code></a>, which shows its tag by its display name and
-picks another from the tags its contexts offer. The field shows its label, or none in a list, then the tag's parents
-in secondary text and its leaf in strong text, or its whole path while <strong>Show Full Tag Paths</strong> is on; None for an empty
-field, and a dash where the selected assets' tags differ.</p>
-<h2 id="the-picker">The picker</h2>
-<p>Pressing the field opens its picker: <strong>None</strong> first, then <strong>New Tag…</strong> where the field may make tags, then the tags it
-offers by their paths, in natural order, each under a folder of its root while <strong>Group Tags by Root</strong> is on and the root
-has more than one tag. The field's tag is checked. The search finds a tag by any part of its path, and while a tag is
-highlighted the picker's Context says the contexts it's for, or that it's for none yet.</p>
-<p>A field offers the tags of its contexts (<a href="contexts.html">Contexts</a>) and the Universal ones, of the active Forge Project:
-PlayForge's own and those code exposes, those the project's assets use, and those a Tag Library in its folder declares.
-A tag only another project uses, it leaves out. A pick writes the tag, its name and its display name, into each
-selected asset, as one Undo step.</p>
-<h2 id="its-menu">Its menu</h2>
-<p>The field's right-click menu holds <strong>None</strong>, which empties it; <strong>New Tag…</strong>; <strong>Make It a Child Of…</strong>, which picks
-another tag and puts the field's leaf under it, as Burn under Status.Debuff makes Status.Debuff.Burn; and <strong>Copy Path</strong>,
-which copies the tag as the field reads it. New Tag… and Make It a Child Of… show where the field may make tags.</p>
-<h2 id="new-tag">New Tag</h2>
-<p><strong>New Tag</strong> asks for the new tag's <strong>Path</strong>, which starts as the field's tag's parents, and its <strong>Contexts</strong>, which
-start as the field's. <strong>Create</strong>, or Enter, makes the tag, unique, and gives it to the field; a context chosen beyond
-the field's declares the tag for it in the Tag Library, so that context's fields offer it too. It refuses an empty path;
-one of anything but letters, digits, underscores and spaces in names joined by single dots; and one of 64 characters or
-more, which the padding would cut short, so it could be another tag's. A path that is one of PlayForge's own tags' text,
-as Died or Health, would make that very tag: New Tag says so, and <strong>Use It</strong> gives the field PlayForge's own.</p>
-<h2 id="preferences">Preferences</h2>
-<p><strong>Preferences → PlayForge</strong> holds each user's own, under <strong>Tags</strong>: <strong>Show Full Tag Paths</strong> (off), a tag's whole path in
-strong text in place of its parents before its leaf, in the tag fields and The Forge's Tags view; and
-<strong>Group Tags by Root</strong> (on), the picker's tags under their roots. Its <strong>Menu Width</strong> and <strong>Menu Height</strong> are the most
-the picker grows to.</p>
-<hr>
-<p><a href="tag-field-attributes.html">← Tag field attributes</a> · <a href="index.html">Tags</a> · <a href="the-tags-view.html">The Tags view →</a></p>
+<p>Each <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, alone or in a list, draws as a tag field, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagDrawer.html"><code>TagDrawer</code></a>. It shows its tag by its display name, and
+picks another from the tags its contexts offer.</p>
+<p>The field shows its label, or none in a list. Then it shows the tag's parents in secondary text and its leaf in strong
+text, or its whole path while <strong>Show Full Tag Paths</strong> is on.</p>
+<p>An empty field shows None, and a dash shows where the selected assets' tags differ.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="the-tag-field/the-picker.html">The picker</a>: Pressing a tag field opens its picker, which lists, in order</li>
+<li><a href="the-tag-field/its-menu.html">Its menu</a>: A tag field's right-click menu holds four items</li>
+<li><a href="the-tag-field/new-tag.html">New Tag</a>: <strong>New Tag</strong> makes a unique tag, and gives it to the field.</li>
+<li><a href="the-tag-field/preferences.html">Preferences</a>: <strong>Preferences → PlayForge</strong> holds each user's own tag preferences, under <strong>Tags</strong>.</li>
+</ul>
 
 </article>
 

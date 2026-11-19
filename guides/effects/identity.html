@@ -87,34 +87,58 @@
         <article data-uid="guide.effects.identity">
 <h1 id="identity">Identity</h1>
 
-<ul>
-<li><p><strong>Name</strong>: the effect's display name. It also gives the asset tag, so renaming the effect changes its tag. Update
-anything that names the old tag.</p>
-</li>
-<li><p><strong>Description</strong>: free text for your UI.</p>
-</li>
-<li><p><strong>Asset Tag</strong>: read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined. The
-tag is stored when you edit the Name. If the stored tag differs from the one the Name gives, it shows in warning
-text with an <strong>Update</strong> button that stores the new one.</p>
-<p>The effect system finds an effect by this tag when it is applied again or removed, whoever applied it. While a
-Durational or Infinite effect is active, its target carries the tag. Cooldowns work this way: an ability's Cooldown
-check looks for the cooldown effect's tag on the caster.</p>
-</li>
-<li><p><strong>Visibility</strong>: a tag your UI can read to decide whether to show the effect, such as <code>Always Visible</code> or
-<code>Not Visible</code>. The Forge lists it. The runtime doesn't act on it.</p>
-</li>
-<li><p><strong>Textures</strong>: icons, each paired with a tag. The texture tagged <code>Primary</code> is the effect's icon. Without one, the
-first texture is used.</p>
-</li>
-<li><p><strong>Inherit From Origin</strong>: its icon is its origin's, the ability, item or entity that applied it: the origin's
-texture under <strong>Origin Texture</strong>, a tag, <code>Primary</code> to start, which shows under it. Where the origin has none under
-that tag, the effect's own stands. A spec reads it, <code>spec.GetIcon()</code>, as the Demo's bar and the Additional Content's
-status bar do; an origin holds textures through <a class="xref" href="../../api/FarEmerald.PlayForge.IHasTextures.html"><code>IHasTextures</code></a>, as abilities, items, effects, entities and both hubs
-do.</p>
-</li>
-</ul>
-<hr>
-<p><a href="index.html">← Effects</a> · <a href="index.html">Effects</a> · <a href="leveling.html">Leveling →</a></p>
+<p>The Identity section names the effect, gives its asset tag, and holds what your UI shows of it.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The effect's display name. It also gives the asset tag, so renaming the effect changes its tag.</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Free text for your UI.</td>
+</tr>
+<tr>
+<td><strong>Asset Tag</strong></td>
+<td>Read-only, made from the Name: punctuation is dropped, and each word is capitalised and joined. The tag is stored when you edit the Name.</td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td>A tag your UI can read to decide whether to show the effect, such as <code>Always Visible</code> or <code>Not Visible</code>. The Forge lists it, but the runtime doesn't act on it.</td>
+</tr>
+<tr>
+<td><strong>Textures</strong></td>
+<td>Icons, each paired with a tag. The texture tagged <code>Primary</code> is the effect's icon; without one, the first texture is used.</td>
+</tr>
+<tr>
+<td><strong>Inherit From Origin</strong></td>
+<td>Takes the effect's icon from its origin, the ability, item or entity that applied it.</td>
+</tr>
+<tr>
+<td><strong>Origin Texture</strong></td>
+<td>Shown under Inherit From Origin. A tag, <code>Primary</code> to start, that names the origin's texture to take.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Renaming an effect changes its asset tag. Update anything that names the old tag.</p>
+</div>
+<p>If the stored asset tag differs from the one the Name gives, it shows in warning text with an <strong>Update</strong> button that
+stores the new one.</p>
+<p>The effect system finds an effect by its asset tag when it is applied again or removed, whoever applied it. While a
+Durational or Infinite effect is active, its target carries the tag.</p>
+<p>Cooldowns work this way: an ability's Cooldown check looks for the cooldown effect's tag on the caster.</p>
+<p>With <strong>Inherit From Origin</strong> on, the effect's icon is the origin's texture under <strong>Origin Texture</strong>. Where the origin
+has none under that tag, the effect's own stands.</p>
+<p>A spec reads the icon with <code>spec.GetIcon()</code>, as the Demo's bar and the Additional Content's status bar do. An origin
+holds textures through <a class="xref" href="../../api/FarEmerald.PlayForge.IHasTextures.html"><code>IHasTextures</code></a>, as abilities, items, effects, entities and both hubs do.</p>
 
 </article>
 

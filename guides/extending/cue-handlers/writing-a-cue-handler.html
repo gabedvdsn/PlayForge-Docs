@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Writing a cue handler | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Writing a cue handler | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.cue-handlers.writing-a-cue-handler">
+<h1 id="writing-a-cue-handler">Writing a cue handler</h1>
+
+<p>A cue handler of a game's own plays feedback its own way, as setting a trigger on the Animator of the one it plays on.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractCueHandler.html"><code>AbstractCueHandler</code></a>. Its hooks are handed a <a class="xref" href="../../../api/FarEmerald.PlayForge.CueContext.html"><code>CueContext</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Target</code></td>
+<td>The entity it plays on.</td>
+</tr>
+<tr>
+<td><code>Moment</code></td>
+<td>The moment that raised it.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a></td>
+<td>The cue's tag, where one raised it.</td>
+</tr>
+<tr>
+<td><code>Source</code></td>
+<td>Who's behind it: the effect's or the ability's caster, or the entity itself.</td>
+</tr>
+<tr>
+<td><code>Origin</code></td>
+<td>What raised it: an effect's origin, an ability's spec, an item's, or the entity.</td>
+</tr>
+<tr>
+<td><code>Spec</code>, <code>Ticks</code></td>
+<td>For an effect: its spec, and for a tick's burst, how many of its ticks executed.</td>
+</tr>
+<tr>
+<td><code>Data</code></td>
+<td>An activation's data, for an ability's cue.</td>
+</tr>
+<tr>
+<td><code>Magnitude</code>, <code>Point</code>, <code>Normal</code></td>
+<td>Where its raiser gave a hit: a number to scale with, as the hit's damage, and the hit's point and normal.</td>
+</tr>
+<tr>
+<td><code>Key</code></td>
+<td>What pairs a lasting cue's beginning with its end.</td>
+</tr>
+<tr>
+<td><code>Lasting</code></td>
+<td>Whether it was raised to last.</td>
+</tr>
+<tr>
+<td><code>Transform</code>, <code>Position</code></td>
+<td>The target's object, and where it plays.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.NumberContext.html#FarEmerald_PlayForge_NumberContext_Of_"><code>NumberContext.Of(in cue)</code></a> reads a handler's numbers for it.</p>
+<h2 id="hooks">Hooks</h2>
+<p>Each hook is a no-op it may override.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Burst(cue)</code></td>
+<td>At a moment that plays once. By default it calls <code>OnTicked</code> for a tick, <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractCueHandler.html#FarEmerald_PlayForge_AbstractCueHandler_OnRemoved_"><code>OnRemoved</code></a> for a removal and <code>OnApplied</code> for any other moment.</td>
+</tr>
+<tr>
+<td><code>OnApplied(cue)</code>, <code>OnTicked(cue)</code>, <code>OnRemoved(cue)</code></td>
+<td>From <code>Burst</code>.</td>
+</tr>
+<tr>
+<td><code>Begin(cue)</code>, <code>End(cue)</code></td>
+<td>As a lasting cue begins and ends, as a While Active one does.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>Handlers sit in the Cues components' lists, the Play Cue task's, and a cue library's routes. The picker shows
+<code>AnimatorCue</code> as <strong>Animator</strong>.</p>
+<p>Code plays one with <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Begin_"><code>ForgeCues.Begin</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_End_"><code>ForgeCues.End</code></a>, handed a handler or a list and a
+<code>CueContext</code>.</p>
+<h2 id="example">Example</h2>
+<p>This handler sets an Animator trigger on the one the cue plays on, and a bool while a lasting cue lasts:</p>
+<pre><code class="lang-csharp">using System;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Sets an Animator trigger on the one the cue plays on, and a bool while a lasting cue lasts.&quot;)]
+    public class AnimatorCue : AbstractCueHandler
+    {
+        [Tooltip(&quot;The trigger set as it bursts&quot;)]
+        public string Trigger = &quot;Hit&quot;;
+
+        [Tooltip(&quot;The bool on while a lasting cue lasts&quot;)]
+        public string WhileActive = &quot;Stunned&quot;;
+
+        public override void OnApplied(CueContext cue)
+        {
+            if (!string.IsNullOrEmpty(Trigger) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetTrigger(Trigger);
+        }
+
+        public override void Begin(CueContext cue)
+        {
+            if (!string.IsNullOrEmpty(WhileActive) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetBool(WhileActive, true);
+        }
+
+        public override void End(CueContext cue)
+        {
+            if (!string.IsNullOrEmpty(WhileActive) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetBool(WhileActive, false);
+        }
+
+        private static Animator AnimatorOf(in CueContext cue) =&gt;
+            cue.Transform != null ? cue.Transform.GetComponentInChildren&lt;Animator&gt;() : null;
+    }
+}
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>A runtime entity has no object, so <code>Transform</code> is null on one.</p>
+</div>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

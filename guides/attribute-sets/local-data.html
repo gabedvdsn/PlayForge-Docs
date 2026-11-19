@@ -87,16 +87,38 @@
         <article data-uid="guide.attribute-sets.local-data">
 <h1 id="local-data">Local Data</h1>
 
-<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind: Float,
-Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your
-own, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour, which the row's kinds offer beside
-PlayForge's. A row saves its own value alone. Object fields take project assets, not scene objects. Code reads a value by
-its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>, and a number, a Float or an Int, which can
-scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
+<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key</strong></td>
+<td>A tag that names the row.</td>
+</tr>
+<tr>
+<td><strong>Kind</strong></td>
+<td>The kind of value: Float, Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your own.</td>
+</tr>
+<tr>
+<td><strong>Value</strong></td>
+<td>The row's value. A row saves its own value alone.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A kind of your own is a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, such as a point or a colour. The
+row's kinds offer it beside PlayForge's.</li>
+<li>Object fields take project assets, not scene objects.</li>
+<li>Code reads a value by its type, with <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>.</li>
+<li>A number, a Float or an Int, can scale. Code reads it with <code>data.Value.TryReadNumber(context, out float number)</code>.</li>
+</ul>
 <p>PlayForge doesn't read an attribute set's Local Data itself. Your code and workers can, with
 <code>set.TryGetLocalData(key, out var data)</code>. The first row with that key wins.</p>
-<hr>
-<p><a href="workers.html">← Workers</a> · <a href="index.html">Attribute Sets</a> · <a href="used-by.html">Used By →</a></p>
 
 </article>
 

@@ -88,13 +88,149 @@
 <h1 id="gameplay-effects">Gameplay Effects</h1>
 
 <p>A <strong>Gameplay Effect</strong> asset describes a change to an entity: damage, a heal, a timed buff, a poison, a cost or a
-cooldown. An entity is anything that runs a gameplay ability system (GAS), such as the player or an enemy. Abilities
-and items apply effects to a target entity, and so can your code. The ability, item or entity that applies an effect
-is its <em>origin</em>. An effect can change attributes (numbers such as Health), grant tags, apply other effects and run
-workers.</p>
-<p>The duration's Policy decides how long an effect lives. An Instant effect makes its change once and is done. A
-Durational or Infinite effect goes on the target's effect <em>shelf</em>, its list of active effects, and stays until its time
-runs out or something removes it. The kind of change follows from that:</p>
+cooldown. An effect can change attributes (numbers such as Health), grant tags, apply other effects and run workers.</p>
+<pre><code class="lang-mermaid">classDiagram
+class GameplayEffect:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Definition : GameplayEffectDefinition
++Tags : GameplayEffectTags
++ImpactSpecification : GameplayEffectImpact
++DurationSpecification : GameplayEffectDuration
++Components : List~AbstractEffectComponent~
++Find() T, its first component that is a T
+its cues in a Cues component
++Workers : List~AbstractEffectWorker~
++Generate(IEffectOrigin origin, ITarget target) GameplayEffectSpec
+}
+class GameplayEffectDefinition:::asset {
++Name
++Description
++Visibility
++Textures
++InheritFromOrigin : bool
++OriginTexture
+}
+class GameplayEffectTags:::asset {
++AssetTag
++ContextTags
++GrantedTags
++RemovesEffectsTagged
++BlocksEffectsTagged
+}
+class GameplayEffectImpact:::asset {
+&lt;&lt;Serializable&gt;&gt;
+the authored first impact, plus more
++AttributeTarget
++ImpactOperation : ECalculationOperation
++MagnitudeOperation : ScalableFloat
++Pipeline : ValuePipeline
++AdditionalImpacts : List~AttributeImpactEntry~
++Entries, NonSerialized, rebuilt on every Generate
++RebuildEntries(duration)
++ResolveDelivery(duration, out warning) EImpactDelivery
+}
+class AttributeImpactEntry:::asset {
++AttributeTarget
++Delivery : EImpactDelivery
++Operation
++Magnitude : ScalableFloat
++Pipeline
++SortOrder
+}
+class EImpactDelivery:::rt {
+&lt;&lt;enumeration&gt;&gt;
+Continuous
+OnApply
+Periodic
+}
+class GameplayEffectDuration:::asset {
++DurationPolicy : EEffectDurationPolicy
++DurationOperation
++EnablePeriodicTicks : bool
++TickIntervalOperation
++ReApplicationPolicy
++StackPolicy
++GenerateContainer(spec, ongoing) AbstractEffectContainer
+}
+class EEffectDurationPolicy:::rt {
+&lt;&lt;enumeration&gt;&gt;
+Instant
+Durational
+Infinite
+}
+class EffectTagRequirements:::asset {
++ApplicationRequirements
++OngoingRequirements
++RemovalRequirements
+}
+class EffectConditions:::asset {
++Application : List~GameplayCondition~
++Ongoing
++Removal
+}
+class GameplayEffectSpec:::rt {
+one application
++Base : GameplayEffect
++Origin : IEffectOrigin
++Target : ITarget
++ApplicationId
++RuntimeContainer : AbstractEffectContainer
++SetByCaller(Tag, float)
++GetImpactersFor(IAttribute, EImpactDelivery)
++GetIcon() Texture2D, the origin's when inherited
+}
+class IAttributeImpactCarrier:::ext {
+&lt;&lt;interface&gt;&gt;
+origin, target, attribute, impact types
+}
+class ICarrierApplication:::ext {
+&lt;&lt;interface&gt;&gt;
+the facet that can be applied
+}
+class IAttributeImpacter:::ext {
+&lt;&lt;interface&gt;&gt;
++Operation
++TargetSlot
++SortOrder
++Pipeline
++Evaluate(carrier) float
+}
+class ScalerImpacter:::rt {
+one per entry, reads the live ScalableFloat
+}
+class ConstantImpacter:::rt
+class IHasTextures:::ext {
+&lt;&lt;interface&gt;&gt;
++GetTextureItems()
+}
+GameplayEffect *-- GameplayEffectDefinition
+GameplayEffect *-- GameplayEffectTags
+GameplayEffect *-- GameplayEffectImpact
+GameplayEffect *-- GameplayEffectDuration
+GameplayEffect *-- EffectTagRequirements : Source and Target
+GameplayEffect *-- EffectConditions
+GameplayEffectImpact &quot;1&quot; *-- &quot;many&quot; AttributeImpactEntry : AdditionalImpacts
+AttributeImpactEntry --&gt; EImpactDelivery
+GameplayEffectDuration --&gt; EEffectDurationPolicy
+GameplayEffect ..&gt; GameplayEffectSpec : Generate
+IHasTextures &lt;|.. GameplayEffect
+IAttributeImpactCarrier &lt;|-- ICarrierApplication
+ICarrierApplication &lt;|.. GameplayEffectSpec
+GameplayEffectSpec &quot;1&quot; *-- &quot;many&quot; ScalerImpacter
+IAttributeImpacter &lt;|.. ScalerImpacter
+IAttributeImpacter &lt;|.. ConstantImpacter
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>The first impact entry is derived on every Generate() and never serialized. The Additional Impacts are authored entries, each with its own delivery. A spec's icon can come from its origin.</em></p>
+<p>An entity is anything that runs a gameplay ability system (GAS), such as the player or an enemy. Abilities and items
+apply effects to a target entity, and so can your code. The ability, item or entity that applies an effect is its
+<em>origin</em>.</p>
+<p>The duration's Policy decides how long an effect lives. An Instant effect makes its change once and is done.</p>
+<p>A Durational or Infinite effect goes on the target's effect <em>shelf</em>, its list of active effects. It stays until its time
+runs out or something removes it.</p>
+<p>The kind of change follows from the Policy:</p>
 <table>
 <thead>
 <tr>
@@ -123,23 +259,23 @@ runs out or something removes it. The kind of change follows from that:</p>
 </table>
 <p>A commit stays after the effect ends. A modifier doesn't. <a href="../effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a> has the full model.</p>
 <p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
-made from its Name: Fireball Damage gives <code>Effect.FireballDamage</code>. Each section below matches the inspector section of
-the same name.</p>
+made from its Name: Fireball Damage gives <code>Effect.FireballDamage</code>.</p>
+<p>Each section below matches the inspector section of the same name.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the effect's display name.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the effect, gives its asset tag, and holds what your UI shows of it.</li>
 <li><a href="leveling.html">Leveling</a>: An effect has no level of its own.</li>
-<li><a href="tags.html">Tags</a>: <strong>Granted Tags</strong> are applied to the target while the effect is active.</li>
-<li><a href="purging.html">Purging</a>: A project's <strong>Purge Levels</strong>, under Forge Project in Project Settings → PlayForge, rank its purges.</li>
-<li><a href="duration.html">Duration</a>: The fields show as the Policy uses them.</li>
+<li><a href="tags.html">Tags</a>: The Tags section sets what the effect grants its target while it's on, and which other effects it removes, purges or blocks.</li>
+<li><a href="purging.html">Purging</a>: Purging takes effects off an entity by strength.</li>
+<li><a href="duration.html">Duration</a>: The Duration section sets how long the effect lasts, how it ticks, and what another application of it does.</li>
 <li><a href="impact.html">Impact</a>: The impact is the change the effect makes to an attribute.</li>
-<li><a href="levels.html">Levels</a>: What the effect does, level by level.</li>
-<li><a href="cues.html">Cues</a>: What the effect shows and sounds, apart from what it changes, plays from its <strong>Cues</strong> component, from the Components list's <strong>+</strong>, a list for each of its moments: <strong>On Apply</strong> as it lands; <strong>On Reapply</strong> as an…</li>
-<li><a href="requirements.html">Requirements</a>: <strong>Chance to Apply</strong> comes first: how likely the effect is to land, from 0 to 1, which can scale by level.</li>
-<li><a href="components.html">Components</a>: An effect's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
-<li><a href="workers.html">Workers</a>: Effect workers react to this effect's own events.</li>
+<li><a href="levels.html">Levels</a>: The effect's levels say what it does, level by level.</li>
+<li><a href="cues.html">Cues</a>: What the effect shows and sounds, apart from what it changes, plays from its <strong>Cues</strong> component.</li>
+<li><a href="requirements.html">Requirements</a>: The Requirements section decides whether the effect lands, keeps working and comes off.</li>
+<li><a href="components.html">Components</a>: An effect's components are features it carries.</li>
+<li><a href="workers.html">Workers</a>: The Workers section holds what runs for the effect beside its impacts.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this effect, each with its type icon, such as an ability whose cost it is or an item that grants it.</li>
+<li><a href="used-by.html">Used By</a>: Used By lists the PlayForge assets that refer to this effect, each with its type icon, such as an ability whose cost it is or an item that grants it.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

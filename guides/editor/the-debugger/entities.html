@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Entities | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Entities | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-debugger.entities">
+<h1 id="entities">Entities</h1>
+
+<p><strong>Entities</strong> lists the hubs ProcessControl runs, <a class="xref" href="../../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> alike.</p>
+<!-- screenshot: debugger-entities -->
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The entity's name. A MonoBehaviour hub goes by its GameObject's name, which tells two of one asset apart.</td>
+</tr>
+<tr>
+<td><strong>Hub</strong></td>
+<td>Mono or Runtime.</td>
+</tr>
+<tr>
+<td><strong>Lvl</strong></td>
+<td>Its level.</td>
+</tr>
+<tr>
+<td><strong>Effects</strong></td>
+<td>The number of effects on it.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="finding-an-entity">Finding an entity</h2>
+<ul>
+<li>The toolbar's hub filter shows <strong>Both hubs</strong>, <strong>Mono hubs</strong> or <strong>Runtime hubs</strong>.</li>
+<li>With <strong>Follow Selection</strong> on, selecting an entity's GameObject, or a child of it, in the scene shows that entity.</li>
+<li>A double click selects a MonoBehaviour hub's GameObject.</li>
+</ul>
+<h2 id="the-entitys-detail">The entity's detail</h2>
+<p>The detail's header names the entity, such as &quot;Entity · Goblin Raider · Mono hub · Level 3&quot;. It has <strong>Select in Scene</strong>,
+and <strong>Open Asset</strong>, which opens its asset in a window of its own.</p>
+<p>Each of its sections has a table. A click selects a row, and a foot row acts on the row selected and adds to the table.</p>
+<h2 id="the-attributes-section">The Attributes section</h2>
+<p><strong>Attributes</strong> shows each of the entity's attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base</strong>, <strong>Current</strong></td>
+<td>The attribute's values. The current's tooltip breaks it down by retention group.</td>
+</tr>
+<tr>
+<td><strong>Changed by</strong></td>
+<td>Each source of what it took in the last second, such as &quot;Burning -8/s&quot;, then each effect that holds a modifier on it.</td>
+</tr>
+</tbody>
+</table>
+<p>To set an attribute's value:</p>
+<ol>
+<li>Select the attribute's row.</li>
+<li>Type the value in the foot row's <strong>Base</strong> or <strong>Current</strong>.</li>
+<li>Press Enter.</li>
+</ol>
+<p>The change is one the entity makes on its own account, an unworkable one
+(<a href="../../workers/workable-and-unworkable.html">Workers: Workable and unworkable</a>). A double click on a value goes to its field.</p>
+<h2 id="the-effects-section">The Effects section</h2>
+<p><strong>Effects</strong> shows each effect on the entity.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Left</strong></td>
+<td>The time it has left.</td>
+</tr>
+<tr>
+<td><strong>Stacks</strong></td>
+<td>Its stacks.</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>Where it's from, such as &quot;Player · Fireball&quot;.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remove</strong> takes the selected effect off, where its source applied it.</p>
+<p>To apply an effect:</p>
+<ol>
+<li>Pick the effect in the foot row's field.</li>
+<li>Select <strong>Apply</strong>. The effect lands from the entity itself.</li>
+</ol>
+<h2 id="the-abilities-section">The Abilities section</h2>
+<p><strong>Abilities</strong> shows each of the entity's abilities.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lvl</strong></td>
+<td>The ability's level.</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>Its state, such as Stage 2/3, Active, Cooldown or Ready.</td>
+</tr>
+<tr>
+<td><strong>Cooldown</strong></td>
+<td>The cooldown it has left.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Activate</strong> sets the selected ability off as the entity would, and <strong>Interrupt</strong> stops its run.</p>
+<p>To grant an ability:</p>
+<ol>
+<li>Pick the ability in the foot row's field.</li>
+<li>Set its <strong>Level</strong>.</li>
+<li>Select <strong>Grant</strong>. The ability is granted at that level.</li>
+</ol>
+<h2 id="the-tags-section">The Tags section</h2>
+<p><strong>Tags</strong> shows each tag the entity holds.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>Its count, by weight.</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>What it's from.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remove</strong> takes back the selected tag, where it's a loose one.</p>
+<p>To grant a loose tag:</p>
+<ol>
+<li>Type a tag in the foot row's field, or pick one from the project's with its button.</li>
+<li>Select <strong>Add Tag</strong>, or press Enter.</li>
+</ol>
+<h2 id="the-combat-log-section">The Combat Log section</h2>
+<p><strong>Combat Log</strong> shows the entity's combat log, newest first, as its project writes it. A click on an entry shows its hit's
+run through its pipeline and its steps (<a href="../../entities/combat-log.html">Entities: Combat Log</a>).</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

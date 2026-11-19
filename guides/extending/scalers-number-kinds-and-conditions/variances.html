@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Variances | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Variances | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.scalers-number-kinds-and-conditions.variances">
+<h1 id="variances">Variances</h1>
+
+<p>A variance varies a Randomized scaler's value, handed a roll from 0 to 1.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractVariance.html"><code>AbstractVariance</code></a>. Its protected <code>Read(number, carrier, fallback)</code> reads one of its numbers for the
+carrier, with itself as their owner.</p>
+<p>The roll comes from <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, once for each spec where the scaler's <strong>Roll Once Per Spec</strong> is on.</p>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vary(value, roll, carrier)</code></td>
+<td>The value varied by the roll.</td>
+</tr>
+<tr>
+<td><code>Lowest(value, carrier)</code>, <code>Highest(value, carrier)</code></td>
+<td>The range a tooltip shows.</td>
+</tr>
+<tr>
+<td><code>Initialize(carrier)</code></td>
+<td>It readies its numbers for a spec.</td>
+</tr>
+<tr>
+<td><code>Numbers()</code></td>
+<td>Its numbers with their roles, for an explanation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>A Randomized scaler's <strong>Variance</strong> offers every class derived from <code>AbstractVariance</code>. The picker shows
+<code>TwoDiceVariance</code> as <strong>Two Dice</strong>.</p>
+<h2 id="example">Example</h2>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Name = &quot;Two Dice&quot;, Description = &quot;Up or down by a share of the value, the middle likeliest, as two dice fall.&quot;)]
+    public class TwoDiceVariance : AbstractVariance
+    {
+        [Tooltip(&quot;The most it varies by either way, as a share of the value: 0.2 for 20%&quot;)]
+        [NumberMin(0f)] public ScalableFloat Share = 0.2f;
+
+        public override float Vary(float value, float roll, IAttributeImpactCarrier carrier)
+        {
+            // The roll through a triangle's inverse, from -1 to 1, the middle likeliest
+            float centred = roll &lt; 0.5f ? Mathf.Sqrt(2f * roll) - 1f : 1f - Mathf.Sqrt(2f * (1f - roll));
+            return value * (1f + centred * Read(Share, carrier, 0f));
+        }
+
+        public override float Lowest(float value, IAttributeImpactCarrier carrier) =&gt; value * (1f - Read(Share, carrier, 0f));
+        public override float Highest(float value, IAttributeImpactCarrier carrier) =&gt; value * (1f + Read(Share, carrier, 0f));
+        public override void Initialize(IAttributeImpactCarrier carrier) =&gt; Share?.Initialize(carrier);
+        public override IEnumerable&lt;(string Role, ScalableFloat Number)&gt; Numbers() { yield return (&quot;Share&quot;, Share); }
+    }
+}
+</code></pre>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

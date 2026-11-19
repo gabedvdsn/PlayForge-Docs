@@ -87,31 +87,14 @@
         <article data-uid="guide.services.process-and-sequence-logs">
 <h1 id="process-and-sequence-logs">Process and sequence logs</h1>
 
-<p>ProcessControl and task sequences have switches of their own that decide whether they say what they do, and most of what
+<p>ProcessControl and task sequences have switches of their own, which decide whether they say what they do. Most of what
 they say is information, which the level must let through to show.</p>
-<p><strong>ProcessControl</strong>, of the <strong>Processes</strong> system (<a href="../processes/logging.html">Processes: Logging</a>):</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Output Logs</strong>, off by default, logs each process registered and unregistered, the scene's processes it collects as
-it starts and the hierarchy it makes of them, and, as a warning, a change of state its rules don't cover.</li>
-<li><strong>Detailed Logs</strong>, on by default, adds to those while Output Logs is on: each process's handler, each process
-collected, and each process's state as it's queued, set and forced.</li>
-<li>A world of its own has the same switches, <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html#FarEmerald_PlayForge_ProcessWorld_OutputLogs"><code>ProcessWorld.OutputLogs</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html#FarEmerald_PlayForge_ProcessWorld_DetailedLogs"><code>ProcessWorld.DetailedLogs</code></a>; a scene's world's
-are its ProcessControl's.</li>
+<li><a href="process-and-sequence-logs/processcontrols-logs.html">ProcessControl's logs</a>: <strong>ProcessControl</strong> logs as the <strong>Processes</strong> system, by two switches (Processes: Logging)</li>
+<li><a href="process-and-sequence-logs/sequence-logs.html">Sequence logs</a>: <strong>Sequences</strong> log as the <strong>Sequences</strong> system (Task Sequences: Logging).</li>
+<li><a href="process-and-sequence-logs/debug-tool-logs.html">Debug tool logs</a>: <strong>Debug tools</strong> say what they find as information too</li>
 </ul>
-<p><strong>Sequences</strong>, of the <strong>Sequences</strong> system (<a href="../task-sequences/logging.html">Task Sequences: Logging</a>):</p>
-<ul>
-<li>A run that fails is logged as an error, with what it threw, unless its sequence's <code>WithErrorLogging(false)</code> says
-otherwise; a stage whose <code>OnException</code> hears a throw and lets it on logs it too, unless the stage's
-<code>WithErrorLogging(false)</code> says otherwise. A handler that throws, as an <code>OnComplete</code>, is logged as an error.</li>
-<li><code>WithInjectionLogging(true)</code>, on a sequence or a stage, logs each injection as it's applied: its kind, where it came
-from and the stage.</li>
-<li>A chain's <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceChain.html#FarEmerald_PlayForge_TaskSequenceChain_WithLogging_"><code>WithLogging(true)</code></a> logs its progress: each sequence it starts, finishes or skips, the conditions that fire,
-its repeats and its interruptions.</li>
-</ul>
-<p><strong>Debug tools</strong> say what they find as information too: <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogWeights_"><code>TagCache.LogWeights()</code></a>, of <strong>Tags</strong>; the Threshold Debugger
-effect worker, <a class="xref" href="../../api/FarEmerald.PlayForge.ThresholdDebuggerEffectWorker.html"><code>ThresholdDebuggerEffectWorker</code></a>, of <strong>Workers</strong>; and a queued <a class="xref" href="../../api/FarEmerald.PlayForge.LogAction.html"><code>LogAction</code></a>, of <strong>General</strong>.</p>
-<hr>
-<p><a href="log-levels.html">← Log levels</a> · <a href="index.html">Time, Input and Logging</a> · <a href="profiling.html">Profiling →</a></p>
 
 </article>
 

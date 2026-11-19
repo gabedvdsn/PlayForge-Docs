@@ -87,17 +87,33 @@
         <article data-uid="guide.task-sequences.running-one">
 <h1 id="running-one">Running one</h1>
 
-<ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_RegisterAndRun_"><code>RegisterAndRun(data)</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(sequence).With(data).Run()</code></a>, runs it as a process: it shows in the
-Debugger, pauses with ProcessControl, and ends with its scene.</li>
-<li><code>await sequence.Run(data, token)</code> runs it in place, from code that's async already, and <code>TryRun</code> says whether it
-finished.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_CreateRuntime_"><code>CreateRuntime</code></a> gives the runtime that runs it, to pause, resume, inject and read: its stage, its time, whether it
-finished, what it threw.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a> wraps a sequence, a chain or a synced runner as a process of a lifecycle and timing given.</li>
-</ul>
-<hr>
-<p><a href="clocks.html">← Clocks</a> · <a href="index.html">Task Sequences</a> · <a href="chains.html">Chains →</a></p>
+<p>You can run a sequence as a process, in place, or through a runtime of your own.</p>
+<table>
+<thead>
+<tr>
+<th>Way</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_RegisterAndRun_"><code>RegisterAndRun(data)</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(sequence).With(data).Run()</code></a></td>
+<td>Runs it as a process: it shows in the Debugger, pauses with ProcessControl, and ends with its scene.</td>
+</tr>
+<tr>
+<td><code>await sequence.Run(data, token)</code></td>
+<td>Runs it in place, from code that's async already. <code>TryRun</code> says whether it finished.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html#FarEmerald_PlayForge_TaskSequence_CreateRuntime_"><code>CreateRuntime</code></a></td>
+<td>Gives the runtime that runs it, to pause, resume, inject and read: its stage, its time, whether it finished, what it threw.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a></td>
+<td>Wraps a sequence, a chain or a synced runner as a process of a lifecycle and timing given.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

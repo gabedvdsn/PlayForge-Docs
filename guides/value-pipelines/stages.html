@@ -87,34 +87,37 @@
         <article data-uid="guide.value-pipelines.stages">
 <h1 id="stages">Stages</h1>
 
-<p>Each stage has a <strong>Label</strong>, the name a breakdown gives it, and <strong>Enabled</strong>, which lets the value pass it by.</p>
+<p>A pipeline's stages take the value in order, each giving what goes on to the next. Every stage has these fields:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Label</strong></td>
+<td>The name a breakdown gives it, as Amplification, Armor or Critical. Left empty, the breakdown says what the stage does.</td>
+</tr>
+<tr>
+<td><strong>Enabled</strong></td>
+<td>Off, the value passes it by.</td>
+</tr>
+</tbody>
+</table>
+<p>The stages PlayForge ships are below, and a project can write its own.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Multiply</strong>: the value times a number read for the hit. A bonus, × the caster's Damage Amplification read as 1 + x; a
-reduction, × the target's Damage Resistance read as what's left; an armor curve; a bonus that reads the target, as 75%
-more while the target is above 90% of its health.</li>
-<li><strong>Add</strong>: a number added to the value's size. A flat bonus of 10 makes a blow of −100 one of −110, and a heal of 50 one
-of 60.</li>
-<li><strong>Chance</strong>: on a chance, the value times a number: a critical hit. It rolls once for the hit, and the breakdown notes
-it. Its <strong>Roll</strong> makes it pseudo-random or lucky (<a href="../effects/requirements.html">Effects: Requirements</a>).</li>
-<li><strong>Clamp</strong>: the value's size kept between two numbers, its sign as it was.</li>
-<li><strong>Absorb</strong>: a loss taken first from another attribute of the one hit, as a barrier or a shield takes a blow before
-health. What it soaks comes off that attribute at the frame's end, and the rest goes on. An attribute with the
-Barrier role soaks the losses to the one it absorbs for with no stage at all (<a href="../attributes/index.html">Attributes</a>).</li>
-<li><strong>Block</strong> and <strong>Evade</strong>: a <strong>Chance</strong>, read as the effect lands, that stops it. Each rolls once, before anything
-of the effect lands, and where it comes up nothing of it does, its damage, tags, contained effects and on-hits, and
-its ticks aren't rolled again; the one hit hears Blocked or Evaded, and the dealer Hit Blocked or Hit Evaded. A
-defender brings one through an incoming modifier's Change Impact, as Tougher Times blocks the hits landing on its
-holder by a stacking curve of its stacks (<a href="../effects/workers.html#modifiers">Effects: Modifiers</a>). Its <strong>Stops</strong> says what it can stop:
-<strong>Losses</strong>, the default, an effect that lowers its attribute, an add below 0, a multiplier below 1 or an override
-below where it stands, so a heal lands past it unrolled; or <strong>Any Impact</strong>, heals and buffs too. As the hit
-commits, it passes the value on.</li>
-<li><strong>Execute</strong>: a hit that would leave the one hit with less than its <strong>Share</strong> of its <strong>Attribute</strong>'s base, the
-Health role's where it names none, takes the rest, as Culling Blade; the breakdown notes it.</li>
+<li><a href="stages/multiply.html">Multiply</a>: A <strong>Multiply</strong> stage multiplies the value by a number read for the hit.</li>
+<li><a href="stages/add.html">Add</a>: An <strong>Add</strong> stage adds a number to the value's size.</li>
+<li><a href="stages/chance.html">Chance</a>: A <strong>Chance</strong> stage multiplies the value by a number on a chance: a critical hit.</li>
+<li><a href="stages/clamp.html">Clamp</a>: A <strong>Clamp</strong> stage keeps the value's size between two numbers, its sign as it was.</li>
+<li><a href="stages/absorb.html">Absorb</a>: An <strong>Absorb</strong> stage takes a loss first from another attribute of the one hit, as a barrier or a shield takes a blow before health.</li>
+<li><a href="stages/block-and-evade.html">Block and Evade</a>: A <strong>Block</strong> or <strong>Evade</strong> stage is a <strong>Chance</strong>, read as the effect lands, that stops it.</li>
+<li><a href="stages/execute.html">Execute</a>: An <strong>Execute</strong> stage finishes off a hit's target, as Culling Blade.</li>
+<li><a href="stages/writing-your-own-stage.html">Writing your own stage</a>: A project writes its own stage by deriving from <code>AbstractValueStage</code> and overriding <code>Apply(value, in run)</code>.</li>
 </ul>
-<p>A project writes its own stage by deriving from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractValueStage.html"><code>AbstractValueStage</code></a> and overriding <code>Apply(value, in run)</code>. <code>run.Context</code>
-reads the hit's caster, target and level, as any number does, and <code>run.Note</code> notes what the stage did.</p>
-<hr>
-<p><a href="when-it-runs.html">← When it runs</a> · <a href="index.html">Value Pipelines</a> · <a href="a-typical-damage-pipeline.html">A typical damage pipeline →</a></p>
 
 </article>
 

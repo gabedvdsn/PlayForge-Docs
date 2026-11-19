@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Writing a targeting task | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Writing a targeting task | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.targeting-tasks.writing-a-targeting-task">
+<h1 id="writing-a-targeting-task">Writing a targeting task</h1>
+
+<p>A targeting task of a game's own picks an activation's target its own way, as a click near an enemy.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html"><code>AbstractTargetingAbilityTask</code></a> (from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html"><code>AbstractAbilityRelatedTask</code></a>). It isn't marked <code>[Serializable]</code>, so
+mark a task of your own.</p>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html"><code>AbstractGasTargetingAbilityTask</code></a> adds <strong>Requirements</strong> (<a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html"><code>AvoidRequireTagGroup</code></a>), which an entity's applied tags must
+meet.</p>
+<p>Its helpers:</p>
+<ul>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataTarget_"><code>TryGetDataTarget(data, out target)</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataPoint_"><code>TryGetDataPoint(data, out point)</code></a>: a target or a point the activation's data
+holds already, as an AI's request does.</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WaitForPointerPress_"><code>WaitForPointerPress(button, token)</code></a>: waits for a press of the game's input, <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a>. It gives the ray it
+aims along, or null with nothing to aim through.</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_PressWords_"><code>PressWords(button)</code></a>: &quot;Click&quot;, &quot;Right-click&quot; or &quot;Middle-click&quot;, for a <code>Prompt</code>.</li>
+</ul>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Activate(data, token)</code></td>
+<td>Required: it picks, and files the pick's targeting packet with <code>data.SetTargetingPacket(Tags.TARGET, packet)</code>, or several with <code>data.SetTargetingPackets(Tags.TARGET, targets)</code>, the first the primary. Or it calls <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WhenTargetingInvalid_"><code>WhenTargetingInvalid(data)</code></a>.</td>
+</tr>
+<tr>
+<td><code>Prompt</code></td>
+<td>While the task waits for the player: the words a game shows, as &quot;Click a point on the ground&quot;. Null for a task that doesn't wait for the player.</td>
+</tr>
+<tr>
+<td><code>TargetIsValid(...)</code></td>
+<td>Which targets it takes: an <a class="xref" href="../../../api/FarEmerald.PlayForge.ITarget.html"><code>ITarget</code></a>, a <a class="xref" href="../../../api/FarEmerald.PlayForge.ProcessHierarchy.HierarchyNode.html#FarEmerald_PlayForge_ProcessHierarchy_HierarchyNode_GameObject"><code>GameObject</code></a>, a <code>Transform</code> or a point.</td>
+</tr>
+<tr>
+<td><code>WhenTargetingInvalid(data)</code></td>
+<td>Marks the targeting failed. With <strong>Break Runtime On Invalid</strong> on (<a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_BreakRuntimeOnInvalid"><code>BreakRuntimeOnInvalid</code></a>), it throws <code>OperationCanceledException</code>, which ends the activation as cancelled.</td>
+</tr>
+<tr>
+<td><code>ConnectInputHandler(data)</code>, <code>DisconnectInputHandler(data)</code></td>
+<td>As it's prepared, to hook an input handler of its own, and as it's cleaned, to unhook it. A false from <code>ConnectInputHandler</code> fails the targeting.</td>
+</tr>
+<tr>
+<td><code>IsCriticalSection</code></td>
+<td>True: targeting holds the activation's claim.</td>
+</tr>
+</tbody>
+</table>
+<p>What follows a task's pick:</p>
+<ol>
+<li>The ability's components hear it in <code>CanTakeTarget</code>, and may refuse it (<a href="../components.html">Components</a>).</li>
+<li>The pick resolves. The entity each packet under <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET"><code>Tags.TARGET</code></a>, or the ability's implicit tag, points at is filed
+under <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a>, where tasks and checks find it.</li>
+<li>Where the pick is an entity, the caster's checks and the components' <code>CanStart</code> are asked again, then the Target
+Checks on the target.</li>
+<li>Then come the wind-ups, the cost and the first stage.</li>
+</ol>
+<h2 id="in-the-picker">In the picker</h2>
+<p>An ability's <strong>Targeting</strong> offers every class derived from <code>AbstractTargetingAbilityTask</code>
+(<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>). The picker shows <code>ClickNearestEnemyTargetTask</code>
+as <strong>Click Nearest Enemy</strong>.</p>
+<h2 id="example">Example</h2>
+<p>The player clicks the ground, and the enemy nearest the click is the target:</p>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(&quot;Picked&quot;, Description = &quot;The player clicks the ground, and the enemy nearest the click is the target.&quot;)]
+    public class ClickNearestEnemyTargetTask : AbstractTargetingAbilityTask
+    {
+        [Tooltip(&quot;How far from the click an enemy may stand, read at the ability's level&quot;)]
+        [NumberMin(0f)] public ScalableFloat Radius = 2f;
+
+        [Tooltip(&quot;The layers the click's ray hits&quot;)]
+        public LayerMask Ground = ~0;
+
+        [Tooltip(&quot;The pointer button that picks: 0 the primary, 1 the secondary, 2 the middle&quot;)]
+        public int Button;
+
+        public override string Prompt =&gt; $&quot;{PressWords(Button)} near an enemy&quot;;
+
+        public override async UniTask Activate(AbilityDataPacket data, CancellationToken token)
+        {
+            // An AI's activation hands its target: take it rather than wait for a click
+            if (TryGetDataTarget(data, out var handed))
+            {
+                if (TargetIsValid(handed)) data.SetTargetingPacket(Tags.TARGET, handed.GetTargetingPacket());
+                else WhenTargetingInvalid(data);
+                return;
+            }
+
+            var ray = await WaitForPointerPress(Button, token);
+            if (ray == null || !Physics.Raycast(ray.Value, out var hit, Mathf.Infinity, Ground))
+            {
+                WhenTargetingInvalid(data);
+                return;
+            }
+
+            var caster = data.EffectOrigin.GetSource();
+            var sides = data.EffectOrigin.GetAffiliation();
+            var near = new List&lt;ITarget&gt;();
+            ForgeEntities.Within(hit.point, Read(Radius, data), true, near, caster, false);
+
+            ITarget best = null;
+            float bestDistance = float.MaxValue;
+            foreach (var each in near)
+            {
+                if (each.IsDead || !ForgeEntities.Takes(EAffiliationFilter.Enemies, caster, sides, each) || !TargetIsValid(each)) continue;
+                float distance = ForgeEntities.Distance(each, hit.point, true);
+                if (distance &gt;= bestDistance) continue;
+                best = each;
+                bestDistance = distance;
+            }
+
+            if (best == null) WhenTargetingInvalid(data);
+            else data.SetTargetingPacket(Tags.TARGET, best.GetTargetingPacket());
+        }
+    }
+}
+</code></pre>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

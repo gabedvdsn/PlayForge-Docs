@@ -87,17 +87,20 @@
         <article data-uid="guide.abilities.local-data">
 <h1 id="local-data">Local Data</h1>
 
-<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind: Float,
-Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your
-own, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour, which the row's kinds offer beside
-PlayForge's. A row saves its own value alone. Object fields take project assets, not scene objects. Code reads a value by
-its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>, and a number, a Float or an Int, which can
-scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
-<p>Code reads a value with <code>ability.TryGetLocalData(key, out var data)</code>. The first row with that key wins. A tag check of
-your own, extending <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html"><code>AbstractTagValidationRule</code></a>, reads its tag's value with <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html#FarEmerald_PlayForge_AbstractTagValidationRule_GetValue_"><code>GetValue</code></a>: the tag's weight on the entity
-it checks or, where that entity holds none of it, the ability's Local Data under the tag.</p>
-<hr>
-<p><a href="workers.html">← Workers</a> · <a href="index.html">Abilities</a> · <a href="used-by.html">Used By →</a></p>
+<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind.</p>
+<p>The kinds are:</p>
+<ul>
+<li>PlayForge's: Float, Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or
+ScriptableObject.</li>
+<li>A kind of your own: a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour. The row's kinds
+offer it beside PlayForge's.</li>
+</ul>
+<p>A row saves its own value alone. Object fields take project assets, not scene objects.</p>
+<p>Code reads a value with <code>ability.TryGetLocalData(key, out var data)</code>. The first row with that key wins.</p>
+<p>Code then reads the value by its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>. A number, a
+Float or an Int, which can scale, reads with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
+<p>A tag check of your own, extending <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html"><code>AbstractTagValidationRule</code></a>, reads its tag's value with <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagValidationRule.html#FarEmerald_PlayForge_AbstractTagValidationRule_GetValue_"><code>GetValue</code></a>. The value is the
+tag's weight on the entity it checks or, where that entity holds none of it, the ability's Local Data under the tag.</p>
 
 </article>
 

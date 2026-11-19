@@ -87,14 +87,52 @@
         <article data-uid="guide.effects.levels">
 <h1 id="levels">Levels</h1>
 
-<p>What the effect does, level by level. Its line, which the effect's header and The Forge's Summary column show, is its
-first impact by level, an add signed, as &quot;-10/-20/-30 Health&quot; or &quot;+20 Armor&quot;, at its provider's levels where it's
-linked to one and at levels 1 to 5 where it isn't. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html#FarEmerald_PlayForge_Editor_ForgeAssetLines_Of_"><code>ForgeAssetLines.Of(asset)</code></a> gives any asset's line in the
-editor.</p>
-<p>The whole reading is code's, for a tooltip or a game's own screen: <code>AbilityInspector.BuildEffectSeries(effect, 1, 5, caster, target)</code> reads the effect at levels 1 to 5 against a caster and a target, either of which may be null. Each
-impact gives its <code>Magnitude</code> and <code>Total</code> at each level, its <code>Line</code>, as its field's summary reads it, its <code>Parts</code> at each
-level, and what it <code>Needs</code>; the effect gives its <code>Duration</code>, <code>Ticks</code>, <code>Interval</code>, <code>Chance</code> and <code>Contained</code> effects, and
-<code>Describe(level)</code> says what it does at a level, an impact to a line: &quot;-15 Health each tick, 12 ticks over 12 s&quot;.</p>
+<p>The effect's levels say what it does, level by level.</p>
+<p>Its line is its first impact by level, with an add signed, as &quot;-10/-20/-30 Health&quot; or &quot;+20 Armor&quot;. The effect's header
+and The Forge's Summary column show it.</p>
+<p>The line reads at its provider's levels where it's linked to one, and at levels 1 to 5 where it isn't.
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html#FarEmerald_PlayForge_Editor_ForgeAssetLines_Of_"><code>ForgeAssetLines.Of(asset)</code></a> gives any asset's line in the editor.</p>
+<p>The whole reading is code's, for a tooltip or a game's own screen.
+<a class="xref" href="../../api/FarEmerald.PlayForge.AbilityInspector.html#FarEmerald_PlayForge_AbilityInspector_BuildEffectSeries_"><code>AbilityInspector.BuildEffectSeries(effect, 1, 5, caster, target)</code></a> reads the effect at levels 1 to 5 against a caster
+and a target, either of which may be null.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Magnitude</code>, <code>Total</code></td>
+<td>Each impact's magnitude and total at each level.</td>
+</tr>
+<tr>
+<td><code>Line</code></td>
+<td>Each impact's line, as its field's summary reads it.</td>
+</tr>
+<tr>
+<td><code>Parts</code></td>
+<td>Each impact's parts at each level.</td>
+</tr>
+<tr>
+<td><code>Needs</code></td>
+<td>What each impact needs.</td>
+</tr>
+<tr>
+<td><code>Duration</code>, <code>Ticks</code>, <code>Interval</code>, <code>Chance</code></td>
+<td>The effect's duration, ticks, interval and chance.</td>
+</tr>
+<tr>
+<td><code>Contained</code></td>
+<td>The effect's contained effects.</td>
+</tr>
+<tr>
+<td><code>Describe(level)</code></td>
+<td>What the effect does at a level, an impact to a line: &quot;-15 Health each tick, 12 ticks over 12 s&quot;.</td>
+</tr>
+</tbody>
+</table>
 <p><a class="xref" href="../../api/FarEmerald.PlayForge.NumberTrace.html#FarEmerald_PlayForge_NumberTrace_Of_"><code>NumberTrace.Of(number, context)</code></a> explains any one number the same way, each part with what it read and what it gave:</p>
 <pre><code>Health as it lands, level 2:
 -1 × (Caster's Attack Damage + 80 if Caster's Combo Charges &gt; 0, else 0) = -100
@@ -104,11 +142,9 @@ level, and what it <code>Needs</code>; the effect gives its <code>Duration</code
       When: Caster's Combo Charges &gt; 0: doesn't hold
       False: 0 = 0
 </code></pre>
-<p>A read given no caster or no target gives, for a part that reads one, what its field falls back to, and says what it
-needs, as &quot;the target&quot;. A kind or a condition of your own adds its parts by overriding <code>Explain</code>:
-<code>trace.Add(Min, context, this, &quot;Min&quot;)</code>.</p>
-<hr>
-<p><a href="impact.html">← Impact</a> · <a href="index.html">Effects</a> · <a href="cues.html">Cues →</a></p>
+<p>A read given no caster or no target gives, for a part that reads one, what its field falls back to. It says what it
+needs, as &quot;the target&quot;.</p>
+<p>A kind or a condition of your own adds its parts by overriding <code>Explain</code>: <code>trace.Add(Min, context, this, &quot;Min&quot;)</code>.</p>
 
 </article>
 

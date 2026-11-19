@@ -87,32 +87,14 @@
         <article data-uid="guide.entities.effect-journal">
 <h1 id="effect-journal">Effect Journal</h1>
 
-<p>An <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> keeps the life of each effect on the entities it listens to: <code>Listen(gas)</code> one, <code>Follow(list)</code>
-these and no others, <code>Forget(gas)</code> one, and <code>Dispose()</code> all; what it wrote stays. Its <strong>Entries</strong> run oldest first, its
-last <strong>Keep</strong> of them, 500 unless it's told; <strong>Of(effect)</strong> and <strong>On(entity)</strong> filter them, <strong>Written</strong> counts every one
-it wrote, and <strong>Wrote</strong> is raised as each is. It records only while it listens, and an entity no journal listens to pays
-nothing: the Creator Lab's bottom panel reads one, and the Debugger's Timeline.</p>
-<p>Each entry is an <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournalEntry.html"><code>EffectJournalEntry</code></a>: its <strong>Kind</strong>, its <strong>Time</strong> and <strong>Frame</strong>, the <strong>Entity</strong> it happened on, the
-<strong>Effect</strong>, its <strong>Spec</strong> and its <strong>Source</strong>, and what its kind tells:</p>
+<p>An <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> keeps the life of each effect on the entities it listens to. The Creator Lab's bottom panel reads
+one, and so does the Debugger's Timeline.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Applied</strong>: the effect landed, with its first impact's number read as it landed, part by part (<strong>Trace</strong>, a
-<a class="xref" href="../../api/FarEmerald.PlayForge.NumberTrace.html"><code>NumberTrace</code></a>).</li>
-<li><strong>Refused</strong>: it didn't, and its <strong>Refusal</strong> says why: the entity is <strong>Dead</strong>, its <strong>Affiliation</strong> policy doesn't take
-the entity, its <strong>Requirements</strong> don't hold, an <strong>Immunity</strong> names it, its <strong>Chance</strong> missed, a Block or Evade
-<strong>Stopped</strong> it, or it was asked for again inside its own application (<strong>Cycle</strong>). Callbacks hear each as
-<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectRefused"><code>OnEffectRefused(spec, refusal)</code></a>.</li>
-<li><strong>Ticked</strong>: its ticks executed, <strong>Ticks</strong> of them.</li>
-<li><strong>Impact</strong>: a change it made, to its <strong>Attribute</strong>, by its <strong>Change</strong>, with its <strong>Breakdown</strong> through its pipeline.</li>
-<li><strong>Removed</strong>: it came off.</li>
-<li><strong>Worker</strong>: one of its workers heard one of its moments, or one of its dealer's impact workers ran for its hit: the
-<strong>Worker</strong>, its <strong>WorkerName</strong>, the <strong>Hook</strong> (Application, Tick, Removal or Impact), the <strong>Side</strong> it ran on (the
-<strong>Target</strong>, or the <strong>Dealer</strong> for a hit, as <a href="../workers/the-map.html">Workers: The map</a> says), and the <strong>Actions</strong> it queued,
-each <strong>Queued</strong>, <strong>Ran</strong> or <strong>Dropped</strong>.</li>
+<li><a href="effect-journal/listening.html">Listening</a>: An effect journal records only while it listens, and an entity no journal listens to pays nothing.</li>
+<li><a href="effect-journal/reading-the-journal.html">Reading the journal</a>: An effect journal keeps its entries in order, and counts each one it writes.</li>
+<li><a href="effect-journal/journal-entries.html">Journal entries</a>: Each entry in an effect journal is an <code>EffectJournalEntry</code>.</li>
 </ul>
-<p>An entry reads as a line: &quot;Burn landed on Target, from Caster&quot;, &quot;Poison refused by Target: immunity&quot;, &quot;Burn's Noting heard
-it tick on Target, queuing Ticked&quot;.</p>
-<hr>
-<p><a href="combat-log.html">← Combat Log</a> · <a href="index.html">Entities</a> · <a href="local-data.html">Local Data →</a></p>
 
 </article>
 

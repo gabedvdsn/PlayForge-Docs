@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Modifiers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Modifiers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.workers.modifiers">
+<h1 id="modifiers">Modifiers</h1>
+
+<p><strong>Modifiers</strong>, under On Hit, change other effects as they're made, for that application alone.</p>
+<p>For example: a boon that adds a burst to every Chill its holder applies, a ring that makes its holder's debuffs last
+longer, or a cloak that halves the stuns landing on its wearer.</p>
+<p>An effect's modifiers hold on the one it's on while it lasts. An item's, an ability's and an entity's modifiers are the
+same entries.</p>
+<p>Each entry is a rule of its own, or names a shared <strong>Effect Modifier</strong> asset (<strong>Create → PlayForge → Effect Modifier</strong>),
+whose rule it uses in its place. A rule has:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Direction</strong></td>
+<td><strong>Outgoing</strong>: its holder's own effects as it applies them, on another or itself.<br><strong>Incoming</strong>: the effects landing on its holder, whoever applies them.<br><strong>Both</strong>.</td>
+</tr>
+<tr>
+<td><strong>Effect Tags</strong></td>
+<td>The effects it changes: each with one of these among its asset tag and context tags, or a child of one. None picks every effect.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td>A condition read as the effect is made, its caster the caster and its target the target.</td>
+</tr>
+<tr>
+<td><strong>Changes</strong></td>
+<td>What it changes, each change of a kind.</td>
+</tr>
+</tbody>
+</table>
+<p>With <strong>Effect Tags</strong>, <code>Status.Chill</code> picks every Chill.</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Add Contained Effect</strong></td>
+<td>An effect that lands as this one lands, each tick, or as it ends. It lands on the target or, with <strong>Lands On</strong> set to Caster, on its caster.</td>
+</tr>
+<tr>
+<td><strong>Change Impact</strong></td>
+<td>A Value Pipeline stage its impacts on an attribute go through, of some impact types where it names any.</td>
+</tr>
+<tr>
+<td><strong>Add Overflow Effect</strong></td>
+<td>An effect that lands as an application would take it past its most stacks, on the target or its caster as its <strong>Lands On</strong> says. <strong>Clear Stacks</strong> takes its stacks off with it.</td>
+</tr>
+<tr>
+<td><strong>Change Duration</strong></td>
+<td>Its time multiplied, then more added. Its ticks spread over the time it has.</td>
+</tr>
+<tr>
+<td><strong>Change Stacks</strong></td>
+<td>More it can hold at most, where a stack bound of its own sets a most, and more a landing gives.</td>
+</tr>
+<tr>
+<td><strong>Change Chance to Apply</strong></td>
+<td>Its chance multiplied, then added to.</td>
+</tr>
+<tr>
+<td><strong>Grant Tags</strong></td>
+<td>More tags it grants while it's on.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Under Change Impact, an impact that commits, a hit or a tick, runs the stage after its own pipeline, and its breakdown
+keeps it.</li>
+<li>A lasting impact, which no pipeline runs on, takes the stage on its magnitude, as Weak's −30% made −40%.</li>
+<li>Add Overflow Effect needs a stack bound of the effect's own to overflow.</li>
+<li>An effect a rule adds, and what that effect contains, isn't changed by that rule again. So a Chill that adds a Chill
+adds one.</li>
+<li>Two of an item modify twice.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

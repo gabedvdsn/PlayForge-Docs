@@ -87,12 +87,12 @@
         <article data-uid="guide.extending.tags-in-code">
 <h1 id="tags-in-code">Tags in code</h1>
 
-<p>A game's code names tags for its kinds to read: a data key, an event, a state its components grant. This section covers
-what a kind of a game's own does with tags; <a href="../tags/index.html">Tags</a> covers tags in full.</p>
+<p>A game's code names tags for its kinds to read: a data key, an event, a state its components grant.</p>
+<p>This section covers what a kind of a game's own does with tags; <a href="../tags/index.html">Tags</a> covers tags in full.</p>
 <ul>
-<li><strong>A tag field's picker</strong> offers the tags of the contexts its <code>[ForgeTagContext(...)]</code> names: PlayForge's
+<li><strong>A tag field's picker</strong> offers the tags of the contexts its <code>[ForgeTagContext(...)]</code> names. They're PlayForge's
 (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_Granted"><code>ForgeContext.Granted</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_Event"><code>ForgeContext.Event</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_DataKey"><code>ForgeContext.DataKey</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_ImpactType"><code>ForgeContext.ImpactType</code></a>,
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_ContextTag"><code>ForgeContext.ContextTag</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_AssetTag"><code>ForgeContext.AssetTag</code></a> and the rest) or a project's own, by name.</li>
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_ContextTag"><code>ForgeContext.ContextTag</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeContext.html#FarEmerald_PlayForge_ForgeContext_AssetTag"><code>ForgeContext.AssetTag</code></a> and the rest), or a project's own, by name.</li>
 <li><strong>A tag written in code</strong> is <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></a>, the tag the editor's New Tag makes of the path.
 <code>[ForgeTagExposed(context)]</code> on a static <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field or property offers it to the pickers of that context.</li>
 <li><strong>An event</strong> goes to an entity with <code>entity.SendGameplayEvent(eventTag, data)</code>, which its abilities' triggers and Wait
@@ -100,8 +100,6 @@ For Event tasks hear. A game's own events are tags of the Event context.</li>
 <li><strong>A tag's weight</strong> is <code>entity.GetTagWeight(tag)</code>. An absent tag's weight is -1, so a test for one is <code>&gt; 0</code>.</li>
 <li><strong>A tag is shown by its <code>ToString()</code></strong>, its display name.</li>
 </ul>
-<hr>
-<p><a href="saving-a-games-own-data.html">← Saving a game's own data</a> · <a href="index.html">Extending PlayForge</a> · <a href="the-editor.html">The editor →</a></p>
 
 </article>
 

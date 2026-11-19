@@ -87,22 +87,48 @@
         <article data-uid="guide.spreadsheets">
 <h1 id="spreadsheets">Spreadsheets</h1>
 
-<p>Games balance in spreadsheets: a column of damage by level, a row of stats for each item. PlayForge writes its numbers
-by level and its items' stats to CSV, which any spreadsheet opens, and reads a sheet back, listing each change before it
-makes it. The Forge's window menu (its tab's ⋮) holds them under <strong>Spreadsheets</strong>:</p>
-<ul>
-<li><strong>Export Numbers…</strong> writes a sheet of every number by level in the active Forge Project; <strong>Export Selected
-Numbers…</strong> the selected assets' alone.</li>
-<li><strong>Export Item Stats…</strong> writes a sheet of every item's stats; <strong>Export Selected Item Stats…</strong> the selected items'.</li>
-<li><strong>Import…</strong> reads a sheet back, of either kind, and opens the import window.</li>
-</ul>
-<p>A sheet is UTF-8, marked so, as Excel and Google Sheets open it. In code: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_NumbersOf_"><code>ForgeSpreadsheets.NumbersOf(assets)</code></a> and
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_StatsOf_"><code>StatsOf(items)</code></a> give a sheet's text, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_"><code>ForgeSpreadsheets.Read(csv)</code></a> what it would change.</p>
+<p>Games are balanced in spreadsheets: a column of damage by level, a row of stats for each item. PlayForge writes its
+numbers by level and its items' stats to CSV, which any spreadsheet opens. It also reads a sheet back, and lists each
+change before it makes it.</p>
+<p>The Forge's window menu (its tab's ⋮) holds these commands under <strong>Spreadsheets</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Export Numbers…</strong></td>
+<td>Writes a sheet of every number by level in the active Forge Project.</td>
+</tr>
+<tr>
+<td><strong>Export Selected Numbers…</strong></td>
+<td>Writes a sheet of the selected assets' numbers alone.</td>
+</tr>
+<tr>
+<td><strong>Export Item Stats…</strong></td>
+<td>Writes a sheet of every item's stats in the active Forge Project.</td>
+</tr>
+<tr>
+<td><strong>Export Selected Item Stats…</strong></td>
+<td>Writes a sheet of the selected items' stats.</td>
+</tr>
+<tr>
+<td><strong>Import…</strong></td>
+<td>Reads a sheet of either kind back, and opens the import window.</td>
+</tr>
+</tbody>
+</table>
+<p>A sheet is UTF-8, marked as such with a byte order mark, so Excel and Google Sheets open it as UTF-8.</p>
+<p>In code, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_NumbersOf_"><code>ForgeSpreadsheets.NumbersOf(assets)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_StatsOf_"><code>StatsOf(items)</code></a> give a sheet's text.
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html#FarEmerald_PlayForge_Editor_ForgeSpreadsheets_Read_"><code>ForgeSpreadsheets.Read(csv)</code></a> gives what a sheet would change.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="numbers-by-level.html">Numbers by level</a>: A row for each number whose kind is a <strong>Table</strong> or <strong>By Level</strong> (Scalers), of every asset, and of each Scaler asset, whose table its fields share</li>
-<li><a href="item-stats.html">Item stats</a>: A row for each item, and a column for each attribute its granted effects add to</li>
-<li><a href="reading-a-sheet-back.html">Reading a sheet back</a>: A row names its asset both ways: by its <strong>asset tag</strong>, which stays as files move and are renamed, and by its <strong>name</strong>, which reads well in a spreadsheet.</li>
+<li><a href="numbers-by-level.html">Numbers by level</a>: A sheet of numbers by level has a row for each number whose kind is a <strong>Table</strong> or <strong>By Level</strong> (Scalers).</li>
+<li><a href="item-stats.html">Item stats</a>: A sheet of item stats has a row for each item, and a column for each attribute its granted effects add to</li>
+<li><a href="reading-a-sheet-back.html">Reading a sheet back</a>: Reading a sheet back finds the asset each row names, and lists the changes the sheet makes before it makes them.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheets.html">ForgeSpreadsheets</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeSpreadsheetWindow.html">ForgeSpreadsheetWindow</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SpreadsheetChange.html">SpreadsheetChange</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.SpreadsheetImport.html">SpreadsheetImport</a>.</p>

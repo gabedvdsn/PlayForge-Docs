@@ -87,13 +87,16 @@
         <article data-uid="guide.cues.pooling">
 <h1 id="pooling">Pooling</h1>
 
-<p>A Prefab cue with <strong>Pooled</strong> takes its objects from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html"><code>ForgeCuePool</code></a> and gives them back as its cue ends, a burst's after
-its Lifetime, in place of making and destroying one each time; the pool makes <strong>Preallocate</strong> of them ahead as the cue
-first plays. An <a class="xref" href="../../api/FarEmerald.PlayForge.IPooledCue.html"><code>IPooledCue</code></a> on the prefab is told as it's taken and as it's given back, to reset it.</p>
-<p>A Process cue with <strong>Pooled</strong> does the same through <a class="xref" href="../../api/FarEmerald.PlayForge.CuePoolInstantiator.html"><code>CuePoolInstantiator</code></a>, the instantiator its process's registration
-gives: each object comes from the pool, placed where the cue's packet says, and goes back as its process ends.</p>
-<hr>
-<p><a href="raised.html">← Raised</a> · <a href="index.html">Cues</a> · <a href="data-packets.html">Data packets →</a></p>
+<p>A Prefab cue with <strong>Pooled</strong> takes its objects from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCuePool.html"><code>ForgeCuePool</code></a> and gives them back, in place of making and
+destroying one each time.</p>
+<ul>
+<li>It gives an object back as its cue ends, or a burst's after its Lifetime.</li>
+<li>The pool makes <strong>Preallocate</strong> of them ahead, as the cue first plays.</li>
+<li>An <a class="xref" href="../../api/FarEmerald.PlayForge.IPooledCue.html"><code>IPooledCue</code></a> on the prefab is told as it's taken and as it's given back, to reset it.</li>
+</ul>
+<p>A Process cue with <strong>Pooled</strong> does the same through <a class="xref" href="../../api/FarEmerald.PlayForge.CuePoolInstantiator.html"><code>CuePoolInstantiator</code></a>, the instantiator its process's
+registration gives. Each object comes from the pool, placed where the cue's packet says, and goes back as its process
+ends.</p>
 
 </article>
 

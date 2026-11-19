@@ -87,83 +87,45 @@
         <article data-uid="guide.effects.workers">
 <h1 id="workers">Workers</h1>
 
-<p>Effect workers react to this effect's own events. A worker can act when the effect is applied, when it ticks, when it
-is removed, and when it deals a change to an attribute (<a href="../workers/index.html">Workers</a> maps each, and on whose side it runs). Workers return actions, which run at the end of the frame. An
-Instant effect runs its apply and remove workers within its one application.</p>
-<p>A worker can also answer numbers: a magnitude of the Worker kind asks the effect's workers for a value under a key,
-and one that implements <a class="xref" href="../../api/FarEmerald.PlayForge.INumberWorker.html"><code>INumberWorker</code></a> answers, as the <strong>Attribute Change</strong> worker answers how much health the target
-has lost since the effect began. What a worker keeps for one application of its effect goes in
-<code>ctx.GetState&lt;T&gt;(this)</code>, since the worker itself is shared by every application
-(<a href="../scalers/asking-a-worker.html">Scalers: Asking a worker</a>).</p>
-<p><strong>Worker Group</strong>, after them, gives the one the effect is on more workers while it lasts, as an item's group does while
-it's equipped: attribute workers, as a debuff that changes how its target takes damage; impact, tag and
-analysis workers, as Ice Blast's debuff shattering its target as its Health falls below 13% by a Threshold. They come
-back as it goes. Two of the effect on one target give the group once, and the last of them to go takes it back. An
-Instant effect doesn't last, so its group does nothing.</p>
-<h2 id="on-hit">On Hit</h2>
-<p><strong>On Hit</strong>, above the workers, holds the effects the hits of the one this effect is on apply while it lasts: a
-poisoned blade, a boon's Weak. Its entries are an item's: an attribute, the effects, to the one hit or the
-holder, only on a kill, impact types and a condition (<a href="../items/workers.html#on-hit">Items: On Hit</a>). An Instant effect doesn't last, so
-its On Hit does nothing. Another effect that replaces it under its tag takes it off, and a load puts it back once.</p>
-<p><strong>Proc Coefficient</strong>, in Impact, is what the effect's own hits carry for On Hit effects: theirs scale their chance
-and their duration by it, so a damage over time at 0.25 sets them off a quarter as often, for a quarter as long, and 0
-sets nothing off. With <strong>Own Proc Coefficient</strong> off, its ability's stands, or else 1, and Proc Coefficient is hidden.</p>
-<p>An effect has no lifesteal of its own: what its hits heal its caster is the caster's <strong>Lifesteal</strong>, the attribute
-the Lifesteal worker names as its Share, which the worker heals by, the one the project gives every entity or the
-caster's own (<a href="../workers/lifesteal.html">Workers: Lifesteal</a>). For hits that steal more, an effect raises its caster's Lifesteal
-while they should: a lasting effect of +0.3 Lifesteal whose <strong>Removal</strong> condition takes it off, as a charged attack's buff
-comes off as its last charge is spent. The heal is a gain like any other, so Healing Received scales it, and damage a
-return sends back heals nothing.</p>
-<h2 id="resolve-order">Resolve Order</h2>
-<p>The project's <strong>Resolve Order</strong>, under Forge Project in Project Settings → PlayForge, decides the order an area's
-effects land on those it takes, so specific behaviour can be coded, as a totem whose aura keeps its allies alive
-resolving after them. Each entry is a <strong>Tag</strong> and an <strong>Order</strong>: one carrying the tag, or one under it, resolves at its
-Order, lower first, and one carrying none of the entries' tags at 0. One carrying several takes the first entry it
-matches, so the list's order is its precedence. An entity carries a tag on its identity, as a totem always does, or
-while something grants it, as an aura can grant its holder one while it holds. The area's own order breaks ties.</p>
-<p>Apply Effects and Apply/Remove Effects land on an ability's targets in it, though the targeting keeps its own order and
-its primary target; an effect's <strong>Area</strong> component lands on its target and those it takes in it, its target among them; and an
-aura puts its effect on those that came near in it. The tasks' and the Area's <strong>Use Resolve Order</strong>, on by default,
-turns it off for that one. Code reads it through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeResolveOrder.html"><code>ForgeResolveOrder</code></a>: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeResolveOrder.html#FarEmerald_PlayForge_ForgeResolveOrder_OrderOf_"><code>OrderOf(target)</code></a>, <code>Sort(targets)</code>, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeResolveOrder.html#FarEmerald_PlayForge_ForgeResolveOrder_TargetsOf_"><code>TargetsOf(data)</code></a> for an activation's targets in order.</p>
-<p>A death waits for its entity's end of frame, and an aura comes off a dead holder at its next check or as the holder
-ends, so one area's hits resolve together: a blow that kills the totem doesn't take its aura off the hero the same
-explosion strikes next. The order matters for what changes as each lands, as an effect that lands on the caster with
-each hit or a transfer.</p>
-<h2 id="modifiers">Modifiers</h2>
-<p><strong>Modifiers</strong>, under On Hit, change other effects as they're made, for that application alone: a boon that adds
-a burst to every Chill its holder applies, a ring that makes its holder's debuffs last longer, a cloak that halves the
-stuns landing on its wearer. An effect's hold on the one it's on while it lasts; an item's, an ability's and an entity's
-modifiers are the same entries. Each entry is a rule of its own, or names a shared <strong>Effect Modifier</strong> asset (<strong>Create →
-PlayForge → Effect Modifier</strong>), whose rule it uses in its place.</p>
-<p>A rule has:</p>
+<p>The Workers section holds what runs for the effect beside its impacts. It also covers the project's resolve order.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="workers/effect-workers.html">Effect workers</a></td>
+<td>React to this effect's own events.</td>
+</tr>
+<tr>
+<td><a href="workers/worker-group.html">Worker Group</a></td>
+<td>Gives the one the effect is on more workers while it lasts.</td>
+</tr>
+<tr>
+<td><a href="workers/on-hit.html">On Hit</a></td>
+<td>Holds the effects that the hits of the one this effect is on apply while it lasts.</td>
+</tr>
+<tr>
+<td><a href="workers/modifiers.html">Modifiers</a></td>
+<td>Change other effects as they're made.</td>
+</tr>
+<tr>
+<td><a href="workers/resolve-order.html">Resolve Order</a></td>
+<td>The order an area's effects land on those it takes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Direction</strong>: <strong>Outgoing</strong>, its holder's own effects as it applies them, on another or itself; <strong>Incoming</strong>, the
-effects landing on its holder, whoever applies them; or <strong>Both</strong>.</li>
-<li><strong>Effect Tags</strong>: the effects it changes, each with one of these among its asset tag and context tags, or a child of
-one, so <code>Status.Chill</code> picks every Chill. None picks every effect.</li>
-<li><strong>When</strong>: a condition read as the effect is made, its caster the caster and its target the target.</li>
-<li><strong>Changes</strong>, each of a kind:
-<ul>
-<li><strong>Add Contained Effect</strong>: an effect that lands as this one lands, each tick, or as it ends, on the target or, with
-<strong>Lands On</strong> set to Caster, on its caster.</li>
-<li><strong>Change Impact</strong>: a Value Pipeline stage its impacts on an attribute go through, of some impact types where it
-names any. An impact that commits, a hit or a tick, runs it after its own pipeline, and its breakdown keeps it; a
-lasting impact, which no pipeline runs on, takes it on its magnitude, as Weak's −30% made −40%.</li>
-<li><strong>Add Overflow Effect</strong>: an effect that lands as an application would take it past its most stacks, on the target
-or its caster as its <strong>Lands On</strong> says, and <strong>Clear Stacks</strong>, which takes its stacks off with it. It needs a stack
-bound of the effect's own to overflow.</li>
-<li><strong>Change Duration</strong>: its time multiplied, then more added; its ticks spread over the time it has.</li>
-<li><strong>Change Stacks</strong>: more it can hold at most, where a stack bound of its own sets a most, and more a landing gives.</li>
-<li><strong>Change Chance to Apply</strong>: multiplied, then added to.</li>
-<li><strong>Grant Tags</strong>: more tags it grants while it's on.</li>
+<li><a href="workers/effect-workers.html">Effect workers</a>: Effect workers react to this effect's own events.</li>
+<li><a href="workers/worker-group.html">Worker Group</a>: <strong>Worker Group</strong>, after the effect workers, gives the one the effect is on more workers while it lasts, as an item's group does while it's equipped.</li>
+<li><a href="workers/on-hit.html">On Hit</a>: <strong>On Hit</strong>, above the effect workers, holds the effects that the hits of the one this effect is on apply while it lasts, as a poisoned blade or a boon's Weak.</li>
+<li><a href="workers/modifiers.html">Modifiers</a>: <strong>Modifiers</strong>, under On Hit, change other effects as they're made, for that application alone.</li>
+<li><a href="workers/resolve-order.html">Resolve Order</a>: The project's <strong>Resolve Order</strong>, under Forge Project in Project Settings → PlayForge, decides the order an area's effects land on those it takes.</li>
 </ul>
-</li>
-</ul>
-<p>An effect a rule adds, and what that effect contains, isn't changed by that rule again, so a Chill that adds a Chill
-adds one. Two of an item modify twice.</p>
-<hr>
-<p><a href="components.html">← Components</a> · <a href="index.html">Effects</a> · <a href="local-data.html">Local Data →</a></p>
 
 </article>
 

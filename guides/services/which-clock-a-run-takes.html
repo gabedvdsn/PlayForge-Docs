@@ -87,32 +87,38 @@
         <article data-uid="guide.services.which-clock-a-run-takes">
 <h1 id="which-clock-a-run-takes">Which clock a run takes</h1>
 
-<p>Everything PlayForge times goes by a clock, most by their owner's: an effect by the entity it's on, and a sequence's run
-by the first it finds.</p>
+<p>Everything PlayForge times goes by a clock, most by their owner's. An effect goes by the entity it's on, and a
+sequence's run by the first clock it finds.</p>
 <ul>
-<li><strong>An effect</strong> counts its time by the clock of the entity it's on, its duration and its period both, so a slowed
+<li><strong>An effect</strong> counts its time by the clock of the entity it's on, its duration and its period both. So a slowed
 entity's effects, its cooldowns among them, last longer. Its <strong>Delta Time Scaler</strong> changes it further
 (<a href="../effects/duration.html">Effects: Duration</a>).</li>
 <li><strong>An entity's own step</strong> goes by its clock: its input buffer's windows, its services, its turn and its barriers'
 decay.</li>
-<li><strong>A sequence's run</strong>, an ability's among them, takes the first clock it finds: its own, <code>runtime.Clock</code>, which what
-runs it sets, as a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s <code>Clock</code>, a chain's <code>Clock</code> or an ability's Run Sequence task's pick; its
-packet's, <code>data.Clock</code>; its sequence's, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock</code></a> on the builder; its packet's owner's, an ability's caster's own
-clock; and else the game's, <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>. Its waits, delays, timeouts, longest runs and <code>ElapsedTime</code>, its
-tasks' tweens and its synced tasks all go by it (<a href="../task-sequences/clocks.html">Task Sequences: Clocks</a>). An ability runs on
-its activation's packet, so its waits go by its caster's clock unless the packet names another.</li>
+<li><strong>A sequence's run</strong>, an ability's among them, takes the first clock it finds, in the order below.</li>
 <li><strong>A synced runner</strong> steps by its packet's clock, else its sequence's, else its packet's owner's
 (<code>runner.ClockFor(data)</code>).</li>
-<li><strong>A cue</strong>'s packet carries its owner's clock: the activation's for an ability's cue, else that of the one it plays on.
-A Sequence cue's run goes by its <strong>Clock</strong> pick, else the sequence's own, else that one
+<li><strong>A cue</strong>'s packet carries its owner's clock: the activation's for an ability's cue, else that of the one it plays
+on. A Sequence cue's run goes by its <strong>Clock</strong> pick, else the sequence's own, else that one
 (<a href="../cues/data-packets.html">Cues: Data packets</a>).</li>
 <li><strong>Code of your own</strong> reads its owner's step with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_DeltaTimeFor_"><code>ForgeTime.DeltaTimeFor(owner)</code></a>, as <a class="xref" href="../../api/FarEmerald.PlayForge.ProjectileMonoProcess.html"><code>ProjectileMonoProcess</code></a> moves by
-its handler's. A task reads its run's with <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_"><code>SequenceTaskLibrary.DeltaTime(token)</code></a>, 0 while the run is paused, and
+its handler's. A task reads its run's with <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_DeltaTime_"><code>SequenceTaskLibrary.DeltaTime(token)</code></a>, 0 while the run is paused.
 <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_"><code>TaskSequenceRuntime.ClockOfRun(token)</code></a> is the run's clock.</li>
 </ul>
 <p>Anything else goes by the game's time, the clock in force.</p>
-<hr>
-<p><a href="clocks.html">← Clocks</a> · <a href="index.html">Time, Input and Logging</a> · <a href="picking-a-clock-in-an-inspector.html">Picking a clock in an inspector →</a></p>
+<h2 id="the-clock-a-sequences-run-takes">The clock a sequence's run takes</h2>
+<p>A sequence's run, an ability's among them, takes the first clock it finds, in this order:</p>
+<ol>
+<li>its own, <code>runtime.Clock</code>, which what runs it sets: a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s <code>Clock</code>, a chain's <code>Clock</code> or an
+ability's Run Sequence task's pick;</li>
+<li>its packet's, <code>data.Clock</code>;</li>
+<li>its sequence's, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock</code></a> on the builder;</li>
+<li>its packet's owner's: an ability's caster's own clock;</li>
+<li>else the game's, <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>.</li>
+</ol>
+<p>Its waits, delays, timeouts, longest runs and <code>ElapsedTime</code> go by it, and so do its tasks' tweens and its synced tasks
+(<a href="../task-sequences/clocks.html">Task Sequences: Clocks</a>).</p>
+<p>An ability runs on its activation's packet. So its waits go by its caster's clock, unless the packet names another.</p>
 
 </article>
 

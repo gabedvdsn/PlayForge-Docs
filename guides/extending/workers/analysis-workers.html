@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Analysis workers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Analysis workers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.workers.analysis-workers">
+<h1 id="analysis-workers">Analysis workers</h1>
+
+<p>An analysis worker reads its entity's frame as it ends, after the tag workers.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAnalysisWorker.html"><code>AbstractAnalysisWorker</code></a>. Its hook is handed the entity and the frame's summary.</p>
+<p>The summary holds the frame's impacts, dealt and received (<code>ImpactsDealt</code>, <code>ImpactsReceived</code>, and by attribute, target
+and source). It also holds the effects applied and removed, the deaths, and the actions dropped and failed.</p>
+<p>For a worker that fires once, the base keeps a mark in the entity's Local Data, under its own key, <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAnalysisWorker.html#FarEmerald_PlayForge_AbstractAnalysisWorker_MyKey"><code>MyKey</code></a>.
+<a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAnalysisWorker.html#FarEmerald_PlayForge_AbstractAnalysisWorker_HasTriggered_"><code>HasTriggered(system)</code></a> reads the mark, <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAnalysisWorker.html#FarEmerald_PlayForge_AbstractAnalysisWorker_SetTriggered_"><code>SetTriggered(system)</code></a> sets it, and <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAnalysisWorker.html#FarEmerald_PlayForge_AbstractAnalysisWorker_ResetTriggered_"><code>ResetTriggered(system)</code></a> clears it.</p>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Analyze(IGameplayAbilitySystem system, FrameSummary frameSummary)</code></td>
+<td>At every end of frame of every entity that holds the worker, after the tag workers. It returns the actions it queues.</td>
+</tr>
+<tr>
+<td><code>Rearm(system)</code></td>
+<td>As the entity revives. It resets the mark.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>A worker group's analysis workers offer every class derived from <code>AbstractAnalysisWorker</code>
+(<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>).</p>
+<h2 id="example">Example</h2>
+<p>This worker applies an effect to its entity in a frame it deals enough hits to others:</p>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Applies an effect to its entity in a frame it deals enough hits to others.&quot;)]
+    public class FlurryWorker : AbstractAnalysisWorker
+    {
+        [Tooltip(&quot;The losses it deals others in one frame that fire it&quot;)]
+        [Min(1)] public int Hits = 3;
+
+        [Tooltip(&quot;The effect its entity takes as it fires&quot;)]
+        public GameplayEffect Effect;
+
+        public override IEnumerable&lt;IRootAction&gt; Analyze(IGameplayAbilitySystem system, FrameSummary frameSummary)
+        {
+            if (Effect == null || system == null || frameSummary == null) return Array.Empty&lt;IRootAction&gt;();
+            int dealt = 0;
+            var impacts = frameSummary.ImpactsDealt;
+            for (int i = 0; i &lt; impacts.Count; i++)
+            {
+                var impact = impacts[i];
+                // A workable loss to another: an entity's own changes are recorded as dealt to itself too
+                if (impact.SourcedModifier.ImpactIsWorkable &amp;&amp; impact.RealImpact.CurrentValue &lt; 0f
+                    &amp;&amp; !ReferenceEquals(impact.Target, system)) dealt++;
+            }
+            if (dealt &lt; Hits) return Array.Empty&lt;IRootAction&gt;();
+            return new IRootAction[] { new ApplyEffectAction(system, Effect, IEffectOrigin.GenerateSourceDerivation(system)) };
+        }
+    }
+}
+</code></pre>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong><code>Analyze</code> runs at every end of frame</strong> of every entity that holds the worker. A method that <code>yield return</code>s makes an
+object each call. So one that usually returns nothing returns <code>Array.Empty&lt;IRootAction&gt;()</code> instead, as above.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

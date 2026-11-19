@@ -87,20 +87,27 @@
         <article data-uid="guide.recipes.a-starter-set">
 <h1 id="a-starter-set">A starter set</h1>
 
-<p>Plain assets named for what they are, under <code>Starter Set</code>; the recipes above hold the rest of a starter set, a
-damage over time, an on hit, an on kill and a boss's phase. Each hit reads the recipes' Health.</p>
+<p>The sample holds plain assets named for what they are, under <code>Starter Set</code>. The recipes above hold the rest of a starter
+set: a damage over time, an on hit, an on kill and a boss's phase. Each hit reads the recipes' Health.</p>
 <ul>
-<li><strong>Melee Attack</strong> (an ability): <strong>Apply Effects</strong>, Melee Hit, on what it's cast at; <strong>Cooldown</strong> Melee Cooldown.
-<strong>Melee Hit</strong>: Instant, -10 Health. <strong>Melee Cooldown</strong>: Durational, 1 s.</li>
-<li><strong>Bolt</strong> (an ability): the same, its <strong>Bolt Hit</strong> -25 Health, its <strong>Bolt Cooldown</strong> 3 s.</li>
-<li><strong>Slow</strong> (an effect): Durational, 3 s, <strong>Multiply</strong> Movement Speed by 0.7, back as it ends.</li>
-<li><strong>Shield</strong> (an effect): Durational, 5 s, +50 to Shield's current and base while it lasts; its <strong>Modifiers</strong>, one
-<strong>Incoming</strong> rule whose <strong>Change Impact</strong> on Health adds an <strong>Absorb</strong> stage into Shield, so each hit on its holder's
-Health comes off its Shield first. Give Shield's element a base of 0, between 0 and its base, so it's 0 without one.</li>
+<li><strong>Melee Attack</strong> (an ability): <strong>Apply Effects</strong> with Melee Hit, on what it's cast at, and <strong>Cooldown</strong> Melee
+Cooldown.</li>
+<li><strong>Melee Hit</strong> (an effect): Instant, -10 Health.</li>
+<li><strong>Melee Cooldown</strong> (an effect): Durational, 1 s.</li>
+<li><strong>Bolt</strong> (an ability): the same as Melee Attack, with its <strong>Bolt Hit</strong> of -25 Health and its <strong>Bolt Cooldown</strong> of
+3 s.</li>
+<li><strong>Slow</strong> (an effect): Durational, 3 s: a <strong>Multiply</strong> of Movement Speed by 0.7, undone as it ends.</li>
+<li><strong>Shield</strong> (an effect):
+<ul>
+<li>Durational, 5 s.</li>
+<li>+50 to Shield's current and base while it lasts.</li>
+<li>Its <strong>Modifiers</strong> hold one <strong>Incoming</strong> rule, whose <strong>Change Impact</strong> on Health adds an <strong>Absorb</strong> stage into
+Shield. Each hit on its holder's Health then comes off its Shield first.</li>
 </ul>
-<p>They read the <strong>Movement Speed</strong> and <strong>Shield</strong> attributes in <code>Starter Set/Attributes</code>.</p>
-<hr>
-<p><a href="formulas.html">← Formulas</a> · <a href="index.html">Recipes</a></p>
+</li>
+</ul>
+<p>Give Shield's element a base of 0, between 0 and its base, so Shield is 0 without the effect.</p>
+<p>The starter set reads the <strong>Movement Speed</strong> and <strong>Shield</strong> attributes in <code>Starter Set/Attributes</code>.</p>
 
 </article>
 

@@ -87,20 +87,37 @@
         <article data-uid="guide.services.time-and-rolls-in-tests">
 <h1 id="time-and-rolls-in-tests">Time and rolls in tests</h1>
 
-<p>The test kit makes time and chance a test's own through the same two services (<a href="../testing/the-world.html">Testing Your Content: The world</a>).</p>
-<ul>
-<li><code>World.Clock(step)</code> puts in a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.SteppingClock.html"><code>SteppingClock</code></a>: each frame <code>step</code> seconds of PlayForge's time, its <code>DeltaTime</code>,
-<code>UnscaledDeltaTime</code> and <code>FixedDeltaTime</code>, while its <code>Time</code>, <code>UnscaledTime</code> and <code>FrameCount</code> stay Unity's. It returns
-the clock, whose <code>Step</code> can change.</li>
-<li><code>World.Rolls(0.1f, 0.9f)</code> puts in a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ScriptedRandom.html"><code>ScriptedRandom</code></a>: each draw is the next of its rolls, in turn and round again, and
-its <code>Drawn</code> counts them; its points in a circle and in a sphere are zero. A chance comes up where it's above the roll,
-so a roll of 0 always lands and one of 0.99 almost never does. A roll with luck draws more than one.</li>
-<li>The world gives back the clock and the source it replaced as it ends. Outside it,
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(new SteppingClock(step))</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(new ScriptedRandom(0f))</code></a> do the same, put back by hand.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_ForgetStreaks_"><code>ForgeChance.ForgetStreaks(caster)</code></a> starts a caster's pseudo-random streaks clean.</li>
-</ul>
-<hr>
-<p><a href="repeatable-runs.html">← Repeatable runs</a> · <a href="index.html">Time, Input and Logging</a> · <a href="pointer-input.html">Pointer input →</a></p>
+<p>The test kit makes time and chance a test's own, through the same two services (<a href="../testing/the-world.html">Testing Your Content: The world</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World.Clock(step)</code></td>
+<td>Puts in a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.SteppingClock.html"><code>SteppingClock</code></a>, and returns it.</td>
+</tr>
+<tr>
+<td><code>World.Rolls(0.1f, 0.9f)</code></td>
+<td>Puts in a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ScriptedRandom.html"><code>ScriptedRandom</code></a>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_ForgetStreaks_"><code>ForgeChance.ForgetStreaks(caster)</code></a></td>
+<td>Starts a caster's pseudo-random streaks clean.</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>SteppingClock</code> gives <code>step</code> seconds of PlayForge's time each frame: its <code>DeltaTime</code>, <code>UnscaledDeltaTime</code> and
+<code>FixedDeltaTime</code>. Its <code>Time</code>, <code>UnscaledTime</code> and <code>FrameCount</code> stay Unity's. Its <code>Step</code> can change.</p>
+<p>A <code>ScriptedRandom</code> gives each draw the next of its rolls, in turn and round again, and its <code>Drawn</code> counts them. Its
+points in a circle and in a sphere are zero.</p>
+<p>A chance comes up where it's above the roll. So a roll of 0 always lands, and one of 0.99 almost never does. A roll with
+luck draws more than one.</p>
+<p>The world gives back the clock and the source it replaced as it ends. Outside it,
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(new SteppingClock(step))</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(new ScriptedRandom(0f))</code></a> do the same, put back by hand.</p>
 
 </article>
 

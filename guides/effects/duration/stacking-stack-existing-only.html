@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Stacking (Stack Existing only) | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Stacking (Stack Existing only) | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.effects.duration.stacking-stack-existing-only">
+<h1 id="stacking-stack-existing-only">Stacking (Stack Existing only)</h1>
+
+<p>Stacking sets how a Stack Existing effect's stacks keep their time, and how many stacks each application adds.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stacking</strong></td>
+<td>How the stacks keep their time.</td>
+</tr>
+<tr>
+<td><strong>Stack Behaviours</strong></td>
+<td>Optional stacking rules, such as Stack Bounds Config and Starting Stacks.</td>
+</tr>
+<tr>
+<td><strong>Stack Amount</strong></td>
+<td>With its scaler, the stacks each application adds. 0 counts as 1.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stacking</strong> offers three choices:</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stacks Share One Duration (default)</td>
+<td>Runs one timer for all stacks. Adding a stack doesn't reset it.</td>
+</tr>
+<tr>
+<td>Stacks Have Independent Durations</td>
+<td>Gives each stack its own timer and ticks. Stacks drop off one at a time, and the effect lasts as long as its longest stack.</td>
+</tr>
+<tr>
+<td>Duration Taken From One Stack</td>
+<td>Runs one stack's timer at a time. Each time it runs out, one stack is lost and the timer restarts.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="stack-behaviours">Stack behaviours</h2>
+<p>Stack behaviours are optional rules that the stacks follow.</p>
+<ul>
+<li>Stack Bounds Config keeps the stack count between a Min and a Max.</li>
+<li>Starting Stacks sets the stacks a new effect starts with.</li>
+<li>The Min, the Max and Starting Stacks are each a number field read at the effect's level.</li>
+<li>Starting Stacks is a single number field, where a number, a scaler, a combine and a rounding of its own were once
+written out.</li>
+</ul>
+<p>An application that would take the effect past the Max overflows:</p>
+<ul>
+<li>Its Overflow Effects land, from the same origin, as a bleed's fourth stack hemorrhages.</li>
+<li>They land on the target, or, with <strong>Overflow Lands On</strong> set to Caster, on its caster, as a frenzy.</li>
+<li>Deny Refresh On Overflow keeps that application from refreshing or extending the effect.</li>
+<li>Clear Stacks On Overflow takes the effect's stacks off.</li>
+</ul>
+<h2 id="reading-the-stack-count">Reading the stack count</h2>
+<p>A change reads the stack count through an <strong>Effect Stacks</strong> scaler (<a href="../../scalers/index.html">Scalers</a>). A magnitude of −5 with
+Multiply With Scaler takes 5 a stack.</p>
+<ul>
+<li>A Continuous change updates whenever the count changes.</li>
+<li>A Periodic change already lands once for each stack. One that also reads its stacks counts them twice, so 3 stacks hit
+9 times as hard as 1.</li>
+<li>The Problems view warns of it. Its quick fix, <strong>Count Stacks Once</strong>, gives the number one stack gives.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

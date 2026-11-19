@@ -87,55 +87,30 @@
         <article data-uid="guide.effect-pipeline.2-attribute-state-cachedattributevalue">
 <h1 id="2-attribute-state-cachedattributevalue">2. Attribute state (<code>CachedAttributeValue</code>)</h1>
 
+<p>Each attribute's runtime state is a <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html"><code>CachedAttributeValue</code></a>, whose <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_ActiveValue"><code>ActiveValue</code></a> is derived from that state:</p>
 <pre><code>ActiveValue = ConstrainValue(                         ← element clamp + rounding
                  ModifierPipeline(                    ← Add → Multiply → FlatBonus → Override
                      root                             ← Blueprint.GetActiveValue(cache), re-derived
                    + Σ committedByGroup ) )           ←   fresh every recompute (or generic seed)
 </code></pre>
-<p>State:</p>
+<p>The state has three parts:</p>
 <ul>
-<li><code>modifiers</code> — ordered <code>(carrier, impacter, group)</code> entries. Presence == contribution; no
-alive-flags, no zombie state. Re-registering a carrier <strong>replaces</strong> its entries (idempotent
-refresh — the stacking path relies on this). Removed entries are kept spare and reused, so a
-refresh allocates nothing.</li>
-<li><code>committedByGroup</code> — permanent history per retention group. Written only by <code>CommitImpact</code>.</li>
-<li>Attribution — rebuilt on every <code>Recompute</code>; per-group slices that sum exactly to <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_ActiveValue"><code>ActiveValue</code></a>.</li>
-</ul>
-<h2 id="21-recompute-pipeline">2.1 Recompute pipeline</h2>
-<ol>
-<li>Baseline = the root value.</li>
-<li><strong>Add</strong> — additive modifier impacters, per slot (Current / Base / CurrentAndBase) → <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_DirtyValue"><code>DirtyValue</code></a>. The sums
-first; then each add that diminishes, on what's left, <code>1 − (1 − x)(1 − v)</code>: every add on a Resistance attribute,
-unless its Add Behaviour says Sum, and any whose Add Behaviour says Diminishing.</li>
-<li><strong>Multiply</strong> — <code>Multiplicative</code> impacters compound (×1.5, ×1.5 → ×2.25);
-<a class="xref" href="../../api/FarEmerald.PlayForge.EMultiplyBehaviour.html#FarEmerald_PlayForge_EMultiplyBehaviour_AdditiveBonus"><code>AdditiveBonus</code></a> impacters pool <code>(eval − 1)</code> into one <code>×(1 + Σ)</code> (+50%, +50% → ×2.0).</li>
-<li><strong>FlatBonus</strong> — post-multiplication additive.</li>
-<li><strong>Committed history</strong> — all of it, where it was measured: after the modifiers, so a transient %
-modifier doesn't scale it. 50 base × 1.5 aura + 10 tome = 85, and a 30 hit under the aura takes 30.</li>
-<li><strong>Override</strong> — per-slot, lowest <code>SortOrder</code> wins. It comes after the committed history, so an
-override (&quot;stun: speed = 0&quot;) still pins the value.</li>
-<li>Constrain: element overflow clamp (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeOverflowData.html#FarEmerald_PlayForge_AttributeOverflowData_Clamp_"><code>AttributeOverflowData.Clamp</code></a>) + rounding policy.</li>
-</ol>
-<p>Attribution is captured during the walk (root → its group; commits → their groups; each
-modifier → the value swing its op produced; pooled multiplies → proportional shares; the
-constraint shift → the unattributed slice) so <code>GetBreakdown()</code> always sums to <code>ActiveValue</code>.</p>
-<h2 id="22-commit-math">2.2 Commit math</h2>
-<p><code>CommitImpact(carrier, impacters)</code> runs each impacter as a sequential mini-step against the
-live value (op → clamp → round), records each step's <strong>post-constraint delta</strong> into its group
-(a +50 heal clamped to +30 commits +30), then runs one canonical <code>Recompute</code>.</p>
-<p><strong>Reproducibility invariant</strong>: <code>ActiveValue</code> is always exactly <code>Recompute(state)</code> — every
-mutation path ends in a recompute. There is no second bookkeeping system to drift.</p>
-<h2 id="23-query-surface">2.3 Query surface</h2>
+<li><code>modifiers</code>: ordered <code>(carrier, impacter, group)</code> entries.
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_GetGroupValue_"><code>GetGroupValue(Tag)</code></a> / <code>GetBreakdown()</code> on <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html"><code>CachedAttributeValue</code></a>;
-<code>TryGetGroupValue(attr, group, out v)</code> / <code>GetBreakdown(attr)</code> on <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html"><code>AttributeSystemComponent</code></a>.</li>
-<li>Consumer pattern: UI splits a health bar by group slices; a damage formula reads
-<code>GetGroupValue(damage, Group.Base)</code> vs <code>GetGroupValue(damage, Group.Bonus)</code> and applies
-different outgoing calculations — group-specific math lives in consumers, not the pipeline.</li>
+<li>Presence == contribution. There are no alive-flags and no zombie state.</li>
+<li>Re-registering a carrier <strong>replaces</strong> its entries: an idempotent refresh, which the stacking path relies on.</li>
+<li>Removed entries are kept spare and reused, so a refresh allocates nothing.</li>
 </ul>
-<hr>
-<hr>
-<p><a href="1-the-model-in-one-page.html">← 1. The model in one page</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="3-the-four-verb-attribute-api-attributesystemcomponent.html">3. The four-verb attribute API (AttributeSystemComponent) →</a></p>
+</li>
+<li><code>committedByGroup</code>: permanent history per retention group. Only <code>CommitImpact</code> writes it.</li>
+<li>Attribution: rebuilt on every <code>Recompute</code>, as per-group slices that sum exactly to <code>ActiveValue</code>.</li>
+</ul>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="2-attribute-state-cachedattributevalue/21-recompute-pipeline.html">2.1 Recompute pipeline</a>: <code>Recompute</code> rebuilds the value in this order</li>
+<li><a href="2-attribute-state-cachedattributevalue/22-commit-math.html">2.2 Commit math</a>: <code>CommitImpact(carrier, impacters)</code> runs each impacter as a sequential mini-step against the live value (op → clamp → round).</li>
+<li><a href="2-attribute-state-cachedattributevalue/23-query-surface.html">2.3 Query surface</a>: Two pairs of calls read an attribute's groups and its breakdown</li>
+</ul>
 
 </article>
 

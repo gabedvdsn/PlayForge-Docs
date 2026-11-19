@@ -88,41 +88,15 @@
 <h1 id="a-games-own-objects">A game's own objects</h1>
 
 <p>PlayForge asks a game's own objects for a few things through interfaces: turning, moving, shaking the camera, and a
-pooled cue's comings and goings. This section covers each.</p>
+pooled cue's comings and goings.</p>
+<p>This section covers each.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeTurner.html"><code>IForgeTurner</code></a></strong>, on an entity's object: <code>Face(Vector3 direction, float degreesPerSecond, float deltaTime)</code> takes each
-step of a turn PlayForge orders, as an ability's turn to face its target, in place of PlayForge setting the object's
-rotation. PlayForge reads how far is left from the object's rotation, so that's what the turner turns.</li>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeMover.html"><code>IForgeMover</code></a></strong>, on a caster's object: <code>Hold(bool held)</code> and <code>Stop()</code>, which the movement tasks, as Dash, call on
-the caster's own movement while they move it.</li>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.ICameraShaker.html"><code>ICameraShaker</code></a></strong>: <code>Shake(float strength, float duration)</code>, which the Camera Shake cue calls through
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Shaker"><code>ForgeCues.Shaker</code></a>.</li>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IPooledCue.html"><code>IPooledCue</code></a></strong>, on a pooled Prefab cue's prefab: <code>Taken()</code> as its pool hands it out, placed and active, and
-<code>Returned()</code> as it goes back (<a href="../cues/pooling.html">Cues: Pooling</a>).</li>
+<li><a href="a-games-own-objects/turners.html">Turners</a>: A turner turns an entity's object as PlayForge orders, in place of PlayForge setting the object's rotation.</li>
+<li><a href="a-games-own-objects/movers.html">Movers</a>: A mover is a caster's own movement, which PlayForge's movement tasks hold and stop while they move the caster.</li>
+<li><a href="a-games-own-objects/camera-shakers.html">Camera shakers</a>: A camera shaker shakes the game's camera for PlayForge's Camera Shake cue.</li>
+<li><a href="a-games-own-objects/pooled-cues.html">Pooled cues</a>: A pooled cue hears its pool hand it out and take it back (Cues: Pooling).</li>
 </ul>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-namespace MyGame
-{
-    // On an entity's object: turns it toward the direction PlayForge asks, at the speed it asks
-    public sealed class SmoothTurner : MonoBehaviour, IForgeTurner
-    {
-        public void Face(Vector3 direction, float degreesPerSecond, float deltaTime)
-        {
-            direction.y = 0f;
-            if (direction.sqrMagnitude &lt; 0.0001f) return;
-            var goal = Quaternion.LookRotation(direction);
-            transform.rotation = degreesPerSecond &lt;= 0f
-                ? goal
-                : Quaternion.RotateTowards(transform.rotation, goal, degreesPerSecond * deltaTime);
-        }
-    }
-}
-</code></pre>
-<p>An animated character's turner sets its animator's turn here instead, and lets the animation turn the object.</p>
-<hr>
-<p><a href="smaller-kinds.html">← Smaller kinds</a> · <a href="index.html">Extending PlayForge</a> · <a href="readers.html">Readers →</a></p>
 
 </article>
 

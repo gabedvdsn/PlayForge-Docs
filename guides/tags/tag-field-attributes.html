@@ -87,25 +87,62 @@
         <article data-uid="guide.tags.tag-field-attributes">
 <h1 id="tag-field-attributes">Tag field attributes</h1>
 
-<p>The attributes a <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, or a list of tags, takes say what its tag field offers and does.</p>
-<ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html"><code>ForgeTagContext</code></a>, as <code>[ForgeTagContext(ForgeContext.Granted)]</code> or <code>[ForgeTagContext(&quot;Weather&quot;)]</code>, names the
-contexts the field takes, PlayForge's or the project's own, and makes the tags it holds of each. Its
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_IncludeUniversal"><code>IncludeUniversal</code></a>, true unless set, offers the Universal tags too, and its <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_AllowCreate"><code>AllowCreate</code></a>, true unless set, offers
-<strong>New Tag…</strong> and <strong>Make It a Child Of…</strong>. A field without one offers every tag.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagNoCreate.html"><code>ForgeTagNoCreate</code></a> offers neither, as <code>AllowCreate = false</code> does.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExcludeUniversal.html"><code>ForgeTagExcludeUniversal</code></a> leaves the Universal tags out, as <code>IncludeUniversal = false</code> does.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagReadOnly.html"><code>ForgeTagReadOnly</code></a> shows the tag greyed, with no picker and no menu; code still sets it.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagTooltip.html"><code>ForgeTagTooltip</code></a>, as <code>[ForgeTagTooltip(&quot;...&quot;)]</code>, gives the field its tooltip, in place of Unity's <code>[Tooltip]</code>,
-which the field reads where it has none.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html"><code>ForgeTagExposed</code></a> goes on a static tag of code, not on an asset's field
-(<a href="tags-written-in-code.html">Tags written in code</a>).</li>
-</ul>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagDefault.html"><code>ForgeTagDefault</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagRequired.html"><code>ForgeTagRequired</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagPrefix.html"><code>ForgeTagPrefix</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagGroup.html"><code>ForgeTagGroup</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedCountAttribute.html"><code>ForgeTagLockedCountAttribute</code></a> and
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedIndicesAttribute.html"><code>ForgeTagLockedIndicesAttribute</code></a> are declared for a field as well, for a default tag, a tag the field must have, the
-prefixes it takes, a group of fields and a list's locked entries, but no drawer reads them, so they change nothing in
-the inspector; and <code>ForgeTagDefault</code> can't be written on a field at all, as a <code>Tag</code> can't be an attribute's argument.
-<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroupColor.html"><code>AvoidRequireTagGroupColor</code></a>, on the requirement groups' fields, gives each a colour that no drawer reads.</p>
+<p>Attributes on a <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field, or on a list of tags, say what its tag field offers and does.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html"><code>ForgeTagContext</code></a></td>
+<td>Names the contexts the field takes, PlayForge's or the project's own, as <code>[ForgeTagContext(ForgeContext.Granted)]</code> or <code>[ForgeTagContext(&quot;Weather&quot;)]</code>. It makes the tags the field holds of each. A field without one offers every tag.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagNoCreate.html"><code>ForgeTagNoCreate</code></a></td>
+<td>Offers neither <strong>New Tag…</strong> nor <strong>Make It a Child Of…</strong>, as <code>AllowCreate = false</code> does.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExcludeUniversal.html"><code>ForgeTagExcludeUniversal</code></a></td>
+<td>Leaves the Universal tags out, as <code>IncludeUniversal = false</code> does.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagReadOnly.html"><code>ForgeTagReadOnly</code></a></td>
+<td>Shows the tag greyed, with no picker and no menu. Code still sets it.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagTooltip.html"><code>ForgeTagTooltip</code></a></td>
+<td>Gives the field its tooltip, as <code>[ForgeTagTooltip(&quot;...&quot;)]</code>, in place of Unity's <code>[Tooltip]</code>. The field reads <code>[Tooltip]</code> where it has none.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html"><code>ForgeTagExposed</code></a></td>
+<td>Goes on a static tag of code, not on an asset's field (<a href="tags-written-in-code.html">Tags written in code</a>).</td>
+</tr>
+</tbody>
+</table>
+<p><code>ForgeTagContext</code> has two settings, each true unless set:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_IncludeUniversal"><code>IncludeUniversal</code></a></td>
+<td>Offers the Universal tags too.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagContext.html#FarEmerald_PlayForge_ForgeTagContext_AllowCreate"><code>AllowCreate</code></a></td>
+<td>Offers <strong>New Tag…</strong> and <strong>Make It a Child Of…</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>This ability component takes a tag of the project's Weather context. Its field can't make tags, and leaves the
+Universal tags out:</p>
 <pre><code class="lang-csharp">using System;
 using FarEmerald.PlayForge;
 using UnityEngine;
@@ -127,8 +164,40 @@ public class NeedsWeatherAbilityComponent : AbstractAbilityComponent
     }
 }
 </code></pre>
-<hr>
-<p><a href="tags-written-in-code.html">← Tags written in code</a> · <a href="index.html">Tags</a> · <a href="the-tag-field.html">The tag field →</a></p>
+<h2 id="attributes-no-drawer-reads">Attributes no drawer reads</h2>
+<p>Six more attributes are declared for a tag field, but no drawer reads them. So they change nothing in the inspector:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Declared for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagDefault.html"><code>ForgeTagDefault</code></a></td>
+<td>A default tag</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagRequired.html"><code>ForgeTagRequired</code></a></td>
+<td>A tag the field must have</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagPrefix.html"><code>ForgeTagPrefix</code></a></td>
+<td>The prefixes the field takes</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagGroup.html"><code>ForgeTagGroup</code></a></td>
+<td>A group of fields</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedCountAttribute.html"><code>ForgeTagLockedCountAttribute</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLockedIndicesAttribute.html"><code>ForgeTagLockedIndicesAttribute</code></a></td>
+<td>A list's locked entries</td>
+</tr>
+</tbody>
+</table>
+<p><code>ForgeTagDefault</code> can't be written on a field at all, since a <code>Tag</code> can't be an attribute's argument.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroupColor.html"><code>AvoidRequireTagGroupColor</code></a>, on the requirement groups' fields, gives each a colour that no drawer reads.</p>
 
 </article>
 

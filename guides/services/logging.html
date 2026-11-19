@@ -87,58 +87,22 @@
         <article data-uid="guide.services.logging">
 <h1 id="logging">Logging</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a> is where everything PlayForge says goes: each message has a level and a system, and a gate on the two decides
-what reaches Unity's Console.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a> is where everything PlayForge says goes. Each message has a level and a system, and a gate on the two
+decides what reaches Unity's Console.</p>
 <ul>
-<li><strong>Levels</strong>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ELevel.html"><code>ForgeLog.ELevel</code></a>, from the most said to the least: <code>Verbose</code>, <code>Info</code>, <code>Warning</code>, <code>Error</code>, and <code>None</code>,
-which lets nothing through, errors neither (<a href="log-levels.html">Log levels</a>).</li>
+<li><strong>Levels</strong>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ELevel.html"><code>ForgeLog.ELevel</code></a>, from the most said to the least: <code>Verbose</code>, <code>Info</code>, <code>Warning</code>, <code>Error</code>, and <code>None</code>.
+<code>None</code> lets nothing through, errors neither (<a href="log-levels.html">Log levels</a>).</li>
 <li><strong>Systems</strong>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ESystem.html"><code>ForgeLog.ESystem</code></a>: General, Effects, Abilities, Attributes, Workers, Numbers, Processes, Tags, Items,
 Saves, Input, Lab and Sequences. Each can take a level of its own.</li>
 </ul>
-<p>Code logs through it as PlayForge does:</p>
+<p>Its messages reach the Console with <code>[PlayForge]</code> before them: a warning as a warning, and an error as an error.</p>
+<p>Its methods are marked <code>[HideInCallstack]</code>. So the Console's <strong>Strip Logging Callstack</strong> leaves them out of the stack,
+and a double-click on a message opens the code that logged it.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Verbose_"><code>ForgeLog.Verbose</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Info_"><code>ForgeLog.Info</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Warning_"><code>ForgeLog.Warning</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Error_"><code>ForgeLog.Error</code></a> take a message and the Unity object the
-Console points at, its <code>context</code>, as a message of <strong>General</strong>. Given a system first, they take the entity the message
-is about too, its <code>subject</code>, as <code>ForgeLog.Warning(ForgeLog.ESystem.Abilities, &quot;No target&quot;, this, gas)</code>.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Exception_"><code>ForgeLog.Exception(system, exception, context, subject)</code></a> logs an exception as Unity's <code>Debug.LogException</code> does, its
-stack in the Console, where an error is let through.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Allows_"><code>ForgeLog.Allows(system, level)</code></a> says whether a message would be let through, so a costly one is built only when it
-will be shown.</li>
+<li><a href="logging/logging-from-code.html">Logging from code</a>: Your code logs through <code>ForgeLog</code> as PlayForge does.</li>
+<li><a href="logging/hearing-the-log.html">Hearing the log</a>: <code>ForgeLog.Logged</code> hears each message let through, as a <code>ForgeLogEntry</code></li>
 </ul>
-<p>Its messages reach the Console with <code>[PlayForge]</code> before them, a warning as a warning and an error as an error. Its
-methods are marked <code>[HideInCallstack]</code>, so the Console's <strong>Strip Logging Callstack</strong> leaves them out of the stack, and a
-double-click on a message opens the code that logged it.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged"><code>ForgeLog.Logged</code></a> hears each message let through, as a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLogEntry.html"><code>ForgeLogEntry</code></a>: its <code>Level</code>, <code>System</code> and <code>Message</code>, without the
-prefix; its <code>Context</code> and <code>Subject</code>; and the game's <code>Time</code> and <code>Frame</code> as it was logged. An exception is heard as its
-type and its message. An entry's <code>ToString()</code> writes it in a line, as &quot;Effects, warning: …&quot;. The Creator Lab's Log page
-hears the messages so.</p>
-<pre><code class="lang-csharp">using System.Collections.Generic;
-using FarEmerald.PlayForge;
-using UnityEngine;
-
-// An in-game console: the last 50 warnings and errors PlayForge let through, newest last
-public class ForgeConsole : MonoBehaviour
-{
-    private readonly Queue&lt;string&gt; lines = new Queue&lt;string&gt;();
-
-    private void OnEnable() =&gt; ForgeLog.Logged += Heard;
-    private void OnDisable() =&gt; ForgeLog.Logged -= Heard;
-
-    private void Heard(ForgeLogEntry entry)
-    {
-        if (entry.Level &lt; ForgeLog.ELevel.Warning) return;
-        lines.Enqueue($&quot;[{entry.Frame}] {entry}&quot;);
-        while (lines.Count &gt; 50) lines.Dequeue();
-    }
-
-    private void OnGUI()
-    {
-        foreach (var line in lines) GUILayout.Label(line);
-    }
-}
-</code></pre>
-<hr>
-<p><a href="pointer-input.html">← Pointer input</a> · <a href="index.html">Time, Input and Logging</a> · <a href="log-levels.html">Log levels →</a></p>
 
 </article>
 

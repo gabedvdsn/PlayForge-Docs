@@ -87,15 +87,23 @@
         <article data-uid="guide.effect-pipeline.8-verification">
 <h1 id="8-verification">8. Verification</h1>
 
-<p><code>Assets/PlayForge/Tests/Editor/PlayForgeGoldenTests.cs</code> — the Test Runner's EditMode tab, <code>FarEmerald.PlayForge.Tests.Golden</code>
-(or batchmode <code>-executeMethod FarEmerald.PlayForge.Tests.PlayForgeGoldenTests.RunAll</code>).
-Scenarios pin: multiplicative/pooled buff add/remove ordering (the 50→60→72→60→50 case),
-item modifier reversal, HoT permanence through expiry, clamp + history reproducibility,
-committed history landing after the modifiers, stack-aware magnitudes, regulation propagation on removal,
-null-target effects, replace idempotency, group attribution sums, pre-change workers adjusting
-the committed delta (armor before the clamp).</p>
-<hr>
-<p><a href="7-entry-derivation-no-asset-migration.html">← 7. Entry derivation (no asset migration)</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a></p>
+<p>The golden tests in <code>Assets/PlayForge/Tests/Editor/PlayForgeGoldenTests.cs</code> pin this pipeline.</p>
+<p>Run them from the Test Runner's EditMode tab, <code>FarEmerald.PlayForge.Tests.Golden</code>, or in batchmode with
+<code>-executeMethod FarEmerald.PlayForge.Tests.PlayForgeGoldenTests.RunAll</code>.</p>
+<p>Their scenarios pin:</p>
+<ul>
+<li>multiplicative/pooled buff add/remove ordering (the 50→60→72→60→50 case);</li>
+<li>item modifier reversal;</li>
+<li>HoT permanence through expiry;</li>
+<li>clamp + history reproducibility;</li>
+<li>committed history landing after the modifiers;</li>
+<li>stack-aware magnitudes;</li>
+<li>regulation propagation on removal;</li>
+<li>null-target effects;</li>
+<li>replace idempotency;</li>
+<li>group attribution sums;</li>
+<li>pre-change workers adjusting the committed delta (armor before the clamp).</li>
+</ul>
 
 </article>
 

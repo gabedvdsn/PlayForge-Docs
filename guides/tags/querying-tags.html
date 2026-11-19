@@ -88,49 +88,37 @@
 <h1 id="querying-tags">Querying tags</h1>
 
 <p>A match mode, <a class="xref" href="../../api/FarEmerald.PlayForge.ETagMatchMode.html"><code>ETagMatchMode</code></a>, says which of an entity's tags answer for the tag it's asked about.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Which tags answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exact</strong></td>
+<td>The tag itself.</td>
+</tr>
+<tr>
+<td><strong>Include Children</strong></td>
+<td>The tag, or one under its path: Status.Debuff.Burn answers for Status.Debuff.</td>
+</tr>
+<tr>
+<td><strong>Include Parents</strong></td>
+<td>The tag, or one above its path: Status.Debuff answers for Status.Debuff.Burn.</td>
+</tr>
+<tr>
+<td><strong>Same Root</strong></td>
+<td>Any tag of its root: Status.Buff answers for Status.Debuff.Burn.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Exact</strong>: the tag itself.</li>
-<li><strong>Include Children</strong>: the tag, or one under its path, as Status.Debuff.Burn answers for Status.Debuff.</li>
-<li><strong>Include Parents</strong>: the tag, or one above its path, as Status.Debuff answers for Status.Debuff.Burn.</li>
-<li><strong>Same Root</strong>: any tag of its root, as Status.Buff answers for Status.Debuff.Burn.</li>
+<li><a href="querying-tags/tag-queries.html">Tag queries</a>: A <code>TagQuery</code> asks one thing of an entity's tags, as a requirement's entry and a Tag condition do.</li>
+<li><a href="querying-tags/what-a-query-counts.html">What a query counts</a>: What a query counts depends on what it's asked of</li>
 </ul>
-<p>A <a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html"><code>TagQuery</code></a> asks one thing of an entity's tags, as a requirement's entry and a Tag condition do: its <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>; its
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_MatchMode"><code>MatchMode</code></a>, Exact unless set; and how many must match, its <code>Operator</code>, an <a class="xref" href="../../api/FarEmerald.PlayForge.EComparisonOperator.html"><code>EComparisonOperator</code></a>, against its
-<code>Magnitude</code>. Greater Than 0, as a query starts, asks for the tag, and Equal 0 for its absence. Its inspector,
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TagQueryDrawer.html"><code>TagQueryDrawer</code></a>, shows its <strong>Tag</strong>, its <strong>Match</strong> and its <strong>Count</strong>, the comparison and the number.
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_HasTag_"><code>TagQuery.HasTag(tag, mode)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_DoesNotHaveTag_"><code>DoesNotHaveTag(tag, mode)</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_HasExactCount_"><code>HasExactCount(tag, count, mode)</code></a> and
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_HasTagOrChildren_"><code>HasTagOrChildren(tag)</code></a> make the common ones.</p>
-<p>What a query counts depends on what it's asked of:</p>
-<ul>
-<li><code>Validate(cache)</code>, as <code>gas.QueryTags(query)</code> asks, counts weights: Exact reads the tag's weight, and the other modes
-add up the weights of the tags that match.</li>
-<li><code>Validate(list)</code>, of a list of tags as <code>GetAppliedTags()</code> gives, counts the tags that match, each once.</li>
-</ul>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.TagQuery.html#FarEmerald_PlayForge_TagQuery_CountMatches_"><code>CountMatches</code></a> gives the count either way.</p>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-
-public static class StatusChecks
-{
-    static readonly Tag Debuff = Tag.GenerateAsUnique(&quot;Status.Debuff&quot;);
-    static readonly Tag Bleed = Tag.GenerateAsUnique(&quot;Status.Debuff.Bleed&quot;);
-
-    // Status.Debuff, or any tag under it
-    public static bool IsDebuffed(IGameplayAbilitySystem gas) =&gt;
-        gas.GetTagCache().HasTag(Debuff, ETagMatchMode.IncludeChildren);
-
-    // Bleed granted three times or more, by its weight
-    static readonly TagQuery Bleeding = new TagQuery
-    {
-        Tag = Bleed,
-        Operator = EComparisonOperator.GreaterOrEqual,
-        Magnitude = 3,
-    };
-
-    public static bool BleedsHard(IGameplayAbilitySystem gas) =&gt; gas.QueryTags(Bleeding);
-}
-</code></pre>
-<hr>
-<p><a href="hearing-tags-change.html">← Hearing tags change</a> · <a href="index.html">Tags</a> · <a href="requirements.html">Requirements →</a></p>
 
 </article>
 

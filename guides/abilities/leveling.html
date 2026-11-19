@@ -88,29 +88,61 @@
 <h1 id="leveling">Leveling</h1>
 
 <p>An ability has its own level on each entity that learns it, kept under the ability's asset tag. Effects the ability
-applies take this level, so their scalers can pick per-level values. A scaler is a value source, such as a table with
-one value per level. A level provider is an asset whose level range another asset follows.</p>
+applies take this level, so their scalers can pick per-level values.</p>
+<p>A scaler is a value source, such as a table with one value per level. A level provider is an asset whose level range
+another asset follows.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Link Mode</strong></td>
+<td>Standalone (default) keeps the ability's own range.<br>Linked To Provider takes the range from a level provider instead.</td>
+</tr>
+<tr>
+<td><strong>Starting Level</strong></td>
+<td>The bottom of the ability's own range (default 1). An entity's Starting Abilities begin at the Starting Level, and the ability's level never goes below it.</td>
+</tr>
+<tr>
+<td><strong>Max Level</strong></td>
+<td>The top of the ability's own range (default 4).</td>
+</tr>
+<tr>
+<td><strong>Level Provider</strong></td>
+<td>Shown while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set. Right-click the field to pick from one type.</td>
+</tr>
+<tr>
+<td><strong>Ignore When Level Zero</strong></td>
+<td>On by default: the ability can't activate while its level is 0. With a Starting Level of 0, the entity must raise the ability's level before it can use it.</td>
+</tr>
+<tr>
+<td><strong>Link Cost &amp; Cooldown</strong></td>
+<td>Links this ability's cost and cooldown effects to it, so their per-level values follow its range.</td>
+</tr>
+<tr>
+<td><strong>Unlink Cost &amp; Cooldown</strong></td>
+<td>Removes the links that point at this ability.</td>
+</tr>
+</tbody>
+</table>
+<p>Under Linked To Provider:</p>
 <ul>
-<li><strong>Link Mode</strong>: Standalone (default) keeps the ability's own range. Linked To Provider takes the range from a level
-provider instead.</li>
-<li><strong>Starting Level</strong> (default 1) and <strong>Max Level</strong> (default 4): the ability's own range. An entity's Starting Abilities
-begin at the Starting Level, and the ability's level never goes below it.</li>
-<li><strong>Level Provider</strong>, while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.
-Right-click the field to pick from one type. A link that would make a loop is refused, with an error in the Console.
-While no provider is set, a warning says the ability uses its own range. While linked, Starting Level and Max Level
-show the range in use, read-only.</li>
-<li><strong>Ignore When Level Zero</strong> (default on): the ability can't activate while its level is 0. With a Starting Level of 0,
-the entity must raise the ability's level before it can use it.</li>
-<li><strong>Link Cost &amp; Cooldown</strong> links this ability's cost and cooldown effects to it, so their per-level values follow its
-range. <strong>Unlink Cost &amp; Cooldown</strong> removes the links that point at this ability. Each asks first, and one Undo takes
-it back.</li>
+<li>A link that would make a loop is refused, with an error in the Console.</li>
+<li>While no provider is set, a warning says the ability uses its own range.</li>
+<li>While linked, Starting Level and Max Level show the range in use, read-only.</li>
 </ul>
-<p>Code changes an ability's level through the entity's GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and the ability's asset
-tag. An ability that an Item grants starts at the item's level, kept within this range.</p>
+<p><strong>Link Cost &amp; Cooldown</strong> and <strong>Unlink Cost &amp; Cooldown</strong> each ask first, and one Undo takes it back.</p>
+<p>Code changes an ability's level through the entity's GAS, with <code>SetLevel</code> or <code>ModifyLevel</code> and the ability's asset tag.
+An ability that an Item grants starts at the item's level, kept within this range.</p>
+<div class="NOTE">
+<h5>Note</h5>
 <p>The link serves the inspector and the tooltips that <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityInspector.html"><code>AbilityInspector</code></a> builds. At runtime, the ability's level stays
 within its own Starting Level and Max Level, even while it is linked.</p>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Abilities</a> · <a href="tags.html">Tags →</a></p>
+</div>
 
 </article>
 

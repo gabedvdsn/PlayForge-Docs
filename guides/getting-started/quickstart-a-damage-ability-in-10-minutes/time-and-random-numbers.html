@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Time and random numbers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Time and random numbers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.getting-started.quickstart-a-damage-ability-in-10-minutes.time-and-random-numbers">
+<h1 id="time-and-random-numbers">Time and random numbers</h1>
+
+<p>This section covers where PlayForge's time and random numbers come from, and the clocks an entity or a sequence runs
+by.</p>
+<p>PlayForge reads time through <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a>, and draws random numbers through <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>. They read Unity's <code>Time</code> and
+<code>Random</code> unless you put in your own:</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>What you put in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(clock)</code></a></td>
+<td>A clock of your own, an <a class="xref" href="../../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(new SeededRandom(seed))</code></a></td>
+<td>Seeded rolls, which repeat from their seed whatever else draws from Unity's <code>Random</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>Use</code> returns what it replaced, so you can put it back. Each entity numbers its effects' applications
+(<a class="xref" href="../../../api/FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_ApplicationId"><code>GameplayEffectSpec.ApplicationId</code></a>) and its abilities' activations.</p>
+<h2 id="an-entitys-clock">An entity's clock</h2>
+<p>Each entity also has a clock of its own, <code>gas.GetClock()</code>: the game's time, scaled by the entity's <code>TimeScale</code>.</p>
+<ul>
+<li>The entity's effects run by it, its cooldowns among them.</li>
+<li>Its abilities' waits and sequences run by it too.</li>
+</ul>
+<p>So <code>TimeScale = 0.5f</code> slows one entity and no other. A scale of 0 holds the entity's time still, but it isn't a pause.</p>
+<h2 id="a-sequences-clock">A sequence's clock</h2>
+<p>A sequence can run by a clock of its own:</p>
+<ul>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(UnscaledClock.Instance)</code></a> runs a pause menu's sequence while the game's time stands still.</li>
+<li>A <a class="xref" href="../../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a> runs a sequence at a pace of its own.</li>
+<li>A packet's <code>Clock</code>, an entity's among them, comes before either.</li>
+</ul>
+<p>An ability's Run Sequence task picks a clock in its inspector, with its <strong>Clock</strong>. <a href="../../task-sequences/index.html">Task Sequences</a>
+has the order a run takes them in.</p>
+<h2 id="fixed-ticks">Fixed ticks</h2>
+<p>For a run that comes out the same at any frame rate, set ProcessControl's Fixed Tick Rate, as 60. The game then steps
+in ticks, each a fixed step of its time, as many a frame as the frame's time holds:</p>
+<ul>
+<li>Every process steps once a tick, its end of frame with it.</li>
+<li>Each sequence's wait goes on by the tick.</li>
+<li>Code of your own that waits for a sequence's next frame awaits <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next(token)</code></a>.</li>
+</ul>
+<p>0, the default, steps once a frame. The ticks stand still with the game's time, so a sequence on the unscaled clock
+waits for Unity's frames instead.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

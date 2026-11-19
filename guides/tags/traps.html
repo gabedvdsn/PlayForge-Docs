@@ -87,28 +87,38 @@
         <article data-uid="guide.tags.traps">
 <h1 id="traps">Traps</h1>
 
-<p>Tags invite a few mistakes, each below with its way out.</p>
+<p>Tags invite a few mistakes. Each is below, with its way out.</p>
 <ul>
-<li><strong>Text makes a plain tag.</strong> <code>&quot;State.Stunned&quot;</code> where a tag is asked for, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate</code></a>, give the plain tag of the
-path, but New Tag made a unique one, and the two are different tags: neither equals the other, answers a query for it
-in any mode but Same Root, or is heard by the other's listener. Write <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></a>, or
-expose the tag from code so that designers pick that very one.</li>
-<li><strong>An absent tag weighs −1.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight</code></a>, <code>GetTagWeight</code>, and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetMatchingWeight_"><code>GetMatchingWeight</code></a> in Exact mode give −1 for a tag the
-entity hasn't got, not 0. Ask for more than 0, or use <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight</code></a>.</li>
-<li><strong>A tag added to the cache doesn't last.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTag_"><code>TagCache.AddTag</code></a> is dropped at the next compile, as an ability starts or
-an item changes. Grant a lasting tag with <code>AddLooseTag</code>.</li>
-<li><strong>A requirement row counts tags, not weights.</strong> An Exact entry's Greater Than 1 never passes in a row but While
-active. Ask for stacks with the Tag Weight check, a Tag condition or a tag worker.</li>
-<li><strong>A tag shows by <code>ToString()</code>.</strong> Its <code>Name</code> is padded where it's unique, and it's the <code>Name</code> a tag converts to where
-a string is asked for.</li>
-<li><strong>A tag's relatives are plain.</strong> <code>Child</code>, <code>GetParent</code>, <code>GetAncestors</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetRoot_"><code>GetRoot</code></a> make plain tags, which no
-unique tag equals. Compare families by path, with <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsChildOf_"><code>IsChildOf</code></a> or a match mode.</li>
-<li><strong>A rename reaches assets, not code.</strong> The Tags view renames what assets store, so a tag the project's code writes
-keeps its old text there: rename it in the code too.</li>
-<li><strong>The applied list is the cache's.</strong> <code>GetAppliedTags()</code> changes as tags come and go; copy it to keep it.</li>
+<li><p><strong>Text makes a plain tag.</strong> <code>&quot;State.Stunned&quot;</code> where a tag is asked for, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate</code></a>, give the plain tag of the
+path. New Tag made a unique one, and the two are different tags:</p>
+<ul>
+<li>Neither equals the other.</li>
+<li>Neither answers a query for the other, in any mode but Same Root.</li>
+<li>Neither is heard by the other's listener.</li>
 </ul>
-<hr>
-<p><a href="the-editors-tag-registry.html">← The editor's tag registry</a> · <a href="index.html">Tags</a></p>
+<p>Write <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></a>, or expose the tag from code so that designers pick that very one.</p>
+</li>
+<li><p><strong>An absent tag weighs −1.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight</code></a>, <code>GetTagWeight</code>, and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetMatchingWeight_"><code>GetMatchingWeight</code></a> in Exact mode give −1 for a tag the
+entity hasn't got, not 0. Ask for more than 0, or use <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight</code></a>.</p>
+</li>
+<li><p><strong>A tag added to the cache doesn't last.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTag_"><code>TagCache.AddTag</code></a> is dropped at the next compile, as an ability starts or
+an item changes. Grant a lasting tag with <code>AddLooseTag</code>.</p>
+</li>
+<li><p><strong>A requirement row counts tags, not weights.</strong> An Exact entry's Greater Than 1 never passes in a row but While
+active. Ask for stacks with the Tag Weight check, a Tag condition or a tag worker.</p>
+</li>
+<li><p><strong>A tag shows by <code>ToString()</code>.</strong> Its <code>Name</code> is padded where it's unique. It's the <code>Name</code> a tag converts to where a
+string is asked for.</p>
+</li>
+<li><p><strong>A tag's relatives are plain.</strong> <code>Child</code>, <code>GetParent</code>, <code>GetAncestors</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetRoot_"><code>GetRoot</code></a> make plain tags, which no unique
+tag equals. Compare families by path, with <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsChildOf_"><code>IsChildOf</code></a> or a match mode.</p>
+</li>
+<li><p><strong>A rename reaches assets, not code.</strong> The Tags view renames what assets store, so a tag the project's code writes
+keeps its old text there. Rename it in the code too.</p>
+</li>
+<li><p><strong>The applied list is the cache's.</strong> <code>GetAppliedTags()</code> changes as tags come and go. Copy it to keep it.</p>
+</li>
+</ul>
 
 </article>
 

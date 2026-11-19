@@ -87,9 +87,9 @@
         <article data-uid="guide.task-sequences.synced-sequences">
 <h1 id="synced-sequences">Synced sequences</h1>
 
-<p>A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async: a process with the Synchronous
-lifecycle calls its <code>Step</code> each frame. It suits what runs for good, a patrol, a regeneration, a bob, and costs nothing
-but the calls.</p>
+<p>A <strong>synced runner</strong> is the same sequence stepped a frame at a time, with no async. A process with the Synchronous
+lifecycle calls its <code>Step</code> each frame.</p>
+<p>A synced runner suits what runs for good, as a patrol, a regeneration or a bob. It costs nothing but the calls.</p>
 <pre><code class="lang-csharp">using SyncSeq = FarEmerald.PlayForge.SyncSequenceTaskLibrary;
 
 runner = TaskSequenceBuilder.Create(&quot;Regenerate&quot;)
@@ -101,14 +101,63 @@ runner = TaskSequenceBuilder.Create(&quot;Regenerate&quot;)
 // In the process's WhenUpdate: a step of its clock, or Step(data, deltaTime) for a time of your own
 runner.Step(data);
 </code></pre>
-<p>A synced task works in an async sequence too, stepped once a frame and held while the sequence is paused. Its first
-step comes in the frame its stage starts, so <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html#FarEmerald_PlayForge_SyncSequenceTaskLibrary_Yield_"><code>SyncSequenceTaskLibrary.Yield</code></a> waits no frame there; the async <code>Yield</code>
-does.</p>
-<p>A synced runner runs stages, their tasks, the three policies, repeats with or without a count, critical stages and a
-stage's longest run. A sub-stage, a branch, a condition, the sequence's own timeout or longest run, or an async task it
-can't, and building a runner from a sequence that holds any says so. It's changed by hand: <code>Interrupt</code>, <code>SkipStage</code>, <code>JumpToStage</code>, <code>BreakStageRepeat</code> and <code>Reset</code>.</p>
-<hr>
-<p><a href="chains.html">← Chains</a> · <a href="index.html">Task Sequences</a> · <a href="the-libraries.html">The libraries →</a></p>
+<p>A synced task works in an async sequence too: it's stepped once a frame, and held while the sequence is paused. Its
+first step comes in the frame its stage starts, so <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html#FarEmerald_PlayForge_SyncSequenceTaskLibrary_Yield_"><code>SyncSequenceTaskLibrary.Yield</code></a> waits no frame there. The async
+<code>Yield</code> does.</p>
+<h2 id="what-a-synced-runner-runs">What a synced runner runs</h2>
+<p>A synced runner runs only part of what an async sequence can.</p>
+<table>
+<thead>
+<tr>
+<th>Part of a sequence</th>
+<th>Synced runner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stages and their tasks</td>
+<td>Runs it</td>
+</tr>
+<tr>
+<td>The three policies</td>
+<td>Runs it</td>
+</tr>
+<tr>
+<td>Repeats, with or without a count</td>
+<td>Runs it</td>
+</tr>
+<tr>
+<td>Critical stages</td>
+<td>Runs it</td>
+</tr>
+<tr>
+<td>A stage's longest run</td>
+<td>Runs it</td>
+</tr>
+<tr>
+<td>A sub-stage</td>
+<td>Can't</td>
+</tr>
+<tr>
+<td>A branch</td>
+<td>Can't</td>
+</tr>
+<tr>
+<td>A condition</td>
+<td>Can't</td>
+</tr>
+<tr>
+<td>The sequence's own timeout or longest run</td>
+<td>Can't</td>
+</tr>
+<tr>
+<td>An async task</td>
+<td>Can't</td>
+</tr>
+</tbody>
+</table>
+<p>Building a runner from a sequence that holds any it can't says so.</p>
+<p>A synced runner is changed by hand: <code>Interrupt</code>, <code>SkipStage</code>, <code>JumpToStage</code>, <code>BreakStageRepeat</code> and <code>Reset</code>.</p>
 
 </article>
 

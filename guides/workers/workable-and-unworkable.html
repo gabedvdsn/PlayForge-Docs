@@ -87,21 +87,19 @@
         <article data-uid="guide.workers.workable-and-unworkable">
 <h1 id="workable-and-unworkable">Workable and unworkable</h1>
 
-<p>A change is <strong>workable</strong> unless it says it isn't (<a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_ImpactIsWorkable"><code>SourcedModifiedAttributeValue.ImpactIsWorkable</code></a>). An unworkable one
-is a change the system makes on its own account (<a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateUnworkable_"><code>GenerateUnworkable</code></a>), as the pulse each attribute starts with, or a
-transfer's two sides. Only a workable change:</p>
+<p>A change is <strong>workable</strong> unless it says it isn't (<a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_ImpactIsWorkable"><code>SourcedModifiedAttributeValue.ImpactIsWorkable</code></a>).</p>
+<p>An unworkable one is a change the system makes on its own account (<a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateUnworkable_"><code>GenerateUnworkable</code></a>), as the pulse each attribute
+starts with, or a transfer's two sides.</p>
+<p>Only a workable change:</p>
 <ul>
 <li>reaches impact workers, unless a worker's <strong>Accept Unworkable Impact</strong> is on;</li>
-<li>is soaked by a barrier as a loss, and scaled by its attribute's <strong>Gains Scaled By</strong> as a gain, as Healing
-Received;</li>
-<li>sends the core's Impact Dealt and Impact Taken events, and counts toward the kill: the killer is whoever dealt
-the last workable loss to the Health role's attribute;</li>
+<li>is soaked by a barrier as a loss, and scaled by its attribute's <strong>Gains Scaled By</strong> as a gain, as Healing Received;</li>
+<li>sends the core's Impact Dealt and Impact Taken events;</li>
+<li>counts toward the kill: the killer is whoever dealt the last workable loss to the Health role's attribute;</li>
 <li>counts for lifesteal, and is returned by Return Damage;</li>
-<li>is written in the combat log as a hit, taken or dealt; another is a Change.</li>
+<li>is written in the combat log as a hit, taken or dealt. Another change is written as a Change.</li>
 </ul>
-<p>Attribute workers run for every change, workable or not; one that cares reads <code>ctx.Change.Value.ImpactIsWorkable</code>.</p>
-<hr>
-<p><a href="hearing-workers-run.html">← Hearing workers run</a> · <a href="index.html">Workers</a> · <a href="traps.html">Traps →</a></p>
+<p>Attribute workers run for every change, workable or not. One that cares reads <code>ctx.Change.Value.ImpactIsWorkable</code>.</p>
 
 </article>
 

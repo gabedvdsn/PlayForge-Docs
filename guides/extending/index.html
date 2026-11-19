@@ -87,11 +87,20 @@
         <article data-uid="guide.extending">
 <h1 id="extending-playforge">Extending PlayForge</h1>
 
+<p>This guide covers each place a game's own code plugs into PlayForge.</p>
 <p>PlayForge's rules are kinds a designer picks in an inspector: components, workers, tasks, scalers, conditions, stages,
-cue handlers and more. A game adds its own by writing a class of the same base. The editor finds the class, its picker
-offers it beside PlayForge's own, and it runs where they run, handed what they're handed. This guide covers each place a
-game's code plugs in: the base to derive from, the hooks it overrides and when each is called, how the kind reaches the
-inspector, what it's handed, a complete example, and the traps.</p>
+cue handlers and more. A game adds its own by writing a class of the same base.</p>
+<p>The editor finds the class, and its picker offers it beside PlayForge's own. It runs where they run, handed what they're
+handed.</p>
+<p>Each extension point here follows the same order, leaving out what doesn't apply to it:</p>
+<ol>
+<li>What it's for, in a sentence.</li>
+<li>The base to derive from, and what its hooks are handed.</li>
+<li>Its hooks, and when PlayForge calls each.</li>
+<li>How the kind reaches the inspector's picker.</li>
+<li>A complete example.</li>
+<li>Its traps.</li>
+</ol>
 <p>Code that only uses PlayForge, as a script that casts an ability or reads an attribute, needs none of this. The kinds
 here plug into what <a href="../workers/index.html">Workers</a>, <a href="../scalers/index.html">Scalers</a>, <a href="../processes/index.html">Processes</a> and
 <a href="../task-sequences/index.html">Task Sequences</a> explain.</p>
@@ -197,20 +206,20 @@ here plug into what <a href="../workers/index.html">Workers</a>, <a href="../sca
 <ul>
 <li><a href="before-you-start.html">Before you start</a>: This section covers what every kind of a game's own shares: the assembly it lives in, how the editor finds it, how its picker names and files it, how its fields show, where it keeps what it counts, and how it's renamed.</li>
 <li><a href="components.html">Components</a>: A component is a feature an asset carries in its <strong>Components</strong> section: an effect's, an ability's, an entity's or an item's.</li>
-<li><a href="workers.html">Workers</a>: A worker is a small rule an entity holds in a worker group, or an effect holds in its <strong>Workers</strong>, that reacts to what happens: an attribute's change, a hit it deals, its tags, its frame's events, an effect's life.</li>
-<li><a href="deferred-actions.html">Deferred actions</a>: A deferred action is a piece of work queued to an entity that runs at its end of frame, by priority: what deferred workers return, and what any code queues with <code>entity.GetActionQueue().Enqueue(action)</code>.</li>
+<li><a href="workers.html">Workers</a>: A worker is a small rule that reacts to what happens: an attribute's change, a hit it deals, its tags, its frame's events, an effect's life.</li>
+<li><a href="deferred-actions.html">Deferred actions</a>: A deferred action is a piece of work queued to an entity that runs at its end of frame, by priority.</li>
 <li><a href="ability-tasks.html">Ability tasks</a>: An ability task is a step of an ability's stage: it's picked in a stage's <strong>Tasks</strong>, runs with the stage, and is handed the activation's data.</li>
-<li><a href="targeting-tasks.html">Targeting tasks</a>: A targeting task picks what an activation acts on before its stages run: it's the ability's <strong>Targeting</strong>, one task, run as the activation starts.</li>
+<li><a href="targeting-tasks.html">Targeting tasks</a>: A targeting task picks what an activation acts on before its stages run.</li>
 <li><a href="sequence-tasks-injections-and-stage-policies.html">Sequence tasks, injections and stage policies</a>: A task sequence runs stages of tasks, built in code with <code>TaskSequenceBuilder</code> (Task Sequences).</li>
 <li><a href="processes.html">Processes</a>: A process is anything that runs over time under ProcessControl: a MonoBehaviour or a plain C# object stepped from Unity's player loop.</li>
 <li><a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions</a>: A number field's <strong>Kind</strong> says how its number is worked out, and a Conditional's or a rule's condition says whether it holds.</li>
-<li><a href="value-stages.html">Value stages</a>: A value stage reshapes a hit's value on its way to its attribute, one of a Value Pipeline's <strong>Stages</strong>, which an effect's impact names as its <strong>Pipeline</strong> (Value Pipelines: Stages).</li>
+<li><a href="value-stages.html">Value stages</a>: A value stage reshapes a hit's value on its way to its attribute, as one of a Value Pipeline's <strong>Stages</strong>, which an effect's impact names as its <strong>Pipeline</strong> (Value Pipelines: Stages).</li>
 <li><a href="cue-handlers.html">Cue handlers</a>: A cue handler plays feedback, a shake, a sound, an animation, at an effect's, an ability's, an entity's or an item's moments, or where a cue tag routes.</li>
-<li><a href="entity-services.html">Entity services</a>: An entity service is an object of a game's own each entity keeps as it runs, made the first time it's asked for and stepped by the entity's own time: a combo count, a cooldown of the game's own, a respawn's wait.</li>
-<li><a href="validation-rules.html">Validation rules</a>: A validation rule refuses an ability's activation: one of the ability's <strong>Caster Checks</strong>, asked of the caster, or its <strong>Target Checks</strong>, asked of the target once its targeting has picked one.</li>
+<li><a href="entity-services.html">Entity services</a>: An entity service is an object of a game's own each entity keeps as it runs, as a combo count, a cooldown of the game's own or a respawn's wait.</li>
+<li><a href="validation-rules.html">Validation rules</a>: A validation rule refuses an ability's activation, as one of the ability's <strong>Caster Checks</strong>, asked of the caster, or its <strong>Target Checks</strong>, asked of the target once its targeting has picked one.</li>
 <li><a href="smaller-kinds.html">Smaller kinds</a>: This section covers the smaller kinds a game picks in one field each: where an entity respawns, how charges come back, what a purge takes, how a modifier changes an effect, a Local Data value's type, and the clock a run…</li>
 <li><a href="a-games-own-objects.html">A game's own objects</a>: PlayForge asks a game's own objects for a few things through interfaces: turning, moving, shaking the camera, and a pooled cue's comings and goings.</li>
-<li><a href="readers.html">Readers</a>: A reader is a MonoBehaviour process that shows an entity's state, a bar or a counter: <code>AbstractReader</code>, a <code>LazyMonoProcess</code>, which <code>Assign(gas)</code> gives its entity.</li>
+<li><a href="readers.html">Readers</a>: A reader is a MonoBehaviour process that shows an entity's state, as a bar or a counter.</li>
 <li><a href="time-randomness-and-input.html">Time, randomness and input</a>: PlayForge reads its time, its random numbers and its pointer through sources a game can replace, so a game can run it on a fixed step, repeat its rolls, or aim with a gamepad.</li>
 <li><a href="saving-a-games-own-data.html">Saving a game's own data</a>: A <code>ForgeSnapshot</code> holds what PlayForge saves of an entity, and nothing of a game's own: a game saves its own data beside it.</li>
 <li><a href="tags-in-code.html">Tags in code</a>: A game's code names tags for its kinds to read: a data key, an event, a state its components grant.</li>

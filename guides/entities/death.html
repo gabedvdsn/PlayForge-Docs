@@ -87,38 +87,94 @@
         <article data-uid="guide.entities.death">
 <h1 id="death">Death</h1>
 
-<p>What the entity's death does. <strong>Policy</strong> is <strong>End</strong> by default: as it dies, its hub ends it at its frame's end,
-as an entity always did. <strong>Stay</strong> keeps it, dead, until it revives: a MOBA hero, or anyone who dies and comes back.</p>
-<p>An entity dies as a death watcher among its analysis workers, or its attribute set's, says it does. Where none watches
-and an attribute plays its project's Health role (<a href="../attributes/roles.html">Attributes: Roles</a>), it dies as that attribute reaches 0. <strong>Dies At Zero Health</strong>, on by default, says it does; off, as for a training dummy, that attribute
-doesn't kill it.</p>
+<p>The Death section sets what the entity's death does.</p>
+<pre><code class="lang-mermaid">flowchart TD
+classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef decision fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
+t1([&quot;DeathWatcherAnalysisWorker&lt;br/&gt;reaches its threshold&lt;br/&gt;at the end of frame&quot;]):::terminator
+t2([&quot;GASCore.WatchProjectHealth&lt;br/&gt;the Health-role attribute is at or below 0,&lt;br/&gt;DiesAtZeroHealth is on, no death watcher&quot;]):::terminator
+t3([&quot;code calls gas.MarkDead()&quot;]):::terminator
+da[&quot;DeathAction, Critical&quot;]:::general
+md[&quot;GASCore.MarkDead&lt;br/&gt;IsDead = true, EntityDied, FrameSummary&lt;br/&gt;the killer is the source of the last workable loss&lt;br/&gt;sends DIED to itself and KILL to the killer&quot;]:::general
+ec[&quot;each entity component's Death(ctx)&lt;br/&gt;Bounty gives its effect to the killer and allies&lt;br/&gt;Respawn calls RespawnTimer.ReviveIn(delay, place)&lt;br/&gt;EffectSystem.HearDeath(): effect components' Death&quot;]:::general
+p{&quot;EntityDeath&lt;br/&gt;policy?&quot;}:::decision
+st[&quot;Stay: at the end of frame, Die()&lt;br/&gt;ForgePurge.PurgeOnDeath when Purges is set&lt;br/&gt;end the body, apply the OnDeath effects&quot;]:::general
+st2([&quot;stays registered: its abilities refuse as Dead,&lt;br/&gt;and others' effects are refused&quot;]):::terminator
+en[&quot;End: at the end of frame&lt;br/&gt;Callbacks.SystemDisabled,&lt;br/&gt;then the hub's HandleDestruction()&quot;]:::general
+mono[&quot;Mono hub: Relay.TerminateImmediate(),&lt;br/&gt;else Destroy(gameObject)&quot;]:::general
+rth[&quot;Runtime hub: Relay.Terminate(),&lt;br/&gt;which queues&quot;]:::general
+wt([&quot;hub.WhenTerminate(), GASCore.WhenTerminate()&lt;br/&gt;components End, services End, transfers given back,&lt;br/&gt;sides cleared, AbilitySystem.ShutDown, ForgeEntities.Remove&quot;]):::terminator
+rv([&quot;Revive, Stay only: a RespawnTimer's countdown,&lt;br/&gt;ReviveOnRemovalEffectWorker, or gas.Revive(at)&quot;]):::terminator
+r1[&quot;GASCore.Revive: IsDead = false, services Revive, analysis workers Rearm&lt;br/&gt;the OnRevive effects, spawn the body&lt;br/&gt;Callbacks.EntityRevived, REVIVED, components Revive&quot;]:::general
+t1 --&gt; da
+t2 --&gt; da
+da --&gt; md
+t3 --&gt; md
+md --&gt; ec --&gt; p
+p --&gt;|Stay| st --&gt; st2
+p --&gt;|End| en
+en --&gt; mono --&gt; wt
+en --&gt; rth --&gt; wt
+st2 -.-&gt; rv
+rv --&gt; r1
+</code></pre>
+<p><em>What triggers death, what each EntityDeath policy does at the end of frame, and how an entity revives.</em></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Policy</strong></td>
+<td><strong>End</strong> (default): as it dies, its hub ends it at its frame's end, as an entity always did.<br><strong>Stay</strong>: keeps it, dead, until it revives, for a MOBA hero or anyone who dies and comes back.</td>
+</tr>
+<tr>
+<td><strong>Dies At Zero Health</strong></td>
+<td>On by default: where no death watcher watches, the entity dies as the attribute playing its project's Health role reaches 0. Off, as for a training dummy, that attribute doesn't kill it.</td>
+</tr>
+<tr>
+<td><strong>Purges</strong></td>
+<td>On by default: a staying entity's death purges its effects, all but those it keeps.</td>
+</tr>
+<tr>
+<td><strong>Keeps As Project</strong></td>
+<td>On, it keeps what its project's Purge Levels keep on death.</td>
+</tr>
+<tr>
+<td><strong>Keeps Tiers</strong></td>
+<td>More tiers it keeps.</td>
+</tr>
+<tr>
+<td><strong>Keeps Categories</strong></td>
+<td>More categories it keeps, whatever their effects' tiers.</td>
+</tr>
+<tr>
+<td><strong>On Death</strong></td>
+<td>The effects it takes as it dies.</td>
+</tr>
+<tr>
+<td><strong>On Revive</strong></td>
+<td>The effects it takes as it revives, such as its health back.</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td>A MonoBehaviour process, a prefab, that it spawns where it is as it starts and as it revives, and ends as it dies.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>A staying entity dies at its frame's end and stays registered, with its items, levels and lasting effects. Its
-abilities are refused while it's dead.</li>
-<li><strong>Purges</strong>, on by default: its death purges its effects, all but those it keeps, as the games' deaths do (<a href="../effects/purging.html">Effects: Purging</a>). It keeps the <strong>categories</strong> it keeps whatever their effects' tiers: an ability's
-<strong>Cooldown</strong>, what's <strong>Lent</strong> (by an equipped item, a set bonus, an aura, or a passive, an ability that activates as
-it's granted, or claimed so by what applied it, as <code>spec.Claimed</code>), a <strong>Toggle</strong> (a Toggle component's effect, or one an ability's component claims as a toggle's), and
-its <strong>Own</strong>, the rest it applied to itself; and the <strong>tiers</strong> it keeps. <strong>Keeps As
-Project</strong>, on, keeps what its project's Purge Levels keep on death, each tier's Kept On Death and their Kept On Death
-categories, cooldowns, lent effects and toggles as a project starts, and those with no project; <strong>Keeps Tiers</strong> and
-<strong>Keeps Categories</strong> keep more. An effect at no tier goes, unless a category it's of is kept. It took the place of
-Ends Effects Tagged, which ended effects by their tags.</li>
-<li><strong>On Death</strong>: the effects it takes as it dies. A respawn timer is a durational effect with a <strong>Revive On Removal</strong>
-worker: as it ends, the entity revives, where it was or at a point.</li>
-<li><strong>On Revive</strong>: the effects it takes as it revives, as its health back.</li>
-<li><strong>Body</strong>: a MonoBehaviour process, a prefab, that it spawns where it is as it starts and as it revives, and ends as it
-dies. A runtime entity takes its position from its body, so an area search finds it there; <code>GetBody()</code> returns it.
-A running entity can be given a body of its own at runtime with <code>UseBody(process)</code>, a process running already or
-registered for it there, which it follows and which ends with it as it dies, as its identity's Body does; a revive
-spawns the identity's Body, where it has one. The body it had ends first, <code>UseBody(null)</code> lets one go, ending
-it, and a dead entity takes none.</li>
+<li><a href="death/how-an-entity-dies.html">How an entity dies</a>: An entity dies as a death watcher among its analysis workers, or its attribute set's, says it does.</li>
+<li><a href="death/staying-dead.html">Staying dead</a>: An entity whose <strong>Policy</strong> is <strong>Stay</strong> dies at its frame's end and stays registered, with its items, levels and lasting effects.</li>
+<li><a href="death/purging-on-death.html">Purging on death</a>: A staying entity's death purges its effects, all but those it keeps, as the games' deaths do (Effects: Purging).</li>
+<li><a href="death/on-death-and-on-revive.html">On Death and On Revive</a>: A staying entity takes the effects these two lists hold as it dies and as it revives.</li>
+<li><a href="death/body.html">Body</a>: An entity's <strong>Body</strong> is a MonoBehaviour process, a prefab, that it spawns where it is as it starts and as it revives, and ends as it dies.</li>
+<li><a href="death/reviving.html">Reviving</a>: <code>Revive(at)</code> on either hub brings a staying entity back, at a point or where it was.</li>
 </ul>
-<p>A dead entity takes no one else's effects, as the dead in the games are untargetable: its own still land, as its On Death
-respawn timer and its On Revive effects, and an effect another applies to it while it's dead is refused.</p>
-<p><code>Revive(at)</code> on either hub brings a staying entity back, at a point or where it was; it re-arms the entity's analysis
-workers, so its death watcher sees its next death. Callbacks hear <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEntityRevived"><code>OnEntityRevived</code></a>, as they hear <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEntityDied"><code>OnEntityDied</code></a>.</p>
-<hr>
-<p><a href="workers.html">← Workers</a> · <a href="index.html">Entities</a> · <a href="combat-log.html">Combat Log →</a></p>
 
 </article>
 

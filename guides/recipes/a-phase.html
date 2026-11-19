@@ -89,14 +89,21 @@
 
 <p>As the boss's Health falls to half, it enrages, once.</p>
 <ul>
-<li><strong>Boss</strong> (an attribute set): Health 1000; in its <strong>Worker Group</strong>, one analysis worker, <strong>Threshold</strong>, <strong>Target</strong>
-Health, <strong>What</strong> Share, <strong>Threshold</strong> 0.5, <strong>Crossing</strong> Falling, <strong>Trigger Once</strong> on, <strong>Effects</strong> Enrage.</li>
+<li><strong>Boss</strong> (an attribute set):
+<ul>
+<li>Health 1000.</li>
+<li>In its <strong>Worker Group</strong>, one analysis worker, <strong>Threshold</strong>, with <strong>Target</strong> Health, <strong>What</strong> Share,
+<strong>Threshold</strong> 0.5, <strong>Crossing</strong> Falling, <strong>Trigger Once</strong> on and <strong>Effects</strong> Enrage.</li>
+</ul>
+</li>
 <li><strong>Enrage</strong> (an effect): Infinite, granting <code>Recipe.Enraged</code>.</li>
 </ul>
-<p>The phase's own moves start from the tag: an ability with a <strong>Tag Added</strong> trigger on <code>Recipe.Enraged</code>, or a stage
-condition that reads it. The worker's <strong>Event</strong> sends a gameplay event as well, for a trigger of its own.</p>
-<hr>
-<p><a href="on-kill.html">← On kill</a> · <a href="index.html">Recipes</a> · <a href="formulas.html">Formulas →</a></p>
+<p>The phase's own moves start from the tag:</p>
+<ul>
+<li>an ability with a <strong>Tag Added</strong> trigger on <code>Recipe.Enraged</code>;</li>
+<li>or a stage condition that reads the tag.</li>
+</ul>
+<p>The worker's <strong>Event</strong> sends a gameplay event as well, for a trigger of its own.</p>
 
 </article>
 

@@ -87,25 +87,46 @@
         <article data-uid="guide.effects.leveling">
 <h1 id="leveling">Leveling</h1>
 
-<p>An effect has no level of its own. At runtime it takes the level of its origin. Its scalers use that level to pick
-per-level values, such as 20/30/40/50 damage at levels 1 to 4. A scaler is a value source, such as a table with one
-value per level. A level provider is the asset whose level range an effect is authored for, normally its origin.</p>
+<p>An effect has no level of its own. At runtime it takes the level of its origin, and its scalers use that level to pick
+per-level values, such as 20/30/40/50 damage at levels 1 to 4.</p>
+<p>A scaler is a value source, such as a table with one value per level. A level provider is the asset whose level range an
+effect is authored for, normally its origin.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Link Mode</strong></td>
+<td>Standalone (default): the effect takes the level of what applies it, as a note says.<br>Linked To Provider: the effect takes its range from a level provider.</td>
+</tr>
+<tr>
+<td><strong>Level Provider</strong></td>
+<td>Shown while linked. The asset the range comes from: an Entity, Ability, Effect, Item or Attribute Set.</td>
+</tr>
+<tr>
+<td><strong>Link Contained Effects</strong></td>
+<td>Shown while linked. Links every contained effect (see <a href="impact/contained-effects.html">Contained Effects</a>) to this effect's provider, so their per-level values follow its range.</td>
+</tr>
+<tr>
+<td><strong>Unlink Contained Effects</strong></td>
+<td>Removes the contained effects' links that point at the provider.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Link Mode</strong>: Standalone (default): the effect takes the level of what applies it, as a note says. Linked To
-Provider takes the range from a level provider.</li>
-<li><strong>Level Provider</strong>, while linked: the asset the range comes from, an Entity, Ability, Effect, Item or Attribute Set.
-Right-click the field to pick from one type. A link that would make a loop is refused, with an error in the Console.
-While no provider is set, a warning says the effect takes the level of what applies it. Starting Level and Max Level
-show the provider's range, read-only.</li>
-<li><strong>Link Contained Effects</strong>, while linked, links every contained effect (see Impact) to this effect's provider, so
-their per-level values follow its range. <strong>Unlink Contained Effects</strong> removes the links that point at it. Each asks
-first, and one Undo takes it back.</li>
+<li>Right-click the <strong>Level Provider</strong> field to pick from one type.</li>
+<li>A link that would make a loop is refused, with an error in the Console.</li>
+<li>While no provider is set, a warning says the effect takes the level of what applies it.</li>
+<li>While linked, Starting Level and Max Level show the provider's range, read-only.</li>
+<li>Link Contained Effects and Unlink Contained Effects each ask first, and one Undo takes it back.</li>
 </ul>
-<p>The link serves the inspector: a scaler set to Lock To Level Provider shows one value per level of the provider. An
-effect field in another inspector, such as an ability's Cost, says how the effect takes its levels, and its <strong>Link</strong>
+<p>The link serves the inspector: a scaler set to Lock To Level Provider shows one value per level of the provider.</p>
+<p>An effect field in another inspector, such as an ability's Cost, says how the effect takes its levels. Its <strong>Link</strong>
 links the effect to that asset.</p>
-<hr>
-<p><a href="identity.html">← Identity</a> · <a href="index.html">Effects</a> · <a href="tags.html">Tags →</a></p>
 
 </article>
 

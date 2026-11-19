@@ -87,15 +87,56 @@
         <article data-uid="guide.task-sequences.time-limits-and-endings">
 <h1 id="time-limits-and-endings">Time limits and endings</h1>
 
-<ul>
-<li><code>WithTimeout(seconds, injection)</code> injects when the time is up, a skip by default; <code>WithMaxDuration(seconds)</code> ends the
-run, or the stage, at its longest. <code>OnTimeout</code> and <code>OnMaxDuration</code> hear them.</li>
-<li><code>OnException</code> hears a task's throw, and says whether the run goes on.</li>
-<li><code>OnComplete</code> hears the run end and whether it finished; <code>OnTerminate</code> hears it end however it does. A stage has its
-own <code>OnInit</code>, <code>OnRepeat</code> and <code>OnTerminate</code>.</li>
-</ul>
-<hr>
-<p><a href="changing-the-run.html">← Changing the run</a> · <a href="index.html">Task Sequences</a> · <a href="clocks.html">Clocks →</a></p>
+<p>A run can have time limits, and handlers that hear how it ends.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithTimeout(seconds, injection)</code></td>
+<td>Injects when the time is up, a skip by default.</td>
+</tr>
+<tr>
+<td><code>WithMaxDuration(seconds)</code></td>
+<td>Ends the run, or the stage, at its longest.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Handler</th>
+<th>What it hears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnTimeout</code></td>
+<td>The timeout.</td>
+</tr>
+<tr>
+<td><code>OnMaxDuration</code></td>
+<td>The longest run.</td>
+</tr>
+<tr>
+<td><code>OnException</code></td>
+<td>A task's throw. It says whether the run goes on.</td>
+</tr>
+<tr>
+<td><code>OnComplete</code></td>
+<td>The run end, and whether it finished.</td>
+</tr>
+<tr>
+<td><code>OnTerminate</code></td>
+<td>The run end, however it ends.</td>
+</tr>
+</tbody>
+</table>
+<p>A stage has its own <code>OnInit</code>, <code>OnRepeat</code> and <code>OnTerminate</code>.</p>
 
 </article>
 

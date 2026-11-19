@@ -87,30 +87,83 @@
         <article data-uid="guide.cues.placement">
 <h1 id="placement">Placement</h1>
 
-<p>A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong>:</p>
+<p>A cue that places something, a Prefab or a Sound, says where with its <strong>Placement</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>At</strong></td>
+<td>On whom it's placed (below).</td>
+</tr>
+<tr>
+<td><strong>Socket</strong></td>
+<td>A child of theirs it's placed at, by name, found at any depth, as a hand or a weapon's tip.</td>
+</tr>
+<tr>
+<td><strong>Offset</strong></td>
+<td>Moves it, in the space of what it's placed at.</td>
+</tr>
+<tr>
+<td><strong>Scatter</strong></td>
+<td>Moves it by a random amount, up to that much either way on each axis, in the same space.</td>
+</tr>
+<tr>
+<td><strong>Attach</strong></td>
+<td>Whether it follows them: a lasting cue's only, by default; always; or never.</td>
+</tr>
+<tr>
+<td><strong>Facing</strong></td>
+<td>Which way it faces (below).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>At</strong> has five options:</p>
+<table>
+<thead>
+<tr>
+<th>At</th>
+<th>Where it places it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Self</strong></td>
+<td>On the one the cue is on: an effect's target, an ability's caster, the entity, or an item's holder. Where its raiser gave a point, as a hit's, it's there.</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td>On who's behind it, as an effect's source or a death's killer.</td>
+</tr>
+<tr>
+<td><strong>Target</strong></td>
+<td>On an ability's first target, or the place it targeted. For another's cue, on the one it's on.</td>
+</tr>
+<tr>
+<td><strong>Each Target</strong></td>
+<td>One at each of an ability's targets.</td>
+</tr>
+<tr>
+<td><strong>Point</strong></td>
+<td>At the cue's point, or the place an ability targeted.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Facing</strong> has five options too:</p>
 <ul>
-<li><strong>At</strong>: on whom.
-<ul>
-<li><strong>Self</strong>: the one the cue is on: an effect's target, an ability's caster, the entity, or an item's holder. Where
-its raiser gave a point, as a hit's, it's there.</li>
-<li><strong>Source</strong>: who's behind it, as an effect's source or a death's killer.</li>
-<li><strong>Target</strong>: an ability's first target, or the place it targeted. For another's cue, the one it's on.</li>
-<li><strong>Each Target</strong>: one at each of an ability's targets.</li>
-<li><strong>Point</strong>: the cue's point, or the place an ability targeted.</li>
+<li>as what it's placed at faces, or along the cue's normal at a point;</li>
+<li>along the cue's normal;</li>
+<li>away from its source;</li>
+<li>toward its source;</li>
+<li>the world's way.</li>
 </ul>
-</li>
-<li><strong>Socket</strong>: a child of theirs it's placed at, by name, found at any depth, as a hand or a weapon's tip.</li>
-<li><strong>Offset</strong> moves it, and <strong>Scatter</strong> moves it by a random amount up to that much either way on each axis, both in
-the space of what it's placed at.</li>
-<li><strong>Attach</strong>: whether it follows them: a lasting cue's only, by default; always; or never. An attached sound plays
-from a source of its own under them.</li>
-<li><strong>Facing</strong>: as what it's placed at faces, or along the cue's normal at a point; along the cue's normal; away from
-or toward its source; or the world's way.</li>
-</ul>
-<p>Scatter draws from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, the cues' own random numbers, so a cue never moves the game's rolls: a server
+<p>An attached sound plays from a source of its own under them.</p>
+<p>Scatter draws from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, the cues' own random numbers. So a cue never moves the game's rolls: a server
 that plays no cues and a client that plays them must draw alike.</p>
-<hr>
-<p><a href="handlers.html">← Handlers</a> · <a href="index.html">Cues</a> · <a href="floating-text.html">Floating text →</a></p>
 
 </article>
 

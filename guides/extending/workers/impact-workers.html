@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Impact workers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Impact workers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.workers.impact-workers">
+<h1 id="impact-workers">Impact workers</h1>
+
+<p>An impact worker runs as a change its holder dealt lands on another's attribute, for the attribute it subscribes to.</p>
+<p><strong>It runs for the dealer</strong>: its context's <code>System</code> is its holder, the one who dealt the change, and the one hit is
+<a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Target"><code>ImpactData.Target</code></a>.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractContextImpactWorker.html"><code>AbstractContextImpactWorker</code></a>, which does the validation and the subscription from its fields, or from
+<a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractImpactWorker.html"><code>AbstractImpactWorker</code></a> for a worker that does them itself. Its hooks are handed an <a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactWorkerContext.html"><code>ImpactWorkerContext</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>System</code></td>
+<td>Its holder, the dealer.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactData.html"><code>ImpactData</code></a></td>
+<td>The hit: <code>Target</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_SourcedModifier"><code>SourcedModifier</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_RealImpact"><code>RealImpact</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_OldValue"><code>OldValue</code></a>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.FrameSummary.html"><code>FrameSummary</code></a></td>
+<td>The frame's summary.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.ActionQueue.html"><code>ActionQueue</code></a></td>
+<td>The action queue.</td>
+</tr>
+</tbody>
+</table>
+<p><code>AbstractContextImpactWorker</code>'s fields are <strong>Impacted Attribute</strong>, impact
+types, <strong>Impact Target</strong>, <strong>Impact Sign</strong>, <strong>Allow Self Impact</strong>, context tags, and a <strong>Work Attribute</strong> for its work.</p>
+<p>It starts narrow, <strong>Any Context Tag</strong> off and <strong>Impact Sign</strong> Positive, so it takes only gains carrying the context tags
+it names. A worker of it that means losses from anything says so in its constructor, as the example does.</p>
+<h2 id="hooks">Hooks</h2>
+<p><code>AbstractImpactWorker</code>'s members:</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PreValidateWorkFor(ImpactData)</code></td>
+<td>First, as a quick test.</td>
+</tr>
+<tr>
+<td><code>ValidateWorkFor(ImpactData)</code></td>
+<td>Then, as the whole test.</td>
+</tr>
+<tr>
+<td><code>Execution</code></td>
+<td><code>Deferred</code> unless it says.</td>
+</tr>
+<tr>
+<td><code>CreateDeferredActions(ctx)</code></td>
+<td>For a deferred worker: it returns its actions.</td>
+</tr>
+<tr>
+<td><code>ActivateInline(ImpactData)</code></td>
+<td>For an inline worker: it acts here.</td>
+</tr>
+<tr>
+<td><code>SubscribeToCache(ImpactWorkerCache)</code>, <code>UnsubscribeFromCache</code></td>
+<td>They give it to the cache under an attribute with <code>cache.ProvideWorker(attribute, this)</code>, and take it back with <code>RemoveWorker</code>.</td>
+</tr>
+<tr>
+<td><code>OncePerHit</code></td>
+<td>True runs it once for a hit, however many of it its holder has, its project's and its own.</td>
+</tr>
+<tr>
+<td><strong>Accept Unworkable Impact</strong> (<a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractImpactWorker.html#FarEmerald_PlayForge_AbstractImpactWorker_AcceptUnworkableImpact"><code>AcceptUnworkableImpact</code></a>)</td>
+<td>Off, it hears only workable changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-picker">In the picker</h2>
+<p>A worker group's impact workers offer every class derived from <code>AbstractImpactWorker</code>
+(<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>). The picker shows <code>GainOnHitWorker</code> as <strong>Gain On Hit</strong>.</p>
+<h2 id="example">Example</h2>
+<p>This worker gives its holder some of its <strong>Work Attribute</strong> for each point of loss it deals another, as rage:</p>
+<pre><code class="lang-csharp">using System;
+using System.Collections.Generic;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(Description = &quot;Gives its holder some of its Work Attribute for each point of loss it deals another, as rage.&quot;)]
+    public class GainOnHitWorker : AbstractContextImpactWorker
+    {
+        [Tooltip(&quot;What its holder gains for each point of loss it deals&quot;)]
+        public ScalableFloat PerPoint = 0.5f;
+
+        public GainOnHitWorker()
+        {
+            AnyContextTag = true;
+            ImpactSign = ESignPolicy.Negative;
+        }
+
+        public override IEnumerable&lt;IRootAction&gt; CreateDeferredActions(ImpactWorkerContext ctx)
+        {
+            // Its holder dealt the hit: the context's System
+            var holder = ctx.System;
+            if (WorkAttribute == null || holder == null || holder.IsDead) return Array.Empty&lt;IRootAction&gt;();
+            float gain = -ctx.ImpactData.RealImpact.CurrentValue * (PerPoint?.Evaluate(NumberContext.Of(in ctx)) ?? 0f);
+            if (gain &lt;= 0f) return Array.Empty&lt;IRootAction&gt;();
+            return new IRootAction[]
+            {
+                new ModifyAttributeAction(holder, WorkAttribute,
+                    SourcedModifiedAttributeValue.GenerateSimple(holder, WorkAttribute, gain, 0f)),
+            };
+        }
+    }
+}
+</code></pre>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateSimple_"><code>SourcedModifiedAttributeValue.GenerateSimple(source, attribute, current, base)</code></a> makes a change of the source's own, a
+workable one.</p>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>An impact worker's System is the dealer</strong> (<a href="../../workers/traps.html">Workers: Traps</a>).</li>
+<li><strong>A change made for a worker is never built over the hit's carrier</strong>, <code>ctx.ImpactData.SourcedModifier</code>: that would
+count as the hit's effect again.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

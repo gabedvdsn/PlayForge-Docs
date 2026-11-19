@@ -88,76 +88,83 @@
 <h1 id="impact">Impact</h1>
 
 <p>The impact is the change the effect makes to an attribute. The first fields are its first impact, whose delivery the
-duration gives it. Additional Impacts change more attributes, or the same one again, each with a delivery of its own.</p>
+duration gives it.</p>
+<p>Additional Impacts change more attributes, or the same one again, each with a delivery of its own.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>The attribute to change. Leave it empty for an effect that only grants tags, applies other effects or runs workers.</td>
+</tr>
+<tr>
+<td><strong>Operation</strong></td>
+<td>How the impact changes the attribute, and which of its values, in one choice, such as Add to Current or Multiply Base. See <a href="impact/operations.html">Operations</a>.</td>
+</tr>
+<tr>
+<td><strong>Multiply Behaviour</strong></td>
+<td>Multiply only. How this multiply combines with other multipliers.</td>
+</tr>
+<tr>
+<td><strong>Add Behaviour</strong></td>
+<td>Add only, shown where it matters. How this add combines with others on the attribute.</td>
+</tr>
+<tr>
+<td><strong>Magnitude</strong></td>
+<td>The amount. See <a href="impact/magnitude.html">Magnitude</a>.</td>
+</tr>
+<tr>
+<td><strong>Pipeline</strong></td>
+<td>The calculation each hit of the impact goes through as it lands, a Value Pipeline: the caster's bonuses, the target's reductions, a critical roll, a barrier. It runs for an instant impact's hit and each tick of a periodic one (<a href="../value-pipelines/index.html">Value Pipelines</a>).</td>
+</tr>
+<tr>
+<td><strong>Delivery</strong></td>
+<td>Read-only. When the impact lands, which the duration gives it. See <a href="impact/delivery-and-commits.html">Delivery and commits</a>.</td>
+</tr>
+<tr>
+<td><strong>Commits</strong></td>
+<td>Read-only, for a periodic impact. How many times it lands.</td>
+</tr>
+<tr>
+<td><strong>Impact Types</strong></td>
+<td>Tags that label the kind of change, such as <code>Damage.Fire</code>. Workers can accept or skip changes by type.</td>
+</tr>
+<tr>
+<td><strong>Affiliation</strong></td>
+<td>Which targets the effect can be applied to. See <a href="impact/affiliation.html">Affiliation</a>.</td>
+</tr>
+<tr>
+<td><strong>Comparison</strong></td>
+<td>All but Always Allow. Whether one affiliation tag matching is enough, or every tag must match.</td>
+</tr>
+<tr>
+<td><strong>Affiliations</strong></td>
+<td>Use Affiliation List only. The tags the target is compared with.</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>Attribute</strong>: the attribute to change. Leave it empty for an effect that only grants tags, applies other effects or
-runs workers. A target that lacks the attribute isn't changed.</li>
-<li><strong>Operation</strong>: how the impact changes the attribute, and which of its two values, in one choice, such as Add to
-Current or Multiply Base. <strong>Base</strong> is the value the attribute is measured against, and <strong>Current</strong> is the value in
-play. For Health, Base is the maximum and Current is what is left. Add adds the magnitude. Use a negative magnitude to
-subtract. Multiply multiplies by it. Override sets the value to it. Flat Bonus adds too, but as a modifier it lands
-after the attribute's multipliers, so they don't scale it.</li>
-<li><strong>Multiply Behaviour</strong> (Multiply only): Multiplicative (default) compounds with other multipliers, so ×1.5 and ×1.5
-give ×2.25. Additive Bonus adds the bonuses first, so +50% and +50% give ×2.0.</li>
-<li><strong>Add Behaviour</strong> (Add only, shown where it matters): as the attribute's role says, a Resistance's adds diminishing; a
-plain Sum; or Diminishing, on what's left (<a href="../attributes/index.html">Attributes</a>).</li>
-<li><strong>Pipeline</strong>: the calculation each hit of the impact goes through as it lands, a Value Pipeline: the caster's bonuses,
-the target's reductions, a critical roll, a barrier. It runs for an instant impact's hit and each tick of a periodic
-one (<a href="../value-pipelines/index.html">Value Pipelines</a>).</li>
-<li><strong>Magnitude</strong>: the amount: a Constant number, or by its kind a scaler's value at the origin's level, such as a By
-Level table of values per level, with Combine joining the scaler and the number (<a href="../scalers/index.html">Scalers</a>). A
-Continuous modifier works its magnitude out again whenever the attribute is recalculated. A commit works it out
-once. A <strong>Set By Caller</strong> scaler reads a magnitude the code sets as it applies the effect, under a tag: on the spec
-with <code>SetByCaller(tag, magnitude)</code>, or on an ability activation's data, which each effect the ability applies takes
-as it's made, its cost, cooldown and contained effects among them. Only the tag itself matches, and where none is
-set it reads its Default. A magnitude can also read what the effect has dealt, a part of another effect, ability or
-item on either side, or what a worker answers; SCALERS.md lists each kind.</li>
-<li><strong>Delivery</strong>, read-only: when the impact lands, which the duration gives it (see the table above). On applying,
-While the effect lasts, or Each tick, which adds &quot;, and on applying&quot; when Tick On Application is on. A note says when
-Tick On Application alone keeps a multiply or override as a modifier, so it reverses as the effect ends.</li>
-<li><strong>Commits</strong>, read-only, for a periodic impact: how many times it lands at the effect's first level, as in &quot;7 over
-6 s, level 1&quot;. For an Infinite effect, it says how far apart the ticks are.</li>
-<li><strong>Impact Types</strong>: tags that label the kind of change, such as <code>Damage.Fire</code>. Workers can accept or skip changes by
-type. <code>Never Allow</code> hides the change from workers that check types. <code>Always Allow</code> passes every type check.</li>
-<li><strong>Affiliation</strong> decides which targets the effect can be applied to. An entity's affiliation tags are its team or
-faction, set on its Entity asset. If the check fails, the effect isn't applied. Always Allow (default) allows any
-target. Affiliated allows targets that share the origin's affiliation, and Unaffiliated allows those that don't. Use
-Affiliation List compares the target with the <strong>Affiliations</strong> list instead.
+<li>A target that lacks the attribute isn't changed.</li>
+<li><code>Never Allow</code>, as an impact type, hides the change from workers that check types. <code>Always Allow</code> passes every type
+check.</li>
+</ul>
+<p>The section also holds the effect's <strong>Retention Group</strong> (<a href="impact/retention-group.html">Retention Group</a>) and its
+<strong>Proc Coefficient</strong> (<a href="workers/on-hit.html">On Hit</a>).</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Comparison</strong> (all but Always Allow): Any (default) needs one tag to match. All needs every tag to match.</li>
+<li><a href="impact/operations.html">Operations</a>: The <strong>Operation</strong> sets how the impact changes the attribute, and which of its values it changes.</li>
+<li><a href="impact/magnitude.html">Magnitude</a>: The <strong>Magnitude</strong> is the amount the impact applies.</li>
+<li><a href="impact/delivery-and-commits.html">Delivery and commits</a>: The read-only <strong>Delivery</strong> and <strong>Commits</strong> rows say when, and how often, the first impact lands.</li>
+<li><a href="impact/affiliation.html">Affiliation</a>: <strong>Affiliation</strong> decides which targets the effect can be applied to.</li>
+<li><a href="impact/additional-impacts.html">Additional Impacts</a>: Each additional impact changes an attribute of its own, or the same one again, with a delivery of its own.</li>
+<li><a href="impact/contained-effects.html">Contained Effects</a>: Contained effects are other effects this one applies, with the same origin.</li>
+<li><a href="impact/retention-group.html">Retention Group</a>: The <strong>Retention Group</strong> is the group this effect's changes count toward (default <code>Ignore</code>), unless an impact names its own.</li>
 </ul>
-</li>
-</ul>
-<p>The inspector no longer shows Reverse On Removal. A Continuous modifier always reverses when the effect ends, and a
-commit never does, so the flag changes nothing. The Problems view still flags a periodic effect that sets it.</p>
-<h2 id="additional-impacts">Additional Impacts</h2>
-<p>Each additional impact changes an attribute of its own, or the same one again, with a delivery of its own. One effect
-can lower Armor while it lasts and burn Health on each tick. <strong>Add Impact</strong> adds one with a delivery the duration can
-make: Continuous on a Durational or Infinite effect, On Apply on an Instant one. While it's folded, an impact shows one
-line, such as &quot;Mana −10 · Continuous&quot;, and its trash button removes it. Each has:</p>
-<ul>
-<li><strong>Attribute</strong>, <strong>Operation</strong>, <strong>Multiply Behaviour</strong> and <strong>Magnitude</strong>, as above.</li>
-<li><strong>Delivery</strong>: Continuous lasts while the effect does, then reverses. On Apply lands once, as the effect is applied.
-Periodic lands on each tick, and as the effect is applied when Tick On Application is on. It offers what the duration
-can make: an Instant effect makes only On Apply impacts, and Periodic needs ticks. If the duration changes so that an
-impact's delivery can't happen, a warning under it says so, and the impact never applies.</li>
-<li><strong>Order</strong> (Override only): among overrides of one attribute, the lowest order wins.</li>
-<li><strong>Retention Group</strong>: the group the change counts toward. Empty, it takes the effect's.</li>
-<li><strong>Impact Types</strong>, as above.</li>
-</ul>
-<p>An impact with no Attribute changes nothing. The Cost check counts every attribute a cost spends (see
-<a href="../abilities/index.html">Abilities</a>).</p>
-<h2 id="contained-effects">Contained Effects</h2>
-<p>Other effects this one applies, with the same origin. Each row pairs a moment with an effect: On Apply (when this effect
-is applied), On Tick (on each execute tick) or On Remove (when this effect is removed); and says whom it lands on:
-the <strong>Target</strong>, this effect's, as it always did, or the <strong>Caster</strong>, as a lifesteal's heal or a curse's rebound as it ends.
-An Instant effect has no ticks and no removal, so only its On Apply rows run. An effect that is asked to apply again while
-it is still applying is refused, with a warning, so an effect that contains itself doesn't loop forever.</p>
-<h2 id="retention-group">Retention Group</h2>
-<p>The group this effect's changes count toward (default <code>Ignore</code>), unless an impact names its own. Groups split an
-attribute's value for queries and UI, such as base and bonus health. They never change the math.</p>
-<hr>
-<p><a href="duration.html">← Duration</a> · <a href="index.html">Effects</a> · <a href="levels.html">Levels →</a></p>
 
 </article>
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Its windows | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Its windows | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.number-fields.its-windows">
+<h1 id="its-windows">Its windows</h1>
+
+<p>The field menu opens three windows: Save as Scaler Asset, Import Values and Quick Fill.</p>
+<h2 id="save-as-scaler-asset">Save as Scaler Asset</h2>
+<p><strong>Save as Scaler Asset</strong> (<a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.SaveScalerAssetWindow.html"><code>SaveScalerAssetWindow</code></a>) saves the field's scaler as a Scaler asset, and makes the field share
+it. It waits for one selected asset.</p>
+<!-- screenshot: save-as-scaler-asset-window -->
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The Scaler asset's name. It starts as the asset's and the field's, such as &quot;Burning Duration&quot;.</td>
+</tr>
+<tr>
+<td><strong>Folder</strong></td>
+<td>The Scaler type's folder in the active project. <strong>Choose…</strong> changes it.</td>
+</tr>
+<tr>
+<td><strong>Save and Use</strong></td>
+<td>Saves the field's scaler as a Scaler asset, and makes the field share it.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="import-values">Import Values</h2>
+<p><strong>Import Values</strong> (<a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerValuesWindow.html"><code>ScalerValuesWindow</code></a>) copies values per level into the field.</p>
+<!-- screenshot: import-values-window -->
+<ol>
+<li>Choose <strong>Import Values…</strong> in the field menu.</li>
+<li>Pick a source. The window lists the active project's Scaler assets, then the fields of its other assets with values
+per level.</li>
+<li>Compare its values with the field's, level by level, with both curves.</li>
+<li>Select <strong>Copy Values</strong>. It copies them as one Undo step.</li>
+</ol>
+<h2 id="quick-fill">Quick Fill</h2>
+<p><strong>Quick Fill</strong> (<a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.html"><code>QuickFillWizard</code></a>) fills the field's values, or the points of one spread over levels, from a pattern.</p>
+<!-- screenshot: quick-fill-window -->
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pattern, a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.EFillPattern.html"><code>QuickFillWizard.EFillPattern</code></a></td>
+<td><strong>Same Value</strong>, <strong>Straight Line</strong>, <strong>Slow Then Fast</strong>, <strong>Fast Then Slow</strong>, <strong>Steps</strong>, <strong>Add Each Level</strong>, <strong>Multiply Each Level</strong>, <strong>Ease In and Out</strong> or <strong>Custom Curve</strong>.</td>
+</tr>
+<tr>
+<td>Rounding, a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.QuickFillWizard.ERounding.html"><code>QuickFillWizard.ERounding</code></a></td>
+<td><strong>None</strong>, <strong>Whole Numbers</strong> or <strong>Nearest Step</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>A preview shows the values as the table will, with their curve. <strong>Apply</strong> writes them as one Undo step.</p>
+<h2 id="number-field-actions-in-code">Number field actions in code</h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html"><code>ScalerActions</code></a> does in code what the kind menu and the field menu do. Each call is one Undo step that reaches every
+selected asset: <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_SetKind_"><code>SetKind</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_MakeConstant_"><code>MakeConstant</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_CanMakeConstant_"><code>CanMakeConstant</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_UseScalerAsset_"><code>UseScalerAsset</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerActions.html#FarEmerald_PlayForge_Editor_ScalerActions_SaveAsScalerAsset_"><code>SaveAsScalerAsset</code></a> and <code>CopyValues</code>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

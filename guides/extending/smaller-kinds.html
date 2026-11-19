@@ -89,75 +89,16 @@
 
 <p>This section covers the smaller kinds a game picks in one field each: where an entity respawns, how charges come back,
 what a purge takes, how a modifier changes an effect, a Local Data value's type, and the clock a run takes.</p>
-<h2 id="respawn-places">Respawn places</h2>
-<p>A Respawn component's <strong>At</strong> is an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRespawnPlace.html"><code>AbstractRespawnPlace</code></a>: <code>Vector3? Where(EntityComponentContext context, Vector3? home)</code>,
-where the entity revives, handed where it stood as it registered; null, where it died. <code>Describe()</code> gives the
-component's line, as &quot;at home&quot;.</p>
-<pre><code class="lang-csharp">using System;
-using FarEmerald.PlayForge;
-using UnityEngine;
-
-namespace MyGame
-{
-    [Serializable]
-    [ForgeMenu(Description = &quot;A random point within a radius of where it registered.&quot;)]
-    public class NearHomeRespawnPlace : AbstractRespawnPlace
-    {
-        [Tooltip(&quot;How far from home it may come back&quot;)]
-        [Min(0f)] public float Radius = 3f;
-
-        public override Vector3? Where(EntityComponentContext context, Vector3? home)
-        {
-            if (home == null) return null;
-            var offset = ForgeRandom.InsideUnitCircle * Radius;
-            return home.Value + new Vector3(offset.x, 0f, offset.y);
-        }
-
-        public override string Describe() =&gt; $&quot;within {Radius:0.#} of home&quot;;
-    }
-}
-</code></pre>
-<h2 id="charge-recharges">Charge recharges</h2>
-<p>A Charges component's <strong>Recharge</strong> is an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractChargeRecharge.html"><code>AbstractChargeRecharge</code></a>: <code>InHand(AbilityCharges charges)</code>, the charges in
-hand, by default its most less those cooling down; <code>Spend(AbilityCharges charges, ProcessDataPacket data)</code>, as a charge
-is spent, by default starting one's cooldown; and <code>CountsASingleCharge</code>.</p>
-<h2 id="purge-filters">Purge filters</h2>
-<p>An effect's purge takes the effects its <strong>Filters</strong> let it, each an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractPurgeFilter.html"><code>AbstractPurgeFilter</code></a>: <code>bool Takes(in PurgeContext ctx)</code>, with <code>ctx.Container</code>, the effect it might take; <code>ctx.Purged</code>, the entity it's on; and <code>ctx.Purger</code>
-(<a href="../effects/purging.html">Effects: Purging</a>).</p>
-<h2 id="effect-changes">Effect changes</h2>
-<p>A modifier's rule changes an effect it reaches through its <strong>Changes</strong>, each an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectChange.html"><code>AbstractEffectChange</code></a>:
-<code>Apply(EffectChanges changes, GameplayEffectSpec spec, EffectModifierRule rule)</code> writes what it changes into <code>changes</code>,
-and <code>Describe()</code> gives its line (<a href="../effects/workers.html#modifiers">Effects: Modifiers</a>).</p>
-<h2 id="local-data-values">Local Data values</h2>
-<p>A Local Data entry's value is a <code>LocalDataValue</code>, and one that holds a single value a <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, whose <code>Value</code>
-it holds. <code>Read(in NumberContext)</code> gives it as a packet takes it, and <code>TryReadNumber(in NumberContext, out float)</code> as a
-number reads it, where it's one. The Local Data list offers a kind with a constructor that takes nothing, named without
-&quot;Local&quot;.</p>
-<pre><code class="lang-csharp">using System;
-using FarEmerald.PlayForge;
-
-namespace MyGame
-{
-    public enum EElement { None, Fire, Frost, Storm }
-
-    [Serializable]
-    [ForgeMenu(Name = &quot;Element&quot;, Description = &quot;One of the game's elements.&quot;)]
-    public class LocalElement : LocalDataValue&lt;EElement&gt;
-    {
-    }
-}
-</code></pre>
-<p><code>asset.TryGetLocalData(key, out DataWrapper entry) &amp;&amp; entry.TryGet(out EElement element)</code> reads it. An entry is the
-asset's own: a value changed at run time changes the asset, so Local Data is read, not written, as the game runs.</p>
-<h2 id="clock-choices">Clock choices</h2>
-<p>A Run Sequence task's or a Sequence cue's <strong>Clock</strong> is an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractClockChoice.html"><code>AbstractClockChoice</code></a>: <code>IForgeClock ClockFor(ProcessDataPacket data)</code>, the clock a run on the packet takes, or null for the run's own. <code>OwnersClock(data)</code>, protected, gives the clock
-of the entity the packet is for (<a href="../services/index.html">Time, Input and Logging</a>).</p>
-<h2 id="stack-behaviours">Stack behaviours</h2>
-<p>An effect's <strong>Stack Behaviours</strong> are <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStackingConfig.html"><code>AbstractStackingConfig</code></a>s. A game can derive one, but its members work on the
-effect system's stacking containers, which this guide doesn't cover; <a href="../effects/duration.html#stacking-stack-existing-only">Effects: Stacking (Stack Existing only)</a>
-covers the built-in ones.</p>
-<hr>
-<p><a href="validation-rules.html">← Validation rules</a> · <a href="index.html">Extending PlayForge</a> · <a href="a-games-own-objects.html">A game's own objects →</a></p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="smaller-kinds/respawn-places.html">Respawn places</a>: A respawn place says where an entity revives.</li>
+<li><a href="smaller-kinds/charge-recharges.html">Charge recharges</a>: A charge recharge says how an ability's spent charges come back.</li>
+<li><a href="smaller-kinds/purge-filters.html">Purge filters</a>: A purge filter says which effects an effect's purge takes.</li>
+<li><a href="smaller-kinds/effect-changes.html">Effect changes</a>: An effect change is one of the changes a modifier's rule makes to an effect it reaches.</li>
+<li><a href="smaller-kinds/local-data-values.html">Local Data values</a>: A Local Data value is the type of a Local Data entry's value.</li>
+<li><a href="smaller-kinds/clock-choices.html">Clock choices</a>: A clock choice says which clock a run takes.</li>
+<li><a href="smaller-kinds/stack-behaviours.html">Stack behaviours</a>: An effect's <strong>Stack Behaviours</strong> are <code>AbstractStackingConfig</code>s.</li>
+</ul>
 
 </article>
 

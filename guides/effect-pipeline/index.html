@@ -87,22 +87,21 @@
         <article data-uid="guide.effect-pipeline">
 <h1 id="gameplay-effect--attribute-pipeline">Gameplay Effect &amp; Attribute Pipeline</h1>
 
-<p>How a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffect.html"><code>GameplayEffect</code></a> becomes an attribute change, stays correct while it lives, and reverses
-when it dies — under the <strong>two-kind impact model</strong>.
-This is the authoritative description of the runtime pipeline; if code and doc disagree, one of
-them has a bug — file it either way.</p>
-<p>All paths relative to <code>Assets/PlayForge/Runtime/PlayForge/</code>.</p>
-<hr>
+<p>This page describes how a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffect.html"><code>GameplayEffect</code></a> becomes an attribute change, stays correct while it lives, and reverses when
+it dies, under the <strong>two-kind impact model</strong>.</p>
+<p>It is the authoritative description of the runtime pipeline. If code and doc disagree, one of them has a bug: file it
+either way.</p>
+<p>All paths are relative to <code>Assets/PlayForge/Runtime/PlayForge/</code>.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="1-the-model-in-one-page.html">1. The model in one page</a>: Every authored impact is an <strong><code>AttributeImpactEntry</code></strong> on <code>GameplayEffectImpact.Entries</code>:…</li>
-<li><a href="2-attribute-state-cachedattributevalue.html">2. Attribute state (<code>CachedAttributeValue</code>)</a>: State: <code>modifiers</code> — ordered <code>(carrier, impacter, group)</code> entries.</li>
-<li><a href="3-the-four-verb-attribute-api-attributesystemcomponent.html">3. The four-verb attribute API (<code>AttributeSystemComponent</code>)</a>: Every attribute mutation funnels through one shared 4-phase pipeline (<code>CommitWithCarrier</code>): pre-change workers → PHASE-2 dispatch → post-change workers → impact relay (<code>ImpactData</code>, frame summaries, source-side…</li>
+<li><a href="1-the-model-in-one-page.html">1. The model in one page</a>: Every authored impact is an <strong><code>AttributeImpactEntry</code></strong> on <code>GameplayEffectImpact.Entries</code>, and its delivery makes it one of two kinds of change: a modifier or a commit.</li>
+<li><a href="2-attribute-state-cachedattributevalue.html">2. Attribute state (<code>CachedAttributeValue</code>)</a>: Each attribute's runtime state is a <code>CachedAttributeValue</code>, whose <code>ActiveValue</code> is derived from that state</li>
+<li><a href="3-the-four-verb-attribute-api-attributesystemcomponent.html">3. The four-verb attribute API (<code>AttributeSystemComponent</code>)</a>: Every attribute mutation funnels through one shared 4-phase pipeline (<code>CommitWithCarrier</code>)</li>
 <li><a href="4-effect-lifecycle-effectsystemcomponent.html">4. Effect lifecycle (<code>EffectSystemComponent</code>)</a>: One shared component owns the shelf.</li>
-<li><a href="5-recalculation-regulated-attributes.html">5. Recalculation (regulated attributes)</a>: Blueprint cached scalers register <code>contact → dependent</code> edges at attribute registration (<code>ProvideAttribute</code> → <code>RegulateContactWith</code>).</li>
-<li><a href="6-initialization--auto-scaling.html">6. Initialization &amp; auto-scaling</a>: <code>ProvideAttributeSet</code>: register attributes → initialize each cached value (first recompute) → zero-delta <code>ModifyAttribute</code> pulse per attribute (callbacks observe initial values; no worker does, as the pulse runs none…</li>
-<li><a href="7-entry-derivation-no-asset-migration.html">7. Entry derivation (no asset migration)</a>: <strong>The first entry is derived, never serialized.</strong> The effect's impact quad + duration flags are its authored surface; <code>GameplayEffectImpact.RebuildEntries</code> re-derives that entry on <strong>every <code>Generate()</code></strong>, so inspector…</li>
-<li><a href="8-verification.html">8. Verification</a>: <code>Assets/PlayForge/Tests/Editor/PlayForgeGoldenTests.cs</code> — the Test Runner's EditMode tab, <code>FarEmerald.PlayForge.Tests.Golden</code> (or batchmode <code>-executeMethod FarEmerald.PlayForge.Tests.PlayForgeGoldenTests.RunAll</code>).</li>
+<li><a href="5-recalculation-regulated-attributes.html">5. Recalculation (regulated attributes)</a>: A regulated attribute is recomputed when an attribute it depends on changes.</li>
+<li><a href="6-initialization--auto-scaling.html">6. Initialization &amp; auto-scaling</a>: Attributes initialize as their set is provided, and an auto-scaling attribute's Current follows its Base</li>
+<li><a href="7-entry-derivation-no-asset-migration.html">7. Entry derivation (no asset migration)</a>: <strong>The first entry is derived, never serialized.</strong> The effect's impact quad + duration flags are its authored surface.</li>
+<li><a href="8-verification.html">8. Verification</a>: The golden tests in <code>Assets/PlayForge/Tests/Editor/PlayForgeGoldenTests.cs</code> pin this pipeline.</li>
 </ul>
 
 </article>

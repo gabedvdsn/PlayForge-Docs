@@ -87,22 +87,37 @@
         <article data-uid="guide.workers.traps">
 <h1 id="traps">Traps</h1>
 
+<p>These are the mistakes workers invite most often.</p>
 <ul>
-<li><strong>An impact worker runs for the dealer.</strong> Its context's System is the dealer, and the one hit is
-<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Target"><code>ImpactData.Target</code></a>. A worker that took System for the one hit applied its holder's effects to the target, and read
-the target's items for its holder's.</li>
-<li><strong>An effect worker's Impact hook runs on the dealer's side too.</strong> Its System is the effect's caster, where its
-Application, Tick and Removal hooks' System is the one the effect is on.</li>
-<li><strong>A stacking effect's periodic tick lands once for each stack, while its lasting change counts once.</strong> A number that
-reads the effect's stacks on each tick multiplies again: Hangover, which read its stacks, took 100 a tick where 20 was
-meant. Read the stacks in a lasting change, or leave them out of a periodic one. The Problems view warns
-of it.</li>
-<li><strong>What a worker sets in motion waits for the frame's end.</strong> Deferred actions, deaths and the kills they give, and an
-aura's effect coming off a dead holder all land at the entity's end of frame, so one area's hits resolve together
-(<a href="../effects/workers.html#resolve-order">Effects: Resolve Order</a>).</li>
+<li><strong>An impact worker runs for the dealer.</strong>
+<ul>
+<li>Its context's System is the dealer, and the one hit is <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Target"><code>ImpactData.Target</code></a>.</li>
+<li>A worker that took System for the one hit applied its holder's effects to the target, and read the target's items
+for its holder's.</li>
 </ul>
-<hr>
-<p><a href="workable-and-unworkable.html">← Workable and unworkable</a> · <a href="index.html">Workers</a> · <a href="built-in-kinds.html">Built-in kinds →</a></p>
+</li>
+<li><strong>An effect worker's Impact hook runs on the dealer's side too.</strong>
+<ul>
+<li>Its System is the effect's caster.</li>
+<li>Its Application, Tick and Removal hooks' System is the one the effect is on.</li>
+</ul>
+</li>
+<li><strong>A stacking effect's periodic tick lands once for each stack, while its lasting change counts once.</strong>
+<ul>
+<li>A number that reads the effect's stacks on each tick multiplies again. Hangover, which read its stacks, took 100 a
+tick where 20 was meant.</li>
+<li>Read the stacks in a lasting change, or leave them out of a periodic one.</li>
+<li>The Problems view warns of it.</li>
+</ul>
+</li>
+<li><strong>What a worker sets in motion waits for the frame's end.</strong>
+<ul>
+<li>Deferred actions, deaths and the kills they give, and an aura's effect coming off a dead holder, all land at the
+entity's end of frame.</li>
+<li>One area's hits therefore resolve together (<a href="../effects/workers/resolve-order.html">Effects: Workers: Resolve Order</a>).</li>
+</ul>
+</li>
+</ul>
 
 </article>
 

@@ -87,22 +87,34 @@
         <article data-uid="guide.getting-started.requirements">
 <h1 id="requirements">Requirements</h1>
 
+<p>PlayForge needs Unity 6 and UniTask, and installs a little differently from the Asset Store and from git.</p>
 <ul>
-<li><strong>Unity 6.0+</strong> (built and tested on 6000.0)</li>
-<li>From the Asset Store, PlayForge installs in <code>Assets/Plugins/PlayForge</code>, and your Forge Projects go in
-<code>Assets/PlayForge</code>, so the two never share a folder.</li>
-<li><strong>UniTask</strong> 2.5.11 (Cysharp, MIT). From the Asset Store, PlayForge includes it, in <code>PlayForge/ThirdParty/UniTask</code>;
-a project that already has UniTask from Package Manager deletes that folder. Installed as a package from git, it
-needs UniTask added in Package Manager by git URL, pinned to that release:
-<code>https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.11</code>. A package can't declare a
-git dependency, so the project's manifest has to name it.</li>
-<li>The samples are in <code>PlayForge/Samples</code> from the Asset Store, and import from Package Manager's Samples tab where
-PlayForge is a package. <strong>Battle</strong>, a battle that plays itself, needs nothing more. <strong>Demo</strong>, a hero arena to pick heroes, give items and fight, needs nothing more either: it reads the Input
-System where the project has it, and the Input Manager otherwise. <strong>Task Sequence Examples</strong> and <strong>Process Group Examples</strong> need nothing more.</li>
-<li>The samples render in the <strong>Built-in Render Pipeline</strong> or <strong>URP</strong>. HDRP isn't supported.</li>
+<li><strong>Unity 6.0+</strong>, built and tested on 6000.0.</li>
+<li><strong>UniTask</strong> 2.5.11 (Cysharp, MIT). How you get it depends on how you install PlayForge, as below.</li>
 </ul>
-<hr>
-<p><a href="index.html">← Getting Started</a> · <a href="index.html">Getting Started</a> · <a href="the-pieces-in-one-paragraph.html">The pieces in one paragraph →</a></p>
+<p>From the Asset Store:</p>
+<ul>
+<li>PlayForge installs in <code>Assets/Plugins/PlayForge</code>, and your Forge Projects go in <code>Assets/PlayForge</code>, so the two never
+share a folder.</li>
+<li>PlayForge includes UniTask, in <code>PlayForge/ThirdParty/UniTask</code>. A project that already has UniTask from Package
+Manager deletes that folder.</li>
+<li>The samples are in <code>PlayForge/Samples</code>.</li>
+</ul>
+<p>Installed as a package from git:</p>
+<ul>
+<li>PlayForge needs UniTask added in Package Manager by git URL, pinned to that release:
+<code>https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.11</code>.</li>
+<li>A package can't declare a git dependency, so the project's manifest has to name UniTask.</li>
+<li>The samples import from Package Manager's Samples tab.</li>
+</ul>
+<p>The samples need nothing more:</p>
+<ul>
+<li><strong>Battle</strong>: a battle that plays itself.</li>
+<li><strong>Demo</strong>: a hero arena to pick heroes, give items and fight. It reads the Input System where the project has it, and
+the Input Manager otherwise.</li>
+<li><strong>Task Sequence Examples</strong> and <strong>Process Group Examples</strong>.</li>
+</ul>
+<p>The samples render in the <strong>Built-in Render Pipeline</strong> or <strong>URP</strong>. HDRP isn't supported.</p>
 
 </article>
 

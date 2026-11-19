@@ -87,21 +87,46 @@
         <article data-uid="guide.workers.hearing-workers-run">
 <h1 id="hearing-workers-run">Hearing workers run</h1>
 
-<p>An entity tells its workers' runs to whoever listens to its callbacks, and to no one else, so a worker no one hears
-costs nothing more:</p>
+<p>An entity tells its workers' runs to whoever listens to its callbacks, and to no one else. So a worker no one hears
+costs nothing more.</p>
+<table>
+<thead>
+<tr>
+<th>Callback</th>
+<th>What it tells</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectWorkerRan"><code>OnEffectWorkerRan</code></a></td>
+<td>One of its effects' workers heard one of the effect's moments (below).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpactWorkerRan"><code>OnImpactWorkerRan</code></a></td>
+<td>One of its impact workers ran for a hit it dealt, with its <strong>Execution</strong> and what it queued.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnAttributeChangeStep"><code>OnAttributeChangeStep</code></a></td>
+<td>A step a change to one of its attributes took (below).</td>
+</tr>
+</tbody>
+</table>
+<p><code>OnEffectWorkerRan</code> tells:</p>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnEffectWorkerRan"><code>OnEffectWorkerRan</code></a>: one of its effects' workers heard one of the effect's moments, its <strong>Hook</strong> (Application, Tick,
-Removal or Impact), on its <strong>Side</strong> (the <strong>Target</strong>, or the <strong>Dealer</strong> for a hit, as the map says), with the <strong>System</strong>
-it ran on and the actions it <strong>Queued</strong>. A tick, which its workers hear every frame, is told only as one executes or a
-worker queues something.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnImpactWorkerRan"><code>OnImpactWorkerRan</code></a>: one of its impact workers ran for a hit it dealt, with its <strong>Execution</strong> and what it queued.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnAttributeChangeStep"><code>OnAttributeChangeStep</code></a>: a step a change to one of its attributes took, an attribute worker's, with its <strong>Timing</strong>,
-its <strong>Execution</strong>, the change <strong>Before</strong> and <strong>After</strong> and what it <strong>Queued</strong>; a barrier's soak; or a gain's scaling.
-The combat log keeps each hit's steps (<a href="../entities/combat-log.html">Entities: Combat Log</a>).</li>
+<li>its <strong>Hook</strong>: Application, Tick, Removal or Impact;</li>
+<li>its <strong>Side</strong>: the <strong>Target</strong>, or the <strong>Dealer</strong> for a hit, as the map says;</li>
+<li>the <strong>System</strong> it ran on, and the actions it <strong>Queued</strong>.</li>
 </ul>
-<p>An <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> hears all of it for the entities it's given (<a href="../entities/effect-journal.html">Entities: Effect Journal</a>).</p>
-<hr>
-<p><a href="the-action-queue.html">← The action queue</a> · <a href="index.html">Workers</a> · <a href="workable-and-unworkable.html">Workable and unworkable →</a></p>
+<p>A tick, which its workers hear every frame, is told only as one executes or a worker queues something.</p>
+<p><code>OnAttributeChangeStep</code> tells one of three steps:</p>
+<ul>
+<li>an attribute worker's, with its <strong>Timing</strong>, its <strong>Execution</strong>, the change <strong>Before</strong> and <strong>After</strong>, and what it
+<strong>Queued</strong>;</li>
+<li>a barrier's soak;</li>
+<li>a gain's scaling.</li>
+</ul>
+<p>The combat log keeps each hit's steps (<a href="../entities/combat-log.html">Entities: Combat Log</a>). An <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> hears all of it for
+the entities it's given (<a href="../entities/effect-journal.html">Entities: Effect Journal</a>).</p>
 
 </article>
 

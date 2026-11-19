@@ -87,148 +87,15 @@
         <article data-uid="guide.extending.targeting-tasks">
 <h1 id="targeting-tasks">Targeting tasks</h1>
 
-<p>A targeting task picks what an activation acts on before its stages run: it's the ability's <strong>Targeting</strong>, one task, run
-as the activation starts. This section covers writing one, and what a task must do while its ability waits on it.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html"><code>AbstractTargetingAbilityTask</code></a> (from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html"><code>AbstractAbilityRelatedTask</code></a>, not marked <code>[Serializable]</code>: mark a task of your own):</p>
-<table>
-<thead>
-<tr>
-<th>Member</th>
-<th>Is</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Activate(data, token)</code></td>
-<td>Required. Picks, and files the pick's targeting packet with <code>data.SetTargetingPacket(Tags.TARGET, packet)</code>, or several with <code>data.SetTargetingPackets(Tags.TARGET, targets)</code>, the first the primary; or calls <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WhenTargetingInvalid_"><code>WhenTargetingInvalid(data)</code></a>.</td>
-</tr>
-<tr>
-<td><code>Prompt</code></td>
-<td>The words a game shows while the task waits for the player, as &quot;Click a point on the ground&quot;; null for a task that doesn't wait for the player. <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_PressWords_"><code>PressWords(button)</code></a> gives &quot;Click&quot;, &quot;Right-click&quot; or &quot;Middle-click&quot;.</td>
-</tr>
-<tr>
-<td><code>TargetIsValid(...)</code></td>
-<td>Which targets it takes: an <a class="xref" href="../../api/FarEmerald.PlayForge.ITarget.html"><code>ITarget</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessHierarchy.HierarchyNode.html#FarEmerald_PlayForge_ProcessHierarchy_HierarchyNode_GameObject"><code>GameObject</code></a>, a <code>Transform</code> or a point.</td>
-</tr>
-<tr>
-<td><code>WhenTargetingInvalid(data)</code></td>
-<td>Marks the targeting failed and, with <strong>Break Runtime On Invalid</strong> on (<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_BreakRuntimeOnInvalid"><code>BreakRuntimeOnInvalid</code></a>), throws <code>OperationCanceledException</code>, which ends the activation as cancelled.</td>
-</tr>
-<tr>
-<td><code>ConnectInputHandler(data)</code>, <code>DisconnectInputHandler(data)</code></td>
-<td>Hook an input handler of its own as it's prepared, and unhook it as it's cleaned. A false from <code>ConnectInputHandler</code> fails the targeting. An override of <code>Prepare</code> calls the base's last.</td>
-</tr>
-<tr>
-<td><code>IsCriticalSection</code></td>
-<td>True: targeting holds the activation's claim.</td>
-</tr>
-</tbody>
-</table>
-<p>Its helpers: <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataTarget_"><code>TryGetDataTarget(data, out target)</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_TryGetDataPoint_"><code>TryGetDataPoint(data, out point)</code></a>, a target or a point the
-activation's data holds already, as an AI's request does; and <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingAbilityTask.html#FarEmerald_PlayForge_AbstractTargetingAbilityTask_WaitForPointerPress_"><code>WaitForPointerPress(button, token)</code></a>, which waits for a
-press of the game's input, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a>, and gives the ray it aims along, or null with nothing to aim through.
-<a class="xref" href="../../api/FarEmerald.PlayForge.AbstractGasTargetingAbilityTask.html"><code>AbstractGasTargetingAbilityTask</code></a> adds <strong>Requirements</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html"><code>AvoidRequireTagGroup</code></a>), which an entity's applied tags must
-meet.</p>
-<p>What follows a task's pick:</p>
-<ol>
-<li>The ability's components hear it in <code>CanTakeTarget</code> and may refuse it (<a href="components.html">Components</a>).</li>
-<li>The pick resolves: the entity each packet under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET"><code>Tags.TARGET</code></a>, or the ability's implicit tag, points at is filed
-under <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a>, where tasks and checks find it.</li>
-<li>Where the pick is an entity, the caster's checks and the components' <code>CanStart</code> are asked again, then the Target
-Checks on the target. Then come the wind-ups, the cost and the first stage.</li>
-</ol>
-<pre><code class="lang-csharp">using System;
-using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using FarEmerald.PlayForge;
-using UnityEngine;
-
-namespace MyGame
-{
-    [Serializable]
-    [ForgeMenu(&quot;Picked&quot;, Description = &quot;The player clicks the ground, and the enemy nearest the click is the target.&quot;)]
-    public class ClickNearestEnemyTargetTask : AbstractTargetingAbilityTask
-    {
-        [Tooltip(&quot;How far from the click an enemy may stand, read at the ability's level&quot;)]
-        [NumberMin(0f)] public ScalableFloat Radius = 2f;
-
-        [Tooltip(&quot;The layers the click's ray hits&quot;)]
-        public LayerMask Ground = ~0;
-
-        [Tooltip(&quot;The pointer button that picks: 0 the primary, 1 the secondary, 2 the middle&quot;)]
-        public int Button;
-
-        public override string Prompt =&gt; $&quot;{PressWords(Button)} near an enemy&quot;;
-
-        public override async UniTask Activate(AbilityDataPacket data, CancellationToken token)
-        {
-            // An AI's activation hands its target: take it rather than wait for a click
-            if (TryGetDataTarget(data, out var handed))
-            {
-                if (TargetIsValid(handed)) data.SetTargetingPacket(Tags.TARGET, handed.GetTargetingPacket());
-                else WhenTargetingInvalid(data);
-                return;
-            }
-
-            var ray = await WaitForPointerPress(Button, token);
-            if (ray == null || !Physics.Raycast(ray.Value, out var hit, Mathf.Infinity, Ground))
-            {
-                WhenTargetingInvalid(data);
-                return;
-            }
-
-            var caster = data.EffectOrigin.GetSource();
-            var sides = data.EffectOrigin.GetAffiliation();
-            var near = new List&lt;ITarget&gt;();
-            ForgeEntities.Within(hit.point, Read(Radius, data), true, near, caster, false);
-
-            ITarget best = null;
-            float bestDistance = float.MaxValue;
-            foreach (var each in near)
-            {
-                if (each.IsDead || !ForgeEntities.Takes(EAffiliationFilter.Enemies, caster, sides, each) || !TargetIsValid(each)) continue;
-                float distance = ForgeEntities.Distance(each, hit.point, true);
-                if (distance &gt;= bestDistance) continue;
-                best = each;
-                bestDistance = distance;
-            }
-
-            if (best == null) WhenTargetingInvalid(data);
-            else data.SetTargetingPacket(Tags.TARGET, best.GetTargetingPacket());
-        }
-    }
-}
-</code></pre>
-<h2 id="while-it-waits">While it waits</h2>
-<p>A task that waits for the player holds its ability in targeting, and the game shows it:</p>
+<p>A targeting task picks what an activation acts on before its stages run.</p>
+<p>It's the ability's <strong>Targeting</strong>, one task, run as the activation starts. This section covers writing one, and what a
+task must do while its ability waits on it. Traps, last in this section, lists a targeting task's traps.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>The slot says it's choosing.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySpecContainer.html#FarEmerald_PlayForge_AbilitySpecContainer_IsTargeting"><code>AbilitySpecContainer.IsTargeting</code></a> is true while a run of the ability waits on its
-targeting; a game shows the ability's targeting's <code>Prompt</code> beside its name while it is. A task that doesn't wait for
-the player returns a null <code>Prompt</code>.</li>
-<li><strong>Another ability can take its place.</strong> As another of the entity's abilities activates on a request that cancels
-targeting, a player's press, an ability still choosing gives way where its <strong>While Targeting</strong> says it yields: its
-own <strong>Yields</strong>, or <strong>Entity's Rule</strong>, which follows the entity's <strong>Targeting Yields</strong>. <strong>Holds</strong> keeps it. A trigger's
-request and an activation at start don't cancel targeting (<a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.AbilityActivationRequest.html#FarEmerald_PlayForge_AbilitySystemComponent_AbilityActivationRequest_CancelsTargeting"><code>AbilityActivationRequest.CancelsTargeting</code></a> is off for
-them), and code that makes a request chooses.</li>
-<li><strong>Giving way cancels the task's token.</strong> Its claim lets go at once, so the other activation starts while the
-cancelled task winds down. Nothing of the activation is paid, it ends as cancelled, and the task's <code>Clean</code> runs.</li>
+<li><a href="targeting-tasks/writing-a-targeting-task.html">Writing a targeting task</a>: A targeting task of a game's own picks an activation's target its own way, as a click near an enemy.</li>
+<li><a href="targeting-tasks/while-it-waits.html">While it waits</a>: A task that waits for the player holds its ability in targeting, and the game shows it.</li>
+<li><a href="targeting-tasks/traps.html">Traps</a>: These traps apply to every targeting task.</li>
 </ul>
-<p>So a task awaits with its token, as <code>WaitForPointerPress</code> does, and once its token is cancelled it files nothing and
-applies nothing. A pick filed after the token was cancelled lands in an activation that's gone.</p>
-<h2 id="traps">Traps</h2>
-<ul>
-<li><strong>No task state.</strong> <code>data.GetTaskState&lt;T&gt;</code> takes an ability task; a targeting task keeps what it needs in its
-<code>Activate</code>'s locals.</li>
-<li><strong>Take a handed target first.</strong> An AI's or a replay's activation hands its target in its data; a task that waits for a
-click whatever the data holds can't be cast by an AI.</li>
-<li><strong>An exception other than a cancellation fails the activation</strong>, written to the Console.</li>
-<li><strong>The pick is a packet.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_SetTargetingPacket_"><code>SetTargetingPacket</code></a> files a place: an entity's packet points at its entity, and a
-<a class="xref" href="../../api/FarEmerald.PlayForge.StaticTargetingPacket.html"><code>StaticTargetingPacket(point)</code></a> at none. An activation whose pick is a point has no target, so its Target Checks
-don't run.</li>
-</ul>
-<hr>
-<p><a href="ability-tasks.html">← Ability tasks</a> · <a href="index.html">Extending PlayForge</a> · <a href="sequence-tasks-injections-and-stage-policies.html">Sequence tasks, injections and stage policies →</a></p>
 
 </article>
 

@@ -87,24 +87,63 @@
         <article data-uid="guide.tags.the-tag-library">
 <h1 id="the-tag-library">The Tag Library</h1>
 
-<p>A <strong>Tag Library</strong> asset, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.html"><code>ForgeTagLibrary</code></a>, declares tags for contexts, so those contexts' pickers offer them before any
-asset uses them, and keeps the project's own contexts. <code>Create → PlayForge → Tag Library</code> makes one, and PlayForge makes
-one in the active Forge Project's folder as a tag is first declared, or a context first made, while there's none.</p>
-<p>Its inspector, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html"><code>ForgeTagLibraryEditor</code></a>, is the shared header over its two lists:</p>
-<ul>
-<li><strong>Entries</strong>, each a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.Entry.html"><code>ForgeTagLibrary.Entry</code></a>, a declaration: <strong>Name</strong>, the tag's name, padded where the tag is unique;
-<strong>Display Name</strong>, how it reads, where that differs from its name; <strong>Contexts</strong>, those it's declared for, an empty list
-declaring it Universal; and <strong>Note</strong>, what it's for.</li>
-<li><strong>Contexts</strong>: the project's own contexts.</li>
-</ul>
-<p>The Tags view's <strong>Declared For</strong> and New Tag's <strong>Contexts</strong> write the entries, each change one Undo step, so a library
-is seldom edited by hand; one edited by hand is read again as it's saved. A declaration goes into the library that
-declares the tag already, or else into the first, by its path.</p>
-<p>Every Tag Library in the Unity project is read, wherever it sits, and the contexts each keeps are every Forge Project's.
-The tags it declares are offered by the pickers of the Forge Project whose folder holds it, and by another project's
-only where that project's own assets use them.</p>
-<hr>
-<p><a href="contexts.html">← Contexts</a> · <a href="index.html">Tags</a> · <a href="tags-written-in-code.html">Tags written in code →</a></p>
+<p>A <strong>Tag Library</strong> asset, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.html"><code>ForgeTagLibrary</code></a>, declares tags for contexts, so those contexts' pickers offer them before
+any asset uses them. It also keeps the project's own contexts.</p>
+<p><code>Create → PlayForge → Tag Library</code> makes one. PlayForge also makes one in the active Forge Project's folder while
+there's none, as a tag is first declared or a context first made.</p>
+<p>Its inspector, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html"><code>ForgeTagLibraryEditor</code></a>, is the shared header over two lists:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entries</strong></td>
+<td>The library's declarations, each a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagLibrary.Entry.html"><code>ForgeTagLibrary.Entry</code></a>.</td>
+</tr>
+<tr>
+<td><strong>Contexts</strong></td>
+<td>The project's own contexts.</td>
+</tr>
+</tbody>
+</table>
+<p>Each entry declares one tag:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The tag's name, padded where the tag is unique.</td>
+</tr>
+<tr>
+<td><strong>Display Name</strong></td>
+<td>How the tag reads, where that differs from its name.</td>
+</tr>
+<tr>
+<td><strong>Contexts</strong></td>
+<td>The contexts the tag is declared for. An empty list declares it Universal.</td>
+</tr>
+<tr>
+<td><strong>Note</strong></td>
+<td>What the tag is for.</td>
+</tr>
+</tbody>
+</table>
+<p>You seldom edit a library by hand. The Tags view's <strong>Declared For</strong> and New Tag's <strong>Contexts</strong> write its entries, each
+change one Undo step. A library edited by hand is read again as it's saved.</p>
+<p>A declaration goes into the library that declares the tag already, or else into the first, by its path.</p>
+<p>Every Tag Library in the Unity project is read, wherever it sits, and the contexts each keeps are every Forge
+Project's.</p>
+<p>The tags a library declares are offered by the pickers of the Forge Project whose folder holds it. Another project's
+pickers offer them only where that project's own assets use them.</p>
 
 </article>
 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Its place in the tree | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Its place in the tree | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.what-a-tag-is.its-place-in-the-tree">
+<h1 id="its-place-in-the-tree">Its place in the tree</h1>
+
+<p>A tag's place in the tree comes from its <code>Path</code>, the text its family goes by. A unique tag's path is its display name,
+and any other tag's path is its name.</p>
+<p>These members read the path, here of <code>Status.Debuff.Burn</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Depth</code></td>
+<td>Its depth in the tree, 1 for a root.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsRoot"><code>IsRoot</code></a></td>
+<td>Whether it's a root.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetLeafName_"><code>GetLeafName()</code></a></td>
+<td>Its leaf: Burn.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetParentPath_"><code>GetParentPath()</code></a></td>
+<td>Its parent's path: Status.Debuff.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetAncestorPaths_"><code>GetAncestorPaths()</code></a></td>
+<td>Its ancestors' paths, from its parent to its root.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetSegments_"><code>GetSegments()</code></a></td>
+<td>The names in its path.</td>
+</tr>
+</tbody>
+</table>
+<p>These methods compare two tags by their paths:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it asks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsChildOf_"><code>IsChildOf(tag)</code></a></td>
+<td>Whether its path is under another tag's, at any depth.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsDirectChildOf_"><code>IsDirectChildOf(tag)</code></a></td>
+<td>Whether its path is one level under another tag's.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_IsParentOf_"><code>IsParentOf(tag)</code></a></td>
+<td>The reverse of <code>IsChildOf</code>: whether another tag's path is under its own.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_MatchesOrIsChildOf_"><code>MatchesOrIsChildOf</code></a></td>
+<td>As <code>IsChildOf</code>, but the tag itself matches too.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_MatchesOrIsParentOf_"><code>MatchesOrIsParentOf</code></a></td>
+<td>As <code>IsParentOf</code>, but the tag itself matches too.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_SharesAncestorWith_"><code>SharesAncestorWith</code></a></td>
+<td>Whether the two tags have one root.</td>
+</tr>
+</tbody>
+</table>
+<p>A family goes by paths, but equality goes by names. So Status.Debuff.Burn is under Status.Debuff, whichever makes the
+two are.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The plain Status.Debuff and the unique one are two tags, and neither is under the other.</p>
+</div>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

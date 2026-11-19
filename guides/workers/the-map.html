@@ -87,6 +87,7 @@
         <article data-uid="guide.workers.the-map">
 <h1 id="the-map">The map</h1>
 
+<p>The map shows, for each kind of worker, when it runs, whose system it runs on, and what its context holds.</p>
 <table>
 <thead>
 <tr>
@@ -101,28 +102,28 @@
 <tr>
 <td>Attribute</td>
 <td>Pre Change</td>
-<td>Before a change to one of the entity's attributes lands: a commit, or a modifier registered or taken off</td>
+<td>Before a change to one of the entity's attributes lands</td>
 <td>The entity whose attribute changes</td>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.WorkerContext.html"><code>WorkerContext</code></a>: <strong>System</strong>, <strong>AttributeCache</strong>, <strong>Change</strong> (the incoming change: an Inline worker's edit is what commits, before bounds and rounding; a modifier's it only reads), <strong>FrameSummary</strong>, <strong>ActionQueue</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.WorkerContext.html"><code>WorkerContext</code></a></td>
 </tr>
 <tr>
 <td>Attribute</td>
 <td>Post Change</td>
 <td>After the change lands</td>
 <td>The entity whose attribute changed</td>
-<td>The same, <strong>Change</strong> being what it changed by</td>
+<td><code>WorkerContext</code></td>
 </tr>
 <tr>
 <td>Impact</td>
 <td>Validate, then actions</td>
-<td>As a change the entity dealt lands on another's attribute, for the attribute the worker subscribes to</td>
-<td><strong>The dealer</strong>; the one hit is <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Target"><code>ImpactData.Target</code></a></td>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.ImpactWorkerContext.html"><code>ImpactWorkerContext</code></a>: <strong>System</strong> (the dealer), <strong>ImpactData</strong> (Target, Attribute, the sourced change, RealImpact, OldValue), <strong>FrameSummary</strong>, <strong>ActionQueue</strong></td>
+<td>As a change the entity dealt lands on another's attribute</td>
+<td><strong>The dealer</strong></td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ImpactWorkerContext.html"><code>ImpactWorkerContext</code></a></td>
 </tr>
 <tr>
 <td>Tag</td>
 <td>Activate, Tick, Resolve</td>
-<td>At the entity's end of frame: Activate as its tag requirements come to be met, Tick while they hold, Resolve as they no longer do. Read in a frame the entity's tags changed, or every frame where <strong>Evaluate Every Frame</strong> says</td>
+<td>At the entity's end of frame</td>
 <td>The entity</td>
 <td>The system</td>
 </tr>
@@ -131,32 +132,33 @@
 <td>Analyze</td>
 <td>At the entity's end of frame, after its tag workers</td>
 <td>The entity</td>
-<td>The system and its <strong>FrameSummary</strong>: the frame's impacts dealt and received, by attribute, target and source; the effects applied and removed; the deaths</td>
+<td>The system and its <strong>FrameSummary</strong></td>
 </tr>
 <tr>
 <td>Effect</td>
 <td>Application, Tick, Removal</td>
-<td>As the effect lands, at each of its execute ticks (with how many), and as it comes off</td>
+<td>As the effect lands, at each of its execute ticks, and as it comes off</td>
 <td><strong>The entity the effect is on</strong></td>
-<td><a class="xref" href="../../api/FarEmerald.PlayForge.EffectWorkerContext.html"><code>EffectWorkerContext</code></a>: <strong>System</strong>, <strong>Carrier</strong> (the effect's spec), <strong>FrameSummary</strong>, <strong>ActionQueue</strong>, <strong>ExecuteTicks</strong>; <code>GetState&lt;T&gt;(worker)</code> keeps what it counts for this application</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EffectWorkerContext.html"><code>EffectWorkerContext</code></a></td>
 </tr>
 <tr>
 <td>Effect</td>
 <td>Impact</td>
 <td>As a change the effect made lands</td>
-<td><strong>The dealer, the effect's caster</strong>, not the one it's on; the one hit is <code>ImpactData.Target</code></td>
-<td>The same, with <strong>ImpactData</strong></td>
+<td><strong>The dealer, the effect's caster</strong></td>
+<td><code>EffectWorkerContext</code>, with <strong>ImpactData</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Inline or deferred.</strong> An attribute worker's <strong>Execution</strong> says how it acts. An Inline one runs inside the change, can
-edit the change in Pre Change, and must not change attributes itself, which would run workers inside workers. A
-Deferred one returns actions instead, as impact, analysis and effect workers do; the entity's action queue runs them at
-its end of frame, where they can change anything. A focused attribute worker, one that watches a single attribute,
-sets its <strong>Timing</strong> (Pre Change, Post Change or both), its <strong>Sign Policy</strong> (the changes it takes: losses, gains or
-either), and <strong>Allow Self Modification</strong> (whether it takes changes whose source and target are the same entity).</p>
-<hr>
-<p><a href="lifesteal.html">← Lifesteal</a> · <a href="index.html">Workers</a> · <a href="the-action-queue.html">The action queue →</a></p>
+<p>Each kind has a page of its own below.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="the-map/attribute-workers.html">Attribute workers</a>: An attribute worker runs as a change to one of its entity's attributes lands: before it, in Pre Change, or after it, in Post Change.</li>
+<li><a href="the-map/impact-workers.html">Impact workers</a>: An impact worker runs as a change its entity dealt lands on another's attribute, for the attribute the worker subscribes to.</li>
+<li><a href="the-map/tag-workers.html">Tag workers</a>: A tag worker acts while its entity's tags meet its requirements.</li>
+<li><a href="the-map/analysis-workers.html">Analysis workers</a>: An analysis worker looks over its entity at its end of frame, after its tag workers.</li>
+<li><a href="the-map/effect-workers.html">Effect workers</a>: An effect worker runs for its own effect's events, as the effect lands, ticks, comes off and deals an impact.</li>
+</ul>
 
 </article>
 

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>A rule of your own | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="A rule of your own | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-problems-view-and-validation.a-rule-of-your-own">
+<h1 id="a-rule-of-your-own">A rule of your own</h1>
+
+<p>A rule of your own adds a check to the validator.</p>
+<ol>
+<li>In an editor assembly, write a class that derives from <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidationRule.html"><code>ForgeValidationRule</code></a>, with a public constructor that takes
+nothing.</li>
+<li>Override <code>Check(asset, problems)</code>.</li>
+<li>Override <code>Name</code> and <code>Reads(asset)</code> where their defaults don't fit.</li>
+</ol>
+<p>The validator finds the rule.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Check(asset, problems)</code></td>
+<td>Adds a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProblem.html"><code>ForgeProblem</code></a> for each problem it finds in the asset.</td>
+</tr>
+<tr>
+<td><code>Name</code></td>
+<td>The name By Rule groups its problems under. Unless the rule says, it's its class's name, spaced out, without &quot;Rule&quot;.</td>
+</tr>
+<tr>
+<td><code>Reads(asset)</code></td>
+<td>True for an asset it reads to check others, so an edit to that asset has every asset checked again.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<pre><code class="lang-csharp">using System.Collections.Generic;
+using FarEmerald.PlayForge;
+using FarEmerald.PlayForge.Editor;
+using Object = UnityEngine.Object;
+
+public class AbilityDescriptionRule : ForgeValidationRule
+{
+    public override string Name =&gt; &quot;Abilities with no description&quot;;
+
+    public override void Check(Object asset, List&lt;ForgeProblem&gt; problems)
+    {
+        if (asset is Ability ability &amp;&amp; string.IsNullOrWhiteSpace(ability.GetDescription()))
+            problems.Add(new ForgeProblem(asset, ForgeProblemSeverity.Warning, &quot;It has no description.&quot;));
+    }
+}
+</code></pre>
+<h2 id="a-quick-fix-of-your-own">A quick fix of your own</h2>
+<p>A problem one step fixes carries the step as its <code>Fix</code>. The step writes through a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeDrawerStyles.SectionConfig.html#FarEmerald_PlayForge_Editor_ForgeDrawerStyles_SectionConfig_SerializedObject"><code>SerializedObject</code></a> of the asset, or
+records Undo, so the Undo step the view opens around it takes it back.</p>
+<h2 id="a-rule-about-components">A rule about components</h2>
+<p>A rule about one kind of component derives from <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeComponentRule-1.html"><code>ForgeComponentRule&lt;TComponent&gt;</code></a>. It hears each component of its kind an
+asset holds, with its place in the list.</p>
+<p>It's an <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.IForgeComponentRule.html"><code>IForgeComponentRule</code></a>, whose warnings and errors an ability's inspector shows under its Components list.
+<a href="../../extending/index.html">Extending PlayForge</a> covers writing rules.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

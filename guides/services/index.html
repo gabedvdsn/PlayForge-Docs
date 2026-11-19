@@ -87,34 +87,69 @@
         <article data-uid="guide.services">
 <h1 id="time-randomness-input-and-logging">Time, Randomness, Input and Logging</h1>
 
-<p>PlayForge reads the game's time, draws its random numbers and reads the player's pointer through services of its own,
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a>, and says what it does through a fourth, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a>. The first three read
-Unity's own until code puts another in, with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use</code></a> or <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use</code></a>, as a test, a
-replay, a server or a game with input of its own does, and each returns the one it replaced, to put back. This guide is
-the reference behind the short sections of <a href="../getting-started/quickstart-a-damage-ability-in-10-minutes.html#time-and-random-numbers">Getting Started: Time and random numbers</a> on time,
-logging and profiling: the clocks and which one a run takes, the fixed tick, chances and luck, pointer input, log
-levels, the Profiler's markers and counters, an entity's own services, and the small utilities a game's code uses.</p>
+<p>PlayForge works through four services of its own:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a></td>
+<td>Reads the game's time.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a></td>
+<td>Draws its random numbers.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a></td>
+<td>Reads the player's pointer.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a></td>
+<td>Says what PlayForge does.</td>
+</tr>
+</tbody>
+</table>
+<p>The first three read Unity's own until code puts another in, with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use</code></a> or
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use</code></a>. A test, a replay, a server or a game with input of its own does this. Each returns the one it
+replaced, to put back.</p>
+<p>This guide is the reference behind the short sections of
+<a href="../getting-started/quickstart-a-damage-ability-in-10-minutes/time-and-random-numbers.html">Getting Started: Quickstart: a damage ability in ~10 minutes: Time and random numbers</a> on time, logging and profiling. It covers:</p>
+<ul>
+<li>the clocks, and which one a run takes;</li>
+<li>the fixed tick;</li>
+<li>chances and luck;</li>
+<li>pointer input;</li>
+<li>log levels;</li>
+<li>the Profiler's markers and counters;</li>
+<li>an entity's own services;</li>
+<li>the small utilities a game's code uses.</li>
+</ul>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="time.html">Time</a>: <code>ForgeTime</code> is the clock PlayForge's runtime reads in place of Unity's <code>Time</code>, and where a game puts in a time of its own.</li>
-<li><a href="clocks.html">Clocks</a>: A clock is an <code>IForgeClock</code>, a source of time: PlayForge has one for Unity's time, one for the game's, an unscaled one, a scaled one and each entity's own, and a game can write its own.</li>
-<li><a href="which-clock-a-run-takes.html">Which clock a run takes</a>: Everything PlayForge times goes by a clock, most by their owner's: an effect by the entity it's on, and a sequence's run by the first it finds.</li>
-<li><a href="picking-a-clock-in-an-inspector.html">Picking a clock in an inspector</a>: An inspector picks a clock with an <code>AbstractClockChoice</code> field, as an ability's Run Sequence task's <strong>Clock</strong> does: each kind gives the clock for a run on a packet as the run starts.</li>
-<li><a href="fixed-ticks.html">Fixed ticks</a>: ProcessControl's fixed tick steps the game in fixed steps of its time, as many a frame as the frame's time holds, so a run comes out the same at any frame rate.</li>
-<li><a href="random-numbers.html">Random numbers</a>: <code>ForgeRandom</code> is where PlayForge draws its random numbers: the game's rolls and random picks all draw from its source, an <code>IForgeRandom</code>.</li>
-<li><a href="chance.html">Chance</a>: <code>ForgeChance</code> rolls every chance PlayForge has, each by its <code>ChanceRoll</code>, which says whether it's pseudo-random and whose luck it reads.</li>
-<li><a href="repeatable-runs.html">Repeatable runs</a>: A run that must come out the same twice, as a replay, a rollback or a lockstep match must, needs the same time and the same rolls each time it runs.</li>
-<li><a href="time-and-rolls-in-tests.html">Time and rolls in tests</a>: The test kit makes time and chance a test's own through the same two services (Testing Your Content: The world).</li>
-<li><a href="pointer-input.html">Pointer input</a>: <code>ForgeInput</code> is what PlayForge reads of the player's input: the press and aim of click targeting, the task libraries' waits for a key or a press, and the Creator Lab's controls.</li>
-<li><a href="logging.html">Logging</a>: <code>ForgeLog</code> is where everything PlayForge says goes: each message has a level and a system, and a gate on the two decides what reaches Unity's Console.</li>
-<li><a href="log-levels.html">Log levels</a>: A message is let through where its level is at least its system's level: the system's own, where it has one, or else <code>ForgeLog.MinimumLevel</code>, Info by default.</li>
-<li><a href="process-and-sequence-logs.html">Process and sequence logs</a>: ProcessControl and task sequences have switches of their own that decide whether they say what they do, and most of what they say is information, which the level must let through to show.</li>
-<li><a href="profiling.html">Profiling</a>: PlayForge's work shows in Unity's Profiler: markers that time it, counters that say how much of it there is, and each recorded frame's costliest processes (Getting Started: Profiling).</li>
-<li><a href="entity-services.html">Entity services</a>: An entity service is a per-entity object an entity's components share, made the first time it's asked for and stepped by the entity's own time.</li>
-<li><a href="forgehelper.html">ForgeHelper</a>: <code>ForgeHelper</code> is a static class of the checks and small sums PlayForge's own systems share, which a game's workers, conditions and tools can call too.</li>
-<li><a href="packet-helpers.html">Packet helpers</a>: <code>ProcessTaskUtil</code> holds extension methods for a data packet's targets and the effects it carries, and three loops for async code that wait through <code>ForgeTick</code>.</li>
+<li><a href="time.html">Time</a>: <code>ForgeTime</code> is the clock PlayForge's runtime reads in place of Unity's <code>Time</code>.</li>
+<li><a href="clocks.html">Clocks</a>: A clock is an <code>IForgeClock</code>, a source of time.</li>
+<li><a href="which-clock-a-run-takes.html">Which clock a run takes</a>: Everything PlayForge times goes by a clock, most by their owner's.</li>
+<li><a href="picking-a-clock-in-an-inspector.html">Picking a clock in an inspector</a>: An inspector picks a clock with an <code>AbstractClockChoice</code> field, as an ability's Run Sequence task's <strong>Clock</strong> does.</li>
+<li><a href="fixed-ticks.html">Fixed ticks</a>: ProcessControl's fixed tick steps the game in fixed steps of its time.</li>
+<li><a href="random-numbers.html">Random numbers</a>: <code>ForgeRandom</code> is where PlayForge draws its random numbers.</li>
+<li><a href="chance.html">Chance</a>: <code>ForgeChance</code> rolls every chance PlayForge has.</li>
+<li><a href="repeatable-runs.html">Repeatable runs</a>: A run that must come out the same twice needs the same time and the same rolls each time it runs.</li>
+<li><a href="time-and-rolls-in-tests.html">Time and rolls in tests</a>: The test kit makes time and chance a test's own, through the same two services (Testing Your Content: The world).</li>
+<li><a href="pointer-input.html">Pointer input</a>: <code>ForgeInput</code> is what PlayForge reads of the player's input</li>
+<li><a href="logging.html">Logging</a>: <code>ForgeLog</code> is where everything PlayForge says goes.</li>
+<li><a href="log-levels.html">Log levels</a>: A message is let through where its level is at least its system's level.</li>
+<li><a href="process-and-sequence-logs.html">Process and sequence logs</a>: ProcessControl and task sequences have switches of their own, which decide whether they say what they do.</li>
+<li><a href="profiling.html">Profiling</a>: PlayForge's work shows in Unity's Profiler (Getting Started: Profiling)</li>
+<li><a href="entity-services.html">Entity services</a>: An entity service is a per-entity object that an entity's components share.</li>
+<li><a href="forgehelper.html">ForgeHelper</a>: <code>ForgeHelper</code> is a static class of the checks and small sums PlayForge's own systems share.</li>
+<li><a href="packet-helpers.html">Packet helpers</a>: <code>ProcessTaskUtil</code> holds extension methods for a data packet's targets and the effects it carries.</li>
 <li><a href="the-attribute-registry.html">The attribute registry</a>: <code>AttributeRegistry</code> finds an attribute by its name, among those the game's entities have been given.</li>
-<li><a href="lists.html">Lists</a>: <code>ReadOnlyListView&lt;T&gt;</code> and <code>ForgeUtils</code> are two small list helpers: a view of a list that <code>foreach</code> walks without allocating, and the index of a list's least or greatest item.</li>
+<li><a href="lists.html">Lists</a>: <code>ReadOnlyListView&lt;T&gt;</code> and <code>ForgeUtils</code> are two small list helpers</li>
 <li><a href="sign-and-math-policies.html">Sign and math policies</a>: Three enums say how PlayForge reads the sign of a change and turns a number into a factor: <code>ESignPolicy</code>, <code>ESignPolicyExtended</code> and <code>EMathApplicationPolicy</code>.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

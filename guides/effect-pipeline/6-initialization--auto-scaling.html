@@ -87,19 +87,27 @@
         <article data-uid="guide.effect-pipeline.6-initialization--auto-scaling">
 <h1 id="6-initialization--auto-scaling">6. Initialization &amp; auto-scaling</h1>
 
+<p>Attributes initialize as their set is provided, and an auto-scaling attribute's Current follows its Base:</p>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttributeSet_"><code>ProvideAttributeSet</code></a>: register attributes → initialize each cached value (first recompute)
-→ zero-delta <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_"><code>ModifyAttribute</code></a> pulse per attribute (callbacks observe initial values; no worker does, as the pulse
-runs none and is unworkable; commits nothing).</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_EnforceScaling_"><code>EnforceScaling</code></a> (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeConstraints.html#FarEmerald_PlayForge_AttributeConstraints_AutoScaleWithBase"><code>AutoScaleWithBase</code></a>): Base changes, a dependent's refresh included, enqueue a
-deferred proportional Current adjustment through a synthetic carrier, kept for whoever changed Base — lands as ordinary committed history. The carrier is typed <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DisallowImpact"><code>DisallowImpact</code></a> and unworkable, as the pulse is, so no worker that
-checks impact types sees it. The adjustment is a share of Current before the bounds, where
-it lands, so the bounds clamp the result once: under ZeroToBase an 80/100 attribute that loses half
-its Base ends at 40/50.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttributeSet_"><code>ProvideAttributeSet</code></a>: register attributes → initialize each cached value (first recompute) → zero-delta
+<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ModifyAttribute_"><code>ModifyAttribute</code></a> pulse per attribute.
+<ul>
+<li>Callbacks observe initial values. No worker does, as the pulse runs none and is unworkable.</li>
+<li>The pulse commits nothing.</li>
 </ul>
-<hr>
-<hr>
-<p><a href="5-recalculation-regulated-attributes.html">← 5. Recalculation (regulated attributes)</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="7-entry-derivation-no-asset-migration.html">7. Entry derivation (no asset migration) →</a></p>
+</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_EnforceScaling_"><code>EnforceScaling</code></a> (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeConstraints.html#FarEmerald_PlayForge_AttributeConstraints_AutoScaleWithBase"><code>AutoScaleWithBase</code></a>): Base changes, a dependent's refresh included, enqueue a deferred proportional
+Current adjustment.
+<ul>
+<li>The adjustment goes through a synthetic carrier, kept for whoever changed Base, and lands as ordinary committed
+history.</li>
+<li>The carrier is typed <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DisallowImpact"><code>DisallowImpact</code></a> and unworkable, as the pulse is, so no worker that checks impact types sees
+it.</li>
+<li>The adjustment is a share of Current before the bounds, where it lands, so the bounds clamp the result once.</li>
+<li>Under ZeroToBase, an 80/100 attribute that loses half its Base ends at 40/50.</li>
+</ul>
+</li>
+</ul>
 
 </article>
 

@@ -87,37 +87,13 @@
         <article data-uid="guide.scalers.writing-your-own-scaler">
 <h1 id="writing-your-own-scaler">Writing your own scaler</h1>
 
-<p>A scaler of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html"><code>AbstractScaler</code></a>, or from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCachedScaler.html"><code>AbstractCachedScaler</code></a> for an attribute set's values, and
-has a public constructor with no parameters. The Kind menu lists it by its name without &quot;Scaler&quot;, as <strong>Damage Curve</strong>
-for <code>DamageCurveScaler</code>. Its inspector draws:</p>
+<p>You can add three kinds of your own: a scaler, a kind of number, and a condition for a Conditional.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>Each field it adds, public or <code>[SerializeField]</code>, as Unity draws the field's type, through any property drawer you
-write for that type. The fields of an abstract base of your own draw too. <code>[HideInInspector]</code> keeps a field out, and
-<code>[ForgeShowWhen(nameof(Mode), EMode.Curved)]</code> shows one only while another field, an enum or a bool, holds one of
-the values given.</li>
-<li>The parts every scaler has, as its <code>Parts</code> say: its values per level (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelValues"><code>EScalerParts.LevelValues</code></a>), the level range
-they spread over (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelRange"><code>EScalerParts.LevelRange</code></a>), and its behaviours (<a class="xref" href="../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_Behaviours"><code>EScalerParts.Behaviours</code></a>). Unless you override it,
-a scaler reads all three, or its behaviours alone where its <code>UseScalingOptions()</code> returns false. Override <code>Parts</code> to
-say what yours reads, as a scaler that reads only an attribute returns <code>EScalerParts.Behaviours</code>. <code>Parts</code> can follow
-the scaler's own fields, as one that reads its values per level in one mode alone.</li>
+<li><a href="writing-your-own-scaler/a-scaler-of-your-own.html">A scaler of your own</a>: A scaler of your own derives from <code>AbstractScaler</code>, or from <code>AbstractCachedScaler</code> for an attribute set's values.</li>
+<li><a href="writing-your-own-scaler/a-kind-of-number-of-your-own.html">A kind of number of your own</a>: A <strong>kind of number</strong> of your own is simpler than a scaler.</li>
+<li><a href="writing-your-own-scaler/a-condition-of-your-own.html">A condition of your own</a>: A <strong>condition</strong> of your own, for a Conditional, is made the same way.</li>
 </ul>
-<p>A <strong>kind of number</strong> of your own is simpler: derive from <a class="xref" href="../../api/FarEmerald.PlayForge.NumberKind.html"><code>NumberKind</code></a> and override its one method,
-<code>Evaluate(in NumberContext context)</code>, which reads what the field's site has: <code>context.Caster</code>, <code>context.Target</code>,
-<code>context.Level</code>, the caller's magnitudes, Local Data, an attribute on either side, and more; <code>context.Has(...)</code> says
-which. <code>Describe()</code> gives the field's summary, as &quot;the distance to the target&quot;. <code>[NumberKind(&quot;Distance to Target&quot;, Reads = NumberReads.Caster | NumberReads.Target)]</code> names it and says what it reads, so a field offers it only where it can
-be worked out; where it can't, the field reads its number. <code>[ForgeMenu(&quot;Space&quot;)]</code> files it in the kind menu. A kind
-is a scaler, so it also works in an effect's magnitude and inside a Group or a Conditional, and its fields draw as a
-scaler's do. Test one without an effect: <code>number.Evaluate(NumberContext.For(caster, target, level))</code>. A kind is saved
-by its class's name, so renaming the class needs Unity's <code>[MovedFrom]</code>. PlayForge's own kinds, Local Data, Tracked
-Impact, Asset Part and the rest, are written this way, in <code>Runtime/PlayForge/Numbers/Kinds</code>.</p>
-<p>A <strong>condition</strong> of your own, for a Conditional, is the same: derive from <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayCondition.html"><code>GameplayCondition</code></a>, override
-<code>Evaluate(in NumberContext context)</code> to say whether it holds and <code>Describe()</code> for its line, and name it with
-<code>[GameplayCondition(&quot;Target Is Caster&quot;, Reads = NumberReads.Caster | NumberReads.Target)]</code>; the condition menu offers
-it, and <code>condition.Holds(context)</code> reads it. A kind or a condition that holds numbers reads them with itself as their
-owner, <code>MaxValue.Evaluate(context, this)</code>, and passes <code>Initialize(carrier)</code> on to them, so a number in it captures what
-it captures as an effect's spec is made. PlayForge's are in <code>Runtime/PlayForge/Numbers/Conditions</code>.</p>
-<hr>
-<p><a href="values-per-level.html">← Values per level</a> · <a href="index.html">Scalers</a> · <a href="a-number-field-in-your-own-code.html">A number field in your own code →</a></p>
 
 </article>
 

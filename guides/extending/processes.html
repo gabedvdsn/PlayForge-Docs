@@ -88,8 +88,11 @@
 <h1 id="processes">Processes</h1>
 
 <p>A process is anything that runs over time under ProcessControl: a MonoBehaviour or a plain C# object stepped from
-Unity's player loop. This section covers writing one; <a href="../processes/index.html">Processes</a> covers lifecycles, registering,
-pausing and groups.</p>
+Unity's player loop.</p>
+<p>This section covers writing one; <a href="../processes/index.html">Processes</a> covers lifecycles, registering, pausing and groups.</p>
+<h2 id="writing-a-process">Writing a process</h2>
+<p>A process of a game's own does work over time, as a regeneration that runs until its entity dies.</p>
+<p>Derive from one of four bases:</p>
 <table>
 <thead>
 <tr>
@@ -100,7 +103,7 @@ pausing and groups.</p>
 <tbody>
 <tr>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a></td>
-<td>A MonoBehaviour process. Its lifecycle and timing are fields of its inspector. <code>RunProcess(token)</code> is required.</td>
+<td>A MonoBehaviour process, whose lifecycle and timing are fields of its inspector.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a></td>
@@ -108,7 +111,7 @@ pausing and groups.</p>
 </tr>
 <tr>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRuntimeProcess.html"><code>AbstractRuntimeProcess</code></a></td>
-<td>A plain C# process, its name, timing, priority and lifecycle given to its base's constructor. <code>RunProcess(token)</code> is required.</td>
+<td>A plain C# process, whose name, timing, priority and lifecycle are given to its base's constructor.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.LazyRuntimeProcess.html"><code>LazyRuntimeProcess</code></a></td>
@@ -116,10 +119,57 @@ pausing and groups.</p>
 </tr>
 </tbody>
 </table>
-<p>Their hooks, each virtual: <code>WhenInitialize()</code>, <code>WhenUpdate()</code>, <code>WhenLateUpdate()</code> and <code>WhenFixedUpdate()</code> at its
-timing, <code>WhenWait()</code>, <code>WhenTerminate()</code>, <code>WhenTerminateQueued()</code>, <code>WhenDestroy()</code>, and <code>TryHandlePause()</code> and
-<code>TryHandleResume()</code>, true to hold a run through a pause (<a href="../processes/pausing.html">Processes: Pausing</a>). A process reads its
-packet as <code>regData</code>, or <code>Data</code>, and its handle as <code>Relay</code>.</p>
+<p>A process reads its packet as <code>regData</code>, or <code>Data</code>, and its handle as <code>Relay</code>.</p>
+<h3 id="hooks">Hooks</h3>
+<p>Each hook is virtual.</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RunProcess(token)</code></td>
+<td>The run, which ProcessControl awaits for a process that isn't Synchronous. Required under <code>AbstractMonoProcess</code> and <code>AbstractRuntimeProcess</code>.</td>
+</tr>
+<tr>
+<td><code>WhenInitialize()</code></td>
+<td>As it's registered.</td>
+</tr>
+<tr>
+<td><code>WhenUpdate()</code>, <code>WhenLateUpdate()</code>, <code>WhenFixedUpdate()</code></td>
+<td>At its timing.</td>
+</tr>
+<tr>
+<td><code>WhenWait()</code></td>
+<td>As it goes to Waiting.</td>
+</tr>
+<tr>
+<td><code>WhenTerminate()</code></td>
+<td>As it ends.</td>
+</tr>
+<tr>
+<td><code>WhenTerminateQueued()</code></td>
+<td>As a Terminate is asked of it while it runs.</td>
+</tr>
+<tr>
+<td><code>WhenDestroy()</code></td>
+<td>In place of <code>OnDestroy</code>, as a mono process's object is destroyed.</td>
+</tr>
+<tr>
+<td><code>TryHandlePause()</code>, <code>TryHandleResume()</code></td>
+<td>As it's paused and resumed. True holds a run through a pause (<a href="../processes/pausing.html">Processes: Pausing</a>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-the-picker">In the picker</h3>
+<p>No picker offers a process: code registers it with ProcessControl.
+<a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(new RegenProcess(hero, health, 5f)).HandledBy(hero).Run(out ProcessRelay relay)</code></a> starts the
+example, and <code>relay.Terminate()</code> ends it.</p>
+<h3 id="example">Example</h3>
+<p>This process gives an entity an amount of an attribute each second of its own time, until it dies or the process ends:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 using ForgeAttribute = FarEmerald.PlayForge.Attribute;
 
@@ -156,9 +206,9 @@ namespace MyGame
     }
 }
 </code></pre>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(new RegenProcess(hero, health, 5f)).HandledBy(hero).Run(out ProcessRelay relay)</code></a> starts it,
-and <code>relay.Terminate()</code> ends it. It changes the attribute once a second, not each frame: a change each frame would make
-a new change, and run the attribute's workers, every frame.</p>
+<p>It changes the attribute once a second, not each frame. A change each frame would make a new change, and run the
+attribute's workers, every frame.</p>
+<h3 id="traps">Traps</h3>
 <ul>
 <li><strong>Call the base</strong> in an override of <code>WhenInitialize</code> or <code>WhenTerminate</code>.</li>
 <li><strong><code>WhenDestroy</code> stands in for <code>OnDestroy</code></strong>, which a MonoBehaviour process of its own would hide.</li>
@@ -166,8 +216,6 @@ a new change, and run the attribute's workers, every frame.</p>
 <li><strong>A mono process's object</strong> comes from an instantiator, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcessInstantiator.html"><code>AbstractMonoProcessInstantiator</code></a>, as a pool hands one out
 (<a href="../processes/registering-one.html">Processes: Registering one</a>).</li>
 </ul>
-<hr>
-<p><a href="sequence-tasks-injections-and-stage-policies.html">← Sequence tasks, injections and stage policies</a> · <a href="index.html">Extending PlayForge</a> · <a href="scalers-number-kinds-and-conditions.html">Scalers, number kinds and conditions →</a></p>
 
 </article>
 

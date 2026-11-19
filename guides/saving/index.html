@@ -87,9 +87,12 @@
         <article data-uid="guide.saving">
 <h1 id="saving-and-loading">Saving and Loading</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html"><code>ForgeSave</code></a> saves an entity at rest and loads it back. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_"><code>ForgeSave.Capture</code></a> takes what lasts on an entity
-into a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_"><code>ForgeSave.Restore</code></a> puts it back, on the entity it came from or on a fresh one of the same
-kind. A snapshot is plain serializable types, so a game writes it where it likes, through <code>JsonUtility</code> or its own
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html"><code>ForgeSave</code></a> saves an entity at rest and loads it back.</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Capture_"><code>ForgeSave.Capture</code></a> takes what lasts on an entity into a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a>.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html#FarEmerald_PlayForge_ForgeSave_Restore_"><code>ForgeSave.Restore</code></a> puts it back, on the entity it came from or on a fresh one of the same kind.</li>
+</ul>
+<p>A snapshot is plain serializable types, so a game writes it where it likes, through <code>JsonUtility</code> or its own
 serializer.</p>
 <pre><code class="lang-csharp">// Save
 ForgeSnapshot save = ForgeSave.Capture(gas, catalog);
@@ -99,17 +102,20 @@ string json = JsonUtility.ToJson(save);
 ForgeSnapshot loaded = JsonUtility.FromJson&lt;ForgeSnapshot&gt;(json);
 ForgeSave.Restore(gas, loaded, catalog);
 </code></pre>
-<p>Only a hub built from an entity can be saved or loaded: a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> with its Entity asset, or a
-<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> made from an identity.</p>
+<p>Only a hub built from an entity can be saved or loaded:</p>
+<ul>
+<li>a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> with its Entity asset;</li>
+<li>a <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> made from an identity.</li>
+</ul>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="the-asset-catalog.html">The Asset Catalog</a>: A save can't hold references to assets, because a reference doesn't last from one session to the next.</li>
-<li><a href="what-a-save-holds.html">What a save holds</a>: Each attribute's permanent commits, as a total per retention group.</li>
-<li><a href="what-a-load-does.html">What a load does</a>: Running abilities are interrupted, and the input buffer empties.</li>
+<li><a href="the-asset-catalog.html">The Asset Catalog</a>: An <strong>Asset Catalog</strong> names the assets a save refers to, and finds them again.</li>
+<li><a href="what-a-save-holds.html">What a save holds</a>: A save holds what lasts on the entity.</li>
+<li><a href="what-a-load-does.html">What a load does</a>: A load puts the save back in four steps.</li>
 <li><a href="effects-from-other-entities.html">Effects from other entities</a>: An effect knows what applied it: an entity, or one of its abilities or items.</li>
 <li><a href="rolling-back.html">Rolling back</a>: A rollback saves each step, and on a late input loads a step back and runs again.</li>
 <li><a href="copying-an-entity.html">Copying an entity</a>: <code>ForgeSave.Copy(from, onto)</code> copies what lasts on one entity onto another, as a mirror clone takes its original's state.</li>
-<li><a href="versions.html">Versions</a>: <code>ForgeSnapshot.Version</code> names the save's format, and <code>ForgeSave.Version</code> the format this PlayForge writes.</li>
+<li><a href="versions.html">Versions</a>: Each save names the format it was written in.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>
 <p>The types of this guide's area: <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySave.html">AbilitySave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRole.html">AttributeRole</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSave.html">AttributeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.CommitSave.html">CommitSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.EffectSave.html">EffectSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ESavedOrigin.html">ESavedOrigin</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAssetCatalog.html">ForgeAssetCatalog</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAssetCatalog.Entry.html">ForgeAssetCatalog.Entry</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeAuthoringSettings.html">ForgeAuthoringSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProjectSettings.html">ForgeProjectSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRoles.html">ForgeRoles</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSave.html">ForgeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html">ForgeSnapshot</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html">IForgeEntityIds</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSave.html">ItemSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.LevelSave.html">LevelSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.MagnitudeSave.html">MagnitudeSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.NewAssetSettings.html">NewAssetSettings</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.OriginSave.html">OriginSave</a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TypeDefaults.html">TypeDefaults</a>.</p>

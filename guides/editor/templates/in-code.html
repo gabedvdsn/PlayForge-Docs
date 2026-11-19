@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>In code | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="In code | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.templates.in-code">
+<h1 id="in-code">In code</h1>
+
+<p>Three editor types handle templates in code, and <a class="xref" href="../../../api/FarEmerald.PlayForge.BaseForgeAsset.html"><code>BaseForgeAsset</code></a> holds an asset's side.</p>
+<h2 id="forgetemplatepush"><code>ForgeTemplatePush</code></h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html"><code>ForgeTemplatePush</code></a> does what the menus do.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html#FarEmerald_PlayForge_Editor_ForgeTemplatePush_ChildrenOf_"><code>ChildrenOf(template)</code></a></td>
+<td>The assets that name the template as their template.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html#FarEmerald_PlayForge_Editor_ForgeTemplatePush_PushToChildren_"><code>PushToChildren(template)</code></a></td>
+<td>Pushes the template to its children, and gives back the assets it changed.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html#FarEmerald_PlayForge_Editor_ForgeTemplatePush_RevertToTemplate_"><code>RevertToTemplate(property)</code></a></td>
+<td>Takes a child's field back to its template's value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="forgetemplatepropagator"><code>ForgeTemplatePropagator</code></h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html"><code>ForgeTemplatePropagator</code></a> is the push's engine. It records no Undo of its own.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToChild_"><code>PropagateToChild(template, child)</code></a></td>
+<td>Gives one child the template's fields.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_PropagateToAllChildren_"><code>PropagateToAllChildren(template)</code></a></td>
+<td>Gives each child the template's fields, then their children.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_FindChildAssets_"><code>FindChildAssets(template)</code></a></td>
+<td>The assets that use the template as their template.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_ChildrenByTemplate_"><code>ChildrenByTemplate(type)</code></a></td>
+<td>Every asset of a type, by the template it names.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_IsUsedAsTemplate_"><code>IsUsedAsTemplate(asset)</code></a></td>
+<td>Whether any asset uses the asset as its template.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_WouldPropagationModifyAny_"><code>WouldPropagationModifyAny(template, children)</code></a></td>
+<td>Whether a push would change at least one child.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_UpdateOverrides_"><code>UpdateOverrides(child)</code></a></td>
+<td>Marks overridden the fields that differ from the template, and clears the rest.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_CaptureInitialListSnapshots_"><code>CaptureInitialListSnapshots(child)</code></a></td>
+<td>Records the template's lists as the child's starting point, so a push adds only what the template adds after it.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="forgetemplateconfig"><code>ForgeTemplateConfig</code></h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplateConfig.html"><code>ForgeTemplateConfig</code></a> says which fields a push leaves.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplateConfig.html#FarEmerald_PlayForge_Editor_ForgeTemplateConfig_IsExcluded_"><code>IsExcluded(path, type)</code></a></td>
+<td>Whether a push leaves the field at a property path, for an asset type.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplateConfig.html#FarEmerald_PlayForge_Editor_ForgeTemplateConfig_GetAllExclusions_"><code>GetAllExclusions(type)</code></a></td>
+<td>Every path a push leaves, for an asset type.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTemplateConfig.html#FarEmerald_PlayForge_Editor_ForgeTemplateConfig_SupportsTemplates_"><code>SupportsTemplates(type)</code></a></td>
+<td>True for an ability, effect, item, entity or attribute set.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-assets-side">The asset's side</h2>
+<p>The asset's side is <code>BaseForgeAsset</code>'s: <code>Template</code>, <code>HasTemplate</code>, <code>SetTemplate</code>, <code>ClearTemplate</code> and its overrides.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

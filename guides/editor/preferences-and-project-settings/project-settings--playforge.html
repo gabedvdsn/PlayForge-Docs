@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Project Settings → PlayForge | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Project Settings → PlayForge | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.preferences-and-project-settings.project-settings--playforge">
+<h1 id="project-settings--playforge">Project Settings → PlayForge</h1>
+
+<p><strong>Project Settings → PlayForge</strong> holds the settings a project shares: the PlayForge Folder, and the active Forge
+Project's settings.</p>
+<!-- screenshot: project-settings -->
+<h2 id="about-this-playforge">About this PlayForge</h2>
+<p>The page opens with which PlayForge this is: its version, package name and the Unity it needs, as its <code>package.json</code>
+says. A row of links follows. Each site link's tooltip is its address.</p>
+<table>
+<thead>
+<tr>
+<th>Link</th>
+<th>Opens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Guides</strong></td>
+<td>The documentation site.</td>
+</tr>
+<tr>
+<td><strong>Editor Tools</strong></td>
+<td>This guide.</td>
+</tr>
+<tr>
+<td><strong>API Reference</strong></td>
+<td>The API reference.</td>
+</tr>
+<tr>
+<td><strong>Changelog</strong></td>
+<td>The package's <code>CHANGELOG.md</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-folder-setting">The folder setting</h2>
+<p>The <strong>PlayForge Folder</strong> is the Unity project's own setting, kept in <code>ProjectSettings/PlayForge.asset</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PlayForge Folder</strong></td>
+<td>Where a new Forge Project goes, each in a folder of its own, and the Bootstrap prefabs. It's <code>Assets/PlayForge</code> to start. <strong>…</strong> picks a folder in <code>Assets</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-active-projects-settings">The active project's settings</h2>
+<p>The rest of the page is the active Forge Project's, kept in its asset, so each game has its own. Each edit is saved in
+the project's asset, and Undo takes it back.</p>
+<p>With no project active, the page says so. Choose one in The Forge. While the Unity project has none,
+<strong>Create Forge Project</strong> makes one named for the game.</p>
+<h2 id="forge-project">Forge Project</h2>
+<p><strong>Forge Project</strong> holds what the project's game reads as it runs, through its GameRoot.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Roles</strong></td>
+<td>The attribute playing each role, by its tag (<a href="../../attributes/roles.html">Attributes: Roles</a>).</td>
+</tr>
+<tr>
+<td><strong>Crowd Control</strong></td>
+<td>The rules an entity follows where it names none (<a href="../../abilities/requirements/crowd-control.html">Abilities: Requirements: Crowd Control</a>).</td>
+</tr>
+<tr>
+<td><strong>Cue Library</strong></td>
+<td>The project's Cue Library (<a href="../../cues/routes.html">Cues: Routes</a>).</td>
+</tr>
+<tr>
+<td><strong>Resolve Order</strong></td>
+<td>The order an area's effects land on those it takes, by the tags they carry (<a href="../../effects/workers/resolve-order.html">Effects: Workers: Resolve Order</a>).</td>
+</tr>
+<tr>
+<td><strong>Combat Log</strong></td>
+<td>What each entity's combat log writes, and how many entries it keeps (<a href="../../entities/combat-log.html">Entities: Combat Log</a>).</td>
+</tr>
+<tr>
+<td><strong>Purge Levels</strong></td>
+<td>The tiers a purge reaches, and what a death keeps (<a href="../../effects/purging.html">Effects: Purging</a>).</td>
+</tr>
+<tr>
+<td><strong>Workers</strong></td>
+<td>Every entity's workers (<a href="../../workers/where-workers-come-from.html">Workers: Where workers come from</a>).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fill Roles by Name</strong> gives each of PlayForge's roles no attribute plays the project's attribute of that name, as one
+Undo step. The roles are Health, Luck and Movement Speed, and Movement Speed takes Move Speed too.</p>
+<h2 id="new-assets">New Assets</h2>
+<p><strong>New Assets</strong> sets each type's folder within the project's folder. The Forge and a field's <strong>New</strong> put the type's new
+assets there.</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A type's folder</td>
+<td>Where its new assets go. <strong>…</strong> picks one inside the project's folder.</td>
+</tr>
+<tr>
+<td><strong>Use Default Folders</strong></td>
+<td>Puts each folder back to its default.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="defaults">Defaults</h2>
+<p><strong>Defaults</strong> sets two things for each type.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>New Asset</strong></td>
+<td>The asset a new asset of the type starts as a copy of.</td>
+</tr>
+<tr>
+<td><strong>Import</strong></td>
+<td>The assets the Import window lists first.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cost-and-cooldown">Cost and Cooldown</h2>
+<p><strong>Cost and Cooldown</strong> names the project's Cost and Cooldown effects.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cost Effect</strong></td>
+<td>The effect an ability's <strong>Cost</strong> field offers to copy or use, and an Active item copies.</td>
+</tr>
+<tr>
+<td><strong>Cooldown Effect</strong></td>
+<td>The effect an ability's <strong>Cooldown</strong> field offers to copy or use, and an Active item copies.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-templates-list">The Templates list</h2>
+<p>The page's last group, <strong>Templates</strong>, lists the project's own templates.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Templates</strong></td>
+<td>The project's own assets that <strong>Create</strong> offers to start a new asset as a copy of.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-settings-in-code">Project settings in code</h2>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html"><code>PlayForgeSettings</code></a> reads and writes the project's authoring settings.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_FolderFor_"><code>FolderFor(type)</code></a></td>
+<td>The folder a new asset of the type goes in.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_NewAssetDefault_"><code>NewAssetDefault(type)</code></a></td>
+<td>The asset a new asset of the type starts as a copy of.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_ImportDefaults_"><code>ImportDefaults(type)</code></a></td>
+<td>The assets Import lists first for the type.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_UsageEffect_"><code>UsageEffect(key)</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetUsageEffect_"><code>SetUsageEffect(key, effect)</code></a></td>
+<td>Get or set the Cost or Cooldown effect, by &quot;Cost&quot; or &quot;Cooldown&quot;.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetNewAssets_"><code>SetNewAssets</code></a></td>
+<td>Sets where a type's new assets go.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_SetDefaults_"><code>SetDefaults</code></a></td>
+<td>Sets a type's defaults.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_UseDefaultFolders_"><code>UseDefaultFolders()</code></a></td>
+<td>Puts every type's folder back to its default.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.PlayForgeSettings.html#FarEmerald_PlayForge_Editor_PlayForgeSettings_DefaultFolder_"><code>DefaultFolder(type)</code></a></td>
+<td>The folder a type's new assets go in until a setting says otherwise.</td>
+</tr>
+<tr>
+<td><code>UseProject(project)</code></td>
+<td>Reads another project's settings in place of the active one's, and gives back the one it replaced.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.EffectTemplateRegistry.html"><code>EffectTemplateRegistry</code></a> gets and sets the Cost and Cooldown effects by their keys, &quot;Cost&quot; and &quot;Cooldown&quot;. The settings
+themselves are the project's <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeProjectSettings.html"><code>ForgeProjectSettings</code></a>, and the authoring ones its <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeAuthoringSettings.html"><code>ForgeAuthoringSettings</code></a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

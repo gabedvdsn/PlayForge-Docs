@@ -87,38 +87,13 @@
         <article data-uid="guide.editor.renaming-duplicating-and-deleting">
 <h1 id="renaming-duplicating-and-deleting">Renaming, duplicating and deleting</h1>
 
-<p>This section covers what a rename changes, and what Duplicate and Move to Trash do.</p>
-<h2 id="renaming">Renaming</h2>
-<p>An asset is renamed from the asset menu's <strong>Rename…</strong>, F2 on The Forge's list, or its inspector's <strong>Name</strong>. The Rename
-window (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenameWindow.html"><code>ForgeRenameWindow</code></a>), titled for the asset's type, as <strong>Rename Ability</strong>, holds the asset's name selected, to
-type over; <strong>Rename</strong>, or Enter, renames it, and <strong>Cancel</strong>, or Escape, doesn't. A rename is one Undo step:</p>
+<p>This section covers what a rename changes, and what <strong>Duplicate</strong> and <strong>Move to Trash</strong> do.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>An ability, effect, item, entity or attribute set takes the name and the asset tag it gives. Every PlayForge asset
-that stored the old tag, as a requirement's tag query, a trigger or a filter, stores the new one, unless another
-asset still has the old tag as its own, as the one it was duplicated from.</li>
-<li>An attribute takes the name. A Scaler asset's name goes to its scaler, and a Requirement Template's to its
-requirements, which the lists that offer them show.</li>
-<li>The asset's file takes the name, its spaces and any character a file can't have left out, as a new asset's file
-does, with a number added where another file in its folder has the name. Undo and Redo bring the file back with the
-name.</li>
-<li>An asset with no name of its own, as a Value Pipeline, is named by its file: renaming renames the file, its spaces
-kept, which Undo doesn't take back.</li>
+<li><a href="renaming-duplicating-and-deleting/renaming.html">Renaming</a>: You rename an asset from the asset menu's <strong>Rename…</strong>, with F2 on The Forge's list, or in its inspector's <strong>Name</strong>.</li>
+<li><a href="renaming-duplicating-and-deleting/duplicating.html">Duplicating</a>: <strong>Duplicate</strong> copies an asset beside it.</li>
+<li><a href="renaming-duplicating-and-deleting/deleting.html">Deleting</a>: <strong>Move to Trash</strong> moves assets to the trash, where they can be restored.</li>
 </ul>
-<p>In an inspector, leaving the <strong>Name</strong> field of an ability, effect, item, entity or attribute set renames it this way,
-its file with it. Each one's tag comes from its own name, so a selection of several can't be renamed at once.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenames.html"><code>ForgeRenames</code></a> renames in code: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenames.html#FarEmerald_PlayForge_Editor_ForgeRenames_CanRename_"><code>CanRename(asset)</code></a>, true for an asset that's its file's main asset; <code>NameOf(asset)</code>,
-its name as The Forge lists it; and <code>Rename(asset, name)</code>. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeRenameWindow.html#FarEmerald_PlayForge_Editor_ForgeRenameWindow_Show_"><code>ForgeRenameWindow.Show(asset)</code></a> opens the window.</p>
-<p>A tag is renamed in The Forge's Tags view (<a href="the-tags-view.html">The Tags view</a>).</p>
-<h2 id="duplicating">Duplicating</h2>
-<p><strong>Duplicate</strong> copies an asset beside it, named as a copy, as &quot;Fireball Copy&quot;, with the tag that name gives. From The
-Forge's list, The Forge shows the copy; from an inspector's header, The Forge shows it where The Forge has the
-keyboard, and the Project window selects it otherwise.</p>
-<h2 id="deleting">Deleting</h2>
-<p><strong>Move to Trash</strong>, or Delete on The Forge's list, asks once for every asset selected, naming the assets, prefabs and
-scenes that refer to any of them, up to eight, and counting the rest: their references will break. It then moves the
-assets to the trash, where they can be restored.</p>
-<hr>
-<p><a href="templates.html">← Templates</a> · <a href="index.html">The Editor Tools</a> · <a href="the-tags-view.html">The Tags view →</a></p>
 
 </article>
 

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The project and its folder | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The project and its folder | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.forge-projects.the-project-and-its-folder">
+<h1 id="the-project-and-its-folder">The project and its folder</h1>
+
+<p>A Forge Project lives in a folder of its own under the PlayForge Folder, with a folder inside for each type's assets.</p>
+<h2 id="make-a-forge-project">Make a Forge Project</h2>
+<ol>
+<li>In The Forge's project menu, choose <strong>New Project…</strong>.</li>
+<li>Enter a <strong>Name</strong>. It starts as the game's product name, from Player Settings, without its spaces.</li>
+<li>Select <strong>Create</strong>.</li>
+</ol>
+<!-- screenshot: new-forge-project-window -->
+<p>PlayForge makes the project in a folder of its own under the PlayForge Folder, such as
+<code>Assets/PlayForge/Arena/Arena.asset</code>, and makes it the active one. With it, PlayForge makes:</p>
+<ul>
+<li>the project's Game Root entity, in its <a class="xref" href="../../../api/FarEmerald.PlayForge.GameRoot.html"><code>GameRoot</code></a> folder. It's the game's own entity, on the System side, which the
+project's GameRoot runs as.</li>
+<li>the Bootstrapper, GameRoot and ProcessControl prefabs, in the PlayForge Folder's <code>Bootstrap</code> folder, where they're
+missing. A Bootstrapper that plays no project plays the new one.</li>
+</ul>
+<p>Bootstrap, the prefabs' folder, can't be a project's name.</p>
+<p>Two other commands make a project:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it makes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Create Forge Project</strong>, where the Unity project has none</td>
+<td>The same as <strong>New Project…</strong>.</td>
+</tr>
+<tr>
+<td><strong>Create → PlayForge → Forge Project</strong></td>
+<td>The project's asset alone, in the folder the Project window shows.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-playforge-folder">The PlayForge Folder</h2>
+<p>The <strong>PlayForge Folder</strong> is <code>Assets/PlayForge</code> until Project Settings → PlayForge sets another.</p>
+<p>Where it's the folder PlayForge's own code is in, or a folder inside it, projects and Bootstrap go in a folder beside
+the code's, named for it, such as <code>Assets/PlayForge Projects</code>. That way the code's folder never holds a project's files.</p>
+<h2 id="type-folders">Type folders</h2>
+<p>A type's new assets go in its folder within the project's folder. The folder is made as the first asset of the type is.
+Until Project Settings → PlayForge says otherwise, the folders are:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Folder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ability</td>
+<td>Abilities</td>
+</tr>
+<tr>
+<td>Gameplay Effect</td>
+<td>Effects</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Items</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>Attributes</td>
+</tr>
+<tr>
+<td>Attribute Set</td>
+<td>AttributeSets</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>Entities</td>
+</tr>
+<tr>
+<td>Scaler Asset</td>
+<td>Scalers</td>
+</tr>
+<tr>
+<td>Requirement Template</td>
+<td>Requirements</td>
+</tr>
+<tr>
+<td>Value Pipeline</td>
+<td>Pipelines</td>
+</tr>
+<tr>
+<td>Effect Modifier</td>
+<td>Modifiers</td>
+</tr>
+<tr>
+<td>Crowd Control Rules</td>
+<td>Rules</td>
+</tr>
+</tbody>
+</table>
+<p>A type The Forge doesn't list, such as a Tag Library, goes in the project's folder itself.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

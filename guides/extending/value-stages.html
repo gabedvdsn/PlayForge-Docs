@@ -87,57 +87,14 @@
         <article data-uid="guide.extending.value-stages">
 <h1 id="value-stages">Value stages</h1>
 
-<p>A value stage reshapes a hit's value on its way to its attribute, one of a Value Pipeline's <strong>Stages</strong>, which an effect's
-impact names as its <strong>Pipeline</strong> (<a href="../value-pipelines/stages.html">Value Pipelines: Stages</a>). This section covers writing one.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractValueStage.html"><code>AbstractValueStage</code></a>:</p>
+<p>A value stage reshapes a hit's value on its way to its attribute, as one of a Value Pipeline's <strong>Stages</strong>, which an
+effect's impact names as its <strong>Pipeline</strong> (<a href="../value-pipelines/stages.html">Value Pipelines: Stages</a>).</p>
+<p>This section covers writing one.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><code>float Apply(float value, in ValueRun run)</code>: the value it passes on. A loss is negative.</li>
-<li><code>Describe()</code>: what it does, as &quot;× 1.5&quot;, which the pipeline's line and a breakdown show; its <strong>Label</strong> replaces it.</li>
-<li><strong>Label</strong> and <strong>Enabled</strong>: every stage's; off, the value passes it by.</li>
+<li><a href="value-stages/writing-a-value-stage.html">Writing a value stage</a>: A value stage of a game's own reshapes each hit through its pipeline, as armor shrinking a loss.</li>
+<li><a href="value-stages/stop-stages.html">Stop stages</a>: A stop stage stops an effect outright, as a block or a dodge.</li>
 </ul>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ValueRun.html"><code>ValueRun</code></a> holds <code>Carrier</code>, the hit's effect spec; <code>Context</code>, the hit's <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a>, its caster, its target and its
-level; <code>Breakdown</code>; and <code>Note(text)</code>, which notes what the stage did on its step in the breakdown, as &quot;critical&quot;.</p>
-<pre><code class="lang-csharp">using System;
-using FarEmerald.PlayForge;
-using UnityEngine;
-using ForgeAttribute = FarEmerald.PlayForge.Attribute;
-
-namespace MyGame
-{
-    [Serializable]
-    [ForgeMenu(Description = &quot;Shrinks a loss by the armor of the one hit: as much armor as its Halves halves it.&quot;)]
-    public class ArmorStage : AbstractValueStage
-    {
-        [Tooltip(&quot;The attribute that is the armor of the one hit&quot;)]
-        public ForgeAttribute Armor;
-
-        [Tooltip(&quot;The armor that halves a loss, read for the hit&quot;)]
-        [NumberMin(1f)] public ScalableFloat Halves = 100f;
-
-        public override float Apply(float value, in ValueRun run)
-        {
-            if (value &gt;= 0f || Armor == null || !run.Context.TryGetAttribute(NumberSide.Target, Armor, out var armor)) return value;
-            float halves = Mathf.Max(1f, Halves?.Evaluate(in run.Context, this) ?? 100f);
-            float factor = halves / (halves + Mathf.Max(0f, armor.CurrentValue));
-            if (factor &lt; 1f) run.Note($&quot;{armor.CurrentValue:0} armor&quot;);
-            return value * factor;
-        }
-
-        public override string Describe() =&gt; $&quot;armor, {NumberText.Of(Halves)} halving a loss&quot;;
-    }
-}
-</code></pre>
-<p>A stage that stops an effect outright, as a block or a dodge, derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractStopStage.html"><code>AbstractStopStage</code></a>, whose <strong>Chance</strong>,
-<strong>Roll</strong> and <strong>Stops</strong> every stop has. It names <code>StoppedEvent</code>, the event the one hit hears, <code>DealerEvent</code>, the one its
-dealer hears, and <code>Verb</code>, as &quot;blocked&quot;. The effect system honours every enabled stop in a pipeline, wherever it sits in
-the list: as the effect lands, the first stop that reaches it and rolls stops it.</p>
-<ul>
-<li><strong><code>Apply</code> runs for every hit</strong> through the pipeline: no allocation. <code>run.Note</code> with a constant string is free; one
-built with <code>$&quot;...&quot;</code>, as above, allocates only where it notes.</li>
-<li><strong>A stage is shared</strong> by every hit through its pipeline: it keeps nothing of one hit.</li>
-</ul>
-<hr>
-<p><a href="scalers-number-kinds-and-conditions.html">← Scalers, number kinds and conditions</a> · <a href="index.html">Extending PlayForge</a> · <a href="cue-handlers.html">Cue handlers →</a></p>
 
 </article>
 

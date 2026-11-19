@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Asset fields | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Asset fields | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.fields-and-drawers.asset-fields">
+<h1 id="asset-fields">Asset fields</h1>
+
+<p>An asset field holds a PlayForge asset, a Value Pipeline, Crowd Control Rules or an Effect Modifier. It's Unity's object
+field, with a button beside it.</p>
+<!-- screenshot: asset-field -->
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Shown</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open</strong></td>
+<td>While the field names an asset</td>
+<td>Shows the asset in a window of its own, so the asset that holds the field stays in the Inspector.</td>
+</tr>
+<tr>
+<td><strong>New</strong></td>
+<td>While the field is empty</td>
+<td>Opens the New Asset window, its name starting as the holder's and the field's, such as &quot;Goblin Attribute Set&quot;. Then it makes the asset where The Forge makes its type, and puts it in the field.</td>
+</tr>
+</tbody>
+</table>
+<p>While the Unity project has a Forge Project, the field's picker offers the active project's assets alone, in PlayForge's
+dropdown.</p>
+<h2 id="an-effect-fields-levels">An effect field's levels</h2>
+<p>An effect field has a line under it that says how the effect takes its levels.</p>
+<!-- screenshot: effect-field-levels -->
+<table>
+<thead>
+<tr>
+<th>The line says</th>
+<th>Button</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Linked to</strong> the asset that holds the field, with its levels</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Linked to another asset</td>
+<td><strong>Link Here</strong></td>
+</tr>
+<tr>
+<td><strong>Not linked</strong></td>
+<td><strong>Link</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Link</strong> and <strong>Link Here</strong> make the effect take the holder's levels, as one Undo step. An effect <strong>New</strong> makes takes them
+too.</p>
+<h2 id="an-effect-fields-right-click-menu">An effect field's right-click menu</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Copy the Cost Effect Template</strong></td>
+<td>On an ability's <strong>Cost</strong>: makes a copy of the project's Cost Effect named for the ability, such as &quot;Fireball Cost Effect&quot;, taking its levels.</td>
+</tr>
+<tr>
+<td><strong>Use the Cost Effect Template</strong></td>
+<td>On an ability's <strong>Cost</strong>: puts the project's Cost Effect itself in the field.</td>
+</tr>
+<tr>
+<td><strong>Pick an Unlinked Effect...</strong></td>
+<td>A pick of the project's effects that take no asset's levels.</td>
+</tr>
+<tr>
+<td><strong>New Linked Effect...</strong></td>
+<td>Names a new effect in the New Asset window, and makes it take the holder's levels.</td>
+</tr>
+</tbody>
+</table>
+<p>An ability's <strong>Cooldown</strong> has the same two items for the project's Cooldown Effect.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

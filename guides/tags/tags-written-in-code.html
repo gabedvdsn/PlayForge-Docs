@@ -87,31 +87,76 @@
         <article data-uid="guide.tags.tags-written-in-code">
 <h1 id="tags-written-in-code">Tags written in code</h1>
 
-<p>Code makes a tag of a path with <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique</code></a>, and offers it to the editor's pickers with <code>[ForgeTagExposed]</code>.</p>
+<p>Code makes a tag of a path with <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GenerateAsUnique_"><code>Tag.GenerateAsUnique</code></a>, and offers it to the editor's pickers with
+<code>[ForgeTagExposed]</code>.</p>
+<p>These make tags in code:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code></td>
+<td>The unique tag of the path: the very tag New Tag makes of it. PlayForge's own are among them: <code>Tag.GenerateAsUnique(&quot;Died&quot;)</code> is <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DIED"><code>Tags.DIED</code></a>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_FromSegments_"><code>TagRegistry.FromSegments(&quot;State&quot;, &quot;Stunned&quot;)</code></a></td>
+<td>The same unique tag, made of its parts.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate(&quot;State.Stunned&quot;)</code></a></td>
+<td>The plain tag of the path, which no unique tag equals.</td>
+</tr>
+<tr>
+<td>A string where a tag is asked for, as <code>Tag tag = &quot;State.Stunned&quot;;</code></td>
+<td>The plain tag of the path, as <code>Tag.Generate</code> gives.</td>
+</tr>
+<tr>
+<td><code>Tag.Generate(name, displayName)</code></td>
+<td>A tag of a name, with a display name of its own.</td>
+</tr>
+<tr>
+<td><code>tag.Child(&quot;Burn&quot;)</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_CreateChild_"><code>TagRegistry.CreateChild(tag, &quot;Burn&quot;)</code></a></td>
+<td>The plain tag of the child's path.</td>
+</tr>
+<tr>
+<td><code>GetParent()</code>, <code>GetAncestors()</code></td>
+<td>The plain tags of their paths.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetRoot_"><code>GetRoot()</code></a></td>
+<td>The plain tag of the root's path. Of a root, it gives the tag itself.</td>
+</tr>
+</tbody>
+</table>
+<p>Use plain tags for tags that code alone makes and reads.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html"><code>TagRegistry.TagUtil</code></a> makes the names:</p>
 <ul>
-<li><code>Tag.GenerateAsUnique(&quot;State.Stunned&quot;)</code> gives the unique tag of the path, the very tag New Tag makes of it,
-PlayForge's own among them: <code>Tag.GenerateAsUnique(&quot;Died&quot;)</code> is <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DIED"><code>Tags.DIED</code></a>.
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_FromSegments_"><code>TagRegistry.FromSegments(&quot;State&quot;, &quot;Stunned&quot;)</code></a> makes the same tag of its parts.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate(&quot;State.Stunned&quot;)</code></a>, and a string where a tag is asked for, as <code>Tag tag = &quot;State.Stunned&quot;;</code>, give the
-plain tag of the path, which no unique tag equals: use them for tags that code alone makes and reads.
-<code>Tag.Generate(name, displayName)</code> makes a tag of a name and a display name of its own.</li>
-<li><code>tag.Child(&quot;Burn&quot;)</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.html#FarEmerald_PlayForge_TagRegistry_CreateChild_"><code>TagRegistry.CreateChild(tag, &quot;Burn&quot;)</code></a>, <code>GetParent()</code> and <code>GetAncestors()</code> give plain tags of
-their paths, and so does <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_GetRoot_"><code>GetRoot()</code></a>, but of a root, which gives the tag itself.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html"><code>TagRegistry.TagUtil</code></a> makes the names: <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_GenerateDeterministicTag_"><code>GenerateDeterministicTag(text, prefix, length)</code></a> a unique tag's, the prefix
-and the text padded to the length, 32 to 64, by a SHA-256 hash of them, or cut short there; and
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_GenerateUniqueRandomTag_"><code>GenerateUniqueRandomTag()</code></a> a random tag no registered tag has. <a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_rngGenerationBufferSize"><code>TagUtil.rngGenerationBufferSize</code></a>, 64, is the length
-New Tag pads to.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_GenerateDeterministicTag_"><code>GenerateDeterministicTag(text, prefix, length)</code></a> makes a unique tag's name. It pads the prefix and the text to the
+length, 32 to 64, by a SHA-256 hash of them, or cuts them short there.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_GenerateUniqueRandomTag_"><code>GenerateUniqueRandomTag()</code></a> makes a random tag that no registered tag has.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagRegistry.TagUtil.html#FarEmerald_PlayForge_TagRegistry_TagUtil_rngGenerationBufferSize"><code>TagUtil.rngGenerationBufferSize</code></a>, 64, is the length New Tag pads to.</li>
 </ul>
 <h2 id="exposing-them-to-the-pickers">Exposing them to the pickers</h2>
-<p>A static <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field or property of the project's code, public or not, marked with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html"><code>ForgeTagExposed</code></a> is offered by the
-pickers of the contexts it names, as <code>[ForgeTagExposed(ForgeContext.Granted)]</code>, or, naming none, under Code, which the
-fields that name no context offer. A code tag not marked stays out of the pickers, so a project chooses which of its
-tags its designers see. The Tags view shows the contexts it's exposed for in <strong>Declared For</strong>, checked and locked, and
-can declare it for others besides.</p>
-<p>The editor finds the marks once each domain reload, in the player assemblies that reference PlayForge, test assemblies
-left out. A tag written in an editor assembly reaches the pickers once its type is registered as the editor loads, as
-from an <code>[InitializeOnLoad]</code> class: <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RegisterContextDefaultSource_"><code>ForgeTagRegistry.RegisterContextDefaultSource(typeof(EditorTags))</code></a>, its marked
-members alone.</p>
+<p>Mark a static <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a> field or property of the project's code with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTagExposed.html"><code>ForgeTagExposed</code></a> to offer it in the editor's tag
+pickers. The field or property can be public or not.</p>
+<p>Where the tag is offered depends on the contexts the mark names:</p>
+<ul>
+<li>Naming contexts, as <code>[ForgeTagExposed(ForgeContext.Granted)]</code>, it's offered by the pickers of those contexts.</li>
+<li>Naming none, it's offered under Code, which the fields that name no context offer.</li>
+</ul>
+<p>A code tag that isn't marked stays out of the pickers. So a project chooses which of its tags its designers see.</p>
+<p>The Tags view shows the contexts a tag is exposed for in <strong>Declared For</strong>, checked and locked. It can declare the tag
+for other contexts besides.</p>
+<p>The editor finds the marks once each domain reload, in the player assemblies that reference PlayForge. It leaves test
+assemblies out.</p>
+<p>A tag written in an editor assembly reaches the pickers once its type is registered as the editor loads. Register it
+from an <code>[InitializeOnLoad]</code> class, for example, with
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTagRegistry.html#FarEmerald_PlayForge_Editor_ForgeTagRegistry_RegisterContextDefaultSource_"><code>ForgeTagRegistry.RegisterContextDefaultSource(typeof(EditorTags))</code></a>. Only the type's marked members are read.</p>
+<p>This class exposes two tags for contexts and one under Code, and keeps one out of the pickers:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 
 public static class GameTags
@@ -132,8 +177,6 @@ public static class GameTags
     public static readonly Tag Combo = Tag.Generate(&quot;Game.Combo&quot;);
 }
 </code></pre>
-<hr>
-<p><a href="the-tag-library.html">← The Tag Library</a> · <a href="index.html">Tags</a> · <a href="tag-field-attributes.html">Tag field attributes →</a></p>
 
 </article>
 

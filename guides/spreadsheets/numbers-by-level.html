@@ -87,8 +87,8 @@
         <article data-uid="guide.spreadsheets.numbers-by-level">
 <h1 id="numbers-by-level">Numbers by level</h1>
 
-<p>A row for each number whose kind is a <strong>Table</strong> or <strong>By Level</strong> (<a href="../scalers/index.html">Scalers</a>), of every asset, and of each
-Scaler asset, whose table its fields share:</p>
+<p>A sheet of numbers by level has a row for each number whose kind is a <strong>Table</strong> or <strong>By Level</strong>
+(<a href="../scalers/index.html">Scalers</a>). It holds the numbers of every asset, and of each Scaler asset, whose table its fields share:</p>
 <table>
 <thead>
 <tr>
@@ -122,15 +122,38 @@ Scaler asset, whose table its fields share:</p>
 </tr>
 </tbody>
 </table>
-<ul>
-<li><strong>Field</strong> is the number's place in the asset, its parts as the inspector names them; a list's element is named by the
-attribute it names, as an attribute set's Health, or else by its place from 1, as Additional Impacts 2.</li>
-<li>The levels are <strong>what the number reads</strong> at each level: its values combined with its number as its field says, so a
-table of 450, 600 and 750 read times -1 is -450, -600 and -750. Reading one back sets the values so it reads the row.</li>
-<li>A number that reads its number alone, or a kind of another sort, as × Attribute, has no row.</li>
-</ul>
-<hr>
-<p><a href="index.html">← Spreadsheets</a> · <a href="index.html">Spreadsheets</a> · <a href="item-stats.html">Item stats →</a></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Asset Tag</strong>, <strong>Name</strong></td>
+<td>The asset the number is in. A row read back finds its asset by them (<a href="reading-a-sheet-back.html">Reading a sheet back</a>).</td>
+</tr>
+<tr>
+<td><strong>Field</strong></td>
+<td>The number's place in the asset, its parts named as the inspector names them.</td>
+</tr>
+<tr>
+<td><strong>Kind</strong></td>
+<td>The number's kind, <strong>Table</strong> or <strong>By Level</strong>.</td>
+</tr>
+<tr>
+<td><strong>Level 1</strong>, <strong>Level 2</strong> and on</td>
+<td>What the number reads at each level.</td>
+</tr>
+</tbody>
+</table>
+<p>In <strong>Field</strong>, a list's element is named by the attribute it names, as an attribute set's Health. An element that names
+no attribute is named by its place from 1, as Additional Impacts 2.</p>
+<p>The levels hold <strong>what the number reads</strong> at each level: its values combined with its number, as its field says. So a
+table of 450, 600 and 750, read times -1, is -450, -600 and -750. Reading a row back sets the values so the number reads
+what the row says.</p>
+<p>A number that reads its number alone has no row. Neither has a number of another kind, as × Attribute.</p>
 
 </article>
 

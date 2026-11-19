@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Stage tasks | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Stage tasks | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.extending.ability-tasks.stage-tasks">
+<h1 id="stage-tasks">Stage tasks</h1>
+
+<p>A stage task is one step of an ability's stage, as applying an effect to the target several times.</p>
+<p>Derive from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityTask.html"><code>AbstractAbilityTask</code></a> (from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html"><code>AbstractAbilityRelatedTask</code></a>). Its hooks are handed the activation's data, an
+<a class="xref" href="../../../api/FarEmerald.PlayForge.AbilityDataPacket.html"><code>AbilityDataPacket</code></a>, which holds the activation:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data.EffectOrigin</code></td>
+<td>The ability's spec, whose <code>GetSource()</code> is the caster.</td>
+</tr>
+<tr>
+<td><code>data.AbilitySpec</code></td>
+<td>The same, as an <a class="xref" href="../../../api/FarEmerald.PlayForge.AbilitySpec.html"><code>AbilitySpec</code></a>.</td>
+</tr>
+<tr>
+<td><code>data.TryGetFirstTarget(out ITarget target)</code>, <code>data.TryGetTarget(EDataTarget policy, out target)</code></td>
+<td>The entities its targeting picked, filed under <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_TARGET_REAL"><code>Tags.TARGET_REAL</code></a>.</td>
+</tr>
+<tr>
+<td><code>data.GetTargetingPacket(Tags.TARGET, out var packet, autoInterrupt: false)</code></td>
+<td>The pick's place, an entity's or a point's. With <code>autoInterrupt</code> on, its default, a missing pick interrupts the run.</td>
+</tr>
+<tr>
+<td><code>data.TryGet(Tags.POSITION, EDataTarget.Primary, out Vector3 point)</code>, <code>data.AddPayload(key, value)</code>, <code>data.TryGetFirst(key, out T value)</code></td>
+<td>Anything filed under a tag.</td>
+</tr>
+<tr>
+<td><code>data.GetTaskState&lt;T&gt;(this)</code></td>
+<td>What the task keeps for this activation.</td>
+</tr>
+</tbody>
+</table>
+<p>Its helpers are protected and static:</p>
+<ul>
+<li><code>Read(number, data)</code>: a <a class="xref" href="../../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a> or <a class="xref" href="../../../api/FarEmerald.PlayForge.ScalableInt.html"><code>ScalableInt</code></a> read at the ability's level.</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_EntityOf_"><code>EntityOf(data, NumberSide.Caster)</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.NumberSide.html#FarEmerald_PlayForge_NumberSide_Target"><code>NumberSide.Target</code></a>: its caster, or the activation's first target.</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractAbilityRelatedTask.html#FarEmerald_PlayForge_AbstractAbilityRelatedTask_ApplyTo_"><code>ApplyTo(data, target, effect)</code></a>: applies an effect from the activation, with the magnitudes its caller set.</li>
+</ul>
+<h2 id="hooks">Hooks</h2>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsCriticalSection</code></td>
+<td>Required. True holds the ability's claim while its stage runs.</td>
+</tr>
+<tr>
+<td><code>Prepare(data)</code></td>
+<td>Before its stage's tasks run.</td>
+</tr>
+<tr>
+<td><code>Activate(data, token)</code></td>
+<td>Required: its work, awaited. An interrupt cancels the token.</td>
+</tr>
+<tr>
+<td><code>Clean(data)</code></td>
+<td>After it ends, however it ended.</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>Its line in the ability's breakdown.</td>
+</tr>
+</tbody>
+</table>
+<p>While a critical stage holds the claim, the entity's other activations wait or are refused, as their When Busy says. The
+run takes only the injections its critical policy allows, an interrupt by default. A run with no critical stage lets its
+claim go as it starts.</p>
+<h2 id="in-the-picker">In the picker</h2>
+<p>A stage's <strong>Tasks</strong> offer every class derived from <code>AbstractAbilityTask</code> (<a href="../before-you-start/how-a-kind-is-found.html">How a kind is found</a>).
+The example's <code>[ForgeMenu(&quot;Effects&quot;)]</code> files it under the Effects submenu, where the picker shows <code>PulseTask</code>
+as <strong>Pulse</strong>.</p>
+<h2 id="example">Example</h2>
+<p>This task applies its effect to the target several times, a pause apart:</p>
+<pre><code class="lang-csharp">using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    [Serializable]
+    [ForgeMenu(&quot;Effects&quot;, Description = &quot;Applies its effect to the target several times, a pause apart.&quot;)]
+    public class PulseTask : AbstractAbilityTask
+    {
+        [Tooltip(&quot;The effect each pulse applies to the activation's target&quot;)]
+        public GameplayEffect Effect;
+
+        [Tooltip(&quot;How many pulses, read at the ability's level&quot;)]
+        [NumberMin(1f)] public ScalableInt Pulses = 3;
+
+        [Tooltip(&quot;The pause between pulses, in seconds of the run's time&quot;)]
+        [NumberMin(0f)] public ScalableFloat Interval = 0.5f;
+
+        public override bool IsCriticalSection =&gt; false;
+
+        public override string Description =&gt; &quot;Pulses its effect on the target&quot;;
+
+        public override async UniTask Activate(AbilityDataPacket data, CancellationToken token)
+        {
+            if (Effect == null || !data.TryGetFirstTarget(out var target)) return;
+            int pulses = Read(Pulses, data);
+            float interval = Read(Interval, data);
+            for (int i = 0; i &lt; pulses; i++)
+            {
+                // The library's wait counts the run's clock and holds while the run is paused
+                if (i &gt; 0) await SequenceTaskLibrary.Delay(interval, token);
+                if (!ApplyTo(data, target, Effect)) return;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="traps">Traps</h2>
+<ul>
+<li><strong>Wait through the task library or the run's clock.</strong> <a class="xref" href="../../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_Delay_"><code>SequenceTaskLibrary.Delay(seconds, token)</code></a> and the library's
+other waits hold while the run is paused.
+<ul>
+<li>A loop of its own reads <a class="xref" href="../../../api/FarEmerald.PlayForge.TaskSequenceRuntime.html#FarEmerald_PlayForge_TaskSequenceRuntime_ClockOfRun_"><code>TaskSequenceRuntime.ClockOfRun(token, data)</code></a> for the run's clock, and awaits
+<a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next(clock, token)</code></a> or <a class="xref" href="../../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_NextFrame_"><code>ForgeTick.NextFrame(token)</code></a>.</li>
+</ul>
+</li>
+<li><strong>Await with the token.</strong> An interrupt cancels it, and a task that ignores it runs on after its ability has ended.</li>
+<li><strong>One task serves every activation</strong>: keep what one activation counts in <code>data.GetTaskState&lt;T&gt;(this)</code>.</li>
+<li><strong>A stage's policy is All or Any.</strong> An ability compiles only those two. A stage policy of another type
+(<a class="xref" href="../../../api/FarEmerald.PlayForge.IAbilityProxyStagePolicy.html"><code>IAbilityProxyStagePolicy</code></a>) runs as All, with a warning.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

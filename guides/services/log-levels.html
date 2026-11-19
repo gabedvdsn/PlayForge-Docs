@@ -87,39 +87,48 @@
         <article data-uid="guide.services.log-levels">
 <h1 id="log-levels">Log levels</h1>
 
-<p>A message is let through where its level is at least its system's level: the system's own, where it has one, or else
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a>, Info by default.</p>
-<ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_SetLevel_"><code>ForgeLog.SetLevel(system, level)</code></a> gives a system a level of its own, and <code>ForgeLog.SetLevel(system, null)</code> gives it
-back. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_LevelOf_"><code>ForgeLog.LevelOf(system)</code></a> is its level now, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_HasOwnLevel_"><code>ForgeLog.HasOwnLevel(system)</code></a> says whether it has one of its own,
-and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_ClearLevels_"><code>ForgeLog.ClearLevels()</code></a> gives every system back.</li>
-<li>In the editor, <code>Edit → Preferences → PlayForge</code> sets <code>ForgeLog.MinimumLevel</code> with <strong>Minimum Log Level</strong>, under
-<strong>Logging</strong>. The level is yours, not the project's: it's kept in the editor's preferences and put back on each domain
-reload. <strong>Use Defaults</strong> puts every preference on the page back, the level to Info. Editor code sets it with
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeLogSettingsBridge.html#FarEmerald_PlayForge_Editor_ForgeLogSettingsBridge_SetLevel_"><code>ForgeLogSettingsBridge.SetLevel(level)</code></a>.</li>
-<li>The Creator Lab's <strong>Log</strong> page gives a system a level of its own with <strong>System</strong> and <strong>Level</strong>, and <strong>As all</strong> gives
-it back to the preference's (<a href="../creator-lab/showing-its-working.html">The Creator Lab: Showing its working</a>).</li>
-<li>A build reads no preference: it logs Info and above unless its code sets the level.</li>
-</ul>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-public static class BuildLogging
-{
-    // A build reads no preference: problems only, but every message about effects
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Configure()
-    {
-        if (Application.isEditor) return;
-        ForgeLog.MinimumLevel = ForgeLog.ELevel.Warning;
-        ForgeLog.SetLevel(ForgeLog.ESystem.Effects, ForgeLog.ELevel.Verbose);
-    }
-}
-</code></pre>
+<p>A message is let through where its level is at least its system's level. That's the system's own, where it has one,
+or else <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a>, Info by default.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_SetLevel_"><code>ForgeLog.SetLevel(system, level)</code></a></td>
+<td>Gives a system a level of its own.</td>
+</tr>
+<tr>
+<td><code>ForgeLog.SetLevel(system, null)</code></td>
+<td>Gives the system back to <code>ForgeLog.MinimumLevel</code>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_LevelOf_"><code>ForgeLog.LevelOf(system)</code></a></td>
+<td>Gives the system's level now.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_HasOwnLevel_"><code>ForgeLog.HasOwnLevel(system)</code></a></td>
+<td>Says whether the system has a level of its own.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_ClearLevels_"><code>ForgeLog.ClearLevels()</code></a></td>
+<td>Gives every system back.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
 <p>What's said only when asked is information, of level Info: its switch makes it, and the level shows it
-(<a href="process-and-sequence-logs.html">Process and sequence logs</a>). A level above Info hides it however it's switched on.</p>
-<hr>
-<p><a href="logging.html">← Logging</a> · <a href="index.html">Time, Input and Logging</a> · <a href="process-and-sequence-logs.html">Process and sequence logs →</a></p>
+(<a href="process-and-sequence-logs.html">Process and sequence logs</a>). A level above Info hides it, however it's switched on.</p>
+</div>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="log-levels/in-the-editor.html">In the editor</a>: In the editor, you set the level in PlayForge's preferences.</li>
+<li><a href="log-levels/in-a-build.html">In a build</a>: A build reads no preference.</li>
+</ul>
 
 </article>
 

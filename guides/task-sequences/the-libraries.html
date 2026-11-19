@@ -87,8 +87,11 @@
         <article data-uid="guide.task-sequences.the-libraries">
 <h1 id="the-libraries">The libraries</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html"><code>SequenceTaskLibrary</code></a> has tasks to await inside a stage's <code>Task</code>, each taking the task's token, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html"><code>SyncSequenceTaskLibrary</code></a> the same tasks as <a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceTask.html"><code>ISequenceTask</code></a>s for a synced runner, or for any stage:</p>
+<p>Two libraries hold ready-made tasks, one for async stages and one for synced ones.</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html"><code>SequenceTaskLibrary</code></a> has tasks to await inside a stage's <code>Task</code>, each taking the task's token.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskLibrary.html"><code>SyncSequenceTaskLibrary</code></a> has the same tasks as <a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceTask.html"><code>ISequenceTask</code></a>s, for a synced runner or for any stage.</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -131,12 +134,14 @@
 </tr>
 </tbody>
 </table>
-<p>Only the async library has <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_ArcForce_"><code>ArcForce</code></a>, which flies a Rigidbody by physics between FixedUpdates, whatever a runner's
-timing; <code>ArcTo</code> moves a transform along the same arc, in either. <code>IsPaused(token)</code> and <code>DeltaTime(token)</code> read the run
-that holds the token, which a synced task has none of.</p>
-<p>A timed task takes an <code>AnimationCurve</code> for its easing, ends exactly on its value, and ends at once for a time of 0 or less.</p>
-<hr>
-<p><a href="synced-sequences.html">← Synced sequences</a> · <a href="index.html">Task Sequences</a> · <a href="logging.html">Logging →</a></p>
+<p>The two libraries differ in a few ways:</p>
+<ul>
+<li>Only the async library has <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_ArcForce_"><code>ArcForce</code></a>, which flies a Rigidbody by physics between FixedUpdates, whatever a runner's
+timing. <code>ArcTo</code> moves a transform along the same arc, in either library.</li>
+<li><code>IsPaused(token)</code> and <code>DeltaTime(token)</code> read the run that holds the token. A synced task has no token.</li>
+</ul>
+<p>A timed task takes an <code>AnimationCurve</code> for its easing. It ends exactly on its value, and ends at once for a time of 0
+or less.</p>
 
 </article>
 

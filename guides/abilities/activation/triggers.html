@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Triggers | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Triggers | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.abilities.activation.triggers">
+<h1 id="triggers">Triggers</h1>
+
+<p><strong>Triggers</strong> are what set the ability off on its own. Each trigger tries the ability as a request would, so its checks
+and its When Busy still hold.</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>What sets it off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gameplay Event</strong></td>
+<td>Code sends the entity an event under the trigger's tag, or a tag under it, with <code>SendGameplayEvent(tag, data)</code>. The ability gets the event's data, its target among it.</td>
+</tr>
+<tr>
+<td><strong>Tag Added</strong></td>
+<td>The entity gains the trigger's tag, or one under it, that it didn't have. More of a tag it holds sets off nothing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-events">Core events</h2>
+<p><strong>The core's own events</strong> are sent only where an ability listens for them.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Sent to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Impact Dealt</strong></td>
+<td>The dealer, as an impact lands between two entities.</td>
+</tr>
+<tr>
+<td><strong>Impact Taken</strong></td>
+<td>The one hit, as an impact lands between two entities.</td>
+</tr>
+<tr>
+<td><strong>Kill</strong></td>
+<td>The killer: the source of the last blow the one who died took.</td>
+</tr>
+<tr>
+<td><strong>Died</strong></td>
+<td>The one who died.</td>
+</tr>
+<tr>
+<td><strong>Revived</strong></td>
+<td>A staying entity, as it revives.</td>
+</tr>
+<tr>
+<td><strong>Blocked</strong></td>
+<td>One that stops an effect by a Block stage.</td>
+</tr>
+<tr>
+<td><strong>Evaded</strong></td>
+<td>One that stops an effect by an Evade stage.</td>
+</tr>
+<tr>
+<td><strong>Hit Blocked</strong></td>
+<td>The dealer of an effect that was blocked.</td>
+</tr>
+<tr>
+<td><strong>Hit Evaded</strong></td>
+<td>The dealer of an effect that was evaded.</td>
+</tr>
+</tbody>
+</table>
+<p>Their data hold the instigator as Source, the entity it was done to as Subject, and an impact as Impact.</p>
+<h2 id="trigger-properties">Trigger properties</h2>
+<p>Each trigger can narrow what sets it off, and say what the ability targets.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>For an impact event, the trigger takes only impacts on this attribute.</td>
+</tr>
+<tr>
+<td><strong>Sign</strong></td>
+<td>For an impact event, it takes only a Loss or only a Gain.</td>
+</tr>
+<tr>
+<td><strong>Impact Types</strong></td>
+<td>For an impact event, it takes only impacts of these types.</td>
+</tr>
+<tr>
+<td><strong>Chance</strong></td>
+<td>Rolls once for each event, as Counter Helix's 20%.</td>
+</tr>
+<tr>
+<td><strong>Chance Roll</strong></td>
+<td>Makes the Chance pseudo-random or lucky (<a href="../../effects/requirements.html">Effects: Requirements</a>).</td>
+</tr>
+<tr>
+<td><strong>Target</strong></td>
+<td>What the ability targets: the ability's own targeting, as an area spin finds the enemies round it; the event's <strong>Instigator</strong>, as a counterattack; or its <strong>Subject</strong>, as an on-hit ability targets the one hit.</td>
+</tr>
+</tbody>
+</table>
+<p>An ability set off by Died runs on a dead entity only if its rules don't ask that its caster be alive.</p>
+<h2 id="problems-view">Problems view</h2>
+<p>The Problems view checks an ability's triggers:</p>
+<ul>
+<li>It notes a Gameplay Event trigger on an event that neither the core nor an asset in the project sends, as only code
+can send it. An asset sends one as a threshold's Event or a stop stage's does.</li>
+<li>It warns of an Impact Dealt or Impact Taken trigger's impact type that no effect deals, which never matches.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

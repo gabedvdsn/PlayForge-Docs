@@ -87,21 +87,75 @@
         <article data-uid="guide.tags.hearing-tags-change">
 <h1 id="hearing-tags-change">Hearing tags change</h1>
 
-<p>An entity's <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html"><code>TagCache</code></a> tells each change to a tag's weight, to listeners on that tag and on the tags above it. A change
-is a <a class="xref" href="../../api/FarEmerald.PlayForge.TagChange.html"><code>TagChange</code></a>: its <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>, and its weight <code>Before</code> and <code>After</code>, each 0 where the entity doesn't hold it, never −1;
-<code>Added</code> says the tag came, and <code>Removed</code> that it went.</p>
-<ul>
-<li><code>tags.Listen(tag, onChange, kind)</code> hears the tag, and every tag under its path, as a listener on Status hears
-Status.Burning, and gives a <a class="xref" href="../../api/FarEmerald.PlayForge.TagListener.html"><code>TagListener</code></a>, whose <code>Dispose()</code> stops it. Its <a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html"><code>ETagChangeKind</code></a> says what it hears:
-<a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AddedOrRemoved"><code>AddedOrRemoved</code></a>, the default, a tag coming and going, or <a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AnyCount"><code>AnyCount</code></a>, every change to a weight. A listener's <code>Tag</code>,
-<code>Kind</code> and <code>Listening</code> say what it hears and whether it still does.</li>
-<li><code>tags.TagChanged</code> hears every change to every tag.</li>
-</ul>
-<p>A change made straight to the weights is told as it happens. A compile is told as it ends, with only what it changed,
-so a tag held throughout is told nothing, and a load's one compile tells what the load changed
-(<a href="../saving/what-a-load-does.html">Saving and Loading: What a load does</a>). A listener that throws is logged, and stops neither the change nor the other
-listeners; one disposed while a change is told hears no more of it, and one added then hears the next. The entities'
-guide listens for a stun too (<a href="../entities/tags.html">Entities: Tags</a>).</p>
+<p>An entity's <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html"><code>TagCache</code></a> tells each change to a tag's weight. It tells the listeners on that tag, and on the tags above
+it.</p>
+<p>A change is a <a class="xref" href="../../api/FarEmerald.PlayForge.TagChange.html"><code>TagChange</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a></td>
+<td>The tag whose weight changed.</td>
+</tr>
+<tr>
+<td><code>Before</code>, <code>After</code></td>
+<td>Its weight before and after. Each is 0 where the entity doesn't hold the tag, never −1.</td>
+</tr>
+<tr>
+<td><code>Added</code></td>
+<td>Says the tag came.</td>
+</tr>
+<tr>
+<td><code>Removed</code></td>
+<td>Says the tag went.</td>
+</tr>
+</tbody>
+</table>
+<p>There are two ways to listen:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it hears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tags.Listen(tag, onChange, kind)</code></td>
+<td>The tag, and every tag under its path: a listener on Status hears Status.Burning. It gives a <a class="xref" href="../../api/FarEmerald.PlayForge.TagListener.html"><code>TagListener</code></a>, whose <code>Dispose()</code> stops it.</td>
+</tr>
+<tr>
+<td><code>tags.TagChanged</code></td>
+<td>Every change to every tag.</td>
+</tr>
+</tbody>
+</table>
+<p>A listener's <a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html"><code>ETagChangeKind</code></a> says what it hears:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it hears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AddedOrRemoved"><code>AddedOrRemoved</code></a></td>
+<td>The default: a tag coming and going.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ETagChangeKind.html#FarEmerald_PlayForge_ETagChangeKind_AnyCount"><code>AnyCount</code></a></td>
+<td>Every change to a weight.</td>
+</tr>
+</tbody>
+</table>
+<p>A listener's <code>Tag</code>, <code>Kind</code> and <code>Listening</code> say what it hears, and whether it still does.</p>
+<p>These listeners show an icon while an entity is stunned, and log each change to a combo's weight:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 using UnityEngine;
 
@@ -125,8 +179,16 @@ public static class StatusDisplay
             ETagChangeKind.AnyCount);
 }
 </code></pre>
-<hr>
-<p><a href="how-an-entity-holds-tags.html">← How an entity holds tags</a> · <a href="index.html">Tags</a> · <a href="querying-tags.html">Querying tags →</a></p>
+<p>The entities' guide listens for a stun too (<a href="../entities/tags.html">Entities: Tags</a>).</p>
+<h2 id="when-a-change-is-told">When a change is told</h2>
+<p>When a change to a tag's weight is told depends on how it was made:</p>
+<ul>
+<li>A change made straight to the weights is told as it happens.</li>
+<li>A compile is told as it ends, with only what it changed. So a tag held throughout is told nothing.</li>
+<li>A load's one compile tells what the load changed (<a href="../saving/what-a-load-does.html">Saving and Loading: What a load does</a>).</li>
+</ul>
+<p>A listener that throws is logged, and stops neither the change nor the other listeners.</p>
+<p>A listener disposed while a change is told hears no more of it. One added then hears the next change.</p>
 
 </article>
 

@@ -88,20 +88,45 @@
 <h1 id="the-attribute-registry">The attribute registry</h1>
 
 <p><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html"><code>AttributeRegistry</code></a> finds an attribute by its name, among those the game's entities have been given.</p>
+<p>An attribute is registered under its name:</p>
 <ul>
-<li>An attribute is registered under its name as an entity's attribute system takes it, and each attribute of the sets a
-Bootstrapper's <strong>Register Sets</strong> lists is registered as it brings PlayForge up. The first of a name keeps it:
-<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Add_"><code>AttributeRegistry.Add(attribute)</code></a> is false where the name is taken.</li>
-<li>Names compare by <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_RefactorByNamingConvention_"><code>AttributeRegistry.RefactorByNamingConvention(name)</code></a>, in capitals with each space an underscore, so
-&quot;Attack Speed&quot;, &quot;attack speed&quot; and &quot;ATTACK_SPEED&quot; are one name.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_TryGetByName_"><code>AttributeRegistry.TryGetByName(name, out attribute)</code></a> finds one, and <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_GetByName_"><code>AttributeRegistry.GetByName(name)</code></a> gives it, or
-null; with <code>createIfFalse: true</code>, a name none has gives a new <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeAttribute.html"><code>RuntimeAttribute</code></a> of that name, which isn't registered.
-<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Contains_"><code>AttributeRegistry.Contains</code></a> asks by a name or by an attribute's name, and <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_GetAll_"><code>AttributeRegistry.GetAll()</code></a> lists them.</li>
-<li>It starts empty each time the game starts, play mode with domain reload off among them, and
-<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Reset_"><code>AttributeRegistry.Reset()</code></a> empties it, as the test kit's world does as it ends.</li>
+<li>as an entity's attribute system takes it;</li>
+<li>as a Bootstrapper brings PlayForge up, for each attribute of the sets its <strong>Register Sets</strong> lists.</li>
 </ul>
-<hr>
-<p><a href="packet-helpers.html">← Packet helpers</a> · <a href="index.html">Time, Input and Logging</a> · <a href="lists.html">Lists →</a></p>
+<p>The first of a name keeps it: <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Add_"><code>AttributeRegistry.Add(attribute)</code></a> is false where the name is taken.</p>
+<p>Names compare by <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_RefactorByNamingConvention_"><code>AttributeRegistry.RefactorByNamingConvention(name)</code></a>: in capitals, with each space an underscore. So
+&quot;Attack Speed&quot;, &quot;attack speed&quot; and &quot;ATTACK_SPEED&quot; are one name.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_TryGetByName_"><code>AttributeRegistry.TryGetByName(name, out attribute)</code></a></td>
+<td>Finds an attribute by its name.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_GetByName_"><code>AttributeRegistry.GetByName(name)</code></a></td>
+<td>Gives the attribute, or null. With <code>createIfFalse: true</code>, a name none has gives a new <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeAttribute.html"><code>RuntimeAttribute</code></a> of that name, which isn't registered.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Contains_"><code>AttributeRegistry.Contains</code></a></td>
+<td>Asks by a name, or by an attribute's name.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_GetAll_"><code>AttributeRegistry.GetAll()</code></a></td>
+<td>Lists the attributes registered.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeRegistry.html#FarEmerald_PlayForge_AttributeRegistry_Reset_"><code>AttributeRegistry.Reset()</code></a></td>
+<td>Empties the registry, as the test kit's world does as it ends.</td>
+</tr>
+</tbody>
+</table>
+<p>The registry starts empty each time the game starts, play mode with domain reload off among them.</p>
 
 </article>
 

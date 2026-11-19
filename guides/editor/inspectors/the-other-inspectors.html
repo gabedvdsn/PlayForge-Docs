@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The other inspectors | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The other inspectors | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.inspectors.the-other-inspectors">
+<h1 id="the-other-inspectors">The other inspectors</h1>
+
+<p>PlayForge's other assets, and every MonoBehaviour process, have inspectors of their own too.</p>
+<table>
+<thead>
+<tr>
+<th>Inspector</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ScalerAssetEditor.html"><code>ScalerAssetEditor</code></a></td>
+<td>A Scaler asset: its <strong>Name</strong>, which renames it as the menus and The Forge list it; its <strong>Description</strong>; its <strong>Values</strong>; <strong>Try</strong>; and <strong>Used By</strong>, each field that shares it, by asset and field, a row opening the asset in The Forge (<a href="../../scalers/scaler-assets.html">Scalers: Scaler assets</a>).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ValuePipelineEditor.html"><code>ValuePipelineEditor</code></a></td>
+<td>A Value Pipeline: its <strong>Description</strong>, a line of its stages, its <strong>Stages</strong>, and <strong>Try</strong> (<a href="../../value-pipelines/trying-a-pipeline.html">Value Pipelines: Trying a pipeline</a>).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.EffectModifierEditor.html"><code>EffectModifierEditor</code></a></td>
+<td>An Effect Modifier: its <strong>Description</strong>, a line that says its rule, such as &quot;Outgoing, effects tagged Status.Chill: …&quot;, and its <strong>Rule</strong>. <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.EffectModifierEditor.html#FarEmerald_PlayForge_Editor_EffectModifierEditor_Describe_"><code>EffectModifierEditor.Describe(rule)</code></a> gives the line.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.CueLibraryEditor.html"><code>CueLibraryEditor</code></a></td>
+<td>A Cue Library: its <strong>Routes</strong>, and <strong>Raised</strong>, each cue tag the project's assets raise through it (<a href="../../cues/raised.html">Cues: Raised</a>).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.CrowdControlRulesEditor.html"><code>CrowdControlRulesEditor</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.RequirementTemplateEditor.html"><code>RequirementTemplateEditor</code></a></td>
+<td>Crowd Control Rules and a Requirement Template: the header, then their fields.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProjectEditor.html"><code>ForgeProjectEditor</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeTagLibraryEditor.html"><code>ForgeTagLibraryEditor</code></a></td>
+<td>A Forge Project (<a href="../forge-projects.html">Forge Projects</a>) and a Tag Library (<a href="../the-tags-view.html">The Tags view</a>).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.AbstractMonoProcessEditor.html"><code>AbstractMonoProcessEditor</code></a></td>
+<td>Every MonoBehaviour process, made from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a>, a <a class="xref" href="../../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> among them.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-process-inspector">The process inspector</h2>
+<p><code>AbstractMonoProcessEditor</code> draws every MonoBehaviour process. It edits several at once, and shows a prefab instance's
+overrides (<a href="../../processes/index.html">Processes</a>).</p>
+<!-- screenshot: process-inspector -->
+<p>It shows a <strong>Process</strong> section, then the component's own fields. Each choice's tooltip says what it does.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lifecycle</strong></td>
+<td>How the process runs and ends.</td>
+</tr>
+<tr>
+<td><strong>Timing</strong></td>
+<td>The update loops it steps in.</td>
+</tr>
+<tr>
+<td><strong>Priority Method</strong></td>
+<td>Where it steps among the other processes. Shown while it steps.</td>
+</tr>
+<tr>
+<td><strong>Priority</strong></td>
+<td>Its step priority: a lower one steps earlier. Shown while the method is Manual.</td>
+</tr>
+<tr>
+<td><strong>Instantiator</strong></td>
+<td>Makes and destroys the process's object. With none, <code>Object.Instantiate</code> and <code>Object.Destroy</code> do.</td>
+</tr>
+<tr>
+<td><strong>Participate In Sibling Cascade</strong></td>
+<td>Pauses and ends it as its siblings do. Off, a sibling's pause or end leaves it be.</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

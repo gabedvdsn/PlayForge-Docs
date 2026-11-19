@@ -87,21 +87,50 @@
         <article data-uid="guide.recipes.formulas">
 <h1 id="formulas">Formulas</h1>
 
-<p>Scaler assets for a genre's formulas, under <code>Formulas</code>, each named for what it computes. A field reads one with
-its <strong>Shared</strong> kind (<a href="../scalers/index.html">Scalers</a>); each is a <strong>Stacking Curve</strong> of a count, with an <strong>a</strong>.</p>
-<ul>
-<li><strong>1 ÷ (1 + 0.06 × Armor)</strong>: Reciprocal, <strong>a</strong> 0.06, of the hit's target's Armor. In a Value Pipeline's <strong>Multiply</strong>
-stage, a hit leaves all of itself at 0 Armor, a half at about 17, never none.</li>
-<li><strong>100 ÷ (100 + Armor)</strong>: Reciprocal, <strong>a</strong> 0.01: a half at 100 Armor, a third at 200.</li>
-<li><strong>−Armor</strong>: Linear, <strong>a</strong> −1. In an <strong>Add</strong> stage, a blow of 100 against 20 Armor lands as 80.</li>
-<li><strong>0.15 × Stacks</strong>: Linear, <strong>a</strong> 0.15, of an item's stacks, a bonus that grows by as much with each.</li>
-<li><strong>1 − 1 ÷ (1 + 0.15 × Stacks)</strong>: Hyperbolic, a chance that nears 1 and never reaches it: 13% with one stack, 60%
-with ten.</li>
-<li><strong>0.9 ^ Stacks</strong>: Exponential, a share that falls by a tenth with each stack.</li>
-</ul>
-<p>The Armor ones read the <strong>Armor</strong> attribute in <code>Formulas/Attributes</code>, as the hit lands; point them at your own.</p>
-<hr>
-<p><a href="a-phase.html">← A phase</a> · <a href="index.html">Recipes</a> · <a href="a-starter-set.html">A starter set →</a></p>
+<p>The sample holds Scaler assets for a genre's formulas, under <code>Formulas</code>, each named for what it computes. A field reads
+one with its <strong>Shared</strong> kind (<a href="../scalers/index.html">Scalers</a>). Each is a <strong>Stacking Curve</strong> of a count, with an <strong>a</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Scaler asset</th>
+<th>Curve</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 ÷ (1 + 0.06 × Armor)</strong></td>
+<td>Reciprocal, <strong>a</strong> 0.06, of the hit's target's Armor</td>
+<td>In a Value Pipeline's <strong>Multiply</strong> stage, a hit leaves all of itself at 0 Armor, a half at about 17, and never none.</td>
+</tr>
+<tr>
+<td><strong>100 ÷ (100 + Armor)</strong></td>
+<td>Reciprocal, <strong>a</strong> 0.01</td>
+<td>A half at 100 Armor, a third at 200.</td>
+</tr>
+<tr>
+<td><strong>−Armor</strong></td>
+<td>Linear, <strong>a</strong> −1</td>
+<td>In an <strong>Add</strong> stage, a blow of 100 against 20 Armor lands as 80.</td>
+</tr>
+<tr>
+<td><strong>0.15 × Stacks</strong></td>
+<td>Linear, <strong>a</strong> 0.15, of an item's stacks</td>
+<td>A bonus that grows by as much with each stack.</td>
+</tr>
+<tr>
+<td><strong>1 − 1 ÷ (1 + 0.15 × Stacks)</strong></td>
+<td>Hyperbolic</td>
+<td>A chance that nears 1 and never reaches it: 13% with one stack, 60% with ten.</td>
+</tr>
+<tr>
+<td><strong>0.9 ^ Stacks</strong></td>
+<td>Exponential</td>
+<td>A share that falls by a tenth with each stack.</td>
+</tr>
+</tbody>
+</table>
+<p>The Armor ones read the <strong>Armor</strong> attribute in <code>Formulas/Attributes</code>, as the hit lands. Point them at your own.</p>
 
 </article>
 

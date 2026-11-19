@@ -87,15 +87,41 @@
         <article data-uid="guide.workers.lifesteal">
 <h1 id="lifesteal">Lifesteal</h1>
 
-<p>The <strong>Lifesteal</strong> worker, an impact worker, heals its holder a share of each workable loss it deals another: the
-value of its holder's <strong>Share</strong>, the attribute it names, as 0.15 for 15%; with none it heals nothing. The losses that
-count are to its <strong>Receives</strong> attribute, and it heals its <strong>Heals</strong> attribute, each the Health role's where it names
-none, so a mana burn can heal Health. An effect raises the share while it should, as an effect has no lifesteal
-of its own. Only hits of the <strong>Impact Types</strong> it names count, as attacks; with none, any; so a second worker on another attribute, of spells' types,
-makes a spell vamp. A worker that runs once for a hit, as this one, runs once however many of it its holder has, its
-project's and its own: the first of the kind to take the hit. It allocates nothing, healing or not.</p>
-<hr>
-<p><a href="where-workers-come-from.html">← Where workers come from</a> · <a href="index.html">Workers</a> · <a href="the-map.html">The map →</a></p>
+<p>The <strong>Lifesteal</strong> worker, an impact worker, heals its holder a share of each workable loss it deals another.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Share</strong></td>
+<td>The attribute whose value is the share it heals, as 0.15 for 15%. With none, it heals nothing.</td>
+</tr>
+<tr>
+<td><strong>Receives</strong></td>
+<td>The attribute whose losses count. With none, the Health role's.</td>
+</tr>
+<tr>
+<td><strong>Heals</strong></td>
+<td>The attribute it heals. With none, the Health role's.</td>
+</tr>
+<tr>
+<td><strong>Impact Types</strong></td>
+<td>The types of hit that count, as attacks. With none, any.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Receives</strong> and <strong>Heals</strong> are separate, so a mana burn can heal Health.</li>
+<li>An effect has no lifesteal of its own. An effect raises the holder's share while it should.</li>
+<li>A second worker on another attribute, of spells' types, makes a spell vamp.</li>
+<li>A worker that runs once for a hit, as this one, runs once however many of it its holder has, its project's and its
+own. The first of the kind to take the hit runs.</li>
+<li>It allocates nothing, healing or not.</li>
+</ul>
 
 </article>
 

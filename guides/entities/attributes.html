@@ -87,20 +87,46 @@
         <article data-uid="guide.entities.attributes">
 <h1 id="attributes">Attributes</h1>
 
-<p>The entity's attributes come from its <strong>Attribute Set</strong>. Under the field, a table lists each attribute the set gives,
-its sub-sets' included, with the value it starts at and its range. When the GAS initializes, it creates every attribute
-in the set and its sub-sets, each at its starting Current and Base values. It also applies the set's asset tags to the entity and
-subscribes the set's workers. Gameplay effects then change the values. <a href="../attribute-sets/index.html">Attribute Sets</a> describes
-the set itself.</p>
-<p>An entity with no Attribute Set has no attributes. An effect that targets an attribute the entity lacks leaves it
-unchanged.</p>
-<p><strong>Time Scale</strong> names the attribute the entity's time runs at, 1 as the game's. Its effects, cooldowns, sequences and
-waits run by that time, so an effect that lowers the attribute slows the entity, one that raises it hastes it, and
-as each comes off the entity's time is the game's again. Give the attribute a Current of 1 in the set. Code sets a
-scale of its own, <code>GetClock().TimeScale</code>, as a hit-stop's 0, and the clock reads the two multiplied, so a hit-stop
-holds under a slow; <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_OwnScale"><code>OwnScale</code></a> is code's part and <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_AttributeScale"><code>AttributeScale</code></a> the attribute's.</p>
-<hr>
-<p><a href="tags.html">← Tags</a> · <a href="index.html">Entities</a> · <a href="abilities.html">Abilities →</a></p>
+<p>The Attributes section names the entity's attribute set and the attribute its time runs at.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attribute Set</strong></td>
+<td>The set the entity's attributes come from. <a href="../attribute-sets/index.html">Attribute Sets</a> describes the set itself.</td>
+</tr>
+<tr>
+<td><strong>Time Scale</strong></td>
+<td>The attribute the entity's time runs at, 1 as the game's.</td>
+</tr>
+</tbody>
+</table>
+<p>Under the Attribute Set field, a table lists each attribute the set gives, its sub-sets' included, with the value it
+starts at and its range.</p>
+<p>When the GAS initializes, it:</p>
+<ul>
+<li>creates every attribute in the set and its sub-sets, each at its starting Current and Base values;</li>
+<li>applies the set's asset tags to the entity;</li>
+<li>subscribes the set's workers.</li>
+</ul>
+<p>Gameplay effects then change the values. An entity with no Attribute Set has no attributes. An effect that targets an
+attribute the entity lacks leaves it unchanged.</p>
+<h2 id="time-scale">Time Scale</h2>
+<p><strong>Time Scale</strong> names the attribute the entity's time runs at, 1 as the game's. The entity's effects, cooldowns,
+sequences and waits run by that time.</p>
+<ul>
+<li>An effect that lowers the attribute slows the entity.</li>
+<li>One that raises it hastes the entity.</li>
+<li>As each comes off, the entity's time is the game's again.</li>
+</ul>
+<p>Give the attribute a Current of 1 in the set.</p>
+<p>Code sets a scale of its own with <code>GetClock().TimeScale</code>, such as a hit-stop's 0. The clock reads the two multiplied,
+so a hit-stop holds under a slow. <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_OwnScale"><code>OwnScale</code></a> is code's part, and <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html#FarEmerald_PlayForge_EntityClock_AttributeScale"><code>AttributeScale</code></a> the attribute's.</p>
 
 </article>
 

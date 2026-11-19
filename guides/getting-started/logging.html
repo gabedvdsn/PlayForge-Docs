@@ -87,20 +87,30 @@
         <article data-uid="guide.getting-started.logging">
 <h1 id="logging">Logging</h1>
 
-<p>All the runtime says goes through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a>, controlled in <strong>Preferences → PlayForge →
-Logging</strong> (Verbose / Info / Warning / Error / None). In builds, set
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a> from code. What's said only when asked, <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>'s lifecycle logs while its inspector's
-toggles are on, a sequence's or a chain's logging, a debug tool's output, is information: the toggle makes it, and the
-level shows it. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Exception_"><code>ForgeLog.Exception</code></a> logs an exception as Unity's own <code>LogException</code> does, its stack in the console.
-A double-click on a message ForgeLog wrote opens the code that logged it, not ForgeLog. Its methods are marked
-<code>[HideInCallstack]</code>, so the Console's <strong>Strip Logging Callstack</strong> leaves them out of the stack, and a logging wrapper
-of your own marked so is skipped too.</p>
-<p>Each message is of a system, effects, abilities, numbers, processes, sequences, saves, input and the rest (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ESystem.html"><code>ForgeLog.ESystem</code></a>), and
-a system can take a level of its own, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_SetLevel_"><code>ForgeLog.SetLevel(ForgeLog.ESystem.Effects, ForgeLog.ELevel.Verbose)</code></a>, or give it
-back with null. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged"><code>ForgeLog.Logged</code></a> hears each message let through, with its system and the entity it's about where it
-names one, as the Creator Lab's Log page does.</p>
-<hr>
-<p><a href="tooling-tour.html">← Tooling tour</a> · <a href="index.html">Getting Started</a> · <a href="profiling.html">Profiling →</a></p>
+<p>All the runtime says goes through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a>, whose level you control.</p>
+<ul>
+<li>In the editor, set the level in <strong>Preferences → PlayForge → Logging</strong>: Verbose, Info, Warning, Error or None.</li>
+<li>In builds, set <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a> from code.</li>
+</ul>
+<p>Some output is said only when asked, and it's information:</p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>'s lifecycle logs, while its inspector's toggles are on;</li>
+<li>a sequence's or a chain's logging;</li>
+<li>a debug tool's output.</li>
+</ul>
+<p>For such output, the toggle makes it, and the level shows it.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Exception_"><code>ForgeLog.Exception</code></a> logs an exception as Unity's own <code>LogException</code> does, its stack in the console.</p>
+<p>A double-click on a message ForgeLog wrote opens the code that logged it, not ForgeLog. ForgeLog's methods are marked
+<code>[HideInCallstack]</code>, so the Console's <strong>Strip Logging Callstack</strong> leaves them out of the stack. A logging wrapper of
+your own marked so is skipped too.</p>
+<p>Each message is of a system (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.ESystem.html"><code>ForgeLog.ESystem</code></a>): effects, abilities, numbers, processes, sequences, saves, input and
+the rest.</p>
+<ul>
+<li>A system can take a level of its own, as
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_SetLevel_"><code>ForgeLog.SetLevel(ForgeLog.ESystem.Effects, ForgeLog.ELevel.Verbose)</code></a>, or give it back with null.</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged"><code>ForgeLog.Logged</code></a> hears each message let through, with its system, and the entity it's about where it names one. The
+Creator Lab's Log page hears messages this way.</li>
+</ul>
 
 </article>
 

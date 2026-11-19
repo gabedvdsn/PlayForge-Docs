@@ -91,24 +91,25 @@
 values, its bounds and its rounding. An entity is anything that runs a gameplay ability system (GAS), such as the
 player or an enemy. Its Entity asset names one set.</p>
 <p>When the GAS initializes, it builds every attribute in the set and in its sub-sets. Each element becomes its
-attribute's <em>root value</em>, the value before any effect. Gameplay effects then change the attribute on top of that root.
-A root can follow the entity's level or another attribute, through a cached scaler. It is worked out again whenever the
+attribute's <em>root value</em>, the value before any effect. Gameplay effects then change the attribute on top of that root.</p>
+<p>A root can follow the entity's level or another attribute, through a cached scaler. It is worked out again whenever the
 attribute is recalculated.</p>
 <p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
 made from its Name: Hero Stats gives <code>AttributeSet.HeroStats</code>. The entity carries the set's tag and the tags of its
-sub-sets. Each section below matches the inspector section of the same name. A collapsed section shows one line
-about what it holds, such as the level range or how many attributes the set gives.</p>
+sub-sets.</p>
+<p>Each section below matches the inspector section of the same name. A collapsed section shows one line about what it
+holds, such as the level range or how many attributes the set gives.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the set's display name.</li>
-<li><a href="leveling.html">Leveling</a>: The set's level range is the one the cached scalers on its elements are authored for.</li>
-<li><a href="attributes.html">Attributes</a>: Each element sets up one attribute.</li>
-<li><a href="sub-sets.html">Sub-Sets</a>: Other attribute sets this set includes.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the set, shows its asset tag and holds its icons.</li>
+<li><a href="leveling.html">Leveling</a>: The Leveling section sets the level range the cached scalers on the set's elements are authored for.</li>
+<li><a href="attributes.html">Attributes</a>: The Attributes section lists the set's elements, each of which sets up one attribute.</li>
+<li><a href="sub-sets.html">Sub-Sets</a>: The Sub-Sets section lists other attribute sets this set includes.</li>
 <li><a href="collision-settings.html">Collision Settings</a>: These settings decide an attribute's root value when it appears in more than one element, across this set and its sub-sets.</li>
-<li><a href="all-attributes.html">All Attributes</a>: A table of each attribute the set gives an entity, its sub-sets' included, once each: the value its Current starts at, at each level, and the range the set keeps it in.</li>
+<li><a href="all-attributes.html">All Attributes</a>: All Attributes is a table of each attribute the set gives an entity, its sub-sets' included, once each.</li>
 <li><a href="workers.html">Workers</a>: Workers are reusable behaviours, picked from a list, that react to what happens to an entity.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this set, each with its type icon, such as an entity built from it or a set that holds it as a sub-set.</li>
+<li><a href="used-by.html">Used By</a>: The Used By section lists the PlayForge assets that refer to this set, each with its type icon, such as an entity built from it or a set that holds it as a sub-set.</li>
 </ul>
 
 </article>

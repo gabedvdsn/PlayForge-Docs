@@ -87,24 +87,44 @@
         <article data-uid="guide.entities.abilities">
 <h1 id="abilities">Abilities</h1>
 
-<ul>
-<li><strong>When Busy</strong> (default Queue): what the entity's abilities set to Entity's Policy do when one is asked to activate
-while another is busy. Activate Anyway starts it at once. Refuse starts it only when no ability under that choice is
-busy, and refuses it otherwise. Queue makes it wait in a queue while one is busy. <a href="../abilities/index.html">Abilities</a>
-explains each.</li>
-<li><strong>Targeting Yields</strong> (default on): an ability whose While Targeting is the entity's rule gives way, while it
-waits for its target, as another of the entity's abilities activates. <a href="../abilities/index.html">Abilities</a> explains it.</li>
-<li><strong>Starting Abilities</strong>: abilities the entity learns when its GAS initializes, each at its own Starting Level. Those
-set to Activate At Start then try to activate.</li>
-<li><strong>Max Abilities</strong> (default 99): the most abilities the entity can hold. Its kind can make it a scaler, which changes
-the limit with the entity's level (<a href="../scalers/index.html">Scalers</a>).</li>
-<li><strong>Allow Duplicates</strong> (default off): let the entity hold the same ability more than once.</li>
-<li><strong>Crowd Control</strong>: the crowd control rules its abilities follow, as a stun stops every ability and Silenced
-spells, or, where it names none, the project's (<a href="../abilities/requirements.html#crowd-control">Abilities: Crowd Control</a>). A runtime entity's
-identity names them too.</li>
-</ul>
-<hr>
-<p><a href="attributes.html">← Attributes</a> · <a href="index.html">Entities</a> · <a href="items.html">Items →</a></p>
+<p>The Abilities section sets the abilities the entity starts with, how many it can hold, and what its abilities do while
+another is busy.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>When Busy</strong></td>
+<td>What one of the entity's abilities set to Entity's Policy does when it's asked to activate while another is busy:<br><strong>Activate Anyway</strong> starts it at once.<br><strong>Refuse</strong> starts it only when no ability under that choice is busy, and refuses it otherwise.<br><strong>Queue</strong> (default) makes it wait in a queue while one is busy.</td>
+</tr>
+<tr>
+<td><strong>Targeting Yields</strong></td>
+<td>On by default: an ability whose While Targeting is the entity's rule gives way, while it waits for its target, as another of the entity's abilities activates.</td>
+</tr>
+<tr>
+<td><strong>Starting Abilities</strong></td>
+<td>Abilities the entity learns when its GAS initializes, each at its own Starting Level. Those set to Activate At Start then try to activate.</td>
+</tr>
+<tr>
+<td><strong>Max Abilities</strong></td>
+<td>The most abilities the entity can hold, 99 by default. Its kind can make it a scaler, which changes the limit with the entity's level (<a href="../scalers/index.html">Scalers</a>).</td>
+</tr>
+<tr>
+<td><strong>Allow Duplicates</strong></td>
+<td>Lets the entity hold the same ability more than once. Off by default.</td>
+</tr>
+<tr>
+<td><strong>Crowd Control</strong></td>
+<td>The crowd control rules its abilities follow, such as a stun stopping every ability and Silenced stopping spells. Where it names none, the project's apply (<a href="../abilities/requirements/crowd-control.html">Abilities: Requirements: Crowd Control</a>).</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../abilities/index.html">Abilities</a> explains each When Busy choice, and Targeting Yields. A runtime entity's identity names
+its crowd control rules too.</p>
 
 </article>
 

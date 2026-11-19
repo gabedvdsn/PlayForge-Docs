@@ -87,8 +87,8 @@
         <article data-uid="guide.services.picking-a-clock-in-an-inspector">
 <h1 id="picking-a-clock-in-an-inspector">Picking a clock in an inspector</h1>
 
-<p>An inspector picks a clock with an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractClockChoice.html"><code>AbstractClockChoice</code></a> field, as an ability's Run Sequence task's <strong>Clock</strong> does: each
-kind gives the clock for a run on a packet as the run starts.</p>
+<p>An inspector picks a clock with an <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractClockChoice.html"><code>AbstractClockChoice</code></a> field, as an ability's Run Sequence task's <strong>Clock</strong> does.
+Each kind of pick gives the clock for a run on a packet, as the run starts.</p>
 <table>
 <thead>
 <tr>
@@ -125,60 +125,14 @@ kind gives the clock for a run on a packet as the run starts.</p>
 </tr>
 </tbody>
 </table>
-<p>A pick's <code>ClockFor(data)</code> gives its clock for a run on the packet; the base gives null, which leaves the run the clock
-it would have had. <strong>Caster's</strong> reads the packet's owner, not a clock the packet names, as a pick is what names one.</p>
-<p>The picks are offered by:</p>
+<p>A pick's <code>ClockFor(data)</code> gives its clock for a run on the packet. The base gives null, which leaves the run the clock it
+would have had.</p>
+<p><strong>Caster's</strong> reads the packet's owner, not a clock the packet names, since a pick is what names one.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>an ability's Run Sequence task, whose pick is its run's alone, so the ability's other tasks keep the caster's
-(<a href="../abilities/stages.html">Abilities: Stages</a>);</li>
-<li>a Sequence cue, whose run goes by its pick, else the sequence's own clock, else its packet's, the clock of the cue's
-owner (<a href="../cues/data-packets.html">Cues: Data packets</a>);</li>
-<li>a component of your own, through a <code>[SerializeReference]</code> field, whose pick sets its packet's clock.</li>
+<li><a href="picking-a-clock-in-an-inspector/where-the-picks-are-offered.html">Where the picks are offered</a>: Three things offer the clock picks</li>
+<li><a href="picking-a-clock-in-an-inspector/a-pick-of-your-own.html">A pick of your own</a>: You can offer a clock pick of your own.</li>
 </ul>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-// Runs its sequence on the clock its inspector picks, or on the one it would have had
-public class IntroSequence : MonoBehaviour
-{
-    [SerializeReference] public AbstractClockChoice Clock;
-
-    private void Start()
-    {
-        var data = SequenceDataPacket.SceneRoot();
-        data.Clock = Clock?.ClockFor(data);
-        TaskSequenceBuilder.Create(&quot;Intro&quot;)
-            .Delay(2f)
-            .Do(_ =&gt; ForgeLog.Info(&quot;The intro's two seconds are up&quot;))
-            .BuildSequence()
-            .RegisterAndRun(data);
-    }
-}
-</code></pre>
-<p>A <code>[Serializable]</code> class of your own made from <code>AbstractClockChoice</code> is offered beside them, by its <code>[ForgeMenu]</code> name,
-or else by its class's name without &quot;ClockChoice&quot;. The picker makes it with its parameterless constructor.</p>
-<pre><code class="lang-csharp">using System;
-using FarEmerald.PlayForge;
-using UnityEngine;
-
-// One slow-motion clock the game sets, shared by every run that picks it
-[Serializable]
-[ForgeMenu(Name = &quot;Bullet Time&quot;, Description = &quot;The game's shared slow-motion clock.&quot;)]
-public class BulletTimeClockChoice : AbstractClockChoice
-{
-    public static ScaledClock Shared { get; private set; } = new ScaledClock(1f);
-
-    // A fresh one each time the game starts, as statics outlive play mode where domain reload is off
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void Fresh() =&gt; Shared = new ScaledClock(1f);
-
-    public override IForgeClock ClockFor(ProcessDataPacket data) =&gt; Shared;
-}
-
-// The game slows every run that picked it: BulletTimeClockChoice.Shared.Scale = 0.2f
-</code></pre>
-<hr>
-<p><a href="which-clock-a-run-takes.html">← Which clock a run takes</a> · <a href="index.html">Time, Input and Logging</a> · <a href="fixed-ticks.html">Fixed ticks →</a></p>
 
 </article>
 

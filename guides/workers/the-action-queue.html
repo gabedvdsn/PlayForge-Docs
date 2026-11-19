@@ -89,40 +89,200 @@
 
 <p>What a deferred worker returns, and whatever else is queued to an entity (<code>GetActionQueue().Enqueue</code>), waits in the
 entity's action queue for its end of frame.</p>
-<ul>
-<li><p><strong>When it runs.</strong> Four passes in each end of frame: the actions queued since the last; then those the tag workers'
-activations and resolutions queue; then those their ticks queue; then those the analysis workers, the Health watch
-and the effects' conditions queue. An action queued as a pass runs joins that pass.</p>
-</li>
-<li><p><strong>In what order.</strong> By priority, higher first (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html"><code>ActionPriority</code></a>, from Critical's 100 down to Cleanup's −300), and in
-the order queued within one. <code>Enqueue(action, priorityOverride)</code> puts one at another priority.</p>
-</li>
-<li><p><strong>What's heard.</strong> Each action is heard as it's queued (<code>OnActionQueued</code>), then once more as it's done with:</p>
-<ul>
-<li>run (<code>OnActionExecuted</code>);</li>
-<li>dropped unrun (<code>OnActionInvalidated</code>): its <code>IsValid</code> said no as its turn came, it was taken off, or its entity had
-ended;</li>
-<li>failed (<code>OnActionFailed</code>, with what it threw): its <code>IsValid</code> or its <code>Execute</code> threw. It's written to the Console
-as well, and the rest of the queue runs on.</li>
-</ul>
+<pre><code class="lang-mermaid">classDiagram
+class GASCore:::rt {
+&lt;&lt;internal sealed&gt;&gt;
++EffectModifiers : EffectModifierSet
++Sides : SideSet
++CombatLog : CombatLog
++Clock : EntityClock
++LocalData : LocalDataStructure
++IsDead : bool
++MarkDead()
++Revive(at)
+}
+class ActionQueue:::rt {
++Enqueue(action, priority)
++EnqueueRange()
++ProcessAll(ISource) int
++HasActions : bool
++Clear()
+}
+class IRootAction:::ext {
+&lt;&lt;interface&gt;&gt;
++Priority : int
++IsValid : bool
++Description : string
++Execute(ISource)
+}
+class ActionPriority:::rt {
+Critical = 100
+High = 50
+Normal = 0
+Low = -50
+TagWorker = -100
+Analysis = -200
+Cleanup = -300
+}
+class DeathAction:::rt {
+Critical, calls MarkDead
+}
+class LambdaAction:::rt {
++ctor(Action~ISource~, desc, priority)
+}
+class ModifyAttributeAction:::rt
+class ApplyEffectAction:::rt
+class RemoveEffectAction:::rt
+class FrameSummary:::rt {
+one frame's impacts, effects and deaths
++GetTotalReduction(attr)
++GetNetImpact(attr)
++GetImpactsDealtTo()
++CreateSnapshot(n) FrameSummarySnapshot
++Clear()
+}
+class EntityClock:::rt {
+&lt;&lt;sealed&gt;&gt;
++TimeScale : float
++DeltaTime : float
++FixedDeltaTime : float
++Time : float
+}
+class SideSet:::rt {
++Count : int
++Current : List~Tag~
++Changed
+}
+class AbstractEntityService:::ext {
+&lt;&lt;abstract&gt;&gt;
+one per entity, gas.GetService or FindService
+Step(dt)
+Revive()
+End()
+}
+class AuraSet:::rt {
++Add()
++Remove()
++Step(dt)
++Clear()
+}
+class RespawnTimer:::rt {
++TimeLeft : float
++ReviveIn(seconds, where)
+}
+class CombatLog:::rt {
+a ring buffer of CombatLogEntry
++Entries
++Of(kind)
++By(effect)
++Total(kind, attr)
+}
+class EntityDeath:::asset {
+&lt;&lt;Serializable&gt;&gt;
++Policy : EDeathPolicy
++DiesAtZeroHealth : bool
++Purges
++KeepsTiers
++Body
+OnDeath and OnRevive effects
+}
+class EDeathPolicy:::rt {
+&lt;&lt;enumeration&gt;&gt;
+End
+Stay
+}
+class AbstractEntityComponent:::ext {
+&lt;&lt;abstract&gt;&gt;
+Register(ctx)
+Death(ctx)
+Revive(ctx)
+End(ctx)
+}
+class BountyEntityComponent:::rt {
++Effect
++ShareRadius
++Flat
+}
+class RespawnEntityComponent:::rt {
++Delay
++At : AbstractRespawnPlace
+places: Home, WhereItDied, Point
+}
+class AuraEntityComponent:::rt
+GASCore *-- ActionQueue
+GASCore *-- FrameSummary
+GASCore *-- EntityClock
+GASCore *-- SideSet
+GASCore &quot;1&quot; *-- &quot;many&quot; AbstractEntityService : Services
+AbstractEntityService &lt;|-- AuraSet
+AbstractEntityService &lt;|-- RespawnTimer
+GASCore *-- CombatLog
+ActionQueue o-- IRootAction
+IRootAction ..&gt; ActionPriority : Priority
+IRootAction &lt;|.. DeathAction
+IRootAction &lt;|.. LambdaAction
+IRootAction &lt;|.. ModifyAttributeAction
+IRootAction &lt;|.. ApplyEffectAction
+IRootAction &lt;|.. RemoveEffectAction
+GASCore ..&gt; EntityDeath : the identity's Death
+EntityDeath --&gt; EDeathPolicy
+GASCore ..&gt; AbstractEntityComponent : the identity's Components
+AbstractEntityComponent &lt;|-- BountyEntityComponent
+AbstractEntityComponent &lt;|-- RespawnEntityComponent
+AbstractEntityComponent &lt;|-- AuraEntityComponent
+RespawnEntityComponent ..&gt; RespawnTimer : ReviveIn
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>What GASCore keeps besides the subsystems, the ActionQueue its end of frame drains, and the identity's death rules and entity components.</em></p>
+<p><strong>When it runs.</strong> Four passes run in each end of frame, in this order:</p>
+<ol>
+<li>The actions queued since the last end of frame.</li>
+<li>Those the tag workers' activations and resolutions queue.</li>
+<li>Those their ticks queue.</li>
+<li>Those the analysis workers, the Health watch and the effects' conditions queue.</li>
+</ol>
+<p>An action queued as a pass runs joins that pass.</p>
+<p><strong>In what order.</strong> By priority, higher first (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionPriority.html"><code>ActionPriority</code></a>, from Critical's 100 down to Cleanup's −300), and in the
+order queued within one priority. <code>Enqueue(action, priorityOverride)</code> puts one at another priority.</p>
+<p><strong>What's heard.</strong> Each action is heard as it's queued (<code>OnActionQueued</code>), then once more as it's done with:</p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Event</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Run</td>
+<td><code>OnActionExecuted</code></td>
+<td>It ran.</td>
+</tr>
+<tr>
+<td>Dropped unrun</td>
+<td><code>OnActionInvalidated</code></td>
+<td>Its <code>IsValid</code> said no as its turn came, it was taken off, or its entity had ended.</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td><code>OnActionFailed</code>, with what it threw</td>
+<td>Its <code>IsValid</code> or its <code>Execute</code> threw. It's written to the Console as well, and the rest of the queue runs on.</td>
+</tr>
+</tbody>
+</table>
 <p>The queue's events and the entity's callbacks both tell them. The frame's summary keeps the dropped and the failed,
 and an <a class="xref" href="../../api/FarEmerald.PlayForge.EffectJournal.html"><code>EffectJournal</code></a> settles a worker's action as Ran, Dropped or Failed.</p>
-</li>
-<li><p><strong>Taken off.</strong> <code>Remove(action)</code> takes one off, <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_RemoveWhere_"><code>RemoveWhere(match)</code></a> every one it picks, and <code>Clear()</code> all of them,
-each heard as dropped; the rest keep their order.</p>
-</li>
-<li><p><strong>An entity that ends.</strong> Its queue closes (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_IsClosed"><code>IsClosed</code></a>): what waited is dropped and heard, and an action queued to it
+<p><strong>Taken off.</strong> <code>Remove(action)</code> takes one off, <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_RemoveWhere_"><code>RemoveWhere(match)</code></a> every one it picks, and <code>Clear()</code> all of them.
+Each is heard as dropped, and the rest keep their order.</p>
+<p><strong>An entity that ends.</strong> Its queue closes (<a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_IsClosed"><code>IsClosed</code></a>). What waited is dropped and heard, and an action queued to it
 after is dropped at once, so nothing waits on it for good.</p>
-</li>
-<li><p><strong>Another entity's queue.</strong> An action queued to another entity runs at that entity's end of frame: this frame if its
-end of frame is still to come, by the order the entities step in, or else the next.</p>
-</li>
-<li><p><strong>The guard.</strong> A pass runs 10,000 actions at most, so an action that queues another for good can't hold the frame.
+<p><strong>Another entity's queue.</strong> An action queued to another entity runs at that entity's end of frame. That's this frame
+if its end of frame is still to come, by the order the entities step in, or else the next.</p>
+<p><strong>The guard.</strong> A pass runs 10,000 actions at most, so an action that queues another for good can't hold the frame.
 Those left past it wait for the next pass, and the queue writes an error.</p>
-</li>
-</ul>
-<hr>
-<p><a href="the-map.html">← The map</a> · <a href="index.html">Workers</a> · <a href="hearing-workers-run.html">Hearing workers run →</a></p>
 
 </article>
 

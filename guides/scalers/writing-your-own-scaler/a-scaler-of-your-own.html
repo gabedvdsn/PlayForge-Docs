@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>A scaler of your own | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="A scaler of your own | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.scalers.writing-your-own-scaler.a-scaler-of-your-own">
+<h1 id="a-scaler-of-your-own">A scaler of your own</h1>
+
+<p>A scaler of your own derives from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractScaler.html"><code>AbstractScaler</code></a>, or from <a class="xref" href="../../../api/FarEmerald.PlayForge.AbstractCachedScaler.html"><code>AbstractCachedScaler</code></a> for an attribute set's values. It
+has a public constructor with no parameters.</p>
+<p>The Kind menu lists it by its name without &quot;Scaler&quot;, as <strong>Damage Curve</strong> for <code>DamageCurveScaler</code>. Its inspector draws:</p>
+<ul>
+<li>Each field it adds, public or <code>[SerializeField]</code>, as Unity draws the field's type, through any property drawer you
+write for that type.</li>
+<li>The fields of an abstract base of your own too.</li>
+<li>A field marked <code>[ForgeShowWhen(nameof(Mode), EMode.Curved)]</code> only while another field, an enum or a bool, holds one
+of the values given.</li>
+<li>The parts every scaler has, as its <code>Parts</code> say (below).</li>
+</ul>
+<p><code>[HideInInspector]</code> keeps a field out.</p>
+<h2 id="parts">Parts</h2>
+<p>A scaler's <code>Parts</code> say which of the parts every scaler has it reads.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelValues"><code>EScalerParts.LevelValues</code></a></td>
+<td>Its values per level</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_LevelRange"><code>EScalerParts.LevelRange</code></a></td>
+<td>The level range they spread over</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.EScalerParts.html#FarEmerald_PlayForge_EScalerParts_Behaviours"><code>EScalerParts.Behaviours</code></a></td>
+<td>Its behaviours</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Unless you override it, a scaler reads all three, or its behaviours alone where its <code>UseScalingOptions()</code> returns
+false.</li>
+<li>Override <code>Parts</code> to say what yours reads. A scaler that reads only an attribute returns <code>EScalerParts.Behaviours</code>.</li>
+<li><code>Parts</code> can follow the scaler's own fields, as one that reads its values per level in one mode alone.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

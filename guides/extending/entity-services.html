@@ -87,18 +87,40 @@
         <article data-uid="guide.extending.entity-services">
 <h1 id="entity-services">Entity services</h1>
 
-<p>An entity service is an object of a game's own each entity keeps as it runs, made the first time it's asked for and
-stepped by the entity's own time: a combo count, a cooldown of the game's own, a respawn's wait. This section covers
-writing one.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityService.html"><code>AbstractEntityService</code></a>:</p>
-<ul>
-<li><code>System</code>: the entity it's for.</li>
-<li><code>Step(float deltaTime)</code>: each frame of the entity's step, with its own clock's time, after its effects.</li>
-<li><code>Revive()</code>: as a staying entity revives.</li>
-<li><code>End()</code>: as the entity ends, after which it keeps none.</li>
-</ul>
-<p><code>entity.GetService&lt;T&gt;()</code> gives an entity's <code>T</code>, making it the first time; <code>entity.FindService&lt;T&gt;()</code> gives it only where
-it's made, or null.</p>
+<p>An entity service is an object of a game's own each entity keeps as it runs, as a combo count, a cooldown of the game's
+own or a respawn's wait.</p>
+<p>It's made the first time it's asked for, and stepped by the entity's own time. This section covers writing one.</p>
+<h2 id="writing-a-service">Writing a service</h2>
+<p>A service of a game's own keeps something for each entity, stepped with the entity.</p>
+<p>Derive from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEntityService.html"><code>AbstractEntityService</code></a>. <code>System</code> is the entity it's for.</p>
+<h3 id="hooks">Hooks</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Step(float deltaTime)</code></td>
+<td>Each frame of the entity's step, with its own clock's time, after its effects.</td>
+</tr>
+<tr>
+<td><code>Revive()</code></td>
+<td>As a staying entity revives.</td>
+</tr>
+<tr>
+<td><code>End()</code></td>
+<td>As the entity ends, after which it keeps none.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-the-picker">In the picker</h3>
+<p>No picker offers a service. <code>entity.GetService&lt;T&gt;()</code> gives an entity's <code>T</code>, making it the first time.
+<code>entity.FindService&lt;T&gt;()</code> gives it only where it's made, or null.</p>
+<h3 id="example">Example</h3>
+<p>A combo count each entity keeps, back to 0 after a pause between hits and as it revives:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 
 namespace MyGame
@@ -127,16 +149,16 @@ namespace MyGame
     }
 }
 </code></pre>
-<p>A worker or a component counts a hit with <code>ctx.System.GetService&lt;ComboService&gt;()?.Hit()</code>, and a number kind reads it
-with <code>context.SystemOf(NumberSide.Caster)?.FindService&lt;ComboService&gt;()?.Count ?? 0</code>.</p>
+<p>A worker or a component counts a hit with <code>ctx.System.GetService&lt;ComboService&gt;()?.Hit()</code>. A number kind reads it with
+<code>context.SystemOf(NumberSide.Caster)?.FindService&lt;ComboService&gt;()?.Count ?? 0</code>.</p>
+<h3 id="traps">Traps</h3>
 <ul>
 <li><strong>A service has no inspector</strong>: it's made with its constructor that takes nothing, and its settings come from code.</li>
 <li><strong>A save keeps no service.</strong> A loaded entity makes its services again as it's asked for them.</li>
-<li><strong>Step runs every frame</strong> for every entity that has the service: keep it quick, as above, which returns at once while
-there's nothing to count down. See <a href="../services/index.html">Time, Input and Logging</a> for PlayForge's other services.</li>
+<li><strong>Step runs every frame</strong> for every entity that has the service. Keep it quick, as above, which returns at once while
+there's nothing to count down.</li>
 </ul>
-<hr>
-<p><a href="cue-handlers.html">← Cue handlers</a> · <a href="index.html">Extending PlayForge</a> · <a href="validation-rules.html">Validation rules →</a></p>
+<p>See <a href="../services/index.html">Time, Input and Logging</a> for PlayForge's other services.</p>
 
 </article>
 

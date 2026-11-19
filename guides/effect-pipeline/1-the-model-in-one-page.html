@@ -87,12 +87,66 @@
         <article data-uid="guide.effect-pipeline.1-the-model-in-one-page">
 <h1 id="1-the-model-in-one-page">1. The model in one page</h1>
 
-<p>Every authored impact is an <strong><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html"><code>AttributeImpactEntry</code></a></strong> on <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_Entries"><code>GameplayEffectImpact.Entries</code></a>:
-<code>{ AttributeTarget, Delivery, Operation, TargetSlot, MultiplyBehaviour, SortOrder, Magnitude, RetentionGroupOverride, ImpactTypes }</code>. One effect may carry many entries across many
-attributes (&quot;+10% speed while active AND 5 HP per tick&quot; is one asset): the first derived from
-its impact's fields, then each of its <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_AdditionalImpacts"><code>AdditionalImpacts</code></a> (§7).</p>
-<p><strong>Delivery decides everything</strong> — there is deliberately no separate &quot;retained?&quot; or
-&quot;reverse on removal?&quot; switch:</p>
+<p>Every authored impact is an <strong><a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html"><code>AttributeImpactEntry</code></a></strong> on <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_Entries"><code>GameplayEffectImpact.Entries</code></a>, and its delivery makes it one
+of two kinds of change: a modifier or a commit.</p>
+<pre><code class="lang-mermaid">sequenceDiagram
+autonumber
+participant C as Caller
+participant G as Target GAS
+participant E as GameplayEffect
+participant M as EffectModifiers
+participant S as EffectSystemComponent
+participant P as Spec and its workers
+participant A as AttributeSystemComponent
+participant D as Source ASC
+C-&gt;&gt;G: GenerateEffectSpec(origin, effect)
+G-&gt;&gt;E: GASCore.GenerateEffectSpec, Generate(origin, target)
+E-&gt;&gt;E: ImpactSpecification.RebuildEntries(Duration)
+E-&gt;&gt;P: new GameplayEffectSpec(this, origin, target)
+E-&gt;&gt;P: ApplyImpactSpecifications, the scalers' Initialize
+E-&gt;&gt;M: EffectModifiers.Apply(spec)
+M--&gt;&gt;P: outgoing and incoming rules fill spec.Changes
+C-&gt;&gt;G: ApplyCarrier(spec) or ApplyGameplayEffect(spec)
+G-&gt;&gt;S: ApplyGameplayEffect(spec)
+S-&gt;&gt;S: gates: dead target, requirements, conditions, immunity, chance
+S-&gt;&gt;S: stop stages Block or Evade, Area lands on others in range
+S-&gt;&gt;S: Land(spec) numbers the ApplicationId
+alt Instant
+S-&gt;&gt;S: grant the tags
+S-&gt;&gt;P: RunWorkerApplication, components Land
+S-&gt;&gt;A: CommitImpact(attr, SMAV(spec), OnApply impacters)
+S-&gt;&gt;P: transfers Move, RunWorkerRemoval and components End, remove the tags
+else Durational or Infinite
+S-&gt;&gt;S: re-application by EEffectReApplicationPolicy, components Reapply when taken in
+S-&gt;&gt;S: GenerateContainer(spec, ongoing), Shelve, GrantedTagCompiler.AddEffect
+S-&gt;&gt;S: LendAbilities: OnHits, modifiers, WorkerGroup, sides, components Lend, GrantedAbilities
+S-&gt;&gt;A: RegisterModifier(attr, SMAV(spec), Continuous impacters)
+S-&gt;&gt;P: RunWorkerApplication, components Land
+S-&gt;&gt;A: if ongoing, TickOnApplication or the OnApply commits
+end
+S-&gt;&gt;S: the cleanse RemovesEffectsTagged, ForgePurge.Purge(Purges)
+S-&gt;&gt;G: FrameSummary.RecordEffectApplied, Callbacks.EffectApplied(spec)
+S-&gt;&gt;S: the contained OnApply effects
+A-&gt;&gt;G: after each change, RecordFrameImpactReceived
+A-&gt;&gt;D: ProvideFrameImpactDealt(impact)
+D-&gt;&gt;P: TrackImpact, OnEffectImpact, components Hit
+D-&gt;&gt;D: ImpactWorkerCache.RunImpactData, RecordFrameImpactDealt
+loop each GASCore.Tick
+S-&gt;&gt;P: TickPeriodic(dt of the target's clock), RunWorkerTick, components Tick
+S-&gt;&gt;A: Callbacks.EffectTick, n periodic commits
+S-&gt;&gt;S: UpdateTimeRemaining, MarkFinished when expired
+end
+S-&gt;&gt;A: ClearFinishedEffects: OnRemove, ReverseImpact, UnregisterModifier
+S-&gt;&gt;P: TakeBackAbilities with components TakeBack, RunWorkerRemoval and components End
+S-&gt;&gt;G: Callbacks.EffectRemoved(spec), the tag recompile
+Note over S,A: OnApply and Periodic commits never reverse
+Note over S,P: Its cues play through its Cues component, as the components hear Lend, Land, Tick, End and TakeBack
+</code></pre>
+<p><em>From GenerateEffectSpec through the shelf's gates, the commits or the modifiers, the impact relay to the dealer, the ticks and the removal.</em></p>
+<p>An entry holds <code>{ AttributeTarget, Delivery, Operation, TargetSlot, MultiplyBehaviour, SortOrder, Magnitude, RetentionGroupOverride, ImpactTypes }</code>.</p>
+<p>One effect may carry many entries across many attributes: &quot;+10% speed while active AND 5 HP per tick&quot; is one asset. The
+first entry is derived from its impact's fields, then each of its <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_AdditionalImpacts"><code>AdditionalImpacts</code></a> follows (§7).</p>
+<p><strong>Delivery decides everything</strong>. There is deliberately no separate &quot;retained?&quot; or &quot;reverse on removal?&quot; switch:</p>
 <table>
 <thead>
 <tr>
@@ -124,21 +178,27 @@ its impact's fields, then each of its <a class="xref" href="../../api/FarEmerald
 </tbody>
 </table>
 <ul>
-<li><em>Modifier</em> = &quot;while this carrier is present&quot; — item stat bonuses, auras, durational %-buffs.
-Its magnitude is re-evaluated on every recompute; removing the carrier recomputes without it.
-A <code>×1.2</code> buff can never leave residue because its value is never stored, always derived.</li>
-<li><em>Commit</em> = an event that permanently changed the attribute — damage, heals, DoT/HoT ticks.
-The post-constraint delta is recorded into per-group committed history and survives everything.</li>
+<li><em>Modifier</em> = &quot;while this carrier is present&quot;: item stat bonuses, auras, durational %-buffs.
+<ul>
+<li>Its magnitude is re-evaluated on every recompute, and removing the carrier recomputes without it.</li>
+<li>A <code>×1.2</code> buff can never leave residue, because its value is never stored, always derived.</li>
 </ul>
-<p><strong>Retention groups</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>) are pure attribution: every contribution — root value, modifiers,
-commits — belongs to a group (entry override → else the effect's <code>Definition.RetentionGroup</code>;
-attribute-set roots use their element's <code>RetentionGroup</code>). Groups partition one pool for
-queries/UI (base vs bonus health, base vs bonus damage); they never change the math.</p>
-<p>Validation: <code>Continuous</code> requires a durational/infinite effect; <code>Periodic</code> requires ticks.
-(<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html#FarEmerald_PlayForge_AttributeImpactEntry_IsDeliveryValidFor_"><code>AttributeImpactEntry.IsDeliveryValidFor</code></a>.)</p>
-<hr>
-<hr>
-<p><a href="index.html">← Effect &amp; Attribute Pipeline</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="2-attribute-state-cachedattributevalue.html">2. Attribute state (CachedAttributeValue) →</a></p>
+</li>
+<li><em>Commit</em> = an event that permanently changed the attribute: damage, heals, DoT/HoT ticks.
+<ul>
+<li>The post-constraint delta is recorded into per-group committed history and survives everything.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Retention groups</strong> (<a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>) are pure attribution. Every contribution (root value, modifiers, commits) belongs to a
+group:</p>
+<ul>
+<li>an entry's override, or else the effect's <code>Definition.RetentionGroup</code>;</li>
+<li>for attribute-set roots, their element's <code>RetentionGroup</code>.</li>
+</ul>
+<p>Groups partition one pool for queries and UI (base vs bonus health, base vs bonus damage). They never change the math.</p>
+<p>Validation: <code>Continuous</code> requires a durational or infinite effect, and <code>Periodic</code> requires ticks
+(<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html#FarEmerald_PlayForge_AttributeImpactEntry_IsDeliveryValidFor_"><code>AttributeImpactEntry.IsDeliveryValidFor</code></a>).</p>
 
 </article>
 

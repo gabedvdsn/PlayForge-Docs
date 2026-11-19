@@ -87,39 +87,48 @@
         <article data-uid="guide.attributes.identity">
 <h1 id="identity">Identity</h1>
 
+<p>The Identity section names the attribute and says what it is.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>The attribute's display name. Give each attribute its own Name: some lookups compare attributes by Name, such as an attribute worker matching the attribute it watches.</td>
+</tr>
+<tr>
+<td><strong>Abbreviation</strong></td>
+<td>A short form, such as HP. The collapsed section shows it.</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Free text for your UI.</td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td>What the attribute is, which says how bonuses to it add up and how a number reads it.</td>
+</tr>
+<tr>
+<td><strong>Gains Scaled By</strong></td>
+<td>An attribute that multiplies each workable gain to this one's current, on the same entity.</td>
+</tr>
+<tr>
+<td><strong>Textures</strong></td>
+<td>Icons, each paired with a tag. The texture tagged <code>Primary</code> is the attribute's icon; without one, the first texture is used.</td>
+</tr>
+</tbody>
+</table>
+<p>An attribute that plays one of its project's roles says so in this section, as &quot;Plays Health in Arena&quot;.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Name</strong>: the attribute's display name. Give each attribute its own Name: some lookups compare attributes by Name,
-such as an attribute worker matching the attribute it watches.</li>
-<li><strong>Abbreviation</strong>: a short form, such as HP. The collapsed section shows it.</li>
-<li><strong>Description</strong>: free text for your UI.</li>
-<li><strong>Textures</strong>: icons, each paired with a tag. The texture tagged <code>Primary</code> is the attribute's icon. Without one, the
-first texture is used.</li>
-<li><strong>Role</strong>: what the attribute is, which says how bonuses to it add up and how a number reads it:
-<ul>
-<li><strong>Value</strong>, every attribute's unless it says: bonuses add and multiply as each effect says, and a number reads it as
-it is.</li>
-<li><strong>Bonus Share</strong>, as Damage Amplification at 0.2 for 20%: bonuses add, +20% and +30% making 0.5, and × Attribute
-reads it as a multiplier, 1 + x, so an attack of 100 that reads it deals 150.</li>
-<li><strong>Multiplier</strong>, as Damage Dealt at 1: as a Value, read as it is.</li>
-<li><strong>Resistance</strong>, a share taken off or a chance, as Damage Resistance: bonuses stack with diminishing returns, each on
-what's left, so two of 30% make 51% and none takes it past 1; × Attribute reads what's left, 1 − x. The lasting
-bonuses diminish; a permanent change, which an instant or periodic impact commits, adds as it is.</li>
-<li><strong>Barrier</strong>, as a shield before Health: it absorbs for the attribute its <strong>Absorbs For</strong> names, each workable
-loss to that one coming off it first, as much as it holds, and the rest going on; two hits in a frame soak no more
-than it holds, and what it soaks comes off it at the frame's end. <strong>Decay Per Second</strong>, a number field read at its holder's level, takes it down by its holder's
-own time, a number a second or, with <strong>Decay As Share Of Base</strong>, that share of its base, as Topaz Brooch's barrier
-fades; <strong>Fades With Effect</strong> fades what a lasting effect gives it to 0 by the time that effect ends. A hit the
-barrier soaks whole is no loss to the other, so an On Hit counting it doesn't go off.</li>
+<li><a href="identity/role.html">Role</a>: An attribute's <strong>Role</strong> says what it is: how bonuses to it add up, and how a number reads it.</li>
+<li><a href="identity/barrier.html">Barrier</a>: A <strong>Barrier</strong> attribute is a shield before another attribute, such as Health.</li>
+<li><a href="identity/gains-scaled-by.html">Gains Scaled By</a>: <strong>Gains Scaled By</strong> names an attribute that multiplies each workable gain to this one's current, on the same entity.</li>
 </ul>
-</li>
-</ul>
-<p><strong>Gains Scaled By</strong> names an attribute that multiplies each workable gain to this one's current, on the same entity: Health's by Healing Received, so a curse at 0.5 halves heals and Ice Blast's 0 blocks them. A loss passes it by,
-and a gain to the base, as more maximum, does too.</p>
-<p>An effect's impact can add its own way (<strong>Add Behaviour</strong>: as the attribute's role says, a plain Sum, or Diminishing),
-and a number can read its own way (× Attribute's <strong>Read As</strong>).</p>
-<p>An attribute that plays one of its project's roles says so, as &quot;Plays Health in Arena&quot;.</p>
-<hr>
-<p><a href="index.html">← Attributes</a> · <a href="index.html">Attributes</a> · <a href="roles.html">Roles →</a></p>
 
 </article>
 

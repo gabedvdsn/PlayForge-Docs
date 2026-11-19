@@ -87,10 +87,11 @@
         <article data-uid="guide.services.time">
 <h1 id="time">Time</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> is the clock PlayForge's runtime reads in place of Unity's <code>Time</code>, and where a game puts in a time of its
-own.</p>
-<p>It reads the clock in force, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Clock"><code>ForgeTime.Clock</code></a>, an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>: Unity's, <a class="xref" href="../../api/FarEmerald.PlayForge.UnityClock.html#FarEmerald_PlayForge_UnityClock_Instance"><code>UnityClock.Instance</code></a>, until code puts
-another in. Nothing else in the runtime reads Unity's <code>Time</code>. Its properties read that clock as Unity's own do:</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> is the clock PlayForge's runtime reads in place of Unity's <code>Time</code>. It's also where a game puts in a time of
+its own.</p>
+<p><code>ForgeTime</code> reads the clock in force, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Clock"><code>ForgeTime.Clock</code></a>, an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>. That's Unity's, <a class="xref" href="../../api/FarEmerald.PlayForge.UnityClock.html#FarEmerald_PlayForge_UnityClock_Instance"><code>UnityClock.Instance</code></a>,
+until code puts another in. Nothing else in the runtime reads Unity's <code>Time</code>.</p>
+<p>Its properties read the clock in force as Unity's own do:</p>
 <table>
 <thead>
 <tr>
@@ -125,45 +126,11 @@ another in. Nothing else in the runtime reads Unity's <code>Time</code>. Its pro
 </tr>
 </tbody>
 </table>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(clock)</code></a> puts a clock in and returns the one it replaced, and <code>ForgeTime.Use(null)</code> puts Unity's back. Two
-things put a clock of their own in while they step, and the one before back after: each of ProcessControl's fixed ticks
-(<a href="fixed-ticks.html">Fixed ticks</a>), and a world of its own, a <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessWorld.html"><code>ProcessWorld</code></a> its owner steps with <code>Step(deltaTime)</code>, whose
-clock reads that step.</p>
-<p>An owner's time is its own where it has one:</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_ClockOf_"><code>ForgeTime.ClockOf(owner)</code></a> is an entity's own clock for an entity, an <a class="xref" href="../../api/FarEmerald.PlayForge.IGameplayAbilitySystem.html"><code>IGameplayAbilitySystem</code></a>, and the game's,
-<a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>, for anything else. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_DeltaTimeFor_"><code>ForgeTime.DeltaTimeFor(owner)</code></a> is its step this frame.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_ClockFor_"><code>ForgeTime.ClockFor(data)</code></a> is the clock a data packet names, <code>data.Clock</code>, or else its owner's: an ability's caster's,
-or the game's. <code>ForgeTime.DeltaTimeFor(data)</code> is its step.</li>
+<li><a href="time/putting-a-clock-in.html">Putting a clock in</a>: You replace the clock in force with <code>ForgeTime.Use</code></li>
+<li><a href="time/an-owners-clock.html">An owner's clock</a>: An owner's time is its own, where it has one.</li>
 </ul>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-// PlayForge's time apart from Unity's: at a Scale of 0 every effect, cooldown and sequence on the game's time stands
-// still, while Unity's own time, and all that reads it, runs on, and so does a sequence on the unscaled clock
-public static class GameplayTime
-{
-    public static ScaledClock Clock { get; private set; }
-
-    // Put in before the first scene loads, so all that keeps a time keeps it by this clock from the start
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void PutIn()
-    {
-        Clock = new ScaledClock(1f, UnityClock.Instance);
-        ForgeTime.Use(Clock);
-    }
-}
-
-// A menu that stops the game's time sets GameplayTime.Clock.Scale to 0 as it opens, and back to 1 as it closes
-</code></pre>
-<p>A clock put in reads its time from somewhere else. <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html"><code>GameClock</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.UnscaledClock.html"><code>UnscaledClock</code></a>, an <a class="xref" href="../../api/FarEmerald.PlayForge.EntityClock.html"><code>EntityClock</code></a> and a <a class="xref" href="../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a>
-with no source each read the clock in force, so put in as it, each would read itself: <code>ForgeTime.Use</code> refuses the
-<code>GameClock</code>, and a <code>ScaledClock</code> over <code>UnityClock.Instance</code>, as above, scales Unity's. What waits until a time, as a
-pooled cue's burst does, keeps <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Time"><code>ForgeTime.Time</code></a>, so a clock put in while the game runs should carry its <code>Time</code> on from
-the one it replaces. A clock put in stays until code puts another in, past the end of play mode where domain reload is
-off, so code that puts one in puts back the one it replaced.</p>
-<hr>
-<p><a href="index.html">← Time, Input and Logging</a> · <a href="index.html">Time, Input and Logging</a> · <a href="clocks.html">Clocks →</a></p>
 
 </article>
 

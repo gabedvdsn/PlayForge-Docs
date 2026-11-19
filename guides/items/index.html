@@ -88,29 +88,185 @@
 <h1 id="items">Items</h1>
 
 <p>An <strong>Item</strong> asset describes something an entity can hold and equip, such as a sword or a ring. An entity is anything
-that runs a gameplay ability system (GAS), such as the player or an enemy. Giving an item puts it in the entity's
-inventory. Equipping it applies what it grants: its Granted Effects, its Active Ability, its Granted Tags and its
-workers. Unequipping the item, or removing it from the inventory, takes them away again.</p>
+that runs a gameplay ability system (GAS), such as the player or an enemy.</p>
+<pre><code class="lang-mermaid">classDiagram
+class Item:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Definition : ItemDefinition
++Tags : ItemTags
++GrantedEffects : List~GameplayEffect~
++ActiveAbility : Ability
++WorkerGroup : StandardWorkerGroup
++Components : List~AbstractItemComponent~
++Find() T, its first component that is a T
++Generate(ISource owner, int level) ItemSpec
+}
+class ItemDefinition:::asset {
++Name
++Description
++Textures
++MaxStackSize : ScalableInt
++StackSizeOf(spec) int
+}
+class ItemTags:::asset {
++AssetTag
++ContextTags
++PassiveGrantedTags
+}
+class ItemSystemComponent:::rt {
++GiveItem(Item, level, out int index) bool
++GiveAndEquipItem()
++EquipItem(index or item)
++UnequipItem(index or item)
++ConsumeItem(Item, int count) int
++RemoveItem(index, item, item and count, or tag)
++HasItem() bool
++Callbacks : ItemSystemCallbacks
+}
+class ItemSpecContainer:::rt {
+one inventory slot
++Spec : ItemSpec
++Index : int
++IsEquipped : bool
++ItemStacks : int
++Equip()
++Unequip()
+}
+class BasicEffectOrigin:::ext {
+&lt;&lt;abstract&gt;&gt;
+}
+class ItemSpec:::rt {
+the runtime item, origin of its effects
++Base : Item
++Stacks : int
++Source : ISource
++GetLevel()
++IsActive() means IsEquipped
+read with NumberContext.Of(ItemSpec)
+}
+class ItemSystemCallbacks:::rt {
++OnItemGiven
++OnItemRemoved
++OnItemEquipped
++OnItemUnequipped
++OnItemAbilityGranted
++OnItemConsumed(Item, int)
+}
+class AbstractForgeComponent:::ext {
+&lt;&lt;abstract&gt;&gt;
+}
+class AbstractItemComponent:::ext {
+&lt;&lt;abstract&gt;&gt;
+Given(ctx)
+Equipped(ctx)
+Unequipped(ctx)
+Removed(ctx)
+Used(ctx)
+}
+class UsesItemComponent:::rt {
++Uses : ScalableInt
++Left(container)
+}
+class SetBonusItemComponent:::rt {
++Set : Tag
++Pieces
++Bonus : GameplayEffect
+}
+class AuraItemComponent:::rt
+class ConsumeItemTask:::rt {
+an ability task under Items
+}
+Item *-- ItemDefinition
+Item *-- ItemTags
+Item o-- AbstractItemComponent
+Item ..&gt; ItemSpec : Generate
+ItemSystemComponent &quot;1&quot; *-- &quot;many&quot; ItemSpecContainer
+ItemSpecContainer *-- ItemSpec
+BasicEffectOrigin &lt;|-- ItemSpec
+ItemSystemComponent *-- ItemSystemCallbacks
+AbstractForgeComponent &lt;|-- AbstractItemComponent
+AbstractItemComponent &lt;|-- UsesItemComponent
+AbstractItemComponent &lt;|-- SetBonusItemComponent
+AbstractItemComponent &lt;|-- AuraItemComponent
+ConsumeItemTask ..&gt; ItemSystemComponent : ConsumeItem
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>An Item asset becomes an ItemSpec in an ItemSpecContainer slot. The spec is the origin of the item's effects, and its level lives under the item's AssetTag.</em></p>
+<pre><code class="lang-mermaid">sequenceDiagram
+autonumber
+participant C as Caller
+participant I as ItemSystemComponent
+participant K as ItemSpecContainer
+participant M as Item components
+participant G as Owner GAS
+participant A as AbilitySystemComponent
+C-&gt;&gt;I: GiveItem(item, level, out index)
+alt stackable, and a slot has room
+I-&gt;&gt;K: ChangeStacks(+1), equipped effects refresh
+else a new slot
+I-&gt;&gt;I: CanGiveItem, item.Generate(self, level)
+Note over I: the ItemSpec registers the item's level under its AssetTag
+I-&gt;&gt;K: new ItemSpecContainer(spec, index)
+K-&gt;&gt;M: Given
+end
+I--&gt;&gt;C: OnItemGiven
+C-&gt;&gt;I: EquipItem(index or item)
+I-&gt;&gt;K: CanEquipItem, then Equip()
+K-&gt;&gt;K: IsEquipped = true
+K-&gt;&gt;G: ApplyCarrier(effect.Generate(ItemSpec, Source)) per GrantedEffect
+K--&gt;&gt;C: OnItemEffectsApplied
+K-&gt;&gt;A: GiveAbility(ActiveAbility, item level, out slot), LentBy the slot
+K--&gt;&gt;C: OnItemAbilityGranted
+K-&gt;&gt;G: Item.InitWorkers(Source): workers, OnHit, modifiers
+K-&gt;&gt;M: Equipped: SetBonus calls ForgeSets.Refresh, Aura gives its aura
+K-&gt;&gt;G: CompileGrantedTags()
+K--&gt;&gt;C: OnItemEquipped
+Note over C,A: Use: an activation of the lent ability that committed ends
+A-&gt;&gt;K: AbilitySpec.HearEnd, then the slot's HearUsed
+K-&gt;&gt;M: Used, UsesItemComponent counts, then takes a stack or removes the item
+C-&gt;&gt;I: ConsumeItemTask calls ConsumeItem(item, n)
+I-&gt;&gt;I: RemoveItem(item, n), from the last slot first
+I--&gt;&gt;C: OnItemConsumed(item, used)
+C-&gt;&gt;I: UnequipItem(index or item)
+I-&gt;&gt;K: Unequip()
+K-&gt;&gt;A: RemoveAbilityAt(slot, ability), OnItemAbilityRevoked
+K-&gt;&gt;G: RemoveGameplayEffect(effect, ItemSpec), OnItemEffectsRemoved
+K-&gt;&gt;M: Item.RemoveWorkers, Unequipped
+K-&gt;&gt;G: CompileGrantedTags(), OnItemUnequipped
+C-&gt;&gt;I: RemoveItem(index)
+I-&gt;&gt;K: unequip it if equipped, take it off the shelf
+K-&gt;&gt;M: Removed
+I--&gt;&gt;C: OnItemRemoved
+</code></pre>
+<p><em>Given, equipped, used, consumed, unequipped and removed. Uses and Consume are two independent routes to spending an item.</em></p>
+<ul>
+<li>Giving an item puts it in the entity's inventory.</li>
+<li>Equipping it applies what it grants: its Granted Effects, its Active Ability, its Granted Tags and its workers.</li>
+<li>Unequipping the item, or removing it from the inventory, takes them away again.</li>
+</ul>
 <p>An entity gets items from its Entity asset's Starting Items, or from code through its <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html"><code>ItemSystemComponent</code></a>, with
 <code>GiveItem</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_EquipItem_"><code>EquipItem</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_UnequipItem_"><code>UnequipItem</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html#FarEmerald_PlayForge_ItemSystemComponent_RemoveItem_"><code>RemoveItem</code></a>. The entity's limits on items are set on its Entity asset.</p>
 <p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
 made from its Name: Iron Sword gives <code>Item.IronSword</code>. The entity carries this tag while the item is in its inventory,
-equipped or not, and keeps the item's level under it. Each section below matches the inspector section of the same
-name. A collapsed section shows one line about what it holds, such as the level range or how many effects the item
-grants.</p>
-<p>The inspector's header shows the item's one line, as The Forge's Summary column does: what each effect it gives
-changes while it's equipped, by its first impact across its levels, then the ability it grants, as &quot;+20 Armor; Blink&quot;.</p>
+equipped or not, and keeps the item's level under it.</p>
+<p>Each section below matches the inspector section of the same name. A collapsed section shows one line about what it
+holds, such as the level range or how many effects the item grants.</p>
+<p>The inspector's header shows the item's one-line summary, as The Forge's Summary column does. The line gives what each
+effect it gives changes while it's equipped, by its first impact across its levels, then the ability it grants:
+&quot;+20 Armor; Blink&quot;.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the item's display name.</li>
-<li><a href="leveling.html">Leveling</a>: An item has its own level on each entity that holds it, kept under the item's asset tag.</li>
-<li><a href="tags.html">Tags</a>: <strong>Context Tags</strong> describe the item, such as <code>Weapon</code>.</li>
-<li><a href="effects.html">Effects</a>: <strong>Granted Effects</strong> are applied to the entity while the item is equipped.</li>
-<li><a href="abilities.html">Abilities</a>: <strong>Active Ability</strong>: an ability the entity learns while the item is equipped.</li>
-<li><a href="components.html">Components</a>: An item's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the item, shows its asset tag, and sets how many of it one inventory slot holds.</li>
+<li><a href="leveling.html">Leveling</a>: The Leveling section sets the item's level range.</li>
+<li><a href="tags.html">Tags</a>: The Tags section sets the tags that describe the item and the tags it grants.</li>
+<li><a href="effects.html">Effects</a>: The Effects section lists the effects the item applies to the entity while it's equipped.</li>
+<li><a href="abilities.html">Abilities</a>: The Abilities section names the ability the item lends its holder.</li>
+<li><a href="components.html">Components</a>: An item's components are features it carries, each a class with hooks into the item's life.</li>
 <li><a href="workers.html">Workers</a>: Workers are reusable behaviours, picked from a list, that react to what happens to an entity.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this item, each with its type icon, such as an entity that starts with it or an effect linked to it.</li>
+<li><a href="used-by.html">Used By</a>: The Used By section lists the PlayForge assets that refer to this item, each with its type icon, such as an entity that starts with it or an effect linked to it.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

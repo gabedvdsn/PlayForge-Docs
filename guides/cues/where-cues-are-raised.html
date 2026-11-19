@@ -87,25 +87,73 @@
         <article data-uid="guide.cues.where-cues-are-raised">
 <h1 id="where-cues-are-raised">Where cues are raised</h1>
 
+<p>Effects, abilities, entities and items raise their cues through a <strong>Cues</strong> component, and code raises them through
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html"><code>ForgeCues</code></a>.</p>
 <ul>
-<li><strong>Effects</strong>: an effect's <strong>Cues</strong> component plays its cues as it lands, as an application it takes in lands, as each
-tick executes, as an impact it deals lands, as it comes off, while it lasts, as an application is refused and as
-its stacks change (<a href="../effects/cues.html">Effects: Cues</a>).</li>
-<li><strong>Abilities</strong>: a <strong>Cues</strong> component plays an ability's as it activates, as it commits, while it's active, as it ends
-and as one is refused; a <strong>Play Cue</strong> task plays them at a stage's exact moment, on the caster, on the target or at
-the point (<a href="../abilities/components.html#cues">Abilities: Cues</a>).</li>
-<li><strong>Entities</strong>: a <strong>Cues</strong> component plays an entity's as it spawns, dies and comes back, and lasting ones while it
-holds a tag, as stars over its head while it's Stunned (<a href="../entities/components.html#cues">Entities: Cues</a>).</li>
-<li><strong>Items</strong>: a <strong>Cues</strong> component plays an item's as it's equipped, while it's equipped and as it's used
-(<a href="../items/components.html#cues">Items: Cues</a>).</li>
-<li><strong>Code</strong>: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst(sparks, new CueContext(entity, ECueMoment.Raised, point: hit.point))</code></a> plays sparks where a
-ray hit, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Begin_"><code>ForgeCues.Begin</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_End_"><code>ForgeCues.End</code></a> begin and end a lasting one.</li>
+<li><strong>Effects</strong>: an effect's <strong>Cues</strong> component plays its cues (<a href="../effects/cues.html">Effects: Cues</a>):
+<ul>
+<li>as it lands, and as an application it takes in lands;</li>
+<li>as each tick executes, and as an impact it deals lands;</li>
+<li>as it comes off, and while it lasts;</li>
+<li>as an application is refused, and as its stacks change.</li>
 </ul>
-<p>A cue's context, <a class="xref" href="../../api/FarEmerald.PlayForge.CueContext.html"><code>CueContext</code></a>, says what raised it, its <code>Moment</code>, as Applied, Activated or Died; its target and its
-source; the effect or the ability behind it; where it plays, its <code>Point</code> and <code>Normal</code>, or else its target's place; a
-magnitude; and, for a lasting cue, the key its beginning and its end share.</p>
-<hr>
-<p><a href="index.html">← Cues</a> · <a href="index.html">Cues</a> · <a href="handlers.html">Handlers →</a></p>
+</li>
+<li><strong>Abilities</strong>: a <strong>Cues</strong> component plays an ability's as it activates, as it commits, while it's active, as it ends
+and as one is refused (<a href="../abilities/components/cues.html">Abilities: Components: Cues</a>).
+<ul>
+<li>A <strong>Play Cue</strong> task plays them at a stage's exact moment, on the caster, on the target or at the point.</li>
+</ul>
+</li>
+<li><strong>Entities</strong>: a <strong>Cues</strong> component plays an entity's as it spawns, dies and comes back
+(<a href="../entities/components/cues.html">Entities: Components: Cues</a>).
+<ul>
+<li>It plays lasting ones while the entity holds a tag, as stars over its head while it's Stunned.</li>
+</ul>
+</li>
+<li><strong>Items</strong>: a <strong>Cues</strong> component plays an item's as it's equipped, while it's equipped and as it's used
+(<a href="../items/components/cues.html">Items: Components: Cues</a>).</li>
+<li><strong>Code</strong>: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst(sparks, new CueContext(entity, ECueMoment.Raised, point: hit.point))</code></a> plays sparks where a
+ray hit.
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Begin_"><code>ForgeCues.Begin</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_End_"><code>ForgeCues.End</code></a> begin and end a lasting one.</li>
+</ul>
+</li>
+</ul>
+<p>A cue's context, <a class="xref" href="../../api/FarEmerald.PlayForge.CueContext.html"><code>CueContext</code></a>, says what raised it, and where and for whom it plays:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Moment</code></td>
+<td>What raised it, as Applied, Activated or Died.</td>
+</tr>
+<tr>
+<td><code>Target</code> and <code>Source</code></td>
+<td>Its target, the entity it plays on, and its source, who's behind it.</td>
+</tr>
+<tr>
+<td><code>Spec</code> and <code>Origin</code></td>
+<td>The effect or the ability behind it.</td>
+</tr>
+<tr>
+<td><code>Point</code> and <code>Normal</code></td>
+<td>Where it plays, and which way it faces. Without a point, it plays at its target's place.</td>
+</tr>
+<tr>
+<td><code>Magnitude</code></td>
+<td>A magnitude its raiser gives it, as a hit's damage.</td>
+</tr>
+<tr>
+<td><code>Key</code></td>
+<td>For a lasting cue, the key its beginning and its end share.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

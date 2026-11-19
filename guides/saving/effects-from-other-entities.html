@@ -88,8 +88,8 @@
 <h1 id="effects-from-other-entities">Effects from other entities</h1>
 
 <p>An effect knows what applied it: an entity, or one of its abilities or items. When that is another entity, the save
-needs a name for it that lasts. Give <code>Capture</code> and <code>Restore</code> an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html"><code>IForgeEntityIds</code></a>, which maps the game's own IDs to its
-entities:</p>
+needs a name for it that lasts.</p>
+<p>Give <code>Capture</code> and <code>Restore</code> an <a class="xref" href="../../api/FarEmerald.PlayForge.IForgeEntityIds.html"><code>IForgeEntityIds</code></a>, which maps the game's own IDs to its entities:</p>
 <pre><code class="lang-csharp">class Roster : IForgeEntityIds
 {
     public string IdOf(IGameplayAbilitySystem entity) =&gt; /* the game's ID for it, or null */;
@@ -99,12 +99,13 @@ entities:</p>
 var save = ForgeSave.Capture(hero, catalog, roster);
 ForgeSave.Restore(hero, save, catalog, roster);
 </code></pre>
-<p>Without IDs, or when the other entity is gone, the effect comes back as the entity's own. An entity whose abilities are
-in their saved slots keeps them through its load, so several entities can load in any order and their effects on each
-other still name the abilities that applied them. Items aren't kept that way: when several entities load together,
-restore those whose items applied effects first, so the others find them.</p>
-<hr>
-<p><a href="what-a-load-does.html">← What a load does</a> · <a href="index.html">Saving and Loading</a> · <a href="rolling-back.html">Rolling back →</a></p>
+<ul>
+<li>Without IDs, or when the other entity is gone, the effect comes back as the entity's own.</li>
+<li>An entity whose abilities are in their saved slots keeps them through its load. So several entities can load in any
+order, and their effects on each other still name the abilities that applied them.</li>
+<li>Items aren't kept that way. When several entities load together, restore those whose items applied effects first,
+so the others find them.</li>
+</ul>
 
 </article>
 

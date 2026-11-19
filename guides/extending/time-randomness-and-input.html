@@ -88,48 +88,14 @@
 <h1 id="time-randomness-and-input">Time, randomness and input</h1>
 
 <p>PlayForge reads its time, its random numbers and its pointer through sources a game can replace, so a game can run it on
-a fixed step, repeat its rolls, or aim with a gamepad. This section covers the interfaces; <a href="../services/index.html">Time, Input and Logging</a>
-covers clocks, rolls and input in full.</p>
+a fixed step, repeat its rolls, or aim with a gamepad.</p>
+<p>This section covers the interfaces; <a href="../services/index.html">Time, Input and Logging</a> covers clocks, rolls and input in full.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a></strong>: <code>DeltaTime</code>, <code>UnscaledDeltaTime</code>, <code>FixedDeltaTime</code>, <code>Time</code>, <code>UnscaledTime</code>, <code>FrameCount</code>, and
-<code>FollowsTicks</code>, true unless it runs while the game's time stands. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Use_"><code>ForgeTime.Use(clock)</code></a> puts one in for the game and
-returns the one it replaced; null puts Unity's back. A run takes one of its own through its packet's <code>Clock</code>, a
-sequence through <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>TaskSequenceBuilder.WithClock(clock)</code></a>.</li>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeRandom.html"><code>IForgeRandom</code></a></strong>: <code>Value</code>, from 0 to 1, <code>InsideUnitCircle</code> and <code>InsideUnitSphere</code>. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(source)</code></a> puts one
-in and returns the one it replaced; <a class="xref" href="../../api/FarEmerald.PlayForge.SeededRandom.html"><code>SeededRandom(seed)</code></a> is one of PlayForge's. The cues draw from their own,
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>.</li>
-<li><strong><a class="xref" href="../../api/FarEmerald.PlayForge.IForgeInput.html"><code>IForgeInput</code></a></strong>: <code>PointerPressed(int button)</code> and <code>TryGetPointerRay(out Ray ray)</code> are required; <code>PointerHeld</code>,
-<code>TryGetPointerPosition</code>, <code>ScrollDelta</code>, <code>KeyPressed</code> and <code>KeyHeld</code> are optional. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use(input)</code></a> puts one in,
-and the click-targeting tasks and the sequence library's waits read <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a>.</li>
+<li><a href="time-randomness-and-input/clocks.html">Clocks</a>: A clock is where PlayForge reads its time, so a game can run it on a step of its own.</li>
+<li><a href="time-randomness-and-input/random-sources.html">Random sources</a>: A random source is where PlayForge draws its random numbers, so a test or a replay can repeat its rolls.</li>
+<li><a href="time-randomness-and-input/input.html">Input</a>: An input source is where PlayForge reads the pointer, so a game can aim with a gamepad's cursor.</li>
 </ul>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-using UnityEngine;
-
-namespace MyGame
-{
-    // A pointer the game moves itself, as a gamepad's cursor
-    public sealed class CursorInput : IForgeInput
-    {
-        public Camera Camera;
-        public Vector2 Position;
-        public bool PressedThisFrame;
-
-        public bool PointerPressed(int button) =&gt; button == 0 &amp;&amp; PressedThisFrame;
-
-        public bool TryGetPointerRay(out Ray ray) =&gt; ForgeInput.TryAimThrough(Camera, Position, out ray);
-
-        public bool TryGetPointerPosition(out Vector2 position)
-        {
-            position = Position;
-            return true;
-        }
-    }
-}
-</code></pre>
-<p><code>ForgeInput.Use(new CursorInput { Camera = Camera.main })</code> puts it in; the game sets <code>Position</code> as its cursor moves, and
-<code>PressedThisFrame</code> for the one frame of a press.</p>
-<hr>
-<p><a href="readers.html">← Readers</a> · <a href="index.html">Extending PlayForge</a> · <a href="saving-a-games-own-data.html">Saving a game's own data →</a></p>
 
 </article>
 

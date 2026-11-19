@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The validator | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The validator | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-problems-view-and-validation.the-validator">
+<h1 id="the-validator">The validator</h1>
+
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html"><code>ForgeValidator</code></a> runs every <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidationRule.html"><code>ForgeValidationRule</code></a> on each asset it checks. It checks every PlayForge asset, Scaler asset,
+Requirement Template, Value Pipeline, Effect Modifier and Crowd Control Rules (<code>Checks(asset)</code>).</p>
+<h2 id="when-it-checks">When it checks</h2>
+<p>The validator follows the project, so nothing polls.</p>
+<ul>
+<li>An edit checks its asset again.</li>
+<li>An import checks what it brought.</li>
+<li>A delete or a move has every asset checked again, as they're next asked for.</li>
+<li>So does an edit to what one asset gives others, such as the impact types an effect deals or a Cue Library's routes.</li>
+</ul>
+<p>A rule that throws doesn't keep the others from checking.</p>
+<h2 id="members">Members</h2>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Check(asset)</code></td>
+<td>Runs every rule on an asset, saved or not.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_ProblemsOf_"><code>ProblemsOf(asset)</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_NotesOf_"><code>NotesOf(asset)</code></a></td>
+<td>What it found in one asset.</td>
+</tr>
+<tr>
+<td><code>All</code>, <code>Notes</code></td>
+<td>What it found in every asset.</td>
+</tr>
+<tr>
+<td><code>Changed</code></td>
+<td>Raised as what it knows changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problems-and-quick-fixes">Problems and quick fixes</h2>
+<p>Each problem is a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeProblem.html"><code>ForgeProblem</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Asset</code></td>
+<td>The asset it's in.</td>
+</tr>
+<tr>
+<td><code>Severity</code></td>
+<td>Its severity.</td>
+</tr>
+<tr>
+<td><code>Message</code></td>
+<td>What's wrong.</td>
+</tr>
+<tr>
+<td><code>PropertyPath</code></td>
+<td>The field it's about.</td>
+</tr>
+<tr>
+<td><code>Rule</code></td>
+<td>The rule that found it.</td>
+</tr>
+<tr>
+<td><code>Fix</code></td>
+<td>Where one step fixes it, a <a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeQuickFix.html"><code>ForgeQuickFix</code></a>.</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>ForgeQuickFix</code> has its <code>Name</code>, as its button says, and the step it applies, <code>Apply</code>.</p>
+<h2 id="on-a-build-server">On a build server</h2>
+<p>On a build server, run the validator in batch mode:</p>
+<pre><code>Unity -batchmode -quit -projectPath &lt;project&gt; -executeMethod FarEmerald.PlayForge.Editor.ForgeValidator.LogAll
+</code></pre>
+<p><a class="xref" href="../../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_LogAll_"><code>LogAll</code></a> checks every asset afresh, and writes to the Console, in this order:</p>
+<ol>
+<li>each problem, an error as an error and a warning as a warning, each starting &quot;[PlayForge problems]&quot; and its asset's
+path;</li>
+<li>each note as a plain line, so a build that fails on warnings passes them;</li>
+<li>how many there are.</li>
+</ol>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

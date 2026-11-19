@@ -87,10 +87,15 @@
         <article data-uid="guide.saving.what-a-load-does">
 <h1 id="what-a-load-does">What a load does</h1>
 
+<p>A load puts the save back in four steps.</p>
 <ol>
 <li>Running abilities are interrupted, and the input buffer empties.</li>
-<li>The entity lets go of its effects, items and abilities, and the actions queued this frame are dropped. An ability
-it holds in the slot the save gives it stays as it is, so another entity's effect that it applied still names it.</li>
+<li>The entity lets go of its effects, items and abilities, and the actions queued this frame are dropped.
+<ul>
+<li>An ability it holds in the slot the save gives it stays as it is. So another entity's effect that it applied still
+names it.</li>
+</ul>
+</li>
 <li>The save's abilities, items, effects, levels and commits come back.</li>
 <li>The tags compile once, and <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystemCallbacks.html#FarEmerald_PlayForge_GameplayAbilitySystemCallbacks_OnRestored"><code>OnRestored</code></a> fires.</li>
 </ol>
@@ -101,16 +106,18 @@ it holds in the slot the save gives it stays as it is, so another entity's effec
 effects.</li>
 <li>A worn item's effects come back from the save, so wearing it again applies none.</li>
 </ul>
-<p>The one tag compile tells what the load changed, as any compile does. Then
-<code>gas.GetCallbacks().OnRestored</code> fires once. Listen to it to refresh what shows the entity, such as a health bar or a
-hotbar.</p>
-<p>The entity's attribute set has to define the attributes the save names. An attribute the catalog names but the save
-doesn't list loses its commits, since the entity had none when it was saved.</p>
+<p>The one tag compile tells what the load changed, as any compile does. Then <code>gas.GetCallbacks().OnRestored</code> fires once.
+Listen to it to refresh what shows the entity, such as a health bar or a hotbar.</p>
+<h2 id="before-you-load">Before you load</h2>
+<p>A load needs the right attributes, and a moment between the entity's steps.</p>
+<ul>
+<li>The entity's attribute set has to define the attributes the save names.</li>
+<li>An attribute the catalog names but the save doesn't list loses its commits, since the entity had none when it was
+saved.</li>
+</ul>
 <p>Load between the entity's steps. A restore called from inside the entity's step or its end of frame, as from one of its
-callbacks, is refused with a warning, because it would empty the lists the step is going through. Load on the next
-frame instead.</p>
-<hr>
-<p><a href="what-a-save-holds.html">← What a save holds</a> · <a href="index.html">Saving and Loading</a> · <a href="effects-from-other-entities.html">Effects from other entities →</a></p>
+callbacks, is refused with a warning. It would empty the lists the step is going through, so load on the next frame
+instead.</p>
 
 </article>
 

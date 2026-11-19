@@ -87,7 +87,7 @@
         <article data-uid="guide.scalers.asking-a-worker">
 <h1 id="asking-a-worker">Asking a worker</h1>
 
-<p>A number can't count or remember; a worker can. So a number of the <strong>Worker</strong> kind asks workers for a value under a
+<p>A number can't count or remember, but a worker can. So a number of the <strong>Worker</strong> kind asks workers for a value under a
 key, and any worker answers by implementing <a class="xref" href="../../api/FarEmerald.PlayForge.INumberWorker.html"><code>INumberWorker</code></a>:</p>
 <pre><code class="lang-csharp">public class OverkillWorker : AbstractEffectWorker, INumberWorker
 {
@@ -104,23 +104,70 @@ key, and any worker answers by implementing <a class="xref" href="../../api/FarE
 }
 </code></pre>
 <ul>
-<li>An <strong>effect's workers</strong> answer about one application of their effect. A worker is one object on its effect's asset,
-shared by every application, so what it counts for each is kept on the spec: <code>ctx.GetState&lt;State&gt;(this)</code> in its
-events, and <code>spec.GetWorkerState&lt;State&gt;(this)</code> as it answers.</li>
-<li>An <strong>entity's workers</strong>, those its worker groups give it, answer about the entity. A worker group installs the
-ones that answer as it's given, and code that adds a worker itself calls <a class="xref" href="../../api/FarEmerald.PlayForge.NumberWorkers.html#FarEmerald_PlayForge_NumberWorkers_Provide_"><code>NumberWorkers.Provide(entity, worker)</code></a>.</li>
+<li>An <strong>effect's workers</strong> answer about one application of their effect.
+<ul>
+<li>A worker is one object on its effect's asset, shared by every application. So what it counts for each is kept on
+the spec.</li>
+<li>It reads that with <code>ctx.GetState&lt;State&gt;(this)</code> in its events, and <code>spec.GetWorkerState&lt;State&gt;(this)</code> as it answers.</li>
+</ul>
+</li>
+<li>An <strong>entity's workers</strong>, those its worker groups give it, answer about the entity.
+<ul>
+<li>A worker group installs the ones that answer as it's given.</li>
+<li>Code that adds a worker itself calls <a class="xref" href="../../api/FarEmerald.PlayForge.NumberWorkers.html#FarEmerald_PlayForge_NumberWorkers_Provide_"><code>NumberWorkers.Provide(entity, worker)</code></a>.</li>
+</ul>
+</li>
 <li>The first worker that answers the key gives the value. Where none does, the number reads its Default.</li>
 <li>Any number field can ask: an effect's magnitude, a task's range, a threshold. Code can ask too, with
-<a class="xref" href="../../api/FarEmerald.PlayForge.NumberWorkers.html#FarEmerald_PlayForge_NumberWorkers_TryAsk_"><code>NumberWorkers.TryAsk</code></a>. An Asset Part's Worker Value asks the workers of each effect it finds.</li>
+<a class="xref" href="../../api/FarEmerald.PlayForge.NumberWorkers.html#FarEmerald_PlayForge_NumberWorkers_TryAsk_"><code>NumberWorkers.TryAsk</code></a>.</li>
+<li>An Asset Part's Worker Value asks the workers of each effect it finds.</li>
 </ul>
+<h2 id="the-attribute-change-worker">The Attribute Change worker</h2>
 <p>The <strong>Attribute Change</strong> effect worker is one that answers. It notes an attribute as each application of its effect
-begins, and answers how much the attribute has <strong>Lost</strong>, <strong>Gained</strong> or <strong>Changed</strong> since, or what it was <strong>At
-Start</strong>. With <strong>Every Ticks</strong> above 0 it answers only on each Nth tick, and 0 on the others. A curse that deals 5 a
-second, and every fourth second a quarter of the health its target has lost since it landed, from every source, is one
-periodic effect: its first impact is −5, and its second is a Worker number, −0.25 × the worker's answer, with the
-worker watching the target's Health, Lost, Every Ticks 4.</p>
-<hr>
-<p><a href="a-number-field-in-your-own-code.html">← A number field in your own code</a> · <a href="index.html">Scalers</a> · <a href="scaler-assets.html">Scaler assets →</a></p>
+begins.</p>
+<p>It answers how much the attribute has <strong>Lost</strong>, <strong>Gained</strong> or <strong>Changed</strong> since, or what it was <strong>At
+Start</strong>. With <strong>Every Ticks</strong> above 0, it answers only on each Nth tick, and 0 on the others.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key</strong></td>
+<td>The key it answers under.</td>
+</tr>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>The attribute it watches.</td>
+</tr>
+<tr>
+<td><strong>Of</strong></td>
+<td>Whose attribute: the target's, the entity the effect is on, or the caster's.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>What it answers: Lost, Gained, Change or At Start.</td>
+</tr>
+<tr>
+<td><strong>Part</strong></td>
+<td>The attribute's current value, or its base.</td>
+</tr>
+<tr>
+<td><strong>Every Ticks</strong></td>
+<td>At 0, it answers at every read. Above 0, only on each Nth tick of its effect.</td>
+</tr>
+</tbody>
+</table>
+<p>A curse that deals 5 a second, and every fourth second a quarter of the health its target has lost since it landed,
+from every source, is one periodic effect:</p>
+<ul>
+<li>Its first impact is −5.</li>
+<li>Its second is a Worker number, −0.25 × the worker's answer.</li>
+<li>The worker watches the target's Health, Lost, Every Ticks 4.</li>
+</ul>
 
 </article>
 

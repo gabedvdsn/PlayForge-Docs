@@ -87,23 +87,21 @@
         <article data-uid="guide.effect-pipeline.7-entry-derivation-no-asset-migration">
 <h1 id="7-entry-derivation-no-asset-migration">7. Entry derivation (no asset migration)</h1>
 
-<p><strong>The first entry is derived, never serialized.</strong> The effect's impact quad + duration flags
-are its authored surface; <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_RebuildEntries_"><code>GameplayEffectImpact.RebuildEntries</code></a> re-derives that entry on
-<strong>every <code>Generate()</code></strong>, so inspector edits (magnitude, attribute target, duration policy, tick
-flags) always take effect on the next application. <code>Magnitude</code> on the derived entry references
-the live <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a>, so even already-registered modifiers re-evaluate new
-magnitudes on their next recompute.</p>
-<blockquote>
-<p>Serializing the derived entry was tried and reverted: <code>OnValidate</code> froze half-authored state
-into assets (null targets, stale magnitudes, deliveries minted while the policy was still
-Instant) and never re-synced.</p>
-</blockquote>
-<p><strong>Additional impacts are authored entries</strong>. <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_AdditionalImpacts"><code>GameplayEffectImpact.AdditionalImpacts</code></a>
-holds <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html"><code>AttributeImpactEntry</code></a> values that the impact drawer edits, each naming its own delivery,
-and <code>RebuildEntries</code> appends them, live, after the derived entry. One with no attribute is
-skipped, and so is one whose delivery the duration can't make (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html#FarEmerald_PlayForge_AttributeImpactEntry_IsDeliveryValidFor_"><code>IsDeliveryValidFor</code></a>), which the
-drawer flags in place.</p>
-<p>Delivery derivation (<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_ResolveDelivery_"><code>ResolveDelivery</code></a>):</p>
+<p><strong>The first entry is derived, never serialized.</strong> The effect's impact quad + duration flags are its authored surface.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_RebuildEntries_"><code>GameplayEffectImpact.RebuildEntries</code></a> re-derives that entry on <strong>every <code>Generate()</code></strong>. So inspector edits (magnitude,
+attribute target, duration policy, tick flags) always take effect on the next application.</p>
+<p><code>Magnitude</code> on the derived entry references the live <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a>, so even already-registered modifiers re-evaluate
+new magnitudes on their next recompute.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Serializing the derived entry was tried and reverted: <code>OnValidate</code> froze half-authored state into assets (null
+targets, stale magnitudes, deliveries minted while the policy was still Instant) and never re-synced.</p>
+</div>
+<p><strong>Additional impacts are authored entries</strong>. <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_AdditionalImpacts"><code>GameplayEffectImpact.AdditionalImpacts</code></a> holds <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html"><code>AttributeImpactEntry</code></a>
+values that the impact drawer edits, each naming its own delivery.</p>
+<p><code>RebuildEntries</code> appends them, live, after the derived entry. It skips one with no attribute, and one whose delivery the
+duration can't make (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeImpactEntry.html#FarEmerald_PlayForge_AttributeImpactEntry_IsDeliveryValidFor_"><code>IsDeliveryValidFor</code></a>), which the drawer flags in place.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectImpact.html#FarEmerald_PlayForge_GameplayEffectImpact_ResolveDelivery_"><code>ResolveDelivery</code></a> derives the first entry's delivery from the authored shape:</p>
 <table>
 <thead>
 <tr>
@@ -131,12 +129,15 @@ drawer flags in place.</p>
 </tbody>
 </table>
 <p><strong>Window → PlayForge → Problems</strong> lists each effect that has one of the shapes above, among the validator's other
-problems — read-only, nothing is written.</p>
-<p>Deleted outright: <code>IsSustainedModifier()</code>, the Mode A/B inference, <code>TickAttribute</code>,
-<code>RollbackCommittedDelta</code>, tick-rollback via <a class="xref" href="../../api/FarEmerald.PlayForge.TrackedImpact.html"><code>TrackedImpact</code></a> (which is analytics-only now).</p>
-<hr>
-<hr>
-<p><a href="6-initialization--auto-scaling.html">← 6. Initialization &amp; auto-scaling</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="8-verification.html">8. Verification →</a></p>
+problems. It's read-only: nothing is written.</p>
+<p>Deleted outright:</p>
+<ul>
+<li><code>IsSustainedModifier()</code>;</li>
+<li>the Mode A/B inference;</li>
+<li><code>TickAttribute</code>;</li>
+<li><code>RollbackCommittedDelta</code>;</li>
+<li>tick-rollback via <a class="xref" href="../../api/FarEmerald.PlayForge.TrackedImpact.html"><code>TrackedImpact</code></a>, which is analytics-only now.</li>
+</ul>
 
 </article>
 

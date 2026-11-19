@@ -87,16 +87,43 @@
         <article data-uid="guide.processes.pausing">
 <h1 id="pausing">Pausing</h1>
 
-<p>A pause holds a process in place, at once. A process that can hold its run says so by returning true from
-<code>TryHandlePause</code>: its run stays alive, watches <code>relay.IsWaiting</code>, and carries on after <code>TryHandleResume</code>. Any other
-process has its run cancelled, and a new run starts on <code>Unpause</code>.</p>
-<p>ProcessControl set to <code>Waiting</code> or <a class="xref" href="../../api/FarEmerald.PlayForge.EProcessControlState.html#FarEmerald_PlayForge_EProcessControlState_ClosedWaiting"><code>ClosedWaiting</code></a> pauses everything running the same way, and leaving those states
-sends back exactly what they stopped. A process paused on its own stays paused, and <code>Unpause</code> is refused until
-ProcessControl is back. A <code>Terminate</code> asked for outranks a pause.</p>
-<p>A task sequence holds its run: no stage starts or ends, its time limits stop counting, its conditions aren't checked,
-and the task library's waits hold, given the token their task was handed.</p>
-<hr>
-<p><a href="registering-one.html">← Registering one</a> · <a href="index.html">Processes</a> · <a href="groups.html">Groups →</a></p>
+<p>A pause holds a process in place, at once. What happens to the process's run depends on whether the process can hold
+it:</p>
+<table>
+<thead>
+<tr>
+<th>Process</th>
+<th>On a pause</th>
+<th>On <code>Unpause</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One that can hold its run, and says so by returning true from <code>TryHandlePause</code></td>
+<td>Its run stays alive, and watches <code>relay.IsWaiting</code>.</td>
+<td>Its run carries on after <code>TryHandleResume</code>.</td>
+</tr>
+<tr>
+<td>Any other process</td>
+<td>Its run is cancelled.</td>
+<td>A new run starts.</td>
+</tr>
+</tbody>
+</table>
+<p>ProcessControl can pause every process at once. Setting it to <code>Waiting</code> or <a class="xref" href="../../api/FarEmerald.PlayForge.EProcessControlState.html#FarEmerald_PlayForge_EProcessControlState_ClosedWaiting"><code>ClosedWaiting</code></a> pauses everything running,
+in the same way. Leaving those states sends back exactly what they stopped.</p>
+<ul>
+<li>A process paused on its own stays paused.</li>
+<li><code>Unpause</code> is refused until ProcessControl is back.</li>
+<li>A <code>Terminate</code> asked for outranks a pause.</li>
+</ul>
+<p>A paused task sequence holds its run:</p>
+<ul>
+<li>No stage starts or ends.</li>
+<li>Its time limits stop counting.</li>
+<li>Its conditions aren't checked.</li>
+<li>The task library's waits hold, given the token their task was handed.</li>
+</ul>
 
 </article>
 

@@ -88,30 +88,202 @@
 <h1 id="abilities">Abilities</h1>
 
 <p>An <strong>Ability</strong> asset describes one thing an entity can do, such as a fireball, a dash or a heal. An entity is anything
-that runs a gameplay ability system (GAS), such as the player or an enemy. An entity learns an ability from its Entity
-asset's Starting Abilities, from an equipped Item, or from code (<a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_GiveAbility_"><code>AbilitySystemComponent.GiveAbility</code></a>). It keeps the
-ability until the ability is removed.</p>
+that runs a gameplay ability system (GAS), such as the player or an enemy.</p>
+<pre><code class="lang-mermaid">classDiagram
+class Ability:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Definition : AbilityDefinition
++Tags : AbilityTags
++Behaviour : AbilityBehaviour
++SourceActivationRules : List~IAbilityValidationRule~
++Cost : GameplayEffect
++Cooldown : GameplayEffect
++Components : List~AbstractAbilityComponent~
++Find() T, its first component that is a T
++Generate(ISource owner, int level) AbilitySpec
+}
+class AbilityDefinition:::asset {
+&lt;&lt;Serializable&gt;&gt;
++ActivationPolicy : EAbilityActivationPolicyExtended
++WhileTargeting : EWhileTargeting
++BufferWindow : ScalableFloat
++ActivateImmediately : bool
++Triggers : List~AbilityTrigger~
++ChanceToActivate
++IgnoresCrowdControl : List~Tag~
+}
+class AbilityTags:::asset {
++AssetTag : Tag
++ContextTags
++PassiveGrantedTags
++ActiveGrantedTags
++TagRequirements : AbilityTagRequirements
+}
+class AbilityBehaviour:::asset {
+&lt;&lt;Serializable&gt;&gt;
++Targeting : AbstractTargetingAbilityTask
++UseImplicitTargeting : bool
++ImplicitTag = TARGET
++AssetLoaders : List~AbstractSetAssetsTask~
++Stages : List~AbilityTaskBehaviourStage~
++CancelledBy
++Blocks
++GenerateProxy(name) AbilityProxy
+}
+class AbilityTaskBehaviourStage:::asset {
++StagePolicy : IAbilityProxyStagePolicy
++Tasks : List~AbstractAbilityTask~
++ApplyUsageEffects
++Condition : AbilityStageCondition
+}
+class AbilitySystemComponent:::rt {
++GiveAbility(Ability, int level, out int index) bool
++RemoveAbility(Ability)
++CreateActivationRequest(index, data, policy, bufferWindow)
++TryActivateAbility(request, out ActivationRefusal) ActivationResult
++TryActivateAbility(Ability or Tag, data, policy) ActivationResult
++SendGameplayEvent(Tag, ProcessDataPacket) int
++Inject(index, ISequenceInjection)
++Callbacks : AbilitySystemCallbacks
+}
+class AbilityActivationRequest:::rt {
+&lt;&lt;struct&gt;&gt;
++Index : int
++Policy
++Data : ProcessDataPacket
++BufferWindow : float
++CancelsTargeting : bool
+}
+class AbilitySpecContainer:::rt {
+one granted slot
++Spec : AbilitySpec
++Index : int
++IsActive : bool
++IsTargeting : bool
++IsCooldown : bool
++ActivateAbility(AbilityDataPacket) bool
++Cancel()
+}
+class BasicEffectOrigin:::ext {
+&lt;&lt;abstract&gt;&gt;
+registers its level under its asset tag
+}
+class AbilitySpec:::rt {
+the origin of what the ability applies
++Base : Ability
++Source : ISource
++CooldownModel : ICooldownModel
++Find() T, its ability's component
++ApplyUsageEffects(data)
++CanPayAttributeCosts(data) bool
++Read(ScalableFloat, data) float
+}
+class AbilityActivationHandle:::rt {
+one running activation
++Data : AbilityDataPacket
++Proxy : AbilityProxy
++IsTargeting : bool
++IsExecuting : bool
+}
+class AbilityProxy:::rt {
+CompiledTargeting : TaskSequence
+CompiledSequence : TaskSequence
++ActivateTargetingTask(token, data) UniTask
++Activate(token, data) UniTask
++Inject(inj, data)
++Clean()
++HasAnyCriticalStage : bool
+}
+class AbilitySequenceCompiler:::rt {
+&lt;&lt;static&gt;&gt;
++Compile(AbilityBehaviour, name) TaskSequence
++CompileTargeting() TaskSequence
+}
+class SequenceDataPacket:::rt
+class AbilityDataPacket:::rt {
+one per activation
++EffectOrigin : IEffectOrigin
++AbilitySpec : AbilitySpec
++static GenerateFrom(origin, request, implicit, tag)
++TryGetTarget(EDataTarget, out ITarget) bool
++ResolveTarget(Tag)
++GetTaskState(task) T
+}
+class AbilitySystemCallbacks:::rt {
++OnAbilityActivate
++OnAbilityEnd
++OnAbilityRefused(ActivationRefusal)
++OnGameplayEvent(Tag, ProcessDataPacket)
++OnAbilityStageActivate
++OnAbilityTaskActivate
+}
+class ActivationRefusal:::rt {
+&lt;&lt;struct&gt;&gt;
++Reason : EActivationRefusal
++Rule
++Detail
++Refused : bool
+}
+class AbilityCharges:::rt {
+the Charges component's, per ability
++Max
++Spent
++InHand
++StartCooldown(data)
+}
+Ability *-- AbilityDefinition
+Ability *-- AbilityTags
+Ability *-- AbilityBehaviour
+AbilityBehaviour &quot;1&quot; *-- &quot;many&quot; AbilityTaskBehaviourStage
+AbilityBehaviour ..&gt; AbilityProxy : GenerateProxy
+Ability ..&gt; AbilitySpec : Generate
+AbilitySystemComponent &quot;1&quot; *-- &quot;many&quot; AbilitySpecContainer
+AbilitySystemComponent ..&gt; AbilityActivationRequest
+AbilitySystemComponent *-- AbilitySystemCallbacks
+AbilitySystemCallbacks ..&gt; ActivationRefusal
+AbilitySpecContainer *-- AbilitySpec
+AbilitySpecContainer &quot;1&quot; *-- &quot;many&quot; AbilityActivationHandle
+AbilitySpecContainer o-- AbilityProxy : pooled
+BasicEffectOrigin &lt;|-- AbilitySpec
+AbilitySpec *-- AbilityCharges : ComponentStates
+AbilityActivationHandle --&gt; AbilityDataPacket
+AbilityActivationHandle --&gt; AbilityProxy
+AbilityProxy ..&gt; AbilitySequenceCompiler : compiles lazily
+SequenceDataPacket &lt;|-- AbilityDataPacket
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>The asset, its grant as an AbilitySpec in an AbilitySpecContainer slot, and one activation: an AbilityDataPacket and a pooled AbilityProxy that compiles lazily.</em></p>
+<p>An entity learns an ability in one of three ways, and keeps it until the ability is removed:</p>
+<ul>
+<li>from its Entity asset's Starting Abilities;</li>
+<li>from an equipped Item;</li>
+<li>from code, with <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_GiveAbility_"><code>AbilitySystemComponent.GiveAbility</code></a>.</li>
+</ul>
 <p>Each time the ability activates, the GAS checks that it may run, lets a targeting task pick a target, then runs the
-ability's stages of tasks. The ability's cost and cooldown are gameplay effects, assets that change an entity, which
-it applies to its caster. Abilities run as processes under <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>, so the scene needs one.</p>
+ability's stages of tasks. The ability's cost and cooldown are gameplay effects, assets that change an entity, which it
+applies to its caster. Abilities run as processes under <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>, so the scene needs one.</p>
 <p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
 made from its Name: Fire Ball gives <code>Ability.FireBall</code>. The entity carries this tag while it has the ability, and keeps
-the ability's level under it. Each section below matches the inspector section of the same name.</p>
-<p>The inspector's header shows the ability's one line, as The Forge's Summary column does: each effect it applies,
-by its first impact across its levels, then its costs and its cooldown, as &quot;-450/-600/-750 Health; 280/420/680 Mana;
-70/60/50 s&quot;. A number that reads what the editor can't give it, as the target, is marked <code>*</code>.</p>
+the ability's level under it.</p>
+<p>Each section below matches the inspector section of the same name.</p>
+<p>The inspector's header shows the ability's one line, as The Forge's Summary column does. The line gives each effect the
+ability applies, by its first impact across its levels, then its costs and its cooldown, as
+&quot;-450/-600/-750 Health; 280/420/680 Mana; 70/60/50 s&quot;. A number that reads what the editor can't give it, such as the
+target, is marked <code>*</code>.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the ability's display name.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the ability, describes it and sets its icon.</li>
 <li><a href="leveling.html">Leveling</a>: An ability has its own level on each entity that learns it, kept under the ability's asset tag.</li>
-<li><a href="tags.html">Tags</a>: <strong>Context Tags</strong> describe the ability, such as <code>Spell</code> or <code>Melee</code>.</li>
-<li><a href="activation.html">Activation</a>: This section is how the ability starts.</li>
-<li><a href="stages.html">Stages</a>: This section is what the ability does once it has started.</li>
+<li><a href="tags.html">Tags</a>: An ability's tags describe it, and some of them are applied to its entity while it has the ability or while it runs.</li>
+<li><a href="activation.html">Activation</a>: The Activation section sets how the ability starts: when it may start, what sets it off, what it costs and how it picks its target.</li>
+<li><a href="stages.html">Stages</a>: The Stages section sets what the ability does once it has started.</li>
 <li><a href="requirements.html">Requirements</a>: Requirements are what an activation must pass.</li>
 <li><a href="components.html">Components</a>: An ability's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
 <li><a href="workers.html">Workers</a>: Workers are reusable behaviours, picked from a list, that react to what happens to an entity.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this ability, each with its type icon, such as an entity that starts with it, an item that grants it, or a cost linked to it.</li>
+<li><a href="used-by.html">Used By</a>: The Used By section lists the PlayForge assets that refer to this ability, each with its type icon.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

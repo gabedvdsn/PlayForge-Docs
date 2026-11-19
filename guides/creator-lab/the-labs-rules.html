@@ -87,23 +87,73 @@
         <article data-uid="guide.creator-lab.the-labs-rules">
 <h1 id="the-labs-rules">The lab's rules</h1>
 
-<p>The lab needs to know a few things about a project: which attribute is a unit's health, which it walks at, which tags
-stop, hide or shield it, and which ability is its attack. With no rules given, it takes the attributes playing the
-project's Health and Movement Speed roles (<a href="../attributes/roles.html">Attributes: Roles</a>), or else finds the attributes named Health and
-Movement Speed (or Move Speed), and walks a unit without a speed at 4 a second. To say more, make a <strong>Lab Rules</strong> asset
-(<strong>Create → PlayForge → Lab Rules</strong>) and give it to the lab's <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html"><code>CreatorLab</code></a> component:</p>
+<p>The lab's rules tell it a few things about a project: which attribute is a unit's health, which it walks at, which
+tags stop, hide or shield it, and which ability is its attack.</p>
+<p>With no rules given, the lab:</p>
 <ul>
-<li><strong>Health</strong> and <strong>Movement Speed</strong>, or <strong>Walk Speed</strong> where a unit has none. Left empty, each is the project's.</li>
-<li><strong>Stops</strong>: tags that stop a unit moving, as Stunned. <strong>Hides</strong>: tags under which the other side can't see or target
-it, as Invisible. <strong>Shields</strong>: tags under which no one can target it.</li>
-<li><strong>Attack Range Key</strong>: the Local Data key a unit's attack range is under, or <strong>Attack Range</strong> for every unit; a unit
-whose attack has a reach of its own, as a Cast Range, attacks from as far as it reaches.</li>
-<li><strong>Attack Slot</strong>: which of an entity's starting abilities is its attack, from 0, or −1 for none.</li>
-<li><strong>Driver</strong>: the project's <strong>Lab Driver</strong>, which the unit you control is ordered about through (<a href="your-unit.html">Your unit</a>).</li>
+<li>takes the attributes playing the project's Health and Movement Speed roles
+(<a href="../attributes/roles.html">Attributes: Roles</a>), or else finds the attributes named Health and Movement Speed (or Move Speed);</li>
+<li>walks a unit without a speed at 4 a second.</li>
 </ul>
+<h2 id="lab-rules-properties">Lab Rules properties</h2>
+<p>To say more, you give the lab a <strong>Lab Rules</strong> asset.</p>
+<ol>
+<li>Make one with <strong>Create → PlayForge → Lab Rules</strong>.</li>
+<li>Give it to the lab's <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html"><code>CreatorLab</code></a> component.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Health</strong></td>
+<td>The attribute that is a unit's health. Left empty, it's the project's.</td>
+</tr>
+<tr>
+<td><strong>Movement Speed</strong></td>
+<td>The attribute a unit walks at. Left empty, it's the project's.</td>
+</tr>
+<tr>
+<td><strong>Walk Speed</strong></td>
+<td>How fast a unit walks where it has no Movement Speed.</td>
+</tr>
+<tr>
+<td><strong>Stops</strong></td>
+<td>Tags that stop a unit moving, as Stunned.</td>
+</tr>
+<tr>
+<td><strong>Hides</strong></td>
+<td>Tags under which the other side can't see or target it, as Invisible.</td>
+</tr>
+<tr>
+<td><strong>Shields</strong></td>
+<td>Tags under which no one can target it.</td>
+</tr>
+<tr>
+<td><strong>Attack Range Key</strong></td>
+<td>The Local Data key a unit's attack range is under.</td>
+</tr>
+<tr>
+<td><strong>Attack Range</strong></td>
+<td>An attack range for every unit, in place of the key.</td>
+</tr>
+<tr>
+<td><strong>Attack Slot</strong></td>
+<td>Which of an entity's starting abilities is its attack, from 0, or −1 for none.</td>
+</tr>
+<tr>
+<td><strong>Driver</strong></td>
+<td>The project's <strong>Lab Driver</strong>, which the unit you control is ordered about through (<a href="your-unit.html">Your unit</a>).</td>
+</tr>
+</tbody>
+</table>
+<p>A unit whose attack has a reach of its own, as a Cast Range, attacks from as far as it reaches.</p>
+<p>The rules also hold the bots' keys: <strong>Cast Order Key</strong>, <strong>Cast When Key</strong> and <strong>Reach Key</strong> (<a href="battle.html">Battle</a>).</p>
 <p>The Demo's roster is the Demo's rules: its units, camera and dummy are the lab's, so the two can't drift.</p>
-<hr>
-<p><a href="showing-its-working.html">← Showing its working</a> · <a href="index.html">The Creator Lab</a> · <a href="in-code.html">In code →</a></p>
 
 </article>
 

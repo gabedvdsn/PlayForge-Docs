@@ -87,11 +87,39 @@
         <article data-uid="guide.extending.readers">
 <h1 id="readers">Readers</h1>
 
-<p>A reader is a MonoBehaviour process that shows an entity's state, a bar or a counter: <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractReader.html"><code>AbstractReader</code></a>, a
-<a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a>, which <code>Assign(gas)</code> gives its entity. This section covers writing one.</p>
-<p><code>Assign</code> keeps the entity as <code>Source</code> and calls <code>SubscribeIfOnChangePolicy()</code>, which a reader implements to hear the
-changes it shows through the entity's callbacks, or leaves empty to read the entity in <code>WhenUpdate</code>. PlayForge's
-<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeReader.html"><code>AttributeReader</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityReader.html"><code>AbilityReader</code></a> are readers.</p>
+<p>A reader is a MonoBehaviour process that shows an entity's state, as a bar or a counter.</p>
+<p>This section covers writing one.</p>
+<h2 id="writing-a-reader">Writing a reader</h2>
+<p>A reader of a game's own shows a piece of an entity's state in the game's UI.</p>
+<p>Derive from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractReader.html"><code>AbstractReader</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.LazyMonoProcess.html"><code>LazyMonoProcess</code></a>. <code>Assign(gas)</code> gives it its entity: it keeps the entity as <code>Source</code>,
+and calls <code>SubscribeIfOnChangePolicy()</code>. PlayForge's <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeReader.html"><code>AttributeReader</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityReader.html"><code>AbilityReader</code></a> are readers.</p>
+<h3 id="hooks">Hooks</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When PlayForge calls it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SubscribeIfOnChangePolicy()</code></td>
+<td>As <code>Assign</code> gives it its entity. A reader implements it to hear the changes it shows through the entity's callbacks, or leaves it empty to read the entity in <code>WhenUpdate</code>.</td>
+</tr>
+<tr>
+<td><code>WhenUpdate</code></td>
+<td>At its timing, as for any process.</td>
+</tr>
+<tr>
+<td><code>WhenTerminate</code>, <code>WhenDestroy</code></td>
+<td>As it ends, and as its object is destroyed: where a reader that subscribed unsubscribes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-the-picker">In the picker</h3>
+<p>No picker offers a reader: it's a MonoBehaviour process on an object, which code gives its entity with <code>Assign(gas)</code>.</p>
+<h3 id="example">Example</h3>
+<p>This reader tells its listeners a tag's weight on its entity as it changes, as a stack counter shows it:</p>
 <pre><code class="lang-csharp">using FarEmerald.PlayForge;
 using UnityEngine;
 using UnityEngine.Events;
@@ -122,13 +150,12 @@ namespace MyGame
     }
 }
 </code></pre>
+<h3 id="traps">Traps</h3>
 <ul>
 <li><strong>A reader that subscribes unsubscribes</strong>, in <code>WhenTerminate</code> or <code>WhenDestroy</code>, and <code>Assign</code> called again subscribes
 again. A lambda subscribed can't be taken off: subscribe a method.</li>
 <li><strong>A reader runs as a process</strong>: ProcessControl registers one already in a scene as it starts.</li>
 </ul>
-<hr>
-<p><a href="a-games-own-objects.html">← A game's own objects</a> · <a href="index.html">Extending PlayForge</a> · <a href="time-randomness-and-input.html">Time, randomness and input →</a></p>
 
 </article>
 

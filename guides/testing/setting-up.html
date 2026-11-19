@@ -87,18 +87,22 @@
         <article data-uid="guide.testing.setting-up">
 <h1 id="setting-up">Setting up</h1>
 
-<p>The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as its own test
-runner is. In a test assembly of the project's (an assembly definition whose <strong>Define Constraints</strong> hold
-<code>UNITY_INCLUDE_TESTS</code>, referencing <code>nunit.framework.dll</code>), add to <strong>Assembly Definition References</strong>:</p>
+<p>The kit is compiled wherever the <strong>Test Framework</strong> package (<code>com.unity.test-framework</code>) is installed, as the Test
+Framework's own test runner is.</p>
+<p>To use it from your project's tests:</p>
+<ol>
+<li>Use a test assembly of the project's: an assembly definition whose <strong>Define Constraints</strong> hold <code>UNITY_INCLUDE_TESTS</code>,
+referencing <code>nunit.framework.dll</code>.</li>
+<li>Add these to its <strong>Assembly Definition References</strong>:
 <ul>
-<li><code>FarEmerald.PlayForge</code> and <code>FarEmerald.PlayForge.Testing</code>;</li>
-<li><code>UniTask</code>;</li>
-<li><code>UnityEngine.TestRunner</code> and <code>UnityEditor.TestRunner</code>.</li>
+<li><code>FarEmerald.PlayForge</code> and <code>FarEmerald.PlayForge.Testing</code></li>
+<li><code>UniTask</code></li>
+<li><code>UnityEngine.TestRunner</code> and <code>UnityEditor.TestRunner</code></li>
 </ul>
-<p>The kit's tests are PlayMode tests, as they step the real player loop: give the assembly every platform, not the Editor
-alone.</p>
-<hr>
-<p><a href="index.html">← Testing Your Content</a> · <a href="index.html">Testing Your Content</a> · <a href="a-test.html">A test →</a></p>
+</li>
+<li>Give the assembly every platform, not the Editor alone.</li>
+</ol>
+<p>The assembly needs every platform because the kit's tests are PlayMode tests, which step the real player loop.</p>
 
 </article>
 

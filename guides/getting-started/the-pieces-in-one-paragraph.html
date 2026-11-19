@@ -87,12 +87,157 @@
         <article data-uid="guide.getting-started.the-pieces-in-one-paragraph">
 <h1 id="the-pieces-in-one-paragraph">The pieces in one paragraph</h1>
 
-<p>An <strong>EntityIdentity</strong> asset configures an entity: its <strong>AttributeSet</strong> (attributes with
-starting Current/Base values, clamping, regulation), starting <strong>Abilities</strong>, starting
-<strong>Items</strong>, tags and level range. At runtime a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> (MonoBehaviour) or
-<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> (plain class) instantiates that identity. <strong>GameplayEffect</strong>
-assets change attributes; each effect's impact entry has a <em>delivery</em> that decides
-everything about its lifecycle:</p>
+<p>This section shows how PlayForge's pieces fit together.</p>
+<pre><code class="lang-mermaid">classDiagram
+class BaseForgeAsset:::ext {
+&lt;&lt;abstract ScriptableObject&gt;&gt;
++LocalData : List~DataWrapper~
++TryGetLocalData(Tag, out DataWrapper) bool
++Template
++SetTemplate(asset)
+GetGrantedTags()
+}
+class BaseForgeLevelProvider:::ext {
+&lt;&lt;abstract&gt;&gt;
+GetMaxLevel()
+GetStartingLevel()
+LinkToProvider(provider)
+}
+class EntityIdentity:::asset {
++AttributeSet
++StartingAbilities
++StartingItems, with EquipOnInit
++TimeScaleAttribute
++Modifiers
++CrowdControl
++Death: OnDeath and OnRevive effects, Body
++Components: Bounty and Aura effects
+}
+class AttributeSet:::asset {
++Attributes
++SubSets
++WorkerGroup
+}
+class Attribute:::asset {
++AbsorbsFor
++GainsScaledBy
+}
+class Ability:::asset {
++Behaviour: tasks name effects, items, processes, sequences
++Cost
++Cooldown
++AttributeCosts
++OnHit
++Modifiers
+}
+class GameplayEffect:::asset {
++ImpactSpecification: Attribute, ScalableFloat, ValuePipeline, Packets of contained effects
++DurationSpecification: overflow effects
++SourceRequirements, TargetRequirements
++GrantedAbilities
++Modifiers
+}
+class Item:::asset {
++GrantedEffects
++ActiveAbility
++Components: SetBonus, Aura
++Modifiers
+}
+class EffectModifier:::asset {
++Rule: conditions and changes
+}
+class ValuePipeline:::asset {
++Stages
+}
+class ScalerAsset:::asset {
++Scaler
+}
+class RequirementTemplate:::asset {
++Category
++Requirements
+}
+class CrowdControlRules:::asset {
++Rules
+}
+class ForgeAssetCatalog:::asset {
++Entries
++TryFind(id)
++AddProjectAssets()
+}
+class ForgeProject:::asset {
++Settings : ForgeProjectSettings
++static Current
++Use(project)
+}
+class ForgeProjectSettings:::asset {
++Roles : List~AttributeRole~
++CrowdControl
++Cues : CueLibrary
++ResolveOrder
++CombatLog
++Authoring : ForgeAuthoringSettings
++PurgeLevels
++Workers : StandardWorkerGroup
+}
+class CueLibrary:::asset {
++Routes: cue handlers by tag
+}
+class ForgeTagLibrary:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++Entries
++Contexts
+read only by the editor
+}
+class TaskSequenceReference:::asset {
+points at a TaskSequenceMethod
+}
+BaseForgeAsset &lt;|-- BaseForgeLevelProvider
+BaseForgeAsset &lt;|-- Attribute
+BaseForgeLevelProvider &lt;|-- EntityIdentity
+BaseForgeLevelProvider &lt;|-- AttributeSet
+BaseForgeLevelProvider &lt;|-- Ability
+BaseForgeLevelProvider &lt;|-- GameplayEffect
+BaseForgeLevelProvider &lt;|-- Item
+ForgeAssetCatalog &lt;|-- ForgeProject
+ForgeProject *-- ForgeProjectSettings
+EntityIdentity --&gt; AttributeSet
+EntityIdentity --&gt; Ability : StartingAbilities
+EntityIdentity --&gt; Item : StartingItems
+EntityIdentity --&gt; CrowdControlRules
+EntityIdentity --&gt; GameplayEffect : death, bounty, aura
+AttributeSet --&gt; Attribute
+AttributeSet --&gt; ScalerAsset : shared cached scalers
+Ability --&gt; GameplayEffect : Cost, Cooldown, toggle, OnHit, tasks
+Ability --&gt; Item : ConsumeItemTask
+Ability --&gt; TaskSequenceReference : RunSequenceTask
+GameplayEffect --&gt; Attribute
+GameplayEffect --&gt; ValuePipeline
+GameplayEffect --&gt; ScalerAsset : SharedScaler
+GameplayEffect --&gt; RequirementTemplate
+GameplayEffect --&gt; Ability : GrantedAbilities
+GameplayEffect --&gt; EffectModifier
+Item --&gt; GameplayEffect : GrantedEffects, SetBonus
+Item --&gt; Ability : ActiveAbility
+EffectModifier --&gt; GameplayEffect : contained and overflow effects
+ForgeProjectSettings --&gt; Attribute : Roles
+ForgeProjectSettings --&gt; CrowdControlRules
+ForgeProjectSettings --&gt; CueLibrary : Cues
+ForgeProjectSettings --&gt; GameplayEffect : Cost and Cooldown templates
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>Which asset holds which. Every asset derives from BaseForgeAsset, the levelled ones from BaseForgeLevelProvider. An Ability, effect, Item, AttributeSet or entity can LinkToProvider and follow another's level.</em></p>
+<p>An <strong>EntityIdentity</strong> asset configures an entity:</p>
+<ul>
+<li>its <strong>AttributeSet</strong>: attributes with starting Current/Base values, clamping and regulation;</li>
+<li>its starting <strong>Abilities</strong> and starting <strong>Items</strong>;</li>
+<li>its tags and its level range.</li>
+</ul>
+<p>At runtime, a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> (a MonoBehaviour) or a <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> (a plain class)
+instantiates that identity.</p>
+<p><strong>GameplayEffect</strong> assets change attributes. Each effect's impact entry has a <em>delivery</em>, which decides everything
+about its lifecycle:</p>
 <table>
 <thead>
 <tr>
@@ -119,15 +264,16 @@ everything about its lifecycle:</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Abilities</strong> run staged task lists (targeting → apply effects → run code-driven
-sequences), with cost and cooldown expressed as effects. Full pipeline reference:
-<a href="../effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a>.</p>
-<p><a href="../recipes/index.html">Recipes</a> builds ten common rules from these pieces with no code, a crit, an execute, a counter and more,
-each in the Additional Content sample; <a href="../workers/index.html">Workers</a> maps when each kind of worker runs, and for whom.
-<a href="../cues/index.html">Cues</a> brings together what effects, abilities, entities and items show and sound: their cues, and
-the Cue Library that routes cue tags to them.</p>
-<hr>
-<p><a href="requirements.html">← Requirements</a> · <a href="index.html">Getting Started</a> · <a href="quickstart-a-damage-ability-in-10-minutes.html">Quickstart: a damage ability in ~10 minutes →</a></p>
+<p><strong>Abilities</strong> run staged task lists (targeting → apply effects → run code-driven sequences). Their cost and cooldown
+are expressed as effects. <a href="../effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a> is the full pipeline reference.</p>
+<p>To go further:</p>
+<ul>
+<li><a href="../recipes/index.html">Recipes</a> builds ten common rules from these pieces with no code, as a crit, an execute and a counter,
+each in the Additional Content sample.</li>
+<li><a href="../workers/index.html">Workers</a> maps when each kind of worker runs, and for whom.</li>
+<li><a href="../cues/index.html">Cues</a> brings together what effects, abilities, entities and items show and sound: their cues, and the
+Cue Library that routes cue tags to them.</li>
+</ul>
 
 </article>
 

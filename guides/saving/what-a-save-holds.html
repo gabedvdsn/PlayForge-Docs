@@ -87,28 +87,56 @@
         <article data-uid="guide.saving.what-a-save-holds">
 <h1 id="what-a-save-holds">What a save holds</h1>
 
+<p>A save holds what lasts on the entity.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What the save holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attributes</td>
+<td>Each attribute's permanent commits, as a total per retention group. Modifiers aren't saved: they come back with the effects that carry them.</td>
+</tr>
+<tr>
+<td>Levels</td>
+<td>The levels the entity keeps: its own, and its abilities' and items'. Its own is saved as the entity's own, so a save of one kind loads onto another kind as that one's level.</td>
+</tr>
+<tr>
+<td>Abilities</td>
+<td>The abilities it knows of its own, in their slots, at their levels.</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>Its items in order, each with its level and stacks, worn or not.</td>
+</tr>
+<tr>
+<td>Effects</td>
+<td>Each effect, with what applied it, its stacks, its time left and the time to its next tick, and the magnitudes its caller set.</td>
+</tr>
+<tr>
+<td>Tags and time scale</td>
+<td>Its loose tags, and the time scale its code set. Its Time Scale attribute's is read again from the attribute.</td>
+</tr>
+</tbody>
+</table>
+<p>An effect's times are saved exactly:</p>
 <ul>
-<li>Each attribute's permanent commits, as a total per retention group. Modifiers aren't saved: they come back with the
-effects that carry them.</li>
-<li>The levels the entity keeps: its own, and its abilities' and items'. Its own is saved as the entity's own, so a save
-of one kind loads onto another kind as that one's level.</li>
-<li>The abilities it knows of its own, in their slots, at their levels.</li>
-<li>Its items in order, each with its level and stacks, worn or not.</li>
-<li>Its effects, each with what applied it, its stacks, its time left and the time to its next tick, and the magnitudes
-its caller set. Stacks with durations of their own keep their own times. The times are kept in full, as the effect's
-timers keep them, so a restored effect keeps time with one that never was, to the last digit.</li>
-<li>Its loose tags, and the time scale its code set; its Time Scale attribute's is read again from the attribute.</li>
+<li>Stacks with durations of their own keep their own times.</li>
+<li>The times are kept in full, as the effect's timers keep them. So a restored effect keeps time with one that never
+went through a save, to the last digit.</li>
 </ul>
 <p>An ability that an effect or a worn item lends isn't saved on its own. It comes back with the effect or the item.</p>
-<p>A save leaves out:</p>
+<h2 id="what-a-save-leaves-out">What a save leaves out</h2>
+<p>A save leaves out three things:</p>
 <ul>
 <li>the entity's Local Data;</li>
 <li>its sides, which come from its asset and its registration;</li>
-<li>what an effect captured as it landed, such as a source's attribute or a roll made once. The effect captures it
-again as it comes back.</li>
+<li>what an effect captured as it landed, such as a source's attribute or a roll made once. The effect captures it again
+as it comes back.</li>
 </ul>
-<hr>
-<p><a href="the-asset-catalog.html">← The Asset Catalog</a> · <a href="index.html">Saving and Loading</a> · <a href="what-a-load-does.html">What a load does →</a></p>
 
 </article>
 

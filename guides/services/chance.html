@@ -87,51 +87,47 @@
         <article data-uid="guide.services.chance">
 <h1 id="chance">Chance</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html"><code>ForgeChance</code></a> rolls every chance PlayForge has, each by its <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceRoll.html"><code>ChanceRoll</code></a>, which says whether it's pseudo-random and
-whose luck it reads.</p>
-<p>PlayForge's chances are an effect's <strong>Chance to Apply</strong>, an ability's <strong>Chance to Activate</strong>, a trigger's <strong>Chance</strong>, a
-Value Pipeline's <strong>Chance</strong>, <strong>Block</strong> and <strong>Evade</strong> stages, and the <strong>Chance</strong> condition.
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_Roll_"><code>ForgeChance.Roll(chance, in context, roll, key)</code></a> says whether a chance, from 0 to 1, comes up for the caster its
-<a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html"><code>NumberContext</code></a> gives. A chance of 1 or more always comes up and one of 0 or less never does, and neither draws, so a
-chance that can't miss leaves the numbers others draw as they were. Each of PlayForge's chances has a <code>ChanceRoll</code>
-beside it, its <strong>Chance Roll</strong>, <strong>Activation Roll</strong> or <strong>Roll</strong>, which says how it rolls
-(<a href="../effects/requirements.html">Effects: Requirements</a>):</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html"><code>ForgeChance</code></a> rolls every chance PlayForge has. Each rolls by its <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceRoll.html"><code>ChanceRoll</code></a>, which says whether it's pseudo-random
+and whose luck it reads.</p>
+<p>PlayForge's chances are:</p>
 <ul>
-<li><strong>Pseudo Random</strong>: each miss raises the next roll's odds and a hit starts them again, so streaks even out while the
-chance over many rolls stays the same. The odds are <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_Constant_"><code>ForgeChance.Constant(chance)</code></a> times one more than the misses in a
-row, at most 1: the constant whose distribution's mean is the chance, as Dota's pseudo-random distribution is. Each
-caster keeps its own streak for each chance, by the chance's key, and PlayForge's own chances key by what holds them:
-the effect, the ability, the trigger, the stage or the condition. A pseudo-random roll with no key or no caster rolls
-its chance as it is. A caster's streaks go with it, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_ForgetStreaks_"><code>ForgeChance.ForgetStreaks(caster)</code></a> forgets them, as a test
-does to start clean.</li>
-<li><strong>Luck</strong>: the roll's luck, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_LuckOf_"><code>ForgeChance.LuckOf(in context, roll)</code></a>. With <strong>Own Luck</strong>, it's the chance's own <strong>Luck</strong>,
-a number read for the roll; else it's the current value of the caster's attribute playing the project's Luck role,
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeChance.html#FarEmerald_PlayForge_ForgeChance_ProjectLuck"><code>ForgeChance.ProjectLuck</code></a> (<a href="../attributes/roles.html">Attributes: Roles</a>); else 0. Either is rounded to a whole number. Above
-0, the roll draws that many more times and keeps the best; below 0, the worst. A draw below the odds comes up.</li>
+<li>an effect's <strong>Chance to Apply</strong>;</li>
+<li>an ability's <strong>Chance to Activate</strong>;</li>
+<li>a trigger's <strong>Chance</strong>;</li>
+<li>a Value Pipeline's <strong>Chance</strong>, <strong>Block</strong> and <strong>Evade</strong> stages;</li>
+<li>the <strong>Chance</strong> condition.</li>
 </ul>
-<p>The <strong>Chance</strong> condition, <a class="xref" href="../../api/FarEmerald.PlayForge.ChanceCondition.html"><code>ChanceCondition</code></a>, holds on a roll of its <strong>Chance</strong>, a number of any kind, as a critical
-strike chance read from an attribute, rolled by its <strong>Roll</strong>. Read in a hit, it rolls once and keeps the roll, so the
-hit's preview and its commit read the same; read with no hit, it rolls each time it's read.</p>
-<p>A chance of the game's own rolls the same way:</p>
-<pre><code class="lang-csharp">using FarEmerald.PlayForge;
-
-public static class Lockpicking
-{
-    // The key the thief's pseudo-random streak for this chance is kept under
-    private static readonly object Key = new object();
-
-    // Pseudo-random, and lucky by the thief's attribute in the project's Luck role
-    private static readonly ChanceRoll Roll = new ChanceRoll { PseudoRandom = true };
-
-    public static bool Picks(IGameplayAbilitySystem thief, float chance)
-    {
-        var context = NumberContext.Of(thief);
-        return ForgeChance.Roll(chance, in context, Roll, Key);
-    }
-}
-</code></pre>
-<hr>
-<p><a href="random-numbers.html">← Random numbers</a> · <a href="index.html">Time, Input and Logging</a> · <a href="repeatable-runs.html">Repeatable runs →</a></p>
+<p>Each has a <code>ChanceRoll</code> beside it, its <strong>Chance Roll</strong>, <strong>Activation Roll</strong> or <strong>Roll</strong>, which says how it rolls
+(<a href="../effects/requirements.html">Effects: Requirements</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pseudo Random</strong></td>
+<td>Each miss raises the next roll's odds, and a hit starts them again (<a href="chance/pseudo-random-rolls.html">Pseudo-random rolls</a>).</td>
+</tr>
+<tr>
+<td><strong>Own Luck</strong></td>
+<td>The roll reads the chance's own <strong>Luck</strong>, in place of the caster's attribute in the project's Luck role (<a href="chance/luck.html">Luck</a>).</td>
+</tr>
+<tr>
+<td><strong>Luck</strong></td>
+<td>The chance's own luck, a number read for the roll.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="chance/rolling-a-chance.html">Rolling a chance</a>: <code>ForgeChance.Roll(chance, in context, roll, key)</code> says whether a chance, from 0 to 1, comes up for the caster its <code>NumberContext</code> gives.</li>
+<li><a href="chance/pseudo-random-rolls.html">Pseudo-random rolls</a>: A pseudo-random roll evens out streaks: each miss raises the next roll's odds, and a hit starts them again.</li>
+<li><a href="chance/luck.html">Luck</a>: A roll's luck, <code>ForgeChance.LuckOf(in context, roll)</code>, is the first of these that applies</li>
+<li><a href="chance/the-chance-condition.html">The Chance condition</a>: The <strong>Chance</strong> condition, <code>ChanceCondition</code>, holds on a roll of its <strong>Chance</strong>, rolled by its <strong>Roll</strong>.</li>
+</ul>
 
 </article>
 

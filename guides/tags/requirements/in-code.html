@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>In code | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="In code | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.tags.requirements.in-code">
+<h1 id="in-code">In code</h1>
+
+<p>You can build and check an <a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html"><code>AvoidRequireTagGroup</code></a> in code.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirement_"><code>AddRequirement(tag, mode)</code></a></td>
+<td>Adds a query of the tag's presence to <strong>Requires</strong>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidance_"><code>AddAvoidance(tag, mode)</code></a></td>
+<td>Adds a query of the tag's presence to <strong>Must not have</strong>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddRequirementWithChildren_"><code>AddRequirementWithChildren(tag)</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_AddAvoidanceWithChildren_"><code>AddAvoidanceWithChildren(tag)</code></a></td>
+<td>Add the same queries, under Include Children.</td>
+</tr>
+<tr>
+<td><code>RemoveTag(tag)</code></td>
+<td>Takes a tag's queries out.</td>
+</tr>
+<tr>
+<td><code>Clear()</code></td>
+<td>Takes every query out.</td>
+</tr>
+<tr>
+<td><code>Validate</code></td>
+<td>Passes or fails the group against a cache or a list, as a query does.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidateDetailed_"><code>ValidateDetailed</code></a></td>
+<td>Says why, as an <a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html"><code>AvoidRequireTagGroup.ValidationResult</code></a>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.html#FarEmerald_PlayForge_AvoidRequireTagGroup_GetAllReferencedTags_"><code>GetAllReferencedTags()</code></a></td>
+<td>Lists the tags the group names.</td>
+</tr>
+<tr>
+<td><code>Clone()</code></td>
+<td>Copies the group.</td>
+</tr>
+<tr>
+<td><code>CopyFrom(group)</code></td>
+<td>Takes another group's name and queries.</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>ValidationResult</code> holds:</p>
+<ul>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_FailedRequirements"><code>FailedRequirements</code></a>, the queries the group requires that failed;</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_TriggeredAvoidances"><code>TriggeredAvoidances</code></a>, the queries it must not have that passed;</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.AvoidRequireTagGroup.ValidationResult.html#FarEmerald_PlayForge_AvoidRequireTagGroup_ValidationResult_GetSummary_"><code>GetSummary()</code></a>, which gives the result as a line of text.</li>
+</ul>
+<p>This group asks for Grounded and nothing under State.Disabled, and says why it fails:</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge;
+
+public static class Landing
+{
+    static readonly Tag Grounded = Tag.GenerateAsUnique(&quot;State.Grounded&quot;);
+    static readonly Tag Disabled = Tag.GenerateAsUnique(&quot;State.Disabled&quot;);
+
+    // Grounded, and nothing under State.Disabled
+    static readonly AvoidRequireTagGroup CanLand = Make();
+
+    static AvoidRequireTagGroup Make()
+    {
+        var group = new AvoidRequireTagGroup { Name = &quot;Can Land&quot; };
+        group.AddRequirement(Grounded);
+        group.AddAvoidanceWithChildren(Disabled);
+        return group;
+    }
+
+    public static bool Allows(IGameplayAbilitySystem gas, out string why)
+    {
+        var result = CanLand.ValidateDetailed(gas.GetTagCache());
+        why = result.IsValid ? null : result.GetSummary();
+        return result.IsValid;
+    }
+}
+</code></pre>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

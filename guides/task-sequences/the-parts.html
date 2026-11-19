@@ -87,20 +87,260 @@
         <article data-uid="guide.task-sequences.the-parts">
 <h1 id="the-parts">The parts</h1>
 
-<ul>
-<li><strong>Sequence</strong>: its stages, in order, with what holds for all of them: its name, its conditions, a timeout or a longest
-run, whether it repeats, and the handlers that hear it end.</li>
-<li><strong>Stage</strong>: its tasks, run together, and its <strong>policy</strong>, which says when the stage is done: when all its tasks are
-(<code>WhenAll</code>, the default), any one (<code>WhenAny</code>), or a number of them (<code>WhenN</code>). A stage can hold stages of its own
-(<a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SubStage_"><code>SubStage</code></a>), or be a <strong>branch</strong> that picks one stage by a condition.</li>
-<li><strong>Task</strong>: one unit of work, awaited (<code>Task</code>), done at once (<code>Do</code>), stepped a frame at a time (<code>SyncTask</code>), or a class of
-its own (<a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceTask.html"><code>ISequenceTask</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskBase.html"><code>SequenceTaskBase</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskBase.html"><code>SyncSequenceTaskBase</code></a> to start from).</li>
-<li><strong>Injection</strong>: a change to the run from outside its tasks: interrupt it, skip a stage, jump to one, break a repeat.
-A <strong>condition</strong> injects one when its predicate holds, checked each frame.</li>
-<li><strong>Chain</strong>: sequences run one after another with one data packet.</li>
-</ul>
-<hr>
-<p><a href="index.html">← Task Sequences</a> · <a href="index.html">Task Sequences</a> · <a href="building-one.html">Building one →</a></p>
+<p>A task sequence is built from five parts: sequences, stages, tasks, injections and chains.</p>
+<pre><code class="lang-mermaid">classDiagram
+class IActiveSequence:::ext {
+&lt;&lt;interface&gt;&gt;
++Run(data, token) UniTask
++TryRun() UniTask~bool~
++IsCriticalSection : bool
+}
+class TaskSequenceBuilder:::rt {
++static Create(name) TaskSequenceBuilder
++Stage(Action~StageBuilder~)
++Branch(Action~BranchBuilder~)
++Task(task)
++Delay(seconds)
++WithLifecycle(EProcessLifecycle, timing)
++Build() TaskSequenceDefinition
++BuildSequence() TaskSequence
++BuildSyncRunner() SyncedTaskSequence
+}
+class StageBuilder:::rt {
++Task(task)
++SubStage()
++WhenAll()
++WhenAny()
++WhenN(n)
++WithRepeat()
++WithTimeout(seconds)
++SkipWhen()
+}
+class TaskSequence:::rt {
++Definition : TaskSequenceDefinition
++Runtime : TaskSequenceRuntime
++IsRunning : bool
++RegisterAndRun(SequenceDataPacket) ProcessRelay
++Inject(ISequenceInjection)
++Interrupt()
++SkipCurrentStage()
++Then() TaskSequenceChain
+}
+class TaskSequenceChain:::rt {
++Then()
++WithRepeat()
++InterruptWhen()
++Pause()
++Resume()
++SkipCurrentSequence()
++CurrentIndex : int
+}
+class TaskSequenceDefinition:::rt {
++Stages : List~SequenceStage~
++Conditions : List~SequenceCondition~
++AllowedInjections
++MaxDurationSeconds
++Metadata : SequenceMetadata
++IsInjectionAllowed(inj, stage) bool
+}
+class SequenceStage:::rt {
++Tasks : List~ISequenceTask~
++SubStages
++Policy = WhenAll
++Timeouts
++Repeat
++Conditions
++OnInit
++OnTerminate
+}
+class BranchStage:::rt {
++Branches : List~BranchCase~
++DefaultBranch
++Evaluate(data)
+}
+class ISequenceTask:::ext {
+&lt;&lt;interface&gt;&gt;
+Prepare(SequenceDataPacket)
+Execute(SequenceDataPacket, CancellationToken) UniTask
+Step(SequenceDataPacket, float dt) bool
+Clean(SequenceDataPacket)
+}
+class SequenceTaskBase:::ext {
+&lt;&lt;abstract&gt;&gt;
+Execute is abstract
+}
+class SyncSequenceTaskBase:::ext {
+&lt;&lt;abstract&gt;&gt;
+Step is abstract
+Execute loops Step once per tick
+}
+class ISequenceStagePolicy:::ext {
+&lt;&lt;interface&gt;&gt;
+AwaitCompletion(runtime, stage, units, cts) UniTask
+WhenAll, WhenAny, WhenN, RepeatUntilSkipped
+}
+class ISequenceInjection:::ext {
+&lt;&lt;interface&gt;&gt;
+Apply(TaskSequenceRuntime) bool
+Interrupt, SkipStage, JumpToStage, BreakStageRepeat
+}
+class SequenceCondition:::rt {
++Predicate(data, runtime)
++Injection : ISequenceInjection
++FireOnce : bool
++IsStageLocal : bool
+}
+class TaskSequenceRuntime:::rt {
++StageIndex : int
++CurrentStage : SequenceStage
++CompletedSuccessfully : bool
++Run(data, token) UniTask
++Pause()
++Resume()
++Inject(inj, overridePermission)
++CheckConditions()
+}
+class TaskSequenceProcess:::rt {
++Sequence : TaskSequence
++Chain : TaskSequenceChain
++IsSynchronous : bool
++Interrupt()
++SkipCurrentSequence()
+}
+class ProcessDataPacket:::rt
+class SequenceDataPacket:::rt {
++Runtime : TaskSequenceRuntime
++StageIndex : int
++Interrupt()
++SkipStage()
++JumpToStage(index or name)
++RestartSequence()
++Inject(inj)
+}
+class TaskSequenceReference:::asset {
+&lt;&lt;struct&gt;&gt;
+points at a TaskSequenceMethod static method
++IsValid : bool
++GetActiveSequence() IActiveSequence
++IsChain() bool
+}
+class SyncedTaskSequence:::rt {
+deterministic, with no UniTask
++Step(data, dt) bool
++Interrupt()
++JumpToStage()
++Reset()
++State : ERunnerState
+}
+IActiveSequence &lt;|.. TaskSequence
+IActiveSequence &lt;|.. TaskSequenceChain
+TaskSequence --o TaskSequenceChain : holds
+TaskSequenceBuilder ..&gt; StageBuilder : Stage
+TaskSequenceBuilder ..&gt; TaskSequenceDefinition : Build
+TaskSequenceBuilder ..&gt; TaskSequence : BuildSequence
+TaskSequenceBuilder ..&gt; SyncedTaskSequence : BuildSyncRunner
+TaskSequence *-- TaskSequenceDefinition
+TaskSequence &quot;1&quot; --&gt; &quot;many&quot; TaskSequenceRuntime : one per live run
+TaskSequenceDefinition &quot;1&quot; *-- &quot;many&quot; SequenceStage
+TaskSequenceDefinition o-- SequenceCondition
+SequenceStage &lt;|-- BranchStage
+SequenceStage o-- ISequenceTask
+SequenceStage --&gt; ISequenceStagePolicy : Policy
+SequenceCondition --&gt; ISequenceInjection
+ISequenceTask &lt;|.. SequenceTaskBase
+ISequenceTask &lt;|.. SyncSequenceTaskBase
+TaskSequenceProcess --&gt; TaskSequence
+TaskSequenceProcess --&gt; TaskSequenceChain
+ProcessDataPacket &lt;|-- SequenceDataPacket
+SequenceDataPacket --&gt; TaskSequenceRuntime : Runtime
+TaskSequenceReference ..&gt; IActiveSequence : GetActiveSequence
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>An immutable definition with one TaskSequenceRuntime per live run, so runs can overlap. Each registration makes a fresh TaskSequenceProcess.</em></p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequence</strong></td>
+<td>Its stages, in order, with what holds for all of them: its name, its conditions, a timeout or a longest run, whether it repeats, and the handlers that hear it end.</td>
+</tr>
+<tr>
+<td><strong>Stage</strong></td>
+<td>Its tasks, run together, and its <strong>policy</strong>, which says when the stage is done.</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>One unit of work.</td>
+</tr>
+<tr>
+<td><strong>Injection</strong></td>
+<td>A change to the run from outside its tasks: interrupt it, skip a stage, jump to one, break a repeat.</td>
+</tr>
+<tr>
+<td><strong>Chain</strong></td>
+<td>Sequences run one after another with one data packet.</td>
+</tr>
+</tbody>
+</table>
+<p>A stage's policy says when the stage is done:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>The stage is done when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WhenAll</code> (the default)</td>
+<td>All its tasks are done.</td>
+</tr>
+<tr>
+<td><code>WhenAny</code></td>
+<td>Any one of its tasks is done.</td>
+</tr>
+<tr>
+<td><code>WhenN</code></td>
+<td>A number of its tasks are done.</td>
+</tr>
+</tbody>
+</table>
+<p>A stage can also hold stages of its own (<a class="xref" href="../../api/FarEmerald.PlayForge.StageBuilder.html#FarEmerald_PlayForge_StageBuilder_SubStage_"><code>SubStage</code></a>), or be a <strong>branch</strong> that picks one stage by a condition.</p>
+<p>A task is one of these:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Task</code></td>
+<td>Awaited.</td>
+</tr>
+<tr>
+<td><code>Do</code></td>
+<td>Done at once.</td>
+</tr>
+<tr>
+<td><code>SyncTask</code></td>
+<td>Stepped a frame at a time.</td>
+</tr>
+<tr>
+<td>A class of its own</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ISequenceTask.html"><code>ISequenceTask</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskBase.html"><code>SequenceTaskBase</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.SyncSequenceTaskBase.html"><code>SyncSequenceTaskBase</code></a> to start from.</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>condition</strong> injects one injection when its predicate holds, checked each frame.</p>
 
 </article>
 

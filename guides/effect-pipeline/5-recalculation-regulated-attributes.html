@@ -87,20 +87,22 @@
         <article data-uid="guide.effect-pipeline.5-recalculation-regulated-attributes">
 <h1 id="5-recalculation-regulated-attributes">5. Recalculation (regulated attributes)</h1>
 
-<p>Blueprint cached scalers register <code>contact → dependent</code> edges at attribute registration
-(<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_"><code>ProvideAttribute</code></a> → <code>RegulateContactWith</code>). Any commit <strong>or modifier registration or
-unregistration</strong> fires <code>AttributeChanged</code> → <code>RefreshRegulatedAttributes(contact)</code> → dependents
-<code>Recompute</code> (re-deriving their root from the contact's fresh <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_ActiveValue"><code>ActiveValue</code></a> while their own
-modifiers and committed history are preserved) → chained <code>AttributeChanged</code>, cycle-guarded.</p>
-<p>A dependent's refresh is the system's own change. It takes the post-change half of
-the pipeline: <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_EnforceScaling_"><code>EnforceScaling</code></a>, post-change workers and <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.html#FarEmerald_PlayForge_AttributeSystemCallbacks_AttributePostChange_"><code>AttributePostChange</code></a>. It is recorded in
-the frame summary as received and dealt, self to self. Its carrier is the attribute's root, typed
+<p>A regulated attribute is recomputed when an attribute it depends on changes.</p>
+<p>Blueprint cached scalers register <code>contact → dependent</code> edges at attribute registration (<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemComponent.html#FarEmerald_PlayForge_AttributeSystemComponent_ProvideAttribute_"><code>ProvideAttribute</code></a> →
+<code>RegulateContactWith</code>).</p>
+<p>Any commit <strong>or modifier registration or unregistration</strong> then sets off this chain:</p>
+<ol>
+<li>The change fires <code>AttributeChanged</code>, whose handler runs <code>RefreshRegulatedAttributes(contact)</code>.</li>
+<li>The dependents <code>Recompute</code>. Each re-derives its root from the contact's fresh <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_ActiveValue"><code>ActiveValue</code></a>, and its own modifiers
+and committed history are preserved.</li>
+<li>A dependent whose value changes fires a chained <code>AttributeChanged</code>, cycle-guarded.</li>
+</ol>
+<p>A dependent's refresh is the system's own change. It takes the post-change half of the pipeline: <a class="xref" href="../../api/FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_EnforceScaling_"><code>EnforceScaling</code></a>,
+post-change workers and <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSystemCallbacks.html#FarEmerald_PlayForge_AttributeSystemCallbacks_AttributePostChange_"><code>AttributePostChange</code></a>.</p>
+<p>It is recorded in the frame summary as received and dealt, self to self. Its carrier is the attribute's root, typed
 <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DisallowImpact"><code>DisallowImpact</code></a>, so a worker that checks impact types passes it by.</p>
-<p>Effect-magnitude scalers that read attributes capture snapshots at apply time by design — only
-blueprint scalers create live dependencies.</p>
-<hr>
-<hr>
-<p><a href="4-effect-lifecycle-effectsystemcomponent.html">← 4. Effect lifecycle (EffectSystemComponent)</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="6-initialization--auto-scaling.html">6. Initialization &amp; auto-scaling →</a></p>
+<p>Effect-magnitude scalers that read attributes capture snapshots at apply time, by design. Only blueprint scalers create
+live dependencies.</p>
 
 </article>
 

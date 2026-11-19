@@ -87,18 +87,25 @@
         <article data-uid="guide.cues.raises-and-sinks">
 <h1 id="raises-and-sinks">Raises and sinks</h1>
 
-<p>Each raise of a list of cues names what the list belongs to, its <a class="xref" href="../../api/FarEmerald.PlayForge.CueSource.html"><code>CueSource</code></a>: an effect, an ability, an entity or an
-item, by its asset; a cue tag raised from code, as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueRoutes.html#FarEmerald_PlayForge_ForgeCueRoutes_Burst_"><code>ForgeCueRoutes.Burst(cue)</code></a>; or a game's own code, where it names
-nothing. Code can name one: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst(cues, cue, CueSource.Of(effect))</code></a>.</p>
-<p>Before any cue of a raise plays, its world's sink is asked, once: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueSink.html#FarEmerald_PlayForge_ForgeCueSink_WillPlay_"><code>ForgeCueSink.WillPlay(event, raise)</code></a>, the raise
-holding the cue and its source. The default plays everything. A world of its own takes a sink of its own with
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_UseSink_"><code>ForgeCues.UseSink(world, sink)</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Sink"><code>ForgeCues.Sink</code></a> is the one every other world asks. It's asked whatever mutes a
-cue, so a server that plays none can still send them on, as a network layer's sink does. A cue tag raised from code
-asks once; its routes, and a Cue Tag within them, play inside that raise, unasked.</p>
+<p>Each raise of a list of cues names what the list belongs to, its <a class="xref" href="../../api/FarEmerald.PlayForge.CueSource.html"><code>CueSource</code></a>:</p>
+<ul>
+<li>an effect, an ability, an entity or an item, by its asset;</li>
+<li>a cue tag raised from code, as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueRoutes.html#FarEmerald_PlayForge_ForgeCueRoutes_Burst_"><code>ForgeCueRoutes.Burst(cue)</code></a>;</li>
+<li>or a game's own code, where it names nothing.</li>
+</ul>
+<p>Code can name one: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst(cues, cue, CueSource.Of(effect))</code></a>.</p>
+<p>Before any cue of a raise plays, its world's sink is asked, once: <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueSink.html#FarEmerald_PlayForge_ForgeCueSink_WillPlay_"><code>ForgeCueSink.WillPlay(event, raise)</code></a>. The raise
+holds the cue and its source.</p>
+<ul>
+<li>The default sink plays everything.</li>
+<li>A world of its own takes a sink of its own with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_UseSink_"><code>ForgeCues.UseSink(world, sink)</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Sink"><code>ForgeCues.Sink</code></a> is the one every
+other world asks.</li>
+<li>The sink is asked whatever mutes a cue. So a server that plays none can still send them on, as a network layer's
+sink does.</li>
+<li>A cue tag raised from code asks once. Its routes, and a Cue Tag within them, play inside that raise, unasked.</li>
+</ul>
 <p>An effect's applier can say where it hit, before applying it: <code>spec.WithHit(point, normal, magnitude)</code>. Its cues then
 play at the point, facing the normal, with the magnitude, as a sword's spark where the blade struck.</p>
-<hr>
-<p><a href="data-packets.html">← Data packets</a> · <a href="index.html">Cues</a> · <a href="silencing-and-listening.html">Silencing and listening →</a></p>
 
 </article>
 

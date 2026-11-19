@@ -87,35 +87,25 @@
         <article data-uid="guide.scalers.scaler-assets">
 <h1 id="scaler-assets">Scaler assets</h1>
 
-<p>A <strong>Scaler asset</strong> (<code>Create → PlayForge → Scaler</code>) holds one scaler that many fields can use. A field of the
-<strong>Shared</strong> kind reads its <strong>Asset</strong>'s scaler, so an edit to the asset changes every field that uses it, with nothing
-to copy or propagate. <strong>Open</strong> shows the asset in a window of its own. Under the field, the asset's curve shows beside
-its range, as &quot;6–8, levels 1–5&quot;, and how many fields share it. A field adjusts the shared values only through its own
-number and Combine: Scaler × Number with a number of 1.5 reads the asset's values times 1.5, as in Fire Duration × 1.5.</p>
-<ul>
-<li>The asset's own inspector shows its name, its kind and how many fields use it, its <strong>Name</strong>, which renames it, as
-The Forge and the field menus list it, its <strong>Description</strong>, its <strong>Values</strong>, and <strong>Used By</strong>: each field that
-shares it, by its asset and field. Click a row to select the asset. In The Forge, its summary says its
-description, its kind, what it reads and how many fields use it.</li>
-<li>Its <strong>Try</strong> section reads it at each level of a range, Levels 1 to 5 to start, as an effect's Levels does: a
-row of what it gives at each, and under it the parts behind the level picked. It reads against a stand-in
-<strong>Caster</strong> and <strong>Target</strong> and a <strong>Caller</strong>, each with a row for what the scaler asks of it, found as it reads: an
-attribute on its side, whether the side <strong>Has</strong> it, its current and its base; and a key the caller sets, whether
-it's <strong>Set</strong> and its value, unset reading the scaler's default. A side's <strong>Entity</strong> fills its attributes from what
-that entity's attribute set starts each at, at its starting level, and one the set doesn't give, it lacks. A
-stand-in holds attributes alone, so a number that reads an effect, an item, a tag, a retention group's part or
-Local Data reads as on an entity with none of them. What's typed is kept for the session, never in the asset.
-<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ScalerTry.html"><code>ScalerTry</code></a> does the same in code: <code>new ScalerTry { From = 1, To = 5 }.Read(scaler)</code>.</li>
-<li>Any magnitude field can share a Scaler asset. An attribute set's element shares one whose scaler is a cached kind,
-and its Scaler Assets lists only those. A Scaler asset can't hold a Shared scaler of its own.</li>
-<li>A field whose asset is missing reads as a field with no scaler, and an element whose asset is missing reads its root
-value. A chain of shared scalers that comes back to its own asset stops after eight steps, rather than run forever.</li>
-</ul>
+<p>A <strong>Scaler asset</strong> (<code>Create → PlayForge → Scaler</code>) holds one scaler that many fields can use.</p>
+<p>A field of the <strong>Shared</strong> kind reads its <strong>Asset</strong>'s scaler. An edit to the asset changes every field that uses it,
+with nothing to copy or propagate.</p>
+<p><strong>Open</strong> shows the asset in a window of its own. Under the field, the asset's curve shows beside its range, as &quot;6–8,
+levels 1–5&quot;, and how many fields share it.</p>
+<p>A field adjusts the shared values only through its own number and Combine. Scaler × Number with a number of 1.5 reads
+the asset's values times 1.5, as in Fire Duration × 1.5.</p>
+<div class="NOTE">
+<h5>Note</h5>
 <p>The Scaler asset was the Scaler Template, whose link and sync settings nothing read, so those settings are gone. So
 are the old scaler window's curve editor and import window: a scaler's values are its table, and Import Values
 compares them before it copies.</p>
-<hr>
-<p><a href="asking-a-worker.html">← Asking a worker</a> · <a href="index.html">Scalers</a> · <a href="built-in-kinds.html">Built-in kinds →</a></p>
+</div>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="scaler-assets/the-assets-inspector.html">The asset's inspector</a>: The asset's own inspector shows its name, its kind and how many fields use it.</li>
+<li><a href="scaler-assets/trying-a-scaler.html">Trying a scaler</a>: The asset's <strong>Try</strong> section reads it at each level of a range, Levels 1 to 5 to start, as an effect's Levels does.</li>
+<li><a href="scaler-assets/what-can-share-one.html">What can share one</a>: Any magnitude field can share a Scaler asset, within a few rules.</li>
+</ul>
 
 </article>
 

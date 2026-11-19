@@ -87,16 +87,13 @@
         <article data-uid="guide.editor.build-verification">
 <h1 id="build-verification">Build verification</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BuildVerification.html"><code>BuildVerification</code></a> proves that PlayForge's runtime compiles and links in a player, with no editor code in it, as a
-build server would check. This section covers running it.</p>
-<pre><code>Unity -batchmode -nographics -projectPath &lt;project&gt; -executeMethod FarEmerald.PlayForge.Editor.BuildVerification.BuildWindowsPlayer
-</code></pre>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BuildVerification.html#FarEmerald_PlayForge_Editor_BuildVerification_BuildWindowsPlayer_"><code>BuildWindowsPlayer</code></a> builds the scenes enabled in Build Settings, or, with none enabled, an empty scene it makes for
-the build and deletes after, as a 64-bit Windows player in <code>Build/Verification</code>. It then exits Unity: 0 where the build
-succeeded, 1 where it failed, and 3 where it threw. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html#FarEmerald_PlayForge_Editor_ForgeValidator_LogAll_"><code>ForgeValidator.LogAll</code></a> checks the assets the same way
-(<a href="the-problems-view-and-validation.html#the-validator">The validator</a>).</p>
-<hr>
-<p><a href="the-creator-lab.html">← The Creator Lab</a> · <a href="index.html">The Editor Tools</a> · <a href="editor-helpers.html">Editor helpers →</a></p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.BuildVerification.html"><code>BuildVerification</code></a> proves that PlayForge's runtime compiles and links in a player, with no editor code in it, as a build
+server would check. This section covers running it.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="build-verification/running-a-verification-build.html">Running a verification build</a>: Run <code>BuildWindowsPlayer</code> from the command line, in batch mode</li>
+<li><a href="build-verification/what-it-builds.html">What it builds</a>: <code>BuildWindowsPlayer</code> builds a 64-bit Windows player in <code>Build/Verification</code>.</li>
+</ul>
 
 </article>
 

@@ -87,21 +87,19 @@
         <article data-uid="guide.services.repeatable-runs">
 <h1 id="repeatable-runs">Repeatable runs</h1>
 
-<p>A run that must come out the same twice, as a replay, a rollback or a lockstep match must, needs the same time and the
-same rolls each time it runs.</p>
+<p>A run that must come out the same twice needs the same time and the same rolls each time it runs. A replay, a rollback
+and a lockstep match are such runs.</p>
 <ul>
-<li><strong>Time</strong>: step the game in fixed steps, with ProcessControl's <strong>Fixed Tick Rate</strong> (<a href="fixed-ticks.html">Fixed ticks</a>), or
+<li><strong>Time</strong>: step the game in fixed steps, with ProcessControl's <strong>Fixed Tick Rate</strong> (<a href="fixed-ticks.html">Fixed ticks</a>). Or
 step a world of its own by a fixed time, <code>world.Step(deltaTime)</code>. A clock of the game's time follows either.</li>
-<li><strong>Rolls</strong>: put in a <a class="xref" href="../../api/FarEmerald.PlayForge.SeededRandom.html"><code>SeededRandom</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(new SeededRandom(seed))</code></a>, seeded for the run, or for each step as
-a rollback does (<a href="../saving/rolling-back.html">Saving and Loading: Rolling back</a>). Unity's random numbers, the default, move whenever anything
+<li><strong>Rolls</strong>: put in a <a class="xref" href="../../api/FarEmerald.PlayForge.SeededRandom.html"><code>SeededRandom</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use(new SeededRandom(seed))</code></a>, seeded for the run, or for each step
+as a rollback does (<a href="../saving/rolling-back.html">Saving and Loading: Rolling back</a>). Unity's random numbers, the default, move whenever anything
 else in the game draws from them.</li>
-<li><strong>Cues</strong> draw from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, numbers of their own, so a run that plays its cues rolls as one that doesn't,
-as on a server or while a simulation runs ahead, with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Enabled"><code>ForgeCues.Enabled</code></a> off.</li>
-<li><strong>Your own code</strong> reads time through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> and draws through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, as PlayForge does: code that reads
+<li><strong>Cues</strong> draw from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, numbers of their own. So a run that plays its cues rolls as one that doesn't,
+with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Enabled"><code>ForgeCues.Enabled</code></a> off, as on a server or while a simulation runs ahead.</li>
+<li><strong>Your own code</strong> reads time through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> and draws through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, as PlayForge does. Code that reads
 Unity's <code>Time</code> or <code>Random</code> itself follows neither a clock nor a source put in.</li>
 </ul>
-<hr>
-<p><a href="chance.html">← Chance</a> · <a href="index.html">Time, Input and Logging</a> · <a href="time-and-rolls-in-tests.html">Time and rolls in tests →</a></p>
 
 </article>
 

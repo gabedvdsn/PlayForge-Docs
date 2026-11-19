@@ -87,8 +87,9 @@
         <article data-uid="guide.tags.playforges-own-tags">
 <h1 id="playforges-own-tags">PlayForge's own tags</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html"><code>Tags</code></a> holds PlayForge's own tags, each a static property, unique, that the editor's pickers offer for its kind. Each
-reads as its text, as <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DIED"><code>Tags.DIED</code></a> reads Died and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_HEALTH"><code>Tags.ROLE_HEALTH</code></a> Health.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html"><code>Tags</code></a> holds PlayForge's own tags, each a unique tag in a static property. The editor's pickers offer each for its
+kind.</p>
+<p>Each reads as its text: <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DIED"><code>Tags.DIED</code></a> reads Died, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_ROLE_HEALTH"><code>Tags.ROLE_HEALTH</code></a> reads Health.</p>
 <table>
 <thead>
 <tr>
@@ -155,14 +156,41 @@ reads as its text, as <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.
 </tr>
 </tbody>
 </table>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_IgnoreRetention"><code>Tags.IgnoreRetention</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DefaultRetention"><code>DefaultRetention</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_AllowImpact"><code>AllowImpact</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DisallowImpact"><code>DisallowImpact</code></a> are other names for <code>IGNORE</code>, <code>DEFAULT</code>,
-<code>ALWAYS_ALLOW</code> and <code>NEVER_ALLOW</code>.</p>
-<p>The events are what an ability's triggers hear (<a href="../abilities/activation.html">Abilities: Activation</a>), the roles what a Forge
-Project fills with its attributes (<a href="../attributes/roles.html">Attributes: Roles</a>), and the keys what a cue's data packet holds
-(<a href="../cues/data-packets.html">Cues: Data packets</a>). A path New Tag is given that is one of these tags' text, as Died or Health, would
-make that very tag, so New Tag says so and offers PlayForge's own with <strong>Use It</strong>; the Tags view renames none of them.</p>
-<hr>
-<p><a href="what-a-tag-is.html">← What a tag is</a> · <a href="index.html">Tags</a> · <a href="contexts.html">Contexts →</a></p>
+<p>Four of them have other names:</p>
+<table>
+<thead>
+<tr>
+<th>Other name</th>
+<th>Same tag as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_IgnoreRetention"><code>Tags.IgnoreRetention</code></a></td>
+<td><code>IGNORE</code></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DefaultRetention"><code>DefaultRetention</code></a></td>
+<td><code>DEFAULT</code></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_AllowImpact"><code>AllowImpact</code></a></td>
+<td><code>ALWAYS_ALLOW</code></td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_DisallowImpact"><code>DisallowImpact</code></a></td>
+<td><code>NEVER_ALLOW</code></td>
+</tr>
+</tbody>
+</table>
+<p>Three of the kinds come up in other guides:</p>
+<ul>
+<li>The events are what an ability's triggers hear (<a href="../abilities/activation.html">Abilities: Activation</a>).</li>
+<li>The roles are what a Forge Project fills with its attributes (<a href="../attributes/roles.html">Attributes: Roles</a>).</li>
+<li>The keys are what a cue's data packet holds (<a href="../cues/data-packets.html">Cues: Data packets</a>).</li>
+</ul>
+<p>A path given to New Tag that is one of these tags' text, as Died or Health, would make that very tag. So New Tag says
+so, and offers PlayForge's own with <strong>Use It</strong>. The Tags view renames none of them.</p>
 
 </article>
 

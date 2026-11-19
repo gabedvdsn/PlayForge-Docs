@@ -88,93 +88,15 @@
 <h1 id="cue-handlers">Cue handlers</h1>
 
 <p>A cue handler plays feedback, a shake, a sound, an animation, at an effect's, an ability's, an entity's or an item's
-moments, or where a cue tag routes. This section covers writing one; <a href="../cues/handlers.html">Cues: Handlers</a> covers where cues are
-raised and PlayForge's handlers.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html"><code>AbstractCueHandler</code></a>'s hooks, each a no-op it may override:</p>
-<table>
-<thead>
-<tr>
-<th>Hook</th>
-<th>Called</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Burst(cue)</code></td>
-<td>At a moment that plays once. By default it calls <code>OnTicked</code> for a tick, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractCueHandler.html#FarEmerald_PlayForge_AbstractCueHandler_OnRemoved_"><code>OnRemoved</code></a> for a removal and <code>OnApplied</code> for any other moment.</td>
-</tr>
-<tr>
-<td><code>OnApplied(cue)</code>, <code>OnTicked(cue)</code>, <code>OnRemoved(cue)</code></td>
-<td>From <code>Burst</code>.</td>
-</tr>
-<tr>
-<td><code>Begin(cue)</code>, <code>End(cue)</code></td>
-<td>As a lasting cue begins and ends, as a While Active one does.</td>
-</tr>
-</tbody>
-</table>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.CueContext.html"><code>CueContext</code></a> holds <code>Target</code>, the entity it plays on; <code>Moment</code>; <a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>; <code>Source</code>; <code>Origin</code>; <code>Spec</code> and <code>Ticks</code>, for an
-effect; <code>Data</code>, an activation's; <code>Magnitude</code>, <code>Point</code> and <code>Normal</code>, where its raiser gave a hit; <code>Key</code>; <code>Lasting</code>; and
-<code>Transform</code> and <code>Position</code>, the target's object and where it plays. <a class="xref" href="../../api/FarEmerald.PlayForge.NumberContext.html#FarEmerald_PlayForge_NumberContext_Of_"><code>NumberContext.Of(in cue)</code></a> reads a handler's numbers
-for it.</p>
-<p>Handlers sit in the Cues components' lists, the Play Cue task's, and a cue library's routes. Code plays one with
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Burst_"><code>ForgeCues.Burst</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Begin_"><code>ForgeCues.Begin</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_End_"><code>ForgeCues.End</code></a>, handed a handler or a list and a <code>CueContext</code>.</p>
-<pre><code class="lang-csharp">using System;
-using FarEmerald.PlayForge;
-using UnityEngine;
-
-namespace MyGame
-{
-    [Serializable]
-    [ForgeMenu(Description = &quot;Sets an Animator trigger on the one the cue plays on, and a bool while a lasting cue lasts.&quot;)]
-    public class AnimatorCue : AbstractCueHandler
-    {
-        [Tooltip(&quot;The trigger set as it bursts&quot;)]
-        public string Trigger = &quot;Hit&quot;;
-
-        [Tooltip(&quot;The bool on while a lasting cue lasts&quot;)]
-        public string WhileActive = &quot;Stunned&quot;;
-
-        public override void OnApplied(CueContext cue)
-        {
-            if (!string.IsNullOrEmpty(Trigger) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetTrigger(Trigger);
-        }
-
-        public override void Begin(CueContext cue)
-        {
-            if (!string.IsNullOrEmpty(WhileActive) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetBool(WhileActive, true);
-        }
-
-        public override void End(CueContext cue)
-        {
-            if (!string.IsNullOrEmpty(WhileActive) &amp;&amp; AnimatorOf(cue) is { } animator) animator.SetBool(WhileActive, false);
-        }
-
-        private static Animator AnimatorOf(in CueContext cue) =&gt;
-            cue.Transform != null ? cue.Transform.GetComponentInChildren&lt;Animator&gt;() : null;
-    }
-}
-</code></pre>
-<p>A runtime entity has no object, so <code>Transform</code> is null on one.</p>
-<h2 id="sinks">Sinks</h2>
-<p>A sink decides whether a raise plays at all, as a server's that plays none, or a client's that plays only its own
-player's: a <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueSink.html"><code>ForgeCueSink</code></a> whose <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCueSink.html#FarEmerald_PlayForge_ForgeCueSink_WillPlay_"><code>WillPlay(ECueEvent cueEvent, in CueRaise raise)</code></a> says so, given every world as
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Sink"><code>ForgeCues.Sink</code></a> or one world with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_UseSink_"><code>ForgeCues.UseSink(world, sink)</code></a>. <code>raise.Cue</code> is the cue, and <code>raise.Source</code> what
-raised it. <code>ForgeCues.Enabled = false</code> plays none.</p>
-<h2 id="traps">Traps</h2>
+moments, or where a cue tag routes.</p>
+<p>This section covers writing one; <a href="../cues/handlers.html">Cues: Handlers</a> covers where cues are raised and PlayForge's handlers.
+Traps, last in this section, lists the traps of handlers and sinks.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>A handler is shared</strong>: one keeps what a lasting cue placed under <code>cue.Key ?? cue.Spec</code>, which its <code>End</code> hands back,
-as PlayForge's Prefab cue does. Two lasting cues on one entity each begin and end, so a bool the first <code>End</code> turns
-off is off for the second too, as in the example: count them where that matters.</li>
-<li><strong><code>End</code> can come with no <code>Begin</code>.</strong> A muted entity's cues and every cue while <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Enabled"><code>ForgeCues.Enabled</code></a> is off don't begin,
-and still end, so what began before the mute is taken down. <code>End</code> does nothing where it finds nothing.</li>
-<li><strong>A sink is asked for <code>End</code> too</strong>: it answers an <code>End</code> as it answered its <code>Begin</code>.</li>
-<li><strong>A cue is presentation alone.</strong> A server may play none, so game state never depends on a cue. Rolls come from
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCues.html#FarEmerald_PlayForge_ForgeCues_Random"><code>ForgeCues.Random</code></a>, the cues' own random numbers, so a cue never moves the game's.</li>
-<li><strong>A handler that throws is caught</strong> and written to the Console, and the cues after it play.</li>
+<li><a href="cue-handlers/writing-a-cue-handler.html">Writing a cue handler</a>: A cue handler of a game's own plays feedback its own way, as setting a trigger on the Animator of the one it plays on.</li>
+<li><a href="cue-handlers/sinks.html">Sinks</a>: A sink decides whether a raise plays at all, as a server's that plays none, or a client's that plays only its own player's.</li>
+<li><a href="cue-handlers/traps.html">Traps</a>: These traps apply to every cue handler and sink.</li>
 </ul>
-<hr>
-<p><a href="value-stages.html">← Value stages</a> · <a href="index.html">Extending PlayForge</a> · <a href="entity-services.html">Entity services →</a></p>
 
 </article>
 

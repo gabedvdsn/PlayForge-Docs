@@ -89,20 +89,62 @@
 
 <p>Three enums say how PlayForge reads the sign of a change and turns a number into a factor: <a class="xref" href="../../api/FarEmerald.PlayForge.ESignPolicy.html"><code>ESignPolicy</code></a>,
 <a class="xref" href="../../api/FarEmerald.PlayForge.ESignPolicyExtended.html"><code>ESignPolicyExtended</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.EMathApplicationPolicy.html"><code>EMathApplicationPolicy</code></a>.</p>
-<ul>
-<li><code>ESignPolicy</code> is a change's sign: <code>Positive</code>; <code>Negative</code>; <code>ZeroBiased</code>, where its parts sum to 0 but aren't all 0, as
-+5 to an attribute's current value and −5 to its base; and <code>ZeroNeutral</code>, where every part is 0.
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_SignPolicy_"><code>ForgeHelper.SignPolicy</code></a> reads it from one number, which is never <code>ZeroBiased</code>, or from a change's current and base
-parts, and a change's own <code>SignPolicy</code>, as a <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html"><code>SourcedModifiedAttributeValue</code></a>'s, is its parts read so. An impact worker
-made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractContextImpactWorker.html"><code>AbstractContextImpactWorker</code></a> takes the hits of one sign, its <strong>Impact Sign</strong>.</li>
-<li><code>ESignPolicyExtended</code> adds <code>Any</code>, which takes every sign, as a focused attribute worker's <strong>Sign Policy</strong> does by
-default (<a href="../workers/the-map.html">Workers: The map</a>).</li>
-<li><code>EMathApplicationPolicy</code> turns a number into a factor: <code>AsIs</code>; <a class="xref" href="../../api/FarEmerald.PlayForge.EMathApplicationPolicy.html#FarEmerald_PlayForge_EMathApplicationPolicy_OnePlus"><code>OnePlus</code></a>, one plus it, as a bonus of 0.2 multiplies by
-1.2; or <a class="xref" href="../../api/FarEmerald.PlayForge.EMathApplicationPolicy.html#FarEmerald_PlayForge_EMathApplicationPolicy_OneMinus"><code>OneMinus</code></a>, one minus it, as a resistance of 0.2 leaves 0.8. <a class="xref" href="../../api/FarEmerald.PlayForge.AttenuateScalerBehaviour.html"><code>AttenuateScalerBehaviour</code></a>'s <strong>Policy</strong> and
-<a class="xref" href="../../api/FarEmerald.PlayForge.MathAttributeWorker.html"><code>MathAttributeWorker</code></a>'s <strong>Operation Policy</strong> read it.</li>
-</ul>
-<hr>
-<p><a href="lists.html">← Lists</a> · <a href="index.html">Time, Input and Logging</a></p>
+<p><code>ESignPolicy</code> is a change's sign:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Positive</code></td>
+<td>The change is positive.</td>
+</tr>
+<tr>
+<td><code>Negative</code></td>
+<td>The change is negative.</td>
+</tr>
+<tr>
+<td><code>ZeroBiased</code></td>
+<td>Its parts sum to 0 but aren't all 0, as +5 to an attribute's current value and −5 to its base.</td>
+</tr>
+<tr>
+<td><code>ZeroNeutral</code></td>
+<td>Every part is 0.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_SignPolicy_"><code>ForgeHelper.SignPolicy</code></a> reads it from one number, which is never <code>ZeroBiased</code>, or from a change's current and base
+parts. A change's own <code>SignPolicy</code>, as a <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html"><code>SourcedModifiedAttributeValue</code></a>'s, is its parts read so.</p>
+<p>An impact worker made from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractContextImpactWorker.html"><code>AbstractContextImpactWorker</code></a> takes the hits of one sign, its <strong>Impact Sign</strong>.</p>
+<p><code>ESignPolicyExtended</code> adds <code>Any</code>, which takes every sign. A focused attribute worker's <strong>Sign Policy</strong> takes every sign
+by default (<a href="../workers/the-map.html">Workers: The map</a>).</p>
+<p><code>EMathApplicationPolicy</code> turns a number into a factor:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AsIs</code></td>
+<td>The number as it is.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EMathApplicationPolicy.html#FarEmerald_PlayForge_EMathApplicationPolicy_OnePlus"><code>OnePlus</code></a></td>
+<td>One plus it: a bonus of 0.2 multiplies by 1.2.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.EMathApplicationPolicy.html#FarEmerald_PlayForge_EMathApplicationPolicy_OneMinus"><code>OneMinus</code></a></td>
+<td>One minus it: a resistance of 0.2 leaves 0.8.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.AttenuateScalerBehaviour.html"><code>AttenuateScalerBehaviour</code></a>'s <strong>Policy</strong> and <a class="xref" href="../../api/FarEmerald.PlayForge.MathAttributeWorker.html"><code>MathAttributeWorker</code></a>'s <strong>Operation Policy</strong> read it.</p>
 
 </article>
 

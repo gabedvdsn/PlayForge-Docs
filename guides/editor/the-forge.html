@@ -87,137 +87,24 @@
         <article data-uid="guide.editor.the-forge">
 <h1 id="the-forge">The Forge</h1>
 
-<p>The Forge (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html"><code>TheForge</code></a>) is PlayForge's main window: the active Forge Project's assets in a list, beside a detail pane
-that shows the one selected. This section covers its toolbar, its list, its detail pane, the asset menu and its
-keys. The Forge follows the project as assets are made, edited, moved and deleted, so it has no Refresh.</p>
-<p>While the Unity project has no Forge Project, The Forge asks for the first in place of its list: <strong>Make your first
-Forge Project</strong>, a <strong>Name</strong>, and <strong>Create Forge Project</strong> (<a href="forge-projects.html">Forge Projects</a>).</p>
-<h2 id="the-toolbar">The toolbar</h2>
-<p>From left to right:</p>
+<p>The Forge (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html"><code>TheForge</code></a>) is PlayForge's main window. It lists the active Forge Project's assets beside a detail pane that
+shows the one selected.</p>
+<!-- screenshot: the-forge -->
+<p>Open it from <strong>Window → PlayForge → The Forge</strong>, or press <strong>Alt+Shift+F</strong> to open it with its search focused. The Forge
+follows the project as assets are made, edited, moved and deleted, so it has no Refresh.</p>
+<p>In code, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_ShowWindow_"><code>TheForge.ShowWindow()</code></a> opens The Forge as the menu does. <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_OpenToAsset_"><code>TheForge.OpenToAsset(asset)</code></a> opens it on an asset,
+with its type's filter on and the asset selected, as an inspector's <strong>Open in The Forge</strong> does.</p>
+<p>This section covers The Forge's toolbar, its list, its detail pane, the asset menu, the window menu and its keys.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong>Back</strong> and <strong>Forward</strong> go over the assets the detail pane has shown, as a browser's do, up to 50 back. Going to
-an asset the list hides clears the search and turns its type's filter on.</li>
-<li>The project menu, named for the active Forge Project, switches between the projects, the active one checked. <strong>No
-Project</strong> shows the assets in no project, where no project sits at the root of <code>Assets</code>. <strong>New Project…</strong> makes a
-project, and <strong>Show in Project</strong> selects the active one's asset. The menu reads <strong>No Project</strong> while none is
-active, and <strong>All Assets</strong> while the Unity project has none.</li>
-<li><strong>Create</strong> makes a new asset of any type The Forge lists (<a href="new-assets-and-presets.html">New assets and presets</a>).</li>
-<li>A filter for each PlayForge asset type, by its icon: Ability, Gameplay Effect, Item, Attribute, Attribute Set and
-Entity. On, it shows its type alone; off again, every type.</li>
-<li><strong>More</strong> holds the filters of the other types The Forge lists: Scaler Asset, Requirement Template, Value Pipeline,
-Effect Modifier and Crowd Control Rules. It shows the name of the one chosen.</li>
-<li><strong>Tags</strong> shows the project's tags in place of its assets (<a href="the-tags-view.html">The Tags view</a>).</li>
-<li>The search shows the assets whose name, file name or asset tag holds its text.</li>
-<li>The problem count, <strong>No problems</strong> or as <strong>3 problems</strong>, opens the Problems view.</li>
-<li>The help button (<strong>?</strong>), at the toolbar's end, opens this guide's section on The Forge on the documentation site.</li>
+<li><a href="the-forge/your-first-forge-project.html">Your first Forge Project</a>: While the Unity project has no Forge Project, The Forge asks you to make the first one, in place of its list (Forge Projects).</li>
+<li><a href="the-forge/the-toolbar.html">The toolbar</a>: The toolbar runs along the top of The Forge.</li>
+<li><a href="the-forge/the-list.html">The list</a>: The list shows the active project's assets that the toolbar's filters and search let through, one row each.</li>
+<li><a href="the-forge/the-detail-pane.html">The detail pane</a>: The detail pane shows the selected asset's <strong>Summary</strong> above its inspector.</li>
+<li><a href="the-forge/the-asset-menu.html">The asset menu</a>: The asset menu acts on the selected assets.</li>
+<li><a href="the-forge/the-window-menu.html">The window menu</a>: The window menu is the ⋮ on The Forge's tab.</li>
+<li><a href="the-forge/keys.html">Keys</a>: These keys work in The Forge and its dialogs.</li>
 </ul>
-<p>The status bar under the list counts what it shows, of how many, in which project, and the problems, as &quot;12 of 40
-assets in Arena · 3 problems&quot;.</p>
-<h2 id="the-list">The list</h2>
-<p>Each column sorts by a click on its title, in natural order, so 9 comes before 10, then by name:</p>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Shows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td>The asset's type icon and its name: its own, or its file's where it has none. Its tooltip is the asset's path</td>
-</tr>
-<tr>
-<td><strong>Type</strong></td>
-<td>Its type</td>
-</tr>
-<tr>
-<td><strong>Asset Tag</strong></td>
-<td>Its asset tag, for an ability, effect, item, entity or attribute set</td>
-</tr>
-<tr>
-<td><strong>Levels</strong></td>
-<td>The levels it uses, as 1–5, for an asset with levels of its own</td>
-</tr>
-<tr>
-<td><strong>Summary</strong></td>
-<td>Its one line, as its inspector's header shows it (<a href="inspectors.html#the-header">The header</a>); the whole line in its tooltip</td>
-</tr>
-<tr>
-<td>(unnamed)</td>
-<td>A warning glyph where the validator finds problems in the asset, in the destructive color for an error; its tooltip says them</td>
-</tr>
-</tbody>
-</table>
-<p>A click shows the asset in the detail pane. Several can be selected, to move, copy or trash together, and the first
-shows. A double click shows the asset in the Project window, and a right click opens the asset menu. The list's
-width, its columns' widths and the columns its header's menu hides are kept for each user, and its sort through a
-domain reload.</p>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeAssetLines.html#FarEmerald_PlayForge_Editor_ForgeAssetLines_Of_"><code>ForgeAssetLines.Of(asset)</code></a> gives an asset's one line in code.</p>
-<h2 id="the-detail-pane">The detail pane</h2>
-<p>The detail pane shows the selected asset's <strong>Summary</strong> above its inspector. The summary holds the asset's
-description, where it has one; then a line for each section of its inspector, with the section's one-line summary,
-as <strong>Leveling</strong> Levels 1–5; for a Scaler asset, its <strong>Kind</strong>, what it <strong>Reads</strong> and its <strong>Used By</strong>; for a
-Requirement Template, what it <strong>Requires</strong> and what it <strong>Must Not Have</strong>; and last, <strong>Problems</strong>, what the validator
-finds. It follows the asset's edits.</p>
-<p>The inspector under it is the asset's own, as the Inspector shows it (<a href="inspectors.html">Inspectors</a>). In The Forge, its
-header's <strong>Open in The Forge</strong> is <strong>Show in Project</strong>, and an ability's, effect's, item's, entity's, attribute's or
-attribute set's header shows the asset's file name under it, as the list shows its name alone.</p>
-<h2 id="the-asset-menu">The asset menu</h2>
-<p>The same actions open from a right-click on the list and from the ⋮ in an inspector's header, which adds the asset's
-own (<a href="inspectors.html#the-header">The header</a>):</p>
-<ul>
-<li><strong>Show in Project</strong> selects the asset in the Project window.</li>
-<li><strong>Open in a Window</strong> shows its inspector in a window of its own.</li>
-<li><strong>Rename…</strong> asks for its new name (<a href="renaming-duplicating-and-deleting.html">Renaming, duplicating and deleting</a>).</li>
-<li><strong>Duplicate</strong> makes a copy beside it, named as a copy, as &quot;Fireball Copy&quot;, with the tag that name gives, and shows
-the copy.</li>
-<li><strong>Move to Project</strong> and <strong>Copy to Project</strong> move or copy every selected asset into another Forge Project, each into
-its type's folder there.</li>
-<li><strong>Move to Trash</strong> moves every selected asset to the trash, asking first.</li>
-</ul>
-<p>The others act on the first selected asset.</p>
-<h2 id="the-window-menu">The window menu</h2>
-<p>The window menu, the tab's ⋮, holds <strong>Problems…</strong>, <strong>Project Settings…</strong> and <strong>Preferences…</strong>, then
-<strong>Spreadsheets</strong>: <strong>Export Numbers…</strong>, <strong>Export Selected Numbers…</strong>, <strong>Export Item Stats…</strong>, <strong>Export Selected Item
-Stats…</strong> and <strong>Import…</strong> (<a href="spreadsheets.html">Spreadsheets</a>); then <strong>Documentation</strong>, which opens the documentation site
-in the browser: <strong>The Forge</strong>, this guide's section on it; <strong>The Editor Tools</strong>, this guide; <strong>All Guides</strong>; and
-<strong>API Reference</strong>, a page for each public type.</p>
-<h2 id="keys">Keys</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Alt+Shift+F</strong></td>
-<td>Opens The Forge with its search focused</td>
-</tr>
-<tr>
-<td><strong>Alt+Left</strong>, <strong>Alt+Right</strong></td>
-<td>Back and Forward, except while a text field has the keyboard. The mouse's back and forward buttons do the same</td>
-</tr>
-<tr>
-<td><strong>F2</strong></td>
-<td>Renames the selected asset; in the Tags view, the selected tag</td>
-</tr>
-<tr>
-<td><strong>Delete</strong>, or <strong>Cmd+Backspace</strong> on a Mac</td>
-<td>Moves the selected assets to the trash, asking first</td>
-</tr>
-<tr>
-<td><strong>Enter</strong>, <strong>Escape</strong></td>
-<td>In The Forge's dialogs, New, New Project and Rename, does the dialog's action, or cancels</td>
-</tr>
-</tbody>
-</table>
-<p>In code, <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_OpenToAsset_"><code>TheForge.OpenToAsset(asset)</code></a> opens The Forge on an asset, its type's filter on and the asset selected, as
-an inspector's <strong>Open in The Forge</strong> does, and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.TheForge.html#FarEmerald_PlayForge_Editor_TheForge_ShowWindow_"><code>TheForge.ShowWindow()</code></a> opens it as the menu does.</p>
-<hr>
-<p><a href="menus-and-shortcuts.html">← Menus and shortcuts</a> · <a href="index.html">The Editor Tools</a> · <a href="forge-projects.html">Forge Projects →</a></p>
 
 </article>
 

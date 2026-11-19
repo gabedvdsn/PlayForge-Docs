@@ -87,26 +87,42 @@
         <article data-uid="guide.saving.the-asset-catalog">
 <h1 id="the-asset-catalog">The Asset Catalog</h1>
 
-<p>A save can't hold references to assets, because a reference doesn't last from one session to the next. It names each
-asset by an ID instead, and an <strong>Asset Catalog</strong> finds the asset by that ID. The catalog lists attributes, effects,
-abilities and items. A <strong>Forge Project</strong> is the catalog of its own assets, those in its folder.</p>
+<p>An <strong>Asset Catalog</strong> names the assets a save refers to, and finds them again.</p>
+<p>A save can't hold references to assets, because a reference doesn't last from one session to the next. Instead, it
+names each asset by an ID, and the catalog finds the asset by that ID.</p>
+<p>The catalog lists attributes, effects, abilities and items. A <strong>Forge Project</strong> is the catalog of its own assets, those
+in its folder.</p>
+<p>To give your saves a catalog:</p>
 <ol>
 <li>Use your Forge Project, or create one with <strong>Create → PlayForge → Forge Project</strong>.</li>
-<li>Its catalog keeps itself current. Each PlayForge asset made, copied or moved into the project's folder is
-named as it lands, by its GUID, which stays the same when the asset is renamed or moved, and a deleted one's entry
-goes. An asset moved out stays named, so a save made before still finds it. The project catches up on assets it
-doesn't name yet as it's imported and once each editor session, so one made before PlayForge kept catalogs catches
-up too.</li>
+<li>Its catalog keeps itself current:
+<ul>
+<li>Each PlayForge asset made, copied or moved into the project's folder is named as it lands, by its GUID.</li>
+<li>The GUID stays the same when the asset is renamed or moved.</li>
+<li>A deleted asset's entry goes.</li>
+<li>An asset moved out stays named, so a save made before still finds it.</li>
+<li>The project catches up on assets it doesn't name yet, as it's imported and once each editor session. So a
+project made before PlayForge kept catalogs catches up too.</li>
+</ul>
+</li>
 <li>Pass the project to every capture and restore.</li>
 </ol>
-<p><strong>Keep Catalog Current</strong>, on the project, turns this off. Then, in the project's inspector, open the menu in its header
-and choose <strong>Add Its Assets</strong>, which names each PlayForge asset in the project's folder by its GUID; <strong>Add Every
-PlayForge Asset</strong> names every one in the Unity project. Run it again after you add assets.</p>
-<p>Code can add entries while the game runs, with <code>catalog.Add(id, asset)</code>. An ID or an asset can be listed only once.</p>
+<div class="NOTE">
+<h5>Note</h5>
 <p>A capture leaves out an asset the catalog doesn't name, and logs a warning. A restore does the same for an ID the
 catalog can't find.</p>
-<hr>
-<p><a href="index.html">← Saving and Loading</a> · <a href="index.html">Saving and Loading</a> · <a href="what-a-save-holds.html">What a save holds →</a></p>
+</div>
+<h2 id="adding-assets-by-hand">Adding assets by hand</h2>
+<p>You can stop the catalog keeping itself current, and name its assets yourself.</p>
+<p><strong>Keep Catalog Current</strong>, on the project, turns the catalog's own upkeep off. Then name the assets from the project's
+inspector:</p>
+<ol>
+<li>Open the menu in the inspector's header.</li>
+<li>Choose <strong>Add Its Assets</strong>, which names each PlayForge asset in the project's folder by its GUID.</li>
+</ol>
+<p><strong>Add Every PlayForge Asset</strong>, in the same menu, names every one in the Unity project. Run either again after you add
+assets.</p>
+<p>Code can add entries while the game runs, with <code>catalog.Add(id, asset)</code>. An ID or an asset can be listed only once.</p>
 
 </article>
 

@@ -87,34 +87,198 @@
         <article data-uid="guide.testing.the-world">
 <h1 id="the-world">The world</h1>
 
-<ul>
-<li><strong>Entities</strong>: <code>World.Entity(hub, set, name)</code> makes an entity of an attribute set on either hub, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Runtime"><code>Hub.Runtime</code></a> (a
-<a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a>) or <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Mono"><code>Hub.Mono</code></a> (a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> on a GameObject of its own);
-<code>World.FromIdentity(hub, identity)</code> makes one from an identity asset, the game's own or one <code>Make</code> built, with its
-set, its starting abilities and items, and its sides. <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_RuntimeEntity_"><code>RuntimeEntity</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_MonoEntity_"><code>MonoEntity</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_NewMonoEntity_"><code>NewMonoEntity</code></a> (made, not
-yet registered) make one hub's.</li>
-<li><strong>Playing</strong>: <code>World.Hit(source, target, effect)</code> applies an effect, as a hit; <code>World.Cast(caster, ability, target, level)</code> gives an ability and asks it to start, as a player does, and <code>Cast(caster, slot, target)</code> starts the ability in
-a slot; <code>World.Use(caster, ability, target)</code> starts an ability the entity has already, as an item's; and
-<code>World.Hold(holder, item, stacks)</code> gives and equips an item. Each says whether it worked.</li>
-<li><strong>Reading</strong>: <code>World.Value(gas, attribute)</code> and <code>World.Base(gas, attribute)</code>, NaN where the entity hasn't it;
-<code>World.Has(gas, effect)</code> and <code>World.Stacks(gas, effect)</code>; <code>World.HasTag(gas, tag)</code>, a tag or one under it.</li>
-<li><strong>Time</strong>: <code>Frames.Step(n)</code> runs whole frames, each <code>Frames.DeltaTime</code> long (1/60 of a second, or a class's
-<code>DeltaTime</code>) with one FixedUpdate; <code>Frames.Seconds(s)</code> as many as that time; <code>Frames.Until(condition, within, what)</code>
-steps until it holds, failing past <code>within</code> frames; <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameStepper.html#FarEmerald_PlayForge_Testing_FrameStepper_ExactlyIn_"><code>ExactlyIn</code></a> fails unless it holds exactly so many frames on;
-<code>Holds</code> fails if it stops holding. <code>World.Clock(step)</code> makes each frame take <code>step</code> seconds of PlayForge's own time
-(<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a>) instead.</li>
-<li><strong>Chance</strong>: <code>World.Rolls(0.1f, 0.9f)</code> makes each roll come out as written, in turn and round again, and returns them,
-counting what's drawn (<code>Drawn</code>). A chance lands where it's above the roll: a roll of 0 always lands.</li>
-<li><strong>Processes</strong>: <code>World.Register(process)</code> registers one the world ends if the test doesn't; <code>World.Own(relay)</code> makes
-it end one registered some other way; <code>World.Template&lt;T&gt;(name)</code> stands in for a prefab, and <code>World.Spawn(template)</code>
-registers it, returning the clone.</li>
-<li><strong>Assets</strong>: <code>Make</code> builds them in code, destroyed with the world: <a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a>, <code>Element</code>, <code>Pool</code> (between 0 and its
-base) and <code>Stat</code>, <code>Set</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html#FarEmerald_PlayForge_Testing_TestAssets_UnusedSet_"><code>UnusedSet</code></a>, <code>Identity</code> and <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html#FarEmerald_PlayForge_Testing_TestAssets_RuntimeIdentity_"><code>RuntimeIdentity</code></a>, <code>Effect</code> (as an <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html"><code>EffectConfig</code></a> says: one
-impact, its duration and ticks, how another application stacks, its impact types, granted tags and workers), <a class="xref" href="../../api/FarEmerald.PlayForge.Item.html"><code>Item</code></a>,
-<a class="xref" href="../../api/FarEmerald.PlayForge.Ability.html"><code>Ability</code></a> and <code>Stage</code>. Its tag names are unique in the world. The game's own assets are the test's to load.</li>
-</ul>
-<hr>
-<p><a href="a-test.html">← A test</a> · <a href="index.html">Testing Your Content</a> · <a href="what-must-hold.html">What must hold →</a></p>
+<p>The world makes a test's entities and assets, plays them, reads them, and controls its time, its chance and its
+processes.</p>
+<p><strong>Entities</strong>: the world makes entities on either hub.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World.Entity(hub, set, name)</code></td>
+<td>Makes an entity of an attribute set on either hub: <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Runtime"><code>Hub.Runtime</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a>, or <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Mono"><code>Hub.Mono</code></a>, a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> on a GameObject of its own.</td>
+</tr>
+<tr>
+<td><code>World.FromIdentity(hub, identity)</code></td>
+<td>Makes an entity from an identity asset, the game's own or one <code>Make</code> built, with its set, its starting abilities and items, and its sides.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_RuntimeEntity_"><code>RuntimeEntity</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_MonoEntity_"><code>MonoEntity</code></a></td>
+<td>Make an entity on one hub.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html#FarEmerald_PlayForge_Testing_ForgeTestWorld_NewMonoEntity_"><code>NewMonoEntity</code></a></td>
+<td>Makes a Mono hub's entity, not yet registered.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Playing</strong>: each of these says whether it worked.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World.Hit(source, target, effect)</code></td>
+<td>Applies an effect, as a hit.</td>
+</tr>
+<tr>
+<td><code>World.Cast(caster, ability, target, level)</code></td>
+<td>Gives an ability and asks it to start, as a player does.</td>
+</tr>
+<tr>
+<td><code>Cast(caster, slot, target)</code></td>
+<td>Starts the ability in a slot.</td>
+</tr>
+<tr>
+<td><code>World.Use(caster, ability, target)</code></td>
+<td>Starts an ability the entity has already, as an item's.</td>
+</tr>
+<tr>
+<td><code>World.Hold(holder, item, stacks)</code></td>
+<td>Gives and equips an item.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading</strong>: each reads an entity, passed as <code>gas</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World.Value(gas, attribute)</code></td>
+<td>An attribute's current value, or NaN where the entity hasn't the attribute.</td>
+</tr>
+<tr>
+<td><code>World.Base(gas, attribute)</code></td>
+<td>An attribute's base value, or NaN where the entity hasn't the attribute.</td>
+</tr>
+<tr>
+<td><code>World.Has(gas, effect)</code></td>
+<td>Whether an effect is on the entity.</td>
+</tr>
+<tr>
+<td><code>World.Stacks(gas, effect)</code></td>
+<td>An effect's stacks on the entity.</td>
+</tr>
+<tr>
+<td><code>World.HasTag(gas, tag)</code></td>
+<td>Whether the entity has a tag, or one under it.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Time</strong>: a test steps whole frames, each <code>Frames.DeltaTime</code> long, with one FixedUpdate. <code>Frames.DeltaTime</code> is 1/60 of a
+second, or a class's <code>DeltaTime</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Frames.Step(n)</code></td>
+<td>Runs whole frames.</td>
+</tr>
+<tr>
+<td><code>Frames.Seconds(s)</code></td>
+<td>Runs as many frames as that time takes.</td>
+</tr>
+<tr>
+<td><code>Frames.Until(condition, within, what)</code></td>
+<td>Steps until the condition holds, failing past <code>within</code> frames.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Testing.FrameStepper.html#FarEmerald_PlayForge_Testing_FrameStepper_ExactlyIn_"><code>ExactlyIn</code></a></td>
+<td>Fails unless the condition holds exactly so many frames on.</td>
+</tr>
+<tr>
+<td><code>Holds</code></td>
+<td>Fails if the condition stops holding.</td>
+</tr>
+<tr>
+<td><code>World.Clock(step)</code></td>
+<td>Makes each frame take <code>step</code> seconds of PlayForge's own time (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a>) instead.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chance</strong>: <code>World.Rolls(0.1f, 0.9f)</code> makes each roll come out as written, in turn and round again. It returns the
+rolls, counting what's drawn (<code>Drawn</code>). A chance lands where it's above the roll, so a roll of 0 always lands.</p>
+<p><strong>Processes</strong>: the world ends each process it owns, if the test doesn't.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World.Register(process)</code></td>
+<td>Registers a process, which the world ends if the test doesn't.</td>
+</tr>
+<tr>
+<td><code>World.Own(relay)</code></td>
+<td>Makes the world end a process registered some other way.</td>
+</tr>
+<tr>
+<td><code>World.Template&lt;T&gt;(name)</code></td>
+<td>Stands in for a prefab.</td>
+</tr>
+<tr>
+<td><code>World.Spawn(template)</code></td>
+<td>Registers a template, and returns the clone.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assets</strong>: <code>Make</code> builds them in code, and they're destroyed with the world. Its tag names are unique in the world. The
+game's own assets are the test's to load.</p>
+<table>
+<thead>
+<tr>
+<th><code>Make</code> member</th>
+<th>What it builds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a></td>
+<td>An attribute.</td>
+</tr>
+<tr>
+<td><code>Element</code>, <code>Pool</code>, <code>Stat</code></td>
+<td>An attribute set's element. A <code>Pool</code> stays between 0 and its base.</td>
+</tr>
+<tr>
+<td><code>Set</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html#FarEmerald_PlayForge_Testing_TestAssets_UnusedSet_"><code>UnusedSet</code></a></td>
+<td>An attribute set. <code>UnusedSet</code> is a set of one attribute nothing reads.</td>
+</tr>
+<tr>
+<td><code>Identity</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html#FarEmerald_PlayForge_Testing_TestAssets_RuntimeIdentity_"><code>RuntimeIdentity</code></a></td>
+<td>An entity's identity: an asset, or a runtime GAS's.</td>
+</tr>
+<tr>
+<td><code>Effect</code></td>
+<td>An effect, as an <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html"><code>EffectConfig</code></a> says: one impact, its duration and ticks, how another application stacks, its impact types, granted tags and workers.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Item.html"><code>Item</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Ability.html"><code>Ability</code></a>, <code>Stage</code></td>
+<td>An item, an ability, and an ability's stage.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

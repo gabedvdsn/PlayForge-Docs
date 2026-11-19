@@ -87,9 +87,35 @@
         <article data-uid="guide.effect-pipeline.3-the-four-verb-attribute-api-attributesystemcomponent">
 <h1 id="3-the-four-verb-attribute-api-attributesystemcomponent">3. The four-verb attribute API (<code>AttributeSystemComponent</code>)</h1>
 
-<p>Every attribute mutation funnels through one shared 4-phase pipeline
-(<code>CommitWithCarrier</code>): pre-change workers → PHASE-2 dispatch → post-change workers →
-impact relay (<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html"><code>ImpactData</code></a>, frame summaries, source-side <code>TrackImpact</code>, <code>AttributeChanged</code>).</p>
+<p>Every attribute mutation funnels through one shared 4-phase pipeline (<code>CommitWithCarrier</code>):</p>
+<pre><code class="lang-mermaid">flowchart TD
+classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef decision fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
+v([&quot;a verb: RegisterModifier (Continuous), UnregisterModifier (its reversal),&lt;br/&gt;CommitImpact (permanent) or ModifyAttribute (a Commit with no impacters)&quot;]):::terminator
+c1[&quot;CommitWithCarrier(attr, smav, runEvents, mode, impacters)&quot;]:::general
+m{&quot;mode?&quot;}:::decision
+f[&quot;freeze the impacters: ScalerImpacter.Evaluate,&lt;br/&gt;ValuePipeline.Run, the modifier stages through RunAfter,&lt;br/&gt;then CachedAttributeValue.PreviewCommit makes the ChangeValue&quot;]:::general
+pre[&quot;Callbacks.AttributePreChange(attr, change)&lt;br/&gt;then, when runEvents, the PreChange attribute workers:&lt;br/&gt;PreValidateWorkFor, ValidateWorkFor, an inline Intercept&lt;br/&gt;that may edit the change, or DeferredIntercept actions&quot;]:::general
+soak[&quot;Commit only: a workable loss soaks into the Barrier-role&lt;br/&gt;attributes that absorb for it, and a workable gain&lt;br/&gt;is scaled by GainsScaledBy&quot;]:::general
+arc[&quot;apply: Register adds the modifier, Unregister removes it,&lt;br/&gt;Commit records it under its retention group&lt;br/&gt;Recompute: root, Adds, Multiply, FlatBonus, the commits,&lt;br/&gt;Override (the lowest SortOrder wins)&lt;br/&gt;constrain: overflow clamp, rounding, AutoScaleWithBase&quot;]:::general
+post[&quot;the PostChange attribute workers,&lt;br/&gt;then Callbacks.AttributePostChange&quot;]:::general
+id[&quot;ImpactData.Generate: the target's RecordFrameImpactReceived&lt;br/&gt;(FrameSummary, OnImpactReceived, the combat log, IMPACT_TAKEN),&lt;br/&gt;then the dealer's ProvideFrameImpactDealt&quot;]:::general
+cb[&quot;Callbacks.AttributeChanged, AttributeBaseChanged,&lt;br/&gt;AttributeCurrentZero or AttributeCurrentFull&lt;br/&gt;regulated attributes: RefreshRegulatedAttributes recomputes&lt;br/&gt;the dependents and runs their post-change workers and callbacks&quot;]:::general
+eof([&quot;at the end of frame: the deferred actions,&lt;br/&gt;the analysis workers and WatchProjectHealth&quot;]):::terminator
+v --&gt; c1 --&gt; m
+m --&gt;|Commit| f --&gt; pre
+m --&gt;|Register or Unregister| pre
+pre --&gt; soak --&gt; arc --&gt; post --&gt; id --&gt; cb --&gt; eof
+</code></pre>
+<p><em>What one change runs through, from the verb to the end of frame. Register and Unregister keep the transport value; only a Commit previews its delta.</em></p>
+<ol>
+<li>pre-change workers;</li>
+<li>PHASE-2 dispatch;</li>
+<li>post-change workers;</li>
+<li>impact relay (<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html"><code>ImpactData</code></a>, frame summaries, source-side <code>TrackImpact</code>, <code>AttributeChanged</code>).</li>
+</ol>
+<p>Four verbs make up the API, each with its own dispatch:</p>
 <table>
 <thead>
 <tr>
@@ -107,7 +133,7 @@ impact relay (<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.ht
 <tr>
 <td><code>UnregisterModifier(attr, smv)</code></td>
 <td>remove carrier's entries + recompute</td>
-<td>removal &amp; replacement — <strong>fires callbacks like any change</strong>, so regulated attributes refresh (removal used to be silent → stale derived values). It's no hit, though: its <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Ends"><code>ImpactData.Ends</code></a> holds, so its effect's workers and components hear no impact, its dealer's impact workers don't run and no Impact Taken or Dealt is sent</td>
+<td>removal &amp; replacement (see below)</td>
 </tr>
 <tr>
 <td><code>CommitImpact(attr, smv, impacters)</code></td>
@@ -121,52 +147,60 @@ impact relay (<a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.ht
 </tr>
 </tbody>
 </table>
-<p>Registration/unregistration are <strong>identity-based</strong> on the carrier instance — they are never
-wrapped in synthetic carriers.</p>
-<p><strong>Pre-change phase (commits).</strong> Before the pre-change callback and workers run, a commit
-evaluates its impacters once (frozen as constants, so a randomized scaler can't roll
-differently twice) and previews the <strong>incoming</strong> delta: ops in order, no bounds or rounding.
-That delta is what <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeValue.html"><code>ChangeValue</code></a> holds, since effect specs arrive as <code>(0,0)</code> transport, and an
-Inline worker's edit is what commits:</p>
+<p><code>UnregisterModifier</code> <strong>fires callbacks like any change</strong>, so regulated attributes refresh. Removal used to be silent,
+which left stale derived values.</p>
+<p>It's no hit, though: its <a class="xref" href="../../api/FarEmerald.PlayForge.ImpactData.html#FarEmerald_PlayForge_ImpactData_Ends"><code>ImpactData.Ends</code></a> holds. So:</p>
+<ul>
+<li>its effect's workers and components hear no impact;</li>
+<li>its dealer's impact workers don't run;</li>
+<li>no Impact Taken or Dealt is sent.</li>
+</ul>
+<p>Registration and unregistration are <strong>identity-based</strong> on the carrier instance. They are never wrapped in synthetic
+carriers.</p>
+<p><strong>Pre-change phase (commits).</strong> Before the pre-change callback and workers run, a commit evaluates its impacters once.
+They are frozen as constants, so a randomized scaler can't roll differently twice.</p>
+<p>The commit then previews the <strong>incoming</strong> delta: ops in order, no bounds or rounding. That delta is what <a class="xref" href="../../api/FarEmerald.PlayForge.ChangeValue.html"><code>ChangeValue</code></a>
+holds, since effect specs arrive as <code>(0,0)</code> transport.</p>
+<p>An Inline worker's edit is what commits:</p>
 <ul>
 <li>untouched → the frozen impacters commit as authored (op semantics, per-impacter groups);</li>
-<li>adjusted → the new delta commits as one constant Add in the impacters' shared group (mixed
-groups fall back to the carrier's retention group).</li>
+<li>adjusted → the new delta commits as one constant Add in the impacters' shared group (mixed groups fall back to the
+carrier's retention group).</li>
 </ul>
-<p>Either way §2.2 applies: post-constraint delta recorded, then <code>Recompute</code>. Armor therefore acts
-on incoming damage and the clamp comes after: 20 HP, −30 hit, 50% armor → −15 → 5 HP. Raw
-deltas (<code>ModifyAttribute</code>) preview as themselves. Register/Unregister are observe-only here,
-because modifiers are re-derived every recompute, so a one-off adjustment has nowhere to live.</p>
-<p><strong>A commit allocates nothing</strong>, adjusted or not. It rents its <code>ChangeValue</code> and its
-frozen impacters and gives them back when it's done, one set for each commit in progress, since
-a worker or a listener can commit inside another. An adjusted delta's Adds are frozen in the same
-impacters. So:</p>
+<p>Either way §2.2 applies: post-constraint delta recorded, then <code>Recompute</code>. Armor therefore acts on incoming damage and
+the clamp comes after: 20 HP, −30 hit, 50% armor → −15 → 5 HP.</p>
+<p>Raw deltas (<code>ModifyAttribute</code>) preview as themselves. Register/Unregister are observe-only here, because modifiers are
+re-derived every recompute, so a one-off adjustment has nowhere to live.</p>
+<p><strong>A commit allocates nothing</strong>, adjusted or not. It rents its <code>ChangeValue</code> and its frozen impacters and gives them back
+when it's done.</p>
+<p>It rents one set for each commit in progress, since a worker or a listener can commit inside another. An adjusted
+delta's Adds are frozen in the same impacters. So:</p>
 <ul>
-<li>a <code>ChangeValue</code> belongs to its commit. A callback or an Inline worker reads it during the call,
-or copies its <code>Value</code>, and doesn't keep it;</li>
-<li>a Deferred worker's actions may keep it. A change handed to one is left to them, and its commit
-takes a new one for the next;</li>
+<li>a <code>ChangeValue</code> belongs to its commit. A callback or an Inline worker reads it during the call, or copies its <code>Value</code>,
+and doesn't keep it;</li>
+<li>a Deferred worker's actions may keep it. A change handed to one is left to them, and its commit takes a new one for
+the next;</li>
 <li>the source-side <code>TrackImpact</code> keeps a total, the last impact and a count, not every impact.</li>
 </ul>
-<p>A raw delta allocates nothing on its way through either: its delta's Adds are frozen in the same
-impacters, and a <a class="xref" href="../../api/FarEmerald.PlayForge.SourceAttributeImpact.html"><code>SourceAttributeImpact</code></a> keeps the origin it makes. <a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateSimple_"><code>GenerateSimple</code></a> makes a
-new carrier on every call, so a raw delta made every frame keeps its carrier, made once with
+<p>A raw delta allocates nothing on its way through either. Its delta's Adds are frozen in the same impacters, and a
+<a class="xref" href="../../api/FarEmerald.PlayForge.SourceAttributeImpact.html"><code>SourceAttributeImpact</code></a> keeps the origin it makes.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.SourcedModifiedAttributeValue.html#FarEmerald_PlayForge_SourcedModifiedAttributeValue_GenerateSimple_"><code>GenerateSimple</code></a> makes a new carrier on every call. So a raw delta made every frame keeps its carrier, made once with
 <a class="xref" href="../../api/FarEmerald.PlayForge.IAttributeImpactCarrier.html#FarEmerald_PlayForge_IAttributeImpactCarrier_GenerateSourceDerivation_"><code>IAttributeImpactCarrier.GenerateSourceDerivation(source, attribute)</code></a>.</p>
-<p>The changes the system makes on someone's behalf, <code>EnforceScaling</code>'s rescale and the lifesteal
-worker's heal, allocate nothing either:</p>
+<p>The changes the system makes on someone's behalf, <code>EnforceScaling</code>'s rescale and the lifesteal worker's heal, allocate
+nothing either:</p>
 <ul>
-<li>each is carried by a carrier kept for its source and attribute, in a table keyed weakly by
-source, so a source that's gone isn't held;</li>
-<li>each deferred one is queued in a <a class="xref" href="../../api/FarEmerald.PlayForge.ModifyAttributeAction.html"><code>ModifyAttributeAction</code></a> the system takes back once the queue
-has run it, so a listener of <code>OnActionQueued</code> or <code>OnActionExecuted</code> reads an action during the
-call. One the queue invalidates isn't taken back;</li>
-<li>the queue walks its priority buckets by index, and <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_EnqueueRange_"><code>EnqueueRange</code></a> reads a list or an array by
-index, so taking an action off allocates nothing.</li>
+<li>each is carried by a carrier kept for its source and attribute, in a table keyed weakly by source, so a source that's
+gone isn't held;</li>
+<li>each deferred one is queued in a <a class="xref" href="../../api/FarEmerald.PlayForge.ModifyAttributeAction.html"><code>ModifyAttributeAction</code></a> that the system takes back once the queue has run it:
+<ul>
+<li>so a listener of <code>OnActionQueued</code> or <code>OnActionExecuted</code> reads an action during the call;</li>
+<li>one the queue invalidates isn't taken back;</li>
 </ul>
-<p>Null / undefined attribute targets early-out safely (pure tag-grant effects are legal).</p>
-<hr>
-<hr>
-<p><a href="2-attribute-state-cachedattributevalue.html">← 2. Attribute state (CachedAttributeValue)</a> · <a href="index.html">Effect &amp; Attribute Pipeline</a> · <a href="4-effect-lifecycle-effectsystemcomponent.html">4. Effect lifecycle (EffectSystemComponent) →</a></p>
+</li>
+<li>the queue walks its priority buckets by index, and <a class="xref" href="../../api/FarEmerald.PlayForge.ActionQueue.html#FarEmerald_PlayForge_ActionQueue_EnqueueRange_"><code>EnqueueRange</code></a> reads a list or an array by index, so taking an
+action off allocates nothing.</li>
+</ul>
+<p>Null or undefined attribute targets early-out safely: pure tag-grant effects are legal.</p>
 
 </article>
 

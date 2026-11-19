@@ -87,16 +87,35 @@
         <article data-uid="guide.effects.local-data">
 <h1 id="local-data">Local Data</h1>
 
-<p>Local Data is a list of named values stored on the asset. Each row has a <strong>Key</strong> (a tag) and a value of a kind: Float,
-Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your
-own, a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour, which the row's kinds offer beside
-PlayForge's. A row saves its own value alone. Object fields take project assets, not scene objects. Code reads a value by
-its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>, and a number, a Float or an Int, which can
-scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
+<p>Local Data is a list of named values stored on the asset.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key</strong></td>
+<td>A tag that names the row.</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>A value of a kind: Float, Int, String, Bool, Tag, Attribute, Effect, Ability, Entity, Object, MonoBehaviour or ScriptableObject, or a kind of your own.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A kind of your own is a <code>[Serializable]</code> class made from <a class="xref" href="../../api/FarEmerald.PlayForge.LocalDataValue-1.html"><code>LocalDataValue&lt;T&gt;</code></a>, as a point or a colour. The row's kinds
+offer it beside PlayForge's.</li>
+<li>A row saves its own value alone.</li>
+<li>Object fields take project assets, not scene objects.</li>
+</ul>
+<p>Code reads a value by its type, <code>data.TryGet(out float range)</code> or <code>data.TryGet(out MyPoint point)</code>. It reads a number, a
+Float or an Int, which can scale, with <code>data.Value.TryReadNumber(context, out float number)</code>.</p>
 <p>PlayForge doesn't read an effect's Local Data itself. Your code and workers can, with
 <code>effect.TryGetLocalData(key, out var data)</code>. The first row with that key wins.</p>
-<hr>
-<p><a href="workers.html">← Workers</a> · <a href="index.html">Effects</a> · <a href="used-by.html">Used By →</a></p>
 
 </article>
 

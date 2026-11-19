@@ -87,66 +87,16 @@
         <article data-uid="guide.tags.how-an-entity-holds-tags">
 <h1 id="how-an-entity-holds-tags">How an entity holds tags</h1>
 
-<p>An entity carries the tags its sources grant it, each with a weight: the number of grants of it the entity holds now.
-Its sources, as its tags are compiled:</p>
+<p>An entity carries the tags its sources grant it, each with a weight. A tag's weight is the number of grants of it that
+the entity holds now.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>its identity: its asset tag, its sides and its <strong>Granted Tags</strong>. Its sides are its <strong>Affiliation</strong>, or those its
-registration or <code>SetAffiliation</code> gave it, or a Side Change's while one lasts (<a href="../entities/tags.html">Entities: Tags</a>);</li>
-<li>its attribute set's asset tag, and each sub-set's;</li>
-<li>each effect on its shelf: its asset tag, its <strong>Granted Tags</strong>, and those its modifiers add
-(<a href="../effects/tags.html">Effects: Tags</a>). An Instant effect grants its Granted Tags only as it applies;</li>
-<li>each ability it knows: its asset tag and its <strong>Passive Tags</strong>, and its <strong>Active Tags</strong> while an activation of it runs
-(<a href="../abilities/tags.html">Abilities: Tags</a>);</li>
-<li>each item it holds: its asset tag, and its <strong>Granted Tags</strong> while it's equipped (<a href="../items/tags.html">Items: Tags</a>);</li>
-<li>its loose tags.</li>
+<li><a href="how-an-entity-holds-tags/where-its-tags-come-from.html">Where its tags come from</a>: An entity's tags come from its sources, which it reads as its tags are compiled</li>
+<li><a href="how-an-entity-holds-tags/weights-and-compiles.html">Weights and compiles</a>: A tag's weight counts its grants, and a compile rebuilds the weights from the entity's sources.</li>
+<li><a href="how-an-entity-holds-tags/loose-tags.html">Loose tags</a>: A loose tag is one granted to the entity directly, with nothing behind it, as Unreal's loose gameplay tags are.</li>
+<li><a href="how-an-entity-holds-tags/reading-them.html">Reading them</a>: An entity's <code>TagCache</code> holds its tags and their weights, and <code>gas.GetTagCache()</code> gives it.</li>
+<li><a href="how-an-entity-holds-tags/what-holds-and-what-grants.html">What holds and what grants</a>: Two interfaces describe what carries tags and what grants them: <code>ITagHandler</code> and <code>ITagSource</code>.</li>
 </ul>
-<p>An asset keeps its tags in its Tags section, an ability's an <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityTags.html"><code>AbilityTags</code></a>, an effect's a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectTags.html"><code>GameplayEffectTags</code></a> and an
-item's an <a class="xref" href="../../api/FarEmerald.PlayForge.ItemTags.html"><code>ItemTags</code></a>, and an entity's are fields of its <a class="xref" href="../../api/FarEmerald.PlayForge.EntityIdentity.html"><code>EntityIdentity</code></a>. <strong>Context Tags</strong> describe an asset, and are
-granted to no one. A tag two sources grant weighs 2, as two burns that each grant Status.Burning, and stays until both
-are gone. An effect grants its tags once for each container on its shelf, not once a stack: a burn stacked five times in
-one container grants Status.Burning once.</p>
-<p>The entity compiles its tags as a source comes, goes or changes: as an ability is learned, starts or ends, an item is
-given, equipped or taken, a loose tag comes or goes, its sides change, and an effect lands or comes off. A compile
-rebuilds the weights from the sources and tells, as it ends, only what it changed
-(<a href="hearing-tags-change.html">Hearing tags change</a>).</p>
-<h2 id="loose-tags">Loose tags</h2>
-<p>A loose tag is one granted to the entity directly, with nothing behind it, as Unreal's loose gameplay tags are.
-<code>gas.AddLooseTag(tag)</code> grants one, each grant counted, and <code>gas.RemoveLooseTag(tag)</code> takes one grant back, false where
-the entity has none; <code>gas.GetLooseTags()</code> lists them, a tag once for each grant. A save keeps them
-(<a href="../saving/what-a-save-holds.html">Saving and Loading: What a save holds</a>). An ability's <strong>Grant Tags</strong> task grants loose tags while its stage runs
-(<a href="../abilities/stages.html">Abilities: Stages</a>), and the Debugger's Entities view adds them, and takes them back, by hand.</p>
-<h2 id="reading-them">Reading them</h2>
-<p><code>gas.GetTagCache()</code> gives the entity's <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html"><code>TagCache</code></a>, its tags and their weights; a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> component's is
-null until it initializes.</p>
-<ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>GetWeight(tag)</code></a>: the weight of that very tag, <strong>−1 where the entity hasn't it</strong>, not 0.
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight(tag, out weight)</code></a> says whether it has it, and <code>gas.GetTagWeight(tag)</code> is <code>GetWeight</code>.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_HasTagExact_"><code>HasTagExact(tag)</code></a>, and <code>HasTag(tag, mode)</code> by a match mode (<a href="querying-tags.html">Querying tags</a>); <code>HasAnyTag</code>,
-<code>HasAllTags</code> and <code>HasNoneOfTags</code> ask it of several, Exact unless told.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetMatchingWeight_"><code>GetMatchingWeight(tag, mode)</code></a>: the weights of the tags that match, added up, 0 where none does; in Exact mode it is
-<code>GetWeight</code>, −1 for an absent tag. <code>GetMatchingTags(tag, mode)</code> gives the tags held that match.</li>
-<li><code>GetAppliedTags()</code>: each tag held, once. The list is the cache's own, reused until a tag comes or goes: read it, and
-copy it to keep it. <code>gas.GetAppliedTags()</code> is the same list.</li>
-</ul>
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTag_"><code>AddTag</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_AddTags_"><code>AddTags</code></a>, <code>RemoveTag</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveTags_"><code>RemoveTags</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveTagCompletely_"><code>RemoveTagCompletely</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_RemoveMatchingTags_"><code>RemoveMatchingTags</code></a> change the weights
-directly, as an Instant effect's tags are granted for the moment it applies, and are told as they happen; but the next
-compile rebuilds the weights from their sources and drops them, so a tag meant to last is a loose tag. <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_ResetWeights_"><code>ResetWeights()</code></a>
-empties the weights, telling each tag's going, and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_ResetCache_"><code>ResetCache()</code></a> resolves the active tag workers as well;
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_BeginRebuild_"><code>BeginRebuild()</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_EndRebuild_"><code>EndRebuild()</code></a> frame a compile. <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogWeights_"><code>LogWeights()</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_LogActiveWorkers_"><code>LogActiveWorkers()</code></a> and
-<a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetHierarchyDebugString_"><code>GetHierarchyDebugString()</code></a> write the cache out, for debugging.</p>
-<h2 id="what-holds-and-what-grants">What holds and what grants</h2>
-<ul>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ITagHandler.html"><code>ITagHandler</code></a> is what carries tags, which every entity is: <code>GetAppliedTags()</code>, <code>GetTagWeight(tag)</code>,
-<code>QueryTags(query)</code>, against its weights, and <code>CompileGrantedTags()</code>, which compiles them now. A tag worker reads its
-entity through it.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ITagSource.html"><code>ITagSource</code></a> is what grants tags: <code>GetGrantedTags()</code>. An asset gives what it grants of itself, as an ability its asset
-tag and its Passive Tags; what holds it on an entity gives what it grants there, as a known ability its Active Tags
-while it runs, and an effect on the shelf its asset tag with the rest.</li>
-</ul>
-<p>The Debugger's Entities view shows an entity's tags with what grants each, and its Tags view every tag the entities
-hold, as a tree, with who holds the one selected (<a href="../getting-started/tooling-tour.html">Getting Started: Tooling tour</a>).</p>
-<hr>
-<p><a href="the-tags-view.html">← The Tags view</a> · <a href="index.html">Tags</a> · <a href="hearing-tags-change.html">Hearing tags change →</a></p>
 
 </article>
 

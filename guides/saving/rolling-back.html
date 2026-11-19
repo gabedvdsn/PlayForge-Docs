@@ -87,14 +87,19 @@
         <article data-uid="guide.saving.rolling-back">
 <h1 id="rolling-back">Rolling back</h1>
 
-<p>A rollback saves each step, and on a late input loads a step back and runs again. With a fixed tick (ProcessControl's
-Fixed Tick Rate, or a world of its own stepped by a fixed time) and the random source seeded for each step
-(<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use</code></a>), the run again lands where the first did, to the last digit of every save. Keep the saves in
-memory, as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a>s: <code>JsonUtility</code> can move the last digit of a double as it reads one back. A load ends the
-abilities running, so an ability that runs over several steps isn't replayed by a load into its middle; one that
-ends as it activates is.</p>
-<hr>
-<p><a href="effects-from-other-entities.html">← Effects from other entities</a> · <a href="index.html">Saving and Loading</a> · <a href="copying-an-entity.html">Copying an entity →</a></p>
+<p>A rollback saves each step, and on a late input loads a step back and runs again.</p>
+<p>The run again lands where the first did, to the last digit of every save, given both of these:</p>
+<ul>
+<li>a fixed tick: ProcessControl's Fixed Tick Rate, or a world of its own stepped by a fixed time;</li>
+<li>the random source seeded for each step (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html#FarEmerald_PlayForge_ForgeRandom_Use_"><code>ForgeRandom.Use</code></a>).</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Keep the saves in memory, as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a>s. <code>JsonUtility</code> can move the last digit of a double as it reads one
+back.</p>
+</div>
+<p>A load ends the abilities running. So an ability that runs over several steps isn't replayed by a load into its
+middle, but one that ends as it activates is.</p>
 
 </article>
 

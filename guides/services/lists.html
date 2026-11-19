@@ -87,18 +87,34 @@
         <article data-uid="guide.services.lists">
 <h1 id="lists">Lists</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ReadOnlyListView-1.html"><code>ReadOnlyListView&lt;T&gt;</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeUtils.html"><code>ForgeUtils</code></a> are two small list helpers: a view of a list that <code>foreach</code> walks without
-allocating, and the index of a list's least or greatest item.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ReadOnlyListView-1.html"><code>ReadOnlyListView&lt;T&gt;</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeUtils.html"><code>ForgeUtils</code></a> are two small list helpers:</p>
 <ul>
-<li><code>ReadOnlyListView&lt;T&gt;</code> is a read-only struct over a <code>List&lt;T&gt;</code>: its <code>Count</code>, an indexer, and a <code>GetEnumerator</code> that
-hands <code>foreach</code> the list's own struct enumerator, so walking it allocates nothing. Walked as an <code>IEnumerable&lt;T&gt;</code>, as
-LINQ walks it, its enumerator is boxed, as any list's is. A view of no list reads as empty. An effect spec's
-<a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_GetImpactedAttributes_"><code>GetImpactedAttributes(delivery)</code></a> returns one.</li>
-<li><code>ForgeUtils.IndexMin(list, selector)</code> and <code>ForgeUtils.IndexMax(list, selector)</code> give the index of the item whose
-selected value is least or greatest, the first of equals, and 0 for an empty list.</li>
+<li><code>ReadOnlyListView&lt;T&gt;</code> is a view of a list that <code>foreach</code> walks without allocating.</li>
+<li><code>ForgeUtils</code> gives the index of a list's least or greatest item.</li>
 </ul>
-<hr>
-<p><a href="the-attribute-registry.html">← The attribute registry</a> · <a href="index.html">Time, Input and Logging</a> · <a href="sign-and-math-policies.html">Sign and math policies →</a></p>
+<p><code>ReadOnlyListView&lt;T&gt;</code> is a read-only struct over a <code>List&lt;T&gt;</code>. It has a <code>Count</code>, an indexer, and a <code>GetEnumerator</code> that
+hands <code>foreach</code> the list's own struct enumerator, so walking it allocates nothing.</p>
+<p>Walked as an <code>IEnumerable&lt;T&gt;</code>, as LINQ walks it, its enumerator is boxed, as any list's is. A view of no list reads as
+empty. An effect spec's <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html#FarEmerald_PlayForge_GameplayEffectSpec_GetImpactedAttributes_"><code>GetImpactedAttributes(delivery)</code></a> returns one.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it gives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ForgeUtils.IndexMin(list, selector)</code></td>
+<td>The index of the item whose selected value is least.</td>
+</tr>
+<tr>
+<td><code>ForgeUtils.IndexMax(list, selector)</code></td>
+<td>The index of the item whose selected value is greatest.</td>
+</tr>
+</tbody>
+</table>
+<p>Each gives the first of equals, and 0 for an empty list.</p>
 
 </article>
 

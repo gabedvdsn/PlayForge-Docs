@@ -87,15 +87,20 @@
         <article data-uid="guide.task-sequences.chains">
 <h1 id="chains">Chains</h1>
 
+<p>A chain runs its sequences in order, with one data packet.</p>
 <pre><code class="lang-csharp">// countdown and fight are TaskSequences; the last is built in place
 var round = countdown.Then(fight).Then(builder =&gt; builder.WithName(&quot;Results&quot;).Stage(stage =&gt; stage.Do(ShowResults)));
 await round.Run(SequenceDataPacket.SceneRoot());
 </code></pre>
-<p>A chain runs its sequences in order with one data packet; it can repeat, pause and resume, skip its current sequence, or
-be interrupted, and takes conditions of its own (<code>InterruptWhen</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceChain.html#FarEmerald_PlayForge_TaskSequenceChain_SkipSequenceWhen_"><code>SkipSequenceWhen</code></a>). From inside, <code>data.Chain</code> is the
-chain, and <code>data.InterruptChain()</code> ends it.</p>
-<hr>
-<p><a href="running-one.html">← Running one</a> · <a href="index.html">Task Sequences</a> · <a href="synced-sequences.html">Synced sequences →</a></p>
+<p>A chain can:</p>
+<ul>
+<li>repeat;</li>
+<li>pause and resume;</li>
+<li>skip its current sequence;</li>
+<li>be interrupted.</li>
+</ul>
+<p>It takes conditions of its own (<code>InterruptWhen</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceChain.html#FarEmerald_PlayForge_TaskSequenceChain_SkipSequenceWhen_"><code>SkipSequenceWhen</code></a>). From inside, <code>data.Chain</code> is the chain, and
+<code>data.InterruptChain()</code> ends it.</p>
 
 </article>
 

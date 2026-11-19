@@ -87,28 +87,13 @@
         <article data-uid="guide.services.packet-helpers">
 <h1 id="packet-helpers">Packet helpers</h1>
 
-<p><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html"><code>ProcessTaskUtil</code></a> holds extension methods for a data packet's targets and the effects it carries, and three loops for
-async code that wait through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html"><code>ForgeTick</code></a>.</p>
+<p><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html"><code>ProcessTaskUtil</code></a> holds extension methods for a data packet's targets and the effects it carries. It also holds three
+loops for async code, which wait through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html"><code>ForgeTick</code></a>.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li><code>data.GetTargetingPacket(tag, out packet)</code> gives the primary <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTargetingPacket.html"><code>AbstractTargetingPacket</code></a> under a tag, or false where
-there's none, and then interrupts the packet's sequence, where it's a <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceDataPacket.html"><code>SequenceDataPacket</code></a>, unless it's called with
-<code>autoInterrupt: false</code>.</li>
-<li><code>data.SetTargetingPacket(tag, packet)</code> files one as the primary, and <code>data.SetTargetingPackets(tag, targets)</code> files
-the targeting packet of each target, in their order and in place of what was there, so the first is the primary.</li>
-<li><code>data.TryApplyEffects(target, tag)</code> applies each effect loaded under the tag to a target, an <a class="xref" href="../../api/FarEmerald.PlayForge.ITarget.html"><code>ITarget</code></a> or a
-<a class="xref" href="../../api/FarEmerald.PlayForge.ProcessHierarchy.HierarchyNode.html#FarEmerald_PlayForge_ProcessHierarchy_HierarchyNode_GameObject"><code>GameObject</code></a> that has one, each made from the ability's origin with the magnitudes its caller set. It's false where
-the packet isn't an ability's, an <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityDataPacket.html"><code>AbilityDataPacket</code></a>, where it holds no effects under the tag, or where there's no
-target.</li>
-<li><code>data.TryGetLoadedAssets&lt;T&gt;(tag, out assets)</code> and <code>data.GetLoadedAssets&lt;T&gt;(tag)</code> give every value of a kind under a
-tag, as a <a class="xref" href="../../api/FarEmerald.PlayForge.DataValue-1.html"><code>DataValue&lt;T&gt;</code></a>, empty where there's none.</li>
-<li><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_WhileAsync_"><code>ProcessTaskUtil.WhileAsync(condition, token)</code></a> waits while a condition holds, a tick at a time;
-<a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_DoWhileAsync_"><code>ProcessTaskUtil.DoWhileAsync(body, condition, token)</code></a> awaits the body, then a tick, while the condition holds, the
-body at least once; and <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessTaskUtil.html#FarEmerald_PlayForge_ProcessTaskUtil_DoWhile_"><code>ProcessTaskUtil.DoWhile(body, duration, token)</code></a> does so until the duration has passed, by
-<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Time"><code>ForgeTime.Time</code></a>, or by its unscaled time where its <code>useUnscaledTime</code> says. Each takes a <code>PlayerLoopTiming</code>, Update by
-default, and waits as <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTick.html#FarEmerald_PlayForge_ForgeTick_Next_"><code>ForgeTick.Next</code></a> does (<a href="fixed-ticks.html">Fixed ticks</a>).</li>
+<li><a href="packet-helpers/targets-and-effects.html">Targets and effects</a>: These extension methods read and file a data packet's targets, and apply the effects it carries.</li>
+<li><a href="packet-helpers/async-loops.html">Async loops</a>: <code>ProcessTaskUtil</code> has three loops for async code, which wait a tick at a time through <code>ForgeTick</code>.</li>
 </ul>
-<hr>
-<p><a href="forgehelper.html">← ForgeHelper</a> · <a href="index.html">Time, Input and Logging</a> · <a href="the-attribute-registry.html">The attribute registry →</a></p>
 
 </article>
 

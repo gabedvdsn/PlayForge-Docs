@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Processes | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Processes | PlayForge ">
+      
+      
+      <link rel="icon" href="../../../images/logo.svg">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.editor.the-debugger.processes">
+<h1 id="processes">Processes</h1>
+
+<p><strong>Processes</strong> lists every process ProcessControl holds. Each column sorts.</p>
+<!-- screenshot: debugger-processes -->
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td>Its ID.</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Its name.</td>
+</tr>
+<tr>
+<td><strong>Handler</strong></td>
+<td>Its handler.</td>
+</tr>
+<tr>
+<td><strong>Lifecycle</strong></td>
+<td>Its lifecycle.</td>
+</tr>
+<tr>
+<td><strong>Timing</strong></td>
+<td>The update loops it steps in.</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>Its state, with the state it moves to next where something has asked, such as &quot;Running → Terminated&quot;.</td>
+</tr>
+<tr>
+<td><strong>Lifetime</strong></td>
+<td>Its lifetime.</td>
+</tr>
+<tr>
+<td><strong>Step</strong></td>
+<td>Its average time a step, over the last second.</td>
+</tr>
+</tbody>
+</table>
+<p>The toolbar's filter shows <strong>All states</strong>, <strong>Running</strong> or <strong>Waiting</strong>. Its <strong>ProcessControl</strong> menu sets ProcessControl's
+own state, from <strong>Ready</strong> to <strong>Terminated Immediately</strong>.</p>
+<h2 id="the-processs-detail">The process's detail</h2>
+<p>The detail names the process, its ID, and whether it's a Mono or a Runtime process. A Mono one has <strong>Select in Scene</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pause</strong></td>
+<td>Pauses it, and the processes it handles.</td>
+</tr>
+<tr>
+<td><strong>Resume</strong></td>
+<td>Resumes it, and the processes it handles.</td>
+</tr>
+<tr>
+<td><strong>Terminate</strong></td>
+<td>Ends it, and the processes it handles, as its lifecycle allows.</td>
+</tr>
+<tr>
+<td><strong>Terminate Now</strong></td>
+<td>Ends it, and the processes it handles, at once.</td>
+</tr>
+</tbody>
+</table>
+<p>Its sections say how it runs:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Process</strong></td>
+<td>Its lifecycle, step timing, step priority and handler, with <strong>Show</strong>, which selects the handler's process in the list.</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>Its state, the state it's queued to move to, and its <strong>Run</strong>.</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>Its lifetime, its time running, its step time and its peak step.</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>Run</strong> is going, held by a pause, not started, cancelled, or ended. Once it's cancelled, <strong>Resume</strong> starts a new one.
+<a href="../../processes/index.html">Processes</a> covers processes.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

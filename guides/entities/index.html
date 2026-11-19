@@ -88,34 +88,163 @@
 <h1 id="entities">Entities</h1>
 
 <p>An <strong>Entity</strong> asset (<a class="xref" href="../../api/FarEmerald.PlayForge.EntityIdentity.html"><code>EntityIdentity</code></a>) describes one kind of entity, such as the hero or a goblin. An entity is anything
-that runs a gameplay ability system (GAS). The asset is the entity's starting setup: its attributes, abilities, items,
-tags, level and workers. Many entities can share one asset.</p>
-<p>At runtime a GAS hub reads the asset when it initializes. The hub is either the <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> component on a
-GameObject, or a <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> made from code. It subscribes the entity's workers, registers its
-level, gives its Starting Abilities, builds its attributes from its Attribute Set, gives its Starting Items, and then
-applies its tags.</p>
+that runs a gameplay ability system (GAS).</p>
+<pre><code class="lang-mermaid">classDiagram
+class ITarget:::ext {
+&lt;&lt;interface&gt;&gt;
+anything an effect lands on
+IAffiliated, ITagHandler, IHasReadableDefinition
+}
+class IEffectOrigin:::ext {
+&lt;&lt;interface&gt;&gt;
++GetSource() ISource
++GetLevel() IntValuePairClamped
++GetAssetTag() Tag
++GetContextTags()
++IsActive() bool
+}
+class IGameplayProcessHandler:::ext {
+&lt;&lt;interface&gt;&gt;
+owns processes
+}
+class ISource:::ext {
+&lt;&lt;interface&gt;&gt;
++GetTagCache() TagCache
++GetActionQueue() ActionQueue
++GetFrameSummary() FrameSummary
++GetLongestDurationFor(Tag)
++SetLevel(Tag, IntValuePair)
++ModifyLevel(Tag, IntValuePair)
+}
+class IGameplayAbilitySystem:::ext {
+&lt;&lt;interface&gt;&gt;
+also ILocalDataUser, IAnalysisUser, IProxyTaskBehaviourCaller
++GetAbilitySystem() AbilitySystemComponent
++GetEffectSystem() EffectSystemComponent
++GenerateEffectSpec(IEffectOrigin, GameplayEffect) GameplayEffectSpec
++ApplyGameplayEffect(GameplayEffectSpec) bool
++TryGetAttributeValue(IAttribute, out AttributeValue) bool
++GetTagWeight(Tag) int
++SendGameplayEvent(Tag, ProcessDataPacket) int
++SetAffiliation(List~Tag~)
++MarkDead()
++Revive(at)
+}
+class GameplayAbilitySystem:::rt {
+&lt;&lt;MonoBehaviour&gt;&gt;
++EntityData : EntityIdentity
++Callbacks : GameplayAbilitySystemCallbacks
++static AddToGameObject(GameObject, EntityIdentity)
++ApplyGameplayEffect(IEffectOrigin, GameplayEffect)
++QueueAction(IRootAction)
+builds its GASCore at registration
+}
+class RuntimeGameplayAbilitySystem:::rt {
++ctor(EntityIdentity, AbstractTargetingPacket)
++EntityData : RuntimeEntityIdentity
++EndOfFrame()
+HandleDestruction()
+builds its GASCore in its constructor
+}
+class GameRoot:::rt {
++static Instance : GameRoot
++Project : ForgeProject
+the root entity and default handler
+}
+class GASCore:::rt {
+&lt;&lt;internal sealed&gt;&gt;
++AttributeSystem : AttributeSystemComponent
++AbilitySystem : AbilitySystemComponent
++ItemSystem : ItemSystemComponent
++EffectSystem : EffectSystemComponent
++LevelSystem : SystemLevelsComponent
++TagCache : TagCache
++Initialize(RuntimeEntityIdentity, registered)
++Tick()
++EndOfFrame() bool
++CompileGrantedTags()
++static Of(IGameplayAbilitySystem) GASCore
+}
+class RuntimeEntityIdentity:::rt {
+the only identity GASCore reads
++InitWorkers(ISource)
++RemoveWorkers(ISource)
++GetGrantedTags()
+}
+class EntityIdentity:::asset {
+&lt;&lt;ScriptableObject&gt;&gt;
++AssetTag, Affiliation, GrantedTags
++AttributeSet : AttributeSet
++StartingAbilities : List~Ability~
++StartingItems
++WorkerGroup : StandardWorkerGroup
++Components : List~AbstractEntityComponent~
++Find() T, its first component that is a T
++CrowdControl : CrowdControlRules
++Death : EntityDeath
+}
+class GameplayAbilitySystemCallbacks:::rt {
++OnSystemInitialized
++OnFrameComplete(FrameSummarySnapshot)
++OnEffectApplied(GameplayEffectSpec)
++OnEffectRemoved(GameplayEffectSpec)
++OnImpactDealt, OnImpactReceived
++OnReductionReceived, OnIncreaseReceived
++OnEntityDied, OnEntityRevived
+}
+ITarget &lt;|-- ISource
+IEffectOrigin &lt;|-- ISource
+IGameplayProcessHandler &lt;|-- ISource
+ISource &lt;|-- IGameplayAbilitySystem
+IGameplayAbilitySystem &lt;|.. GameplayAbilitySystem
+IGameplayAbilitySystem &lt;|.. RuntimeGameplayAbilitySystem
+GameplayAbilitySystem &lt;|-- GameRoot
+GameplayAbilitySystem &quot;1&quot; *-- &quot;1&quot; GASCore : forwards to
+RuntimeGameplayAbilitySystem &quot;1&quot; *-- &quot;1&quot; GASCore : forwards to
+GameplayAbilitySystem *-- GameplayAbilitySystemCallbacks
+RuntimeGameplayAbilitySystem *-- GameplayAbilitySystemCallbacks
+GASCore --&gt; RuntimeEntityIdentity : Identity
+EntityIdentity &lt;.. RuntimeEntityIdentity : wraps a shallow copy
+GameplayAbilitySystem --&gt; EntityIdentity : EntityData
+classDef rt fill:#FFE86D,stroke:#CBB333,color:#574900
+classDef ext fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
+classDef asset fill:#B8ACFB,stroke:#7D6DD4,color:#231266
+</code></pre>
+<p><em>IGameplayAbilitySystem is the entity contract. Both hubs implement it and forward to one internal GASCore, which reads only a RuntimeEntityIdentity.</em></p>
+<p>The asset is the entity's starting setup: its attributes, abilities, items, tags, level and workers. Many entities can
+share one asset.</p>
+<p>At runtime, a GAS hub reads the asset when it initializes. The hub is either the <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> component on a
+GameObject, or a <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> made from code. As it initializes, the hub:</p>
+<ol>
+<li>Subscribes the entity's workers.</li>
+<li>Registers its level.</li>
+<li>Gives its Starting Abilities.</li>
+<li>Builds its attributes from its Attribute Set.</li>
+<li>Gives its Starting Items.</li>
+<li>Applies its tags.</li>
+</ol>
 <p>Tags are names, such as <code>State.Stunned</code>, that an entity carries and that requirements check. Each asset stores a tag
-made from its Name: Hero gives <code>Entity.Hero</code>. The entity carries this tag and keeps its own level under it. Each section
-below matches the inspector section of the same name. A collapsed section shows one line about what it holds, such as
-the level range or how many starting items the entity equips.</p>
-<p>The inspector's header shows the entity's one line, as The Forge's Summary column does: its attribute set's
-first three attributes as it starts, at its starting level, then its starting abilities, as &quot;Health 500, Mana 300, Armor
-5; Fireball, Blink&quot;.</p>
+made from its Name: Hero gives <code>Entity.Hero</code>. The entity carries this tag and keeps its own level under it.</p>
+<p>Each section below matches the inspector section of the same name. A collapsed section shows one line about what it
+holds, such as the level range or how many starting items the entity equips.</p>
+<p>The inspector's header shows the entity's one-line summary, as The Forge's Summary column does. The line gives the
+first three attributes of the entity's attribute set as it starts, at its starting level, then its starting abilities:
+&quot;Health 500, Mana 300, Armor 5; Fireball, Blink&quot;.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="identity.html">Identity</a>: <strong>Name</strong>: the entity's display name.</li>
-<li><a href="leveling.html">Leveling</a>: An entity's level is kept under its asset tag.</li>
-<li><a href="tags.html">Tags</a>: <strong>Affiliation</strong>: the entity's team or faction tags.</li>
-<li><a href="attributes.html">Attributes</a>: The entity's attributes come from its <strong>Attribute Set</strong>.</li>
-<li><a href="abilities.html">Abilities</a>: <strong>When Busy</strong> (default Queue): what the entity's abilities set to Entity's Policy do when one is asked to activate while another is busy.</li>
-<li><a href="items.html">Items</a>: <strong>Starting Items</strong>: items the entity is given when its GAS initializes, one row each.</li>
-<li><a href="components.html">Components</a>: An entity's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>.</li>
+<li><a href="identity.html">Identity</a>: The Identity section names the entity, shows its asset tag and holds its icons.</li>
+<li><a href="leveling.html">Leveling</a>: The Leveling section sets the entity's level range.</li>
+<li><a href="tags.html">Tags</a>: The Tags section sets the entity's sides and the tags it carries.</li>
+<li><a href="attributes.html">Attributes</a>: The Attributes section names the entity's attribute set and the attribute its time runs at.</li>
+<li><a href="abilities.html">Abilities</a>: The Abilities section sets the abilities the entity starts with, how many it can hold, and what its abilities do while another is busy.</li>
+<li><a href="items.html">Items</a>: The Items section sets the items the entity starts with and the limits on its inventory.</li>
+<li><a href="components.html">Components</a>: An entity's components are features it carries, each a class with hooks into the entity's life.</li>
 <li><a href="workers.html">Workers</a>: Workers are reusable behaviours, picked from a list, that react to what happens to an entity.</li>
-<li><a href="death.html">Death</a>: What the entity's death does.</li>
-<li><a href="combat-log.html">Combat Log</a>: Each entity keeps a combat log of what happens to it, which a test reads as the game does, through <code>gas.GetCombatLog()</code>, and the Debugger shows under the entity it has selected.</li>
-<li><a href="effect-journal.html">Effect Journal</a>: An <code>EffectJournal</code> keeps the life of each effect on the entities it listens to: <code>Listen(gas)</code> one, <code>Follow(list)</code> these and no others, <code>Forget(gas)</code> one, and <code>Dispose()</code> all; what it wrote stays.</li>
+<li><a href="death.html">Death</a>: The Death section sets what the entity's death does.</li>
+<li><a href="combat-log.html">Combat Log</a>: Each entity keeps a combat log of what happens to it.</li>
+<li><a href="effect-journal.html">Effect Journal</a>: An <code>EffectJournal</code> keeps the life of each effect on the entities it listens to.</li>
 <li><a href="local-data.html">Local Data</a>: Local Data is a list of named values stored on the asset.</li>
-<li><a href="used-by.html">Used By</a>: The PlayForge assets that refer to this entity, each with its type icon, such as the abilities and items linked to it.</li>
+<li><a href="used-by.html">Used By</a>: The Used By section lists the PlayForge assets that refer to this entity, each with its type icon, such as the abilities and items linked to it.</li>
 <li><a href="built-in-kinds.html">Built-in kinds</a>: The kinds PlayForge ships for this guide's pickers, each with its menu and what it does, as its picker says.</li>
 </ul>
 <h2 id="in-the-api">In the API</h2>

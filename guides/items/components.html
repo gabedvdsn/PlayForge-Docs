@@ -87,37 +87,49 @@
         <article data-uid="guide.items.components">
 <h1 id="components">Components</h1>
 
-<p>An item's components are features it carries, each a class with hooks into its life, added with the list's <strong>+</strong>. A component hears the item <strong>Given</strong> to an entity, <strong>Equipped</strong>, <strong>Unequipped</strong> and <strong>Removed</strong>, and <strong>Used</strong>, as
-its holder's use of the item's Active Ability ends having paid what it costs. Its context's <code>Restoring</code> says a moment
-comes from a load, which puts back what the component's earlier moments did, as the effects it applied. A kind that
-makes no sense twice is offered only while the item holds none of it.</p>
-<p>A component of your own derives from <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractItemComponent.html"><code>AbstractItemComponent</code></a> and overrides the hooks it needs, each a no-op
-otherwise. It's the item's, shared by everything that holds it, so what it keeps for one entity's item it keeps through its
-context: <code>ctx.GetState&lt;T&gt;(this)</code>.</p>
-<h2 id="auras">Auras</h2>
-<p>An <strong>Aura</strong> component holds an effect on those near its holder, while it's equipped, as a banner that inspires the allies
-round its bearer: each a radius, whom it takes, its holder too or not, and how often it checks
-(<a href="../effects/components.html#auras">Effects: Auras</a>).</p>
-<h2 id="uses">Uses</h2>
-<p>A <strong>Uses</strong> component counts the uses of the item's Active Ability, each a use that paid what it costs, as a potion's
-sips or a wand's charges, its <strong>Uses</strong> read at the item's level. With none left, one of the item goes, at the
-frame's end: a stack of it, its uses whole again for the next, or the item with its last, and its ability with it. A
-load gives its uses whole. An item with no Active Ability never counts any, which the Problems view says. An item holds
-one at most.</p>
-<h2 id="set-bonus">Set Bonus</h2>
-<p>A <strong>Set Bonus</strong> component gives its holder a <strong>Bonus</strong> effect while it has enough of a set's pieces equipped, as two
-pieces of a set giving fire resistance and four a flame aura. Each piece names its <strong>Set</strong> by a tag and carries
-the set's bonuses, each a component with the <strong>Pieces</strong> it needs, a number field read at its holder's level. The holder's equipped pieces count each item once, and
-a bonus holds while they're as many as it needs, once for the holder however many pieces carry it; it comes from one of
-the pieces, and moves to another as that one leaves while enough stay. A load puts the bonus back with the other
-effects, and weighs each set once.</p>
-<h2 id="cues">Cues</h2>
-<p>A <strong>Cues</strong> component plays what the item shows and sounds on its holder: <strong>On Equip</strong> as it's equipped, <strong>While
-Equipped</strong> for as long as it is, and <strong>On Use</strong> as it's used, as the ability it lends is. A load that puts an
-equipped item back begins its While Equipped cues and plays no burst. Each list holds cues as an effect's does
-(<a href="../effects/cues.html">Effects: Cues</a>). An item holds one at most.</p>
-<hr>
-<p><a href="abilities.html">← Abilities</a> · <a href="index.html">Items</a> · <a href="workers.html">Workers →</a></p>
+<p>An item's components are features it carries, each a class with hooks into the item's life. Add one with the list's
+<strong>+</strong>. A kind that makes no sense twice is offered only while the item holds none of it.</p>
+<p>A component hears these moments:</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>When it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Given</strong></td>
+<td>As the item is given to an entity.</td>
+</tr>
+<tr>
+<td><strong>Equipped</strong></td>
+<td>As the item is equipped.</td>
+</tr>
+<tr>
+<td><strong>Unequipped</strong></td>
+<td>As the item is unequipped.</td>
+</tr>
+<tr>
+<td><strong>Removed</strong></td>
+<td>As the item is removed.</td>
+</tr>
+<tr>
+<td><strong>Used</strong></td>
+<td>As its holder's use of the item's Active Ability ends, having paid what it costs.</td>
+</tr>
+</tbody>
+</table>
+<p>Its context's <code>Restoring</code> says a moment comes from a load. A load puts back what the component's earlier moments did,
+such as the effects it applied.</p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="components/auras.html">Auras</a>: An <strong>Aura</strong> component holds an effect on those near its holder while the item is equipped, such as a banner that inspires the allies round its bearer.</li>
+<li><a href="components/uses.html">Uses</a>: A <strong>Uses</strong> component counts the uses of the item's Active Ability, such as a potion's sips or a wand's charges.</li>
+<li><a href="components/set-bonus.html">Set Bonus</a>: A <strong>Set Bonus</strong> component gives its holder a bonus effect while it has enough of a set's pieces equipped.</li>
+<li><a href="components/cues.html">Cues</a>: A <strong>Cues</strong> component plays what the item shows and sounds on its holder.</li>
+<li><a href="components/writing-your-own-component.html">Writing your own component</a>: A component of your own derives from <code>AbstractItemComponent</code> and overrides the hooks it needs.</li>
+</ul>
 
 </article>
 

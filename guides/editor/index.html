@@ -87,27 +87,52 @@
         <article data-uid="guide.editor">
 <h1 id="the-editor-tools">The Editor Tools</h1>
 
-<p>PlayForge's editor tools make a game's assets, check them and watch them at work: The Forge lists a Forge Project's
-assets beside their inspectors, the inspectors and their fields edit them, the Problems view says what's wrong with
-them, and the Debugger shows the entities and processes as the game plays. This page covers each tool in depth, with
-the editor types behind it, in <code>FarEmerald.PlayForge.Editor</code>, and the Creator Lab's in <code>FarEmerald.PlayForge.Lab.Editor</code>.
-<a href="../getting-started/tooling-tour.html">Getting Started: Tooling tour</a>'s Tooling tour is the short version.</p>
+<p>PlayForge's editor tools make a game's assets, check them and watch them at work. This guide covers each tool in depth,
+with the editor types behind it.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="the-forge.html">The Forge</a></td>
+<td>Lists a Forge Project's assets beside their inspectors.</td>
+</tr>
+<tr>
+<td><a href="inspectors.html">Inspectors</a> and their <a href="fields-and-drawers.html">fields</a></td>
+<td>Edit the assets.</td>
+</tr>
+<tr>
+<td><a href="the-problems-view-and-validation.html">The Problems view</a></td>
+<td>Says what's wrong with the assets.</td>
+</tr>
+<tr>
+<td><a href="the-debugger.html">The Debugger</a></td>
+<td>Shows the entities and processes as the game plays.</td>
+</tr>
+</tbody>
+</table>
+<p>The editor types are in <code>FarEmerald.PlayForge.Editor</code>, and the Creator Lab's are in <code>FarEmerald.PlayForge.Lab.Editor</code>.
+The Tooling tour in <a href="../getting-started/tooling-tour.html">Getting Started: Tooling tour</a> is the short version.</p>
 <h2 id="in-this-guide">In this guide</h2>
 <ul>
-<li><a href="menus-and-shortcuts.html">Menus and shortcuts</a>: This section lists where each tool opens from.</li>
-<li><a href="the-forge.html">The Forge</a>: The Forge (<code>TheForge</code>) is PlayForge's main window: the active Forge Project's assets in a list, beside a detail pane that shows the one selected.</li>
-<li><a href="forge-projects.html">Forge Projects</a>: A Forge Project (<code>ForgeProject</code>) holds one game's PlayForge assets and its settings: it's an asset, and the assets in its folder are the project's.</li>
+<li><a href="menus-and-shortcuts.html">Menus and shortcuts</a>: This section lists where each tool opens from: Unity's menus, a keyboard shortcut, and the tools' own window menus.</li>
+<li><a href="the-forge.html">The Forge</a>: The Forge (<code>TheForge</code>) is PlayForge's main window.</li>
+<li><a href="forge-projects.html">Forge Projects</a>: A Forge Project (<code>ForgeProject</code>) holds one game's PlayForge assets and its settings.</li>
 <li><a href="new-assets-and-presets.html">New assets and presets</a>: The Forge's <strong>Create</strong> makes an asset of any type it lists, blank or from a preset, ready to fill in.</li>
-<li><a href="templates.html">Templates</a>: An asset can take another of its type as its template, as a prefab instance takes its prefab: it's the template's child, takes the template's fields when the template is pushed, and keeps the fields it overrides.</li>
-<li><a href="renaming-duplicating-and-deleting.html">Renaming, duplicating and deleting</a>: This section covers what a rename changes, and what Duplicate and Move to Trash do.</li>
-<li><a href="the-tags-view.html">The Tags view</a>: The Forge's <strong>Tags</strong> shows the active project's tags in place of its assets: those its assets and its Tag Library use, those no asset uses, and those code exposes.</li>
-<li><a href="inspectors.html">Inspectors</a>: PlayForge draws an inspector of its own for each of its assets, the same in the Inspector and in The Forge's detail pane.</li>
-<li><a href="import-and-clear.html">Import and Clear</a>: A section's <strong>Import</strong> copies chosen fields into the asset from another, and its <strong>Clear</strong> resets the section; the asset menu's <strong>Import from Another Asset...</strong> imports the whole asset.</li>
+<li><a href="templates.html">Templates</a>: An asset can take another asset of its type as its template, as a prefab instance takes its prefab.</li>
+<li><a href="renaming-duplicating-and-deleting.html">Renaming, duplicating and deleting</a>: This section covers what a rename changes, and what <strong>Duplicate</strong> and <strong>Move to Trash</strong> do.</li>
+<li><a href="the-tags-view.html">The Tags view</a>: The Forge's <strong>Tags</strong> shows the active project's tags in place of its assets.</li>
+<li><a href="inspectors.html">Inspectors</a>: PlayForge draws an inspector of its own for each of its assets.</li>
+<li><a href="import-and-clear.html">Import and Clear</a>: A section's <strong>Import</strong> copies chosen fields into the asset from another, and its <strong>Clear</strong> resets the section.</li>
 <li><a href="fields-and-drawers.html">Fields and drawers</a>: PlayForge's property drawers draw its fields wherever they're shown: in its own inspectors, in the Inspector of a component, and in an inspector of your own built with UI Toolkit.</li>
 <li><a href="number-fields.html">Number fields</a>: Every number a PlayForge asset authors is a number field, a <code>ScalableFloat</code> or a <code>ScalableInt</code>, which <code>ScalableFloatDrawer</code> and <code>ScalableIntDrawer</code> draw.</li>
-<li><a href="the-problems-view-and-validation.html">The Problems view and validation</a>: PlayForge's validator checks every PlayForge asset in the Unity project as it changes, and keeps what it finds; the Problems view lists it.</li>
+<li><a href="the-problems-view-and-validation.html">The Problems view and validation</a>: PlayForge's validator checks every PlayForge asset in the Unity project as it changes, and keeps what it finds.</li>
 <li><a href="the-debugger.html">The Debugger</a>: The Debugger (<code>RuntimeDebugger</code>, <strong>Window → PlayForge → Debugger</strong>) shows the game as it plays, and changes its entities as it shows them.</li>
-<li><a href="preferences-and-project-settings.html">Preferences and Project Settings</a>: PlayForge has two settings pages: <strong>Project Settings → PlayForge</strong>, the settings a project shares, kept in assets under version control, and <strong>Preferences → PlayForge</strong>, each user's own.</li>
+<li><a href="preferences-and-project-settings.html">Preferences and Project Settings</a>: PlayForge has two settings pages.</li>
 <li><a href="spreadsheets.html">Spreadsheets</a>: Spreadsheets write a project's numbers by level, or its items' stats, to CSV, and read a sheet back.</li>
 <li><a href="the-creator-lab.html">The Creator Lab</a>: The Creator Lab is a scene for trying a project's own assets: units, test dummies, and its time in your hands.</li>
 <li><a href="build-verification.html">Build verification</a>: <code>BuildVerification</code> proves that PlayForge's runtime compiles and links in a player, with no editor code in it, as a build server would check.</li>

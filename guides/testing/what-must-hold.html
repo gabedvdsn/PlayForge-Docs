@@ -87,18 +87,24 @@
         <article data-uid="guide.testing.what-must-hold">
 <h1 id="what-must-hold">What must hold</h1>
 
-<p>After each test that passed, the world's <strong>audit</strong> lets three frames settle, ends what the test left running of what it
-began, and fails the test where any of these broke:</p>
+<p>After each test that passed, the world's <strong>audit</strong> checks what must always hold:</p>
+<ol>
+<li>It lets three frames settle.</li>
+<li>It ends what the test left running of what the world began.</li>
+<li>It fails the test where any of these broke:
 <ul>
 <li>an entity's attribute parts don't sum to its value;</li>
 <li>what an entity dealt, read from its frame summaries, isn't what its targets received from it;</li>
 <li>a process is still running that the world didn't begin.</li>
 </ul>
-<p>The world checks the entities it makes; <code>World.Observe(gas)</code> adds one made elsewhere, as from a scene, and an entity made
-with <code>observed: false</code> is left out, as a test that measures allocation wants. A class whose tests leave processes
-running on purpose overrides <code>Audits</code> to false.</p>
-<hr>
-<p><a href="the-world.html">← The world</a> · <a href="index.html">Testing Your Content</a> · <a href="allocation.html">Allocation →</a></p>
+</li>
+</ol>
+<p>The audit checks the entities the world makes.</p>
+<ul>
+<li><code>World.Observe(gas)</code> adds an entity made elsewhere, as from a scene.</li>
+<li>An entity made with <code>observed: false</code> is left out, as a test that measures allocation wants.</li>
+</ul>
+<p>A class whose tests leave processes running on purpose overrides <code>Audits</code> to false.</p>
 
 </article>
 

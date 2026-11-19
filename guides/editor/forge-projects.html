@@ -87,63 +87,18 @@
         <article data-uid="guide.editor.forge-projects">
 <h1 id="forge-projects">Forge Projects</h1>
 
-<p>A Forge Project (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html"><code>ForgeProject</code></a>) holds one game's PlayForge assets and its settings: it's an asset, and the assets in
-its folder are the project's. This section covers the project asset and its folder, which assets belong to which
-project, the active project, and moving assets between projects.</p>
-<h2 id="the-project-and-its-folder">The project and its folder</h2>
-<p><strong>New Project…</strong>, in The Forge's project menu, asks for a <strong>Name</strong> and makes a project in a folder of its own under
-the PlayForge Folder, as <code>Assets/PlayForge/Arena/Arena.asset</code>, and makes it the active one. With it, it makes:</p>
+<p>A Forge Project (<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html"><code>ForgeProject</code></a>) holds one game's PlayForge assets and its settings. The project is an asset, and the
+assets in its folder are the project's.</p>
+<p>This section covers the project asset and its folder, which assets belong to which project, the active project, and
+moving assets between projects.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
-<li>the project's Game Root entity, in its <a class="xref" href="../../api/FarEmerald.PlayForge.GameRoot.html"><code>GameRoot</code></a> folder: the game's own entity, on the System side, which the
-project's GameRoot runs as;</li>
-<li>the Bootstrapper, GameRoot and ProcessControl prefabs, in the PlayForge Folder's <code>Bootstrap</code> folder, where they're
-missing. A Bootstrapper that plays no project plays the new one.</li>
+<li><a href="forge-projects/the-project-and-its-folder.html">The project and its folder</a>: A Forge Project lives in a folder of its own under the PlayForge Folder, with a folder inside for each type's assets.</li>
+<li><a href="forge-projects/the-projects-inspector.html">The project's inspector</a>: The project's inspector (<code>ForgeProjectEditor</code>) shows the project's fields, and a line in place of its catalog's entries.</li>
+<li><a href="forge-projects/which-assets-belong-to-which.html">Which assets belong to which</a>: Each asset belongs to one project, or to none, by the folder it's in.</li>
+<li><a href="forge-projects/the-active-project.html">The active project</a>: The active project is the one The Forge shows.</li>
+<li><a href="forge-projects/moving-and-copying.html">Moving and copying</a>: <strong>Move to Project</strong> and <strong>Copy to Project</strong>, in the asset menu, put assets into another Forge Project.</li>
 </ul>
-<p>The name starts as the game's product name, from Player Settings, without its spaces. Bootstrap, the prefabs' folder,
-can't be a project's name. <strong>Create Forge Project</strong>, where there's none, does the same. <strong>Create → PlayForge → Forge Project</strong>
-makes the project's asset alone, in the folder the Project window shows.</p>
-<p>The <strong>PlayForge Folder</strong> is <code>Assets/PlayForge</code> until Project Settings → PlayForge sets another. Where it's the folder
-PlayForge's own code is in, or a folder inside it, projects and Bootstrap go in a folder beside the code's, named for
-it, as <code>Assets/PlayForge Projects</code>, so the code's folder never holds a project's files.</p>
-<p>A type's new assets go in its folder within the project's, which is made as the first one is: Abilities, Effects,
-Items, Attributes, AttributeSets, Entities, Scalers, Requirements, Pipelines, Modifiers and Rules, until Project
-Settings → PlayForge says otherwise. A type The Forge doesn't list, as a Tag Library, goes in the project's folder
-itself.</p>
-<p>The project's inspector (<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeProjectEditor.html"><code>ForgeProjectEditor</code></a>) shows its <strong>Description</strong>, its <strong>Settings</strong>, its <strong>Game Root Entity</strong>
-and <strong>Keep Catalog Current</strong>, and a line in place of its catalog's entries, as &quot;Names 166 assets for saves, kept
-current as they're made, moved in and deleted&quot;. A project is the asset catalog its saves read: each PlayForge asset
-made, copied or moved into its folder is named in it by its GUID as it lands, a deleted file's entries go, and an
-asset moved out stays named, so a save made before still finds it. A project also catches up on the assets it doesn't
-name yet as it's imported, and once each editor session. With <strong>Keep Catalog Current</strong> off, the catalog is left as it
-is (<a href="../saving/the-asset-catalog.html">Saving and Loading: The Asset Catalog</a>).</p>
-<h2 id="which-assets-belong-to-which">Which assets belong to which</h2>
-<p>An asset belongs to the innermost project whose folder holds it, so one project's folder can hold another's. A
-project at the root of <code>Assets</code> holds every asset no other project does. An asset in no project's folder is in no
-project.</p>
-<p>The Problems view checks each asset against its own project's settings: its roles for an ability's attribute costs,
-its Cue Library for a Cue Tag cue. A game as it runs reads its settings from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Current"><code>ForgeProject.Current</code></a>: the project code
-gives <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Use_"><code>ForgeProject.Use</code></a>, or else the one its GameRoot names, and never the editor's active one, so Play mode reads
-what a build does.</p>
-<h2 id="the-active-project">The active project</h2>
-<p>The active project is the one The Forge shows, chosen in its project menu, or in the Creator Lab's <strong>Project</strong>. Each
-user keeps their own, for each Unity project. Until one is chosen, it's the project at the root of <code>Assets</code> where
-there is one, or none, where The Forge shows the assets in no project. While the Unity project has no Forge Project,
-every asset counts as the active project's.</p>
-<p>The active project decides:</p>
-<ul>
-<li>what The Forge lists, what its Tags view and its counts of uses read, and what the Creator Lab's library holds;</li>
-<li>what each pick of assets offers: an asset field's picker, <strong>Set Template...</strong>, a number field's <strong>Scaler Assets</strong>,
-the Import window's sources, <strong>Import Values…</strong> and <strong>Pick an Unlinked Effect...</strong>; and which tags a tag picker
-offers;</li>
-<li>where a new asset goes, and whose settings Project Settings → PlayForge shows and edits.</li>
-</ul>
-<h2 id="moving-and-copying">Moving and copying</h2>
-<p><strong>Move to Project</strong> and <strong>Copy to Project</strong>, in the asset menu, list the projects other than the active one: each
-selected asset goes into its type's folder in the one chosen, with a number added to its file's name where another
-file has it. A moved asset is named in its new project's catalog and stays named in its old one's; a copy is named in
-its new project's.</p>
-<hr>
-<p><a href="the-forge.html">← The Forge</a> · <a href="index.html">The Editor Tools</a> · <a href="new-assets-and-presets.html">New assets and presets →</a></p>
 
 </article>
 

@@ -87,22 +87,37 @@
         <article data-uid="guide.extending.testing-your-extensions">
 <h1 id="testing-your-extensions">Testing your extensions</h1>
 
-<p>PlayForge's test kit runs a game's own kinds in a world of entities stepped frame by frame, in Unity's Test Runner. This
-section covers what it offers a kind of a game's own; <a href="../testing/index.html">Testing Your Content</a> covers setting it up and writing tests.</p>
-<ul>
-<li><strong>A component, a worker or a scaler</strong> goes into an asset the kit makes: <code>Make.Effect(name, new EffectConfig { ... })</code>
-takes <code>Workers</code>, effect workers of the game's own, and a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html#FarEmerald_PlayForge_Testing_EffectConfig_MagnitudeScaler"><code>MagnitudeScaler</code></a>, a scaler of its own.</li>
-<li><strong>An ability task</strong> goes into <code>Make.Stage(new PulseTask { ... })</code>, and the stage into <code>Make.Ability(name, stage)</code>;
-<code>World.Cast(caster, ability, target)</code> casts it.</li>
-<li><strong>A hit</strong> is <code>World.Hit(source, target, effect)</code>, and its rolls <code>World.Rolls(...)</code>, a scripted source put in for the
-test; its time <code>World.Clock(step)</code>.</li>
-<li><strong>A number kind or a condition</strong> needs no world: <code>number.Evaluate(NumberContext.For(caster, target, level))</code> and
-<code>condition.Holds(context)</code>.</li>
-</ul>
-<p>The kit's assembly, <code>FarEmerald.PlayForge.Testing</code>, is referenced by the game's test assembly; it's compiled only where
+<p>PlayForge's test kit runs a game's own kinds in a world of entities stepped frame by frame, in Unity's Test Runner.</p>
+<p>This section covers what it offers a kind of a game's own; <a href="../testing/index.html">Testing Your Content</a> covers setting it up and writing
+tests.</p>
+<table>
+<thead>
+<tr>
+<th>To test</th>
+<th>What the kit offers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A component, a worker or a scaler</strong></td>
+<td>An asset the kit makes. <code>Make.Effect(name, new EffectConfig { ... })</code> takes <code>Workers</code>, effect workers of the game's own, and a <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.EffectConfig.html#FarEmerald_PlayForge_Testing_EffectConfig_MagnitudeScaler"><code>MagnitudeScaler</code></a>, a scaler of its own.</td>
+</tr>
+<tr>
+<td><strong>An ability task</strong></td>
+<td><code>Make.Stage(new PulseTask { ... })</code>, and the stage goes into <code>Make.Ability(name, stage)</code>. <code>World.Cast(caster, ability, target)</code> casts it.</td>
+</tr>
+<tr>
+<td><strong>A hit</strong></td>
+<td><code>World.Hit(source, target, effect)</code>. Its rolls are <code>World.Rolls(...)</code>, a scripted source put in for the test, and its time is <code>World.Clock(step)</code>.</td>
+</tr>
+<tr>
+<td><strong>A number kind or a condition</strong></td>
+<td>No world: <code>number.Evaluate(NumberContext.For(caster, target, level))</code> and <code>condition.Holds(context)</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The kit's assembly, <code>FarEmerald.PlayForge.Testing</code>, is referenced by the game's test assembly. It's compiled only where
 Unity's Test Framework package is in the project.</p>
-<hr>
-<p><a href="the-editor.html">← The editor</a> · <a href="index.html">Extending PlayForge</a> · <a href="the-creator-lab.html">The Creator Lab →</a></p>
 
 </article>
 

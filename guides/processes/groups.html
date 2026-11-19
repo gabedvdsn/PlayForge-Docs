@@ -87,29 +87,22 @@
         <article data-uid="guide.processes.groups">
 <h1 id="groups">Groups</h1>
 
-<p>A <strong>group</strong> is a process that holds other processes, found by a tag. Each member still runs as a process of its own;
-the group adds what they have in common:</p>
+<p>A <strong>group</strong> is a process that holds other processes, found by a tag. Each member still runs as a process of its own.
+The group adds what the members have in common:</p>
 <ul>
-<li><strong>A cap</strong>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_MaxMembers"><code>MaxMembers</code></a>, and what happens to one member more: <a class="xref" href="../../api/FarEmerald.PlayForge.EGroupOverflowPolicy.html#FarEmerald_PlayForge_EGroupOverflowPolicy_Reject"><code>EGroupOverflowPolicy.Reject</code></a> refuses it, so
-<a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_RegisterWithGroup_"><code>RegisterWithGroup</code></a> returns false, and <a class="xref" href="../../api/FarEmerald.PlayForge.EGroupOverflowPolicy.html#FarEmerald_PlayForge_EGroupOverflowPolicy_EvictOldest"><code>EvictOldest</code></a> ends the oldest member to make room.</li>
-<li><strong>A data packet they share.</strong> A member joins with the group's packet unless it asks for its own (<code>useSharedData: false</code>) or brings one, so what one member writes, the others read.</li>
-<li><strong>What's done to all of them at once</strong>: <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_PauseAll_"><code>PauseAll</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_UnpauseAll_"><code>UnpauseAll</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_TerminateAllMembers_"><code>TerminateAllMembers</code></a>; <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_ForEach_"><code>ForEach</code></a> visits each member
-in the order they joined, and <code>ForEach&lt;T&gt;</code> those of a kind; <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_GetOldest_"><code>GetOldest</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_GetNewest_"><code>GetNewest</code></a>, <code>TryGetFirst&lt;T&gt;</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_HasMember_"><code>HasMember</code></a>,
-<a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_MemberCount"><code>MemberCount</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_IsFull"><code>IsFull</code></a>. <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_DetachMember_"><code>DetachMember</code></a> takes one out without ending it.</li>
-<li><strong>How long the group lasts</strong>: until its last member leaves, while <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_TerminateWhenEmpty"><code>TerminateWhenEmpty</code></a> is on, as it is by default; and
-ending the group ends its members, while <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_TerminateMembersOnGroupTerminate"><code>TerminateMembersOnGroupTerminate</code></a> is on, as it is by default. Its events,
-<a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_OnMemberJoined"><code>OnMemberJoined</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_OnMemberLeft"><code>OnMemberLeft</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.GroupProcess.html#FarEmerald_PlayForge_GroupProcess_OnGroupEmpty"><code>OnGroupEmpty</code></a>, hear its members come and go.</li>
+<li><strong>A cap</strong> on its members.</li>
+<li><strong>A data packet they share.</strong></li>
+<li><strong>What's done to all of them at once</strong>.</li>
+<li><strong>How long the group lasts</strong>, and events as its members come and go.</li>
 </ul>
-<pre><code class="lang-csharp">// Made first, to configure it; or made by its first member, with no cap
-var buffs = new GroupProcess(&quot;Buffs&quot;, 3, EGroupOverflowPolicy.EvictOldest) { TerminateWhenEmpty = false };
-ProcessControl.RegisterGroup(buffsTag, buffs, out _);
-ProcessControl.RegisterWithGroup(buffsTag, new TimedBuff(&quot;Haste&quot;, 6f), out var relay);
-
-if (ProcessControl.TryGetGroup(buffsTag, out var group)) group.PauseAll();
-</code></pre>
 <p>Only runtime processes join a group. The <strong>Process Group Examples</strong> sample runs each of these from a key in a scene.</p>
-<hr>
-<p><a href="pausing.html">← Pausing</a> · <a href="index.html">Processes</a> · <a href="logging.html">Logging →</a></p>
+<h2 id="in-this-section">In this section</h2>
+<ul>
+<li><a href="groups/making-and-joining-a-group.html">Making and joining a group</a>: A group is made first, to configure it, or else made by its first member, with no cap.</li>
+<li><a href="groups/capping-a-group.html">Capping a group</a>: A group's cap, <code>MaxMembers</code>, limits how many members it holds.</li>
+<li><a href="groups/acting-on-every-member.html">Acting on every member</a>: A group acts on all its members at once, and finds them for you.</li>
+<li><a href="groups/group-lifetime-and-events.html">Group lifetime and events</a>: A group lasts until its last member leaves, and ending it ends its members.</li>
+</ul>
 
 </article>
 
