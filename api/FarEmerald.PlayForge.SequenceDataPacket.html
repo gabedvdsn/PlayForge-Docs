@@ -153,6 +153,9 @@ All TaskSequence builder methods use this type for delegates.</p>
       <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Clock">ProcessDataPacket.Clock</a>
     </div>
     <div>
+      <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">ProcessDataPacket.Source</a>
+    </div>
+    <div>
       <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_HandlerRelays">ProcessDataPacket.HandlerRelays</a>
     </div>
     <div>
@@ -1033,7 +1036,8 @@ Does not skip the stage - just stops repeating and continues normally.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Empty data packet handled by GameRoot.</p>
+  <div class="markdown level1 summary"><p>An empty packet. A registration that names no handler hands its process to ProcessControl's default handler,
+the GameRoot where there is one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1351,7 +1355,7 @@ Falls back to single sequence interrupt if not in chain.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, assigned as a child of parent in-scene</p>
+  <div class="markdown level1 summary"><p>A packet that parents its MonoBehaviour process under <code class="paramref">parent</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1389,7 +1393,8 @@ Falls back to single sequence interrupt if not in chain.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, automatically assigned as a child of GameRoot in-scene.</p>
+  <div class="markdown level1 summary"><p>A packet that parents its MonoBehaviour process under the scene's root, <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_DefaultParent">DefaultParent</a>:
+the GameRoot, where there is one, or nothing.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

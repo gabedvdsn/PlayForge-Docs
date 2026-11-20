@@ -101,12 +101,13 @@
 ability's Run Sequence task's pick. So a packet others share keeps its own.</li>
 <li>Its packet's, <code>data.Clock</code>, which whatever starts the run sets.</li>
 <li>Its sequence's own, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(clock)</code></a> on the builder.</li>
-<li>Its packet's owner's: an ability's caster's own clock, its time scale times the game's.</li>
+<li>Its packet's owner's, the <a class="xref" href="../../api/FarEmerald.PlayForge.IProcessOwner.html#FarEmerald_PlayForge_IProcessOwner_ProcessClock"><code>ProcessClock</code></a> of an <a class="xref" href="../../api/FarEmerald.PlayForge.IProcessOwner.html"><code>IProcessOwner</code></a> that has one: in the full package, an entity's own
+clock, as an ability's caster's is, its time scale times the game's.</li>
 <li>The game's, <a class="xref" href="../../api/FarEmerald.PlayForge.GameClock.html#FarEmerald_PlayForge_GameClock_Instance"><code>GameClock.Instance</code></a>, which reads the clock in force, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html#FarEmerald_PlayForge_ForgeTime_Clock"><code>ForgeTime.Clock</code></a>, as it's asked.</li>
 </ol>
 <h2 id="in-this-section">In this section</h2>
 <ul>
-<li><a href="clocks/clocks-you-can-use.html">Clocks you can use</a>: Besides the game's clock, a run can go by an unscaled clock, a scaled clock, an entity's clock or a clock of your own.</li>
+<li><a href="clocks/clocks-you-can-use.html">Clocks you can use</a>: Besides the game's clock, a run can go by an unscaled clock, a scaled clock, a clock of your own or, in the full package, an entity's clock.</li>
 <li><a href="clocks/reading-a-runs-clock.html">Reading a run's clock</a>: Code reads a run's clock from its runtime, from a task's token, or from a synced runner.</li>
 <li><a href="clocks/picking-a-clock-in-an-inspector.html">Picking a clock in an inspector</a>: An inspector picks a clock with an <code>AbstractClockChoice</code> field, marked <code>[SerializeReference]</code>.</li>
 <li><a href="clocks/clocks-and-fixed-ticks.html">Clocks and fixed ticks</a>: Under ProcessControl's fixed tick, a sequence waits for the next tick.</li>

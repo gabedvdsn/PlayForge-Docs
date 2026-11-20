@@ -87,7 +87,8 @@
         <article data-uid="guide.task-sequences.clocks.clocks-you-can-use">
 <h1 id="clocks-you-can-use">Clocks you can use</h1>
 
-<p>Besides the game's clock, a run can go by an unscaled clock, a scaled clock, an entity's clock or a clock of your own.</p>
+<p>Besides the game's clock, a run can go by an unscaled clock, a scaled clock, a clock of your own or, in the full
+package, an entity's clock.</p>
 <pre><code class="lang-csharp">// A pause menu's runs while the game's time stands
 var menu = TaskSequenceBuilder.Create(&quot;Menu&quot;).WithClock(UnscaledClock.Instance) /* … */;
 
@@ -95,15 +96,15 @@ var menu = TaskSequenceBuilder.Create(&quot;Menu&quot;).WithClock(UnscaledClock.
 var slowMotion = new ScaledClock(0.25f);
 var finisher = TaskSequenceBuilder.Create(&quot;Finisher&quot;).WithClock(slowMotion) /* … */;
 
-// One run on an entity's time, from its packet
+// One run on another clock, from its packet: the finisher's here; in the full package, an entity's, gas.GetClock()
 var data = SequenceDataPacket.Default();
-data.Clock = gas.GetClock();
+data.Clock = slowMotion;
 </code></pre>
 <ul>
 <li><a class="xref" href="../../../api/FarEmerald.PlayForge.UnscaledClock.html#FarEmerald_PlayForge_UnscaledClock_Instance"><code>UnscaledClock.Instance</code></a> reads the game's time without its time scale.</li>
 <li>A <a class="xref" href="../../../api/FarEmerald.PlayForge.ScaledClock.html"><code>ScaledClock</code></a> runs at a <code>Scale</code> of its own over its <code>Source</code>, the clock in force unless it's given one. It counts
 its own <code>Time</code> through each change of scale.</li>
-<li>An entity's <a class="xref" href="../../../api/FarEmerald.PlayForge.EntityClock.html"><code>EntityClock</code></a> is a clock as any other is.</li>
+<li>In the full package, an entity's <a class="xref" href="../../../api/FarEmerald.PlayForge.EntityClock.html"><code>EntityClock</code></a> is a clock as any other is.</li>
 <li>A clock of your own implements <a class="xref" href="../../../api/FarEmerald.PlayForge.IForgeClock.html"><code>IForgeClock</code></a>, and is read as it is.</li>
 </ul>
 <p>The clocks above read the clock in force, so a world of its own's steps and the fixed tick still drive them. A clock

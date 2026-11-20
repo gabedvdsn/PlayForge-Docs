@@ -131,7 +131,8 @@ Note over H,C: A GAS that does not step in LateUpdate never runs its end of fram
 Note over PC,T: Async work resumes at UniTask's Update slot, before ProcessControl.Update, or inside RunTicks when ticks are on
 </code></pre>
 <p><em>Which phase each system steps in. A GAS hub steps at UpdateAndLate: GASCore.Tick() in Update, its end of frame in LateUpdate.</em></p>
-<pre><code class="lang-csharp">ProcessControl.Register(process).HandledBy(gas).With(data).Run(out ProcessRelay relay);
+<pre><code class="lang-csharp">// The handler is an IGameplayProcessHandler, as an entity's GAS is in the full package
+ProcessControl.Register(process).HandledBy(handler).With(data).Run(out ProcessRelay relay);
 
 relay.Pause();       // Waiting at once, out of the steps
 relay.Unpause();     // Running again

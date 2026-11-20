@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Struct ProcessRegistration | PlayForge ">
       
-      <meta name="description" content="A process&#39;s registration with ProcessControl, built a step at a time: what handles the process, the packet it carries, the ProcessControl that takes it, and, for a MonoBehaviour process, what makes its object.  and its siblings start one, and  registers the process and starts it, as registering always has: var result = ProcessControl.Register(projectile).HandledBy(gas).With(data).Run(); if (!result) Debug.Log(result.Refusal); What isn&#39;t given takes its default. The handler follows the packet&#39;s run-time type: an ability&#39;s packet hands the process to its source, and any other to GameRoot, or to none in a world of its own, which reaches for nothing of the scene&#39;s. ProcessControl had 28 static Register overloads, and the argument&#39;s static type picked the handler, so an ability&#39;s packet passed as a SequenceDataPacket filed its sequence under GameRoot, and the sequence didn&#39;t end with its entity. Those overloads are wrappers of this now, marked obsolete, and go before the first Asset Store submission.">
+      <meta name="description" content="A process&#39;s registration with ProcessControl, built a step at a time: what handles the process, the packet it carries, the ProcessControl that takes it, and, for a MonoBehaviour process, what makes its object.  and its siblings start one, and  registers the process and starts it, as registering always has: var result = ProcessControl.Register(projectile).HandledBy(gas).With(data).Run(); if (!result) Debug.Log(result.Refusal); What isn&#39;t given takes its default. The handler follows the packet: one with a source, as an ability&#39;s is, hands the process to its source (), and any other to ProcessControl&#39;s default handler, the GameRoot where there is one, or to none in a world of its own, which reaches for nothing of the scene&#39;s. ProcessControl had 28 static Register overloads, and the argument&#39;s static type picked the handler, so an ability&#39;s packet passed as a SequenceDataPacket filed its sequence under GameRoot, and the sequence didn&#39;t end with its entity.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -103,12 +103,12 @@ carries, the ProcessControl that takes it, and, for a MonoBehaviour process, wha
 siblings start one, and <a class="xref" href="FarEmerald.PlayForge.ProcessRegistration.html#FarEmerald_PlayForge_ProcessRegistration_Run">Run()</a> registers the process and starts it, as registering always has:</p>
 <pre><code class="lang-csharp">var result = ProcessControl.Register(projectile).HandledBy(gas).With(data).Run();
 if (!result) Debug.Log(result.Refusal);</code></pre>
-<p>What isn't given takes its default. The handler follows the packet's run-time type: an ability's packet hands the
-process to its source, and any other to GameRoot, or to none in a world of its own, which reaches for nothing of
-the scene's. ProcessControl had 28 static Register overloads, and the
-argument's static type picked the handler, so an ability's packet passed as a SequenceDataPacket filed its
-sequence under GameRoot, and the sequence didn't end with its entity. Those overloads are
-wrappers of this now, marked obsolete, and go before the first Asset Store submission.</p>
+<p>What isn't given takes its default. The handler follows the packet: one with a source, as an ability's is, hands
+the process to its source (<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>), and any other to ProcessControl's default
+handler, the GameRoot where there is one, or to none in a world of its own, which reaches for nothing of the
+scene's. ProcessControl had 28 static Register overloads, and the argument's static type picked the handler, so
+an ability's packet passed as a SequenceDataPacket filed its sequence under GameRoot, and the sequence didn't end
+with its entity.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
@@ -385,8 +385,9 @@ and destroyed.</p>
   </h3>
 
   <div class="markdown level1 summary"><p>The packet the process carries. A sequence's is a <a class="xref" href="FarEmerald.PlayForge.SequenceDataPacket.html">SequenceDataPacket</a>. Left out, a MonoBehaviour
-process takes the scene root's, which parents it under GameRoot, a runtime process the default, and a
-sequence the scene root's sequence packet. In a world of its own, each takes the default, parented nowhere.</p>
+process takes the scene root's, which parents it under <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_DefaultParent">DefaultParent</a>, the
+GameRoot where there is one, a runtime process the default, and a sequence the scene root's sequence packet.
+In a world of its own, each takes the default, parented nowhere.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

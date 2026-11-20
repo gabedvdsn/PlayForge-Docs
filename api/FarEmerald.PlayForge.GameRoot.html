@@ -103,11 +103,11 @@ or else the entity it names. It keeps through scene loads.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/editor/forge-projects/the-project-and-its-folder.html">The Editor Tools: Forge Projects: The project and its folder</a> · <a class="xref" href="../guides/attributes/roles/the-project-a-game-reads.html">Attributes: Roles: The project a game reads</a> · <a class="xref" href="../guides/editor/forge-projects/the-projects-inspector.html">The Editor Tools: Forge Projects: The project's inspector</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes/running-a-process-or-a-sequence.html">Getting Started: Quickstart: a damage ability in ~10 minutes: Running a process or a sequence</a> · <a class="xref" href="../guides/getting-started/tooling-tour/the-settings-pages.html">Getting Started: Tooling tour: The settings pages</a> · <a class="xref" href="../guides/services/profiling/counters.html">Time, Input and Logging: Profiling: Counters</a> · <a class="xref" href="../guides/editor/forge-projects/which-assets-belong-to-which.html">The Editor Tools: Forge Projects: Which assets belong to which</a> · <a class="xref" href="../guides/editor/preferences-and-project-settings/project-settings--playforge.html">The Editor Tools: Preferences and Project Settings: Project Settings → PlayForge</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/editor/forge-projects/the-project-and-its-folder.html">The Editor Tools: Forge Projects: The project and its folder</a> · <a class="xref" href="../guides/attributes/roles/the-project-a-game-reads.html">Attributes: Roles: The project a game reads</a> · <a class="xref" href="../guides/editor/forge-projects/the-projects-inspector.html">The Editor Tools: Forge Projects: The project's inspector</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes.html">Getting Started: Quickstart: a damage ability in ~10 minutes</a> · <a class="xref" href="../guides/getting-started/quickstart-a-damage-ability-in-10-minutes/running-a-process-or-a-sequence.html">Getting Started: Quickstart: a damage ability in ~10 minutes: Running a process or a sequence</a> · <a class="xref" href="../guides/getting-started/tooling-tour/the-settings-pages.html">Getting Started: Tooling tour: The settings pages</a> · <a class="xref" href="../guides/processes/index.html">Processes</a> · <a class="xref" href="../guides/services/profiling/counters.html">Time, Input and Logging: Profiling: Counters</a> · <a class="xref" href="../guides/editor/forge-projects/which-assets-belong-to-which.html">The Editor Tools: Forge Projects: Which assets belong to which</a> · <a class="xref" href="../guides/editor/preferences-and-project-settings/project-settings--playforge.html">The Editor Tools: Preferences and Project Settings: Project Settings → PlayForge</a></p>
 </div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GameRoot : GameplayAbilitySystem, IGameplayProcess, IGameplayAbilitySystem, ISource, ITarget, ITagHandler, IEffectOrigin, IAffiliated, IGameplayProcessHandler, IHasReadableDefinition, ILocalDataUser, IAnalysisUser, IProxyTaskBehaviourCaller, IProxyTaskBehaviourUser, IHasTextures, IManagerial</code></pre>
+    <pre><code class="lang-csharp hljs">public class GameRoot : GameplayAbilitySystem, IGameplayProcess, IGameplayAbilitySystem, ISource, ITarget, ITagHandler, IEffectOrigin, IAffiliated, IGameplayProcessHandler, IHasReadableDefinition, ILocalDataUser, IAnalysisUser, IProxyTaskBehaviourCaller, IProxyTaskBehaviourUser, IProcessOwner, IHasTextures, IManagerial</code></pre>
   </div>
 
 
@@ -144,6 +144,7 @@ or else the entity it names. It keeps through scene loads.</p>
       <div><a class="xref" href="FarEmerald.PlayForge.IAnalysisUser.html">IAnalysisUser</a></div>
       <div><a class="xref" href="FarEmerald.PlayForge.IProxyTaskBehaviourCaller.html">IProxyTaskBehaviourCaller</a></div>
       <div><a class="xref" href="FarEmerald.PlayForge.IProxyTaskBehaviourUser.html">IProxyTaskBehaviourUser</a></div>
+      <div><a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></div>
       <div><a class="xref" href="FarEmerald.PlayForge.IHasTextures.html">IHasTextures</a></div>
       <div><a class="xref" href="FarEmerald.PlayForge.IManagerial.html">IManagerial</a></div>
     </dd>
@@ -970,24 +971,31 @@ public List&lt;AbstractCreateProcessAbilityTask&gt; CreateProcessTasks</code></p
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_GameRoot_Instance_" data-uid="FarEmerald.PlayForge.GameRoot.Instance*"></a>
 
   <h3 id="FarEmerald_PlayForge_GameRoot_Instance" data-uid="FarEmerald.PlayForge.GameRoot.Instance">
   Instance
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The scene's GameRoot, and so ProcessControl's default handler, which a registration naming no handler takes, and
+the parent of a scene root's processes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Header(&quot;Game Root&quot;)]
-public static GameRoot Instance</code></pre>
+    <pre><code class="lang-csharp hljs">public static GameRoot Instance { get; set; }</code></pre>
   </div>
 
 
 
 
-  <h4 class="section">Field Value</h4>
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="FarEmerald.PlayForge.GameRoot.html">GameRoot</a></dt>
     <dd></dd>
@@ -998,11 +1006,6 @@ public static GameRoot Instance</code></pre>
 
 
 
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
 
 
   <a id="FarEmerald_PlayForge_GameRoot_Project_" data-uid="FarEmerald.PlayForge.GameRoot.Project*"></a>

@@ -192,10 +192,10 @@ process managed by ProcessControl.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessRegistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessRegistered*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_OwnedProcessRegistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessRegistered*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessRegistered_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessRegistered(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
-  GASProcessRegistered(IGameplayAbilitySystem, ProcessRelay, ProcessDataPacket)
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OwnedProcessRegistered_FarEmerald_PlayForge_IProcessOwner_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessRegistered(FarEmerald.PlayForge.IProcessOwner,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  OwnedProcessRegistered(IProcessOwner, ProcessRelay, ProcessDataPacket)
   
   </h3>
 
@@ -203,12 +203,12 @@ process managed by ProcessControl.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GASProcessRegistered(IGameplayAbilitySystem gas, ProcessRelay relay, ProcessDataPacket data)</code></pre>
+    <pre><code class="lang-csharp hljs">public void OwnedProcessRegistered(IProcessOwner owner, ProcessRelay relay, ProcessDataPacket data)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
     <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
     <dd></dd>
@@ -227,10 +227,10 @@ process managed by ProcessControl.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessUnregistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessUnregistered*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControlCallbacks_OwnedProcessUnregistered_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessUnregistered*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessUnregistered_FarEmerald_PlayForge_IGameplayAbilitySystem_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessUnregistered(FarEmerald.PlayForge.IGameplayAbilitySystem,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
-  GASProcessUnregistered(IGameplayAbilitySystem, ProcessRelay, ProcessDataPacket)
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OwnedProcessUnregistered_FarEmerald_PlayForge_IProcessOwner_FarEmerald_PlayForge_ProcessRelay_FarEmerald_PlayForge_ProcessDataPacket_" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessUnregistered(FarEmerald.PlayForge.IProcessOwner,FarEmerald.PlayForge.ProcessRelay,FarEmerald.PlayForge.ProcessDataPacket)">
+  OwnedProcessUnregistered(IProcessOwner, ProcessRelay, ProcessDataPacket)
   
   </h3>
 
@@ -238,12 +238,12 @@ process managed by ProcessControl.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GASProcessUnregistered(IGameplayAbilitySystem gas, ProcessRelay relay, ProcessDataPacket data)</code></pre>
+    <pre><code class="lang-csharp hljs">public void OwnedProcessUnregistered(IProcessOwner owner, ProcessRelay relay, ProcessDataPacket data)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
     <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
     <dd></dd>
@@ -400,8 +400,8 @@ process managed by ProcessControl.</p>
 
 
 
-  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnGASProcessRegistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnGASProcessRegistered">
-  OnGASProcessRegistered
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnOwnedProcessRegistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnOwnedProcessRegistered">
+  OnOwnedProcessRegistered
   
   </h3>
 
@@ -409,7 +409,7 @@ process managed by ProcessControl.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.GASProcessDelegate OnGASProcessRegistered</code></pre>
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.OwnedProcessDelegate OnOwnedProcessRegistered</code></pre>
   </div>
 
 
@@ -419,7 +419,7 @@ process managed by ProcessControl.</p>
 
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">GASProcessDelegate</a></dt>
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessDelegate.html">OwnedProcessDelegate</a></dt>
     <dd></dd>
   </dl>
 
@@ -430,8 +430,8 @@ process managed by ProcessControl.</p>
 
 
 
-  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnGASProcessUnregistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnGASProcessUnregistered">
-  OnGASProcessUnregistered
+  <h3 id="FarEmerald_PlayForge_ProcessControlCallbacks_OnOwnedProcessUnregistered" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.OnOwnedProcessUnregistered">
+  OnOwnedProcessUnregistered
   
   </h3>
 
@@ -439,7 +439,7 @@ process managed by ProcessControl.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.GASProcessDelegate OnGASProcessUnregistered</code></pre>
+    <pre><code class="lang-csharp hljs">public event ProcessControlCallbacks.OwnedProcessDelegate OnOwnedProcessUnregistered</code></pre>
   </div>
 
 
@@ -449,7 +449,7 @@ process managed by ProcessControl.</p>
 
   <h4 class="section">Event Type</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">GASProcessDelegate</a></dt>
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.html">ProcessControlCallbacks</a>.<a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessDelegate.html">OwnedProcessDelegate</a></dt>
     <dd></dd>
   </dl>
 

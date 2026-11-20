@@ -829,6 +829,72 @@ public bool OutputLogs</code></pre>
 
 
 
+  <a id="FarEmerald_PlayForge_ProcessControl_DefaultHandler_" data-uid="FarEmerald.PlayForge.ProcessControl.DefaultHandler*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControl_DefaultHandler" data-uid="FarEmerald.PlayForge.ProcessControl.DefaultHandler">
+  DefaultHandler
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The handler a registration that names none hands its process to, outside a world of its own, where its packet
+has no <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>: the GameRoot, where there is one, or none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IGameplayProcessHandler DefaultHandler { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControl_DefaultParent_" data-uid="FarEmerald.PlayForge.ProcessControl.DefaultParent*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControl_DefaultParent" data-uid="FarEmerald.PlayForge.ProcessControl.DefaultParent">
+  DefaultParent
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What a scene root's packet parents its process under (<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_SceneRoot">SceneRoot()</a>): the GameRoot,
+where there is one, or nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Transform DefaultParent { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_ProcessControl_FixedTickRate_" data-uid="FarEmerald.PlayForge.ProcessControl.FixedTickRate*"></a>
 
   <h3 id="FarEmerald_PlayForge_ProcessControl_FixedTickRate" data-uid="FarEmerald.PlayForge.ProcessControl.FixedTickRate">
@@ -1044,6 +1110,46 @@ A StartState that refuses processes refused GameRoot too.</p>
     <dd></dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessControl_BringUp_" data-uid="FarEmerald.PlayForge.ProcessControl.BringUp*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessControl_BringUp_FarEmerald_PlayForge_ProcessControl_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessControl.BringUp(FarEmerald.PlayForge.ProcessControl,System.Boolean)">
+  BringUp(ProcessControl, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Brings a ProcessControl up where none is, the prefab's copy or one it makes, and bootstraps it; null where one is
+up already. With <code class="paramref">deferStartState</code> set it waits in Ready for <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_EnterStartState">EnterStartState()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ProcessControl BringUp(ProcessControl prefab = null, bool deferStartState = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>prefab</code> <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+    <dt><code>deferStartState</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControl.html">ProcessControl</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -1400,24 +1506,24 @@ A StartState that refuses processes refused GameRoot too.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessCountForGAS_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessCountForGAS*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessCountFor_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessCountFor*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessCountForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessCountForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
-  GetProcessCountForGAS(IGameplayAbilitySystem)
+  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessCountFor_FarEmerald_PlayForge_IProcessOwner_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessCountFor(FarEmerald.PlayForge.IProcessOwner)">
+  GetProcessCountFor(IProcessOwner)
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Number of active processes owned by the given GAS.</p>
+  <div class="markdown level1 summary"><p>How many active processes the owner owns.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int GetProcessCountForGAS(IGameplayAbilitySystem gas)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int GetProcessCountFor(IProcessOwner owner)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
   </dl>
 
@@ -1437,24 +1543,24 @@ A StartState that refuses processes refused GameRoot too.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessIdsForGAS_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessIdsForGAS*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessIdsFor_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessIdsFor*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessIdsForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessIdsForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
-  GetProcessIdsForGAS(IGameplayAbilitySystem)
+  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessIdsFor_FarEmerald_PlayForge_IProcessOwner_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessIdsFor(FarEmerald.PlayForge.IProcessOwner)">
+  GetProcessIdsFor(IProcessOwner)
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns the cache indices of all active processes owned by the given GAS.</p>
+  <div class="markdown level1 summary"><p>The cache indices of every active process the owner owns.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IReadOnlyCollection&lt;int&gt; GetProcessIdsForGAS(IGameplayAbilitySystem gas)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IReadOnlyCollection&lt;int&gt; GetProcessIdsFor(IProcessOwner owner)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
   </dl>
 
@@ -1474,24 +1580,24 @@ A StartState that refuses processes refused GameRoot too.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessesForGAS_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessesForGAS*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControl_GetProcessesFor_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessesFor*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessesForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessesForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem)">
-  GetProcessesForGAS(IGameplayAbilitySystem)
+  <h3 id="FarEmerald_PlayForge_ProcessControl_GetProcessesFor_FarEmerald_PlayForge_IProcessOwner_" data-uid="FarEmerald.PlayForge.ProcessControl.GetProcessesFor(FarEmerald.PlayForge.IProcessOwner)">
+  GetProcessesFor(IProcessOwner)
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns ProcessRelays for all active processes owned by the given GAS.</p>
+  <div class="markdown level1 summary"><p>The relays of every active process the owner owns.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;ProcessRelay&gt; GetProcessesForGAS(IGameplayAbilitySystem gas)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;ProcessRelay&gt; GetProcessesFor(IProcessOwner owner)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
   </dl>
 
@@ -2531,26 +2637,25 @@ The member uses the group's shared data packet by default.</p>
 
 
 
-  <a id="FarEmerald_PlayForge_ProcessControl_TerminateAllForGAS_" data-uid="FarEmerald.PlayForge.ProcessControl.TerminateAllForGAS*"></a>
+  <a id="FarEmerald_PlayForge_ProcessControl_TerminateAllFor_" data-uid="FarEmerald.PlayForge.ProcessControl.TerminateAllFor*"></a>
 
-  <h3 id="FarEmerald_PlayForge_ProcessControl_TerminateAllForGAS_FarEmerald_PlayForge_IGameplayAbilitySystem_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessControl.TerminateAllForGAS(FarEmerald.PlayForge.IGameplayAbilitySystem,System.Boolean)">
-  TerminateAllForGAS(IGameplayAbilitySystem, bool)
+  <h3 id="FarEmerald_PlayForge_ProcessControl_TerminateAllFor_FarEmerald_PlayForge_IProcessOwner_System_Boolean_" data-uid="FarEmerald.PlayForge.ProcessControl.TerminateAllFor(FarEmerald.PlayForge.IProcessOwner,System.Boolean)">
+  TerminateAllFor(IProcessOwner, bool)
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Terminates every process owned by the given GAS. When <code class="paramref">immediate</code>
-is true, uses TerminateImmediate; otherwise queues graceful termination.
-Returns the number of processes that received a termination request.</p>
+  <div class="markdown level1 summary"><p>Terminates every process the owner owns, at once when <code class="paramref">immediate</code> is set, or else queued to end
+gracefully. Returns how many were told to.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int TerminateAllForGAS(IGameplayAbilitySystem gas, bool immediate = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int TerminateAllFor(IProcessOwner owner, bool immediate = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
+    <dt><code>owner</code> <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
     <dd></dd>
     <dt><code>immediate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>

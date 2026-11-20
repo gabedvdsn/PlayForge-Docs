@@ -388,7 +388,7 @@ or a test needs. A source-scanning test keeps <code>Time</code> out of the runti
   </h3>
 
   <div class="markdown level1 summary"><p>The clock the work done with a packet runs by: the one it names (<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Clock">Clock</a>), or its
-owner's: an ability's caster's, or the game's.</p>
+source's (<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>): an ability's caster's, or the game's.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -425,8 +425,9 @@ owner's: an ability's caster's, or the game's.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>The clock an owner's time runs by: an entity's own, its time scale times the game's, or the game's for anything
-else, <a class="xref" href="FarEmerald.PlayForge.GameClock.html">GameClock</a>, which reads the clock in force as it's asked.</p>
+  <div class="markdown level1 summary"><p>The clock an owner's time runs by: the one an <a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a> gives, as an entity gives its own, its
+time scale times the game's, or the game's for anything else, <a class="xref" href="FarEmerald.PlayForge.GameClock.html">GameClock</a>, which reads the clock in
+force as it's asked.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

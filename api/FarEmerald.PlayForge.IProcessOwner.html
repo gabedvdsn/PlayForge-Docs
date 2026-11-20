@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Delegate ProcessControlCallbacks.GASProcessDelegate | PlayForge </title>
+      <title>Interface IProcessOwner | PlayForge </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Delegate ProcessControlCallbacks.GASProcessDelegate | PlayForge ">
+      <meta name="title" content="Interface IProcessOwner | PlayForge ">
       
-      <meta name="description" content="A handler of OnGASProcessRegistered and OnGASProcessUnregistered, ProcessControl&#39;s callbacks, invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability&#39;s packet whose caster is the GAS, as it registers and just before it&#39;s removed, and handed the GAS, the process&#39;s relay and its data packet.">
+      <meta name="description" content="What owns processes. ProcessControl counts a process as its owner&#39;s where the owner is the process&#39;s handler, or else its packet&#39;s , and the work done with the packet runs by the owner&#39;s clock. A position or rotation payload of an owner places a MonoBehaviour process where the owner is. An entity&#39;s ability system is one.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate">
+        <article data-uid="FarEmerald.PlayForge.IProcessOwner">
 
 
 
-  <h1 id="FarEmerald_PlayForge_ProcessControlCallbacks_GASProcessDelegate" data-uid="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate" class="text-break">
-Delegate ProcessControlCallbacks.GASProcessDelegate  
+  <h1 id="FarEmerald_PlayForge_IProcessOwner" data-uid="FarEmerald.PlayForge.IProcessOwner" class="text-break">
+Interface IProcessOwner  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,32 +97,124 @@ Delegate ProcessControlCallbacks.GASProcessDelegate
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>A handler of <code>OnGASProcessRegistered</code> and <code>OnGASProcessUnregistered</code>, ProcessControl's callbacks,
-invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet
-whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's
-relay and its data packet.</p>
+  <div class="markdown summary"><p>What owns processes. ProcessControl counts a process as its owner's where the owner is the process's handler, or
+else its packet's <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>, and the work done with the packet runs by the owner's
+clock. A position or rotation payload of an owner places a MonoBehaviour process where the owner is. An entity's
+ability system is one.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/processes/index.html">Processes</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/task-sequences/clocks.html">Task Sequences: Clocks</a></p>
 </div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void ProcessControlCallbacks.GASProcessDelegate(IGameplayAbilitySystem gas, ProcessRelay relay, ProcessDataPacket data)</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IProcessOwner</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_IProcessOwner_ProcessClock_" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessClock*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IProcessOwner_ProcessClock" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessClock">
+  ProcessClock
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The clock the owner's processes run by. Null, as it is unless an owner gives one, for the game's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IForgeClock ProcessClock { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><code>gas</code> <a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html">IGameplayAbilitySystem</a></dt>
-    <dd>A handler of OnGASProcessRegistered and OnGASProcessUnregistered, ProcessControl's callbacks, invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's relay and its data packet.</dd>
-    <dt><code>relay</code> <a class="xref" href="FarEmerald.PlayForge.ProcessRelay.html">ProcessRelay</a></dt>
-    <dd>A handler of OnGASProcessRegistered and OnGASProcessUnregistered, ProcessControl's callbacks, invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's relay and its data packet.</dd>
-    <dt><code>data</code> <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html">ProcessDataPacket</a></dt>
-    <dd>A handler of OnGASProcessRegistered and OnGASProcessUnregistered, ProcessControl's callbacks, invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's relay and its data packet.</dd>
+    <dt><a class="xref" href="FarEmerald.PlayForge.IForgeClock.html">IForgeClock</a></dt>
+    <dd></dd>
   </dl>
 
 
 
 
+
+
+
+
+  <a id="FarEmerald_PlayForge_IProcessOwner_ProcessPosition_" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessPosition*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IProcessOwner_ProcessPosition" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessPosition">
+  ProcessPosition
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Where the owner is, as a process placed at it takes it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Vector3 ProcessPosition { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_IProcessOwner_ProcessRotation_" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessRotation*"></a>
+
+  <h3 id="FarEmerald_PlayForge_IProcessOwner_ProcessRotation" data-uid="FarEmerald.PlayForge.IProcessOwner.ProcessRotation">
+  ProcessRotation
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Which way the owner faces, as a process placed at it takes it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Quaternion ProcessRotation { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Quaternion</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

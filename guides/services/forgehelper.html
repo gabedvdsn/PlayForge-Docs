@@ -139,19 +139,31 @@ conditions and tools can call it too.</p>
 <td>One enum read as another: an <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityActivationPolicyExtended.html"><code>EAbilityActivationPolicyExtended</code></a> as an <a class="xref" href="../../api/FarEmerald.PlayForge.EAbilityActivationPolicy.html"><code>EAbilityActivationPolicy</code></a>, an <code>EMagnitudeOperation</code> as an <code>ECalculationOperation</code>, an <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTargetLimited.html"><code>EAttributeTargetLimited</code></a> as an <a class="xref" href="../../api/FarEmerald.PlayForge.EAttributeTarget.html"><code>EAttributeTarget</code></a></td>
 </tr>
 <tr>
-<td>Collections</td>
-<td><code>RandomChoice</code>, <code>Shuffle</code>, <code>WeightedSample</code>, <code>SafeAdd</code>, <code>SafeAddRange</code>, <code>SafeRemove</code>, <code>ContainsAll</code>, <code>TrueForAny</code></td>
-<td>A list's item at random; the list shuffled in place; N items picked by their weights, an item as often as it's drawn; a dictionary's entries added, or added to a key's list or set, and removed; and whether a sequence holds every item of another, or has an item a condition holds for. The random ones draw from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a></td>
-</tr>
-<tr>
 <td>Points</td>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_RandomPointWithinCircle_"><code>RandomPointWithinCircle</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_RandomPointWithinSphere_"><code>RandomPointWithinSphere</code></a></td>
-<td>A point at random within a radius of the origin, drawn from <code>ForgeRandom</code>. The circle's lies in the XY plane, a <code>Vector3</code> with a z of 0, and one nearer than its <code>minRadius</code> is moved out to it</td>
+<td>A point at random within a radius of the origin, drawn from <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>. The circle's lies in the XY plane, a <code>Vector3</code> with a z of 0, and one nearer than its <code>minRadius</code> is moved out to it</td>
 </tr>
 <tr>
 <td>Icons</td>
 <td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_GetTextureItem_"><code>GetTextureItem</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeHelper.html#FarEmerald_PlayForge_ForgeHelper_TextureUnder_"><code>TextureUnder</code></a></td>
 <td>An icon from an asset's <strong>Textures</strong>: <code>GetTextureItem</code> the texture under a tag, else the first that has one, and <code>TextureUnder</code> the one under exactly that tag, or null</td>
+</tr>
+</tbody>
+</table>
+<h2 id="forgecollections">ForgeCollections</h2>
+<p>The collection helpers are <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeCollections.html"><code>ForgeCollections</code></a>', beside <code>ForgeHelper</code>: extension methods, so <code>list.RandomChoice()</code>
+reads as the list's own.</p>
+<table>
+<thead>
+<tr>
+<th>Members</th>
+<th>What they do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RandomChoice</code>, <code>Shuffle</code>, <code>WeightedSample</code>, <code>SafeAdd</code>, <code>SafeAddRange</code>, <code>SafeRemove</code>, <code>ContainsAll</code>, <code>TrueForAny</code></td>
+<td>A list's item at random; the list shuffled in place; N items picked by their weights, an item as often as it's drawn; a dictionary's entries added, or added to a key's list or set, and removed; and whether a sequence holds every item of another, or has an item a condition holds for. The random ones draw from <code>ForgeRandom</code></td>
 </tr>
 </tbody>
 </table>

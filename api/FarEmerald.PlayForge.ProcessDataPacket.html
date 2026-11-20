@@ -399,7 +399,7 @@ This procures the Transform value under the Target classification stored under t
   </h3>
 
   <div class="markdown level1 summary"><p>The clock the work done with this packet runs by: a sequence's waits, timers, tweens and synced tasks, and an
-ability's waits. Null, as it is unless set, for the packet's owner's: an ability's caster's, or the game's. A
+ability's waits. Null, as it is unless set, for its source's: an ability's caster's, or the game's. A
 sequence's own clock (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_FarEmerald_PlayForge_IForgeClock_">WithClock(IForgeClock)</a>) gives way to this one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -509,6 +509,40 @@ sequence's own clock (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceBui
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Tag.html">Tag</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_ProcessDataPacket_Source_" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Source*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ProcessDataPacket_Source" data-uid="FarEmerald.PlayForge.ProcessDataPacket.Source">
+  Source
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>What the packet's processes come from: an ability's caster, for an ability's packet; none here. A registration
+that names no handler hands its process to it, ProcessControl counts the process as its own where it's an
+<a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a>, and the work done with the packet runs by its clock.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IGameplayProcessHandler Source { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.IGameplayProcessHandler.html">IGameplayProcessHandler</a></dt>
     <dd></dd>
   </dl>
 
@@ -899,7 +933,8 @@ sequence's own clock (<a class="xref" href="FarEmerald.PlayForge.TaskSequenceBui
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Empty data packet handled by GameRoot.</p>
+  <div class="markdown level1 summary"><p>An empty packet. A registration that names no handler hands its process to ProcessControl's default handler,
+the GameRoot where there is one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1646,7 +1681,7 @@ If the key does not exist, adds the default value and returns it.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, assigned as a child of parent in-scene</p>
+  <div class="markdown level1 summary"><p>A packet that parents its MonoBehaviour process under <code class="paramref">parent</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1684,7 +1719,8 @@ If the key does not exist, adds the default value and returns it.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Data packet handled by GameRoot, automatically assigned as a child of GameRoot in-scene.</p>
+  <div class="markdown level1 summary"><p>A packet that parents its MonoBehaviour process under the scene's root, <a class="xref" href="FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_DefaultParent">DefaultParent</a>:
+the GameRoot, where there is one, or nothing.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

@@ -1224,7 +1224,8 @@ as it starts, at its ability's level; its caster's own mover, where it has one, 
       <dd><p>Brings PlayForge up as a scene starts: ProcessControl, then the GameRoot, which runs as the Game Root entity of the
 Forge Project the Bootstrapper names. It names prefabs for both, which code makes in the
 PlayForge folder's Bootstrap folder as the first Forge Project is made; without them it makes each itself, so a
-scene needs nothing but a Bootstrapper. PlayForge ships no prefab.</p>
+scene needs nothing but a Bootstrapper. PlayForge ships no prefab. A scene of processes and task sequences alone,
+with no entities, can take the <a class="xref" href="FarEmerald.PlayForge.ProcessBootstrapper.html">ProcessBootstrapper</a> instead.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -1976,6 +1977,12 @@ chance is pseudo-random, the caster's streak for it, kept by the chance's key.</
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCollections.html">ForgeCollections</a></dt>
+      <dd><p>Helpers for lists and dictionaries, all extension methods: a random choice, a shuffle and a weighted sample, by
+<a class="xref" href="FarEmerald.PlayForge.ForgeRandom.html">ForgeRandom</a>; adds and removes that check the key first; and checks over a sequence.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeCombatLog.html">ForgeCombatLog</a></dt>
       <dd><p>The current project's combat log settings, which each entity's log reads as it writes.</p>
 </dd>
@@ -2069,8 +2076,8 @@ record, nothing is timed for them.</p>
       <dt><a class="xref" href="FarEmerald.PlayForge.ForgeHelper.html">ForgeHelper</a></dt>
       <dd><p>Helpers the framework's code shares, many of them extension methods: an asset's texture under a tag, the sign of
 a change and checks of it, tag requirement and query checks, tag matching by hierarchy, attribute arithmetic by
-operation, a magnitude joined with its scaler, list helpers (<code>RandomChoice</code>, <code>Shuffle</code>,
-<code>WeightedSample</code>, <code>SafeAdd</code>), and random points in a circle or a sphere.</p>
+operation, a magnitude joined with its scaler, and random points in a circle or a sphere. The list and dictionary
+helpers are <a class="xref" href="FarEmerald.PlayForge.ForgeCollections.html">ForgeCollections</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -3082,6 +3089,13 @@ recycles its cue actors.</p>
       <dt><a class="xref" href="FarEmerald.PlayForge.ProcessAttribute.html">ProcessAttribute</a></dt>
       <dd><p>An attribute a gameplay mono process carries of its own, as a projectile's speed: the attribute it is,
 the role the process reads it by, and where its value starts. It changes as the process runs.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.ProcessBootstrapper.html">ProcessBootstrapper</a></dt>
+      <dd><p>Brings ProcessControl up as a scene starts, for a scene of processes and task sequences with no entities. It names
+a ProcessControl prefab; without one it makes one itself, so a scene needs nothing but a Process Bootstrapper. A
+scene with entities takes the Bootstrapper instead, which brings up the GameRoot as well.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -4596,12 +4610,12 @@ carries, the ProcessControl that takes it, and, for a MonoBehaviour process, wha
 siblings start one, and <a class="xref" href="FarEmerald.PlayForge.ProcessRegistration.html#FarEmerald_PlayForge_ProcessRegistration_Run">Run()</a> registers the process and starts it, as registering always has:</p>
 <pre><code class="lang-csharp">var result = ProcessControl.Register(projectile).HandledBy(gas).With(data).Run();
 if (!result) Debug.Log(result.Refusal);</code></pre>
-<p>What isn't given takes its default. The handler follows the packet's run-time type: an ability's packet hands the
-process to its source, and any other to GameRoot, or to none in a world of its own, which reaches for nothing of
-the scene's. ProcessControl had 28 static Register overloads, and the
-argument's static type picked the handler, so an ability's packet passed as a SequenceDataPacket filed its
-sequence under GameRoot, and the sequence didn't end with its entity. Those overloads are
-wrappers of this now, marked obsolete, and go before the first Asset Store submission.</p>
+<p>What isn't given takes its default. The handler follows the packet: one with a source, as an ability's is, hands
+the process to its source (<a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>), and any other to ProcessControl's default
+handler, the GameRoot where there is one, or to none in a world of its own, which reaches for nothing of the
+scene's. ProcessControl had 28 static Register overloads, and the argument's static type picked the handler, so
+an ability's packet passed as a SequenceDataPacket filed its sequence under GameRoot, and the sequence didn't end
+with its entity.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -4956,6 +4970,14 @@ answers false for a key it doesn't know, and the asker reads its default.
       <dt><a class="xref" href="FarEmerald.PlayForge.IPooledCue.html">IPooledCue</a></dt>
       <dd><p>What a pooled cue object does as its pool hands it out and takes it back, as Unreal's cue actors recycle: a
 MonoBehaviour on the prefab resets itself here, as a particle system that plays again from the start.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.IProcessOwner.html">IProcessOwner</a></dt>
+      <dd><p>What owns processes. ProcessControl counts a process as its owner's where the owner is the process's handler, or
+else its packet's <a class="xref" href="FarEmerald.PlayForge.ProcessDataPacket.html#FarEmerald_PlayForge_ProcessDataPacket_Source">Source</a>, and the work done with the packet runs by the owner's
+clock. A position or rotation payload of an owner places a MonoBehaviour process where the owner is. An entity's
+ability system is one.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -5985,11 +6007,11 @@ changes, and handed the state it left and the state it entered.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.GASProcessDelegate.html">ProcessControlCallbacks.GASProcessDelegate</a></dt>
-      <dd><p>A handler of <code>OnGASProcessRegistered</code> and <code>OnGASProcessUnregistered</code>, ProcessControl's callbacks,
-invoked for a process a GAS owns, one registered with the GAS as its handler or with an ability's packet
-whose caster is the GAS, as it registers and just before it's removed, and handed the GAS, the process's
-relay and its data packet.</p>
+      <dt><a class="xref" href="FarEmerald.PlayForge.ProcessControlCallbacks.OwnedProcessDelegate.html">ProcessControlCallbacks.OwnedProcessDelegate</a></dt>
+      <dd><p>A handler of <code>OnOwnedProcessRegistered</code> and <code>OnOwnedProcessUnregistered</code>, ProcessControl's callbacks,
+invoked for a process with an owner, one registered with the owner as its handler or with a packet whose source
+is the owner, as an ability's packet's is its caster, as it registers and just before it's removed, and handed
+the owner, the process's relay and its data packet.</p>
 </dd>
     </dl>
     <dl class="jumplist">
