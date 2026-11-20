@@ -88,36 +88,51 @@
 <h1 id="death">Death</h1>
 
 <p>The Death section sets what the entity's death does.</p>
-<pre><code class="lang-mermaid">flowchart TD
+<pre><code class="lang-mermaid">---
+config:
+  flowchart:
+    wrappingWidth: 210
+    padding: 8
+    nodeSpacing: 30
+    rankSpacing: 30
+---
+flowchart TB
 classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
 classDef decision fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
 classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
-t1([&quot;DeathWatcherAnalysisWorker&lt;br/&gt;reaches its threshold&lt;br/&gt;at the end of frame&quot;]):::terminator
-t2([&quot;GASCore.WatchProjectHealth&lt;br/&gt;the Health-role attribute is at or below 0,&lt;br/&gt;DiesAtZeroHealth is on, no death watcher&quot;]):::terminator
+subgraph r1 [&quot;Death&quot;]
+direction LR
+t1(&quot;DeathWatcherAnalysisWorker reaches its threshold at the end of frame: a DeathAction, Critical&quot;):::terminator
+t2(&quot;GASCore.WatchProjectHealth: the Health-role attribute is at or below 0, DiesAtZeroHealth is on, no death watcher: a DeathAction, Critical&quot;):::terminator
 t3([&quot;code calls gas.MarkDead()&quot;]):::terminator
-da[&quot;DeathAction, Critical&quot;]:::general
-md[&quot;GASCore.MarkDead&lt;br/&gt;IsDead = true, EntityDied, FrameSummary&lt;br/&gt;the killer is the source of the last workable loss&lt;br/&gt;sends DIED to itself and KILL to the killer&quot;]:::general
-ec[&quot;each entity component's Death(ctx)&lt;br/&gt;Bounty gives its effect to the killer and allies&lt;br/&gt;Respawn calls RespawnTimer.ReviveIn(delay, place)&lt;br/&gt;EffectSystem.HearDeath(): effect components' Death&quot;]:::general
-p{&quot;EntityDeath&lt;br/&gt;policy?&quot;}:::decision
-st[&quot;Stay: at the end of frame, Die()&lt;br/&gt;ForgePurge.PurgeOnDeath when Purges is set&lt;br/&gt;end the body, apply the OnDeath effects&quot;]:::general
-st2([&quot;stays registered: its abilities refuse as Dead,&lt;br/&gt;and others' effects are refused&quot;]):::terminator
-en[&quot;End: at the end of frame&lt;br/&gt;Callbacks.SystemDisabled,&lt;br/&gt;then the hub's HandleDestruction()&quot;]:::general
-mono[&quot;Mono hub: Relay.TerminateImmediate(),&lt;br/&gt;else Destroy(gameObject)&quot;]:::general
-rth[&quot;Runtime hub: Relay.Terminate(),&lt;br/&gt;which queues&quot;]:::general
-wt([&quot;hub.WhenTerminate(), GASCore.WhenTerminate()&lt;br/&gt;components End, services End, transfers given back,&lt;br/&gt;sides cleared, AbilitySystem.ShutDown, ForgeEntities.Remove&quot;]):::terminator
-rv([&quot;Revive, Stay only: a RespawnTimer's countdown,&lt;br/&gt;ReviveOnRemovalEffectWorker, or gas.Revive(at)&quot;]):::terminator
-r1[&quot;GASCore.Revive: IsDead = false, services Revive, analysis workers Rearm&lt;br/&gt;the OnRevive effects, spawn the body&lt;br/&gt;Callbacks.EntityRevived, REVIVED, components Revive&quot;]:::general
-t1 --&gt; da
-t2 --&gt; da
-da --&gt; md
+md[&quot;GASCore.MarkDead: IsDead = true, EntityDied, FrameSummary; the killer is the source of the last workable loss; sends DIED to itself and KILL to the killer&quot;]:::general
+ec[&quot;each entity component's Death(ctx): Bounty gives its effect to the killer and allies; Respawn calls RespawnTimer.ReviveIn(delay, place); EffectSystem.HearDeath() runs effect components' Death&quot;]:::general
+t1 --&gt; md
+t2 --&gt; md
 t3 --&gt; md
-md --&gt; ec --&gt; p
+md --&gt; ec
+end
+subgraph r2 [&quot;At the end of frame&quot;]
+direction LR
+p{&quot;EntityDeath&lt;br/&gt;policy?&quot;}:::decision
+st[&quot;Stay: Die(), ForgePurge.PurgeOnDeath when Purges is set, end the body, apply the OnDeath effects&quot;]:::general
+st2(&quot;stays registered: its abilities refuse as Dead, and others' effects are refused&quot;):::terminator
+en[&quot;End: Callbacks.SystemDisabled, then the hub's HandleDestruction(): a Mono hub's Relay.TerminateImmediate(), else Destroy(gameObject); a runtime hub's Relay.Terminate(), which queues&quot;]:::general
+wt(&quot;hub.WhenTerminate(), GASCore.WhenTerminate(): components End, services End, transfers given back, sides cleared, AbilitySystem.ShutDown, ForgeEntities.Remove&quot;):::terminator
 p --&gt;|Stay| st --&gt; st2
-p --&gt;|End| en
-en --&gt; mono --&gt; wt
-en --&gt; rth --&gt; wt
-st2 -.-&gt; rv
-rv --&gt; r1
+p --&gt;|End| en --&gt; wt
+end
+subgraph r3 [&quot;Revive, Stay only&quot;]
+direction LR
+rv(&quot;a RespawnTimer's countdown, ReviveOnRemovalEffectWorker, or gas.Revive(at)&quot;):::terminator
+rev[&quot;GASCore.Revive: IsDead = false, services Revive, analysis workers Rearm, the OnRevive effects, spawn the body; Callbacks.EntityRevived, REVIVED, components Revive&quot;]:::general
+rv --&gt; rev
+end
+r1 ==&gt; r2
+r2 -.-&gt;|later| r3
+style r1 fill:none,stroke:none
+style r2 fill:none,stroke:none
+style r3 fill:none,stroke:none
 </code></pre>
 <p><em>What triggers death, what each EntityDeath policy does at the end of frame, and how an entity revives.</em></p>
 <p><img src="../../images/editor/entity-death.png" alt="The Ranger's Death section"></p>

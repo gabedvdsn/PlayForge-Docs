@@ -88,18 +88,24 @@
 <h1 id="lifecycles">Lifecycles</h1>
 
 <p>A process's lifecycle says how it starts and what happens when its run is done.</p>
-<pre><code class="lang-mermaid">flowchart LR
+<pre><code class="lang-mermaid">---
+config:
+  flowchart:
+    nodeSpacing: 40
+    rankSpacing: 20
+---
+flowchart LR
 classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
 classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
 c([&quot;Created&quot;]):::terminator
 r[&quot;Running&quot;]:::general
 w[&quot;Waiting&quot;]:::general
 t([&quot;Terminated&quot;]):::terminator
-c --&gt;|SelfTerminating, RunThenWait or Synchronous| r
+c --&gt;|&quot;SelfTerminating,&lt;br/&gt;RunThenWait,&lt;br/&gt;Synchronous&quot;| r
 c --&gt;|RequiresControl| w
-w --&gt;|relay.Run or Unpause| r
-r --&gt;|RunThenWait or RequiresControl, RunProcess returns| w
-r --&gt;|SelfTerminating, RunProcess returns| t
+w ---&gt;|&quot;relay.Run&lt;br/&gt;or Unpause&quot;| r
+r --&gt;|&quot;run done:&lt;br/&gt;RunThenWait,&lt;br/&gt;RequiresControl&quot;| w
+r --&gt;|&quot;run done:&lt;br/&gt;SelfTerminating&quot;| t
 r --&gt;|Terminate| t
 w --&gt;|Terminate| t
 </code></pre>

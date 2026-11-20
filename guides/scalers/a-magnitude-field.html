@@ -89,38 +89,62 @@
 
 <p>A magnitude field, such as an effect's Magnitude or Duration, is a number field. It's a <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a>, or a
 <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableInt.html"><code>ScalableInt</code></a> for a whole number.</p>
-<pre><code class="lang-mermaid">flowchart TD
+<pre><code class="lang-mermaid">---
+config:
+  flowchart:
+    wrappingWidth: 190
+    padding: 8
+    nodeSpacing: 30
+    rankSpacing: 30
+---
+flowchart TB
 classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
 classDef decision fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
 classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
-s([&quot;number.Evaluate(NumberContext.Of(x)), where x is a spec,&lt;br/&gt;container, packet, worker context, entity, cue or ItemSpec&lt;br/&gt;tasks call Read(number, data), abilities AbilitySpec.Read&quot;]):::terminator
-i[&quot;at spec creation, Initialize(spec) takes snapshots:&lt;br/&gt;a times-Attribute read OnCreation, a Randomized roll&quot;]:::general
-c{&quot;IsConstant?&lt;br/&gt;no scaler, or UseMagnitude&quot;}:::decision
+subgraph r1 [&quot;The call&quot;]
+direction LR
+s(&quot;number.Evaluate&lt;br/&gt;(NumberContext.Of(x)), where x is a spec, container, packet, worker context, entity, cue or ItemSpec; tasks call Read(number, data), abilities AbilitySpec.Read&quot;):::terminator
+i[&quot;at spec creation, Initialize(spec) takes snapshots: a times-Attribute read OnCreation, a Randomized roll&quot;]:::general
+s --&gt; i
+end
+subgraph r2 [&quot;The checks&quot;]
+direction LR
+c{&quot;IsConstant?&lt;br/&gt;(no scaler, or&lt;br/&gt;UseMagnitude)&quot;}:::decision
 k([&quot;Constant&quot;]):::terminator
-r{&quot;does a NumberKind read what&lt;br/&gt;the context cannot provide?&quot;}:::decision
-fb([&quot;Magnitude on the context path, logged once,&lt;br/&gt;or the kind's Fallback on the carrier path&quot;]):::terminator
-sc{&quot;which scaler?&quot;}:::decision
-nk[&quot;a NumberKind: Evaluate(in ctx)&lt;br/&gt;attributes, stacks, Local Data, tracked impacts,&lt;br/&gt;NumberWorkers.TryAsk, set-by-caller, sibling fields, conditions&quot;]:::general
-grp[&quot;a ScalerGroup: its members,&lt;br/&gt;combined by EGroupOperation&quot;]:::general
-pl[&quot;a plain scaler: Evaluate(ctx.Carrier),&lt;br/&gt;or through the internal NumberBridge&quot;]:::general
-lv[&quot;the level: carrier.GetOrigin().GetLevel()&lt;br/&gt;an AbilitySpec or ItemSpec reads Source.GetLevel(assetTag),&lt;br/&gt;an entity its own, a LevelerEffectOrigin its fixed level&quot;]:::general
-tb[&quot;the table LevelValues, or the Scaling curve&lt;br/&gt;over a max set by ELevelConfig:&lt;br/&gt;LockToLevelProvider, Unlocked or Clamped&quot;]:::general
-bh[&quot;then the AbstractScalerBehaviour chain&quot;]:::general
-cm[&quot;combine Magnitude and the scaler by EMagnitudeOperation:&lt;br/&gt;MultiplyWithScaler, AddScaler, UseMagnitude, UseScaler&lt;br/&gt;a ScalableInt then applies its Rounding&quot;]:::general
-ip([&quot;in an impact commit, the entry's ValuePipeline.Run&lt;br/&gt;and the modifier stages follow&quot;]):::terminator
-s --&gt; i --&gt; c
+r{&quot;a NumberKind&lt;br/&gt;reading what the&lt;br/&gt;context lacks?&quot;}:::decision
+fb(&quot;Magnitude on the context path, logged once, or the kind's Fallback on the carrier path&quot;):::terminator
 c --&gt;|yes| k
 c --&gt;|no| r
 r --&gt;|yes| fb
-r --&gt;|no| sc
-sc --&gt;|NumberKind| nk
-sc --&gt;|ScalerGroup| grp
-sc --&gt;|plain| pl
-pl --&gt; lv --&gt; tb --&gt; bh
-nk --&gt; cm
-grp --&gt; cm
-bh --&gt; cm
+end
+subgraph r3 [&quot;Which scaler?&quot;]
+direction TB
+nk[&quot;a NumberKind: Evaluate(in ctx): attributes, stacks, Local Data, tracked impacts, NumberWorkers.TryAsk, set-by-caller, sibling fields, conditions&quot;]:::general
+grp[&quot;a ScalerGroup: its members, combined by EGroupOperation&quot;]:::general
+subgraph r3p [&quot; &quot;]
+direction LR
+pl[&quot;a plain scaler: Evaluate(ctx.Carrier), or through the internal NumberBridge&quot;]:::general
+lv[&quot;the level: carrier.GetOrigin()&lt;br/&gt;.GetLevel(); an AbilitySpec or ItemSpec reads Source.GetLevel(assetTag), an entity its own, a LevelerEffectOrigin its fixed level&quot;]:::general
+tb[&quot;the table LevelValues, or the Scaling curve over a max set by ELevelConfig: LockToLevelProvider, Unlocked or Clamped; then the AbstractScalerBehaviour chain&quot;]:::general
+pl --&gt; lv --&gt; tb
+end
+nk ~~~ r3p
+grp ~~~ r3p
+end
+subgraph r4 [&quot;The value&quot;]
+direction LR
+cm[&quot;combine Magnitude and the scaler by EMagnitudeOperation: MultiplyWithScaler, AddScaler, UseMagnitude, UseScaler; then a ScalableInt applies its Rounding&quot;]:::general
+ip(&quot;in an impact commit, the entry's ValuePipeline.Run and the modifier stages follow&quot;):::terminator
 cm --&gt; ip
+end
+r1 ==&gt; r2
+r2 ==&gt;|no| r3
+r3 ==&gt; r4
+style r1 fill:none,stroke:none
+style r2 fill:none,stroke:none
+style r3 fill:none,stroke:none
+style r3p fill:none,stroke:none
+style r4 fill:none,stroke:none
 </code></pre>
 <p><em>How number.Evaluate(NumberContext.Of(x)) reaches a value, from the constant check to the combine.</em></p>
 <p>The field's row shows its name, then its <strong>kind</strong>, then what it reads, then its field menu. The field menu opens as

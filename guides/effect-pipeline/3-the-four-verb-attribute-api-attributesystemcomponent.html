@@ -88,25 +88,56 @@
 <h1 id="3-the-four-verb-attribute-api-attributesystemcomponent">3. The four-verb attribute API (<code>AttributeSystemComponent</code>)</h1>
 
 <p>Every attribute mutation funnels through one shared 4-phase pipeline (<code>CommitWithCarrier</code>):</p>
-<pre><code class="lang-mermaid">flowchart TD
+<pre><code class="lang-mermaid">---
+config:
+  flowchart:
+    wrappingWidth: 210
+    padding: 8
+    nodeSpacing: 30
+    rankSpacing: 30
+---
+flowchart TB
 classDef general fill:#FFE86D,stroke:#CBB333,color:#574900
-classDef decision fill:#A0C4FB,stroke:#6A8BBF,color:#14315E
 classDef terminator fill:#DDDDD8,stroke:#A8A8A0,color:#434339
-v([&quot;a verb: RegisterModifier (Continuous), UnregisterModifier (its reversal),&lt;br/&gt;CommitImpact (permanent) or ModifyAttribute (a Commit with no impacters)&quot;]):::terminator
+subgraph r1 [&quot;The call&quot;]
+direction LR
+v(&quot;a verb: RegisterModifier (Continuous), UnregisterModifier (its reversal), CommitImpact (permanent) or ModifyAttribute (a Commit with no impacters)&quot;):::terminator
 c1[&quot;CommitWithCarrier(attr, smav, runEvents, mode, impacters)&quot;]:::general
-m{&quot;mode?&quot;}:::decision
-f[&quot;freeze the impacters: ScalerImpacter.Evaluate,&lt;br/&gt;ValuePipeline.Run, the modifier stages through RunAfter,&lt;br/&gt;then CachedAttributeValue.PreviewCommit makes the ChangeValue&quot;]:::general
-pre[&quot;Callbacks.AttributePreChange(attr, change)&lt;br/&gt;then, when runEvents, the PreChange attribute workers:&lt;br/&gt;PreValidateWorkFor, ValidateWorkFor, an inline Intercept&lt;br/&gt;that may edit the change, or DeferredIntercept actions&quot;]:::general
-soak[&quot;Commit only: a workable loss soaks into the Barrier-role&lt;br/&gt;attributes that absorb for it, and a workable gain&lt;br/&gt;is scaled by GainsScaledBy&quot;]:::general
-arc[&quot;apply: Register adds the modifier, Unregister removes it,&lt;br/&gt;Commit records it under its retention group&lt;br/&gt;Recompute: root, Adds, Multiply, FlatBonus, the commits,&lt;br/&gt;Override (the lowest SortOrder wins)&lt;br/&gt;constrain: overflow clamp, rounding, AutoScaleWithBase&quot;]:::general
-post[&quot;the PostChange attribute workers,&lt;br/&gt;then Callbacks.AttributePostChange&quot;]:::general
-id[&quot;ImpactData.Generate: the target's RecordFrameImpactReceived&lt;br/&gt;(FrameSummary, OnImpactReceived, the combat log, IMPACT_TAKEN),&lt;br/&gt;then the dealer's ProvideFrameImpactDealt&quot;]:::general
-cb[&quot;Callbacks.AttributeChanged, AttributeBaseChanged,&lt;br/&gt;AttributeCurrentZero or AttributeCurrentFull&lt;br/&gt;regulated attributes: RefreshRegulatedAttributes recomputes&lt;br/&gt;the dependents and runs their post-change workers and callbacks&quot;]:::general
-eof([&quot;at the end of frame: the deferred actions,&lt;br/&gt;the analysis workers and WatchProjectHealth&quot;]):::terminator
-v --&gt; c1 --&gt; m
-m --&gt;|Commit| f --&gt; pre
-m --&gt;|Register or Unregister| pre
-pre --&gt; soak --&gt; arc --&gt; post --&gt; id --&gt; cb --&gt; eof
+v --&gt; c1
+end
+subgraph r2 [&quot;Before the change&quot;]
+direction LR
+f[&quot;Commit only: freeze the impacters: ScalerImpacter.Evaluate, ValuePipeline.Run, the modifier stages through RunAfter, then CachedAttributeValue&lt;br/&gt;.PreviewCommit makes the ChangeValue&quot;]:::general
+pre[&quot;Callbacks.AttributePreChange&lt;br/&gt;(attr, change), then, when runEvents, the PreChange workers: PreValidateWorkFor, ValidateWorkFor, an inline Intercept that may edit the change, or DeferredIntercept actions&quot;]:::general
+soak[&quot;Commit only: a workable loss soaks into the Barrier-role attributes that absorb for it, and a workable gain is scaled by GainsScaledBy&quot;]:::general
+f --&gt; pre --&gt; soak
+end
+subgraph r3 [&quot;The change&quot;]
+direction LR
+ap[&quot;apply: Register adds the modifier, Unregister removes it, Commit records it under its retention group&quot;]:::general
+rc[&quot;Recompute: root, Adds, Multiply, FlatBonus, the commits, Override (the lowest SortOrder wins)&quot;]:::general
+cn[&quot;constrain: overflow clamp, rounding, AutoScaleWithBase&quot;]:::general
+ap --&gt; rc --&gt; cn
+end
+subgraph r4 [&quot;After the change&quot;]
+direction LR
+post[&quot;the PostChange attribute workers, then Callbacks&lt;br/&gt;.AttributePostChange&quot;]:::general
+imp[&quot;ImpactData.Generate: the target's RecordFrameImpactReceived (FrameSummary, OnImpactReceived, the combat log, IMPACT_TAKEN), then the dealer's ProvideFrameImpactDealt&quot;]:::general
+cb[&quot;Callbacks.AttributeChanged, AttributeBaseChanged, AttributeCurrentZero or AttributeCurrentFull&quot;]:::general
+post --&gt; imp --&gt; cb
+end
+subgraph r5 [&quot;Then&quot;]
+direction LR
+reg[&quot;regulated attributes: RefreshRegulatedAttributes recomputes the dependents and runs their post-change workers and callbacks&quot;]:::general
+eof(&quot;at the end of frame: the deferred actions, the analysis workers and WatchProjectHealth&quot;):::terminator
+reg --&gt; eof
+end
+r1 ==&gt; r2 ==&gt; r3 ==&gt; r4 ==&gt; r5
+style r1 fill:none,stroke:none
+style r2 fill:none,stroke:none
+style r3 fill:none,stroke:none
+style r4 fill:none,stroke:none
+style r5 fill:none,stroke:none
 </code></pre>
 <p><em>What one change runs through, from the verb to the end of frame. Register and Unregister keep the transport value; only a Commit previews its delta.</em></p>
 <ol>
