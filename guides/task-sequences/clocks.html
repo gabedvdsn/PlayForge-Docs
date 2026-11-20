@@ -97,8 +97,8 @@
 </ul>
 <p>A run takes the first clock it finds:</p>
 <ol>
-<li>Its own, <code>runtime.Clock</code>, which whatever runs it sets: a chain's <code>Clock</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s, or an
-ability's Run Sequence task's pick. So a packet others share keeps its own.</li>
+<li>Its own, <code>runtime.Clock</code>, which whatever runs it sets: a chain's <code>Clock</code>, a <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceProcess.html"><code>TaskSequenceProcess</code></a>'s, or, in
+the full package, an ability's Run Sequence task's pick. So a packet others share keeps its own.</li>
 <li>Its packet's, <code>data.Clock</code>, which whatever starts the run sets.</li>
 <li>Its sequence's own, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html#FarEmerald_PlayForge_TaskSequenceBuilder_WithClock_"><code>WithClock(clock)</code></a> on the builder.</li>
 <li>Its packet's owner's, the <a class="xref" href="../../api/FarEmerald.PlayForge.IProcessOwner.html#FarEmerald_PlayForge_IProcessOwner_ProcessClock"><code>ProcessClock</code></a> of an <a class="xref" href="../../api/FarEmerald.PlayForge.IProcessOwner.html"><code>IProcessOwner</code></a> that has one: in the full package, an entity's own
