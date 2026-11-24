@@ -108,16 +108,16 @@ line: what its attribute starts at, and its range.</p>
 <td>What the attribute starts at, at each of the set's levels.</td>
 </tr>
 <tr>
-<td><strong>Base</strong></td>
-<td>A magnitude field, as an effect's are: a number, or a cached scaler with how the number combines with it.</td>
-</tr>
-<tr>
 <td><strong>Link Current to Base</strong></td>
-<td>Current takes Base's number and scaler, and its own field hides.</td>
+<td>Current takes Base's number and scaler, and its own field, under this, hides.</td>
 </tr>
 <tr>
 <td><strong>Current</strong></td>
-<td>A magnitude field, as Base is.</td>
+<td>A magnitude field, as an effect's are: a number, or a cached scaler with how the number combines with it.</td>
+</tr>
+<tr>
+<td><strong>Base</strong></td>
+<td>A magnitude field, as Current is.</td>
 </tr>
 <tr>
 <td><strong>Bounds</strong></td>
@@ -153,7 +153,7 @@ Health = 200 + 20 × Strength: a Fixed Value of 200 and an Attribute Backed of 2
 <li>The list's <strong>+</strong> adds a new element, each setting at its default. It doesn't copy the last one.</li>
 <li>An element's menu, at the end of its row, and a right-click on the row, have <strong>Duplicate</strong>: a copy goes in after
 it, with scalers of its own, so an edit to one leaves the other.</li>
-<li>The Base and Current fields' menus each copy the other side's number and scaler into the field.</li>
+<li>The Current and Base fields' menus each copy the other side's number and scaler into the field.</li>
 <li>Rounding applies after the Bounds, each time the value changes. So it can make a change bigger or smaller than its
 effect asked for.</li>
 </ul>
