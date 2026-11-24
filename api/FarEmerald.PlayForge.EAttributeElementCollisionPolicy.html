@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum EAttributeElementCollisionPolicy | PlayForge ">
       
-      <meta name="description" content="An attribute set element&#39;s Collision: the group it joins where its attribute appears in more than one element across a set and its sub-sets. One group decides the attribute&#39;s root, the first there is of Use Set Collision Setting, Use This, Combine and Use Existing, and the other groups&#39; elements are passed over: Combine adds its elements&#39; values up, and each other group picks one, or averages them, by the Resolution Policy of the set the entity names.">
+      <meta name="description" content="An attribute set element&#39;s Collision: how it joins the other elements that give its attribute, across a set and its sub-sets. UseThis stands over every other element; UseSetCollisionSetting settles by the collision settings of the set the entity names; Combine adds its value to what those settle on, or to the others that combine; UseExisting gives way to any other, and counts only where nothing else gives the attribute. Several elements set to Use This, or to Use Existing, settle among themselves by the set&#39;s settings.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -98,11 +98,11 @@ Enum EAttributeElementCollisionPolicy
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>An attribute set element's Collision: the group it joins where its attribute appears in more than one element
-across a set and its sub-sets. One group decides the attribute's root, the first there is of Use Set Collision
-Setting, Use This, Combine and Use Existing, and the other groups' elements are passed over: Combine adds its
-elements' values up, and each other group picks one, or averages them, by the Resolution Policy of the set the
-entity names.</p>
+  <div class="markdown summary"><p>An attribute set element's Collision: how it joins the other elements that give its attribute, across a set and
+its sub-sets. <code>UseThis</code> stands over every other element; <code>UseSetCollisionSetting</code> settles by the
+collision settings of the set the entity names; <code>Combine</code> adds its value to what those settle on, or to the
+others that combine; <code>UseExisting</code> gives way to any other, and counts only where nothing else gives the
+attribute. Several elements set to Use This, or to Use Existing, settle among themselves by the set's settings.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/attributes/index.html">Attributes</a></p>
@@ -123,16 +123,20 @@ entity names.</p>
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseSetCollisionSetting"><code>UseSetCollisionSetting = 0</code></dt>
+    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseSetCollisionSetting"><code>[Tooltip(&quot;Settle by the collision settings of the set the entity names&quot;)]
+UseSetCollisionSetting = 0</code></dt>
   
   <dd></dd>
-    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseThis"><code>UseThis = 1</code></dt>
+    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseThis"><code>[Tooltip(&quot;Stand over every other element that gives the attribute&quot;)]
+UseThis = 1</code></dt>
   
   <dd></dd>
-    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseExisting"><code>UseExisting = 2</code></dt>
+    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_UseExisting"><code>[Tooltip(&quot;Give way to any other element, and count only where nothing else gives the attribute&quot;)]
+UseExisting = 2</code></dt>
   
   <dd></dd>
-    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_Combine"><code>Combine = 3</code></dt>
+    <dt id="FarEmerald_PlayForge_EAttributeElementCollisionPolicy_Combine"><code>[Tooltip(&quot;Add this value to what the other elements settle on&quot;)]
+Combine = 3</code></dt>
   
   <dd></dd>
   </dl>

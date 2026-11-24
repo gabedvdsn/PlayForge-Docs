@@ -1,6 +1,6 @@
 {
   "docfx_version": "2.81.0+ba844df625370a6bd7c1ecab0d0ec4d1d9128ac4",
-  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.6mOjGddMaB/docfx",
+  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.7Nf12BeWhg/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -1647,7 +1647,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeBlueprint",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"1\">Describes the basest definition of an attribute's value on an entity — analogous to\n&quot;base stats&quot; before items, effects, or other transient sources contribute. Each\n<xref href=\"FarEmerald.PlayForge.AttributeSetElement\" data-throw-if-not-resolved=\"false\"></xref> exposes Current and Base configs; this blueprint\nresolves both sides independently and assembles the resulting <xref href=\"FarEmerald.PlayForge.AttributeValue\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"6\">Per-side resolution rules (applied identically for Current and Base):</p>\n<ol sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"7\">\n<li sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"7\">If the side's scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude.</li>\n<li sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"8\">Otherwise call the cached scaler (Initial vs Active path) and project the side's\nslot from the returned AttributeValue (Current → CurrentValue, Base → BaseValue),\nthen combine with the side's Magnitude via its RealMagnitude operation.</li>\n</ol>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"1\">What an attribute's root value on an entity is worked out from: the value before any item, effect or worker acts on\nit, as an attribute set element gives it. An element's own blueprint reads the element's Current and Base, each\nresolved on its own. Where elements collide, the attribute takes a blueprint that joins theirs\n(<xref href=\"FarEmerald.PlayForge.AttributeBlueprint.Sum(System.Collections.Generic.IReadOnlyList%7bFarEmerald.PlayForge.AttributeBlueprint%7d)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"FarEmerald.PlayForge.AttributeBlueprint.Average(System.Collections.Generic.IReadOnlyList%7bFarEmerald.PlayForge.AttributeBlueprint%7d)\" data-throw-if-not-resolved=\"false\"></xref>), each part worked out on its own, a joined one among them; its bounds,\nrounding and retention group are its first part's.</p>\n<p sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"7\">Per-side resolution rules (applied identically for Current and Base):</p>\n<ol sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"8\">\n<li sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"8\">If the side's scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude.</li>\n<li sourcefile=\"api/FarEmerald.PlayForge.AttributeBlueprint.yml\" sourcestartlinenumber=\"9\">Otherwise call the cached scaler (Initial vs Active path) and project the side's\nslot from the returned AttributeValue (Current → CurrentValue, Base → BaseValue),\nthen combine with the side's Magnitude via its RealMagnitude operation.</li>\n</ol>\n"
     },
     {
       "type": "ManagedReference",
@@ -1871,7 +1871,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSet",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSet.yml\" sourcestartlinenumber=\"1\">An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its\nbounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each\nelement becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the\nentity's level or to another attribute.</p>\n<p>Where an attribute appears in more than one element, the elements' Collision and the Resolution Policy of\nthe set the entity names decide its root. The entity carries the set's tag and its sub-sets', and holds their\nworker groups' workers as it lives. The set's level range is its own, or a level provider's while it's linked,\nand its cached scalers can size their values per level by it.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSet.yml\" sourcestartlinenumber=\"1\">An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its\nbounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each\nelement becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the\nentity's level or to another attribute.</p>\n<p>Where an attribute appears in more than one element, the elements' Collision and the collision settings of\nthe set the entity names, Within This Set and With Sub-Sets, decide its root. The entity carries the set's tag and\nits sub-sets', and holds their worker groups' workers as it lives. The set's level range is its own, or a level\nprovider's while it's linked, and its cached scalers can size their values per level by it.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1899,7 +1899,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.AttributeSetMeta",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSetMeta.yml\" sourcestartlinenumber=\"1\">The attributes an attribute set gives an entity, worked out as the entity's attribute system takes the set: each\nelement of the set and its sub-sets, by attribute and by its Collision. <code>InitializeAttributeSystem</code> then\ngives the attribute system each attribute, with the root the set's collision settings pick.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.AttributeSetMeta.yml\" sourcestartlinenumber=\"1\">The attributes an attribute set gives an entity, worked out as the entity's attribute system takes the set: each\nelement of the set and its sub-sets, by attribute, in the order the sets are walked, each with the set it's in.\n<code>InitializeAttributeSystem</code> then gives the attribute system each attribute, with the root its elements'\nCollision and the set's collision settings settle on (<xref href=\"FarEmerald.PlayForge.AttributeSetMeta.Settle(System.Collections.Generic.List%7bSystem.ValueTuple%7bFarEmerald.PlayForge.AttributeBlueprint%2cSystem.Int32%7d%7d%2cFarEmerald.PlayForge.AttributeSet)\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2418,6 +2418,20 @@
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.CachedAttributeValue",
       "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CachedAttributeValue.yml\" sourcestartlinenumber=\"1\">Per-attribute runtime state under the two-kind impact model:</p>\n<ul><li><b>Modifiers</b> (transient, derived) — registered via\n  <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.RegisterModifier(FarEmerald.PlayForge.IAttributeImpactCarrier%2cSystem.Collections.Generic.IReadOnlyList%7bFarEmerald.PlayForge.IAttributeImpacter%7d%2cSystem.Collections.Generic.IReadOnlyDictionary%7bFarEmerald.PlayForge.IAttribute%2cFarEmerald.PlayForge.CachedAttributeValue%7d)\" data-throw-if-not-resolved=\"false\"></xref> while their carrier lives, re-evaluated on every\n  <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.Recompute(System.Collections.Generic.IReadOnlyDictionary%7bFarEmerald.PlayForge.IAttribute%2cFarEmerald.PlayForge.CachedAttributeValue%7d)\" data-throw-if-not-resolved=\"false\"></xref>, reversed exactly by <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.UnregisterModifier(FarEmerald.PlayForge.IAttributeImpactCarrier%2cSystem.Collections.Generic.IReadOnlyDictionary%7bFarEmerald.PlayForge.IAttribute%2cFarEmerald.PlayForge.CachedAttributeValue%7d)\" data-throw-if-not-resolved=\"false\"></xref>.</li><li><b>Commits</b> (permanent) — applied via <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.CommitImpact(FarEmerald.PlayForge.IAttributeImpactCarrier%2cSystem.Collections.Generic.IReadOnlyList%7bFarEmerald.PlayForge.IAttributeImpacter%7d%2cSystem.Collections.Generic.IReadOnlyDictionary%7bFarEmerald.PlayForge.IAttribute%2cFarEmerald.PlayForge.CachedAttributeValue%7d)\" data-throw-if-not-resolved=\"false\"></xref>; the\n  post-bounds delta is recorded per retention group in <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.committedByGroup\" data-throw-if-not-resolved=\"false\"></xref>\n  and NEVER reversed.</li></ul>\n<p>The formula (EFFECT_PIPELINE.md §2.1):\n<code>ActiveValue = ConstrainValue( Override( FlatBonus( Multiply( Add( root ) ) ) + Σ committedByGroup ) )</code>.\nCommitted history lands where it was measured, after the % modifiers, so they don't scale it:\n50 base × 1.5 aura + 10 tome = 85, and a 30 hit under the aura takes 30.</p>\n<p>Reproducibility invariant: <xref href=\"FarEmerald.PlayForge.CachedAttributeValue.ActiveValue\" data-throw-if-not-resolved=\"false\"></xref> is always exactly what\n<xref href=\"FarEmerald.PlayForge.CachedAttributeValue.Recompute(System.Collections.Generic.IReadOnlyDictionary%7bFarEmerald.PlayForge.IAttribute%2cFarEmerald.PlayForge.CachedAttributeValue%7d)\" data-throw-if-not-resolved=\"false\"></xref> produces from current state — every mutation path ends in a\nrecompute. There is no second bookkeeping system to drift.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.CachedConstantScaler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.CachedConstantScaler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.CachedConstantScaler",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.CachedConstantScaler.yml\" sourcestartlinenumber=\"1\">An attribute set's Fixed Value: one number, whatever the level, as a cached scaler. On an element's side it reads\nas the side's number does, and in a cached Group it's the member that adds a base value to the others, as the 200 of\nHealth = 200 + 20 × Strength. It reads no attribute, so nothing refreshes it, and it has no values per level.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3747,7 +3761,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAttributeElementCollisionPolicy",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeElementCollisionPolicy.yml\" sourcestartlinenumber=\"1\">An attribute set element's Collision: the group it joins where its attribute appears in more than one element\nacross a set and its sub-sets. One group decides the attribute's root, the first there is of Use Set Collision\nSetting, Use This, Combine and Use Existing, and the other groups' elements are passed over: Combine adds its\nelements' values up, and each other group picks one, or averages them, by the Resolution Policy of the set the\nentity names.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAttributeElementCollisionPolicy.yml\" sourcestartlinenumber=\"1\">An attribute set element's Collision: how it joins the other elements that give its attribute, across a set and\nits sub-sets. <code>UseThis</code> stands over every other element; <code>UseSetCollisionSetting</code> settles by the\ncollision settings of the set the entity names; <code>Combine</code> adds its value to what those settle on, or to the\nothers that combine; <code>UseExisting</code> gives way to any other, and counts only where nothing else gives the\nattribute. Several elements set to Use This, or to Use Existing, settle among themselves by the set's settings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3888,6 +3902,20 @@
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EAutoTargetMode",
       "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EAutoTargetMode.yml\" sourcestartlinenumber=\"1\">How an auto-targeting task, Auto Target or Auto Target By Affinity, orders the entities it finds before it takes\nits Max Targets, the first being its primary target: <code>Nearest</code> or <code>Farthest</code> first, measured from\nwhere its range is, or in a <code>Random</code> order; <code>All</code> leaves them as found. Max Targets still holds under\nAll, and 0 takes every one.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.EBlueprintJoin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.EBlueprintJoin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.EBlueprintJoin",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EBlueprintJoin.yml\" sourcestartlinenumber=\"1\">How an <xref href=\"FarEmerald.PlayForge.AttributeBlueprint\" data-throw-if-not-resolved=\"false\"></xref> joins its parts: <code>None</code>, an element's own; <code>Sum</code>, their sum, as\nCombine adds them; <code>Average</code>, their average, as Use Average settles them.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4857,6 +4885,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.ESubSetCollisionPolicy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.ESubSetCollisionPolicy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.ESubSetCollisionPolicy",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.ESubSetCollisionPolicy.yml\" sourcestartlinenumber=\"1\">How an attribute set settles an attribute it and its sub-sets each give: <code>AsWithinThisSet</code>, by its own\n<xref href=\"FarEmerald.PlayForge.AttributeSet.CollisionResolutionPolicy\" data-throw-if-not-resolved=\"false\"></xref>, every element at once; or, once each set's own elements are\nsettled, by one of the policies a collision settles by (<xref href=\"FarEmerald.PlayForge.EValueCollisionPolicy\" data-throw-if-not-resolved=\"false\"></xref>), in the same order.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarEmerald.PlayForge.ESyncStagePolicy.yml",
       "output": {
         ".html": {
@@ -5063,7 +5105,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EValueCollisionPolicy",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EValueCollisionPolicy.yml\" sourcestartlinenumber=\"1\">Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,\nthe first or the last, or none of them (<code>Ignore</code>). A Group's policy picks among its overriding members,\nIgnore setting them aside so the rest join as they would; an attribute set's Resolution Policy picks among the\nelements that give one attribute, Ignore keeping the first.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EValueCollisionPolicy.yml\" sourcestartlinenumber=\"1\">Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,\nthe first or the last, none of them (<code>Ignore</code>), or their sum (<code>Combine</code>). A Group's policy picks among its\noverriding members, Ignore setting them aside so the rest join as they would; an attribute set's collision settings\npick among the elements that give one attribute, Ignore keeping the first.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -13481,6 +13523,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.SubSetCollisionPolicies.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.SubSetCollisionPolicies.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.SubSetCollisionPolicies",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.SubSetCollisionPolicies.yml\" sourcestartlinenumber=\"1\">The policy a sub-set collision settles by.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarEmerald.PlayForge.SyncSequenceStage.yml",
       "output": {
         ".html": {
@@ -20044,10 +20100,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "guides/scalers/values-per-level/per-level.md",
+      "source_relative_path": "guides/scalers/values-per-level/level-by-level.md",
       "output": {
         ".html": {
-          "relative_path": "guides/scalers/values-per-level/per-level.html"
+          "relative_path": "guides/scalers/values-per-level/level-by-level.html"
         }
       },
       "version": ""

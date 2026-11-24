@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum EValueCollisionPolicy | PlayForge ">
       
-      <meta name="description" content="Which value stands where several claim one result: the highest (UseMaximum), the lowest, their average, the first or the last, or none of them (Ignore). A Group&#39;s policy picks among its overriding members, Ignore setting them aside so the rest join as they would; an attribute set&#39;s Resolution Policy picks among the elements that give one attribute, Ignore keeping the first.">
+      <meta name="description" content="Which value stands where several claim one result: the highest (UseMaximum), the lowest, their average, the first or the last, none of them (Ignore), or their sum (Combine). A Group&#39;s policy picks among its overriding members, Ignore setting them aside so the rest join as they would; an attribute set&#39;s collision settings pick among the elements that give one attribute, Ignore keeping the first.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -99,9 +99,9 @@ Enum EValueCollisionPolicy
   </div>
 
   <div class="markdown summary"><p>Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,
-the first or the last, or none of them (<code>Ignore</code>). A Group's policy picks among its overriding members,
-Ignore setting them aside so the rest join as they would; an attribute set's Resolution Policy picks among the
-elements that give one attribute, Ignore keeping the first.</p>
+the first or the last, none of them (<code>Ignore</code>), or their sum (<code>Combine</code>). A Group's policy picks among its
+overriding members, Ignore setting them aside so the rest join as they would; an attribute set's collision settings
+pick among the elements that give one attribute, Ignore keeping the first.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/scalers/index.html">Scalers</a></p>
@@ -144,6 +144,10 @@ UseLast = 4</code></dt>
   <dd></dd>
     <dt id="FarEmerald_PlayForge_EValueCollisionPolicy_Ignore"><code>[Tooltip(&quot;Ignore all overriding member values&quot;)]
 Ignore = 5</code></dt>
+  
+  <dd></dd>
+    <dt id="FarEmerald_PlayForge_EValueCollisionPolicy_Combine"><code>[Tooltip(&quot;Add up all conflicting values&quot;)]
+Combine = 6</code></dt>
   
   <dd></dd>
   </dl>

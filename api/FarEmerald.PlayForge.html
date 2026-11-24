@@ -928,10 +928,11 @@ The attribute value is used as input to the scaling curve.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
-      <dd><p>Describes the basest definition of an attribute's value on an entity — analogous to
-&quot;base stats&quot; before items, effects, or other transient sources contribute. Each
-<a class="xref" href="FarEmerald.PlayForge.AttributeSetElement.html">AttributeSetElement</a> exposes Current and Base configs; this blueprint
-resolves both sides independently and assembles the resulting <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a>.</p>
+      <dd><p>What an attribute's root value on an entity is worked out from: the value before any item, effect or worker acts on
+it, as an attribute set element gives it. An element's own blueprint reads the element's Current and Base, each
+resolved on its own. Where elements collide, the attribute takes a blueprint that joins theirs
+(<a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html#FarEmerald_PlayForge_AttributeBlueprint_Sum_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__">Sum(IReadOnlyList&lt;AttributeBlueprint&gt;)</a> or <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html#FarEmerald_PlayForge_AttributeBlueprint_Average_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__">Average(IReadOnlyList&lt;AttributeBlueprint&gt;)</a>), each part worked out on its own, a joined one among them; its bounds,
+rounding and retention group are its first part's.</p>
 <p>Per-side resolution rules (applied identically for Current and Base):</p>
 <ol>
 <li>If the side's scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude.</li>
@@ -1049,10 +1050,10 @@ read the roles it ships, as death at 0 reads <a class="xref" href="FarEmerald.Pl
 bounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each
 element becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the
 entity's level or to another attribute.</p>
-<p>Where an attribute appears in more than one element, the elements' Collision and the Resolution Policy of
-the set the entity names decide its root. The entity carries the set's tag and its sub-sets', and holds their
-worker groups' workers as it lives. The set's level range is its own, or a level provider's while it's linked,
-and its cached scalers can size their values per level by it.</p>
+<p>Where an attribute appears in more than one element, the elements' Collision and the collision settings of
+the set the entity names, Within This Set and With Sub-Sets, decide its root. The entity carries the set's tag and
+its sub-sets', and holds their worker groups' workers as it lives. The set's level range is its own, or a level
+provider's while it's linked, and its cached scalers can size their values per level by it.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -1067,8 +1068,9 @@ before any effect.</p>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.AttributeSetMeta.html">AttributeSetMeta</a></dt>
       <dd><p>The attributes an attribute set gives an entity, worked out as the entity's attribute system takes the set: each
-element of the set and its sub-sets, by attribute and by its Collision. <code>InitializeAttributeSystem</code> then
-gives the attribute system each attribute, with the root the set's collision settings pick.</p>
+element of the set and its sub-sets, by attribute, in the order the sets are walked, each with the set it's in.
+<code>InitializeAttributeSystem</code> then gives the attribute system each attribute, with the root its elements'
+Collision and the set's collision settings settle on (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">Settle(List&lt;(AttributeBlueprint Blueprint, int Set)&gt;, AttributeSet)</a>).</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -1289,6 +1291,13 @@ Committed history lands where it was measured, after the % modifiers, so they do
 <p>Reproducibility invariant: <a class="xref" href="FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_ActiveValue">ActiveValue</a> is always exactly what
 <a class="xref" href="FarEmerald.PlayForge.CachedAttributeValue.html#FarEmerald_PlayForge_CachedAttributeValue_Recompute_System_Collections_Generic_IReadOnlyDictionary_FarEmerald_PlayForge_IAttribute_FarEmerald_PlayForge_CachedAttributeValue__">Recompute(IReadOnlyDictionary&lt;IAttribute, CachedAttributeValue&gt;)</a> produces from current state — every mutation path ends in a
 recompute. There is no second bookkeeping system to drift.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.CachedConstantScaler.html">CachedConstantScaler</a></dt>
+      <dd><p>An attribute set's Fixed Value: one number, whatever the level, as a cached scaler. On an element's side it reads
+as the side's number does, and in a cached Group it's the member that adds a base value to the others, as the 200 of
+Health = 200 + 20 × Strength. It reads no attribute, so nothing refreshes it, and it has no values per level.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -3856,6 +3865,11 @@ left alone.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.SubSetCollisionPolicies.html">SubSetCollisionPolicies</a></dt>
+      <dd><p>The policy a sub-set collision settles by.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.SyncSequenceStage.html">SyncSequenceStage</a></dt>
       <dd><p>A stage containing one or more ISequenceTask instances driven synchronously.
 All tasks Step in parallel each frame; stage completes per its policy.</p>
@@ -5199,11 +5213,11 @@ Instant effect has no ticks and no removal, so only its On Apply ones land.</p>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EAttributeElementCollisionPolicy.html">EAttributeElementCollisionPolicy</a></dt>
-      <dd><p>An attribute set element's Collision: the group it joins where its attribute appears in more than one element
-across a set and its sub-sets. One group decides the attribute's root, the first there is of Use Set Collision
-Setting, Use This, Combine and Use Existing, and the other groups' elements are passed over: Combine adds its
-elements' values up, and each other group picks one, or averages them, by the Resolution Policy of the set the
-entity names.</p>
+      <dd><p>An attribute set element's Collision: how it joins the other elements that give its attribute, across a set and
+its sub-sets. <code>UseThis</code> stands over every other element; <code>UseSetCollisionSetting</code> settles by the
+collision settings of the set the entity names; <code>Combine</code> adds its value to what those settle on, or to the
+others that combine; <code>UseExisting</code> gives way to any other, and counts only where nothing else gives the
+attribute. Several elements set to Use This, or to Use Existing, settle among themselves by the set's settings.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -5272,6 +5286,12 @@ alone. <code>ForgeHelper.Translate</code> gives the <code>EAttributeTarget</code
 its Max Targets, the first being its primary target: <code>Nearest</code> or <code>Farthest</code> first, measured from
 where its range is, or in a <code>Random</code> order; <code>All</code> leaves them as found. Max Targets still holds under
 All, and 0 takes every one.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.EBlueprintJoin.html">EBlueprintJoin</a></dt>
+      <dd><p>How an <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a> joins its parts: <code>None</code>, an element's own; <code>Sum</code>, their sum, as
+Combine adds them; <code>Average</code>, their average, as Use Average settles them.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -5693,6 +5713,13 @@ new one, which stacks again.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.ESubSetCollisionPolicy.html">ESubSetCollisionPolicy</a></dt>
+      <dd><p>How an attribute set settles an attribute it and its sub-sets each give: <code>AsWithinThisSet</code>, by its own
+<a class="xref" href="FarEmerald.PlayForge.AttributeSet.html#FarEmerald_PlayForge_AttributeSet_CollisionResolutionPolicy">CollisionResolutionPolicy</a>, every element at once; or, once each set's own elements are
+settled, by one of the policies a collision settles by (<a class="xref" href="FarEmerald.PlayForge.EValueCollisionPolicy.html">EValueCollisionPolicy</a>), in the same order.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.ESyncStagePolicy.html">ESyncStagePolicy</a></dt>
       <dd><p>Completion policy for synchronous stages.</p>
 </dd>
@@ -5767,9 +5794,9 @@ Cost check asks, and its cooldown, as the Cooldown check asks.</p>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.EValueCollisionPolicy.html">EValueCollisionPolicy</a></dt>
       <dd><p>Which value stands where several claim one result: the highest (<code>UseMaximum</code>), the lowest, their average,
-the first or the last, or none of them (<code>Ignore</code>). A Group's policy picks among its overriding members,
-Ignore setting them aside so the rest join as they would; an attribute set's Resolution Policy picks among the
-elements that give one attribute, Ignore keeping the first.</p>
+the first or the last, none of them (<code>Ignore</code>), or their sum (<code>Combine</code>). A Group's policy picks among its
+overriding members, Ignore setting them aside so the rest join as they would; an attribute set's collision settings
+pick among the elements that give one attribute, Ignore keeping the first.</p>
 </dd>
     </dl>
     <dl class="jumplist">

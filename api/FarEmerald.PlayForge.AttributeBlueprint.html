@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AttributeBlueprint | PlayForge ">
       
-      <meta name="description" content="Describes the basest definition of an attribute&#39;s value on an entity — analogous to &amp;quot;base stats&amp;quot; before items, effects, or other transient sources contribute. Each  exposes Current and Base configs; this blueprint resolves both sides independently and assembles the resulting . Per-side resolution rules (applied identically for Current and Base):  If the side&#39;s scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude. Otherwise call the cached scaler (Initial vs Active path) and project the side&#39;s slot from the returned AttributeValue (Current → CurrentValue, Base → BaseValue), then combine with the side&#39;s Magnitude via its RealMagnitude operation.">
+      <meta name="description" content="What an attribute&#39;s root value on an entity is worked out from: the value before any item, effect or worker acts on it, as an attribute set element gives it. An element&#39;s own blueprint reads the element&#39;s Current and Base, each resolved on its own. Where elements collide, the attribute takes a blueprint that joins theirs ( or ), each part worked out on its own, a joined one among them; its bounds, rounding and retention group are its first part&#39;s. Per-side resolution rules (applied identically for Current and Base):  If the side&#39;s scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude. Otherwise call the cached scaler (Initial vs Active path) and project the side&#39;s slot from the returned AttributeValue (Current → CurrentValue, Base → BaseValue), then combine with the side&#39;s Magnitude via its RealMagnitude operation.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,10 +97,11 @@ Class AttributeBlueprint
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Describes the basest definition of an attribute's value on an entity — analogous to
-&quot;base stats&quot; before items, effects, or other transient sources contribute. Each
-<a class="xref" href="FarEmerald.PlayForge.AttributeSetElement.html">AttributeSetElement</a> exposes Current and Base configs; this blueprint
-resolves both sides independently and assembles the resulting <a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a>.</p>
+  <div class="markdown summary"><p>What an attribute's root value on an entity is worked out from: the value before any item, effect or worker acts on
+it, as an attribute set element gives it. An element's own blueprint reads the element's Current and Base, each
+resolved on its own. Where elements collide, the attribute takes a blueprint that joins theirs
+(<a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html#FarEmerald_PlayForge_AttributeBlueprint_Sum_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__">Sum(IReadOnlyList&lt;AttributeBlueprint&gt;)</a> or <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html#FarEmerald_PlayForge_AttributeBlueprint_Average_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__">Average(IReadOnlyList&lt;AttributeBlueprint&gt;)</a>), each part worked out on its own, a joined one among them; its bounds,
+rounding and retention group are its first part's.</p>
 <p>Per-side resolution rules (applied identically for Current and Base):</p>
 <ol>
 <li>If the side's scaler is null OR its RealMagnitude is UseMagnitude → return Magnitude.</li>
@@ -239,7 +240,8 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Its element; for a joined blueprint, its first part's, whose bounds, rounding and retention group it keeps.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -267,6 +269,70 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
 </h2>
 
 
+  <a id="FarEmerald_PlayForge_AttributeBlueprint_Join_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Join*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Join" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Join">
+  Join
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How it joins its parts: not at all, as an element's own; by their sum; or by their average.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EBlueprintJoin Join { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.EBlueprintJoin.html">EBlueprintJoin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeBlueprint_Joined_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Joined*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Joined" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Joined">
+  Joined
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The blueprints it joins, in order, a joined one among them; none for an element's own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;AttributeBlueprint&gt; Joined { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_AttributeBlueprint_Parts_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Parts*"></a>
 
   <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Parts" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Parts">
@@ -274,7 +340,7 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>This blueprint and those combined into it, each with scalers of its own to regulate.</p>
+  <div class="markdown level1 summary"><p>The elements' own blueprints it's worked out from, each with scalers of its own to regulate: itself, for an element's own.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -306,7 +372,8 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Its element's magnitudes, Current and Base; for a joined blueprint, its first part's, as cached scalers read them per element.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -336,56 +403,30 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
 
   <a id="FarEmerald_PlayForge_AttributeBlueprint_Average_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Average*"></a>
 
-  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Average_FarEmerald_PlayForge_AttributeBlueprint_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Average(FarEmerald.PlayForge.AttributeBlueprint)">
-  Average(AttributeBlueprint)
+  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Average_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Average(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.AttributeBlueprint})">
+  Average(IReadOnlyList&lt;AttributeBlueprint&gt;)
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Takes in another blueprint to be averaged with this one, for a set that settles collisions by UseAverage.</p>
+  <div class="markdown level1 summary"><p>A blueprint whose value is the parts' average, each worked out on its own, as Use Average settles them. The one part itself, where there's one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Average(AttributeBlueprint other)</code></pre>
+    <pre><code class="lang-csharp hljs">public static AttributeBlueprint Average(IReadOnlyList&lt;AttributeBlueprint&gt; parts)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
+    <dt><code>parts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a>&gt;</dt>
     <dd></dd>
   </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-  <a id="FarEmerald_PlayForge_AttributeBlueprint_Combine_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Combine*"></a>
-
-  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Combine_FarEmerald_PlayForge_AttributeBlueprint_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Combine(FarEmerald.PlayForge.AttributeBlueprint)">
-  Combine(AttributeBlueprint)
-  
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Combine(AttributeBlueprint other)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
+  <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
     <dd></dd>
   </dl>
-
 
 
 
@@ -456,6 +497,43 @@ then combine with the side's Magnitude via its RealMagnitude operation.</li>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="FarEmerald.PlayForge.AttributeValue.html">AttributeValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_AttributeBlueprint_Sum_" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Sum*"></a>
+
+  <h3 id="FarEmerald_PlayForge_AttributeBlueprint_Sum_System_Collections_Generic_IReadOnlyList_FarEmerald_PlayForge_AttributeBlueprint__" data-uid="FarEmerald.PlayForge.AttributeBlueprint.Sum(System.Collections.Generic.IReadOnlyList{FarEmerald.PlayForge.AttributeBlueprint})">
+  Sum(IReadOnlyList&lt;AttributeBlueprint&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A blueprint whose value is the parts' sum, each worked out on its own, as Combine adds them. The one part itself, where there's one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AttributeBlueprint Sum(IReadOnlyList&lt;AttributeBlueprint&gt; parts)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parts</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.AttributeBlueprint.html">AttributeBlueprint</a></dt>
     <dd></dd>
   </dl>
 

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AttributeSet | PlayForge ">
       
-      <meta name="description" content="An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its bounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each element becomes its attribute&#39;s root value, the value before any effect, which a cached scaler can tie to the entity&#39;s level or to another attribute. Where an attribute appears in more than one element, the elements&#39; Collision and the Resolution Policy of the set the entity names decide its root. The entity carries the set&#39;s tag and its sub-sets&#39;, and holds their worker groups&#39; workers as it lives. The set&#39;s level range is its own, or a level provider&#39;s while it&#39;s linked, and its cached scalers can size their values per level by it.">
+      <meta name="description" content="An Attribute Set asset: the attributes an entity starts with, and how each starts, its Current and Base, its bounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each element becomes its attribute&#39;s root value, the value before any effect, which a cached scaler can tie to the entity&#39;s level or to another attribute. Where an attribute appears in more than one element, the elements&#39; Collision and the collision settings of the set the entity names, Within This Set and With Sub-Sets, decide its root. The entity carries the set&#39;s tag and its sub-sets&#39;, and holds their worker groups&#39; workers as it lives. The set&#39;s level range is its own, or a level provider&#39;s while it&#39;s linked, and its cached scalers can size their values per level by it.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -101,10 +101,10 @@ Class AttributeSet
 bounds and its rounding, with those of its sub-sets. An entity names one, and as its GAS initializes each
 element becomes its attribute's root value, the value before any effect, which a cached scaler can tie to the
 entity's level or to another attribute.</p>
-<p>Where an attribute appears in more than one element, the elements' Collision and the Resolution Policy of
-the set the entity names decide its root. The entity carries the set's tag and its sub-sets', and holds their
-worker groups' workers as it lives. The set's level range is its own, or a level provider's while it's linked,
-and its cached scalers can size their values per level by it.</p>
+<p>Where an attribute appears in more than one element, the elements' Collision and the collision settings of
+the set the entity names, Within This Set and With Sub-Sets, decide its root. The entity carries the set's tag and
+its sub-sets', and holds their worker groups' workers as it lives. The set's level range is its own, or a level
+provider's while it's linked, and its cached scalers can size their values per level by it.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/attributes/index.html">Attributes</a></p>
@@ -501,11 +501,16 @@ public List&lt;AttributeSetElement&gt; Attributes</code></pre>
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>How the set settles an attribute it gives twice itself, in its own elements or in a sub-set's: the highest
+element, the lowest, their average, the first, the last, or their sum (Combine). An attribute it and its
+sub-sets each give settles the same way, unless <a class="xref" href="FarEmerald.PlayForge.AttributeSet.html#FarEmerald_PlayForge_AttributeSet_SubSetCollisionPolicy">SubSetCollisionPolicy</a> names a policy of its own.
+Only the settings of the set an entity names are read.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EValueCollisionPolicy CollisionResolutionPolicy</code></pre>
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How the set settles an attribute one set gives twice: the highest, the lowest, their average, the first, the last, or their sum (Combine). With Sub-Sets settles one it and its sub-sets each give, or this does&quot;)]
+public EValueCollisionPolicy CollisionResolutionPolicy</code></pre>
   </div>
 
 
@@ -666,6 +671,40 @@ public int StartingLevel</code></pre>
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="FarEmerald_PlayForge_AttributeSet_SubSetCollisionPolicy" data-uid="FarEmerald.PlayForge.AttributeSet.SubSetCollisionPolicy">
+  SubSetCollisionPolicy
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How the set settles an attribute it and its sub-sets each give, once each set's own elements are settled by
+<a class="xref" href="FarEmerald.PlayForge.AttributeSet.html#FarEmerald_PlayForge_AttributeSet_CollisionResolutionPolicy">CollisionResolutionPolicy</a>: by that same policy, every element at once, or by a policy of its own,
+as Combine to add a sub-set's 20 × Strength to the set's 200.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Tooltip(&quot;How the set settles an attribute it and its sub-sets each give: by Within This Set, every element at once, or by a policy of its own, once each set&#39;s own are settled, as Combine to add a sub-set&#39;s value to this set&#39;s&quot;)]
+public ESubSetCollisionPolicy SubSetCollisionPolicy</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ESubSetCollisionPolicy.html">ESubSetCollisionPolicy</a></dt>
     <dd></dd>
   </dl>
 

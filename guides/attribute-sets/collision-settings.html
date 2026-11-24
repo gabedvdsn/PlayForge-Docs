@@ -88,7 +88,7 @@
 <h1 id="collision-settings">Collision Settings</h1>
 
 <p>These settings decide an attribute's root value when it appears in more than one element, across this set and its
-sub-sets.</p>
+sub-sets. Only the settings of the set the entity names are used.</p>
 <p><img src="../../images/editor/attribute-set-collision-settings.png" alt="Ranger Attributes's Collision Settings section"></p>
 <p><em>Ranger Attributes's Collision Settings section.</em></p>
 <table>
@@ -100,26 +100,49 @@ sub-sets.</p>
 </thead>
 <tbody>
 <tr>
-<td><strong>Resolution Policy</strong></td>
-<td>How the deciding group picks a value, unless it's the Combine group. Use Maximum by default.</td>
+<td><strong>Within This Set</strong></td>
+<td>How an attribute that one set gives twice settles, this set or a sub-set. Use Maximum by default.</td>
+</tr>
+<tr>
+<td><strong>With Sub-Sets</strong></td>
+<td>How an attribute that this set and its sub-sets each give settles.<br><strong>Same As Within This Set</strong> (default) settles every element at once by Within This Set.<br>Any other policy settles each set's own elements by Within This Set first, then what each set gives by this one.</td>
 </tr>
 </tbody>
 </table>
-<p>The root value is decided in three steps:</p>
-<ol>
-<li>Elements are taken in order: this set's elements first, then each sub-set's in turn.</li>
-<li>Each element's <strong>Collision</strong> choice puts it in a group.</li>
-<li>One group decides, picked in this order: Use Set Collision Setting, Use This, Combine, Use Existing. Elements in the
-other groups are ignored.</li>
-</ol>
-<p>In the <strong>Combine</strong> group, the values are added up. Bounds, rounding and the retention group come from the first
-element.</p>
-<p>The other groups choose by the <strong>Resolution Policy</strong>:</p>
+<p>Elements are taken in order: this set's first, then each sub-set's in turn. Each element's <strong>Collision</strong> says how it
+joins the others:</p>
+<table>
+<thead>
+<tr>
+<th>Collision</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Use Set Collision Setting</strong> (default)</td>
+<td>Settles by the Collision Settings.</td>
+</tr>
+<tr>
+<td><strong>Use This</strong></td>
+<td>Stands over every other element. Several set to Use This settle among themselves by the settings.</td>
+</tr>
+<tr>
+<td><strong>Combine</strong></td>
+<td>Adds its value to what the other elements settle on.</td>
+</tr>
+<tr>
+<td><strong>Use Existing</strong></td>
+<td>Gives way to any other element. It counts only where nothing else gives the attribute.</td>
+</tr>
+</tbody>
+</table>
+<p>Both settings take the same policies:</p>
 <table>
 <thead>
 <tr>
 <th>Policy</th>
-<th>What it picks</th>
+<th>What it gives</th>
 </tr>
 </thead>
 <tbody>
@@ -133,7 +156,7 @@ element.</p>
 </tr>
 <tr>
 <td><strong>Use Average</strong></td>
-<td>The average of the elements' values. Bounds and rounding come from the first element.</td>
+<td>The average of the elements' values.</td>
 </tr>
 <tr>
 <td><strong>Use First</strong> and <strong>Use Last</strong></td>
@@ -143,8 +166,18 @@ element.</p>
 <td><strong>Ignore</strong></td>
 <td>The first element stands.</td>
 </tr>
+<tr>
+<td><strong>Combine</strong></td>
+<td>The sum of the elements' values, each worked out on its own, its number and its scaler.</td>
+</tr>
 </tbody>
 </table>
+<ul>
+<li>Where values are averaged or added up, bounds, rounding and the retention group come from the first element.</li>
+<li>For example, a sub-set gives Health = 20 × Strength, and this set gives Health a base of 200. With Within This Set
+at Use First and With Sub-Sets at Combine, Health starts at 200 + 20 × Strength. A second Health in this set
+doesn't add to it: Use First keeps the first.</li>
+</ul>
 
 </article>
 

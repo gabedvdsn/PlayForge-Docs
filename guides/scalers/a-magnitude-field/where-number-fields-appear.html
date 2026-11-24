@@ -133,6 +133,40 @@
 and a scaler's own numbers.</p>
 <p>A folded field's line shows a number field by what it reads, as &quot;Uses 3&quot;.</p>
 <p>An attribute set's values use the cached kinds, which read other attributes as the entity's values change.</p>
+<table>
+<thead>
+<tr>
+<th>Cached kind</th>
+<th>What it reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Table</strong> and <strong>By Level</strong></td>
+<td>A value for each of the set's levels, read exactly or spread over them.</td>
+</tr>
+<tr>
+<td><strong>Fixed Value</strong></td>
+<td>One number, whatever the level.</td>
+</tr>
+<tr>
+<td><strong>Shared</strong></td>
+<td>A Scaler asset whose scaler is a cached kind.</td>
+</tr>
+<tr>
+<td><strong>Attribute</strong></td>
+<td>Another attribute of the entity, as it changes.</td>
+</tr>
+<tr>
+<td><strong>Attribute Backed</strong></td>
+<td>Another attribute, joined with values of its own by its <strong>Relative Operation</strong>: added, multiplied, or either alone. Its values are a Fixed Value, a Table or By Level (<a href="../values-per-level.html">Values per level</a>).</td>
+</tr>
+<tr>
+<td><strong>Scaler Group</strong></td>
+<td>Several cached numbers joined as one, as a <a href="group.html">Group</a> joins its members. Health = 200 + 20 × Strength is a Fixed Value of 200 and an Attribute Backed of 20 × Strength, both Add.</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 

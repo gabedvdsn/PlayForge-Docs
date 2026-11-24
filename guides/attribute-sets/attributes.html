@@ -141,13 +141,18 @@ line: what its attribute starts at, and its range.</p>
 </tr>
 <tr>
 <td><strong>Collision</strong></td>
-<td>What to do when this attribute appears more than once across the set and its sub-sets. See Collision Settings.</td>
+<td>How this element joins the others that give its attribute, across the set and its sub-sets. See Collision Settings.</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>One kind of cached scaler follows the entity's level. Another follows a different attribute, and this attribute is
 then worked out again whenever that one changes.</li>
+<li>A <strong>Fixed Value</strong> is one number at every level. In a cached Group, it adds a base value to the other members, as
+Health = 200 + 20 × Strength: a Fixed Value of 200 and an Attribute Backed of 20 × Strength, both Add.</li>
+<li>The list's <strong>+</strong> adds a new element, each setting at its default. It doesn't copy the last one.</li>
+<li>An element's menu, at the end of its row, and a right-click on the row, have <strong>Duplicate</strong>: a copy goes in after
+it, with scalers of its own, so an edit to one leaves the other.</li>
 <li>The Base and Current fields' menus each copy the other side's number and scaler into the field.</li>
 <li>Rounding applies after the Bounds, each time the value changes. So it can make a change bigger or smaller than its
 effect asked for.</li>
