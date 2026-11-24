@@ -117,8 +117,10 @@ numbers, rules and the Tag Library.</p>
 <li><strong>Scene</strong>:
 <ul>
 <li>Add a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> to a GameObject, and assign the EntityIdentity.</li>
-<li>Bring PlayForge up with a <a class="xref" href="../../api/FarEmerald.PlayForge.Bootstrapper.html"><code>Bootstrapper</code></a>: the prefab PlayForge makes in <code>Assets/PlayForge/Bootstrap</code> as your
-first Forge Project is made, or a GameObject with the component, naming the Forge Project the scene plays.</li>
+<li>Bring PlayForge up with a <a class="xref" href="../../api/FarEmerald.PlayForge.Bootstrapper.html"><code>Bootstrapper</code></a>: right-click in the Hierarchy, or open the GameObject menu, and choose
+<strong>PlayForge → Bootstrapper</strong>. It places the prefab PlayForge makes in <code>Assets/PlayForge/Bootstrap</code> at the
+scene's root, playing the active Forge Project, and makes any deleted Bootstrap files again first. A scene that
+already has one keeps it. A GameObject with the component, naming the Forge Project the scene plays, works too.</li>
 <li>The <code>Bootstrapper</code> makes ProcessControl and the GameRoot, which runs as the project's Game Root entity.</li>
 <li>Grant and activate the ability through the <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html"><code>AbilitySystemComponent</code></a>.</li>
 </ul>
