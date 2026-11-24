@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Using PlayForge with an AI assistant | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Using PlayForge with an AI assistant | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants">
+<h1 id="using-playforge-with-an-ai-assistant">Using PlayForge with an AI assistant</h1>
+
+<p>This guide is for an AI coding assistant working in a Unity project that uses PlayForge, and for the person who points
+the assistant here. It is for PlayForge 1.0.0.</p>
+<p>It gives an assistant what it needs before it writes PlayForge code: a map of the framework, what's authored in The
+Forge and what's written in code, the main tasks as code that compiles, how to check the work, and the rules
+assistants most often get wrong.</p>
+<p>The guides it links, as <a href="../effects/index.html">Effects</a>, ship with PlayForge in its <code>Documentation</code> folder:
+<code>Assets/Plugins/PlayForge/Documentation</code> from the Asset Store, or
+<code>Library/PackageCache/com.faremerald.playforge/Documentation</code> from git. Read them there, or on the docs site. The API
+reference is at <a href="https://gabedvdsn.github.io/PlayForge-Docs/api/index.html">https://gabedvdsn.github.io/PlayForge-Docs/api/index.html</a>.</p>
+<h2 id="in-this-guide">In this guide</h2>
+<ul>
+<li><a href="setting-up-your-assistant.html">Setting up your assistant</a>: This guide is one Markdown file, which you download and keep in your project.</li>
+<li><a href="the-map.html">The map</a>: PlayForge is a gameplay framework for Unity 6, modelled on Unreal's Gameplay Ability System</li>
+<li><a href="authored-or-written.html">Authored or written</a>: Most of a game made with PlayForge is assets</li>
+<li><a href="a-scene-that-runs-playforge.html">A scene that runs PlayForge</a>: A scene that runs PlayForge has these</li>
+<li><a href="applying-effects-and-reading-attributes.html">Applying effects and reading attributes</a>: An effect is applied from an origin: the entity, ability or item it comes from.</li>
+<li><a href="making-assets-in-code.html">Making assets in code</a>: An asset made in code is a <code>ScriptableObject</code>, made with <code>ScriptableObject.CreateInstance&lt;T&gt;()</code>, its fields filled as its inspector fills them.</li>
+<li><a href="saving-assets-from-an-editor-script.html">Saving assets from an editor script</a>: When the person asks for assets they won't make by hand, an editor script builds them, and a batch run calls it with <code>-executeMethod</code>.</li>
+<li><a href="checking-the-work.html">Checking the work</a>: Check each change in this order</li>
+<li><a href="testing-with-the-test-kit.html">Testing with the test kit</a>: The test kit, <code>FarEmerald.PlayForge.Testing</code>, runs a live PlayForge for each test.</li>
+<li><a href="rules-assistants-get-wrong.html">Rules assistants get wrong</a>: <strong><code>Attribute</code> is two types.</strong> PlayForge's attribute asset, <code>FarEmerald.PlayForge.Attribute</code>, shares its name with <code>System.Attribute</code>.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

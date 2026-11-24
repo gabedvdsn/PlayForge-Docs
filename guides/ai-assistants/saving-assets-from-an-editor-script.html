@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Saving assets from an editor script | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Saving assets from an editor script | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants.saving-assets-from-an-editor-script">
+<h1 id="saving-assets-from-an-editor-script">Saving assets from an editor script</h1>
+
+<p>When the person asks for assets they won't make by hand, an editor script builds them, and a batch run calls it with
+<code>-executeMethod</code>. Save each as The Forge's <strong>Create</strong> does: in its Forge Project's folder for its type, named, with
+the asset tag its name gives.</p>
+<ul>
+<li><strong>The Forge Project.</strong> Ask the person to make it in The Forge, which offers to make the first. Code can't name one:
+in a Unity project with none, the first asset <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresets.html#FarEmerald_PlayForge_Editor_ForgePresets_Make_"><code>ForgePresets.Make</code></a> saves makes one named after the Unity project.
+<a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Folders_"><code>ForgeProject.Folders()</code></a> lists each project with its folder.</li>
+<li><strong>An asset with a preset</strong>, as <strong>Create → Gameplay Effect → Damage</strong>: <code>ForgePresets.Make(preset, name)</code>, with the
+preset from <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgePresets.html#FarEmerald_PlayForge_Editor_ForgePresets_For_"><code>ForgePresets.For(type)</code></a>, as <code>ForgePresets.For(typeof(GameplayEffect))</code>.</li>
+<li><strong>Any other asset</strong>, as below. Its asset tag is its kind, then its name's words capitalised and joined:
+<a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html#FarEmerald_PlayForge_Tag_Generate_"><code>Tag.Generate(&quot;Effect.FireballDamage&quot;, &quot;FireballDamage&quot;)</code></a>. The kinds are <code>Effect</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Ability.html"><code>Ability</code></a>, <code>Entity</code>, <a class="xref" href="../../api/FarEmerald.PlayForge.Item.html"><code>Item</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSet.html"><code>AttributeSet</code></a>.</li>
+<li><strong>A picker's label names its class:</strong> the class's name spaced out, less its family's word
+(<a href="../extending/before-you-start/how-a-kind-is-named-and-filed.html">Extending PlayForge: Before you start: How a kind is named and filed</a>). Return Damage Attribute is
+<a class="xref" href="../../api/FarEmerald.PlayForge.ReturnDamageAttributeWorker.html"><code>ReturnDamageAttributeWorker</code></a>, Select Gas is <a class="xref" href="../../api/FarEmerald.PlayForge.SelectGasTargetTask.html"><code>SelectGasTargetTask</code></a>, and Stack Bounds is <a class="xref" href="../../api/FarEmerald.PlayForge.StackBoundsConfig.html"><code>StackBoundsConfig</code></a>. A
+<code>[ForgeMenu]</code> attribute's <code>Name</code> gives some a label of their own, so search the source for the label too.</li>
+<li><strong>A template.</strong> <code>SetTemplate</code> alone copies nothing. Copy the template into the new asset with
+<code>EditorUtility.CopySerialized</code>, give the asset its own name and tag, then call <code>SetTemplate(template)</code>. Change the
+asset's own fields, then call <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_UpdateOverrides_"><code>ForgeTemplatePropagator.UpdateOverrides(asset)</code></a> and
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePropagator.html#FarEmerald_PlayForge_Editor_ForgeTemplatePropagator_CaptureInitialListSnapshots_"><code>ForgeTemplatePropagator.CaptureInitialListSnapshots(asset)</code></a>. They keep those fields as the asset's own when
+<a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeTemplatePush.html#FarEmerald_PlayForge_Editor_ForgeTemplatePush_PushToChildren_"><code>ForgeTemplatePush.PushToChildren(template)</code></a> hands the template's changes down.</li>
+<li><strong>A scene.</strong> <code>EditorApplication.ExecuteMenuItem(&quot;GameObject/PlayForge/Bootstrapper&quot;)</code> adds the Bootstrapper to the
+active scene, in a batch run too. A new scene unloads saved assets that nothing in the scene uses, so load them again
+by path after <code>EditorSceneManager.NewScene</code>.</li>
+</ul>
+<p>This script saves an attribute where The Forge would, then checks it:</p>
+<pre><code class="lang-csharp">using System.Collections.Generic;
+using System.Linq;
+using FarEmerald.PlayForge;
+using FarEmerald.PlayForge.Editor;
+using UnityEditor;
+using UnityEngine;
+using ForgeAttribute = FarEmerald.PlayForge.Attribute;
+
+namespace MyGame.EditorTools
+{
+    public static class ArenaAssets
+    {
+        [MenuItem(&quot;Tools/Arena/Make Strength&quot;)]
+        public static void MakeStrength()
+        {
+            // The Forge Project the person made, by its name
+            var project = ForgeProject.Folders().Select(each =&gt; each.Project).First(each =&gt; each != null &amp;&amp; each.name == &quot;Arena&quot;);
+            var strength = Save&lt;ForgeAttribute&gt;(project, &quot;Strength&quot;);
+            strength.Name = &quot;Strength&quot;;
+            strength.Textures = new List&lt;TextureItem&gt;();
+            EditorUtility.SetDirty(strength);
+            AssetDatabase.SaveAssets();
+            foreach (var problem in ForgeValidator.Check(strength)) ForgeLog.Warning(problem.Message, strength);
+        }
+
+        // A new asset where The Forge's Create puts its type: the project's folder for it, the file its name without spaces
+        private static T Save&lt;T&gt;(ForgeProject project, string name) where T : ScriptableObject
+        {
+            string within = PlayForgeSettings.FolderFor(typeof(T), project);
+            string folder = within.Length == 0 ? project.Folder : $&quot;{project.Folder}/{within}&quot;;
+            if (!AssetDatabase.IsValidFolder(folder)) AssetDatabase.CreateFolder(project.Folder, within);
+            var asset = ScriptableObject.CreateInstance&lt;T&gt;();
+            AssetDatabase.CreateAsset(asset, $&quot;{folder}/{name.Replace(&quot; &quot;, &quot;&quot;)}.asset&quot;);
+            return asset;
+        }
+    }
+}
+</code></pre>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

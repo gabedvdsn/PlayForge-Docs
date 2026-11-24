@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>The map | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="The map | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants.the-map">
+<h1 id="the-map">The map</h1>
+
+<p>PlayForge is a gameplay framework for Unity 6, modelled on Unreal's Gameplay Ability System:</p>
+<ul>
+<li>Each entity has one hub, which owns its attributes, effects, abilities, tags and items.</li>
+<li>ProcessControl steps every hub and process from Unity's player loop.</li>
+<li>Each ability runs as stages of async tasks, on UniTask.</li>
+</ul>
+<p>The runtime's types are in the namespace <code>FarEmerald.PlayForge</code>, in the assembly of that name. Folders are under the
+package's root.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Main types</th>
+<th>Folder</th>
+<th>Guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entities</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> (a component) and <a class="xref" href="../../api/FarEmerald.PlayForge.RuntimeGameplayAbilitySystem.html"><code>RuntimeGameplayAbilitySystem</code></a> (a plain object), both <a class="xref" href="../../api/FarEmerald.PlayForge.IGameplayAbilitySystem.html"><code>IGameplayAbilitySystem</code></a>; <a class="xref" href="../../api/FarEmerald.PlayForge.EntityIdentity.html"><code>EntityIdentity</code></a>, the asset one is made from</td>
+<td><code>Runtime/PlayForge/GAS</code></td>
+<td><a href="../entities/index.html">Entities</a></td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a>, an asset that's a name; <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSet.html"><code>AttributeSet</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeSetElement.html"><code>AttributeSetElement</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AttributeValue.html"><code>AttributeValue</code></a></td>
+<td><code>Runtime/PlayForge/AttributeSystem</code></td>
+<td><a href="../attributes/index.html">Attributes</a>, <a href="../attribute-sets/index.html">Attribute Sets</a></td>
+</tr>
+<tr>
+<td>Effects</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffect.html"><code>GameplayEffect</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayEffectSpec.html"><code>GameplayEffectSpec</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.IEffectOrigin.html"><code>IEffectOrigin</code></a></td>
+<td><code>Runtime/PlayForge/GameplayEffect</code></td>
+<td><a href="../effects/index.html">Effects</a>, <a href="../effect-pipeline/index.html">Effect &amp; Attribute Pipeline</a></td>
+</tr>
+<tr>
+<td>Abilities</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Ability.html"><code>Ability</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilityBehaviour.html"><code>AbilityBehaviour</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html"><code>AbilitySystemComponent</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ActivationResult.html"><code>ActivationResult</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAbilityTask.html"><code>AbstractAbilityTask</code></a></td>
+<td><code>Runtime/PlayForge/AbilitySystem</code></td>
+<td><a href="../abilities/index.html">Abilities</a></td>
+</tr>
+<tr>
+<td>Tags</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Tag.html"><code>Tag</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html"><code>TagCache</code></a>, and <a class="xref" href="../../api/FarEmerald.PlayForge.Tags.html"><code>Tags</code></a>, PlayForge's own</td>
+<td><code>Runtime/PlayForge/Tag</code></td>
+<td><a href="../tags/index.html">Tags</a></td>
+</tr>
+<tr>
+<td>Items</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.Item.html"><code>Item</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ItemSystemComponent.html"><code>ItemSystemComponent</code></a></td>
+<td><code>Runtime/PlayForge/ItemSystem</code></td>
+<td><a href="../items/index.html">Items</a></td>
+</tr>
+<tr>
+<td>Workers</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.AbstractAttributeWorker.html"><code>AbstractAttributeWorker</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractImpactWorker.html"><code>AbstractImpactWorker</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractEffectWorker.html"><code>AbstractEffectWorker</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractTagWorker.html"><code>AbstractTagWorker</code></a></td>
+<td><code>Runtime/PlayForge/Workers</code></td>
+<td><a href="../workers/index.html">Workers</a></td>
+</tr>
+<tr>
+<td>Numbers</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ScalableFloat.html"><code>ScalableFloat</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ScalableInt.html"><code>ScalableInt</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractScaler.html"><code>AbstractScaler</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ValuePipeline.html"><code>ValuePipeline</code></a></td>
+<td><code>Runtime/PlayForge/Numbers</code></td>
+<td><a href="../scalers/index.html">Scalers</a>, <a href="../value-pipelines/index.html">Value Pipelines</a></td>
+</tr>
+<tr>
+<td>Processes</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html"><code>ProcessControl</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Bootstrapper.html"><code>Bootstrapper</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.GameRoot.html"><code>GameRoot</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html"><code>AbstractMonoProcess</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractRuntimeProcess.html"><code>AbstractRuntimeProcess</code></a></td>
+<td><code>Runtime/PlayForge/Management</code></td>
+<td><a href="../processes/index.html">Processes</a></td>
+</tr>
+<tr>
+<td>Task sequences</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequence.html"><code>TaskSequence</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.TaskSequenceBuilder.html"><code>TaskSequenceBuilder</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html"><code>SequenceTaskLibrary</code></a></td>
+<td><code>Runtime/PlayForge/Core/TaskSequence</code></td>
+<td><a href="../task-sequences/index.html">Task Sequences</a></td>
+</tr>
+<tr>
+<td>Saving</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeSnapshot.html"><code>ForgeSnapshot</code></a></td>
+<td><code>Runtime/PlayForge/Save</code></td>
+<td><a href="../saving/index.html">Saving and Loading</a></td>
+</tr>
+<tr>
+<td>Time, chance, input, logs</td>
+<td><a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a></td>
+<td><code>Runtime/PlayForge/Utils</code>, <code>Runtime/PlayForge/Core</code></td>
+<td><a href="../services/index.html">Time, Input and Logging</a></td>
+</tr>
+</tbody>
+</table>
+<p>The other assemblies:</p>
+<table>
+<thead>
+<tr>
+<th>Assembly and namespace</th>
+<th>What it holds</th>
+<th>Folder</th>
+<th>Guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FarEmerald.PlayForge.Editor</code></td>
+<td>The Forge, the inspectors, the Problems view and <a class="xref" href="../../api/FarEmerald.PlayForge.Editor.ForgeValidator.html"><code>ForgeValidator</code></a>, the Debugger</td>
+<td><code>Editor</code></td>
+<td><a href="../editor/index.html">The Editor Tools</a></td>
+</tr>
+<tr>
+<td><code>FarEmerald.PlayForge.Lab</code>, <code>FarEmerald.PlayForge.Lab.Editor</code></td>
+<td>The Creator Lab</td>
+<td><code>Runtime/Lab</code>, <code>Editor/Lab</code></td>
+<td><a href="../creator-lab/index.html">The Creator Lab</a></td>
+</tr>
+<tr>
+<td><code>FarEmerald.PlayForge.Testing</code></td>
+<td>The test kit: <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html"><code>ForgeTest</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTestWorld.html"><code>ForgeTestWorld</code></a>, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.TestAssets.html"><code>TestAssets</code></a></td>
+<td><code>TestKit</code></td>
+<td><a href="../testing/index.html">Testing Your Content</a></td>
+</tr>
+</tbody>
+</table>
+<p><a href="../getting-started/index.html">Getting Started</a> tells how the pieces fit, and <a href="../extending/index.html">Extending PlayForge</a> covers every
+kind a game can add.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

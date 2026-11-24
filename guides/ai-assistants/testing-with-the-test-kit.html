@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Testing with the test kit | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Testing with the test kit | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants.testing-with-the-test-kit">
+<h1 id="testing-with-the-test-kit">Testing with the test kit</h1>
+
+<p>The test kit, <code>FarEmerald.PlayForge.Testing</code>, runs a live PlayForge for each test. It steps the player loop a frame at
+a time, and checks afterwards what must always hold (<a href="../testing/index.html">Testing Your Content</a>).</p>
+<p>A project's tests need an assembly definition of their own:</p>
+<pre><code class="lang-json">{
+    &quot;name&quot;: &quot;MyGame.Tests&quot;,
+    &quot;references&quot;: [
+        &quot;FarEmerald.PlayForge&quot;,
+        &quot;FarEmerald.PlayForge.Testing&quot;,
+        &quot;UniTask&quot;,
+        &quot;UnityEngine.TestRunner&quot;,
+        &quot;UnityEditor.TestRunner&quot;
+    ],
+    &quot;overrideReferences&quot;: true,
+    &quot;precompiledReferences&quot;: [ &quot;nunit.framework.dll&quot; ],
+    &quot;autoReferenced&quot;: false,
+    &quot;defineConstraints&quot;: [ &quot;UNITY_INCLUDE_TESTS&quot; ]
+}
+</code></pre>
+<ul>
+<li><strong>Every platform, not the Editor alone.</strong> The kit's tests are PlayMode tests, which step the real player loop.</li>
+<li><strong>Add the game's own assembly</strong> to <code>references</code>, where the game's scripts have an assembly definition.</li>
+<li><strong>Run them</strong> in the Test Runner's PlayMode tab, or with the editor closed:
+<code>Unity.exe -batchmode -projectPath &lt;project&gt; -runTests -testPlatform PlayMode -testFilter MyGame.Tests -testResults &lt;results.xml&gt; -logFile &lt;log&gt;</code>.
+A test run quits by itself, so leave out <code>-quit</code>.</li>
+</ul>
+<p>A test derives from <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.ForgeTest.html"><code>ForgeTest</code></a>, and its body runs through <code>Live</code>, as <a href="making-assets-in-code.html">Making assets in code</a>
+shows. <code>World</code> makes entities on either hub, <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Mono"><code>Hub.Mono</code></a> or <a class="xref" href="../../api/FarEmerald.PlayForge.Testing.Hub.html#FarEmerald_PlayForge_Testing_Hub_Runtime"><code>Hub.Runtime</code></a>, and plays them: <code>Hit</code>, <code>Cast</code>, <code>Use</code> and
+<code>Hold</code>. It reads them with <code>Value</code>, <code>Base</code>, <code>Has</code>, <code>Stacks</code> and <code>HasTag</code>. <code>Frames</code> steps time: <code>Step(n)</code>,
+<code>Seconds(s)</code> and <code>Until(condition, frames, what)</code>.</p>
+<ul>
+<li><strong>The game's saved assets</strong> load through <code>AssetDatabase</code>, so a test that plays them is the editor's, under
+<code>#if UNITY_EDITOR</code>. <code>World.FromIdentity(hub, identity)</code> makes an entity from a saved <a class="xref" href="../../api/FarEmerald.PlayForge.EntityIdentity.html"><code>EntityIdentity</code></a>.</li>
+<li><strong>Play them under their project's settings</strong>, as its roles, with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeProject.html#FarEmerald_PlayForge_ForgeProject_Use_"><code>ForgeProject.Use(project)</code></a>: a test's world plays
+no project of its own. Give back the project it returns as the test ends.</li>
+<li><strong>An entity's starting abilities are its own already:</strong> start one with <code>World.Use</code>. <code>World.Cast</code> gives the ability
+first, and fails for one the entity has.</li>
+<li><strong>A results file's <code>asserts=&quot;0&quot;</code> is Unity's,</strong> for every test. Its times are short too: each frame lasts a fixed
+game time, and the frames run as fast as the machine can.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

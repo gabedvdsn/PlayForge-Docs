@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Rules assistants get wrong | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Rules assistants get wrong | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants.rules-assistants-get-wrong">
+<h1 id="rules-assistants-get-wrong">Rules assistants get wrong</h1>
+
+<ul>
+<li><p><strong><a class="xref" href="../../api/FarEmerald.PlayForge.Attribute.html"><code>Attribute</code></a> is two types.</strong> PlayForge's attribute asset, <code>FarEmerald.PlayForge.Attribute</code>, shares its name with
+<code>System.Attribute</code>. A file with both <code>using System;</code> and <code>using FarEmerald.PlayForge;</code> can't name it bare. Alias it:
+<code>using ForgeAttribute = FarEmerald.PlayForge.Attribute;</code>.</p>
+</li>
+<li><p><strong><code>Editor</code> is a namespace.</strong> In code inside a namespace under <code>FarEmerald.PlayForge</code>, a bare <code>Editor</code> names
+<code>FarEmerald.PlayForge.Editor</code>. Write <code>UnityEditor.Editor</code> in full there.</p>
+</li>
+<li><p><strong>An absent tag's weight is −1, not 0.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_GetWeight_"><code>TagCache.GetWeight</code></a> returns −1 for a tag the entity hasn't. Test
+<code>GetWeight(tag) &gt; 0</code>, or use <a class="xref" href="../../api/FarEmerald.PlayForge.TagCache.html#FarEmerald_PlayForge_TagCache_TryGetWeight_"><code>TryGetWeight</code></a>.</p>
+</li>
+<li><p><strong>Components are read through <code>Find&lt;T&gt;()</code>.</strong> An asset's, a spec's or an entity's components are found by type:
+<code>ability.Find&lt;T&gt;()</code>, <code>effect.Find&lt;T&gt;()</code>, <code>identity.Find&lt;T&gt;()</code>. No property names a component.</p>
+</li>
+<li><p><strong>Logs go through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html"><code>ForgeLog</code></a>.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Info_"><code>ForgeLog.Info</code></a>, <code>Warning</code> and <code>Error</code> are gated by <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_MinimumLevel"><code>ForgeLog.MinimumLevel</code></a>, and
+code hears them through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeLog.html#FarEmerald_PlayForge_ForgeLog_Logged"><code>ForgeLog.Logged</code></a>. Don't log PlayForge content with <code>Debug.Log</code>.</p>
+</li>
+<li><p><strong>Input goes through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html"><code>ForgeInput</code></a>.</strong> <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Current"><code>ForgeInput.Current</code></a> reads the Input System or the Input Manager, whichever
+the project has, and a test puts in input of its own with <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeInput.html#FarEmerald_PlayForge_ForgeInput_Use_"><code>ForgeInput.Use</code></a>. Don't read <code>UnityEngine.Input</code> in
+content.</p>
+</li>
+<li><p><strong>Time and chance go through <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeTime.html"><code>ForgeTime</code></a> and <a class="xref" href="../../api/FarEmerald.PlayForge.ForgeRandom.html"><code>ForgeRandom</code></a></strong>, so a test can step the clock and script the rolls.</p>
+</li>
+<li><p><strong>Current comes before Base.</strong> Wherever the two show together, in UI, logs and summaries, show Current first,
+then Base, as PlayForge's own tools do.</p>
+</li>
+<li><p><strong>A process has one of four lifecycles:</strong></p>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.EProcessLifecycle.html#FarEmerald_PlayForge_EProcessLifecycle_SelfTerminating"><code>SelfTerminating</code></a> runs and ends, as a projectile;</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.EProcessLifecycle.html#FarEmerald_PlayForge_EProcessLifecycle_RunThenWait"><code>RunThenWait</code></a> runs, then waits to run again, as an ability;</li>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.EProcessLifecycle.html#FarEmerald_PlayForge_EProcessLifecycle_RequiresControl"><code>RequiresControl</code></a> waits until it's told to run;</li>
+<li><code>Synchronous</code> is stepped at its timing for as long as it lasts, as a health bar.</li>
+</ul>
+<p>There are no others.</p>
+</li>
+<li><p><strong>ProcessControl steps every process.</strong> Register one with <a class="xref" href="../../api/FarEmerald.PlayForge.ProcessControl.html#FarEmerald_PlayForge_ProcessControl_Register_"><code>ProcessControl.Register(process)...Run()</code></a>, and never
+call its update by hand (<a href="../processes/index.html">Processes</a>).</p>
+</li>
+<li><p><strong>An entity steps in LateUpdate.</strong> A Gameplay Ability System's <a class="xref" href="../../api/FarEmerald.PlayForge.AbstractMonoProcess.html#FarEmerald_PlayForge_AbstractMonoProcess_ProcessTiming"><code>ProcessTiming</code></a> is <a class="xref" href="../../api/FarEmerald.PlayForge.EProcessStepTiming.html#FarEmerald_PlayForge_EProcessStepTiming_UpdateAndLate"><code>UpdateAndLate</code></a>. Code that sets it
+keeps Late in it, or the entity's end of frame never runs.</p>
+</li>
+<li><p><strong>Wait with PlayForge's clock.</strong> In an ability task, await <a class="xref" href="../../api/FarEmerald.PlayForge.SequenceTaskLibrary.html#FarEmerald_PlayForge_SequenceTaskLibrary_Delay_"><code>SequenceTaskLibrary.Delay(seconds, token)</code></a> rather than
+<code>UniTask.Delay</code>, so a paused run stays paused, and pass the token, so an interrupt ends the task
+(<a href="../extending/ability-tasks.html">Extending PlayForge: Ability tasks</a>).</p>
+</li>
+<li><p><strong>Show a tag by <code>ToString()</code></strong>, its display name, not by its <code>Name</code>, which is its whole path.</p>
+</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

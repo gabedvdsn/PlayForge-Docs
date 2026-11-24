@@ -1,0 +1,48 @@
+# PlayForge
+
+> PlayForge is a gameplay framework for Unity 6, modelled on Unreal's Gameplay Ability System. Every ability, effect, attribute, tag and item is an asset you build in the inspector, and one hub on each entity runs them all.
+
+These pages are for PlayForge 1.0.0. The package ships the same guides in its `Documentation` folder; Using PlayForge with an AI assistant is a download here. An assistant starts with the guide written for it.
+
+## Start here
+
+- [Using PlayForge with an AI assistant](https://gabedvdsn.github.io/PlayForge-Docs/playforge-ai.md): This guide is for an AI coding assistant working in a Unity project that uses PlayForge, and for the person who points the assistant here.
+- [Getting Started](https://gabedvdsn.github.io/PlayForge-Docs/guides/getting-started/index.html): PlayForge is a Gameplay Ability System (GAS) framework for Unity 6+.
+
+## Gameplay
+
+- [Entities](https://gabedvdsn.github.io/PlayForge-Docs/guides/entities/index.html): An Entity asset (EntityIdentity) describes one kind of entity, such as the hero or a goblin.
+- [Attributes](https://gabedvdsn.github.io/PlayForge-Docs/guides/attributes/index.html): An Attribute asset names one number an entity can have, such as Health, Mana or Strength.
+- [Attribute Sets](https://gabedvdsn.github.io/PlayForge-Docs/guides/attribute-sets/index.html): An Attribute Set asset lists the attributes an entity starts with, and how each one starts: its Current and Base values, its bounds and its rounding.
+- [Effects](https://gabedvdsn.github.io/PlayForge-Docs/guides/effects/index.html): A Gameplay Effect asset describes a change to an entity: damage, a heal, a timed buff, a poison, a cost or a cooldown.
+- [Effect & Attribute Pipeline](https://gabedvdsn.github.io/PlayForge-Docs/guides/effect-pipeline/index.html): This page describes how a GameplayEffect becomes an attribute change, stays correct while it lives, and reverses when it dies, under the two-kind impact model.
+- [Value Pipelines](https://gabedvdsn.github.io/PlayForge-Docs/guides/value-pipelines/index.html): A Value Pipeline is an asset that takes a value as it lands, sends it through ordered stages, and gives what comes out.
+- [Scalers](https://gabedvdsn.github.io/PlayForge-Docs/guides/scalers/index.html): A scaler is a value source that a magnitude field reads at a level, such as a table of damage per level.
+- [Abilities](https://gabedvdsn.github.io/PlayForge-Docs/guides/abilities/index.html): An Ability asset describes one thing an entity can do, such as a fireball, a dash or a heal.
+- [Items](https://gabedvdsn.github.io/PlayForge-Docs/guides/items/index.html): An Item asset describes something an entity can hold and equip, such as a sword or a ring.
+- [Tags](https://gabedvdsn.github.io/PlayForge-Docs/guides/tags/index.html): A tag is a name in a tree, such as State.Stunned under State.
+- [Cues](https://gabedvdsn.github.io/PlayForge-Docs/guides/cues/index.html): A cue is what something shows and sounds, apart from what it changes: a spark as a hit lands, a hum while a shield holds, a shake as a giant falls.
+- [Workers](https://gabedvdsn.github.io/PlayForge-Docs/guides/workers/index.html): Workers are the small rules that react to what happens to an entity: a floor that keeps Health above 1, a share of each blow sent back, a rage at half Health, a burst as a tag comes off.
+
+## Running it
+
+- [Processes](https://gabedvdsn.github.io/PlayForge-Docs/guides/processes/index.html): A process is anything that runs over time under ProcessControl.
+- [Task Sequences](https://gabedvdsn.github.io/PlayForge-Docs/guides/task-sequences/index.html): A task sequence is a workflow over time, built in code.
+- [Time, Input and Logging](https://gabedvdsn.github.io/PlayForge-Docs/guides/services/index.html): PlayForge works through four services of its own
+- [Saving and Loading](https://gabedvdsn.github.io/PlayForge-Docs/guides/saving/index.html): ForgeSave saves an entity at rest and loads it back.
+- [Spreadsheets](https://gabedvdsn.github.io/PlayForge-Docs/guides/spreadsheets/index.html): Games are balanced in spreadsheets: a column of damage by level, a row of stats for each item.
+
+## Tools
+
+- [The Editor Tools](https://gabedvdsn.github.io/PlayForge-Docs/guides/editor/index.html): PlayForge's editor tools make a game's assets, check them and watch them at work.
+- [The Creator Lab](https://gabedvdsn.github.io/PlayForge-Docs/guides/creator-lab/index.html): The Creator Lab is a space for trying a project's own assets.
+- [Testing Your Content](https://gabedvdsn.github.io/PlayForge-Docs/guides/testing/index.html): A game's abilities, effects and items are easiest to trust when a test plays them as the game does: a burn's ticks landing over its second, a ring's armor while it's held, a cast paying its cost.
+
+## Going further
+
+- [Extending PlayForge](https://gabedvdsn.github.io/PlayForge-Docs/guides/extending/index.html): This guide covers each place a game's own code plugs into PlayForge.
+- [Recipes](https://gabedvdsn.github.io/PlayForge-Docs/guides/recipes/index.html): These ten recipes build common rules from PlayForge's own assets and fields, with no code.
+
+## API reference
+
+- [API reference](https://gabedvdsn.github.io/PlayForge-Docs/api/index.html): a page for every public type of the runtime, the Creator Lab, the editor and the test kit, grouped by area. A type's page is api/ and its full name, as https://gabedvdsn.github.io/PlayForge-Docs/api/FarEmerald.PlayForge.GameplayEffect.html.

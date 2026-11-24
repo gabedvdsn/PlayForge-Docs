@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>A scene that runs PlayForge | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="A scene that runs PlayForge | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.ai-assistants.a-scene-that-runs-playforge">
+<h1 id="a-scene-that-runs-playforge">A scene that runs PlayForge</h1>
+
+<p>A scene that runs PlayForge has these:</p>
+<ul>
+<li><strong>A Bootstrapper</strong>, which brings up ProcessControl and the Game Root, and plays the active Forge Project. In the
+Hierarchy, right-click and choose <strong>PlayForge → Bootstrapper</strong>.</li>
+<li><strong>An entity on each object that is one:</strong> a <strong>Gameplay Ability System</strong> component, whose <strong>Entity Data</strong> is the
+entity's <a class="xref" href="../../api/FarEmerald.PlayForge.EntityIdentity.html"><code>EntityIdentity</code></a>.</li>
+</ul>
+<p>An entity registers as the scene starts. Until it has, reads such as <code>TryGetAttributeValue</code> return false.</p>
+<p>This script casts an ability on a key, or at a target it's given:</p>
+<pre><code class="lang-csharp">using FarEmerald.PlayForge;
+using UnityEngine;
+
+namespace MyGame
+{
+    public class CastOnKey : MonoBehaviour
+    {
+        public GameplayAbilitySystem caster;
+        public Ability ability;
+        public KeyCode key = KeyCode.Alpha1;
+
+        private void Update()
+        {
+            // ForgeInput reads the Input System or the Input Manager, whichever the project has; the ability system is
+            // null until the entity has registered
+            if (!ForgeInput.Current.KeyPressed(key) || caster.AbilitySystem == null) return;
+            var result = caster.AbilitySystem.TryActivateAbility(ability);
+            if (!result) ForgeLog.Info($&quot;{ability.GetName()} refused: {result.Refusal}&quot;, this);
+        }
+
+        // Casts at a target of the caller's: the activation's data holds it, as an ITarget, where targeting puts its pick
+        public bool CastAt(GameplayAbilitySystem target)
+        {
+            if (caster.AbilitySystem == null) return false;
+            var data = ProcessDataPacket.Default();
+            data.SetPrimary(Tags.TARGET_REAL, (ITarget)target);
+            return caster.AbilitySystem.TryActivateAbility(ability, data);
+        }
+    }
+}
+</code></pre>
+<ul>
+<li><a class="xref" href="../../api/FarEmerald.PlayForge.AbilitySystemComponent.html#FarEmerald_PlayForge_AbilitySystemComponent_TryActivateAbility_"><code>TryActivateAbility</code></a> returns an <a class="xref" href="../../api/FarEmerald.PlayForge.ActivationResult.html"><code>ActivationResult</code></a>. It's true unless the ability was refused. <code>Started</code>,
+<code>Buffered</code> and <code>Refused</code> say which, and <code>Refusal</code> says why: its cooldown, its cost, a requirement, or a busy caster.</li>
+<li>The ability must be one the entity has: a starting ability of its <code>EntityIdentity</code>, or given with
+<code>AbilitySystem.GiveAbility(ability, level, out int slot)</code>.</li>
+<li>An ability whose targeting asks for a pick, as <strong>Picked → Select Gas</strong> does, waits for the player's click after it
+starts. A cast with a target in its data, as <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_CastAt_"><code>CastAt</code></a> makes, takes that target instead, as an AI's cast does.</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
