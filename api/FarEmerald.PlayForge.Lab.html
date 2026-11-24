@@ -138,6 +138,18 @@ PlayForge's cues reach through ForgeCues.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabCard.html">LabCard</a></dt>
+      <dd><p>A card of an asset, as the library shows it under the asset's row on a click and as a drag carries it under the
+pointer: its type's glyph, its name and kind, its description, its facts and its lines, in the editor's neutrals.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabCardData.html">LabCardData</a></dt>
+      <dd><p>What a card says of an asset: its name and kind with its level, its description, a few facts by name, and a line for
+each thing it does, as each impact of an effect or each task of an ability's stages.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabControls.html">LabControls</a></dt>
       <dd><p>A player's controls for one unit, as a MOBA's: right-click the ground to move, right-click a foe it can target to
 attack it, Q, W, E and R for its abilities past its attack, 1 to 6 for its items' abilities, S to stop, Escape to
@@ -155,6 +167,13 @@ those its game gives its own way, and names the asset on its Lab Rules. Create �
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabDropdown.html">LabDropdown</a></dt>
+      <dd><p>The lab's dropdown: its label, then a field with the choice and an arrow, which opens the lab's own menu, as wide as
+its longest choice and in the lab's neutrals. Unity's runtime dropdown opened its theme's light box, no wider than
+its field, so a long choice was cut short.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabDummy.html">LabDummy</a></dt>
       <dd><p>A test dummy, and the Demo's training dummy: a unit that stands and counts what it takes. It shows its
 damage a second over a window, the last blow with its types, and a short history of blows. It doesn't die unless
@@ -169,13 +188,35 @@ gives none. Each lives in memory alone and goes with what made it.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGiven.html">LabGiven</a></dt>
+      <dd><p>What the author gave a unit in the lab, which a scenario keeps: the items it took, the abilities it was taught and the
+levels set, and the effects landed on it, each with its source.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyph.html">LabGlyph</a></dt>
+      <dd><p>An inline vector glyph drawn in its resolved color, which the style sheet sets: the glyphs of PlayForge's editor,
+drawn the same way in the lab, whose panels run in a game as well as in the editor. A type's glyph differs in shape
+as well as color, so color is never its only sign.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabMenu.html">LabMenu</a></dt>
+      <dd><p>The lab's dropdown menu, under the field that opened it: a search over its choices, which has the keyboard as it
+opens, so typing narrows them; its choices, as wide as the longest one, the one chosen checked and the one lit in
+the selection's blue; the arrows to move, Enter to pick the one lit, Esc to close. One is open at a time, and a
+press outside it closes it.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabPanels.html">LabPanels</a></dt>
-      <dd><p>The lab's panels, UI Toolkit over the space: the library on the left, the mode on the right with the selected over
-it, shown as something is selected and set aside by its tab, and the log at the bottom; each other panel collapses to
-a tab at its edge. The middle stays the space's. Over the space, each unit's bar, and a status at the top that clicks
-go through: what a cast waits for, what's selected, whom the author controls, and the keys for what can be done now.
-An asset dragged from the library and dropped on the space is the lab's to apply, cast or give. Neutral panels,
-Unity's own controls, and a type's color in its icon alone.</p>
+      <dd><p>The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,
+its assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the
+space, what's put down, the units, the battle, the author's unit, the camera, the time and the scenarios; the
+selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each
+collapses to a tab at its edge, and the middle stays the space's. Over the space, each unit's bar, and a status at
+the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the
+lab's to apply, cast or give where it's let go: the drag follows the lab's input, wherever the pointer goes.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -191,9 +232,59 @@ Speed or Move Speed. With no asset, the lab makes one and finds both.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+      <dd><p>A setup of the Creator Lab, saved to test again: each unit put down with what it was given, the lab's mode and battle,
+its camera and time, its stops and watches, and a line saying what it's for. The lab saves one as an asset in the
+active Forge Project's Lab Scenarios folder, lists them in its Scenarios section, and loads one there, over the space
+as it is.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioAbility.html">LabScenarioAbility</a></dt>
+      <dd><p>An ability a scenario's unit knows: taught, or its level set.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioAttribute.html">LabScenarioAttribute</a></dt>
+      <dd><p>An attribute's values on a scenario's unit, its current first.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioCamera.html">LabScenarioCamera</a></dt>
+      <dd><p>Where a scenario's camera looks, and from how far and how steeply.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioEffect.html">LabScenarioEffect</a></dt>
+      <dd><p>An effect a scenario lands on its unit, from the lab's caster or another of its units.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioStop.html">LabScenarioStop</a></dt>
+      <dd><p>A stop of a scenario: what stops the lab's time, as the bottom panel's Stops page sets one.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioUnit.html">LabScenarioUnit</a></dt>
+      <dd><p>A unit of a scenario: what it's made of, where it stands, and what the author gave it.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenarioWatch.html">LabScenarioWatch</a></dt>
+      <dd><p>A watch of a scenario: a number pinned on one of its units, as the bottom panel's Watches page pins one.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabSeat.html">LabSeat</a></dt>
       <dd><p>A bot's place in a battle: what it's made of, its side, its level and where it starts, and what the author
 gave it since, which a reset gives again as it makes the bot anew.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabSection.html">LabSection</a></dt>
+      <dd><p>A section of a lab panel, as Unity's foldout headers draw one and the Debugger's sections are: the arrow, the bold
+title, its count or a line on the right, and the section's own buttons, which always show. A click on the header
+opens or closes it.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -219,6 +310,12 @@ or an attribute and a value. The lab's world pauses as one fires, and says which
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabSummary.html">LabSummary</a></dt>
       <dd><p>The selected panel's lines: an asset's numbers level by level, as &quot;−80/−120/−160 Health&quot;,
 and a unit's attributes and effects as they are now.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabTables.html">LabTables</a></dt>
+      <dd><p>The lab's tables, as the Debugger's: a head of column titles, rows that alternate and keep their own selection, and a
+foot row of actions on the row selected, under a thin rule. A column is a class, which sets its width.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -293,6 +390,11 @@ Enums
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ELabUnitRole.html">ELabUnitRole</a></dt>
+      <dd><p>What a unit is in a scenario: a unit put down, a test dummy, or a bot of a battle.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ELabWatchKind.html">ELabWatchKind</a></dt>
       <dd><p>What a watch reads.</p>
 </dd>
@@ -300,6 +402,11 @@ Enums
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabAssetKind.html">LabAssetKind</a></dt>
       <dd><p>The kinds of asset the lab's library lists, in its order.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+      <dd><p>The glyphs the lab draws: a foldout's arrows, a few actions, and each asset type's own.</p>
 </dd>
     </dl>
     <dl class="jumplist">

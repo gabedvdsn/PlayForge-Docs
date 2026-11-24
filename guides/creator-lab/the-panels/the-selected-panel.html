@@ -87,59 +87,85 @@
         <article data-uid="guide.creator-lab.the-panels.the-selected-panel">
 <h1 id="the-selected-panel">The Selected panel</h1>
 
-<p>The Selected panel shows what's selected: an asset from the library, or a unit in the space.</p>
-<p>It sits on the right, over the Lab panel, and shows as something is selected. Its <strong>Lab</strong> tab sets it aside, the
+<p>The Selected panel shows the unit selected, as the Debugger shows an entity.</p>
+<p>It sits on the right, over the Lab panel, and shows as a unit is selected. Its <strong>Lab</strong> tab sets it aside, the
 selection kept. The Lab panel's <strong>Selected</strong> tab brings it back, as each selection does.</p>
+<p>Its header names the unit and says what it is, as &quot;Entity · Brute · Red · Level 3 · Dummy&quot;.</p>
 <table>
 <thead>
 <tr>
-<th>Selected</th>
-<th>What the panel shows</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>An asset, clicked in the library</td>
-<td>Its numbers level by level, as &quot;−80/−120/−160 Health&quot;. <strong>Open in The Forge</strong> opens it there.</td>
-</tr>
-<tr>
-<td>A unit, clicked in the space</td>
-<td>Its attributes, its tags, its effects with their stacks and time left, its abilities with their levels and cooldowns, and its items.</td>
-</tr>
-</tbody>
-</table>
-<p>For a unit, the panel has these controls:</p>
-<table>
-<thead>
-<tr>
-<th>Control</th>
+<th>Button</th>
 <th>What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>− and +</td>
-<td>Change an ability's level.</td>
+<td><strong>Take Control</strong></td>
+<td>Makes the unit yours (<a href="../your-unit.html">Your unit</a>).</td>
 </tr>
 <tr>
-<td>×</td>
-<td>Takes an ability or an item.</td>
+<td><strong>Release</strong></td>
+<td>Lets your unit go.</td>
+</tr>
+<tr>
+<td><strong>Follow</strong></td>
+<td>Has the camera follow the unit.</td>
 </tr>
 <tr>
 <td><strong>Remove</strong></td>
 <td>Takes the unit out.</td>
 </tr>
 <tr>
-<td><strong>Take control</strong></td>
-<td>Makes the unit yours (<a href="../your-unit.html">Your unit</a>).</td>
-</tr>
-<tr>
-<td><strong>Release</strong></td>
-<td>Lets it go.</td>
+<td><strong>Deselect</strong></td>
+<td>Selects nothing.</td>
 </tr>
 </tbody>
 </table>
-<p>A test dummy's count of what it took shows here too (<a href="../test-dummies.html">Test dummies</a>).</p>
+<p>Under the header, a section for each part of the unit. Each is a table: click a row to select it, and the section's foot
+row acts on it.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Its table</th>
+<th>Its foot row</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attributes</strong></td>
+<td>Each attribute's <strong>Current</strong> and <strong>Base</strong> values, and the effects that change it.</td>
+<td>Sets the selected attribute's current and base values.</td>
+</tr>
+<tr>
+<td><strong>Effects</strong></td>
+<td>Each effect on the unit, its time left, its stacks and where it came from.</td>
+<td><strong>Remove</strong> takes the selected one off. <strong>Apply</strong> lands the one picked, from the unit itself.</td>
+</tr>
+<tr>
+<td><strong>Abilities</strong></td>
+<td>Each ability the unit knows, its level, what it's doing, and its cooldown's time left.</td>
+<td><strong>Cast</strong> casts the selected one, as the unit would. <strong>Interrupt</strong> stops it. <strong>−</strong> and <strong>+</strong> change its level, and <strong>Forget</strong> takes it. <strong>Teach</strong> gives the unit the one picked.</td>
+</tr>
+<tr>
+<td><strong>Tags</strong></td>
+<td>Each tag the unit has, its count, and whether it's loose.</td>
+<td><strong>Remove</strong> takes back a loose tag. <strong>Add Tag</strong> gives the unit the tag typed, or picked from the project's.</td>
+</tr>
+<tr>
+<td><strong>Items</strong></td>
+<td>Each item the unit holds, and its level.</td>
+<td><strong>Take</strong> takes the selected one. <strong>Give</strong> gives the unit the one picked, equipped.</td>
+</tr>
+<tr>
+<td><strong>What It Took</strong></td>
+<td>A test dummy's count of what it took (<a href="../test-dummies.html">Test dummies</a>).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>An ability cast from the panel that needs a target waits for your click, as your unit's do (<a href="../your-unit/controls.html">Controls</a>). A
+tag you add is loose: it stays until you remove it.</p>
 
 </article>
 

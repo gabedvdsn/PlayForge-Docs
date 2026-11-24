@@ -100,12 +100,12 @@
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.html"><code>EditorLabLibrary</code></a></td>
 <td>The editor</td>
-<td>Every asset of the project.</td>
+<td>Every asset of the project, and its Lab Scenarios. It saves scenarios.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ListLibrary.html"><code>ListLibrary</code></a></td>
 <td>Code</td>
-<td>The assets given.</td>
+<td>The assets given, and the scenarios among them.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ListLibrary.html#FarEmerald_PlayForge_Lab_ListLibrary_Of_"><code>ListLibrary.Of(project)</code></a></td>
@@ -116,6 +116,13 @@
 </table>
 <p>A library offers projects to switch between through <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ILabLibrary.html#FarEmerald_PlayForge_Lab_ILabLibrary_Projects"><code>ILabLibrary.Projects</code></a>, <code>Project</code> and <code>UseProject</code>, which have
 defaults.</p>
+<ul>
+<li>Its <code>ProjectAsset</code> is the Forge Project it plays. While the scene names no project, the lab makes it current, so its
+units read its settings, as their combat logs do.</li>
+<li>Its <code>Scenarios</code>, <code>CanSaveScenarios</code>, <code>SaveScenario</code> and <code>DeleteScenario</code> keep the lab's scenarios.</li>
+</ul>
+<p>The lab's units run in a world of the lab's own, named &quot;Creator Lab&quot;. The Debugger lists them beside the scene's
+entities.</p>
 
 </article>
 

@@ -125,6 +125,38 @@ Project, in a build those a project names. The library panel lists them by kind.
 </h2>
 
 
+  <a id="FarEmerald_PlayForge_Lab_ILabLibrary_CanSaveScenarios_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.CanSaveScenarios*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_CanSaveScenarios" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.CanSaveScenarios">
+  CanSaveScenarios
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether it can save a scenario, as the editor's library can, into its project.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanSaveScenarios { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_ILabLibrary_Name_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Name*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_Name" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Name">
@@ -189,6 +221,39 @@ Project, in a build those a project names. The library panel lists them by kind.
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_ILabLibrary_ProjectAsset_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.ProjectAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_ProjectAsset" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.ProjectAsset">
+  ProjectAsset
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Forge Project it plays, whose settings the lab's units read, as their combat logs do, where the scene names
+none; null where it plays no project.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ForgeProject ProjectAsset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_ILabLibrary_Projects_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Projects*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_Projects" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Projects">
@@ -211,6 +276,38 @@ Project, in a build those a project names. The library panel lists them by kind.
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_ILabLibrary_Scenarios_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Scenarios*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_Scenarios" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Scenarios">
+  Scenarios
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The lab scenarios it offers to load, by name: none where it has none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IReadOnlyList&lt;LabScenario&gt; Scenarios { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -262,6 +359,43 @@ Project, in a build those a project names. The library panel lists them by kind.
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_ILabLibrary_DeleteScenario_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.DeleteScenario*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_DeleteScenario_FarEmerald_PlayForge_Lab_LabScenario_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.DeleteScenario(FarEmerald.PlayForge.Lab.LabScenario)">
+  DeleteScenario(LabScenario)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Takes a saved scenario out, as the editor's library moves its asset to the trash; false where it can't.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool DeleteScenario(LabScenario scenario)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scenario</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_ILabLibrary_Refresh_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Refresh*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_Refresh" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.Refresh">
@@ -278,6 +412,48 @@ Project, in a build those a project names. The library panel lists them by kind.
   </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_ILabLibrary_SaveScenario_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.SaveScenario*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_ILabLibrary_SaveScenario_FarEmerald_PlayForge_Lab_LabScenario_System_String_FarEmerald_PlayForge_Lab_LabScenario_" data-uid="FarEmerald.PlayForge.Lab.ILabLibrary.SaveScenario(FarEmerald.PlayForge.Lab.LabScenario,System.String,FarEmerald.PlayForge.Lab.LabScenario)">
+  SaveScenario(LabScenario, string, LabScenario)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves a scenario the lab captured under a name, as a new one, or over <code class="paramref">over</code>; the scenario
+saved, or null where it can't save.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">LabScenario SaveScenario(LabScenario captured, string name, LabScenario over = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>captured</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>over</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

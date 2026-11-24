@@ -98,11 +98,15 @@
 <tbody>
 <tr>
 <td>Units</td>
-<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_"><code>AddUnit</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_"><code>AddDummy</code></a></td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_"><code>AddUnit</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_"><code>AddDummy</code></a> and <code>Place</code></td>
 </tr>
 <tr>
 <td>Assets</td>
-<td><code>ApplyEffect</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_CastAt_"><code>CastAt</code></a> and <code>GiveItem</code></td>
+<td><code>ApplyEffect</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_CastAt_"><code>CastAt</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_CastFrom_"><code>CastFrom</code></a>, <code>GiveItem</code>, <code>Teach</code> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetAbilityLevel_"><code>SetAbilityLevel</code></a></td>
+</tr>
+<tr>
+<td>A unit's state</td>
+<td><code>SetAttribute</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_GiveTag_"><code>GiveTag</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_TakeTag_"><code>TakeTag</code></a></td>
 </tr>
 <tr>
 <td>Dropping</td>
@@ -114,10 +118,16 @@
 </tr>
 <tr>
 <td>Its time</td>
-<td><code>Step</code>, <code>Paused</code>, <code>Speed</code> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_StepFrame_"><code>StepFrame</code></a></td>
+<td><code>Step</code>, <code>Paused</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetSpeed_"><code>SetSpeed</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_ResetSpeed_"><code>ResetSpeed</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_StepFrame_"><code>StepFrame</code></a></td>
+</tr>
+<tr>
+<td>Scenarios</td>
+<td><code>Capture</code>, <code>Load</code>, <code>SaveScenario</code> and <code>DeleteScenario</code></td>
 </tr>
 </tbody>
 </table>
+<p>The lab's caster casts free through the activation's data: <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_WAIVES"><code>Tags.WAIVES</code></a> names the checks an activation waives, an
+<a class="xref" href="../../../api/FarEmerald.PlayForge.EUsageCheck.html"><code>EUsageCheck</code></a>. A cast whose data waives its cost and cooldown neither checks nor pays them.</p>
 
 </article>
 

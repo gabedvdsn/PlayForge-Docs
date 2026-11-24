@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class LabPanels | PlayForge ">
       
-      <meta name="description" content="The lab&#39;s panels, UI Toolkit over the space: the library on the left, the mode on the right with the selected over it, shown as something is selected and set aside by its tab, and the log at the bottom; each other panel collapses to a tab at its edge. The middle stays the space&#39;s. Over the space, each unit&#39;s bar, and a status at the top that clicks go through: what a cast waits for, what&#39;s selected, whom the author controls, and the keys for what can be done now. An asset dragged from the library and dropped on the space is the lab&#39;s to apply, cast or give. Neutral panels, Unity&#39;s own controls, and a type&#39;s color in its icon alone.">
+      <meta name="description" content="The lab&#39;s panels, UI Toolkit over the space, in PlayForge&#39;s editor style as the Debugger is. The library on the left, its assets by kind, where a click opens an asset&#39;s card under its row; the Lab panel on the right, its sections the space, what&#39;s put down, the units, the battle, the author&#39;s unit, the camera, the time and the scenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each collapses to a tab at its edge, and the middle stays the space&#39;s. Over the space, each unit&#39;s bar, and a status at the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the lab&#39;s to apply, cast or give where it&#39;s let go: the drag follows the lab&#39;s input, wherever the pointer goes.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,15 +97,17 @@ Class LabPanels
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Lab.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The lab's panels, UI Toolkit over the space: the library on the left, the mode on the right with the selected over
-it, shown as something is selected and set aside by its tab, and the log at the bottom; each other panel collapses to
-a tab at its edge. The middle stays the space's. Over the space, each unit's bar, and a status at the top that clicks
-go through: what a cast waits for, what's selected, whom the author controls, and the keys for what can be done now.
-An asset dragged from the library and dropped on the space is the lab's to apply, cast or give. Neutral panels,
-Unity's own controls, and a type's color in its icon alone.</p>
+  <div class="markdown summary"><p>The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,
+its assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the
+space, what's put down, the units, the battle, the author's unit, the camera, the time and the scenarios; the
+selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each
+collapses to a tab at its edge, and the middle stays the space's. Over the space, each unit's bar, and a status at
+the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the
+lab's to apply, cast or give where it's let go: the drag follows the lab's input, wherever the pointer goes.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/in-code/the-panels-in-code.html">The Creator Lab: In code: The panels in code</a></p>
 </div>
 
   <div class="codewrapper">
@@ -588,6 +590,38 @@ Unity's own controls, and a type's color in its icon alone.</p>
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_LabPanels_Dragging_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Dragging*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabPanels_Dragging" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Dragging">
+  Dragging
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an asset is being dragged from the library now.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Dragging { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_LabPanels_Root_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Root*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_LabPanels_Root" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Root">
@@ -665,7 +699,8 @@ Unity's own controls, and a type's color in its icon alone.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Whether a point of the screen, in pixels from its bottom left, is over one of the panels.</p>
+  <div class="markdown level1 summary"><p>Whether a point of the screen, in pixels from its bottom left, is over one of the panels, or an open menu, where a
+click and the wheel are the panels'.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -852,7 +887,7 @@ Unity's own controls, and a type's color in its icon alone.</p>
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Brings the selected panel back over the lab's, where something is selected, as each selection does.</p>
+  <div class="markdown level1 summary"><p>Brings the selected panel back over the lab's, where a unit is selected, as each selection does.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

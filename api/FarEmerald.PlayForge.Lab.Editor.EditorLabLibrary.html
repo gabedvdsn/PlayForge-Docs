@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EditorLabLibrary | PlayForge ">
       
-      <meta name="description" content="The library in the editor, by kind: the active Forge Project&#39;s assets, as The Forge&#39;s pickers offer them, or every asset of the project&#39;s own folders while it has no Forge Project; it switches the active project, as The Forge does, and follows as The Forge switches it. Given folders, it plays those folders&#39; assets alone.">
+      <meta name="description" content="The library in the editor, by kind: the active Forge Project&#39;s assets, as The Forge&#39;s pickers offer them, or every asset of the project&#39;s own folders while it has no Forge Project; it switches the active project, as The Forge does, and follows as The Forge switches it. Given folders, it plays those folders&#39; assets alone. It keeps the lab&#39;s scenarios as assets: in the active project&#39;s Lab Scenarios folder, or its first folder&#39;s.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -99,7 +99,8 @@ Class EditorLabLibrary
 
   <div class="markdown summary"><p>The library in the editor, by kind: the active Forge Project's assets, as The Forge's pickers offer
 them, or every asset of the project's own folders while it has no Forge Project; it switches the active project, as
-The Forge does, and follows as The Forge switches it. Given folders, it plays those folders' assets alone.</p>
+The Forge does, and follows as The Forge switches it. Given folders, it plays those folders' assets alone. It
+keeps the lab's scenarios as assets: in the active project's Lab Scenarios folder, or its first folder's.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
@@ -193,8 +194,75 @@ The Forge does, and follows as The Forge switches it. Given folders, it plays th
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_ScenarioFolderName" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.ScenarioFolderName">
+  ScenarioFolderName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The folder, in a project's own, that scenarios are saved in.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string ScenarioFolderName = &quot;Lab Scenarios&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_CanSaveScenarios_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.CanSaveScenarios*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_CanSaveScenarios" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.CanSaveScenarios">
+  CanSaveScenarios
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The editor saves scenarios, as assets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanSaveScenarios { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Name_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Name*"></a>
@@ -261,6 +329,38 @@ The Forge does, and follows as The Forge switches it. Given folders, it plays th
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_ProjectAsset_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.ProjectAsset*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_ProjectAsset" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.ProjectAsset">
+  ProjectAsset
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The active Forge Project, whose settings the lab's units read; none for a library of folders.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ForgeProject ProjectAsset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.ForgeProject.html">ForgeProject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Projects_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Projects*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Projects" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Projects">
@@ -283,6 +383,38 @@ The Forge does, and follows as The Forge switches it. Given folders, it plays th
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Scenarios_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Scenarios*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Scenarios" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Scenarios">
+  Scenarios
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The scenarios of the active project, or of its folders, by name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;LabScenario&gt; Scenarios { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -334,6 +466,43 @@ The Forge does, and follows as The Forge switches it. Given folders, it plays th
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_DeleteScenario_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.DeleteScenario*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_DeleteScenario_FarEmerald_PlayForge_Lab_LabScenario_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.DeleteScenario(FarEmerald.PlayForge.Lab.LabScenario)">
+  DeleteScenario(LabScenario)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves a scenario's asset to the trash, as The Forge's Delete does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DeleteScenario(LabScenario scenario)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scenario</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Refresh_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Refresh*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_Refresh" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.Refresh">
@@ -350,6 +519,48 @@ The Forge does, and follows as The Forge switches it. Given folders, it plays th
   </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_SaveScenario_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.SaveScenario*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_Editor_EditorLabLibrary_SaveScenario_FarEmerald_PlayForge_Lab_LabScenario_System_String_FarEmerald_PlayForge_Lab_LabScenario_" data-uid="FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.SaveScenario(FarEmerald.PlayForge.Lab.LabScenario,System.String,FarEmerald.PlayForge.Lab.LabScenario)">
+  SaveScenario(LabScenario, string, LabScenario)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves a scenario the lab captured: over the one given, its values copied in so its asset stays, or as a new
+asset in the Lab Scenarios folder of the active project, or of its first folder, named as asked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabScenario SaveScenario(LabScenario captured, string name, LabScenario over = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>captured</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>over</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabScenario.html">LabScenario</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

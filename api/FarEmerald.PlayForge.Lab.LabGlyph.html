@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LabGlyph | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LabGlyph | PlayForge ">
+      
+      <meta name="description" content="An inline vector glyph drawn in its resolved color, which the style sheet sets: the glyphs of PlayForge&#39;s editor, drawn the same way in the lab, whose panels run in a game as well as in the editor. A type&#39;s glyph differs in shape as well as color, so color is never its only sign.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FarEmerald.PlayForge.Lab.LabGlyph">
+
+
+
+  <h1 id="FarEmerald_PlayForge_Lab_LabGlyph" data-uid="FarEmerald.PlayForge.Lab.LabGlyph" class="text-break">
+Class LabGlyph  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><span class="xref">FarEmerald</span>.<a class="xref" href="FarEmerald.PlayForge.html">PlayForge</a>.<a class="xref" href="FarEmerald.PlayForge.Lab.html">Lab</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Lab.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>An inline vector glyph drawn in its resolved color, which the style sheet sets: the glyphs of PlayForge's editor,
+drawn the same way in the lab, whose panels run in a game as well as in the editor. A type's glyph differs in shape
+as well as color, so color is never its only sign.</p>
+</div>
+  <div class="markdown conceptual">
+<p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/in-code/the-panels-in-code.html">The Creator Lab: In code: The panels in code</a></p>
+</div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LabGlyph : VisualElement, IEventHandler, IResolvedStyle, ITransform, ITransitionAnimations, IExperimentalFeatures, IVisualElementScheduler</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.html">CallbackEventHandler</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Focusable.html">Focusable</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html">VisualElement</a></div>
+      <div><span class="xref">LabGlyph</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.IEventHandler.html">IEventHandler</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.IResolvedStyle.html">IResolvedStyle</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.ITransform.html">ITransform</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Experimental.ITransitionAnimations.html">ITransitionAnimations</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.IExperimentalFeatures.html">IExperimentalFeatures</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.IVisualElementScheduler.html">IVisualElementScheduler</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-disabledUssClassName.html">VisualElement.disabledUssClassName</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Focus.html">VisualElement.Focus()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.SendEvent.html">VisualElement.SendEvent(EventBase)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">VisualElement.SetEnabledFromHierarchy(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">VisualElement.SetEnabled(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.MarkDirtyRepaint.html">VisualElement.MarkDirtyRepaint()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.ContainsPoint.html">VisualElement.ContainsPoint(Vector2)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Overlaps.html">VisualElement.Overlaps(Rect)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">VisualElement.DoMeasure(float, VisualElement.MeasureMode, float, VisualElement.MeasureMode)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.ToString.html">VisualElement.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetClasses.html">VisualElement.GetClasses()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.ClearClassList.html">VisualElement.ClearClassList()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">VisualElement.AddToClassList(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">VisualElement.RemoveFromClassList(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">VisualElement.ToggleInClassList(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">VisualElement.EnableInClassList(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">VisualElement.ClassListContains(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.FindAncestorUserData.html">VisualElement.FindAncestorUserData()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.SetBinding.html">VisualElement.SetBinding(BindingId, Binding)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetBinding.html">VisualElement.GetBinding(BindingId)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.TryGetBinding.html">VisualElement.TryGetBinding(BindingId, out Binding)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetBindingInfos.html">VisualElement.GetBindingInfos()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.HasBinding.html">VisualElement.HasBinding(BindingId)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.ClearBinding.html">VisualElement.ClearBinding(BindingId)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.ClearBindings.html">VisualElement.ClearBindings()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetHierarchicalDataSourceContext.html">VisualElement.GetHierarchicalDataSourceContext()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetDataSourceContext.html">VisualElement.GetDataSourceContext(BindingId)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.TryGetDataSourceContext.html">VisualElement.TryGetDataSourceContext(BindingId, out DataSourceContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.TryGetLastBindingToUIResult.html">VisualElement.TryGetLastBindingToUIResult(in BindingId, out BindingResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.TryGetLastBindingToSourceResult.html">VisualElement.TryGetLastBindingToSourceResult(in BindingId, out BindingResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Add.html">VisualElement.Add(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">VisualElement.Insert(int, VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Remove.html">VisualElement.Remove(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">VisualElement.RemoveAt(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Clear.html">VisualElement.Clear()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">VisualElement.ElementAt(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.IndexOf.html">VisualElement.IndexOf(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Children.html">VisualElement.Children()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.comparison-1">VisualElement.Sort(Comparison&lt;VisualElement&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.BringToFront.html">VisualElement.BringToFront()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.SendToBack.html">VisualElement.SendToBack()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.PlaceBehind.html">VisualElement.PlaceBehind(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.PlaceInFront.html">VisualElement.PlaceInFront(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.RemoveFromHierarchy.html">VisualElement.RemoveFromHierarchy()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetFirstOfType__1.html">VisualElement.GetFirstOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.GetFirstAncestorOfType__1.html">VisualElement.GetFirstAncestorOfType&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.Contains.html">VisualElement.Contains(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.FindCommonAncestor.html">VisualElement.FindCommonAncestor(VisualElement)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-viewDataKey.html">VisualElement.viewDataKey</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-userData.html">VisualElement.userData</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-canGrabFocus.html">VisualElement.canGrabFocus</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-focusController.html">VisualElement.focusController</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-disablePlayModeTint.html">VisualElement.disablePlayModeTint</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-usageHints.html">VisualElement.usageHints</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-transform.html">VisualElement.transform</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-scaledPixelsPerPoint.html">VisualElement.scaledPixelsPerPoint</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-layout.html">VisualElement.layout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-contentRect.html">VisualElement.contentRect</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-paddingRect.html">VisualElement.paddingRect</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-worldBound.html">VisualElement.worldBound</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-localBound.html">VisualElement.localBound</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-worldTransform.html">VisualElement.worldTransform</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-pickingMode.html">VisualElement.pickingMode</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-name.html">VisualElement.name</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-enabledInHierarchy.html">VisualElement.enabledInHierarchy</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-enabledSelf.html">VisualElement.enabledSelf</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-languageDirection.html">VisualElement.languageDirection</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-visible.html">VisualElement.visible</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-generateVisualContent.html">VisualElement.generateVisualContent</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-dataSource.html">VisualElement.dataSource</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-dataSourcePath.html">VisualElement.dataSourcePath</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-dataSourceType.html">VisualElement.dataSourceType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-experimental.html">VisualElement.experimental</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-hierarchy.html">VisualElement.hierarchy</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-cacheAsBitmap.html">VisualElement.cacheAsBitmap</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-parent.html">VisualElement.parent</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-panel.html">VisualElement.panel</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-contentContainer.html">VisualElement.contentContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-visualTreeAssetSource.html">VisualElement.visualTreeAssetSource</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">VisualElement.this[int]</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-childCount.html">VisualElement.childCount</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-schedule.html">VisualElement.schedule</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-style.html">VisualElement.style</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-resolvedStyle.html">VisualElement.resolvedStyle</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-customStyle.html">VisualElement.customStyle</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-styleSheets.html">VisualElement.styleSheets</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.VisualElement-tooltip.html">VisualElement.tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Focusable.Blur.html">Focusable.Blur()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Focusable-focusable.html">Focusable.focusable</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Focusable-tabIndex.html">Focusable.tabIndex</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.Focusable-delegatesFocus.html">Focusable.delegatesFocus</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallback__1.html">CallbackEventHandler.RegisterCallback&lt;TEventType&gt;(EventCallback&lt;TEventType&gt;, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallbackOnce__1.html">CallbackEventHandler.RegisterCallbackOnce&lt;TEventType&gt;(EventCallback&lt;TEventType&gt;, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallback__2.html">CallbackEventHandler.RegisterCallback&lt;TEventType, TUserArgsType&gt;(EventCallback&lt;TEventType, TUserArgsType&gt;, TUserArgsType, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.RegisterCallbackOnce__2.html">CallbackEventHandler.RegisterCallbackOnce&lt;TEventType, TUserArgsType&gt;(EventCallback&lt;TEventType, TUserArgsType&gt;, TUserArgsType, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.UnregisterCallback__1.html">CallbackEventHandler.UnregisterCallback&lt;TEventType&gt;(EventCallback&lt;TEventType&gt;, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.UnregisterCallback__2.html">CallbackEventHandler.UnregisterCallback&lt;TEventType, TUserArgsType&gt;(EventCallback&lt;TEventType, TUserArgsType&gt;, TrickleDown)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.HasTrickleDownHandlers.html">CallbackEventHandler.HasTrickleDownHandlers()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.HasBubbleUpHandlers.html">CallbackEventHandler.HasBubbleUpHandlers()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.ExecuteDefaultActionAtTarget.html">CallbackEventHandler.ExecuteDefaultActionAtTarget(EventBase)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.HandleEventBubbleUp.html">CallbackEventHandler.HandleEventBubbleUp(EventBase)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.HandleEventTrickleDown.html">CallbackEventHandler.HandleEventTrickleDown(EventBase)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.ExecuteDefaultAction.html">CallbackEventHandler.ExecuteDefaultAction(EventBase)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.unity3d.com/ScriptReference/UIElements.CallbackEventHandler.NotifyPropertyChanged.html">CallbackEventHandler.NotifyPropertyChanged(in BindingId)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph__ctor_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.#ctor*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph__ctor_FarEmerald_PlayForge_Lab_LabGlyphShape_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.#ctor(FarEmerald.PlayForge.Lab.LabGlyphShape)">
+  LabGlyph(LabGlyphShape)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabGlyph(LabGlyphShape shape)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shape</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_GlyphClass" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.GlyphClass">
+  GlyphClass
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string GlyphClass = &quot;lab-glyph&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph_Shape_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Shape*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_Shape" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Shape">
+  Shape
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LabGlyphShape Shape { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph_Of_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Of*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_Of_FarEmerald_PlayForge_Lab_LabAssetKind_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Of(FarEmerald.PlayForge.Lab.LabAssetKind)">
+  Of(LabAssetKind)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The glyph of a kind the library lists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LabGlyphShape Of(LabAssetKind kind)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>kind</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabAssetKind.html">LabAssetKind</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph_Of_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Of*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_Of_UnityEngine_ScriptableObject_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.Of(UnityEngine.ScriptableObject)">
+  Of(ScriptableObject)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The glyph of an asset's type, or PlayForge's for any other PlayForge asset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LabGlyphShape Of(ScriptableObject asset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asset</code> <a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph_TypeClass_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.TypeClass*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_TypeClass_FarEmerald_PlayForge_Lab_LabGlyphShape_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.TypeClass(FarEmerald.PlayForge.Lab.LabGlyphShape)">
+  TypeClass(LabGlyphShape)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The style sheet's class for a type's glyph, which gives it the type's color: &quot;lab-type--ability&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string TypeClass(LabGlyphShape shape)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shape</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabGlyph_TypeIcon_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.TypeIcon*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabGlyph_TypeIcon_FarEmerald_PlayForge_Lab_LabGlyphShape_" data-uid="FarEmerald.PlayForge.Lab.LabGlyph.TypeIcon(FarEmerald.PlayForge.Lab.LabGlyphShape)">
+  TypeIcon(LabGlyphShape)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>An asset type's glyph, in the type's color alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LabGlyph TypeIcon(LabGlyphShape shape)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shape</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyphShape.html">LabGlyphShape</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabGlyph.html">LabGlyph</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
