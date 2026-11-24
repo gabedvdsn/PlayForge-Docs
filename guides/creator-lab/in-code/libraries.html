@@ -100,12 +100,12 @@
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.html"><code>EditorLabLibrary</code></a></td>
 <td>The editor</td>
-<td>Every asset of the project, and its Lab Scenarios. It saves scenarios.</td>
+<td>Every asset of the project, its prefabs with a GAS, and its Lab Scenarios. It saves scenarios.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ListLibrary.html"><code>ListLibrary</code></a></td>
 <td>Code</td>
-<td>The assets given, and the scenarios among them.</td>
+<td>The assets given, the scenarios among them, and the prefabs given.</td>
 </tr>
 <tr>
 <td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ListLibrary.html#FarEmerald_PlayForge_Lab_ListLibrary_Of_"><code>ListLibrary.Of(project)</code></a></td>
@@ -120,6 +120,13 @@ defaults.</p>
 <li>Its <code>ProjectAsset</code> is the Forge Project it plays. While the scene names no project, the lab makes it current, so its
 units read its settings, as their combat logs do.</li>
 <li>Its <code>Scenarios</code>, <code>CanSaveScenarios</code>, <code>SaveScenario</code> and <code>DeleteScenario</code> keep the lab's scenarios.</li>
+</ul>
+<p>A library lists a prefab as a <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.LabPrefab.html"><code>LabPrefab</code></a>, the lab's wrapper of it.</p>
+<ul>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.LabPrefab.html#FarEmerald_PlayForge_Lab_LabPrefab_Of_"><code>LabPrefab.Of(prefab)</code></a> gives the same wrapper each time, or null for a prefab that can't play.</li>
+<li><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.LabPrefab.html#FarEmerald_PlayForge_Lab_LabPrefab_Fits_"><code>LabPrefab.Fits(prefab)</code></a> asks whether it can: whether it has a GAS whose Entity Data is set.</li>
+<li>A unit made of one is a <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.LabUnit.html"><code>LabUnit</code></a> whose <code>Prefab</code> is the prefab. A <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.LabUnitSpec.html"><code>LabUnitSpec</code></a>'s <code>Prefab</code> and <code>PrefabScripts</code>
+(<a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.ELabPrefabScripts.html"><code>ELabPrefabScripts</code></a>) make one.</li>
 </ul>
 <p>The lab's units run in a world of the lab's own, named &quot;Creator Lab&quot;. The Debugger lists them beside the scene's
 entities.</p>

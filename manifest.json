@@ -1,6 +1,6 @@
 {
   "docfx_version": "2.81.0+ba844df625370a6bd7c1ecab0d0ec4d1d9128ac4",
-  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.YV5eDQ7VOm/docfx",
+  "source_base_path": "C:/Users/17074/AppData/Local/Temp/tmp.Pg6pg8Bkh5/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -5077,7 +5077,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.EUsageCheck",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EUsageCheck.yml\" sourcestartlinenumber=\"1\">The checks of an ability's use a component may waive, <xref href=\"FarEmerald.PlayForge.AbstractAbilityComponent.Waives(FarEmerald.PlayForge.AbilityComponentContext)\" data-throw-if-not-resolved=\"false\"></xref>: its cost, as the\nCost check asks, and its cooldown, as the Cooldown check asks.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.EUsageCheck.yml\" sourcestartlinenumber=\"1\">The checks of an ability's use that may be waived: by a component (<xref href=\"FarEmerald.PlayForge.AbstractAbilityComponent.Waives(FarEmerald.PlayForge.AbilityComponentContext)\" data-throw-if-not-resolved=\"false\"></xref>), by\nan activation's data (<xref href=\"FarEmerald.PlayForge.Tags.WAIVES\" data-throw-if-not-resolved=\"false\"></xref>), or by its caster (<xref href=\"FarEmerald.PlayForge.IGameplayAbilitySystem.WaivedChecks\" data-throw-if-not-resolved=\"false\"></xref>).\nIts cost, as the Cost check asks; its cooldown, as the Cooldown check asks; and its requirements.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10569,6 +10569,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.Lab.ELabPrefabScripts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.Lab.ELabPrefabScripts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.Lab.ELabPrefabScripts",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.ELabPrefabScripts.yml\" sourcestartlinenumber=\"1\">How the scripts of a prefab put down in the lab fare. PlayForge's own run either way.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarEmerald.PlayForge.Lab.ELabStopKind.yml",
       "output": {
         ".html": {
@@ -10635,7 +10649,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.yml\" sourcestartlinenumber=\"1\">The library in the editor, by kind: the active Forge Project's assets, as The Forge's pickers offer\nthem, or every asset of the project's own folders while it has no Forge Project; it switches the active project, as\nThe Forge does, and follows as The Forge switches it. Given folders, it plays those folders' assets alone. It\nkeeps the lab's scenarios as assets: in the active project's Lab Scenarios folder, or its first folder's.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.Editor.EditorLabLibrary.yml\" sourcestartlinenumber=\"1\">The library in the editor, by kind: the active Forge Project's assets, as The Forge's pickers offer\nthem, or every asset of the project's own folders while it has no Forge Project; it switches the active project, as\nThe Forge does, and follows as The Forge switches it. Given folders, it plays those folders' assets alone. Its\nprefabs are those of the project's own folders with a GameplayAbilitySystem whose Entity Data is set: of the active\nproject's, those in its folders, and those in no project's whose entity is the active project's or no project's.\nIt keeps the lab's scenarios as assets: in the active project's Lab Scenarios folder, or its first folder's.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10705,7 +10719,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.ILabLibrary",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.ILabLibrary.yml\" sourcestartlinenumber=\"1\">The assets the lab plays: in the editor every PlayForge asset of the project or of its active Forge\nProject, in a build those a project names. The library panel lists them by kind.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.ILabLibrary.yml\" sourcestartlinenumber=\"1\">The assets the lab plays: in the editor every PlayForge asset of the project or of its active Forge\nProject, and its prefabs with a GameplayAbilitySystem; in a build those a project names. The library panel lists\nthem by kind.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10859,7 +10873,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.LabControls",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabControls.yml\" sourcestartlinenumber=\"1\">A player's controls for one unit, as a MOBA's: right-click the ground to move, right-click a foe it can target to\nattack it, Q, W, E and R for its abilities past its attack, 1 to 6 for its items' abilities, S to stop, Escape to\ncancel a cast. An ability that needs a target waits for a left-click, as its own click targeting reads it;\nmeanwhile a ring on the ground shows the ability's reach, another ability's key casts that one instead, and a\nright-click order lets go of it. It reads PlayForge's input, ForgeInput, so a test or a game's own input stands\nin, and gives its orders through a driver: its own, its unit's rules', or the lab's. The Creator Lab's take its\ncontrolled unit; the Demo's player is these, its hero's.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabControls.yml\" sourcestartlinenumber=\"1\">A player's controls for one unit, as a MOBA's: right-click the ground to move, right-click a foe it can target to\nattack it, Q, W, E and R for its abilities past its attack, 1 to 6 for its items' abilities, S to stop, Escape to\ncancel a cast. An ability that needs a target waits for a left-click, as its own click targeting reads it;\nmeanwhile a ring on the ground shows the ability's reach, another ability's key casts that one instead, and a\nright-click order lets go of it. It reads PlayForge's input, ForgeInput, so a test or a game's own input stands\nin, and gives its orders through a driver: its own, its unit's rules', or the lab's. The Creator Lab's take its\ncontrolled unit, and show the reach of its selected unit's cast too; the Demo's player is these, its hero's. Its keys\ndo nothing while the lab's panels have the keyboard, as a field being typed in does.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -10999,7 +11013,21 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.LabPanels",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabPanels.yml\" sourcestartlinenumber=\"1\">The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,\nits assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the\nspace, what's put down, the units, the battle, the author's unit, the camera, the time and the scenarios; the\nselected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each\ncollapses to a tab at its edge, and the middle stays the space's. Over the space, each unit's bar, and a status at\nthe top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the\nlab's to apply, cast or give where it's let go: the drag follows the lab's input, wherever the pointer goes.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabPanels.yml\" sourcestartlinenumber=\"1\">The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,\nits assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the\nspace, what's put down, the units, the battle, the author's unit, the camera, the time, the interface and the\nscenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the\nbottom. Each collapses to a tab at its edge, and the middle stays the space's. A panel's inner edge drags to resize\nit, and the log and the status between them move with it; the whole is drawn at the lab's UI size, its words at its\ntext size. Over the space, each unit's bar, and a status at the top that clicks go through. An asset dragged from\nthe library carries its card under the pointer, and is the lab's to apply, cast or give where it's let go: the drag\nfollows the lab's input, wherever the pointer goes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarEmerald.PlayForge.Lab.LabPrefab.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarEmerald.PlayForge.Lab.LabPrefab.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FarEmerald.PlayForge.Lab.LabPrefab",
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabPrefab.yml\" sourcestartlinenumber=\"1\">A prefab as the lab's library lists it, beside the project's PlayForge assets: one with a GameplayAbilitySystem\nwhose Entity Data is set, as a game's character is. Dropped on the ground, put down, or seated in a battle, it stands\nas a unit of the lab's: an instance of the prefab, its own body, its GAS registered in the lab's world on the side\ngiven. Every lab feature works on it as on the lab's own units: it's selected and dragged, takes orders and casts,\nchanges side, takes what's dropped on it, shows its reach, and keeps its place in a scenario.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11265,7 +11293,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.LabUnit",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabUnit.yml\" sourcestartlinenumber=\"1\">A unit in the lab, and the Demo's hero: a GameplayAbilitySystem on a body of its own, which walks where it's\nsent, attacks what it's set on, casts its abilities and its items', and holds its items. Its attributes, tags,\nlevels and Local Data are the GAS's; this is the space's side of it. Movement is the lab's, a straight line on the\nground at its speed, as a project's own body would be for a game.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.LabUnit.yml\" sourcestartlinenumber=\"1\">A unit in the lab, and the Demo's hero: a GameplayAbilitySystem on a body of its own, which walks where it's\nsent, attacks what it's set on, casts its abilities and its items', and holds its items. Its attributes, tags,\nlevels and Local Data are the GAS's; this is the space's side of it. Movement is the lab's, a straight line on the\nground at its speed, as a project's own body would be for a game. Its body is a capsule the lab makes, or an\ninstance of a prefab of the project's, which it wraps as it does its own.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -11307,7 +11335,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "FarEmerald.PlayForge.Lab.ListLibrary",
-      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.ListLibrary.yml\" sourcestartlinenumber=\"1\">A library of the assets given, as a test or a build gives them.</p>\n"
+      "Summary": "<p sourcefile=\"api/FarEmerald.PlayForge.Lab.ListLibrary.yml\" sourcestartlinenumber=\"1\">A library of the assets given, and the prefabs, as a test or a build gives them.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -15396,6 +15424,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/abilities/requirements/waived-checks.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/abilities/requirements/waived-checks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/abilities/requirements/writing-your-own-check.md",
       "output": {
         ".html": {
@@ -15896,6 +15934,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/creator-lab/prefabs.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/creator-lab/prefabs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/creator-lab/scenarios.md",
       "output": {
         ".html": {
@@ -16016,6 +16064,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "guides/creator-lab/the-panels/sizing-the-panels.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/creator-lab/the-panels/sizing-the-panels.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "guides/creator-lab/the-panels/the-lab-panel.md",
       "output": {
         ".html": {
@@ -16090,6 +16148,16 @@
       "output": {
         ".html": {
           "relative_path": "guides/creator-lab/the-space/the-camera.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/creator-lab/the-space/the-labs-caster.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/creator-lab/the-space/the-labs-caster.html"
         }
       },
       "version": ""

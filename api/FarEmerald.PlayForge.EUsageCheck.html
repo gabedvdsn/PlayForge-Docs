@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Enum EUsageCheck | PlayForge ">
       
-      <meta name="description" content="The checks of an ability&#39;s use a component may waive, : its cost, as the Cost check asks, and its cooldown, as the Cooldown check asks.">
+      <meta name="description" content="The checks of an ability&#39;s use that may be waived: by a component (), by an activation&#39;s data (), or by its caster (). Its cost, as the Cost check asks; its cooldown, as the Cooldown check asks; and its requirements.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -98,12 +98,13 @@ Enum EUsageCheck
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The checks of an ability's use a component may waive, <a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Waives_FarEmerald_PlayForge_AbilityComponentContext_">Waives(AbilityComponentContext)</a>: its cost, as the
-Cost check asks, and its cooldown, as the Cooldown check asks.</p>
+  <div class="markdown summary"><p>The checks of an ability's use that may be waived: by a component (<a class="xref" href="FarEmerald.PlayForge.AbstractAbilityComponent.html#FarEmerald_PlayForge_AbstractAbilityComponent_Waives_FarEmerald_PlayForge_AbilityComponentContext_">Waives(AbilityComponentContext)</a>), by
+an activation's data (<a class="xref" href="FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_WAIVES">WAIVES</a>), or by its caster (<a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html#FarEmerald_PlayForge_IGameplayAbilitySystem_WaivedChecks">WaivedChecks</a>).
+Its cost, as the Cost check asks; its cooldown, as the Cooldown check asks; and its requirements.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/extending/index.html">Extending PlayForge</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/components/ability-components.html">Extending PlayForge: Components: Ability components</a> · <a class="xref" href="../guides/creator-lab/in-code/making-and-driving-a-lab.html">The Creator Lab: In code: Making and driving a lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/components/ability-components.html">Extending PlayForge: Components: Ability components</a> · <a class="xref" href="../guides/effects/impact/affiliation.html">Effects: Impact: Affiliation</a> · <a class="xref" href="../guides/abilities/requirements/waived-checks.html">Abilities: Requirements: Waived checks</a> · <a class="xref" href="../guides/creator-lab/in-code/making-and-driving-a-lab.html">The Creator Lab: In code: Making and driving a lab</a></p>
 </div>
 
   <div class="codewrapper">
@@ -132,6 +133,13 @@ public enum EUsageCheck</code></pre>
     <dt id="FarEmerald_PlayForge_EUsageCheck_Cooldown"><code>Cooldown = 2</code></dt>
   
   <dd><p>Its cooldown: a use in hand, as its cooldown model says.</p>
+</dd>
+    <dt id="FarEmerald_PlayForge_EUsageCheck_Requirements"><code>Requirements = 4</code></dt>
+  
+  <dd><p>Its requirements: its Caster and Target Checks, its tag requirements, the crowd control its caster is under, and
+what its components refuse of its caster, its target and the point it picks, as a Cast Range does. A check or a
+component that refuses as a cost, a cooldown or a death still asks. An entity that waives them lands its effects
+past their affiliation and their requirements too.</p>
 </dd>
   </dl>
 

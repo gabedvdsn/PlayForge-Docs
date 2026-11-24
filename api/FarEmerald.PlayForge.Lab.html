@@ -157,7 +157,8 @@ cancel a cast. An ability that needs a target waits for a left-click, as its own
 meanwhile a ring on the ground shows the ability's reach, another ability's key casts that one instead, and a
 right-click order lets go of it. It reads PlayForge's input, ForgeInput, so a test or a game's own input stands
 in, and gives its orders through a driver: its own, its unit's rules', or the lab's. The Creator Lab's take its
-controlled unit; the Demo's player is these, its hero's.</p>
+controlled unit, and show the reach of its selected unit's cast too; the Demo's player is these, its hero's. Its keys
+do nothing while the lab's panels have the keyboard, as a field being typed in does.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -212,11 +213,22 @@ press outside it closes it.</p>
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabPanels.html">LabPanels</a></dt>
       <dd><p>The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,
 its assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the
-space, what's put down, the units, the battle, the author's unit, the camera, the time and the scenarios; the
-selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each
-collapses to a tab at its edge, and the middle stays the space's. Over the space, each unit's bar, and a status at
-the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the
-lab's to apply, cast or give where it's let go: the drag follows the lab's input, wherever the pointer goes.</p>
+space, what's put down, the units, the battle, the author's unit, the camera, the time, the interface and the
+scenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the
+bottom. Each collapses to a tab at its edge, and the middle stays the space's. A panel's inner edge drags to resize
+it, and the log and the status between them move with it; the whole is drawn at the lab's UI size, its words at its
+text size. Over the space, each unit's bar, and a status at the top that clicks go through. An asset dragged from
+the library carries its card under the pointer, and is the lab's to apply, cast or give where it's let go: the drag
+follows the lab's input, wherever the pointer goes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabPrefab.html">LabPrefab</a></dt>
+      <dd><p>A prefab as the lab's library lists it, beside the project's PlayForge assets: one with a GameplayAbilitySystem
+whose Entity Data is set, as a game's character is. Dropped on the ground, put down, or seated in a battle, it stands
+as a unit of the lab's: an instance of the prefab, its own body, its GAS registered in the lab's world on the side
+given. Every lab feature works on it as on the lab's own units: it's selected and dragged, takes orders and casts,
+changes side, takes what's dropped on it, shows its reach, and keeps its place in a scenario.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -323,7 +335,8 @@ foot row of actions on the row selected, under a thin rule. A column is a class,
       <dd><p>A unit in the lab, and the Demo's hero: a GameplayAbilitySystem on a body of its own, which walks where it's
 sent, attacks what it's set on, casts its abilities and its items', and holds its items. Its attributes, tags,
 levels and Local Data are the GAS's; this is the space's side of it. Movement is the lab's, a straight line on the
-ground at its speed, as a project's own body would be for a game.</p>
+ground at its speed, as a project's own body would be for a game. Its body is a capsule the lab makes, or an
+instance of a prefab of the project's, which it wraps as it does its own.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -339,7 +352,7 @@ its values over the last minute of the lab's time, one each tenth of a second.</
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ListLibrary.html">ListLibrary</a></dt>
-      <dd><p>A library of the assets given, as a test or a build gives them.</p>
+      <dd><p>A library of the assets given, and the prefabs, as a test or a build gives them.</p>
 </dd>
     </dl>
     <h3 id="structs">
@@ -362,7 +375,8 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ILabLibrary.html">ILabLibrary</a></dt>
       <dd><p>The assets the lab plays: in the editor every PlayForge asset of the project or of its active Forge
-Project, in a build those a project names. The library panel lists them by kind.</p>
+Project, and its prefabs with a GameplayAbilitySystem; in a build those a project names. The library panel lists
+them by kind.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -384,6 +398,11 @@ one, the lab's: a unit walks in a straight line and casts as the lab's units do.
     <h3 id="enums">
 Enums
 </h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ELabPrefabScripts.html">ELabPrefabScripts</a></dt>
+      <dd><p>How the scripts of a prefab put down in the lab fare. PlayForge's own run either way.</p>
+</dd>
+    </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="FarEmerald.PlayForge.Lab.ELabStopKind.html">ELabStopKind</a></dt>
       <dd><p>What a stop watches for.</p>

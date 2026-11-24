@@ -1642,6 +1642,44 @@ Supports hierarchical matching.</p>
 
 
 
+  <a id="FarEmerald_PlayForge_ForgeHelper_SourceWaivesRequirements_" data-uid="FarEmerald.PlayForge.ForgeHelper.SourceWaivesRequirements*"></a>
+
+  <h3 id="FarEmerald_PlayForge_ForgeHelper_SourceWaivesRequirements_FarEmerald_PlayForge_GameplayEffectSpec_" data-uid="FarEmerald.PlayForge.ForgeHelper.SourceWaivesRequirements(FarEmerald.PlayForge.GameplayEffectSpec)">
+  SourceWaivesRequirements(GameplayEffectSpec)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether an effect's source waives its requirements (<a class="xref" href="FarEmerald.PlayForge.IGameplayAbilitySystem.html#FarEmerald_PlayForge_IGameplayAbilitySystem_WaivedChecks">WaivedChecks</a> holds
+Requirements), so it lands past its affiliation and its application and ongoing requirements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool SourceWaivesRequirements(GameplayEffectSpec spec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spec</code> <a class="xref" href="FarEmerald.PlayForge.GameplayEffectSpec.html">GameplayEffectSpec</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_ForgeHelper_TextureUnder_" data-uid="FarEmerald.PlayForge.ForgeHelper.TextureUnder*"></a>
 
   <h3 id="FarEmerald_PlayForge_ForgeHelper_TextureUnder_System_Collections_Generic_IEnumerable_FarEmerald_PlayForge_TextureItem__FarEmerald_PlayForge_Tag_" data-uid="FarEmerald.PlayForge.ForgeHelper.TextureUnder(System.Collections.Generic.IEnumerable{FarEmerald.PlayForge.TextureItem},FarEmerald.PlayForge.Tag)">
@@ -2248,7 +2286,9 @@ an effect inheriting its origin's texture keeps its own where the origin has non
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Whether an effect may land on a target of the affiliation given: its affiliation and its application
+requirements, which a source that waives its requirements, as the Creator Lab's own caster, passes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -2286,7 +2326,9 @@ an effect inheriting its origin's texture keeps its own where the origin has non
   
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Whether an effect holds while it lasts: its ongoing requirements, which a source that waives its requirements, as
+the Creator Lab's own caster, passes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Prefabs | PlayForge </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Prefabs | PlayForge ">
+      
+      
+      <link rel="icon" href="../../images/logo.svg">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/logo.svg" alt="PlayForge">
+            PlayForge
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="guide.creator-lab.prefabs">
+<h1 id="prefabs">Prefabs</h1>
+
+<p>The lab plays the project's own prefabs as well as its assets, so you can try your characters as your game builds them.
+A prefab plays in the lab where it has a <a class="xref" href="../../api/FarEmerald.PlayForge.GameplayAbilitySystem.html"><code>GameplayAbilitySystem</code></a> whose <strong>Entity Data</strong> is set.</p>
+<p>The library lists them under <strong>Prefabs</strong>:</p>
+<ul>
+<li>In the editor, each such prefab in the project's own folders. While a Forge Project is active, it lists those in the
+project's folders, and those in no project's folder whose entity is the project's or in no project.</li>
+<li>Those the <code>Creator Lab</code> component's <strong>Prefabs</strong> list names, as a build has no editor to find them.</li>
+</ul>
+<p>You put a prefab down as you put an entity down: drop it on the ground, pick it in the Put Down section, or seat it in
+a battle. It stands as a unit of the lab's, a <a class="xref" href="../../api/FarEmerald.PlayForge.Lab.LabUnit.html"><code>LabUnit</code></a> wrapped around an instance of the prefab:</p>
+<ul>
+<li>Its body is the prefab's own, with the lab's ring at its feet in its side's color.</li>
+<li>Its GAS is the prefab's, made from a copy of its entity, at the level picked, on the side picked, in the lab's world.</li>
+<li>A click picks it by its own colliders, or by a capsule the lab gives it where it has none.</li>
+<li>Its rigidbodies are moved by the lab, not by physics, and its animators lose their root motion, so the lab's walk
+moves it.</li>
+<li>Its own scripts are turned off, so a controller or an AI of its own leaves it to the lab's orders. PlayForge's
+scripts, and its processes, stay on.</li>
+</ul>
+<p>Every lab feature then works on it: selecting and dragging it, its orders and casts, its side, what's dropped on it, its
+reach ring, the bar over it, and its place in a scenario.</p>
+<p>The <code>Creator Lab</code> component's <strong>Prefab Scripts</strong> says what becomes of a prefab's own scripts:</p>
+<table>
+<thead>
+<tr>
+<th>Choice</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Turn Off</strong> (default)</td>
+<td>Turns them off. Each still wakes, as Unity wakes a script that's off.</td>
+</tr>
+<tr>
+<td><strong>Keep</strong></td>
+<td>Leaves them on, as its views that follow its GAS need. A controller of its own may fight the lab's orders.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>A NavMeshAgent on a prefab turns off in the lab, as the lab's ground has no NavMesh. Of the processes on a prefab,
+the lab registers its GAS alone.</p>
+</div>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          PlayForge 1.0.0 · Far Emerald
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

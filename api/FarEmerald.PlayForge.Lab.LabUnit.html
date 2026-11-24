@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class LabUnit | PlayForge ">
       
-      <meta name="description" content="A unit in the lab, and the Demo&#39;s hero: a GameplayAbilitySystem on a body of its own, which walks where it&#39;s sent, attacks what it&#39;s set on, casts its abilities and its items&#39;, and holds its items. Its attributes, tags, levels and Local Data are the GAS&#39;s; this is the space&#39;s side of it. Movement is the lab&#39;s, a straight line on the ground at its speed, as a project&#39;s own body would be for a game.">
+      <meta name="description" content="A unit in the lab, and the Demo&#39;s hero: a GameplayAbilitySystem on a body of its own, which walks where it&#39;s sent, attacks what it&#39;s set on, casts its abilities and its items&#39;, and holds its items. Its attributes, tags, levels and Local Data are the GAS&#39;s; this is the space&#39;s side of it. Movement is the lab&#39;s, a straight line on the ground at its speed, as a project&#39;s own body would be for a game. Its body is a capsule the lab makes, or an instance of a prefab of the project&#39;s, which it wraps as it does its own.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -100,11 +100,12 @@ Class LabUnit
   <div class="markdown summary"><p>A unit in the lab, and the Demo's hero: a GameplayAbilitySystem on a body of its own, which walks where it's
 sent, attacks what it's set on, casts its abilities and its items', and holds its items. Its attributes, tags,
 levels and Local Data are the GAS's; this is the space's side of it. Movement is the lab's, a straight line on the
-ground at its speed, as a project's own body would be for a game.</p>
+ground at its speed, as a project's own body would be for a game. Its body is a capsule the lab makes, or an
+instance of a prefab of the project's, which it wraps as it does its own.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
-<p><strong>Named in:</strong> <a class="xref" href="../guides/extending/the-creator-lab.html">Extending PlayForge: The Creator Lab</a></p>
+<p><strong>Named in:</strong> <a class="xref" href="../guides/creator-lab/prefabs.html">The Creator Lab: Prefabs</a> · <a class="xref" href="../guides/creator-lab/in-code/libraries.html">The Creator Lab: In code: Libraries</a> · <a class="xref" href="../guides/extending/the-creator-lab.html">Extending PlayForge: The Creator Lab</a></p>
 </div>
 
   <div class="codewrapper">
@@ -690,6 +691,38 @@ Local Data's or its rules'.</p>
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_LabUnit_Bodiless_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Bodiless*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabUnit_Bodiless" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Bodiless">
+  Bodiless
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether it has no body to see or to pick, as the lab's own caster has none.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Bodiless { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_LabUnit_Destination_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Destination*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_LabUnit_Destination" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Destination">
@@ -766,6 +799,38 @@ Local Data's or its rules'.</p>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public float HealthShare { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabUnit_Height_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Height*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabUnit_Height" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Height">
+  Height
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>How tall it stands, to the top of its body, in metres: what its bar is drawn over.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Height { get; }</code></pre>
   </div>
 
 
@@ -903,6 +968,38 @@ player; the lab shows every side.</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabUnit_Prefab_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Prefab*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabUnit_Prefab" data-uid="FarEmerald.PlayForge.Lab.LabUnit.Prefab">
+  Prefab
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The prefab it's an instance of, or null for a body of the lab's own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject Prefab { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a></dt>
     <dd></dd>
   </dl>
 
@@ -2359,6 +2456,39 @@ bot reads it. 0 where it reaches anywhere. What a player's reach ring draws.</p>
     <pre><code class="lang-csharp hljs">public void Remove()</code></pre>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabUnit_SetSide_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.SetSide*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabUnit_SetSide_FarEmerald_PlayForge_Lab_LabSide_" data-uid="FarEmerald.PlayForge.Lab.LabUnit.SetSide(FarEmerald.PlayForge.Lab.LabSide)">
+  SetSide(LabSide)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves it to another side as the game runs: its affiliation becomes the side's alone, so its allies and its foes
+follow; its ring takes the side's color, and its body too where its color was its side's.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSide(LabSide side)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>side</code> <a class="xref" href="FarEmerald.PlayForge.Lab.LabSide.html">LabSide</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

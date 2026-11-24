@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class LabPanels | PlayForge ">
       
-      <meta name="description" content="The lab&#39;s panels, UI Toolkit over the space, in PlayForge&#39;s editor style as the Debugger is. The library on the left, its assets by kind, where a click opens an asset&#39;s card under its row; the Lab panel on the right, its sections the space, what&#39;s put down, the units, the battle, the author&#39;s unit, the camera, the time and the scenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each collapses to a tab at its edge, and the middle stays the space&#39;s. Over the space, each unit&#39;s bar, and a status at the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the lab&#39;s to apply, cast or give where it&#39;s let go: the drag follows the lab&#39;s input, wherever the pointer goes.">
+      <meta name="description" content="The lab&#39;s panels, UI Toolkit over the space, in PlayForge&#39;s editor style as the Debugger is. The library on the left, its assets by kind, where a click opens an asset&#39;s card under its row; the Lab panel on the right, its sections the space, what&#39;s put down, the units, the battle, the author&#39;s unit, the camera, the time, the interface and the scenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each collapses to a tab at its edge, and the middle stays the space&#39;s. A panel&#39;s inner edge drags to resize it, and the log and the status between them move with it; the whole is drawn at the lab&#39;s UI size, its words at its text size. Over the space, each unit&#39;s bar, and a status at the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the lab&#39;s to apply, cast or give where it&#39;s let go: the drag follows the lab&#39;s input, wherever the pointer goes.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -99,11 +99,13 @@ Class LabPanels
 
   <div class="markdown summary"><p>The lab's panels, UI Toolkit over the space, in PlayForge's editor style as the Debugger is. The library on the left,
 its assets by kind, where a click opens an asset's card under its row; the Lab panel on the right, its sections the
-space, what's put down, the units, the battle, the author's unit, the camera, the time and the scenarios; the
-selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the bottom. Each
-collapses to a tab at its edge, and the middle stays the space's. Over the space, each unit's bar, and a status at
-the top that clicks go through. An asset dragged from the library carries its card under the pointer, and is the
-lab's to apply, cast or give where it's let go: the drag follows the lab's input, wherever the pointer goes.</p>
+space, what's put down, the units, the battle, the author's unit, the camera, the time, the interface and the
+scenarios; the selected unit over it, as the Debugger shows an entity, set aside by its tab; and the log at the
+bottom. Each collapses to a tab at its edge, and the middle stays the space's. A panel's inner edge drags to resize
+it, and the log and the status between them move with it; the whole is drawn at the lab's UI size, its words at its
+text size. Over the space, each unit's bar, and a status at the top that clicks go through. An asset dragged from
+the library carries its card under the pointer, and is the lab's to apply, cast or give where it's let go: the drag
+follows the lab's input, wherever the pointer goes.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
@@ -622,6 +624,38 @@ lab's to apply, cast or give where it's let go: the drag follows the lab's input
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_LabPanels_Resizing_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Resizing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabPanels_Resizing" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Resizing">
+  Resizing
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether a panel's edge is being dragged to resize it now.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Resizing { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_LabPanels_Root_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Root*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_LabPanels_Root" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Root">
@@ -654,8 +688,69 @@ lab's to apply, cast or give where it's let go: the drag follows the lab's input
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_LabPanels_TakesKeys_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.TakesKeys*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabPanels_TakesKeys" data-uid="FarEmerald.PlayForge.Lab.LabPanels.TakesKeys">
+  TakesKeys
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the panels have the keyboard now, so a key such as Esc, or the author's unit's Q, is theirs and not the
+space's: a field of theirs being typed in, or a menu of theirs open; or one closed, or a field let go of, by Esc
+this frame or the last, as the key that did it is still down as the lab reads it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TakesKeys { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabPanels_CancelDrag_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.CancelDrag*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabPanels_CancelDrag" data-uid="FarEmerald.PlayForge.Lab.LabPanels.CancelDrag">
+  CancelDrag()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lets go of an asset dragged from the library, dropping it nowhere, as Esc does.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CancelDrag()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
   <a id="FarEmerald_PlayForge_Lab_LabPanels_Collapse_" data-uid="FarEmerald.PlayForge.Lab.LabPanels.Collapse*"></a>
@@ -665,7 +760,7 @@ lab's to apply, cast or give where it's let go: the drag follows the lab's input
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Collapses a panel to the tab at its edge, or opens it.</p>
+  <div class="markdown level1 summary"><p>Collapses a panel to the tab at its edge, or opens it; the panels beside it move to fit.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

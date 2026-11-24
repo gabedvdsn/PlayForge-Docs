@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ListLibrary | PlayForge ">
       
-      <meta name="description" content="A library of the assets given, as a test or a build gives them.">
+      <meta name="description" content="A library of the assets given, and the prefabs, as a test or a build gives them.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class ListLibrary
   <dl><dt>Assembly</dt><dd>FarEmerald.PlayForge.Lab.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>A library of the assets given, as a test or a build gives them.</p>
+  <div class="markdown summary"><p>A library of the assets given, and the prefabs, as a test or a build gives them.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
@@ -161,8 +161,8 @@ Class ListLibrary
 
   <a id="FarEmerald_PlayForge_Lab_ListLibrary__ctor_" data-uid="FarEmerald.PlayForge.Lab.ListLibrary.#ctor*"></a>
 
-  <h3 id="FarEmerald_PlayForge_Lab_ListLibrary__ctor_System_String_System_Collections_Generic_IEnumerable_UnityEngine_ScriptableObject__" data-uid="FarEmerald.PlayForge.Lab.ListLibrary.#ctor(System.String,System.Collections.Generic.IEnumerable{UnityEngine.ScriptableObject})">
-  ListLibrary(string, IEnumerable&lt;ScriptableObject&gt;)
+  <h3 id="FarEmerald_PlayForge_Lab_ListLibrary__ctor_System_String_System_Collections_Generic_IEnumerable_UnityEngine_ScriptableObject__System_Collections_Generic_IEnumerable_UnityEngine_GameObject__" data-uid="FarEmerald.PlayForge.Lab.ListLibrary.#ctor(System.String,System.Collections.Generic.IEnumerable{UnityEngine.ScriptableObject},System.Collections.Generic.IEnumerable{UnityEngine.GameObject})">
+  ListLibrary(string, IEnumerable&lt;ScriptableObject&gt;, IEnumerable&lt;GameObject&gt;)
   
   </h3>
 
@@ -170,7 +170,7 @@ Class ListLibrary
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ListLibrary(string name, IEnumerable&lt;ScriptableObject&gt; assets)</code></pre>
+    <pre><code class="lang-csharp hljs">public ListLibrary(string name, IEnumerable&lt;ScriptableObject&gt; assets, IEnumerable&lt;GameObject&gt; prefabs = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -179,6 +179,9 @@ Class ListLibrary
     <dd></dd>
     <dt><code>assets</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a>&gt;</dt>
     <dd></dd>
+    <dt><code>prefabs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a>&gt;</dt>
+    <dd><p>Prefabs it lists besides, those with a GameplayAbilitySystem whose Entity Data is set.</p>
+</dd>
   </dl>
 
 

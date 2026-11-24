@@ -98,7 +98,11 @@
 <tbody>
 <tr>
 <td>Units</td>
-<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_"><code>AddUnit</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_"><code>AddDummy</code></a> and <code>Place</code></td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddUnit_"><code>AddUnit</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AddDummy_"><code>AddDummy</code></a>, <code>Place</code> and <code>SetSide</code></td>
+</tr>
+<tr>
+<td>The lab's caster</td>
+<td><code>Caster</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SelectCaster_"><code>SelectCaster</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetCasterSet_"><code>SetCasterSet</code></a> and <code>CasterSet</code></td>
 </tr>
 <tr>
 <td>Assets</td>
@@ -124,10 +128,19 @@
 <td>Scenarios</td>
 <td><code>Capture</code>, <code>Load</code>, <code>SaveScenario</code> and <code>DeleteScenario</code></td>
 </tr>
+<tr>
+<td>Its library</td>
+<td><a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_AssetsOf_"><code>AssetsOf(kind)</code></a>: the library's assets of a kind, and of prefabs, the lab's own <code>Prefabs</code> besides</td>
+</tr>
+<tr>
+<td>Its interface</td>
+<td><code>UIScale</code>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_TextSize"><code>TextSize</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_LibraryWidth"><code>LibraryWidth</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_PanelWidth"><code>PanelWidth</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_LogHeight"><code>LogHeight</code></a>; <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetUIScale_"><code>SetUIScale</code></a>, <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_SetTextSize_"><code>SetTextSize</code></a> and <a class="xref" href="../../../api/FarEmerald.PlayForge.Lab.CreatorLab.html#FarEmerald_PlayForge_Lab_CreatorLab_ResetInterface_"><code>ResetInterface</code></a></td>
+</tr>
 </tbody>
 </table>
-<p>The lab's caster casts free through the activation's data: <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_WAIVES"><code>Tags.WAIVES</code></a> names the checks an activation waives, an
-<a class="xref" href="../../../api/FarEmerald.PlayForge.EUsageCheck.html"><code>EUsageCheck</code></a>. A cast whose data waives its cost and cooldown neither checks nor pays them.</p>
+<p>The lab's caster casts free and past every requirement through its GAS's <code>WaivedChecks</code>, an <a class="xref" href="../../../api/FarEmerald.PlayForge.EUsageCheck.html"><code>EUsageCheck</code></a> of Cost,
+Cooldown and Requirements (<a href="../../abilities/requirements/waived-checks.html">Abilities: Requirements: Waived checks</a>). One activation waives checks through its
+data's <a class="xref" href="../../../api/FarEmerald.PlayForge.Tags.html#FarEmerald_PlayForge_Tags_WAIVES"><code>Tags.WAIVES</code></a>.</p>
 
 </article>
 

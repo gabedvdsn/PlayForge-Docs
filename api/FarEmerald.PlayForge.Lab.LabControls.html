@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class LabControls | PlayForge ">
       
-      <meta name="description" content="A player&#39;s controls for one unit, as a MOBA&#39;s: right-click the ground to move, right-click a foe it can target to attack it, Q, W, E and R for its abilities past its attack, 1 to 6 for its items&#39; abilities, S to stop, Escape to cancel a cast. An ability that needs a target waits for a left-click, as its own click targeting reads it; meanwhile a ring on the ground shows the ability&#39;s reach, another ability&#39;s key casts that one instead, and a right-click order lets go of it. It reads PlayForge&#39;s input, ForgeInput, so a test or a game&#39;s own input stands in, and gives its orders through a driver: its own, its unit&#39;s rules&#39;, or the lab&#39;s. The Creator Lab&#39;s take its controlled unit; the Demo&#39;s player is these, its hero&#39;s.">
+      <meta name="description" content="A player&#39;s controls for one unit, as a MOBA&#39;s: right-click the ground to move, right-click a foe it can target to attack it, Q, W, E and R for its abilities past its attack, 1 to 6 for its items&#39; abilities, S to stop, Escape to cancel a cast. An ability that needs a target waits for a left-click, as its own click targeting reads it; meanwhile a ring on the ground shows the ability&#39;s reach, another ability&#39;s key casts that one instead, and a right-click order lets go of it. It reads PlayForge&#39;s input, ForgeInput, so a test or a game&#39;s own input stands in, and gives its orders through a driver: its own, its unit&#39;s rules&#39;, or the lab&#39;s. The Creator Lab&#39;s take its controlled unit, and show the reach of its selected unit&#39;s cast too; the Demo&#39;s player is these, its hero&#39;s. Its keys do nothing while the lab&#39;s panels have the keyboard, as a field being typed in does.">
       <link rel="icon" href="../images/logo.svg">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -103,7 +103,8 @@ cancel a cast. An ability that needs a target waits for a left-click, as its own
 meanwhile a ring on the ground shows the ability's reach, another ability's key casts that one instead, and a
 right-click order lets go of it. It reads PlayForge's input, ForgeInput, so a test or a game's own input stands
 in, and gives its orders through a driver: its own, its unit's rules', or the lab's. The Creator Lab's take its
-controlled unit; the Demo's player is these, its hero's.</p>
+controlled unit, and show the reach of its selected unit's cast too; the Demo's player is these, its hero's. Its keys
+do nothing while the lab's panels have the keyboard, as a field being typed in does.</p>
 </div>
   <div class="markdown conceptual">
 <p><strong>Guide:</strong> <a class="xref" href="../guides/creator-lab/index.html">The Creator Lab</a></p>
@@ -1385,6 +1386,39 @@ cancel&quot;, as they're set.</p>
 
 
 
+  <a id="FarEmerald_PlayForge_Lab_LabControls_KeysTaken_" data-uid="FarEmerald.PlayForge.Lab.LabControls.KeysTaken*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabControls_KeysTaken" data-uid="FarEmerald.PlayForge.Lab.LabControls.KeysTaken">
+  KeysTaken()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the keyboard is another's now, so its keys cast nothing: a field of the Creator Lab's panels being typed
+in, or a menu of theirs open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool KeysTaken()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="FarEmerald_PlayForge_Lab_LabControls_KeysWords_" data-uid="FarEmerald.PlayForge.Lab.LabControls.KeysWords*"></a>
 
   <h3 id="FarEmerald_PlayForge_Lab_LabControls_KeysWords_System_Collections_Generic_IReadOnlyList_UnityEngine_KeyCode__" data-uid="FarEmerald.PlayForge.Lab.LabControls.KeysWords(System.Collections.Generic.IReadOnlyList{UnityEngine.KeyCode})">
@@ -1499,6 +1533,39 @@ cancel&quot;, as they're set.</p>
     <dd></dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FarEmerald_PlayForge_Lab_LabControls_OtherChoosing_" data-uid="FarEmerald.PlayForge.Lab.LabControls.OtherChoosing*"></a>
+
+  <h3 id="FarEmerald_PlayForge_Lab_LabControls_OtherChoosing" data-uid="FarEmerald.PlayForge.Lab.LabControls.OtherChoosing">
+  OtherChoosing()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>A unit besides its own whose cast chooses its target now, whose reach its ring shows: the Creator Lab's selected
+unit, where it controls the lab's unit, or null. The lab's own caster, whose casts reach anywhere, it leaves.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual LabUnit OtherChoosing()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FarEmerald.PlayForge.Lab.LabUnit.html">LabUnit</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
